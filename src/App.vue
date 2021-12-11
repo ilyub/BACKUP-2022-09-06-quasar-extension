@@ -11,11 +11,14 @@ import {
   mdiArrowRight,
   mdiArrowUp,
   mdiClose,
+  mdiImageEdit,
+  mdiImageEditOutline,
   mdiPen
 } from "@mdi/js";
 
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import type { stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import type { GroupItems } from "./components/Group.extras";
@@ -29,6 +32,10 @@ export default defineComponent({
   name: "app",
   setup() {
     type SelectValue = 1 | "a" | "b" | undefined;
+
+    const icon1 = ref<stringU>(undefined);
+
+    const icon2 = ref<stringU>(undefined);
 
     const inputValue1 = ref("");
 
@@ -117,6 +124,8 @@ export default defineComponent({
           }
         ]
       ),
+      icon1,
+      icon2,
       inputValue1,
       inputValue2,
       knobValue,
@@ -128,6 +137,8 @@ export default defineComponent({
       mdiArrowRight,
       mdiArrowUp,
       mdiClose,
+      mdiImageEdit,
+      mdiImageEditOutline,
       mdiPen,
       resizerShow,
       resizerWidth,
@@ -147,9 +158,6 @@ export default defineComponent({
 
 <template>
   <table class="q-ma-lg q-mb-xl">
-    <caption>
-      Sample components
-    </caption>
     <tr>
       <td>Group</td>
       <td>
@@ -170,6 +178,20 @@ export default defineComponent({
           <template #section1>Section 1</template>
           <template #section3>Section 12</template>
         </x-group>
+      </td>
+    </tr>
+    <tr>
+      <td>Icon picker</td>
+      <td>
+        <x-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
+        <x-icon-picker
+          v-model="icon2"
+          :cols="2"
+          :placeholder="mdiImageEditOutline"
+          :rows="1"
+          spinner-size="30px"
+        />
+        co = 2, rest = 5
       </td>
     </tr>
     <tr>
@@ -333,7 +355,7 @@ table {
 
   td {
     padding: 10px;
-    border: 1px solid $grey-4;
+    border: 1px solid $grey-3;
   }
 }
 
