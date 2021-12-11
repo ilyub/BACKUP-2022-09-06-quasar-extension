@@ -5,6 +5,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 
 import { injectRequire, propOptions } from "./api";
+import type { LanguagePickerItem } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
 import MenuItem from "./MenuItem.vue";
 import NavButton from "./NavButton.vue";
@@ -22,7 +23,7 @@ export default defineComponent({
     const settings = injectRequire(injectLanguagePickerSettings);
 
     return {
-      activeItem: computed(() => {
+      activeItem: computed<LanguagePickerItem>(() => {
         const item = settings.value.items.find(
           candidate => candidate.lang === props.language
         );

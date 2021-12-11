@@ -17,7 +17,7 @@ export default defineComponent({
   },
   setup(props) {
     return {
-      hasTooltip: computed(() => is.not.empty(props.tooltip))
+      hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip))
     };
   }
 });

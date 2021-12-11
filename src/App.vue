@@ -72,7 +72,7 @@ export default defineComponent({
 
     provide(
       injectLanguagePickerSettings,
-      computed((): LanguagePickerSettings => {
+      computed<LanguagePickerSettings>(() => {
         return {
           changeLanguageAction(value): void {
             language.value = value;
@@ -96,7 +96,7 @@ export default defineComponent({
 
     provide(
       injectTooltipSettings,
-      computed((): TooltipSettings => {
+      computed<TooltipSettings>(() => {
         return {
           delay: tooltipDelay.value,
           show: tooltipShow.value
@@ -105,25 +105,23 @@ export default defineComponent({
     );
 
     return {
-      groupItems: computed(
-        (): GroupItems => [
-          {
-            id: "section2",
-            show: showSection2.value,
-            title: "Section 2 bbb ccc"
-          },
-          {
-            id: "section1",
-            show: showSection1.value,
-            title: "Section 1 aaa bbb"
-          },
-          {
-            id: "section3",
-            show: showSection3.value,
-            title: "Section 12 ccc ddd"
-          }
-        ]
-      ),
+      groupItems: computed<GroupItems>(() => [
+        {
+          id: "section2",
+          show: showSection2.value,
+          title: "Section 2 bbb ccc"
+        },
+        {
+          id: "section1",
+          show: showSection1.value,
+          title: "Section 1 aaa bbb"
+        },
+        {
+          id: "section3",
+          show: showSection3.value,
+          title: "Section 12 ccc ddd"
+        }
+      ]),
       icon1,
       icon2,
       inputValue1,

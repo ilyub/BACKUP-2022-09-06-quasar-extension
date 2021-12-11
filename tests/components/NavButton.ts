@@ -3,6 +3,7 @@ import { computed } from "vue";
 import * as testUtils from "@vue/test-utils";
 
 import NavButton from "@/components/NavButton.vue";
+import type { TooltipSettings } from "@/components/Tooltip.extras";
 import { injectTooltipSettings } from "@/components/Tooltip.extras";
 
 it("prop: tooltip", () => {
@@ -12,7 +13,9 @@ it("prop: tooltip", () => {
     const wrapper = testUtils.mount(NavButton, {
       global: {
         provide: {
-          [injectTooltipSettings as symbol]: computed(() => tooltipSettings)
+          [injectTooltipSettings as symbol]: computed<TooltipSettings>(
+            () => tooltipSettings
+          )
         }
       },
       props: {
@@ -29,7 +32,9 @@ it("prop: tooltip", () => {
     const wrapper = testUtils.mount(NavButton, {
       global: {
         provide: {
-          [injectTooltipSettings as symbol]: computed(() => tooltipSettings)
+          [injectTooltipSettings as symbol]: computed<TooltipSettings>(
+            () => tooltipSettings
+          )
         }
       }
     });
@@ -44,7 +49,9 @@ it("slot: default", () => {
   const wrapper = testUtils.mount(NavButton, {
     global: {
       provide: {
-        [injectTooltipSettings as symbol]: computed(() => tooltipSettings)
+        [injectTooltipSettings as symbol]: computed<TooltipSettings>(
+          () => tooltipSettings
+        )
       }
     },
     slots: {

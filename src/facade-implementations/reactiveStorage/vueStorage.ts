@@ -15,7 +15,7 @@ export const implementation = fn.run((): Facade => {
   ): T => {
     const result = reactive(data) as T;
 
-    const reduced = computed(() => reduce(result));
+    const reduced = computed<R>(() => reduce(result));
 
     watch(reduced, () => {
       onChange(reduced.value);

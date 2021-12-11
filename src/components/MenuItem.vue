@@ -13,7 +13,7 @@ export default defineComponent({
   },
   setup(props, ctx) {
     return {
-      hasIcon: computed(
+      hasIcon: computed<boolean>(
         () => is.not.empty(props.icon) || is.not.empty(ctx.slots["icon"])
       )
     };

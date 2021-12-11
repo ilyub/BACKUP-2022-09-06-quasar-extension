@@ -7,6 +7,7 @@ import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
+import type { GroupItems } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
@@ -17,13 +18,13 @@ export default defineComponent({
     searchString: propOptions.default(is.string, "")
   },
   setup(props) {
-    const sortedItems = computed(() =>
+    const sortedItems = computed<GroupItems>(() =>
       a.sort(props.items, (item1, item2) =>
         naturalCompare(item1.title, item2.title)
       )
     );
 
-    const filteredItems = computed(() => {
+    const filteredItems = computed<GroupItems>(() => {
       if (props.searchString.length) {
         const result = searchIndex.value.search(props.searchString);
 
@@ -37,7 +38,7 @@ export default defineComponent({
       return sortedItems.value;
     });
 
-    const searchIndex = computed(() =>
+    const searchIndex = computed<lunr.Index>(() =>
       lunr(builder => {
         builder.ref("id");
         builder.field("title");
@@ -48,7 +49,7 @@ export default defineComponent({
 
     return {
       filteredItems,
-      showNotFoundLabel: computed(
+      showNotFoundLabel: computed<boolean>(
         () =>
           is.not.empty(props.notFoundLabel) &&
           !filteredItems.value.some(item => item.show)

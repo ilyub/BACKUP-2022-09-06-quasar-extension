@@ -2,6 +2,7 @@ import { QTooltip } from "quasar";
 import { computed } from "vue";
 import * as testUtils from "@vue/test-utils";
 
+import type { TooltipSettings } from "@/components/Tooltip.extras";
 import { injectTooltipSettings } from "@/components/Tooltip.extras";
 import Tooltip from "@/components/Tooltip.vue";
 
@@ -13,7 +14,9 @@ it.each([
   const wrapper = testUtils.mount(Tooltip, {
     global: {
       provide: {
-        [injectTooltipSettings as symbol]: computed(() => settings)
+        [injectTooltipSettings as symbol]: computed<TooltipSettings>(
+          () => settings
+        )
       }
     }
   });

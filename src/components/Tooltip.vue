@@ -15,7 +15,7 @@ export default defineComponent({
     const settings = injectRequire(injectTooltipSettings);
 
     return {
-      anchor: computed(() => {
+      anchor: computed<string>(() => {
         switch (props.direction) {
           case "down":
             return "bottom middle";
@@ -57,7 +57,7 @@ export default defineComponent({
             return "bottom middle";
         }
       }),
-      offset: computed(() => {
+      offset: computed<[number, number]>(() => {
         switch (props.direction) {
           case "down":
           case "down-left":
@@ -83,7 +83,7 @@ export default defineComponent({
             return [0, 10];
         }
       }),
-      self: computed(() => {
+      self: computed<string>(() => {
         switch (props.direction) {
           case "down":
             return "top middle";
@@ -126,7 +126,7 @@ export default defineComponent({
         }
       }),
       settings,
-      transitionHide: computed(() => {
+      transitionHide: computed<string>(() => {
         switch (props.direction) {
           case "down":
           case "down-left":
@@ -152,7 +152,7 @@ export default defineComponent({
             return "jump-up";
         }
       }),
-      transitionShow: computed(() => {
+      transitionShow: computed<string>(() => {
         switch (props.direction) {
           case "down":
           case "down-left":

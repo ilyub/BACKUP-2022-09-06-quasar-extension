@@ -5,6 +5,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
+import type { SelectOption } from "./Select.extras";
 import { isSelectOption, isSelectOptions } from "./Select.extras";
 
 export default defineComponent({
@@ -20,7 +21,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     return {
-      activeOption: computed(() => {
+      activeOption: computed<SelectOption>(() => {
         const result = props.options.find(
           option => option.value === props.modelValue
         );

@@ -23,7 +23,7 @@ export default defineComponent({
     const input = ref<QInput | undefined>(undefined);
 
     return {
-      canReset: computed(() => props.modelValue.length > 0),
+      canReset: computed<boolean>(() => props.modelValue.length > 0),
       icons,
       input,
       reset(): void {

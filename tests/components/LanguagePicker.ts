@@ -1,13 +1,14 @@
 import { computed } from "vue";
 import * as testUtils from "@vue/test-utils";
 
+import type { LanguagePickerSettings } from "@/components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "@/components/LanguagePicker.extras";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 
 it("LanguagePicker", () => {
   const changeLanguageAction = jest.fn();
 
-  const settings = {
+  const settings: LanguagePickerSettings = {
     changeLanguageAction,
     items: [
       {
@@ -26,7 +27,8 @@ it("LanguagePicker", () => {
   const wrapper = testUtils.mount(LanguagePicker, {
     global: {
       provide: {
-        [injectLanguagePickerSettings as symbol]: computed(() => settings)
+        [injectLanguagePickerSettings as symbol]:
+          computed<LanguagePickerSettings>(() => settings)
       }
     },
     props: {
