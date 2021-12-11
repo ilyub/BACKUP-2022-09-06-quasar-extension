@@ -2,6 +2,7 @@ const config = require("@skylib/config/src/jest-preset");
 
 module.exports = {
   globals: {
+    ...config.globals,
     "__DEV__": true,
     "vue-jest": { pug: { doctype: "html" } }
   },
