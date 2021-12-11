@@ -1,5 +1,5 @@
+import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { ReadonlyRecord } from "@skylib/functions/es/types/core";
 
 declare global {
   namespace facades {
@@ -11,4 +11,4 @@ declare global {
   }
 }
 
-export const icons: ReadonlyRecord<"close", string> = baseIcons;
+export const icons: Icons<"close"> = baseIcons;
