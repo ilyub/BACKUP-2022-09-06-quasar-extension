@@ -1,3 +1,4 @@
+import { QKnob } from "quasar";
 import * as testUtils from "@vue/test-utils";
 
 import Knob from "@/components/Knob.vue";
@@ -5,9 +6,11 @@ import Knob from "@/components/Knob.vue";
 it("Knob", () => {
   const wrapper = testUtils.mount(Knob, {
     props: {
-      "model-value": 1000
+      modelValue: 50
     }
   });
 
-  expect(wrapper).toBeDefined();
+  const knob = wrapper.findComponent(QKnob);
+
+  expect(knob).toExist();
 });

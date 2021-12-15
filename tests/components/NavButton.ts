@@ -1,59 +1,22 @@
 import { QTooltip } from "quasar";
-import { computed } from "vue";
-import * as testUtils from "@vue/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
 
 import NavButton from "@/components/NavButton.vue";
-import type { TooltipSettings } from "@/components/Tooltip.extras";
-import { injectTooltipSettings } from "@/components/Tooltip.extras";
+import * as testUtils from "@/testUtils";
 
-it("prop: tooltip", () => {
-  {
-    const tooltipSettings = { delay: 1000, show: true };
+it("prop: tooltip", async () => {
+  const wrapper = vueTestUtils.mount(NavButton, {
+    global: testUtils.globalMountOptions()
+  });
 
-    const wrapper = testUtils.mount(NavButton, {
-      global: {
-        provide: {
-          [injectTooltipSettings as symbol]: computed<TooltipSettings>(
-            () => tooltipSettings
-          )
-        }
-      },
-      props: {
-        tooltip: "sample-tooltip"
-      }
-    });
-
-    expect(wrapper.findComponent(QTooltip)).toExist();
-  }
-
-  {
-    const tooltipSettings = { delay: 1000, show: true };
-
-    const wrapper = testUtils.mount(NavButton, {
-      global: {
-        provide: {
-          [injectTooltipSettings as symbol]: computed<TooltipSettings>(
-            () => tooltipSettings
-          )
-        }
-      }
-    });
-
-    expect(wrapper.findComponent(QTooltip)).not.toExist();
-  }
+  expect(wrapper.findComponent(QTooltip)).not.toExist();
+  await wrapper.setProps({ tooltip: "sample-tooltip" });
+  expect(wrapper.findComponent(QTooltip)).toExist();
 });
 
 it("slot: default", () => {
-  const tooltipSettings = { delay: 1000, show: true };
-
-  const wrapper = testUtils.mount(NavButton, {
-    global: {
-      provide: {
-        [injectTooltipSettings as symbol]: computed<TooltipSettings>(
-          () => tooltipSettings
-        )
-      }
-    },
+  const wrapper = vueTestUtils.mount(NavButton, {
+    global: testUtils.globalMountOptions(),
     slots: {
       default: '<div class="sample-class">sample-contents</div>"'
     }

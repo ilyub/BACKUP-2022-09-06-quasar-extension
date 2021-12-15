@@ -98,7 +98,6 @@ export default defineComponent({
       close(): void {
         show.value = false;
       },
-      empty: computed<boolean>(() => is.empty(props.modelValue)),
       frame: computed<Frame>(() => {
         const buttons: Writable<Buttons> = filteredItems.value
           .slice(
@@ -133,6 +132,8 @@ export default defineComponent({
         page.value++;
       },
       nextDisable: computed<boolean>(() => to.value >= total.value),
+      notFound: computed<boolean>(() => total.value === 0),
+      notSelected: computed<boolean>(() => is.empty(props.modelValue)),
       open(): void {
         const index = is.not.empty(props.modelValue)
           ? filteredItems.value.findIndex(item => {
@@ -179,7 +180,7 @@ export default defineComponent({
 <template>
   <x-nav-button
     :class="{
-      'text-grey-5': empty
+      'text-grey-5': notSelected
     }"
     :icon="icon"
     @click="open"
@@ -190,13 +191,13 @@ export default defineComponent({
           <div class="flex text-h6">
             {{ lang.IconPicker }}
             <q-space />
-            <x-nav-button :icon="icons.close" @click="close" />
+            <x-nav-button class="close" :icon="icons.close" @click="close" />
           </div>
-          <x-input v-model="searchString" class="q-pb-md" />
+          <x-input v-model="searchString" class="q-pb-md search" />
           <div class="relative-position">
             <div
               v-if="loading"
-              class="absolute fit flex items-center justify-center"
+              class="absolute fit flex items-center justify-center loading"
             >
               <q-spinner color="primary" :size="spinnerSize" />
             </div>
@@ -207,7 +208,8 @@ export default defineComponent({
                 :class="{
                   'text-white': button.selected,
                   'bg-primary': button.selected,
-                  'invisible': button.padding
+                  'invisible': button.padding,
+                  'pick-icon': true
                 }"
                 :disable="button.padding"
                 :icon="button.icon"
@@ -218,6 +220,7 @@ export default defineComponent({
         </q-card-section>
         <q-card-actions>
           <x-nav-button
+            class="prev"
             :disable="prevDisable"
             :icon="icons.chevronLeft"
             @click="prevClick"
@@ -225,13 +228,15 @@ export default defineComponent({
           <q-space />
           <span
             :class="{
-              invisible: loading
+              invisible: loading || notFound,
+              pagination: true
             }"
           >
-            {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
+            {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }} {{ notFound }}
           </span>
           <q-space />
           <x-nav-button
+            class="next"
             :disable="nextDisable"
             :icon="icons.chevronRight"
             @click="nextClick"

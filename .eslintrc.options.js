@@ -7,5 +7,15 @@ module.exports = {
     "src/routes.ts",
     "src/typings/**"
   ],
-  readonlyIgnoreTypes: ["App", "InjectionKey", "SetupContext"]
+  readonlyIgnoreTypes: [
+    "App",
+    "ComponentOptionsBase",
+    "DirectiveBinding",
+    "DOMWrapper",
+    "FunctionalComponent",
+    "InjectionKey",
+    "ObjectDirective",
+    "SetupContext",
+    "VueWrapper"
+  ]
 };

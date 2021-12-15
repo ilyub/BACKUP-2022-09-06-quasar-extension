@@ -1,40 +1,11 @@
 import type { Plugin as VuePlugin } from "vue";
 
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/Group.extras";
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/IconPicker.extras";
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/Input.extras";
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/LanguagePicker.extras";
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/Select.extras";
-// eslint-disable-next-line import/no-unassigned-import
-import "./components/Tooltip.extras";
-import Group from "./components/Group.vue";
-import IconPicker from "./components/IconPicker.vue";
-import Input from "./components/Input.vue";
-import Knob from "./components/Knob.vue";
-import LanguagePicker from "./components/LanguagePicker.vue";
-import MenuItem from "./components/MenuItem.vue";
-import NavButton from "./components/NavButton.vue";
-import Resizer from "./components/Resizer.vue";
-import Select from "./components/Select.vue";
-import Tooltip from "./components/Tooltip.vue";
+import { components } from "./components";
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export const plugin: VuePlugin = {
   install(app) {
-    app.component(Group.name, Group);
-    app.component(IconPicker.name, IconPicker);
-    app.component(Input.name, Input);
-    app.component(Knob.name, Knob);
-    app.component(LanguagePicker.name, LanguagePicker);
-    app.component(MenuItem.name, MenuItem);
-    app.component(NavButton.name, NavButton);
-    app.component(Resizer.name, Resizer);
-    app.component(Select.name, Select);
-    app.component(Tooltip.name, Tooltip);
+    for (const [name, component] of Object.entries(components))
+      app.component(name, component);
   }
 };

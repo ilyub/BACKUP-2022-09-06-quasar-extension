@@ -2,14 +2,46 @@
 import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
+import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import { injectRequire, propOptions } from "./api";
 import { injectTooltipSettings } from "./Tooltip.extras";
 
+type Direction =
+  | "down"
+  | "down-left"
+  | "down-right"
+  | "left"
+  | "left-down"
+  | "left-up"
+  | "right"
+  | "right-down"
+  | "right-up"
+  | "up"
+  | "up-left"
+  | "up-right";
+
+const DirectionVO = createValidationObject<Direction>({
+  "down": "down",
+  "down-left": "down-left",
+  "down-right": "down-right",
+  "left": "left",
+  "left-down": "left-down",
+  "left-up": "left-up",
+  "right": "right",
+  "right-down": "right-down",
+  "right-up": "right-up",
+  "up": "up",
+  "up-left": "up-left",
+  "up-right": "up-right"
+});
+
+const isDirection = is.factory(is.enumeration, DirectionVO);
+
 export default defineComponent({
   name: "x-tooltip",
   props: {
-    direction: propOptions.default(is.string, "down")
+    direction: propOptions.default(isDirection, "down")
   },
   setup(props) {
     const settings = injectRequire(injectTooltipSettings);
@@ -52,9 +84,6 @@ export default defineComponent({
 
           case "up-right":
             return "top left";
-
-          default:
-            return "bottom middle";
         }
       }),
       offset: computed<[number, number]>(() => {
@@ -77,9 +106,6 @@ export default defineComponent({
           case "up":
           case "up-left":
           case "up-right":
-            return [0, 10];
-
-          default:
             return [0, 10];
         }
       }),
@@ -120,9 +146,6 @@ export default defineComponent({
 
           case "up-right":
             return "bottom left";
-
-          default:
-            return "top middle";
         }
       }),
       settings,
@@ -147,9 +170,6 @@ export default defineComponent({
           case "up-left":
           case "up-right":
             return "jump-down";
-
-          default:
-            return "jump-up";
         }
       }),
       transitionShow: computed<string>(() => {
@@ -173,9 +193,6 @@ export default defineComponent({
           case "up-left":
           case "up-right":
             return "jump-up";
-
-          default:
-            return "jump-down";
         }
       })
     };

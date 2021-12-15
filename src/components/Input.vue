@@ -50,7 +50,7 @@ export default defineComponent({
       <q-icon
         v-if="resetButton"
         v-show="canReset"
-        class="cursor-pointer"
+        class="cursor-pointer reset"
         :name="icons.close"
         @click="reset"
       />

@@ -58,9 +58,10 @@ export default defineComponent({
       <q-menu>
         <q-list>
           <x-menu-item
-            v-for="(item, key) in settings.items"
-            :key="key"
+            v-for="(item, index) in settings.items"
+            :key="index"
             :caption="item.caption"
+            :class="`menu-item-${index}`"
             @click="changeLanguage(item.lang)"
           >
             <template #icon>

@@ -18,17 +18,13 @@ export default defineComponent({
     searchString: propOptions.default(is.string, "")
   },
   setup(props) {
-    const sortedItems = computed<GroupItems>(() =>
-      a.sort(props.items, (item1, item2) =>
-        naturalCompare(item1.title, item2.title)
-      )
-    );
-
     const filteredItems = computed<GroupItems>(() => {
       if (props.searchString.length) {
-        const result = searchIndex.value.search(props.searchString);
+        const searchResult = searchIndex.value.search(props.searchString);
 
-        const refs = new Set(a.fromIterable(result).map(item => item.ref));
+        const refs = new Set(
+          a.fromIterable(searchResult).map(item => item.ref)
+        );
 
         return sortedItems.value.map(item => {
           return { ...item, show: item.show && refs.has(item.id) };
@@ -47,12 +43,19 @@ export default defineComponent({
       })
     );
 
+    const sortedItems = computed<GroupItems>(() =>
+      a.sort(props.items, (item1, item2) =>
+        naturalCompare(item1.title, item2.title)
+      )
+    );
+
     return {
       filteredItems,
-      showNotFoundLabel: computed<boolean>(
-        () =>
-          is.not.empty(props.notFoundLabel) &&
-          !filteredItems.value.some(item => item.show)
+      notFoundLabelExists: computed<boolean>(() =>
+        is.not.empty(props.notFoundLabel)
+      ),
+      notFoundLabelShow: computed<boolean>(
+        () => !filteredItems.value.some(item => item.show)
       )
     };
   }
@@ -65,11 +68,17 @@ export default defineComponent({
       v-for="(item, index) in filteredItems"
       v-show="item.show"
       :key="item.id"
-      :class="index ? 'q-mt-lg' : ''"
+      :class="{
+        'q-mt-lg': index
+      }"
     >
       <slot :name="item.id"></slot>
     </div>
-    <div v-show="showNotFoundLabel" class="text-grey-7">
+    <div
+      v-if="notFoundLabelExists"
+      v-show="notFoundLabelShow"
+      class="not-found text-grey-7"
+    >
       {{ notFoundLabel }}
     </div>
   </div>

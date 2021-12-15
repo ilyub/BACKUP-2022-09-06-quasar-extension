@@ -66,6 +66,8 @@ export default defineComponent({
 
     const showSection3 = ref(true);
 
+    const showSection4 = ref(true);
+
     const tooltipDelay = ref(1000);
 
     const tooltipShow = ref(true);
@@ -119,7 +121,12 @@ export default defineComponent({
         {
           id: "section3",
           show: showSection3.value,
-          title: "Section 12 ccc ddd"
+          title: "Section 11 ccc ddd"
+        },
+        {
+          id: "section4",
+          show: showSection4.value,
+          title: "Section 12 ddd eee"
         }
       ]),
       icon1,
@@ -146,6 +153,7 @@ export default defineComponent({
       showSection1,
       showSection2,
       showSection3,
+      showSection4,
       tooltipDelay,
       tooltipShow,
       us
@@ -165,6 +173,7 @@ export default defineComponent({
           <q-checkbox v-model="showSection1" /> 1
           <q-checkbox v-model="showSection2" /> 2
           <q-checkbox v-model="showSection3" /> 3
+          <q-checkbox v-model="showSection4" /> 4
         </div>
         <x-group
           class="q-mt-lg"
@@ -174,7 +183,8 @@ export default defineComponent({
         >
           <template #section2>Section 2</template>
           <template #section1>Section 1</template>
-          <template #section3>Section 12</template>
+          <template #section3>Section 11</template>
+          <template #section4>Section 12</template>
         </x-group>
       </td>
     </tr>
