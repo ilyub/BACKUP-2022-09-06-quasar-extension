@@ -56,7 +56,7 @@ it("Group", async () => {
   {
     const expected = [true, true, true, false];
 
-    expect(notFound.isVisible()).toBeFalse();
+    expect(notFound).not.toBeVisible();
     expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
   }
 
@@ -64,7 +64,7 @@ it("Group", async () => {
     const expected = [true, true, false, false];
 
     await wrapper.setProps({ searchString: "bbb" });
-    expect(notFound.isVisible()).toBeFalse();
+    expect(notFound).not.toBeVisible();
     expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
   }
 
@@ -72,7 +72,7 @@ it("Group", async () => {
     const expected = [false, true, true, false];
 
     await wrapper.setProps({ searchString: "ccc" });
-    expect(notFound.isVisible()).toBeFalse();
+    expect(notFound).not.toBeVisible();
     expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
   }
 
@@ -80,7 +80,7 @@ it("Group", async () => {
     const expected = [false, false, false, false];
 
     await wrapper.setProps({ searchString: "eee" });
-    expect(notFound.isVisible()).toBeTrue();
+    expect(notFound).toBeVisible();
     expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
   }
 });

@@ -90,10 +90,10 @@ it("IconPicker", async () => {
   }
 
   {
-    expect(pagination().classes().includes("invisible")).toBeFalse();
+    expect(pagination()).not.toHaveClass("invisible");
     search().vm.$emit("update:model-value", "aB3umD5inT7g");
     await nextTick();
-    expect(pagination().classes().includes("invisible")).toBeTrue();
+    expect(pagination()).toHaveClass("invisible");
     expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
     expect(next().findComponent(QBtn).props("disable")).toBeTrue();
   }
