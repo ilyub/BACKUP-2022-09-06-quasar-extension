@@ -232,7 +232,7 @@ export default defineComponent({
               pagination: true
             }"
           >
-            {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }} {{ notFound }}
+            {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
           </span>
           <q-space />
           <x-nav-button
