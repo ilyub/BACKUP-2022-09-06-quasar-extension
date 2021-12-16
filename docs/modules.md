@@ -6,11 +6,14 @@
 
 ### Modules
 
+- [boot/icons](modules/boot_icons.md)
 - [boot/lang](modules/boot_lang.md)
 - [boot/lang/en](modules/boot_lang_en.md)
 - [boot/lang/ru](modules/boot_lang_ru.md)
 - [boot/main](modules/boot_main.md)
+- [components](modules/components.md)
 - [components/Group.extras](modules/components_Group_extras.md)
+- [components/IconPicker.extras](modules/components_IconPicker_extras.md)
 - [components/Input.extras](modules/components_Input_extras.md)
 - [components/LanguagePicker.extras](modules/components_LanguagePicker_extras.md)
 - [components/Select.extras](modules/components_Select_extras.md)

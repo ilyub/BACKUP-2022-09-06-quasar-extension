@@ -12,4 +12,4 @@
 
 ### icons
 
-• **icons**: `ReadonlyRecord`<``"close"``, `string`\> = `baseIcons`
+• **icons**: `Icons`<``"close"``\> = `baseIcons`
