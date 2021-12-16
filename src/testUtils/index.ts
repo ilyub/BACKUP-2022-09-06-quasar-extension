@@ -81,26 +81,22 @@ export function globalMountOptions(
   options: CustomGlobalMountOptions = {}
   // eslint-disable-next-line @skylib/no-mutable-signature
 ): GlobalMountOptions {
-  const languagePickerSettings = options.languagePickerSettings ?? {
-    changeLanguageAction(): void {
-      // Do nothing
-    },
-    items: []
-  };
+  const languagePickerSettings = options.languagePickerSettings;
 
   const tooltipSettings = options.tooltipSettings ?? {
     delay: 1000,
     show: true
   };
 
-  return {
-    components,
-    provide: {
-      [injectLanguagePickerSettings as symbol]:
-        computed<LanguagePickerSettings>(() => languagePickerSettings),
-      [injectTooltipSettings as symbol]: tooltipSettings
-    }
+  const provide: Record<symbol, unknown> = {
+    [injectTooltipSettings as symbol]: tooltipSettings
   };
+
+  if (languagePickerSettings)
+    provide[injectLanguagePickerSettings as symbol] =
+      computed<LanguagePickerSettings>(() => languagePickerSettings);
+
+  return { components, provide };
 }
 
 /**
