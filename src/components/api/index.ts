@@ -1,24 +1,23 @@
-import type { InjectionKey } from "vue";
+import type { InjectionKey, PropType } from "vue";
 import { inject } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
 
+// eslint-disable-next-line @skylib/prefer-readonly
 export interface PropOptions<T> {
   readonly default?: T;
   readonly required?: true;
-  readonly validator: is.Guard<T>;
+  readonly type?: PropType<T>;
+  readonly validator?: is.Guard<T>;
 }
 
-export interface PropOptionsBoolean {
-  readonly default: boolean;
-  readonly type: BooleanConstructor;
-}
-
+// eslint-disable-next-line @skylib/prefer-readonly
 export interface PropOptionsDefault<T> extends PropOptions<T> {
   readonly default: T;
 }
 
+// eslint-disable-next-line @skylib/prefer-readonly
 export interface PropOptionsRequired<T> extends PropOptions<T> {
   readonly required: true;
 }
@@ -53,7 +52,9 @@ export function propOptions<T>(validator: is.Guard<T>): PropOptions<T> {
  * @param defVal - Default value.
  * @returns Vue property.
  */
-export function propOptionsBoolean(defVal = false): PropOptionsBoolean {
+export function propOptionsBoolean(
+  defVal = false
+): PropOptionsDefault<Boolean> {
   return { default: defVal, type: Boolean };
 }
 

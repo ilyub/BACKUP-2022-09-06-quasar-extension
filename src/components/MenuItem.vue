@@ -9,7 +9,7 @@ export default defineComponent({
   name: "x-menu-item",
   props: {
     caption: propOptions.required(is.string),
-    icon: propOptions(is.string)
+    icon: propOptions(is.stringU)
   },
   setup(props, ctx) {
     return {

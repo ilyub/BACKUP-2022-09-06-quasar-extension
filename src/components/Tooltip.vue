@@ -1,42 +1,8 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 
-import * as is from "@skylib/functions/es/guards";
-import { createValidationObject } from "@skylib/functions/es/types/core";
-
 import { injectRequire, propOptions } from "./api";
-import { injectTooltipSettings } from "./Tooltip.extras";
-
-type Direction =
-  | "down"
-  | "down-left"
-  | "down-right"
-  | "left"
-  | "left-down"
-  | "left-up"
-  | "right"
-  | "right-down"
-  | "right-up"
-  | "up"
-  | "up-left"
-  | "up-right";
-
-const DirectionVO = createValidationObject<Direction>({
-  "down": "down",
-  "down-left": "down-left",
-  "down-right": "down-right",
-  "left": "left",
-  "left-down": "left-down",
-  "left-up": "left-up",
-  "right": "right",
-  "right-down": "right-down",
-  "right-up": "right-up",
-  "up": "up",
-  "up-left": "up-left",
-  "up-right": "up-right"
-});
-
-const isDirection = is.factory(is.enumeration, DirectionVO);
+import { injectTooltipSettings, isDirection } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "x-tooltip",

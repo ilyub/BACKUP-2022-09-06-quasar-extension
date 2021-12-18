@@ -11,7 +11,7 @@ import { isSelectOption, isSelectOptions } from "./Select.extras";
 export default defineComponent({
   name: "x-select",
   props: {
-    modelValue: propOptions(is.numStr),
+    modelValue: propOptions(is.numStrU),
     options: propOptions.required(isSelectOptions)
   },
   emits: {

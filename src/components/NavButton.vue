@@ -12,8 +12,8 @@ export default defineComponent({
     "x-tooltip": Tooltip
   },
   props: {
-    tooltip: propOptions(is.string),
-    tooltipDirection: propOptions(is.string)
+    tooltip: propOptions(is.stringU),
+    tooltipDirection: propOptions(is.stringU)
   },
   setup(props) {
     return {

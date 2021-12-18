@@ -14,7 +14,7 @@ export default defineComponent({
   name: "x-group",
   props: {
     items: propOptions.required(isGroupItems),
-    notFoundLabel: propOptions(is.string),
+    notFoundLabel: propOptions(is.stringU),
     searchString: propOptions.default(is.string, "")
   },
   setup(props) {

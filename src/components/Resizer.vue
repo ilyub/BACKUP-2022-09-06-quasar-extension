@@ -33,7 +33,7 @@ const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
 export default defineComponent({
   name: "x-resizer",
   props: {
-    max: propOptions(is.number),
+    max: propOptions(is.numberU),
     min: propOptions.required(is.number),
     modelValue: propOptions.required(is.number)
   },

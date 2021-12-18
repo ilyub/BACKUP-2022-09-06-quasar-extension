@@ -39,7 +39,7 @@ export default defineComponent({
   name: "x-icon-picker",
   props: {
     cols: propOptions.default(is.number, 7),
-    modelValue: propOptions(is.string),
+    modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
     rows: propOptions.default(is.number, 5),
     spinnerSize: propOptions.default(is.string, "70px")
