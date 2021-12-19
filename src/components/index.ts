@@ -12,6 +12,8 @@ import "./Input.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./LanguagePicker.extras";
 // eslint-disable-next-line import/no-unassigned-import
+import "./PageLayout.extras";
+// eslint-disable-next-line import/no-unassigned-import
 import "./Select.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./Tooltip.extras";
@@ -22,6 +24,7 @@ import Knob from "./Knob.vue";
 import LanguagePicker from "./LanguagePicker.vue";
 import MenuItem from "./MenuItem.vue";
 import NavButton from "./NavButton.vue";
+import PageLayout from "./PageLayout.vue";
 import Resizer from "./Resizer.vue";
 import Select from "./Select.vue";
 import Tooltip from "./Tooltip.vue";
@@ -35,6 +38,7 @@ export const components: ReadonlyRecord<string, Component> = {
   "x-language-picker": LanguagePicker,
   "x-menu-item": MenuItem,
   "x-nav-button": NavButton,
+  "x-page-layout": PageLayout,
   "x-resizer": Resizer,
   "x-select": Select,
   "x-tooltip": Tooltip

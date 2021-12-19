@@ -63,17 +63,6 @@ propOptions.boolean = propOptionsBoolean;
 /**
  * Creates Vue property.
  *
- * @returns Vue property.
- */
-export function propOptionsBooleanU(): PropOptions<boolean> {
-  return { type: Boolean };
-}
-
-propOptions.booleanU = propOptionsBooleanU;
-
-/**
- * Creates Vue property.
- *
  * @param validator - Validator.
  * @param defVal - Default value.
  * @returns Vue property.

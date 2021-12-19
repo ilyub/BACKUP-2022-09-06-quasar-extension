@@ -11,6 +11,8 @@ import type * as testUtils from "@skylib/functions/es/testUtils";
 import { components } from "../components";
 import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "../components/LanguagePicker.extras";
+import type { PageLayoutSettings } from "../components/PageLayout.extras";
+import { injectPageLayoutSettings } from "../components/PageLayout.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
 import { injectTooltipSettings } from "../components/Tooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
@@ -58,6 +60,7 @@ declare global {
 
 export interface CustomGlobalMountOptions {
   readonly languagePickerSettings?: LanguagePickerSettings;
+  readonly pageLayoutSettings?: PageLayoutSettings;
   readonly tooltipSettings?: TooltipSettings;
 }
 
@@ -83,13 +86,26 @@ export function globalMountOptions(
 ): GlobalMountOptions {
   const languagePickerSettings = options.languagePickerSettings;
 
+  const pageLayoutSettings = options.pageLayoutSettings ?? {
+    closeButton: false,
+    headerHeight: "50px",
+    paddingX: "10px",
+    paddingY: "10px",
+    sectionMargin: "10px"
+  };
+
   const tooltipSettings = options.tooltipSettings ?? {
     delay: 1000,
     show: true
   };
 
   const provide: Record<symbol, unknown> = {
-    [injectTooltipSettings as symbol]: tooltipSettings
+    [injectPageLayoutSettings as symbol]: computed<PageLayoutSettings>(
+      () => pageLayoutSettings
+    ),
+    [injectTooltipSettings as symbol]: computed<TooltipSettings>(
+      () => tooltipSettings
+    )
   };
 
   if (languagePickerSettings)

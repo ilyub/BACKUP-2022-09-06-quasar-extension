@@ -24,6 +24,8 @@ import type { LocaleName } from "@skylib/functions/es/types/locales";
 import type { GroupItems } from "./components/Group.extras";
 import type { LanguagePickerSettings } from "./components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./components/LanguagePicker.extras";
+import type { PageLayoutSettings } from "./components/PageLayout.extras";
+import { injectPageLayoutSettings } from "./components/PageLayout.extras";
 import type { SelectOptions } from "./components/Select.extras";
 import type { TooltipSettings } from "./components/Tooltip.extras";
 import { injectTooltipSettings } from "./components/Tooltip.extras";
@@ -92,6 +94,19 @@ export default defineComponent({
               lang: "ru-RU"
             }
           ]
+        };
+      })
+    );
+
+    provide(
+      injectPageLayoutSettings,
+      computed<PageLayoutSettings>(() => {
+        return {
+          closeButton: false,
+          headerHeight: "50px",
+          paddingX: "5px",
+          paddingY: "15px",
+          sectionMargin: "10px"
         };
       })
     );
@@ -271,6 +286,30 @@ export default defineComponent({
       </td>
     </tr>
     <tr>
+      <td>Page layout</td>
+      <td>
+        <x-page-layout class="page-layout">
+          <div class="page-section">Section 1</div>
+          <div class="page-section">Section 2</div>
+          <div class="page-section">Section 3</div>
+        </x-page-layout>
+        <x-page-layout class="page-layout q-mt-md" title="Sample-title">
+          <div class="page-section">Section 1</div>
+          <div class="page-section">Section 2</div>
+          <div class="page-section">Section 3</div>
+        </x-page-layout>
+        <x-page-layout
+          class="page-layout q-mt-md"
+          close-button
+          title="Sample-title"
+        >
+          <div class="page-section">Section 1</div>
+          <div class="page-section">Section 2</div>
+          <div class="page-section">Section 3</div>
+        </x-page-layout>
+      </td>
+    </tr>
+    <tr>
       <td>Resizer</td>
       <td>
         <q-toggle v-model="resizerShow" />
@@ -358,6 +397,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@use "sass:map";
+
 table {
   border-collapse: collapse;
 
@@ -365,6 +406,15 @@ table {
     padding: 10px;
     border: 1px solid $grey-3;
   }
+}
+
+.page-layout {
+  border: 1px solid $grey-3;
+}
+
+.page-section {
+  background: $grey-3;
+  padding: map.get($space-sm, "y") map.get($space-sm, "x");
 }
 
 .resizer {
