@@ -24,6 +24,7 @@
 
 - [default](components_api.PropOptions.md#default)
 - [required](components_api.PropOptions.md#required)
+- [type](components_api.PropOptions.md#type)
 - [validator](components_api.PropOptions.md#validator)
 
 ## Properties
@@ -40,6 +41,12 @@ ___
 
 ___
 
+### type
+
+• `Optional` `Readonly` **type**: `PropType`<`T`\>
+
+___
+
 ### validator
 
-• `Readonly` **validator**: `Guard`<`T`\>
+• `Optional` `Readonly` **validator**: `Guard`<`T`\>

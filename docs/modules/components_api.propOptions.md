@@ -16,11 +16,11 @@
 
 ### boolean
 
-• **boolean**: (`defVal`: `boolean`) => [`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
+• **boolean**: (`defVal`: `boolean`) => [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
 
 #### Type declaration
 
-▸ (`defVal?`): [`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
+▸ (`defVal?`): [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
 
 Creates Vue property.
 
@@ -32,7 +32,7 @@ Creates Vue property.
 
 ##### Returns
 
-[`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
+[`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
 
 Vue property.
 
