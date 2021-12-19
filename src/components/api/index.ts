@@ -54,11 +54,22 @@ export function propOptions<T>(validator: is.Guard<T>): PropOptions<T> {
  */
 export function propOptionsBoolean(
   defVal = false
-): PropOptionsDefault<Boolean> {
+): PropOptionsDefault<boolean> {
   return { default: defVal, type: Boolean };
 }
 
 propOptions.boolean = propOptionsBoolean;
+
+/**
+ * Creates Vue property.
+ *
+ * @returns Vue property.
+ */
+export function propOptionsBooleanU(): PropOptions<boolean> {
+  return { type: Boolean };
+}
+
+propOptions.booleanU = propOptionsBooleanU;
 
 /**
  * Creates Vue property.

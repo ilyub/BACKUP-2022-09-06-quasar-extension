@@ -10,6 +10,7 @@ module.exports = [
   "Select",
   "Tooltip",
   "boot",
+  "components.api.index",
   "public",
   "quasar",
   "routes",
