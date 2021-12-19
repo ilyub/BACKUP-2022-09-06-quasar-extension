@@ -1,3 +1,16 @@
+@use "sass:map";
+
+$inline-input-margin : map.get($space-sm, "x") !default;
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.inline-input-margin {
+  margin-right: $inline-input-margin;
+  margin-left: $inline-input-margin;
+}
+
 .shrink-table-column {
   width: 1px;
 }
