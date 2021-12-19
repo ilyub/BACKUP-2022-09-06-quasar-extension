@@ -2,4 +2,5 @@
 !src/components/**
 !src/facade-implementations/**
 !src/plugin.ts
+!src/style.scss
 !src/testUtils/**
