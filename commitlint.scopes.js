@@ -11,6 +11,7 @@ module.exports = [
   "Tooltip",
   "boot",
   "components.api.index",
+  "components.api.injection",
   "public",
   "quasar",
   "routes",
