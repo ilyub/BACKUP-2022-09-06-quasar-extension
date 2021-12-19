@@ -13,6 +13,7 @@ module.exports = [
   "boot",
   "components.api.index",
   "components.api.injection",
+  "plugin",
   "public",
   "quasar",
   "routes",
