@@ -11,7 +11,7 @@ export default defineComponent({
   props: {
     closeButton: propOptions.boolean(),
     hideCloseButton: propOptions.boolean(),
-    title: propOptions(is.string)
+    title: propOptions(is.stringU)
   },
   setup(props) {
     const settings = injectRequire(injectPageLayoutSettings);
