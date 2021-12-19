@@ -413,8 +413,8 @@ table {
 }
 
 .page-section {
-  background: $grey-3;
   padding: map.get($space-sm, "y") map.get($space-sm, "x");
+  background: $grey-3;
 }
 
 .resizer {
