@@ -6,7 +6,6 @@ module.exports = {
     "__DEV__": true,
     "vue-jest": { pug: { doctype: "html" } }
   },
-  maxWorkers: 1,
   moduleNameMapper: {
     ...config.moduleNameMapper,
     [/^flag-icon-css\/flags\/1x1\/ru\.svg$/u.source]:
