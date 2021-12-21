@@ -1,6 +1,13 @@
 const config = require("@skylib/config/src/jest-preset");
 
 module.exports = {
+  collectCoverageFrom: [
+    ...config.collectCoverageFrom,
+    "!src/App.vue",
+    "!src/boot/**",
+    "!src/router/**",
+    "!src/routes.ts"
+  ],
   globals: {
     ...config.globals,
     "__DEV__": true,
