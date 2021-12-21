@@ -7,8 +7,12 @@ import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type * as testUtils from "@skylib/functions/es/testUtils";
+import type { numberU } from "@skylib/functions/es/types/core";
 
 import { components } from "../components";
+import { injectPageOffset } from "../components/api/injections";
+import type { IconPickerSettings } from "../components/IconPicker.extras";
+import { injectIconPickerSettings } from "../components/IconPicker.extras";
 import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
@@ -59,8 +63,10 @@ declare global {
 }
 
 export interface CustomGlobalMountOptions {
+  readonly iconPickerSettings?: IconPickerSettings;
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
+  readonly pageOffset?: numberU;
   readonly tooltipSettings?: TooltipSettings;
 }
 
@@ -84,33 +90,44 @@ export function globalMountOptions(
   options: CustomGlobalMountOptions = {}
   // eslint-disable-next-line @skylib/no-mutable-signature
 ): GlobalMountOptions {
-  const languagePickerSettings = options.languagePickerSettings;
+  const provide: Record<symbol, unknown> = {};
 
-  const pageLayoutSettings = options.pageLayoutSettings ?? {
-    closeButton: false,
-    headerHeight: "50px",
-    paddingX: "10px",
-    paddingY: "10px",
-    sectionMargin: "10px"
-  };
+  if ("iconPickerSettings" in options) {
+    const iconPickerSettings = options.iconPickerSettings;
 
-  const tooltipSettings = options.tooltipSettings ?? {
-    delay: 1000,
-    show: true
-  };
+    provide[injectIconPickerSettings as symbol] = computed<IconPickerSettings>(
+      () => iconPickerSettings
+    );
+  }
 
-  const provide: Record<symbol, unknown> = {
-    [injectPageLayoutSettings as symbol]: computed<PageLayoutSettings>(
-      () => pageLayoutSettings
-    ),
-    [injectTooltipSettings as symbol]: computed<TooltipSettings>(
-      () => tooltipSettings
-    )
-  };
+  if ("languagePickerSettings" in options) {
+    const languagePickerSettings = options.languagePickerSettings;
 
-  if (languagePickerSettings)
     provide[injectLanguagePickerSettings as symbol] =
       computed<LanguagePickerSettings>(() => languagePickerSettings);
+  }
+
+  if ("pageLayoutSettings" in options) {
+    const pageLayoutSettings = options.pageLayoutSettings;
+
+    provide[injectPageLayoutSettings as symbol] = computed<PageLayoutSettings>(
+      () => pageLayoutSettings
+    );
+  }
+
+  if ("pageOffset" in options) {
+    const pageOffset = options.pageOffset;
+
+    provide[injectPageOffset as symbol] = computed<numberU>(() => pageOffset);
+  }
+
+  if ("tooltipSettings" in options) {
+    const tooltipSettings = options.tooltipSettings;
+
+    provide[injectTooltipSettings as symbol] = computed<TooltipSettings>(
+      () => tooltipSettings
+    );
+  }
 
   return { components, provide };
 }
