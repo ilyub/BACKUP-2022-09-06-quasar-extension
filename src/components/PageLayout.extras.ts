@@ -1,7 +1,7 @@
-import type { ComputedRef, InjectionKey } from "vue";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
+
+import type { ComputedInjectionKey } from "./api";
 
 declare global {
   namespace facades {
@@ -13,9 +13,7 @@ declare global {
   }
 }
 
-export type InjectPageLayoutSettings = InjectionKey<
-  ComputedRef<PageLayoutSettings>
->;
+export type InjectPageLayoutSettings = ComputedInjectionKey<PageLayoutSettings>;
 
 export interface PageLayoutSettings {
   readonly closeButton: boolean;

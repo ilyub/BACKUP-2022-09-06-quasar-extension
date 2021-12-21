@@ -1,9 +1,9 @@
-import type { ComputedRef, InjectionKey } from "vue";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
+
+import type { ComputedInjectionKey } from "./api";
 
 declare global {
   namespace facades {
@@ -28,9 +28,7 @@ export interface IconPickerSettings {
   readonly iconTooltips: boolean;
 }
 
-export type InjectIconPickerSettings = InjectionKey<
-  ComputedRef<IconPickerSettings>
->;
+export type InjectIconPickerSettings = ComputedInjectionKey<IconPickerSettings>;
 
 export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
 

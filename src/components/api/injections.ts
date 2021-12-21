@@ -1,7 +1,7 @@
-import type { ComputedRef, InjectionKey } from "vue";
-
 import type { numberU } from "@skylib/functions/es/types/core";
 
-export type InjectPageOffset = InjectionKey<ComputedRef<numberU>>;
+import type { ComputedInjectionKey } from ".";
+
+export type InjectPageOffset = ComputedInjectionKey<numberU>;
 
 export const injectPageOffset: InjectPageOffset = Symbol("InjectPageOffset");

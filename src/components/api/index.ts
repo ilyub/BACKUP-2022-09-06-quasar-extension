@@ -1,8 +1,10 @@
-import type { InjectionKey, PropType } from "vue";
+import type { ComputedRef, InjectionKey, PropType } from "vue";
 import { inject } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
+
+export type ComputedInjectionKey<T> = InjectionKey<ComputedRef<T>>;
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export interface PropOptions<T> {

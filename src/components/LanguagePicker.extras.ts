@@ -1,12 +1,11 @@
-import type { ComputedRef, InjectionKey } from "vue";
-
 import type { LocaleName } from "@skylib/functions/es/types/locales";
+
+import type { ComputedInjectionKey } from "./api";
 
 export type ChangeLanguageAction = (language: LocaleName) => void;
 
-export type InjectLanguagePickerSettings = InjectionKey<
-  ComputedRef<LanguagePickerSettings>
->;
+export type InjectLanguagePickerSettings =
+  ComputedInjectionKey<LanguagePickerSettings>;
 
 export interface LanguagePickerItem {
   readonly caption: string;

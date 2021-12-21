@@ -1,7 +1,7 @@
-import type { ComputedRef, InjectionKey } from "vue";
-
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/types/core";
+
+import type { ComputedInjectionKey } from "./api";
 
 export type Direction =
   | "down"
@@ -17,7 +17,7 @@ export type Direction =
   | "up-left"
   | "up-right";
 
-export type InjectTooltipSettings = InjectionKey<ComputedRef<TooltipSettings>>;
+export type InjectTooltipSettings = ComputedInjectionKey<TooltipSettings>;
 
 export interface TooltipSettings {
   readonly delay: number;
