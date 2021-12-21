@@ -16,7 +16,7 @@
 
 ### InjectPageOffset
 
-Ƭ **InjectPageOffset**: `InjectionKey`<`ComputedRef`<`numberU`\>\>
+Ƭ **InjectPageOffset**: [`ComputedInjectionKey`](components_api.md#computedinjectionkey)<`numberU`\>
 
 ## Variables
 

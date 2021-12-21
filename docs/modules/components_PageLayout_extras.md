@@ -17,11 +17,15 @@
 - [icons](components_PageLayout_extras.md#icons)
 - [injectPageLayoutSettings](components_PageLayout_extras.md#injectpagelayoutsettings)
 
+### Functions
+
+- [defaultPageLayoutSettings](components_PageLayout_extras.md#defaultpagelayoutsettings)
+
 ## Type aliases
 
 ### InjectPageLayoutSettings
 
-Ƭ **InjectPageLayoutSettings**: `InjectionKey`<`ComputedRef`<[`PageLayoutSettings`](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)\>\>
+Ƭ **InjectPageLayoutSettings**: [`ComputedInjectionKey`](components_api.md#computedinjectionkey)<[`PageLayoutSettings`](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)\>
 
 ## Variables
 
@@ -34,3 +38,17 @@ ___
 ### injectPageLayoutSettings
 
 • **injectPageLayoutSettings**: [`InjectPageLayoutSettings`](components_PageLayout_extras.md#injectpagelayoutsettings)
+
+## Functions
+
+### defaultPageLayoutSettings
+
+▸ **defaultPageLayoutSettings**(): [`PageLayoutSettings`](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
+
+Returns default settings.
+
+#### Returns
+
+[`PageLayoutSettings`](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
+
+Default settings.

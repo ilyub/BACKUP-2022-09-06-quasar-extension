@@ -20,6 +20,7 @@
 
 ### Functions
 
+- [defaultTooltipSettings](components_Tooltip_extras.md#defaulttooltipsettings)
 - [isDirection](components_Tooltip_extras.md#isdirection)
 
 ## Type aliases
@@ -32,7 +33,7 @@ ___
 
 ### InjectTooltipSettings
 
-Ƭ **InjectTooltipSettings**: `InjectionKey`<`ComputedRef`<[`TooltipSettings`](../interfaces/components_Tooltip_extras.TooltipSettings.md)\>\>
+Ƭ **InjectTooltipSettings**: [`ComputedInjectionKey`](components_api.md#computedinjectionkey)<[`TooltipSettings`](../interfaces/components_Tooltip_extras.TooltipSettings.md)\>
 
 ## Variables
 
@@ -47,6 +48,20 @@ ___
 • **injectTooltipSettings**: [`InjectTooltipSettings`](components_Tooltip_extras.md#injecttooltipsettings)
 
 ## Functions
+
+### defaultTooltipSettings
+
+▸ **defaultTooltipSettings**(): [`TooltipSettings`](../interfaces/components_Tooltip_extras.TooltipSettings.md)
+
+Returns default settings.
+
+#### Returns
+
+[`TooltipSettings`](../interfaces/components_Tooltip_extras.TooltipSettings.md)
+
+Default settings.
+
+___
 
 ### isDirection
 

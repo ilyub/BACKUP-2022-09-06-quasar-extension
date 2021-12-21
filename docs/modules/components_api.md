@@ -14,6 +14,10 @@
 - [PropOptionsDefault](../interfaces/components_api.PropOptionsDefault.md)
 - [PropOptionsRequired](../interfaces/components_api.PropOptionsRequired.md)
 
+### Type aliases
+
+- [ComputedInjectionKey](components_api.md#computedinjectionkey)
+
 ### Functions
 
 - [injectRequire](components_api.md#injectrequire)
@@ -21,6 +25,18 @@
 - [propOptionsBoolean](components_api.md#propoptionsboolean)
 - [propOptionsDefault](components_api.md#propoptionsdefault)
 - [propOptionsRequired](components_api.md#propoptionsrequired)
+
+## Type aliases
+
+### ComputedInjectionKey
+
+Ƭ **ComputedInjectionKey**<`T`\>: `InjectionKey`<`ComputedRef`<`T`\>\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
 
 ## Functions
 

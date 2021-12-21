@@ -43,7 +43,7 @@ ___
 
 ### InjectLanguagePickerSettings
 
-Ƭ **InjectLanguagePickerSettings**: `InjectionKey`<`ComputedRef`<[`LanguagePickerSettings`](../interfaces/components_LanguagePicker_extras.LanguagePickerSettings.md)\>\>
+Ƭ **InjectLanguagePickerSettings**: [`ComputedInjectionKey`](components_api.md#computedinjectionkey)<[`LanguagePickerSettings`](../interfaces/components_LanguagePicker_extras.LanguagePickerSettings.md)\>
 
 ___
 
