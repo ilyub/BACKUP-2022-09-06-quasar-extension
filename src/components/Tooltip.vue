@@ -1,7 +1,8 @@
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, inject } from "vue";
 
-import { injectRequire, propOptions } from "./api";
+import { propOptions } from "./api";
+import type { TooltipSettings } from "./Tooltip.extras";
 import { injectTooltipSettings, isDirection } from "./Tooltip.extras";
 
 export default defineComponent({
@@ -10,7 +11,15 @@ export default defineComponent({
     direction: propOptions.default(isDirection, "down")
   },
   setup(props) {
-    const settings = injectRequire(injectTooltipSettings);
+    const settings = inject(
+      injectTooltipSettings,
+      computed<TooltipSettings>(() => {
+        return {
+          delay: 0,
+          show: true
+        };
+      })
+    );
 
     return {
       anchor: computed<string>(() => {
