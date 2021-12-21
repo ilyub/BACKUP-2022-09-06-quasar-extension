@@ -13,7 +13,12 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import type { IconPickerSettings } from "./IconPicker.extras";
-import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
+import {
+  defaultIconPickerSettings,
+  icons,
+  injectIconPickerSettings,
+  lang
+} from "./IconPicker.extras";
 
 interface Button {
   readonly icon?: unknown;
@@ -68,11 +73,7 @@ export default defineComponent({
 
     const settings = inject(
       injectIconPickerSettings,
-      computed<IconPickerSettings>(() => {
-        return {
-          iconTooltips: false
-        };
-      })
+      computed<IconPickerSettings>(defaultIconPickerSettings)
     );
 
     const items = computed<Items>(() =>

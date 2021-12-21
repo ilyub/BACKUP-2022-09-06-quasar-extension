@@ -3,7 +3,11 @@ import { computed, defineComponent, inject } from "vue";
 
 import { propOptions } from "./api";
 import type { TooltipSettings } from "./Tooltip.extras";
-import { injectTooltipSettings, isDirection } from "./Tooltip.extras";
+import {
+  defaultTooltipSettings,
+  injectTooltipSettings,
+  isDirection
+} from "./Tooltip.extras";
 
 export default defineComponent({
   name: "x-tooltip",
@@ -13,12 +17,7 @@ export default defineComponent({
   setup(props) {
     const settings = inject(
       injectTooltipSettings,
-      computed<TooltipSettings>(() => {
-        return {
-          delay: 0,
-          show: true
-        };
-      })
+      computed<TooltipSettings>(defaultTooltipSettings)
     );
 
     return {

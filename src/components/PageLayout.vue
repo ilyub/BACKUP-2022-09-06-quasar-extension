@@ -5,7 +5,11 @@ import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
 import type { PageLayoutSettings } from "./PageLayout.extras";
-import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
+import {
+  defaultPageLayoutSettings,
+  icons,
+  injectPageLayoutSettings
+} from "./PageLayout.extras";
 
 export default defineComponent({
   name: "x-page-layout",
@@ -17,15 +21,7 @@ export default defineComponent({
   setup(props) {
     const settings = inject(
       injectPageLayoutSettings,
-      computed<PageLayoutSettings>(() => {
-        return {
-          closeButton: true,
-          headerHeight: "60px",
-          paddingX: "15px",
-          paddingY: "15px",
-          sectionMargin: "20px"
-        };
-      })
+      computed<PageLayoutSettings>(defaultPageLayoutSettings)
     );
 
     return {

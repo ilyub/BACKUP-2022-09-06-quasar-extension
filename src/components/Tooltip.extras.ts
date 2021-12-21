@@ -43,3 +43,15 @@ export const injectTooltipSettings: InjectTooltipSettings =
   Symbol("TooltipSettings");
 
 export const isDirection = is.factory(is.enumeration, DirectionVO);
+
+/**
+ * Returns default settings.
+ *
+ * @returns Default settings.
+ */
+export function defaultTooltipSettings(): TooltipSettings {
+  return {
+    delay: 0,
+    show: true
+  };
+}

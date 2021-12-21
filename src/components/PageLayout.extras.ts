@@ -27,3 +27,18 @@ export const icons: Icons<"close"> = baseIcons;
 
 export const injectPageLayoutSettings: InjectPageLayoutSettings =
   Symbol("PageLayoutSettings");
+
+/**
+ * Returns default settings.
+ *
+ * @returns Default settings.
+ */
+export function defaultPageLayoutSettings(): PageLayoutSettings {
+  return {
+    closeButton: true,
+    headerHeight: "60px",
+    paddingX: "15px",
+    paddingY: "15px",
+    sectionMargin: "20px"
+  };
+}

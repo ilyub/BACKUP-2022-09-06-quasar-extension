@@ -36,3 +36,14 @@ export const injectIconPickerSettings: InjectIconPickerSettings =
   Symbol("IconPickerSettings");
 
 export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;
+
+/**
+ * Returns default settings.
+ *
+ * @returns Default settings.
+ */
+export function defaultIconPickerSettings(): IconPickerSettings {
+  return {
+    iconTooltips: false
+  };
+}
