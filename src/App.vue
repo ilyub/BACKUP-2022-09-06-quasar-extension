@@ -22,6 +22,8 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import type { GroupItems } from "./components/Group.extras";
+import type { IconPickerSettings } from "./components/IconPicker.extras";
+import { injectIconPickerSettings } from "./components/IconPicker.extras";
 import type { LanguagePickerSettings } from "./components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "./components/PageLayout.extras";
@@ -38,6 +40,8 @@ export default defineComponent({
     const icon1 = ref<stringU>(undefined);
 
     const icon2 = ref<stringU>(undefined);
+
+    const iconTooltips = ref(false);
 
     const inputValue1 = ref("");
 
@@ -73,6 +77,15 @@ export default defineComponent({
     const tooltipDelay = ref(1000);
 
     const tooltipShow = ref(true);
+
+    provide(
+      injectIconPickerSettings,
+      computed<IconPickerSettings>(() => {
+        return {
+          iconTooltips: iconTooltips.value
+        };
+      })
+    );
 
     provide(
       injectLanguagePickerSettings,
@@ -146,6 +159,7 @@ export default defineComponent({
       ]),
       icon1,
       icon2,
+      iconTooltips,
       inputValue1,
       inputValue2,
       knobValue,
@@ -215,6 +229,11 @@ export default defineComponent({
           spinner-size="30px"
         />
         co = 2, rest = 5
+        <q-checkbox
+          v-model="iconTooltips"
+          class="q-ml-md"
+          label="Icon tooltips"
+        />
       </td>
     </tr>
     <tr>

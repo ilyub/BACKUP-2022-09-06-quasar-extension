@@ -1,12 +1,16 @@
 import { Notify } from "quasar";
 import { boot } from "quasar/wrappers";
 
+import { compare } from "@skylib/facades/es/compare";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import { icons } from "@skylib/facades/es/icons";
+import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import { lang } from "@skylib/facades/es/lang";
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import { testDelay } from "@skylib/facades/es/testDelay";
+import * as naturalCompareWrapper from "@skylib/framework/es/facade-implementations/compare/natural-compare-wrapper";
 import * as promiseHandler from "@skylib/framework/es/facade-implementations/handlePromise/promiseHandler";
+import * as lunrWrapper from "@skylib/framework/es/facade-implementations/inlineSearch/lunr-wrapper";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
 import * as cast from "@skylib/functions/es/converters";
@@ -20,9 +24,11 @@ import { definitions } from "./lang";
 // eslint-disable-next-line import/no-default-export
 export default boot(({ app }) => {
   {
+    compare.setImplementation(naturalCompareWrapper.implementation);
     reactiveStorage.setImplementation(vueStorage.implementation);
     handlePromise.setImplementation(promiseHandler.implementation);
     icons.setImplementation(iconsImplementation);
+    inlineSearch.setImplementation(lunrWrapper.implementation);
     lang.setImplementation(Dictionary.create(definitions));
     testDelay.setImplementation(configurableTestDelay.implementation);
   }

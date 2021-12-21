@@ -1,21 +1,25 @@
 <script lang="ts">
 import * as _ from "lodash-es";
-import { computed, defineComponent, ref, watch } from "vue";
+import { computed, defineComponent, inject, ref, watch } from "vue";
 
 import { handlePromise } from "@skylib/facades/es/handlePromise";
+import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
+import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import { testDelay } from "@skylib/facades/es/testDelay";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
-import type { Writable } from "@skylib/functions/es/types/core";
+import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
-import { icons, lang } from "./IconPicker.extras";
+import type { IconPickerSettings } from "./IconPicker.extras";
+import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 
 interface Button {
   readonly icon?: unknown;
   readonly padding: boolean;
   readonly selected: boolean;
+  readonly tooltip?: stringU;
 }
 
 type Buttons = readonly Button[];
@@ -23,8 +27,8 @@ type Buttons = readonly Button[];
 type Frame = readonly Buttons[];
 
 interface Item {
+  readonly description: string;
   readonly id: keyof Mdi;
-  readonly searchable: string;
 }
 
 type Items = readonly Item[];
@@ -50,17 +54,26 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
-    const filteredItems = computed<Items>(() => {
-      const searchable = searchString.value.length
-        ? `-${_.kebabCase(searchString.value)}-`
-        : "";
-
-      return searchString.value.length
-        ? items.value.filter(item => item.searchable.includes(searchable))
-        : items.value;
-    });
+    const filteredItems = computed<Items>(() =>
+      searchString.value.length
+        ? searchIndex.value.search(searchString.value)
+        : items.value
+    );
 
     const from = computed<number>(() => page.value * pageSize.value + 1);
+
+    const searchIndex = computed<InlineSearchEngine<Item>>(() =>
+      inlineSearch.create("id", ["description"], items.value)
+    );
+
+    const settings = inject(
+      injectIconPickerSettings,
+      computed<IconPickerSettings>(() => {
+        return {
+          iconTooltips: false
+        };
+      })
+    );
 
     const items = computed<Items>(() =>
       mdi.value
@@ -69,8 +82,8 @@ export default defineComponent({
             .filter(id => id.startsWith("mdi"))
             .map(id => {
               return {
-                id,
-                searchable: `-${_.kebabCase(id)}-`
+                description: _.kebabCase(id),
+                id
               };
             })
         : []
@@ -107,14 +120,15 @@ export default defineComponent({
           .map(item => {
             assert.not.empty(mdi.value);
 
-            const id = item.id;
-
-            const icon = mdi.value[id];
+            const icon = mdi.value[item.id];
 
             return {
               icon,
               padding: false,
-              selected: icon === props.modelValue
+              selected: icon === props.modelValue,
+              tooltip: settings.value.iconTooltips
+                ? item.description
+                : undefined
             };
           });
 
@@ -169,6 +183,7 @@ export default defineComponent({
       },
       prevDisable: computed<boolean>(() => from.value <= 1),
       searchString,
+      settings,
       show,
       to,
       total
@@ -213,6 +228,7 @@ export default defineComponent({
                 }"
                 :disable="button.padding"
                 :icon="button.icon"
+                :tooltip="button.tooltip"
                 @click="pickIcon(button.icon)"
               />
             </div>
