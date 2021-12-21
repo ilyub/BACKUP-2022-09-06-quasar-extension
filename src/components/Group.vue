@@ -21,12 +21,12 @@ export default defineComponent({
   setup(props) {
     const filteredItems = computed<GroupItems>(() => {
       if (props.searchString.length) {
-        const searchResult = new Set(
-          searchIndex.value.search(props.searchString)
+        const ids = new Set(
+          searchIndex.value.search(props.searchString).map(item => item.id)
         );
 
         return sortedItems.value.map(item => {
-          return { ...item, show: item.show && searchResult.has(item) };
+          return { ...item, show: item.show && ids.has(item.id) };
         });
       }
 
