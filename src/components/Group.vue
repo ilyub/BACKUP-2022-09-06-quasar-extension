@@ -1,13 +1,14 @@
 <script lang="ts">
-import lunr from "lunr";
-import naturalCompare from "natural-compare";
 import { computed, defineComponent } from "vue";
 
+import { compare } from "@skylib/facades/es/compare";
+import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
+import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
-import type { GroupItems } from "./Group.extras";
+import type { GroupItem, GroupItems } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
@@ -20,32 +21,25 @@ export default defineComponent({
   setup(props) {
     const filteredItems = computed<GroupItems>(() => {
       if (props.searchString.length) {
-        const searchResult = searchIndex.value.search(props.searchString);
-
-        const refs = new Set(
-          a.fromIterable(searchResult).map(item => item.ref)
+        const searchResult = new Set(
+          searchIndex.value.search(props.searchString)
         );
 
         return sortedItems.value.map(item => {
-          return { ...item, show: item.show && refs.has(item.id) };
+          return { ...item, show: item.show && searchResult.has(item) };
         });
       }
 
       return sortedItems.value;
     });
 
-    const searchIndex = computed<lunr.Index>(() =>
-      lunr(builder => {
-        builder.ref("id");
-        builder.field("title");
-
-        for (const item of props.items) builder.add(item);
-      })
+    const searchIndex = computed<InlineSearchEngine<GroupItem>>(() =>
+      inlineSearch.create("id", ["title"], props.items)
     );
 
     const sortedItems = computed<GroupItems>(() =>
       a.sort(props.items, (item1, item2) =>
-        naturalCompare(item1.title, item2.title)
+        compare.strings(item1.title, item2.title)
       )
     );
 
