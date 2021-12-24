@@ -5,6 +5,7 @@ module.exports = [
   "Input",
   "Knob",
   "LanguagePicker",
+  "MenuItem",
   "NavButton",
   "PageLayout",
   "Resizer",

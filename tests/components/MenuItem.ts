@@ -1,47 +1,72 @@
-import * as testUtils from "@vue/test-utils";
+import { QItem } from "quasar";
+import * as vueTestUtils from "@vue/test-utils";
 
 import MenuItem from "@/components/MenuItem.vue";
+import * as testUtils from "@/testUtils";
 
-it("no icon", () => {
-  const wrapper = testUtils.mount(MenuItem, {
+it("prop: caption", () => {
+  const wrapper = vueTestUtils.mount(MenuItem, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      caption: "sample-caption"
+    }
+  });
+
+  expect(wrapper.find(".q-item__section--nowrap")).textToEqual(
+    "sample-caption"
+  );
+});
+
+it("prop: header", async () => {
+  const wrapper = vueTestUtils.mount(MenuItem, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      caption: "sample-caption"
+    }
+  });
+
+  expect(wrapper.findComponent(QItem).props("clickable")).toBeTrue();
+  await wrapper.setProps({ header: true });
+  expect(wrapper.findComponent(QItem).props("clickable")).toBeFalse();
+});
+
+it("prop: icon", async () => {
+  const wrapper = vueTestUtils.mount(MenuItem, {
+    global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
     }
   });
 
   expect(wrapper.find(".q-icon")).not.toExist();
-  expect(wrapper.find(".q-item__section--nowrap")).textToEqual(
-    "sample-caption"
-  );
-});
-
-it("prop: icon", () => {
-  const wrapper = testUtils.mount(MenuItem, {
-    props: {
-      caption: "sample-caption",
-      icon: "sample-icon"
-    }
-  });
-
+  await wrapper.setProps({ icon: "sample-icon" });
   expect(wrapper.find(".q-icon")).textToEqual("sample-icon");
-  expect(wrapper.find(".q-item__section--nowrap")).textToEqual(
-    "sample-caption"
-  );
 });
 
 it("slot: icon", () => {
-  const wrapper = testUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(MenuItem, {
+    global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
     },
     slots: {
-      icon: '<div class="sample-class">sample-icon</div>"'
+      icon: '<div class="sample-class">sample-contents</div>"'
     }
   });
 
-  expect(wrapper.find(".sample-class")).textToEqual("sample-icon");
-  expect(wrapper.find(".q-icon")).not.toExist();
-  expect(wrapper.find(".q-item__section--nowrap")).textToEqual(
-    "sample-caption"
-  );
+  expect(wrapper.find(".sample-class")).textToEqual("sample-contents");
+});
+
+it("slot: right", () => {
+  const wrapper = vueTestUtils.mount(MenuItem, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      caption: "sample-caption"
+    },
+    slots: {
+      right: '<div class="sample-class">sample-contents</div>"'
+    }
+  });
+
+  expect(wrapper.find(".sample-class")).textToEqual("sample-contents");
 });
