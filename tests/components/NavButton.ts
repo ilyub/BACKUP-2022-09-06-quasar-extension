@@ -4,6 +4,19 @@ import * as vueTestUtils from "@vue/test-utils";
 import NavButton from "@/components/NavButton.vue";
 import * as testUtils from "@/testUtils";
 
+it.each([true, false])("prop: modelValue", async modelValue => {
+  const wrapper = vueTestUtils.mount(NavButton, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      modelValue
+    }
+  });
+
+  expect(wrapper.emitted("update:model-value")).toBeUndefined();
+  await wrapper.trigger("click");
+  expect(wrapper.emitted("update:model-value")).toStrictEqual([[!modelValue]]);
+});
+
 it("prop: tooltip", async () => {
   const wrapper = vueTestUtils.mount(NavButton, {
     global: testUtils.globalMountOptions()
