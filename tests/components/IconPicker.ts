@@ -129,32 +129,32 @@ it.each(
       expect(next().findComponent(QBtn).props("disable")).toBeTrue();
     }
 
-    function closeButton(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-      return wrapper.findComponent(".close");
+    function closeButton(): vueTestUtils.VueWrapper {
+      return wrapper.findComponent<ComponentPublicInstance>(".close");
     }
 
     function loading(): vueTestUtils.DOMWrapper<Element> {
       return wrapper.findComponent(QCard).find(".loading");
     }
 
-    function next(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-      return wrapper.findComponent(".next");
+    function next(): vueTestUtils.VueWrapper {
+      return wrapper.findComponent<ComponentPublicInstance>(".next");
     }
 
     function pagination(): vueTestUtils.DOMWrapper<Element> {
       return wrapper.findComponent(QCard).find(".pagination");
     }
 
-    function pickIcon(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-      return wrapper.findComponent(".pick-icon");
+    function pickIcon(): vueTestUtils.VueWrapper {
+      return wrapper.findComponent<ComponentPublicInstance>(".pick-icon");
     }
 
-    function prev(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-      return wrapper.findComponent(".prev");
+    function prev(): vueTestUtils.VueWrapper {
+      return wrapper.findComponent<ComponentPublicInstance>(".prev");
     }
 
-    function search(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-      return wrapper.findComponent(".search");
+    function search(): vueTestUtils.VueWrapper {
+      return wrapper.findComponent<ComponentPublicInstance>(".search");
     }
   });
 });

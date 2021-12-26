@@ -45,7 +45,7 @@ it("Input", async () => {
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
   }
 
-  function reset(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
-    return wrapper.findComponent(".reset");
+  function reset(): vueTestUtils.VueWrapper {
+    return wrapper.findComponent<ComponentPublicInstance>(".reset");
   }
 });
