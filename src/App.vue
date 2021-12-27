@@ -19,8 +19,9 @@ import {
 
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import * as fn from "@skylib/functions/es/function";
 import * as json from "@skylib/functions/es/json";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import type { GroupItems } from "./components/Group.extras";
@@ -37,36 +38,9 @@ import { injectTooltipSettings } from "./components/Tooltip.extras";
 export default defineComponent({
   name: "app",
   setup() {
-    type SelectValue = 1 | "a" | "b" | undefined;
-
-    const icon1 = ref<stringU>(undefined);
-
-    const icon2 = ref<stringU>(undefined);
-
     const iconTooltips = ref(false);
 
-    const inputValue1 = ref("");
-
-    const inputValue2 = ref("");
-
-    const knobValue = ref(100);
-
     const language = ref<LocaleName>("en-US");
-
-    const resizerShow = ref(true);
-
-    const resizerWidth = ref(200);
-
-    const searchString = ref("");
-
-    const selectOptions: SelectOptions<SelectValue> = [
-      { label: "Select option", value: undefined },
-      { label: "Option 1", value: 1 },
-      { label: "Option 2", value: "a" },
-      { disable: true, label: "Option 3", value: "b" }
-    ];
-
-    const selectValue = ref<SelectValue>(undefined);
 
     const showSection1 = ref(true);
 
@@ -162,12 +136,12 @@ export default defineComponent({
           title: "Section 12 ddd eee"
         }
       ]),
-      icon1,
-      icon2,
+      icon1: ref<stringU>(undefined),
+      icon2: ref<stringU>(undefined),
       iconTooltips,
-      inputValue1,
-      inputValue2,
-      knobValue,
+      inputValue1: ref(""),
+      inputValue2: ref(""),
+      knobValue: ref(100),
       lang,
       language,
       mdiAccount,
@@ -179,11 +153,16 @@ export default defineComponent({
       mdiImageEdit,
       mdiImageEditOutline,
       mdiPen,
-      resizerShow,
-      resizerWidth,
-      searchString,
-      selectOptions,
-      selectValue,
+      resizerShow: ref(true),
+      resizerWidth: ref(200),
+      searchString: ref(""),
+      selectOptions: fn.run<SelectOptions>(() => [
+        { label: "Select option", value: undefined },
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: "a" },
+        { disable: true, label: "Option 3", value: "b" }
+      ]),
+      selectValue: ref<NumStrU>(undefined),
       showSection1,
       showSection2,
       showSection3,
