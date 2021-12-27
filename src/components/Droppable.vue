@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({ name: "x-droppable" });
+export default defineComponent({ name: "s-droppable" });
 </script>
 
 <template>
-  <x-sortable class="sortable" drop-zone item-key="id" :model-value="[]">
+  <s-sortable class="sortable" drop-zone item-key="id" :model-value="[]">
     <template #header><slot></slot></template>
-  </x-sortable>
+  </s-sortable>
 </template>
 
 <style lang="scss" scoped>

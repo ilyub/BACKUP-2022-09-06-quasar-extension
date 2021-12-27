@@ -9,7 +9,7 @@ import { propOptions } from "./api";
 import { icons } from "./Input.extras";
 
 export default defineComponent({
-  name: "x-input",
+  name: "s-input",
   props: {
     modelValue: propOptions.required(is.string),
     resetButton: propOptions.boolean()

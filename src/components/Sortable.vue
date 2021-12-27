@@ -1,6 +1,6 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from "vue";
-import vuedraggable from "vuedraggable";
+import Draggable from "vuedraggable";
 
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
@@ -17,9 +17,9 @@ import {
 } from "./Sortable.extras";
 
 export default defineComponent({
-  name: "x-sortable",
+  name: "s-sortable",
   components: {
-    draggable: vuedraggable
+    draggable: Draggable
   },
   props: {
     group: propOptions.required(is.string),

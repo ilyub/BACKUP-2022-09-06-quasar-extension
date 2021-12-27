@@ -12,7 +12,7 @@ import type { GroupItem, GroupItems } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
-  name: "x-group",
+  name: "s-group",
   props: {
     items: propOptions.required(isGroupItems),
     notFoundLabel: propOptions(is.stringU),

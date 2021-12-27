@@ -35,19 +35,19 @@ import Tooltip from "./Tooltip.vue";
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export const components: ReadonlyRecord<string, Component> = {
-  "x-droppable": Droppable,
-  "x-group": Group,
-  "x-icon-picker": IconPicker,
-  "x-input": Input,
-  "x-knob": Knob,
-  "x-language-picker": LanguagePicker,
-  "x-menu-item": MenuItem,
-  "x-nav-button": NavButton,
-  "x-page-layout": PageLayout,
-  "x-resizer": Resizer,
-  "x-select": Select,
-  "x-sortable": Sortable,
-  "x-tooltip": Tooltip
+  "s-droppable": Droppable,
+  "s-group": Group,
+  "s-icon-picker": IconPicker,
+  "s-input": Input,
+  "s-knob": Knob,
+  "s-language-picker": LanguagePicker,
+  "s-menu-item": MenuItem,
+  "s-nav-button": NavButton,
+  "s-page-layout": PageLayout,
+  "s-resizer": Resizer,
+  "s-select": Select,
+  "s-sortable": Sortable,
+  "s-tooltip": Tooltip
 };
 
 for (const [name, component] of Object.entries(components))

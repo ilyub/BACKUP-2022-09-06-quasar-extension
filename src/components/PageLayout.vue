@@ -12,7 +12,7 @@ import {
 } from "./PageLayout.extras";
 
 export default defineComponent({
-  name: "x-page-layout",
+  name: "s-page-layout",
   props: {
     closeButton: propOptions.boolean(),
     hideCloseButton: propOptions.boolean(),
@@ -60,7 +60,7 @@ export default defineComponent({
         {{ title }}
         <template v-if="hasCloseButton">
           <q-space />
-          <x-nav-button
+          <s-nav-button
             class="ref-close-button"
             :icon="icons.close"
             to="/back"

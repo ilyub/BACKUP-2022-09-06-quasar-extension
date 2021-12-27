@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 import { propOptions } from "./api";
 
 export default defineComponent({
-  name: "x-menu-item",
+  name: "s-menu-item",
   props: {
     caption: propOptions.required(is.string),
     header: propOptions.boolean(),

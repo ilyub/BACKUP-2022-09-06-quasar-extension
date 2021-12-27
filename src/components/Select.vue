@@ -9,7 +9,7 @@ import type { SelectOption } from "./Select.extras";
 import { isSelectOption, isSelectOptions } from "./Select.extras";
 
 export default defineComponent({
-  name: "x-select",
+  name: "s-select",
   props: {
     modelValue: propOptions(is.numStrU),
     options: propOptions.required(isSelectOptions)

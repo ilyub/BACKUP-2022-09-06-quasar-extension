@@ -10,7 +10,7 @@ import {
 } from "./Tooltip.extras";
 
 export default defineComponent({
-  name: "x-tooltip",
+  name: "s-tooltip",
   props: {
     direction: propOptions.default(isDirection, "down")
   },

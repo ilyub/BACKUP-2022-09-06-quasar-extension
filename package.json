@@ -54,7 +54,7 @@
     "@mdi/js": "^6.5.95",
     "@quasar/app": "^3.2.6",
     "@quasar/quasar-app-extension-testing": "^2.0.1",
-    "@skylib/config": "^0.1.27",
+    "@skylib/config": "^0.1.28",
     "@skylib/eslint-plugin": "^0.1.8",
     "@types/eslint": "^8.2.1",
     "@types/jest": "^27.0.3",

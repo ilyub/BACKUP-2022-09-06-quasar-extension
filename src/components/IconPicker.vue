@@ -45,7 +45,7 @@ type Mdi = typeof import("@mdi/js-dynamic");
 const mdi = ref<Mdi | undefined>(undefined);
 
 export default defineComponent({
-  name: "x-icon-picker",
+  name: "s-icon-picker",
   props: {
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
@@ -194,7 +194,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-nav-button
+  <s-nav-button
     :class="{
       'text-grey-5': notSelected
     }"
@@ -207,9 +207,9 @@ export default defineComponent({
           <div class="flex text-h6">
             {{ lang.IconPicker }}
             <q-space />
-            <x-nav-button class="close" :icon="icons.close" @click="close" />
+            <s-nav-button class="close" :icon="icons.close" @click="close" />
           </div>
-          <x-input v-model="searchString" class="q-pb-md search" />
+          <s-input v-model="searchString" class="q-pb-md search" />
           <div class="relative-position">
             <div
               v-if="loading"
@@ -218,7 +218,7 @@ export default defineComponent({
               <q-spinner color="primary" :size="spinnerSize" />
             </div>
             <div v-for="(row, i) in frame" :key="i">
-              <x-nav-button
+              <s-nav-button
                 v-for="(button, j) in row"
                 :key="j"
                 :class="{
@@ -236,7 +236,7 @@ export default defineComponent({
           </div>
         </q-card-section>
         <q-card-actions>
-          <x-nav-button
+          <s-nav-button
             class="prev"
             :disable="prevDisable"
             :icon="icons.chevronLeft"
@@ -252,7 +252,7 @@ export default defineComponent({
             {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
           </span>
           <q-space />
-          <x-nav-button
+          <s-nav-button
             class="next"
             :disable="nextDisable"
             :icon="icons.chevronRight"
@@ -261,5 +261,5 @@ export default defineComponent({
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </x-nav-button>
+  </s-nav-button>
 </template>

@@ -11,10 +11,10 @@ import MenuItem from "./MenuItem.vue";
 import NavButton from "./NavButton.vue";
 
 export default defineComponent({
-  name: "x-language-picker",
+  name: "s-language-picker",
   components: {
-    "x-menu-item": MenuItem,
-    "x-nav-button": NavButton
+    "s-menu-item": MenuItem,
+    "s-nav-button": NavButton
   },
   props: {
     language: propOptions.required(is.unknown)
@@ -48,7 +48,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <x-nav-button>
+    <s-nav-button>
       <img
         :alt="activeItem.caption"
         height="20"
@@ -57,7 +57,7 @@ export default defineComponent({
       />
       <q-menu>
         <q-list>
-          <x-menu-item
+          <s-menu-item
             v-for="(item, index) in settings.items"
             :key="index"
             :caption="item.caption"
@@ -72,9 +72,9 @@ export default defineComponent({
                 width="18"
               />
             </template>
-          </x-menu-item>
+          </s-menu-item>
         </q-list>
       </q-menu>
-    </x-nav-button>
+    </s-nav-button>
   </div>
 </template>

@@ -7,9 +7,9 @@ import { propOptions } from "./api";
 import Tooltip from "./Tooltip.vue";
 
 export default defineComponent({
-  name: "x-nav-button",
+  name: "s-nav-button",
   components: {
-    "x-tooltip": Tooltip
+    "s-tooltip": Tooltip
   },
   props: {
     modelValue: propOptions.boolean(),
@@ -35,8 +35,8 @@ export default defineComponent({
 <template>
   <q-btn flat round @click="onClick">
     <slot></slot>
-    <x-tooltip v-if="hasTooltip" :direction="tooltipDirection">
+    <s-tooltip v-if="hasTooltip" :direction="tooltipDirection">
       {{ tooltip }}
-    </x-tooltip>
+    </s-tooltip>
   </q-btn>
 </template>

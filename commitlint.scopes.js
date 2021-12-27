@@ -14,6 +14,7 @@ module.exports = [
   "Sortable",
   "Tooltip",
   "boot",
+  "components",
   "components.api.index",
   "components.api.injection",
   "plugin",

@@ -206,7 +206,7 @@ export default defineComponent({
     <tr>
       <td>Droppable</td>
       <td>
-        <x-sortable
+        <s-sortable
           v-model="sortable"
           group="sortable"
           :item-component-data="{
@@ -217,16 +217,16 @@ export default defineComponent({
           <template #item="{ item }">
             <div class="q-mr-sm">{{ item.name }}</div>
           </template>
-        </x-sortable>
-        <x-droppable group="droppable" @dropped="dropped">
+        </s-sortable>
+        <s-droppable group="droppable" @dropped="dropped">
           <div class="droppable q-mt-sm"></div>
-        </x-droppable>
+        </s-droppable>
       </td>
     </tr>
     <tr>
       <td>Group</td>
       <td>
-        <x-input v-model="searchString" label="Search for settings" />
+        <s-input v-model="searchString" label="Search for settings" />
         <div class="q-mt-md">
           Show
           <q-checkbox v-model="showSection1" /> 1
@@ -234,7 +234,7 @@ export default defineComponent({
           <q-checkbox v-model="showSection3" /> 3
           <q-checkbox v-model="showSection4" /> 4
         </div>
-        <x-group
+        <s-group
           class="q-mt-lg"
           :items="groupItems"
           not-found-label="No results found"
@@ -244,14 +244,14 @@ export default defineComponent({
           <template #section1>Section 1</template>
           <template #section3>Section 11</template>
           <template #section4>Section 12</template>
-        </x-group>
+        </s-group>
       </td>
     </tr>
     <tr>
       <td>Icon picker</td>
       <td>
-        <x-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
-        <x-icon-picker
+        <s-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
+        <s-icon-picker
           v-model="icon2"
           :cols="2"
           :placeholder="mdiImageEditOutline"
@@ -269,85 +269,85 @@ export default defineComponent({
     <tr>
       <td>Input</td>
       <td>
-        <x-input v-model="inputValue1" />
-        <x-input v-model="inputValue2" reset-button />
+        <s-input v-model="inputValue1" />
+        <s-input v-model="inputValue2" reset-button />
       </td>
     </tr>
     <tr>
       <td>Knob</td>
       <td>
-        <x-knob v-model="knobValue" :max="1000" :step="10" />
+        <s-knob v-model="knobValue" :max="1000" :step="10" />
       </td>
     </tr>
     <tr>
       <td>Language picker</td>
       <td class="flex items-center">
-        <x-language-picker :language="language" />
+        <s-language-picker :language="language" />
         {{ lang.SampleWord }}
       </td>
     </tr>
     <tr>
       <td>Menu item</td>
       <td>
-        <x-nav-button :icon="mdiAccount">
+        <s-nav-button :icon="mdiAccount">
           <q-menu>
             <q-list>
-              <x-menu-item caption="Settings" :icon="mdiPen" />
-              <x-menu-item caption="Language">
+              <s-menu-item caption="Settings" :icon="mdiPen" />
+              <s-menu-item caption="Language">
                 <template #icon>
                   <img alt="Alt text" height="18" :src="us" width="18" />
                 </template>
-              </x-menu-item>
+              </s-menu-item>
               <q-separator />
-              <x-menu-item caption="Exit" />
+              <s-menu-item caption="Exit" />
             </q-list>
           </q-menu>
-        </x-nav-button>
+        </s-nav-button>
       </td>
     </tr>
     <tr>
       <td>Nav button</td>
       <td>
-        <x-nav-button :icon="mdiArrowDown" tooltip="Down tooltip" />
-        <x-nav-button
+        <s-nav-button :icon="mdiArrowDown" tooltip="Down tooltip" />
+        <s-nav-button
           :icon="mdiArrowDown"
           tooltip="Down tooltip"
           tooltip-direction="down"
         />
-        <x-nav-button
+        <s-nav-button
           :icon="mdiArrowLeft"
           tooltip="Left tooltip"
           tooltip-direction="left"
         />
-        <x-nav-button
+        <s-nav-button
           :icon="mdiArrowRight"
           tooltip="Right tooltip"
           tooltip-direction="right"
         />
-        <x-nav-button
+        <s-nav-button
           :icon="mdiArrowUp"
           tooltip="Up tooltip"
           tooltip-direction="up"
         />
-        <x-nav-button>
+        <s-nav-button>
           <img alt="Alt text" height="20" :src="us" width="20" />
-        </x-nav-button>
+        </s-nav-button>
       </td>
     </tr>
     <tr>
       <td>Page layout</td>
       <td>
-        <x-page-layout class="page-layout">
+        <s-page-layout class="page-layout">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </x-page-layout>
-        <x-page-layout class="page-layout q-mt-md" title="Sample-title">
+        </s-page-layout>
+        <s-page-layout class="page-layout q-mt-md" title="Sample-title">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </x-page-layout>
-        <x-page-layout
+        </s-page-layout>
+        <s-page-layout
           class="page-layout q-mt-md"
           close-button
           title="Sample-title"
@@ -355,7 +355,7 @@ export default defineComponent({
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </x-page-layout>
+        </s-page-layout>
       </td>
     </tr>
     <tr>
@@ -368,7 +368,7 @@ export default defineComponent({
             width: `${resizerWidth}px`
           }"
         >
-          <x-resizer
+          <s-resizer
             v-show="resizerShow"
             v-model="resizerWidth"
             :max="300"
@@ -380,13 +380,13 @@ export default defineComponent({
     <tr>
       <td>Select</td>
       <td>
-        <x-select v-model="selectValue" :options="selectOptions" />
+        <s-select v-model="selectValue" :options="selectOptions" />
       </td>
     </tr>
     <tr>
       <td>Sortable</td>
       <td>
-        <x-sortable
+        <s-sortable
           v-model="sortable"
           group="sortable"
           :item-component-data="{
@@ -397,7 +397,7 @@ export default defineComponent({
           <template #item="{ item }">
             <div class="q-mr-sm">{{ item.name }}</div>
           </template>
-        </x-sortable>
+        </s-sortable>
       </td>
     </tr>
     <tr>
@@ -407,7 +407,7 @@ export default defineComponent({
           Show tooltips:
           <q-toggle v-model="tooltipShow" />
           with delay of
-          <x-knob
+          <s-knob
             v-model="tooltipDelay"
             class="q-ml-sm q-mr-sm"
             :disable="!tooltipShow"
@@ -417,45 +417,45 @@ export default defineComponent({
           ms
         </div>
         <div>
-          <x-nav-button :icon="mdiArrowDown">
-            <x-tooltip>Down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
-            <x-tooltip direction="down">Down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
-            <x-tooltip direction="down-left">Down-left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
-            <x-tooltip direction="down-right">Down-right tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
-            <x-tooltip direction="left">Left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
-            <x-tooltip direction="left-down">Left-down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
-            <x-tooltip direction="left-up">Left-up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
-            <x-tooltip direction="right">Right tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
-            <x-tooltip direction="right-down">Right-down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
-            <x-tooltip direction="right-up">Right-up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
-            <x-tooltip direction="up">Up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
-            <x-tooltip direction="up-left">Up-left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
-            <x-tooltip direction="up-right">Up-right tooltip</x-tooltip>
-          </x-nav-button>
+          <s-nav-button :icon="mdiArrowDown">
+            <s-tooltip>Down tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowDown">
+            <s-tooltip direction="down">Down tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowDown">
+            <s-tooltip direction="down-left">Down-left tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowDown">
+            <s-tooltip direction="down-right">Down-right tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowLeft">
+            <s-tooltip direction="left">Left tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowLeft">
+            <s-tooltip direction="left-down">Left-down tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowLeft">
+            <s-tooltip direction="left-up">Left-up tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowRight">
+            <s-tooltip direction="right">Right tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowRight">
+            <s-tooltip direction="right-down">Right-down tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowRight">
+            <s-tooltip direction="right-up">Right-up tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowUp">
+            <s-tooltip direction="up">Up tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowUp">
+            <s-tooltip direction="up-left">Up-left tooltip</s-tooltip>
+          </s-nav-button>
+          <s-nav-button :icon="mdiArrowUp">
+            <s-tooltip direction="up-right">Up-right tooltip</s-tooltip>
+          </s-nav-button>
         </div>
       </td>
     </tr>

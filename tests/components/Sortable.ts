@@ -1,4 +1,4 @@
-import vuedraggable from "vuedraggable";
+import Draggable from "vuedraggable";
 import * as vueTestUtils from "@vue/test-utils";
 
 import * as assert from "@skylib/functions/es/assertions";
@@ -39,9 +39,9 @@ it.each([undefined, 1000])("animationDuration", animationDuration => {
     props
   });
 
-  expect(
-    wrapper.findComponent(vuedraggable).vm.$attrs["animation"]
-  ).toStrictEqual(animationDuration ?? 500);
+  expect(wrapper.findComponent(Draggable).vm.$attrs["animation"]).toStrictEqual(
+    animationDuration ?? 500
+  );
 });
 
 it("emit: dropped", () => {
@@ -59,7 +59,7 @@ it("emit: dropped", () => {
   const elements = buildElements(newItems, group, itemKey);
 
   warnSpy.mockImplementation(warnMock);
-  wrapper.findComponent(vuedraggable).vm.$emit("update:model-value", elements);
+  wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
   expect(warnMock).toBeCalledTimes(1);
   expect(warnMock).toBeCalledWith(
@@ -86,7 +86,7 @@ it("emit: update:model-value", () => {
   ];
 
   warnSpy.mockImplementation(warnMock);
-  wrapper.findComponent(vuedraggable).vm.$emit("update:model-value", elements);
+  wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
   expect(warnMock).toBeCalledTimes(1);
@@ -104,7 +104,7 @@ it("prop: move", async () => {
     props
   });
 
-  const baseMove = wrapper.findComponent(vuedraggable).props("move") as unknown;
+  const baseMove = wrapper.findComponent(Draggable).props("move") as unknown;
 
   const moveData = {
     dragged: fn.run(() => {
