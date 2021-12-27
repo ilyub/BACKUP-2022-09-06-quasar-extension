@@ -47,7 +47,7 @@ ___
 
 ### Move
 
-Ƭ **Move**: (`destId`: `stringU`, `destGroup`: `stringU`, `sourceId`: `string`, `sourceGroup`: `stringU`) => `boolean`
+Ƭ **Move**: (`destId`: `stringU`, `destGroup`: `string`, `sourceId`: `string`, `sourceGroup`: `string`) => `boolean`
 
 #### Type declaration
 
@@ -58,9 +58,9 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `destId` | `stringU` |
-| `destGroup` | `stringU` |
+| `destGroup` | `string` |
 | `sourceId` | `string` |
-| `sourceGroup` | `stringU` |
+| `sourceGroup` | `string` |
 
 ##### Returns
 
