@@ -1,5 +1,6 @@
 module.exports = [
   "App",
+  "Droppable",
   "Group",
   "IconPicker",
   "Input",
@@ -10,6 +11,7 @@ module.exports = [
   "PageLayout",
   "Resizer",
   "Select",
+  "Sortable",
   "Tooltip",
   "boot",
   "components.api.index",

@@ -1,5 +1,4 @@
 import { QList } from "quasar";
-import type { ComponentPublicInstance } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
 import LanguagePicker from "@/components/LanguagePicker.vue";
@@ -57,7 +56,7 @@ it("LanguagePicker", async () => {
     changeLanguageAction.mockClear();
   }
 
-  function list(): vueTestUtils.VueWrapper<ComponentPublicInstance> {
+  function list(): vueTestUtils.VueWrapper {
     return wrapper.findComponent(QList);
   }
 

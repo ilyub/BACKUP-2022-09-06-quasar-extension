@@ -1,9 +1,11 @@
-@use "sass:map";
-
-$inline-input-margin : map.get($space-sm, "x") !default;
+$inline-input-margin : 5px !default;
 
 .flex-grow-1 {
   flex-grow: 1;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .inline-input-margin {

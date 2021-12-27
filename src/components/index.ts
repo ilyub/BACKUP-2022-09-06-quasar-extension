@@ -16,7 +16,10 @@ import "./PageLayout.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./Select.extras";
 // eslint-disable-next-line import/no-unassigned-import
+import "./Sortable.extras";
+// eslint-disable-next-line import/no-unassigned-import
 import "./Tooltip.extras";
+import Droppable from "./Droppable.vue";
 import Group from "./Group.vue";
 import IconPicker from "./IconPicker.vue";
 import Input from "./Input.vue";
@@ -27,10 +30,12 @@ import NavButton from "./NavButton.vue";
 import PageLayout from "./PageLayout.vue";
 import Resizer from "./Resizer.vue";
 import Select from "./Select.vue";
+import Sortable from "./Sortable.vue";
 import Tooltip from "./Tooltip.vue";
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export const components: ReadonlyRecord<string, Component> = {
+  "x-droppable": Droppable,
   "x-group": Group,
   "x-icon-picker": IconPicker,
   "x-input": Input,
@@ -41,6 +46,7 @@ export const components: ReadonlyRecord<string, Component> = {
   "x-page-layout": PageLayout,
   "x-resizer": Resizer,
   "x-select": Select,
+  "x-sortable": Sortable,
   "x-tooltip": Tooltip
 };
 

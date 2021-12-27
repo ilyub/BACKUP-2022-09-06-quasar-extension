@@ -19,18 +19,18 @@ it.each([0, 1, 2])("Select", index => {
     }
   });
 
-  const consoleWarnMock = jest.fn();
+  const warnMock = jest.fn();
 
-  const consoleWarnSpy = jest.spyOn(console, "warn");
+  const warnSpy = jest.spyOn(console, "warn");
 
-  consoleWarnSpy.mockImplementation(consoleWarnMock);
+  warnSpy.mockImplementation(warnMock);
   wrapper.findComponent(QSelect).vm.$emit("update:model-value", options[index]);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([
     [a.get(options, index).value]
   ]);
-  expect(consoleWarnMock).toBeCalledTimes(1);
-  expect(consoleWarnMock).toBeCalledWith(
+  expect(warnMock).toBeCalledTimes(1);
+  expect(warnMock).toBeCalledWith(
     '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
   );
-  consoleWarnMock.mockClear();
+  warnMock.mockClear();
 });

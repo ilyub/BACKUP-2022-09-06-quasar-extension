@@ -3,6 +3,7 @@ import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
+import { Notify } from "quasar";
 import { computed, defineComponent, provide, ref } from "vue";
 import {
   mdiAccount,
@@ -18,6 +19,7 @@ import {
 
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import * as json from "@skylib/functions/es/json";
 import type { stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
@@ -135,6 +137,9 @@ export default defineComponent({
     );
 
     return {
+      dropped(item: unknown, group: unknown): void {
+        Notify.create(json.encode({ group, item }));
+      },
       groupItems: computed<GroupItems>(() => [
         {
           id: "section2",
@@ -183,6 +188,11 @@ export default defineComponent({
       showSection2,
       showSection3,
       showSection4,
+      sortable: ref([
+        { id: "a", name: "A" },
+        { id: "b", name: "B" },
+        { id: "c", name: "C" }
+      ]),
       tooltipDelay,
       tooltipShow,
       us
@@ -193,6 +203,26 @@ export default defineComponent({
 
 <template>
   <table class="q-ma-lg q-mb-xl">
+    <tr>
+      <td>Droppable</td>
+      <td>
+        <x-sortable
+          v-model="sortable"
+          group="sortable"
+          :item-component-data="{
+            class: 'q-mr-sm sortable-item'
+          }"
+          item-key="id"
+        >
+          <template #item="{ item }">
+            <div class="q-mr-sm">{{ item.name }}</div>
+          </template>
+        </x-sortable>
+        <x-droppable group="droppable" @dropped="dropped">
+          <div class="droppable q-mt-sm"></div>
+        </x-droppable>
+      </td>
+    </tr>
     <tr>
       <td>Group</td>
       <td>
@@ -354,6 +384,23 @@ export default defineComponent({
       </td>
     </tr>
     <tr>
+      <td>Sortable</td>
+      <td>
+        <x-sortable
+          v-model="sortable"
+          group="sortable"
+          :item-component-data="{
+            class: 'q-mr-sm sortable-item'
+          }"
+          item-key="id"
+        >
+          <template #item="{ item }">
+            <div class="q-mr-sm">{{ item.name }}</div>
+          </template>
+        </x-sortable>
+      </td>
+    </tr>
+    <tr>
       <td>Tooltip</td>
       <td>
         <div>
@@ -427,6 +474,12 @@ table {
   }
 }
 
+.droppable {
+  width: 50px;
+  height: 50px;
+  background: blue;
+}
+
 .page-layout {
   border: 1px solid $grey-3;
 }
@@ -440,5 +493,15 @@ table {
   position: relative;
   height: 50px;
   background: blue;
+}
+
+:deep(.sortable-item) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: $grey-3;
+  cursor: default;
 }
 </style>

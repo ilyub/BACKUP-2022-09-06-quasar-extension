@@ -13,6 +13,7 @@ module.exports = {
     "DirectiveBinding",
     "DOMWrapper",
     "FunctionalComponent",
+    "HTMLElement",
     "InjectionKey",
     "ObjectDirective",
     "SetupContext",

@@ -44,15 +44,15 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.12.2",
-    "core-js": "^3.20.0",
-    "quasar": "^2.3.4"
+    "core-js": "^3.20.1",
+    "quasar": "^2.4.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
-    "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
+    "@commitlint/cli": "^16.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "@mdi/js": "^6.5.95",
-    "@quasar/app": "^3.2.5",
+    "@quasar/app": "^3.2.6",
     "@quasar/quasar-app-extension-testing": "^2.0.1",
     "@skylib/config": "^0.1.27",
     "@skylib/eslint-plugin": "^0.1.8",
@@ -97,16 +97,17 @@
   "peerDependencies": {
     "@mdi/js-dynamic": "npm:@mdi/js@^6.5.95",
     "@quasar/quasar-app-extension-testing-unit-jest": "^3.0.0-alpha.7",
-    "@skylib/facades": "^0.1.8",
-    "@skylib/framework": "^0.1.7",
-    "@skylib/functions": "^0.1.9",
+    "@skylib/facades": "^0.1.10",
+    "@skylib/framework": "^0.1.8",
+    "@skylib/functions": "^0.1.11",
     "@skylib/typescript-types": "^0.1.1",
     "@types/lodash": "^4.14.178",
     "@types/lodash-es": "^4.17.5",
     "@vue/test-utils": "^2.0.0-rc.10",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "vue": "^3.2.24"
+    "vue": "^3.2.26",
+    "vuedraggable": "^4.1.0"
   },
   "engines": {
     "node": ">=14.0.0",

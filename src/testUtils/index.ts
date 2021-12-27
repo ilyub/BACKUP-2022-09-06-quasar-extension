@@ -17,6 +17,8 @@ import type { LanguagePickerSettings } from "../components/LanguagePicker.extras
 import { injectLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
 import { injectPageLayoutSettings } from "../components/PageLayout.extras";
+import type { SortableSettings } from "../components/Sortable.extras";
+import { injectSortableSettings } from "../components/Sortable.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
 import { injectTooltipSettings } from "../components/Tooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
@@ -67,6 +69,7 @@ export interface CustomGlobalMountOptions {
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
   readonly pageOffset?: numberU;
+  readonly sortableSettings?: SortableSettings;
   readonly tooltipSettings?: TooltipSettings;
 }
 
@@ -119,6 +122,14 @@ export function globalMountOptions(
     const pageOffset = options.pageOffset;
 
     provide[injectPageOffset as symbol] = computed<numberU>(() => pageOffset);
+  }
+
+  if ("sortableSettings" in options) {
+    const sortableSettings = options.sortableSettings;
+
+    provide[injectSortableSettings as symbol] = computed<SortableSettings>(
+      () => sortableSettings
+    );
   }
 
   if ("tooltipSettings" in options) {
