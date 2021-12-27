@@ -21,9 +21,9 @@ export type InjectSortableSettings = ComputedInjectionKey<SortableSettings>;
 
 export type Move = (
   destId: stringU,
-  destGroup: stringU,
+  destGroup: string,
   sourceId: string,
-  sourceGroup: stringU
+  sourceGroup: string
 ) => boolean;
 
 export interface MoveData {

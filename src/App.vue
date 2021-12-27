@@ -188,11 +188,12 @@ export default defineComponent({
       showSection2,
       showSection3,
       showSection4,
-      sortable: ref([
+      sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },
         { id: "c", name: "C" }
       ]),
+      sortable2: ref([]),
       tooltipDelay,
       tooltipShow,
       us
@@ -207,19 +208,33 @@ export default defineComponent({
       <td>Droppable</td>
       <td>
         <s-sortable
-          v-model="sortable"
+          v-model="sortable1"
+          class="sortable"
           group="sortable"
           :item-component-data="{
             class: 'q-mr-sm sortable-item'
           }"
           item-key="id"
         >
-          <template #item="{ item }">
-            <div class="q-mr-sm">{{ item.name }}</div>
-          </template>
+          <template #item="{ item }">{{ item.name }}</template>
         </s-sortable>
-        <s-droppable group="droppable" @dropped="dropped">
-          <div class="droppable q-mt-sm"></div>
+        <s-sortable
+          v-model="sortable2"
+          class="q-mt-md sortable"
+          group="sortable"
+          :item-component-data="{
+            class: 'q-mr-md sortable-item'
+          }"
+          item-key="id"
+        >
+          <template #item="{ item }">{{ item.name }}</template>
+        </s-sortable>
+        <s-droppable
+          class="droppable q-mt-md"
+          group="droppable"
+          @dropped="dropped"
+        >
+          D
         </s-droppable>
       </td>
     </tr>
@@ -387,16 +402,26 @@ export default defineComponent({
       <td>Sortable</td>
       <td>
         <s-sortable
-          v-model="sortable"
+          v-model="sortable1"
+          class="sortable"
           group="sortable"
           :item-component-data="{
             class: 'q-mr-sm sortable-item'
           }"
           item-key="id"
         >
-          <template #item="{ item }">
-            <div class="q-mr-sm">{{ item.name }}</div>
-          </template>
+          <template #item="{ item }">{{ item.name }}</template>
+        </s-sortable>
+        <s-sortable
+          v-model="sortable2"
+          class="q-mt-md sortable"
+          group="sortable"
+          :item-component-data="{
+            class: 'q-mr-md sortable-item'
+          }"
+          item-key="id"
+        >
+          <template #item="{ item }">{{ item.name }}</template>
         </s-sortable>
       </td>
     </tr>
@@ -475,9 +500,12 @@ table {
 }
 
 .droppable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50px;
   height: 50px;
-  background: blue;
+  background: $grey-5;
 }
 
 .page-layout {
@@ -495,13 +523,18 @@ table {
   background: blue;
 }
 
-:deep(.sortable-item) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
+.sortable {
   height: 50px;
   background: $grey-3;
-  cursor: default;
+
+  :deep(.sortable-item) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: $grey-5;
+    cursor: default;
+  }
 }
 </style>
