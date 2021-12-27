@@ -18,6 +18,7 @@
 - [components/LanguagePicker.extras](modules/components_LanguagePicker_extras.md)
 - [components/PageLayout.extras](modules/components_PageLayout_extras.md)
 - [components/Select.extras](modules/components_Select_extras.md)
+- [components/Sortable.extras](modules/components_Sortable_extras.md)
 - [components/Tooltip.extras](modules/components_Tooltip_extras.md)
 - [components/api](modules/components_api.md)
 - [components/api/injections](modules/components_api_injections.md)

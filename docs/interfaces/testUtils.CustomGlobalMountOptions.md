@@ -12,6 +12,7 @@
 - [languagePickerSettings](testUtils.CustomGlobalMountOptions.md#languagepickersettings)
 - [pageLayoutSettings](testUtils.CustomGlobalMountOptions.md#pagelayoutsettings)
 - [pageOffset](testUtils.CustomGlobalMountOptions.md#pageoffset)
+- [sortableSettings](testUtils.CustomGlobalMountOptions.md#sortablesettings)
 - [tooltipSettings](testUtils.CustomGlobalMountOptions.md#tooltipsettings)
 
 ## Properties
@@ -37,6 +38,12 @@ ___
 ### pageOffset
 
 • `Optional` `Readonly` **pageOffset**: `numberU`
+
+___
+
+### sortableSettings
+
+• `Optional` `Readonly` **sortableSettings**: [`SortableSettings`](components_Sortable_extras.SortableSettings.md)
 
 ___
 
