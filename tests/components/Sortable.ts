@@ -96,7 +96,27 @@ it("emit: update:model-value", () => {
   warnMock.mockClear();
 });
 
-it("prop: move", async () => {
+it.each([
+  {
+    dest: {
+      group: "dest-group",
+      id: "dest-id"
+    },
+    source: {
+      group: "source-group",
+      id: "source-id"
+    }
+  },
+  {
+    dest: {
+      group: "dest-group"
+    },
+    source: {
+      group: "source-group",
+      id: "source-id"
+    }
+  }
+])("prop: move", async ({ dest, source }) => {
   const move = jest.fn();
 
   const wrapper = vueTestUtils.mount(Sortable, {
@@ -110,33 +130,26 @@ it("prop: move", async () => {
     dragged: fn.run(() => {
       const result = document.createElement("div");
 
-      result.dataset["group"] = "dragged-group";
-      result.dataset["id"] = "dragged-id";
+      for (const [key, value] of Object.entries(source))
+        result.dataset[key] = value;
 
       return result;
     }),
     related: fn.run(() => {
       const result = document.createElement("div");
 
-      result.dataset["group"] = "related-group";
-      result.dataset["id"] = "related-id";
+      for (const [key, value] of Object.entries(dest))
+        result.dataset[key] = value;
 
       return result;
     })
   };
-
-  const expected = [
-    "related-id",
-    "related-group",
-    "dragged-id",
-    "dragged-group"
-  ];
 
   assert.byGuard(baseMove, is.callable);
   baseMove(moveData);
   await wrapper.setProps({ move });
   baseMove(moveData);
   expect(move).toBeCalledTimes(1);
-  expect(move).toBeCalledWith(...expected);
+  expect(move).toBeCalledWith(dest.id, dest.group, source.id, source.group);
   warnMock.mockClear();
 });

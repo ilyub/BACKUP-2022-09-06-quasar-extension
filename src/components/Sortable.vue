@@ -46,20 +46,25 @@ export default defineComponent({
 
         const sourceAttrs = data.dragged.attributes;
 
-        const destId = destAttrs.getNamedItem("data-id")?.value;
+        const destId = destAttrs.getNamedItem("data-id");
 
-        const destGroup = destAttrs.getNamedItem("data-group")?.value;
+        const destGroup = destAttrs.getNamedItem("data-group");
 
-        const sourceId = sourceAttrs.getNamedItem("data-id")?.value;
+        const sourceId = sourceAttrs.getNamedItem("data-id");
 
-        const sourceGroup = sourceAttrs.getNamedItem("data-group")?.value;
+        const sourceGroup = sourceAttrs.getNamedItem("data-group");
 
         assert.not.empty(destGroup);
         assert.not.empty(sourceId);
         assert.not.empty(sourceGroup);
 
         return props.move
-          ? props.move(destId, destGroup, sourceId, sourceGroup)
+          ? props.move(
+              destId?.value,
+              destGroup.value,
+              sourceId.value,
+              sourceGroup.value
+            )
           : true;
       },
       elements: computed<Elems>(() =>
