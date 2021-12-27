@@ -6,7 +6,10 @@ import * as testUtils from "@/testUtils";
 
 it("Droppable", () => {
   const wrapper = vueTestUtils.mount(Droppable, {
-    global: testUtils.globalMountOptions()
+    global: testUtils.globalMountOptions(),
+    props: {
+      group: "sample-group"
+    }
   });
 
   const sortable = wrapper.findComponent(Sortable);
