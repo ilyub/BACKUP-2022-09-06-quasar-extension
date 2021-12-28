@@ -55,7 +55,7 @@ export default defineComponent({
         :src="activeItem.flag"
         width="20"
       />
-      <q-menu>
+      <s-menu>
         <q-list>
           <s-menu-item
             v-for="(item, index) in settings.items"
@@ -74,7 +74,7 @@ export default defineComponent({
             </template>
           </s-menu-item>
         </q-list>
-      </q-menu>
+      </s-menu>
     </s-nav-button>
   </div>
 </template>

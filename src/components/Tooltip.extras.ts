@@ -1,3 +1,6 @@
+import type { Ref } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
+
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
@@ -16,6 +19,10 @@ export type Direction =
   | "up"
   | "up-left"
   | "up-right";
+
+export interface DisableTooltips {
+  readonly active: Ref<boolean>;
+}
 
 export type InjectTooltipSettings = ComputedInjectionKey<TooltipSettings>;
 
@@ -39,6 +46,8 @@ export const DirectionVO = createValidationObject<Direction>({
   "up-right": "up-right"
 });
 
+export const disabled = computed<boolean>(() => counter.value > 0);
+
 export const injectTooltipSettings: InjectTooltipSettings =
   Symbol("TooltipSettings");
 
@@ -55,3 +64,31 @@ export function defaultTooltipSettings(): TooltipSettings {
     show: true
   };
 }
+
+/**
+ * Returns DisableTooltips mixin.
+ *
+ * @returns DisableTooltips mixin.
+ */
+export function useDisableTooltips(): DisableTooltips {
+  const active = ref(false);
+
+  onUnmounted(() => {
+    if (active.value) counter.value--;
+  });
+
+  watch(active, value => {
+    if (value) counter.value++;
+    else counter.value--;
+  });
+
+  return { active };
+}
+
+/*
+|*******************************************************************************
+|* Private
+|*******************************************************************************
+|*/
+
+const counter = ref(0);

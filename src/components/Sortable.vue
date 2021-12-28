@@ -15,6 +15,7 @@ import {
   isMoveData,
   isMoveU
 } from "./Sortable.extras";
+import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "s-sortable",
@@ -38,6 +39,8 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
+    const { active } = useDisableTooltips();
+
     return {
       baseMove(data: unknown): boolean {
         assert.byGuard(data, isMoveData);
@@ -70,11 +73,17 @@ export default defineComponent({
       elements: computed<Elems>(() =>
         buildElements(props.modelValue, props.group, props.itemKey)
       ),
+      end(): void {
+        active.value = false;
+      },
       settings: inject(
         injectSortableSettings,
         computed<SortableSettings>(defaultSortableSettings)
       ),
-      update(elements: unknown): void {
+      start(): void {
+        active.value = true;
+      },
+      updateModel(elements: unknown): void {
         assert.byGuard(elements, isElems);
 
         for (const element of elements)
@@ -107,7 +116,9 @@ export default defineComponent({
     item-key="elementId"
     :model-value="elements"
     :move="baseMove"
-    @update:model-value="update"
+    @end="end"
+    @start="start"
+    @update:model-value="updateModel"
   >
     <template #header><slot name="header"></slot></template>
     <template #item="{ element }">

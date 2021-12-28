@@ -1,3 +1,4 @@
+import { nextTick } from "vue";
 import Draggable from "vuedraggable";
 import * as vueTestUtils from "@vue/test-utils";
 
@@ -7,6 +8,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import { buildElements } from "@/components/Sortable.extras";
 import Sortable from "@/components/Sortable.vue";
+import { disabled } from "@/components/Tooltip.extras";
 import * as testUtils from "@/testUtils";
 
 const group = "sample-group";
@@ -66,6 +68,24 @@ it("emit: dropped", () => {
     '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
   );
   warnMock.mockClear();
+});
+
+it("end, start", async () => {
+  const wrapper = vueTestUtils.mount(Sortable, {
+    global: testUtils.globalMountOptions(),
+    props
+  });
+
+  const draggable = wrapper.findComponent(Draggable);
+
+  for (const show of [true, false, true]) {
+    draggable.vm.$emit(show ? "start" : "end");
+    await nextTick();
+    expect(disabled.value).toStrictEqual(show);
+  }
+
+  wrapper.unmount();
+  expect(disabled.value).toBeFalse();
 });
 
 it("emit: update:model-value", () => {

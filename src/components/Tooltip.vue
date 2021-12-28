@@ -5,6 +5,7 @@ import { propOptions } from "./api";
 import type { TooltipSettings } from "./Tooltip.extras";
 import {
   defaultTooltipSettings,
+  disabled,
   injectTooltipSettings,
   isDirection
 } from "./Tooltip.extras";
@@ -60,6 +61,7 @@ export default defineComponent({
             return "top left";
         }
       }),
+      disabled,
       offset: computed<[number, number]>(() => {
         switch (props.direction) {
           case "down":
@@ -176,7 +178,7 @@ export default defineComponent({
 
 <template>
   <q-tooltip
-    v-if="settings.show"
+    v-if="settings.show && !disabled"
     :anchor="anchor"
     :delay="settings.delay"
     :offset="offset"

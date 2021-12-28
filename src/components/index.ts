@@ -25,6 +25,7 @@ import IconPicker from "./IconPicker.vue";
 import Input from "./Input.vue";
 import Knob from "./Knob.vue";
 import LanguagePicker from "./LanguagePicker.vue";
+import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
 import NavButton from "./NavButton.vue";
 import PageLayout from "./PageLayout.vue";
@@ -41,6 +42,7 @@ export const components: ReadonlyRecord<string, Component> = {
   "s-input": Input,
   "s-knob": Knob,
   "s-language-picker": LanguagePicker,
+  "s-menu": Menu,
   "s-menu-item": MenuItem,
   "s-nav-button": NavButton,
   "s-page-layout": PageLayout,

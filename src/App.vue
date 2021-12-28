@@ -14,6 +14,7 @@ import {
   mdiClose,
   mdiImageEdit,
   mdiImageEditOutline,
+  mdiMenu,
   mdiPen
 } from "@mdi/js";
 
@@ -152,6 +153,7 @@ export default defineComponent({
       mdiClose,
       mdiImageEdit,
       mdiImageEditOutline,
+      mdiMenu,
       mdiPen,
       resizerShow: ref(true),
       resizerWidth: ref(200),
@@ -182,7 +184,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <table class="q-ma-lg q-mb-xl">
+  <table class="q-ma-lg wrapper">
     <tr>
       <td>Droppable</td>
       <td>
@@ -195,18 +197,24 @@ export default defineComponent({
           }"
           item-key="id"
         >
-          <template #item="{ item }">{{ item.name }}</template>
+          <template #item="{ item }">
+            {{ item.name }}
+            <s-tooltip>Sample tooltip</s-tooltip>
+          </template>
         </s-sortable>
         <s-sortable
           v-model="sortable2"
           class="q-mt-md sortable"
           group="sortable"
           :item-component-data="{
-            class: 'q-mr-md sortable-item'
+            class: 'q-mr-sm sortable-item'
           }"
           item-key="id"
         >
-          <template #item="{ item }">{{ item.name }}</template>
+          <template #item="{ item }">
+            {{ item.name }}
+            <s-tooltip>Sample tooltip</s-tooltip>
+          </template>
         </s-sortable>
         <s-droppable
           class="droppable q-mt-md"
@@ -284,7 +292,7 @@ export default defineComponent({
       <td>Menu item</td>
       <td>
         <s-nav-button :icon="mdiAccount">
-          <q-menu>
+          <s-menu>
             <q-list>
               <s-menu-item caption="Settings" :icon="mdiPen" />
               <s-menu-item caption="Language">
@@ -295,7 +303,7 @@ export default defineComponent({
               <q-separator />
               <s-menu-item caption="Exit" />
             </q-list>
-          </q-menu>
+          </s-menu>
         </s-nav-button>
       </td>
     </tr>
@@ -389,18 +397,24 @@ export default defineComponent({
           }"
           item-key="id"
         >
-          <template #item="{ item }">{{ item.name }}</template>
+          <template #item="{ item }">
+            {{ item.name }}
+            <s-tooltip>Sample tooltip</s-tooltip>
+          </template>
         </s-sortable>
         <s-sortable
           v-model="sortable2"
           class="q-mt-md sortable"
           group="sortable"
           :item-component-data="{
-            class: 'q-mr-md sortable-item'
+            class: 'q-mr-sm sortable-item'
           }"
           item-key="id"
         >
-          <template #item="{ item }">{{ item.name }}</template>
+          <template #item="{ item }">
+            {{ item.name }}
+            <s-tooltip>Sample tooltip</s-tooltip>
+          </template>
         </s-sortable>
       </td>
     </tr>
@@ -421,6 +435,14 @@ export default defineComponent({
           ms
         </div>
         <div>
+          <s-nav-button :icon="mdiMenu">
+            <s-menu>
+              <q-list>
+                <s-menu-item caption="Menu item" />
+              </q-list>
+            </s-menu>
+            <s-tooltip>Sample tooltip</s-tooltip>
+          </s-nav-button>
           <s-nav-button :icon="mdiArrowDown">
             <s-tooltip>Down tooltip</s-tooltip>
           </s-nav-button>
@@ -515,5 +537,9 @@ table {
     background: $grey-5;
     cursor: default;
   }
+}
+
+.wrapper {
+  margin-bottom: 100px;
 }
 </style>

@@ -10,12 +10,14 @@ module.exports = {
   readonlyIgnoreTypes: [
     "App",
     "ComponentOptionsBase",
+    "ComputedRef",
     "DirectiveBinding",
     "DOMWrapper",
     "FunctionalComponent",
     "HTMLElement",
     "InjectionKey",
     "ObjectDirective",
+    "Ref",
     "SetupContext",
     "VueWrapper"
   ]
