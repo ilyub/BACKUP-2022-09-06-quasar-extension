@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [DisableTooltips](../interfaces/components_Tooltip_extras.DisableTooltips.md)
 - [TooltipSettings](../interfaces/components_Tooltip_extras.TooltipSettings.md)
 
 ### Type aliases
@@ -16,12 +17,14 @@
 ### Variables
 
 - [DirectionVO](components_Tooltip_extras.md#directionvo)
+- [disabled](components_Tooltip_extras.md#disabled)
 - [injectTooltipSettings](components_Tooltip_extras.md#injecttooltipsettings)
 
 ### Functions
 
 - [defaultTooltipSettings](components_Tooltip_extras.md#defaulttooltipsettings)
 - [isDirection](components_Tooltip_extras.md#isdirection)
+- [useDisableTooltips](components_Tooltip_extras.md#usedisabletooltips)
 
 ## Type aliases
 
@@ -40,6 +43,12 @@ ___
 ### DirectionVO
 
 • **DirectionVO**: `ValidationObject`<[`Direction`](components_Tooltip_extras.md#direction)\>
+
+___
+
+### disabled
+
+• **disabled**: `ComputedRef`<`boolean`\>
 
 ___
 
@@ -76,3 +85,17 @@ ___
 #### Returns
 
 value is Direction
+
+___
+
+### useDisableTooltips
+
+▸ **useDisableTooltips**(): [`DisableTooltips`](../interfaces/components_Tooltip_extras.DisableTooltips.md)
+
+Returns DisableTooltips mixin.
+
+#### Returns
+
+[`DisableTooltips`](../interfaces/components_Tooltip_extras.DisableTooltips.md)
+
+DisableTooltips mixin.
