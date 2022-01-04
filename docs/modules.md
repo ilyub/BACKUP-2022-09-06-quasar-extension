@@ -22,6 +22,8 @@
 - [components/Tooltip.extras](modules/components_Tooltip_extras.md)
 - [components/api](modules/components_api.md)
 - [components/api/injections](modules/components_api_injections.md)
+- [components/extras/Table](modules/components_extras_Table.md)
+- [components/extras/VirtualScroll](modules/components_extras_VirtualScroll.md)
 - [facade-implementations/reactiveStorage/vueStorage](modules/facade_implementations_reactiveStorage_vueStorage.md)
 - [plugin](modules/plugin.md)
 - [router](modules/router.md)
