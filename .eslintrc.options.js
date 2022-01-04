@@ -17,6 +17,7 @@ module.exports = {
     "HTMLElement",
     "InjectionKey",
     "ObjectDirective",
+    "QVirtualScroll",
     "Ref",
     "SetupContext",
     "VueWrapper"
