@@ -1,79 +1,65 @@
-import { nextTick, watch } from "vue";
+import { nextTick } from "vue";
 
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
-
-interface Data {
-  value: number;
-}
 
 it("reactiveStorage", async () => {
   const callback = jest.fn();
 
-  const data: Data = reactiveStorage({ value: 0 });
+  const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
 
-  watch(data, value => {
-    callback(value);
-  });
+  const observer = reactiveStorage.watch(obj, callback);
 
   {
-    data.value = 2;
-    expect(callback).not.toBeCalled();
+    obj.x = 1;
     await nextTick();
     expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ value: 2 });
+    expect(callback).toBeCalledWith({ x: 1, y: { z: 0 } });
     callback.mockClear();
   }
 
   {
-    data.value = 3;
-    expect(callback).not.toBeCalled();
+    obj.y.z = 1;
     await nextTick();
     expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ value: 3 });
+    expect(callback).toBeCalledWith({ x: 1, y: { z: 1 } });
     callback.mockClear();
+  }
+
+  {
+    reactiveStorage.unwatch(obj, observer);
+    obj.x = 2;
+    obj.y.z = 2;
+    await nextTick();
+    expect(callback).not.toBeCalled();
   }
 });
 
-it("reactiveStorage.withChangesHandler", async () => {
+it("reactiveStorage: reducer", async () => {
   const callback = jest.fn();
 
-  const onChange = jest.fn();
+  const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
 
-  const data: Data = reactiveStorage.withChangesHandler(
-    { value: 0 },
-    onChange,
-    reduce
-  );
-
-  watch(data, value => {
-    callback(value);
-  });
+  const observer = reactiveStorage.watch(obj, callback, value => value.x);
 
   {
-    data.value = 2;
-    expect(callback).not.toBeCalled();
-    expect(onChange).not.toBeCalled();
+    obj.x = 1;
     await nextTick();
     expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ value: 2 });
-    expect(onChange).not.toBeCalled();
+    expect(callback).toBeCalledWith({ x: 1, y: { z: 0 } });
     callback.mockClear();
   }
 
   {
-    data.value = 3;
-    expect(callback).not.toBeCalled();
-    expect(onChange).not.toBeCalled();
+    obj.y.z = 1;
     await nextTick();
-    expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ value: 3 });
-    expect(onChange).toBeCalledTimes(1);
-    expect(onChange).toBeCalledWith(1);
-    callback.mockClear();
-    onChange.mockClear();
+    expect(callback).not.toBeCalled();
   }
 
-  function reduce(x: Data): number {
-    return x.value % 2;
+  {
+    reactiveStorage.unwatch(obj, observer);
+    obj.x = 2;
+    obj.y.z = 2;
+    await nextTick();
+    expect(callback).not.toBeCalled();
   }
 });
