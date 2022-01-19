@@ -108,9 +108,6 @@ export default defineComponent({
     });
 
     return {
-      close(): void {
-        show.value = false;
-      },
       frame: computed<Frame>(() => {
         const buttons: Writable<Buttons> = filteredItems.value
           .slice(
@@ -206,7 +203,7 @@ export default defineComponent({
           <div class="flex text-h6">
             {{ lang.IconPicker }}
             <q-space />
-            <s-nav-button class="close" :icon="icons.close" @click="close" />
+            <s-nav-button v-close-popup class="close" :icon="icons.close" />
           </div>
           <s-input v-model="searchString" class="q-pb-md search" />
           <div class="relative-position">
