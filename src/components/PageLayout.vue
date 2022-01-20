@@ -60,11 +60,14 @@ export default defineComponent({
         {{ title }}
         <template v-if="hasCloseButton">
           <q-space />
-          <s-nav-button
-            class="ref-close-button"
-            :icon="icons.close"
-            to="/back"
-          />
+          <div class="nav-button-group">
+            <slot name="actions"></slot>
+            <s-nav-button
+              class="ref-close-button"
+              :icon="icons.close"
+              to="/back"
+            />
+          </div>
         </template>
       </div>
     </div>
