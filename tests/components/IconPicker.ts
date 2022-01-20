@@ -8,6 +8,7 @@ import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
+import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 
@@ -103,6 +104,7 @@ it.each(
 
     {
       await closeButton().trigger("click");
+      await wait(1000);
       expect(dialog.props("modelValue")).toBeFalse();
       await button.trigger("click");
       expect(dialog.props("modelValue")).toBeTrue();
