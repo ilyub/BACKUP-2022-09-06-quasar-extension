@@ -17,6 +17,7 @@
 - [components/Input.extras](modules/components_Input_extras.md)
 - [components/LanguagePicker.extras](modules/components_LanguagePicker_extras.md)
 - [components/PageLayout.extras](modules/components_PageLayout_extras.md)
+- [components/PageTable.extras](modules/components_PageTable_extras.md)
 - [components/Select.extras](modules/components_Select_extras.md)
 - [components/Sortable.extras](modules/components_Sortable_extras.md)
 - [components/Tooltip.extras](modules/components_Tooltip_extras.md)

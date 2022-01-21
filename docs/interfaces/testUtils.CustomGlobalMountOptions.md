@@ -12,6 +12,7 @@
 - [languagePickerSettings](testUtils.CustomGlobalMountOptions.md#languagepickersettings)
 - [pageLayoutSettings](testUtils.CustomGlobalMountOptions.md#pagelayoutsettings)
 - [pageOffset](testUtils.CustomGlobalMountOptions.md#pageoffset)
+- [pageTableSettings](testUtils.CustomGlobalMountOptions.md#pagetablesettings)
 - [sortableSettings](testUtils.CustomGlobalMountOptions.md#sortablesettings)
 - [tooltipSettings](testUtils.CustomGlobalMountOptions.md#tooltipsettings)
 
@@ -38,6 +39,12 @@ ___
 ### pageOffset
 
 • `Optional` `Readonly` **pageOffset**: `numberU`
+
+___
+
+### pageTableSettings
+
+• `Optional` `Readonly` **pageTableSettings**: [`PageTableSettings`](components_PageTable_extras.PageTableSettings.md)
 
 ___
 

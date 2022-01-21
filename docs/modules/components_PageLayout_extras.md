@@ -20,6 +20,7 @@
 ### Functions
 
 - [defaultPageLayoutSettings](components_PageLayout_extras.md#defaultpagelayoutsettings)
+- [usePageContentHeight](components_PageLayout_extras.md#usepagecontentheight)
 
 ## Type aliases
 
@@ -52,3 +53,23 @@ Returns default settings.
 [`PageLayoutSettings`](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
 
 Default settings.
+
+___
+
+### usePageContentHeight
+
+▸ **usePageContentHeight**(`extraPageOffset`): `ComputedRef`<`string`\>
+
+Page content height module.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `extraPageOffset` | () => `string` | Extra page offset. |
+
+#### Returns
+
+`ComputedRef`<`string`\>
+
+Page content height.
