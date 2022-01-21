@@ -20,11 +20,18 @@ import {
 
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 import * as json from "@skylib/functions/es/json";
-import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
+import type {
+  numberU,
+  NumStrU,
+  stringU
+} from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
+import { injectPageOffset } from "./components/api/injections";
+import type { Columns } from "./components/extras/Table";
 import type { GroupItems } from "./components/Group.extras";
 import type { IconPickerSettings } from "./components/IconPicker.extras";
 import { injectIconPickerSettings } from "./components/IconPicker.extras";
@@ -36,12 +43,21 @@ import type { SelectOptions } from "./components/Select.extras";
 import type { TooltipSettings } from "./components/Tooltip.extras";
 import { injectTooltipSettings } from "./components/Tooltip.extras";
 
+interface TableItem {
+  readonly id: number;
+  readonly name: string;
+}
+
+type TableItems = readonly TableItem[];
+
 export default defineComponent({
   name: "app",
   setup() {
     const iconTooltips = ref(false);
 
     const language = ref<LocaleName>("en-US");
+
+    const pageTableLimit = ref(20);
 
     const showSection1 = ref(true);
 
@@ -102,6 +118,11 @@ export default defineComponent({
     );
 
     provide(
+      injectPageOffset,
+      computed<numberU>(() => 0)
+    );
+
+    provide(
       injectTooltipSettings,
       computed<TooltipSettings>(() => {
         return {
@@ -155,6 +176,25 @@ export default defineComponent({
       mdiImageEditOutline,
       mdiMenu,
       mdiPen,
+      pageTableColumns: fn.run<Columns<TableItem>>(() => [
+        {
+          align: "left",
+          field(row): string {
+            return row.name;
+          },
+          label: "Name",
+          name: "name"
+        }
+      ]),
+      pageTableLimit,
+      pageTableRows: computed<TableItems>(() =>
+        a.fromRange(1, pageTableLimit.value).map(id => {
+          return {
+            id,
+            name: `Item ${id + 1}`
+          };
+        })
+      ),
       resizerShow: ref(true),
       resizerWidth: ref(200),
       searchString: ref(""),
@@ -358,6 +398,39 @@ export default defineComponent({
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
         </s-page-layout>
+      </td>
+    </tr>
+    <tr>
+      <td>Page markup table</td>
+      <td>
+        <s-page-markup-table flat>
+          <thead>
+            <tr>
+              <th v-for="row in 3" :key="row">H:{{ row }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="col in 20" :key="col">
+              <td v-for="row in 3" :key="row">{{ col }}:{{ row }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th v-for="row in 3" :key="row">F:{{ row }}</th>
+            </tr>
+          </tfoot>
+        </s-page-markup-table>
+      </td>
+    </tr>
+    <tr>
+      <td>Page table</td>
+      <td>
+        <s-page-table
+          v-model:limit="pageTableLimit"
+          :columns="pageTableColumns"
+          flat
+          :rows="pageTableRows"
+        />
       </td>
     </tr>
     <tr>

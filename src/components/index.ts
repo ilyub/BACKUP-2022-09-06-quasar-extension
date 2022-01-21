@@ -19,6 +19,8 @@ import "./Select.extras";
 import "./Sortable.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./Tooltip.extras";
+// eslint-disable-next-line import/no-unassigned-import
+import "./PageTable.extras";
 import Droppable from "./Droppable.vue";
 import Group from "./Group.vue";
 import IconPicker from "./IconPicker.vue";
@@ -29,6 +31,8 @@ import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
 import NavButton from "./NavButton.vue";
 import PageLayout from "./PageLayout.vue";
+import PageMarkupTable from "./PageMarkupTable.vue";
+import PageTable from "./PageTable.vue";
 import Resizer from "./Resizer.vue";
 import Select from "./Select.vue";
 import Sortable from "./Sortable.vue";
@@ -46,6 +50,8 @@ export const components: ReadonlyRecord<string, Component> = {
   "s-menu-item": MenuItem,
   "s-nav-button": NavButton,
   "s-page-layout": PageLayout,
+  "s-page-markup-table": PageMarkupTable,
+  "s-page-table": PageTable,
   "s-resizer": Resizer,
   "s-select": Select,
   "s-sortable": Sortable,

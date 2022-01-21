@@ -17,6 +17,8 @@ import type { LanguagePickerSettings } from "../components/LanguagePicker.extras
 import { injectLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
 import { injectPageLayoutSettings } from "../components/PageLayout.extras";
+import type { PageTableSettings } from "../components/PageTable.extras";
+import { injectPageTableSettings } from "../components/PageTable.extras";
 import type { SortableSettings } from "../components/Sortable.extras";
 import { injectSortableSettings } from "../components/Sortable.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
@@ -69,6 +71,7 @@ export interface CustomGlobalMountOptions {
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
   readonly pageOffset?: numberU;
+  readonly pageTableSettings?: PageTableSettings;
   readonly sortableSettings?: SortableSettings;
   readonly tooltipSettings?: TooltipSettings;
 }
@@ -122,6 +125,14 @@ export function globalMountOptions(
     const pageOffset = options.pageOffset;
 
     provide[injectPageOffset as symbol] = computed<numberU>(() => pageOffset);
+  }
+
+  if ("pageTableSettings" in options) {
+    const pageTableSettings = options.pageTableSettings;
+
+    provide[injectPageTableSettings as symbol] = computed<PageTableSettings>(
+      () => pageTableSettings
+    );
   }
 
   if ("sortableSettings" in options) {

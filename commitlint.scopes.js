@@ -10,6 +10,8 @@ module.exports = [
   "MenuItem",
   "NavButton",
   "PageLayout",
+  "PageMarkupTable",
+  "PageTable",
   "Resizer",
   "Select",
   "Sortable",

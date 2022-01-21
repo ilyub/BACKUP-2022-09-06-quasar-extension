@@ -47,12 +47,14 @@ $radio-group-spacing : 5px !default;
   }
 
   thead {
-    th {
+    th,
+    td {
       top: 0;
     }
   }
 
   tfoot {
+    th,
     td {
       bottom: 0;
     }
