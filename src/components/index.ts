@@ -21,6 +21,7 @@ import "./Sortable.extras";
 import "./Tooltip.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./PageTable.extras";
+import DatetimePicker from "./DatetimePicker.vue";
 import Droppable from "./Droppable.vue";
 import Group from "./Group.vue";
 import IconPicker from "./IconPicker.vue";
@@ -40,6 +41,7 @@ import Tooltip from "./Tooltip.vue";
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export const components: ReadonlyRecord<string, Component> = {
+  "s-datetime-picker": DatetimePicker,
   "s-droppable": Droppable,
   "s-group": Group,
   "s-icon-picker": IconPicker,

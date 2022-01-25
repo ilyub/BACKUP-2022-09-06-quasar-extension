@@ -56,7 +56,7 @@ export default defineComponent({
     @virtual-scroll="onScroll"
   >
     <template v-for="(slot, name) in $slots" #[name]="data">
-      <slot :name="name" v-bind="data"></slot>
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-table>
 </template>

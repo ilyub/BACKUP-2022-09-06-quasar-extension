@@ -1,5 +1,6 @@
 module.exports = [
   "App",
+  "DatetimePicker",
   "Droppable",
   "Group",
   "IconPicker",

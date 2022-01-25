@@ -133,6 +133,7 @@ export default defineComponent({
     );
 
     return {
+      datetimeValue: ref(""),
       dropped(item: unknown, group: unknown): void {
         Notify.create(json.encode({ group, item }));
       },
@@ -225,6 +226,12 @@ export default defineComponent({
 
 <template>
   <table class="q-ma-lg wrapper">
+    <tr>
+      <td>Date/time picker</td>
+      <td>
+        <s-datetime-picker v-model="datetimeValue" reset-button />
+      </td>
+    </tr>
     <tr>
       <td>Droppable</td>
       <td>

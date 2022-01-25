@@ -9,6 +9,8 @@ export const en = new Definitions({
   words: {
     IconPicker: "Icon picker",
     Of: "Of",
-    SampleWord: "Sample word"
+    PickDate: "Pick date",
+    SampleWord: "Sample word",
+    Save: "Save"
   }
 });
