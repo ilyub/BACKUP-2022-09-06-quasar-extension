@@ -25,6 +25,7 @@ module.exports = [
   "components.extras",
   "components.extras.Table",
   "components.extras.VirtualScroll",
+  "components.index",
   "plugin",
   "public",
   "quasar",

@@ -4,6 +4,8 @@ import * as assert from "@skylib/functions/es/assertions";
 import type { ReadonlyRecord } from "@skylib/functions/es/types/core";
 
 // eslint-disable-next-line import/no-unassigned-import
+import "./DatetimePicker.extras";
+// eslint-disable-next-line import/no-unassigned-import
 import "./Group.extras";
 // eslint-disable-next-line import/no-unassigned-import
 import "./IconPicker.extras";
