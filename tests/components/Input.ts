@@ -5,7 +5,16 @@ import * as vueTestUtils from "@vue/test-utils";
 import Input from "@/components/Input.vue";
 import * as testUtils from "@/testUtils";
 
-it("Input", async () => {
+it.each([
+  {
+    emittedValue: "",
+    expectedValue: undefined
+  },
+  {
+    emittedValue: "sample-value",
+    expectedValue: "sample-value"
+  }
+])("Input", async ({ emittedValue, expectedValue }) => {
   const wrapper = vueTestUtils.mount(Input, {
     global: testUtils.globalMountOptions()
   });
@@ -17,10 +26,10 @@ it("Input", async () => {
   const input = wrapper.findComponent(QInput);
 
   {
-    const expected = [["sample-value"]];
+    const expected = [[expectedValue]];
 
     warnSpy.mockImplementation(warnMock);
-    input.vm.$emit("update:model-value", "sample-value");
+    input.vm.$emit("update:model-value", emittedValue);
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
     expect(warnMock).toBeCalledTimes(1);
     expect(warnMock).toBeCalledWith(
@@ -36,7 +45,7 @@ it("Input", async () => {
   }
 
   {
-    const expected = [["sample-value"], [undefined]];
+    const expected = [[expectedValue], [undefined]];
 
     await reset().trigger("click");
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
