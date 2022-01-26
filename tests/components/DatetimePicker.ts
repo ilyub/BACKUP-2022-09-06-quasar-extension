@@ -2,6 +2,8 @@ import type { ComponentPublicInstance } from "vue";
 import { nextTick } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
+import * as is from "@skylib/functions/es/guards";
+
 import DatetimePicker from "@/components/DatetimePicker.vue";
 import * as testUtils from "@/testUtils";
 
@@ -65,6 +67,22 @@ it.each([
       expect(comp("time")).not.toExist();
     }
 
+    if (is.not.empty(modelValueUpdate)) {
+      await elem("next").trigger("click");
+      expect(comp("date")).not.toExist();
+      expect(comp("time")).toExist();
+    } else {
+      await elem("next").trigger("click");
+      expect(comp("date")).toExist();
+      expect(comp("time")).not.toExist();
+    }
+
+    if (is.not.empty(modelValueUpdate)) {
+      await elem("prev").trigger("click");
+      expect(comp("date")).toExist();
+      expect(comp("time")).not.toExist();
+    }
+
     {
       const expected = [[modelValueUpdate]];
 
@@ -86,18 +104,6 @@ it.each([
         '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
       );
       warnMock.mockClear();
-    }
-
-    {
-      await elem("prev").trigger("click");
-      expect(comp("date")).toExist();
-      expect(comp("time")).not.toExist();
-    }
-
-    {
-      await elem("next").trigger("click");
-      expect(comp("date")).not.toExist();
-      expect(comp("time")).toExist();
     }
 
     {
