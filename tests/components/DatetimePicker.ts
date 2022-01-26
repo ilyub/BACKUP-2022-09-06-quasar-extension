@@ -7,15 +7,15 @@ import * as testUtils from "@/testUtils";
 
 it.each([
   {
-    inputValue: "",
-    modelValue: "",
-    modelValueUpdate: "",
+    inputValue: undefined,
+    modelValue: undefined,
+    modelValueUpdate: undefined,
     pm: false
   },
   {
-    inputValue: "",
+    inputValue: undefined,
     modelValue: "invalid",
-    modelValueUpdate: "",
+    modelValueUpdate: undefined,
     pm: false
   },
   {
@@ -144,10 +144,10 @@ it.each([
         [modelValueUpdate],
         [pm ? "2010-01-01 14:00" : "2010-01-01 02:00"],
         [pm ? "2010-01-01 02:00" : "2010-01-01 14:00"],
-        [""]
+        [undefined]
       ];
 
-      main.vm.$emit("update:model-value", "");
+      main.vm.$emit("update:model-value", undefined);
       expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
     }
 

@@ -5,6 +5,7 @@ import type { DateTime } from "@skylib/facades/es/datetime";
 import { datetime } from "@skylib/facades/es/datetime";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
+import type { stringU } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import { icons, lang } from "./DatetimePicker.extras";
@@ -12,30 +13,31 @@ import { icons, lang } from "./DatetimePicker.extras";
 export default defineComponent({
   name: "s-datetime-picker",
   props: {
-    modelValue: propOptions.required(is.string)
+    modelValue: propOptions(is.stringU)
   },
   emits: {
     "update:model-value"(value: unknown) {
-      return is.string(value);
+      return is.stringU(value);
     }
   },
   setup(props, { emit }) {
-    const empty = computed<boolean>(() => pickerValue.value === "");
+    const empty = computed<boolean>(() => is.empty(pickerValue.value));
 
     const nextStep = ref(false);
 
-    const pickerValue = ref("");
+    const pickerValue = ref<stringU>(undefined);
 
     const pm = ref(false);
 
     function modelDate(): DateTime | undefined {
-      return props.modelValue && datetime.validate(props.modelValue)
+      return is.not.empty(props.modelValue) &&
+        datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
         : undefined;
     }
 
     function pickerDate(): DateTime | undefined {
-      return pickerValue.value
+      return is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value).add(pm.value ? 12 : 0, "hours")
         : undefined;
     }
@@ -51,16 +53,18 @@ export default defineComponent({
       },
       empty,
       icons,
-      inputValue: computed<string>(
-        () => modelDate()?.format("E, d MMM yyyy HHH:mm A") ?? ""
+      inputValue: computed<stringU>(() =>
+        modelDate()?.format("E, d MMM yyyy HHH:mm A")
       ),
       inputValueUpdate(value: unknown): void {
-        if (value === "") emit("update:model-value", value);
+        if (is.empty(value)) emit("update:model-value", undefined);
       },
       lang,
       main: ref(undefined),
       nextClick(): void {
-        if (!empty.value) nextStep.value = true;
+        if (empty.value) {
+          // Select date first
+        } else nextStep.value = true;
       },
       nextStep,
       pickerValue,
@@ -72,7 +76,7 @@ export default defineComponent({
         const date = modelDate();
 
         nextStep.value = false;
-        pickerValue.value = "";
+        pickerValue.value = undefined;
         pm.value = false;
 
         if (date) {
@@ -88,7 +92,7 @@ export default defineComponent({
         nextStep.value = false;
       },
       save(): void {
-        emit("update:model-value", pickerDate()?.toString() ?? "");
+        emit("update:model-value", pickerDate()?.toString());
       },
       time: computed<string>(
         () => pickerDate()?.format("HHH:mm A") ?? "\u2014"

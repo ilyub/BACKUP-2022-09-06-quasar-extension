@@ -59,7 +59,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const filteredItems = computed<Items>(() =>
-      searchString.value.length
+      is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)
         : items.value
     );
@@ -93,7 +93,7 @@ export default defineComponent({
 
     const pageSize = computed<number>(() => props.cols * props.rows);
 
-    const searchString = ref("");
+    const searchString = ref<stringU>(undefined);
 
     const show = ref(false);
 

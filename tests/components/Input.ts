@@ -7,10 +7,7 @@ import * as testUtils from "@/testUtils";
 
 it("Input", async () => {
   const wrapper = vueTestUtils.mount(Input, {
-    global: testUtils.globalMountOptions(),
-    props: {
-      modelValue: ""
-    }
+    global: testUtils.globalMountOptions()
   });
 
   const warnMock = jest.fn();
@@ -39,7 +36,7 @@ it("Input", async () => {
   }
 
   {
-    const expected = [["sample-value"], [""]];
+    const expected = [["sample-value"], [undefined]];
 
     await reset().trigger("click");
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);

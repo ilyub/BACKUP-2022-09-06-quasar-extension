@@ -133,7 +133,7 @@ export default defineComponent({
     );
 
     return {
-      datetimeValue: ref(""),
+      datetimeValue: ref<stringU>(undefined),
       dropped(item: unknown, group: unknown): void {
         Notify.create(json.encode({ group, item }));
       },
@@ -162,8 +162,8 @@ export default defineComponent({
       icon1: ref<stringU>(undefined),
       icon2: ref<stringU>(undefined),
       iconTooltips,
-      inputValue1: ref(""),
-      inputValue2: ref(""),
+      inputValue1: ref<stringU>(undefined),
+      inputValue2: ref<stringU>(undefined),
       knobValue: ref(100),
       lang,
       language,
@@ -198,7 +198,7 @@ export default defineComponent({
       ),
       resizerShow: ref(true),
       resizerWidth: ref(200),
-      searchString: ref(""),
+      searchString: ref<stringU>(undefined),
       selectOptions: fn.run<SelectOptions>(() => [
         { label: "Select option", value: undefined },
         { label: "Option 1", value: 1 },

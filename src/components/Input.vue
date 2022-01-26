@@ -13,29 +13,30 @@ import { icons } from "./Input.extras";
 export default defineComponent({
   name: "s-input",
   props: {
-    modelValue: propOptions.required(is.string),
+    modelValue: propOptions(is.stringU),
     resetButton: propOptions.boolean()
   },
   emits: {
     "update:model-value"(value: unknown) {
-      return is.string(value);
+      return is.stringU(value);
     }
   },
   setup(props, { emit, slots }) {
     const input = ref<QInput | undefined>(undefined);
 
     return {
-      canReset: computed<boolean>(() => props.modelValue.length > 0),
+      canReset: computed<boolean>(() => is.not.empty(props.modelValue)),
       icons,
       input,
       passThroughSlots: computed<Slots>(() => o.omit(slots, "append")),
       reset(): void {
-        emit("update:model-value", "");
+        emit("update:model-value", undefined);
         assert.not.empty(input.value);
         input.value.focus();
       },
       updateModelValue(value: unknown): void {
-        emit("update:model-value", value);
+        assert.string(value);
+        emit("update:model-value", value ? value : undefined);
       }
     };
   }
