@@ -12,6 +12,7 @@
 - [boot/lang/ru](modules/boot_lang_ru.md)
 - [boot/main](modules/boot_main.md)
 - [components](modules/components.md)
+- [components/DatetimePicker.extras](modules/components_DatetimePicker_extras.md)
 - [components/Group.extras](modules/components_Group_extras.md)
 - [components/IconPicker.extras](modules/components_IconPicker_extras.md)
 - [components/Input.extras](modules/components_Input_extras.md)
