@@ -5,8 +5,8 @@ import {
   createWebHistory
 } from "vue-router";
 
+import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
-import * as o from "@skylib/functions/es/object";
 
 import { routes } from "../routes";
 
@@ -29,7 +29,7 @@ export default route(() => {
     history: createHistory(
       process.env["MODE"] === "ssr" ? undefined : process.env["VUE_ROUTER_BASE"]
     ),
-    routes: o.unfreeze(routes),
+    routes: a.clone(routes),
     scrollBehavior() {
       return { left: 0, top: 0 };
     }

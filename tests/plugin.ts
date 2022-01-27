@@ -1,15 +1,10 @@
 import type { App } from "vue";
 
-import * as o from "@skylib/functions/es/object";
+import * as assert from "@skylib/functions/es/assertions";
 
-import { components } from "@/components";
 import { plugin } from "@/plugin";
 
-it("plugin", () => {
-  const component = jest.fn();
-
-  const app = { component } as unknown as App;
-
-  plugin.install?.(app);
-  expect(component).toBeCalledTimes(o.size(components));
+test("plugin", () => {
+  assert.not.empty(plugin.install);
+  plugin.install({} as App);
 });

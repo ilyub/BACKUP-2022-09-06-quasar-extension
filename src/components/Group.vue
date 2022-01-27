@@ -16,11 +16,11 @@ export default defineComponent({
   props: {
     items: propOptions.required(isGroupItems),
     notFoundLabel: propOptions(is.stringU),
-    searchString: propOptions.default(is.string, "")
+    searchString: propOptions(is.stringU)
   },
   setup(props) {
     const filteredItems = computed<GroupItems>(() => {
-      if (props.searchString.length) {
+      if (is.not.empty(props.searchString)) {
         const ids = new Set(
           searchIndex.value.search(props.searchString).map(item => item.id)
         );

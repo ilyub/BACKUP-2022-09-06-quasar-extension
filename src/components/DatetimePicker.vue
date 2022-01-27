@@ -9,9 +9,15 @@ import type { stringU } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import { icons, lang } from "./DatetimePicker.extras";
+import Input from "./Input.vue";
+import NavButton from "./NavButton.vue";
 
 export default defineComponent({
   name: "s-datetime-picker",
+  components: {
+    "s-input": Input,
+    "s-nav-button": NavButton
+  },
   props: {
     modelValue: propOptions(is.stringU)
   },

@@ -9,7 +9,8 @@ import * as is from "@skylib/functions/es/guards";
 import type * as testUtils from "@skylib/functions/es/testUtils";
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import { components } from "../components";
+// eslint-disable-next-line import/no-unassigned-import
+import "../components";
 import { injectPageOffset } from "../components/api/injections";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
 import { injectIconPickerSettings } from "../components/IconPicker.extras";
@@ -151,7 +152,7 @@ export function globalMountOptions(
     );
   }
 
-  return { components, provide };
+  return { provide };
 }
 
 /**

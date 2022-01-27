@@ -1,11 +1,13 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 
+import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
+import type { Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
-import type { SelectOption } from "./Select.extras";
+import type { SelectOption, SelectOptions } from "./Select.extras";
 import { isSelectOption, isSelectOptions } from "./Select.extras";
 
 export default defineComponent({
@@ -30,6 +32,9 @@ export default defineComponent({
 
         return result;
       }),
+      selectOptions: computed<Writable<SelectOptions>>(() =>
+        a.clone(props.options)
+      ),
       updateModelValue(value: unknown): void {
         assert.byGuard(value, isSelectOption);
         emit("update:model-value", value.value);
@@ -43,7 +48,7 @@ export default defineComponent({
   <q-select
     dense
     :model-value="activeOption"
-    :options="options"
+    :options="selectOptions"
     @update:model-value="updateModelValue"
   />
 </template>

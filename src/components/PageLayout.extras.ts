@@ -4,7 +4,7 @@ import { computed, inject } from "vue";
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import * as is from "@skylib/functions/es/guards";
-import type { numberU } from "@skylib/functions/es/types/core";
+import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
 import type { ComputedInjectionKey } from "./api";
 import { injectPageOffset } from "./api/injections";
@@ -56,7 +56,7 @@ export function defaultPageLayoutSettings(): PageLayoutSettings {
  * @returns Page content height.
  */
 export function usePageContentHeight(
-  extraPageOffset: () => string
+  extraPageOffset: () => stringU
 ): ComputedRef<string> {
   const pageLayoutSettings = inject(
     injectPageLayoutSettings,
@@ -76,7 +76,7 @@ export function usePageContentHeight(
 
       const py = pageLayoutSettings.value.paddingY;
 
-      const epo = extraPageOffset();
+      const epo = extraPageOffset() ?? "0px";
 
       return `calc(100vh - ${po}px - ${hh} - 2 * ${py} - ${epo})`;
     }

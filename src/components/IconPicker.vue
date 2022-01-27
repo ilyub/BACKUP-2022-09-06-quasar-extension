@@ -19,6 +19,8 @@ import {
   injectIconPickerSettings,
   lang
 } from "./IconPicker.extras";
+import Input from "./Input.vue";
+import NavButton from "./NavButton.vue";
 
 interface Button {
   readonly icon?: unknown;
@@ -45,6 +47,10 @@ const mdi = ref<Mdi | undefined>(undefined);
 
 export default defineComponent({
   name: "s-icon-picker",
+  components: {
+    "s-input": Input,
+    "s-nav-button": NavButton
+  },
   props: {
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),

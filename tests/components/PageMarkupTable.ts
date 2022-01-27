@@ -13,12 +13,16 @@ it.each([
     pageOffset: undefined
   },
   {
-    extraPageOffset: "10px",
+    extraPageOffset: undefined,
     pageOffset: 0
   },
   {
-    extraPageOffset: "20px",
+    extraPageOffset: "10px",
     pageOffset: 10
+  },
+  {
+    extraPageOffset: "20px",
+    pageOffset: 20
   }
 ])("PageMarkupTable", ({ extraPageOffset, pageOffset }) => {
   const wrapper = vueTestUtils.mount(PageMarkupTable, {

@@ -15,21 +15,28 @@ it.each([
     limit: undefined,
     pageOffset: undefined,
     pageTableSettings: undefined,
-    to: 8
+    to: 4
   },
   {
-    extraPageOffset: "10px",
+    extraPageOffset: undefined,
     limit: 15,
     pageOffset: 0,
     pageTableSettings: undefined,
     to: 14
   },
   {
-    extraPageOffset: "20px",
+    extraPageOffset: "10px",
     limit: 25,
     pageOffset: 10,
-    pageTableSettings: { growPageBy: 20 },
+    pageTableSettings: undefined,
     to: 24
+  },
+  {
+    extraPageOffset: "20px",
+    limit: 35,
+    pageOffset: 20,
+    pageTableSettings: { growPageBy: 20 },
+    to: 34
   }
 ])(
   "PageTable",

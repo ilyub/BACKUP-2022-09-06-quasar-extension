@@ -2,8 +2,11 @@
 import { computed, defineComponent, inject } from "vue";
 import Draggable from "vuedraggable";
 
+import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
+import * as reflect from "@skylib/functions/es/reflect";
+import type { Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import type { Elems, SortableSettings } from "./Sortable.extras";
@@ -27,15 +30,15 @@ export default defineComponent({
     itemComponentData: propOptions(is.objectU),
     itemKey: propOptions.required(is.string),
     itemTag: propOptions.default(is.unknown, "div"),
-    modelValue: propOptions.required(is.indexedObjects),
+    modelValue: propOptions.required(is.objects),
     move: propOptions(isMoveU)
   },
   emits: {
     "dropped"(item: unknown, group: unknown) {
-      return is.indexedObject(item) && is.string(group);
+      return is.object(item) && is.string(group);
     },
     "update:model-value"(value: unknown) {
-      return is.indexedObjects(value);
+      return is.objects(value);
     }
   },
   setup(props, { emit }) {
@@ -70,8 +73,8 @@ export default defineComponent({
             )
           : true;
       },
-      elements: computed<Elems>(() =>
-        buildElements(props.modelValue, props.group, props.itemKey)
+      elements: computed<Writable<Elems>>(() =>
+        a.clone(buildElements(props.modelValue, props.group, props.itemKey))
       ),
       end(): void {
         active.value = false;
@@ -89,7 +92,9 @@ export default defineComponent({
         for (const element of elements)
           if (
             element.group === props.group &&
-            props.modelValue.some(item => item[props.itemKey] === element.id)
+            props.modelValue.some(
+              item => reflect.get(item, props.itemKey) === element.id
+            )
           ) {
             // Sorted or untouched
           } else emit("dropped", element.item, element.group);

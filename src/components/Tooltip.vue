@@ -2,28 +2,64 @@
 import { computed, defineComponent, inject } from "vue";
 
 import { propOptions } from "./api";
-import type { TooltipSettings } from "./Tooltip.extras";
+import type { Direction, TooltipSettings } from "./Tooltip.extras";
 import {
   defaultTooltipSettings,
   disabled,
   injectTooltipSettings,
-  isDirection
+  isDirectionU
 } from "./Tooltip.extras";
+
+type Anchor =
+  | "bottom end"
+  | "bottom left"
+  | "bottom middle"
+  | "bottom right"
+  | "bottom start"
+  | "center end"
+  | "center left"
+  | "center middle"
+  | "center right"
+  | "center start"
+  | "top end"
+  | "top left"
+  | "top middle"
+  | "top right"
+  | "top start";
+
+type Self =
+  | "bottom end"
+  | "bottom left"
+  | "bottom middle"
+  | "bottom right"
+  | "bottom start"
+  | "center end"
+  | "center left"
+  | "center middle"
+  | "center right"
+  | "center start"
+  | "top end"
+  | "top left"
+  | "top middle"
+  | "top right"
+  | "top start";
 
 export default defineComponent({
   name: "s-tooltip",
   props: {
-    direction: propOptions.default(isDirection, "down")
+    direction: propOptions(isDirectionU)
   },
   setup(props) {
+    const direction = computed<Direction>(() => props.direction ?? "down");
+
     const settings = inject(
       injectTooltipSettings,
       computed<TooltipSettings>(defaultTooltipSettings)
     );
 
     return {
-      anchor: computed<string>(() => {
-        switch (props.direction) {
+      anchor: computed<Anchor>(() => {
+        switch (direction.value) {
           case "down":
             return "bottom middle";
 
@@ -63,7 +99,7 @@ export default defineComponent({
       }),
       disabled,
       offset: computed<[number, number]>(() => {
-        switch (props.direction) {
+        switch (direction.value) {
           case "down":
           case "down-left":
           case "down-right":
@@ -85,8 +121,8 @@ export default defineComponent({
             return [0, 10];
         }
       }),
-      self: computed<string>(() => {
-        switch (props.direction) {
+      self: computed<Self>(() => {
+        switch (direction.value) {
           case "down":
             return "top middle";
 
@@ -126,7 +162,7 @@ export default defineComponent({
       }),
       settings,
       transitionHide: computed<string>(() => {
-        switch (props.direction) {
+        switch (direction.value) {
           case "down":
           case "down-left":
           case "down-right":
@@ -149,7 +185,7 @@ export default defineComponent({
         }
       }),
       transitionShow: computed<string>(() => {
-        switch (props.direction) {
+        switch (direction.value) {
           case "down":
           case "down-left":
           case "down-right":

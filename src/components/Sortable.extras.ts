@@ -1,10 +1,8 @@
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
-import type {
-  ReadonlyIndexedObject,
-  stringU
-} from "@skylib/functions/es/types/core";
+import * as reflect from "@skylib/functions/es/reflect";
+import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { ComputedInjectionKey } from "./api";
 
@@ -12,7 +10,7 @@ export interface Elem {
   readonly elementId: string;
   readonly group: stringU;
   readonly id: string;
-  readonly item: ReadonlyIndexedObject;
+  readonly item: object;
 }
 
 export type Elems = readonly Elem[];
@@ -44,7 +42,7 @@ export const isElem: is.Guard<Elem> = is.factory(
     elementId: is.string,
     group: is.stringU,
     id: is.string,
-    item: is.indexedObject
+    item: is.object
   },
   {}
 );
@@ -75,12 +73,12 @@ export const isMoveData: is.Guard<MoveData> = is.factory(
  * @returns Elements.
  */
 export function buildElements(
-  items: readonly ReadonlyIndexedObject[],
+  items: readonly object[],
   group: string,
   key: string
 ): Elems {
   return items.map(item => {
-    const id = item[key];
+    const id = reflect.get(item, key);
 
     assert.string(id);
 

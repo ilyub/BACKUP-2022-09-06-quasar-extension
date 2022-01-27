@@ -53,6 +53,8 @@ export const injectTooltipSettings: InjectTooltipSettings =
 
 export const isDirection = is.factory(is.enumeration, DirectionVO);
 
+export const isDirectionU = is.or.factory(isDirection, is.undefined);
+
 /**
  * Returns default settings.
  *

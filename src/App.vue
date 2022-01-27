@@ -31,17 +31,34 @@ import type {
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { injectPageOffset } from "./components/api/injections";
+import DatetimePicker from "./components/DatetimePicker.vue";
+import Droppable from "./components/Droppable.vue";
 import type { Columns } from "./components/extras/Table";
 import type { GroupItems } from "./components/Group.extras";
+import Group from "./components/Group.vue";
 import type { IconPickerSettings } from "./components/IconPicker.extras";
 import { injectIconPickerSettings } from "./components/IconPicker.extras";
+import IconPicker from "./components/IconPicker.vue";
+import Input from "./components/Input.vue";
+import Knob from "./components/Knob.vue";
 import type { LanguagePickerSettings } from "./components/LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./components/LanguagePicker.extras";
+import LanguagePicker from "./components/LanguagePicker.vue";
+import Menu from "./components/Menu.vue";
+import MenuItem from "./components/MenuItem.vue";
+import NavButton from "./components/NavButton.vue";
 import type { PageLayoutSettings } from "./components/PageLayout.extras";
 import { injectPageLayoutSettings } from "./components/PageLayout.extras";
+import PageLayout from "./components/PageLayout.vue";
+import PageMarkupTable from "./components/PageMarkupTable.vue";
+import PageTable from "./components/PageTable.vue";
+import Resizer from "./components/Resizer.vue";
 import type { SelectOptions } from "./components/Select.extras";
+import Select from "./components/Select.vue";
+import Sortable from "./components/Sortable.vue";
 import type { TooltipSettings } from "./components/Tooltip.extras";
 import { injectTooltipSettings } from "./components/Tooltip.extras";
+import Tooltip from "./components/Tooltip.vue";
 
 interface TableItem {
   readonly id: number;
@@ -52,6 +69,25 @@ type TableItems = readonly TableItem[];
 
 export default defineComponent({
   name: "app",
+  components: {
+    "s-datetime-picker": DatetimePicker,
+    "s-droppable": Droppable,
+    "s-group": Group,
+    "s-icon-picker": IconPicker,
+    "s-input": Input,
+    "s-knob": Knob,
+    "s-language-picker": LanguagePicker,
+    "s-menu": Menu,
+    "s-menu-item": MenuItem,
+    "s-nav-button": NavButton,
+    "s-page-layout": PageLayout,
+    "s-page-markup-table": PageMarkupTable,
+    "s-page-table": PageTable,
+    "s-resizer": Resizer,
+    "s-select": Select,
+    "s-sortable": Sortable,
+    "s-tooltip": Tooltip
+  },
   setup() {
     const iconTooltips = ref(false);
 

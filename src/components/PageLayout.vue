@@ -4,6 +4,7 @@ import { computed, defineComponent, inject } from "vue";
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
+import NavButton from "./NavButton.vue";
 import type { PageLayoutSettings } from "./PageLayout.extras";
 import {
   defaultPageLayoutSettings,
@@ -13,6 +14,9 @@ import {
 
 export default defineComponent({
   name: "s-page-layout",
+  components: {
+    "s-nav-button": NavButton
+  },
   props: {
     closeButton: propOptions.boolean(),
     hideCloseButton: propOptions.boolean(),

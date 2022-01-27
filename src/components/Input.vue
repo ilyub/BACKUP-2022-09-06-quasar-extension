@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { QInput } from "quasar";
-import type { Slots } from "vue";
 import { computed, defineComponent, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
@@ -28,7 +27,9 @@ export default defineComponent({
       canReset: computed<boolean>(() => is.not.empty(props.modelValue)),
       icons,
       input,
-      passThroughSlots: computed<Slots>(() => o.omit(slots, "append")),
+      passThroughSlots: computed<never[]>(
+        () => Object.keys(o.omit(slots, "append")) as never[]
+      ),
       reset(): void {
         emit("update:model-value", undefined);
         assert.not.empty(input.value);
@@ -61,7 +62,7 @@ export default defineComponent({
         />
       </slot>
     </template>
-    <template v-for="(slot, name) in passThroughSlots" #[name]="data">
+    <template v-for="name in passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-input>

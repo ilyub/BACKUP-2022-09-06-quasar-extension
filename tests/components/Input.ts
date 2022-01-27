@@ -7,29 +7,30 @@ import * as testUtils from "@/testUtils";
 
 it.each([
   {
-    emittedValue: "",
-    expectedValue: undefined
+    expectedValue: undefined,
+    value: ""
   },
   {
-    emittedValue: "sample-value",
-    expectedValue: "sample-value"
+    expectedValue: "sample-value",
+    value: "sample-value"
   }
-])("Input", async ({ emittedValue, expectedValue }) => {
+])("Input", async ({ expectedValue, value }) => {
   const wrapper = vueTestUtils.mount(Input, {
     global: testUtils.globalMountOptions()
   });
+
+  const input = wrapper.findComponent(QInput);
 
   const warnMock = jest.fn();
 
   const warnSpy = jest.spyOn(console, "warn");
 
-  const input = wrapper.findComponent(QInput);
-
   {
     const expected = [[expectedValue]];
 
     warnSpy.mockImplementation(warnMock);
-    input.vm.$emit("update:model-value", emittedValue);
+    expect(wrapper.emitted("update:model-value")).toBeUndefined();
+    input.vm.$emit("update:model-value", value);
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
     expect(warnMock).toBeCalledTimes(1);
     expect(warnMock).toBeCalledWith(

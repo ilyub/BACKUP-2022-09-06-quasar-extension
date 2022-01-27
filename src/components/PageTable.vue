@@ -16,7 +16,7 @@ import {
 export default defineComponent({
   name: "s-page-table",
   props: {
-    extraPageOffset: propOptions.default(is.string, "0px"),
+    extraPageOffset: propOptions(is.stringU),
     limit: propOptions(is.numberU)
   },
   emits: {
@@ -24,7 +24,7 @@ export default defineComponent({
       return is.number(value);
     }
   },
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const settings = inject(
       injectPageTableSettings,
       computed<PageTableSettings>(defaultPageTableSettings)
@@ -37,7 +37,8 @@ export default defineComponent({
 
         if (is.not.empty(props.limit) && event.to === props.limit - 1)
           emit("update:limit", props.limit + settings.value.growPageBy);
-      }
+      },
+      passThroughSlots: computed<never[]>(() => Object.keys(slots) as never[])
     };
   }
 });
@@ -55,7 +56,7 @@ export default defineComponent({
     :virtual-scroll-sticky-size-start="48"
     @virtual-scroll="onScroll"
   >
-    <template v-for="(slot, name) in $slots" #[name]="data">
+    <template v-for="name in passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-table>

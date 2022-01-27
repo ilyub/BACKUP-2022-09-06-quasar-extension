@@ -9,7 +9,7 @@ import { usePageContentHeight } from "./PageLayout.extras";
 export default defineComponent({
   name: "s-page-markup-table",
   props: {
-    extraPageOffset: propOptions.default(is.string, "0px")
+    extraPageOffset: propOptions(is.stringU)
   },
   setup(props) {
     return {
