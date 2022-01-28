@@ -1,5 +1,4 @@
 import { QInput } from "quasar";
-import type { ComponentPublicInstance } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
 import Input from "@/components/Input.vue";
@@ -14,7 +13,7 @@ it.each([
     expectedValue: "sample-value",
     value: "sample-value"
   }
-])("Input", async ({ expectedValue, value }) => {
+])("Input", ({ expectedValue, value }) => {
   const wrapper = vueTestUtils.mount(Input, {
     global: testUtils.globalMountOptions()
   });
@@ -37,22 +36,5 @@ it.each([
       '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
     );
     warnMock.mockClear();
-  }
-
-  {
-    expect(reset()).not.toExist();
-    await wrapper.setProps({ resetButton: true });
-    expect(reset()).toExist();
-  }
-
-  {
-    const expected = [[expectedValue], [undefined]];
-
-    await reset().trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-  }
-
-  function reset(): vueTestUtils.VueWrapper {
-    return wrapper.findComponent<ComponentPublicInstance>(".reset");
   }
 });

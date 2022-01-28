@@ -4,7 +4,7 @@ import { computed, defineComponent, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
+import type { NumStrE } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import { icons } from "./Input.extras";
@@ -12,8 +12,7 @@ import { icons } from "./Input.extras";
 export default defineComponent({
   name: "s-input",
   props: {
-    modelValue: propOptions(is.stringU),
-    resetButton: propOptions.boolean()
+    modelValue: propOptions(is.stringU)
   },
   emits: {
     "update:model-value"(value: unknown) {
@@ -27,17 +26,17 @@ export default defineComponent({
       canReset: computed<boolean>(() => is.not.empty(props.modelValue)),
       icons,
       input,
-      passThroughSlots: computed<never[]>(
-        () => Object.keys(o.omit(slots, "append")) as never[]
-      ),
+      passThroughSlots: computed<never[]>(() => Object.keys(slots) as never[]),
       reset(): void {
         emit("update:model-value", undefined);
         assert.not.empty(input.value);
         input.value.focus();
       },
-      updateModelValue(value: unknown): void {
-        assert.string(value);
-        emit("update:model-value", value ? value : undefined);
+      updateModelValue(value: NumStrE): void {
+        emit(
+          "update:model-value",
+          is.not.null(value) && value !== "" ? value : undefined
+        );
       }
     };
   }
@@ -51,17 +50,6 @@ export default defineComponent({
     :model-value="modelValue"
     @update:model-value="updateModelValue"
   >
-    <template #append>
-      <slot name="append">
-        <q-icon
-          v-if="resetButton"
-          v-show="canReset"
-          class="cursor-pointer reset"
-          :name="icons.close"
-          @click="reset"
-        />
-      </slot>
-    </template>
     <template v-for="name in passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

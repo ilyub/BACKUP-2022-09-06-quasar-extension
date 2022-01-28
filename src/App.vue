@@ -265,7 +265,7 @@ export default defineComponent({
     <tr>
       <td>Date/time picker</td>
       <td>
-        <s-datetime-picker v-model="datetimeValue" reset-button />
+        <s-datetime-picker v-model="datetimeValue" clearable />
       </td>
     </tr>
     <tr>
@@ -355,7 +355,7 @@ export default defineComponent({
       <td>Input</td>
       <td>
         <s-input v-model="inputValue1" />
-        <s-input v-model="inputValue2" reset-button />
+        <s-input v-model="inputValue2" clearable />
       </td>
     </tr>
     <tr>
