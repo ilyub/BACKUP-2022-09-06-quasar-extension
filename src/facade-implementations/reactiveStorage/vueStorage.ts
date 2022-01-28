@@ -9,7 +9,7 @@ import type {
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 
-export const implementation = fn.run((): Facade => {
+export const implementation = fn.run<Facade>(() => {
   function vueStorage<T extends object>(obj: T): T {
     return reactive(obj) as T;
   }

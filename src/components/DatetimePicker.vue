@@ -66,7 +66,7 @@ export default defineComponent({
         if (is.empty(value)) emit("update:model-value", undefined);
       },
       lang,
-      main: ref(undefined),
+      main: ref<typeof Input | undefined>(undefined),
       nextClick(): void {
         if (empty.value) {
           // Select date first
