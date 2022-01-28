@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { QField } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import type { DateTime } from "@skylib/facades/es/datetime";
@@ -9,13 +10,11 @@ import type { stringU } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import { icons, lang } from "./DatetimePicker.extras";
-import Input from "./Input.vue";
 import NavButton from "./NavButton.vue";
 
 export default defineComponent({
   name: "s-datetime-picker",
   components: {
-    "s-input": Input,
     "s-nav-button": NavButton
   },
   props: {
@@ -27,6 +26,8 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
+    const dialogShow = ref(false);
+
     const empty = computed<boolean>(() => is.empty(pickerValue.value));
 
     const nextStep = ref(false);
@@ -57,28 +58,7 @@ export default defineComponent({
         pickerValue.value = value;
         nextStep.value = true;
       },
-      empty,
-      icons,
-      inputValue: computed<stringU>(() =>
-        modelDate()?.format("E, d MMM yyyy HHH:mm A")
-      ),
-      inputValueUpdate(value: unknown): void {
-        if (is.empty(value)) emit("update:model-value", undefined);
-      },
-      lang,
-      main: ref<typeof Input | undefined>(undefined),
-      nextClick(): void {
-        if (empty.value) {
-          // Select date first
-        } else nextStep.value = true;
-      },
-      nextStep,
-      pickerValue,
-      pm,
-      pmToggle(): void {
-        pm.value = !pm.value;
-      },
-      popupShow(): void {
+      dialogBeforeShow(): void {
         const date = modelDate();
 
         nextStep.value = false;
@@ -93,6 +73,28 @@ export default defineComponent({
 
           pickerValue.value = date.toString();
         }
+      },
+      dialogShow,
+      empty,
+      icons,
+      inputValue: computed<stringU>(() =>
+        modelDate()?.format("E, d MMM yyyy HHH:mm A")
+      ),
+      inputValueUpdate(value: unknown): void {
+        if (is.empty(value)) emit("update:model-value", undefined);
+      },
+      lang,
+      main: ref<QField | undefined>(undefined),
+      nextClick(): void {
+        if (empty.value) {
+          // Select date first
+        } else nextStep.value = true;
+      },
+      nextStep,
+      pickerValue,
+      pm,
+      pmToggle(): void {
+        pm.value = !pm.value;
       },
       prevClick(): void {
         nextStep.value = false;
@@ -114,115 +116,124 @@ export default defineComponent({
 </script>
 
 <template>
-  <s-input
+  <q-field
     ref="main"
+    dense
     :model-value="inputValue"
-    readonly
     @update:model-value="inputValueUpdate"
   >
     <template #prepend>
       <q-icon
-        class="cursor-pointer ref-datetime-picker-activator"
+        class="cursor-pointer"
         :name="icons.pickDate"
-      >
-        <q-popup-proxy
-          anchor="bottom left"
-          :offset="[0, 10]"
-          self="top left"
-          @before-show="popupShow"
-        >
-          <q-card class="ref-datetime-picker-card">
-            <q-card-section
-              class="bg-primary items-center q-pr-sm row text-white"
-            >
-              <div class="items-end row">
-                <div
-                  :class="{
-                    'header-clickable': nextStep,
-                    'ref-datetime-picker-prev': true,
-                    'text-blue-2': nextStep
-                  }"
-                  @click="prevClick"
-                >
-                  <div class="header-text q-mb-xs text-body2 text-weight-thin">
-                    {{ year }}
-                  </div>
-                  <div class="header-text text-subtitle1">
-                    {{ date }}
-                  </div>
-                </div>
-                <div
-                  :class="{
-                    'header-clickable': !nextStep && !empty,
-                    'ref-datetime-picker-next': true,
-                    'text-blue-2': !nextStep,
-                    'q-ml-sm': true
-                  }"
-                  @click="nextClick"
-                >
-                  <div class="header-text text-subtitle1">
-                    {{ time }}
-                  </div>
-                </div>
-              </div>
-              <q-space />
-              <div class="nav-button-group">
-                <s-nav-button
-                  class="ref-datetime-picker-pm"
-                  :disable="empty"
-                  :icon="pm ? icons.am : icons.pm"
-                  @click="pmToggle"
-                />
-                <s-nav-button v-close-popup :icon="icons.close" />
-              </div>
-            </q-card-section>
-            <q-card-section>
-              <q-time
-                v-if="nextStep"
-                class="ref-datetime-picker-time"
-                flat
-                mask="YYYY-MM-DD HH:mm"
-                :model-value="pickerValue"
-                @update:model-value="timeValueUpdate"
-              >
-                <div class="footer-actions items-center justify-end row">
-                  <q-btn
-                    v-close-popup
-                    class="ref-datetime-picker-time-save"
-                    color="primary"
-                    flat
-                    :label="lang.Save"
-                    @click="save"
-                  />
-                </div>
-              </q-time>
-              <q-date
-                v-else
-                class="ref-datetime-picker-date"
-                flat
-                mask="YYYY-MM-DD HH:mm"
-                minimal
-                :model-value="pickerValue"
-                no-unset
-                @update:model-value="dateValueUpdate"
-              >
-                <div class="footer-actions items-center justify-end row">
-                  <q-btn
-                    v-close-popup
-                    class="ref-datetime-picker-date-save"
-                    color="primary"
-                    flat
-                    :label="lang.Save"
-                    @click="save"
-                  />
-                </div>
-              </q-date>
-            </q-card-section>
-          </q-card>
-        </q-popup-proxy>
-      </q-icon>
+        @click="dialogShow = true"
+      />
     </template>
-  </s-input>
+    <template #control>
+      <div
+        class="cursor-pointer full-width ref-datetime-picker-activator"
+        @click="dialogShow = true"
+      >
+        {{ inputValue }}
+      </div>
+      <q-dialog
+        v-model="dialogShow"
+        anchor="bottom left"
+        :offset="[0, 10]"
+        self="top left"
+        @before-show="dialogBeforeShow"
+      >
+        <q-card class="ref-datetime-picker-card">
+          <q-card-section
+            class="bg-primary items-center q-pr-sm row text-white"
+          >
+            <div class="items-end row">
+              <div
+                :class="{
+                  'header-clickable': nextStep,
+                  'ref-datetime-picker-prev': true,
+                  'text-blue-2': nextStep
+                }"
+                @click="prevClick"
+              >
+                <div class="header-text q-mb-xs text-body2 text-weight-thin">
+                  {{ year }}
+                </div>
+                <div class="header-text text-subtitle1">
+                  {{ date }}
+                </div>
+              </div>
+              <div
+                :class="{
+                  'header-clickable': !nextStep && !empty,
+                  'ref-datetime-picker-next': true,
+                  'text-blue-2': !nextStep,
+                  'q-ml-sm': true
+                }"
+                @click="nextClick"
+              >
+                <div class="header-text text-subtitle1">
+                  {{ time }}
+                </div>
+              </div>
+            </div>
+            <q-space />
+            <div class="nav-button-group">
+              <s-nav-button
+                class="ref-datetime-picker-pm"
+                :disable="empty"
+                :icon="pm ? icons.am : icons.pm"
+                @click="pmToggle"
+              />
+              <s-nav-button v-close-popup :icon="icons.close" />
+            </div>
+          </q-card-section>
+          <q-card-section>
+            <q-time
+              v-if="nextStep"
+              class="ref-datetime-picker-time"
+              flat
+              mask="YYYY-MM-DD HH:mm"
+              :model-value="pickerValue"
+              @update:model-value="timeValueUpdate"
+            >
+              <div class="footer-actions items-center justify-end row">
+                <q-btn
+                  v-close-popup
+                  class="ref-datetime-picker-time-save"
+                  color="primary"
+                  flat
+                  :label="lang.Save"
+                  @click="save"
+                />
+              </div>
+            </q-time>
+            <q-date
+              v-else
+              class="ref-datetime-picker-date"
+              flat
+              mask="YYYY-MM-DD HH:mm"
+              minimal
+              :model-value="pickerValue"
+              no-unset
+              @update:model-value="dateValueUpdate"
+            >
+              <div class="footer-actions items-center justify-end row">
+                <q-btn
+                  v-close-popup
+                  class="ref-datetime-picker-date-save"
+                  color="primary"
+                  flat
+                  :label="lang.Save"
+                  @click="save"
+                />
+              </div>
+            </q-date>
+          </q-card-section>
+        </q-card>
+      </q-dialog>
+    </template>
+  </q-field>
 </template>
 
 <style lang="scss" scoped>
