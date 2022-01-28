@@ -66,7 +66,7 @@ Page content height module.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `extraPageOffset` | () => `string` | Extra page offset. |
+| `extraPageOffset` | () => `stringU` | Extra page offset. |
 
 #### Returns
 

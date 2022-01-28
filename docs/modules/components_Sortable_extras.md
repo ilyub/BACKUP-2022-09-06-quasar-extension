@@ -84,7 +84,7 @@ Builds vuedraggable elements.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `items` | readonly `Readonly`<`IndexedObject`<`unknown`\>\>[] | Items. |
+| `items` | readonly `object`[] | Items. |
 | `group` | `string` | Group. |
 | `key` | `string` | Key. |
 

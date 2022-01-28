@@ -24,6 +24,7 @@
 
 - [defaultTooltipSettings](components_Tooltip_extras.md#defaulttooltipsettings)
 - [isDirection](components_Tooltip_extras.md#isdirection)
+- [isDirectionU](components_Tooltip_extras.md#isdirectionu)
 - [useDisableTooltips](components_Tooltip_extras.md#usedisabletooltips)
 
 ## Type aliases
@@ -85,6 +86,22 @@ ___
 #### Returns
 
 value is Direction
+
+___
+
+### isDirectionU
+
+▸ `Const` **isDirectionU**(`value`): value is undefined \| Direction
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is undefined \| Direction
 
 ___
 

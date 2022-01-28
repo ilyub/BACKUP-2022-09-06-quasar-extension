@@ -35,4 +35,4 @@ ___
 
 ### item
 
-• `Readonly` **item**: `Readonly`<`IndexedObject`<`unknown`\>\>
+• `Readonly` **item**: `object`
