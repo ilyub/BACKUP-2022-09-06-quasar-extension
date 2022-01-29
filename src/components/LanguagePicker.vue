@@ -4,11 +4,13 @@ import { computed, defineComponent } from "vue";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 
+import type { PropsToPropOptions } from "./api";
 import { injectRequire, propOptions } from "./api";
 import type { LanguagePickerItem } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
 import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
+import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton.vue";
 
 export default defineComponent({
@@ -19,6 +21,7 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
+    ...({} as PropsToPropOptions<NavButtonProps>),
     language: propOptions.required(is.unknown)
   },
   setup(props) {
@@ -49,34 +52,27 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <s-nav-button>
-      <img
-        :alt="activeItem.caption"
-        height="20"
-        :src="activeItem.flag"
-        width="20"
-      />
-      <s-menu>
-        <q-list>
-          <s-menu-item
-            v-for="(item, index) in settings.items"
-            :key="index"
-            :caption="item.caption"
-            :class="`menu-item-${index}`"
-            @click="changeLanguage(item.lang)"
-          >
-            <template #icon>
-              <img
-                :alt="item.caption"
-                height="18"
-                :src="item.flag"
-                width="18"
-              />
-            </template>
-          </s-menu-item>
-        </q-list>
-      </s-menu>
-    </s-nav-button>
-  </div>
+  <s-nav-button>
+    <img
+      :alt="activeItem.caption"
+      height="20"
+      :src="activeItem.flag"
+      width="20"
+    />
+    <s-menu>
+      <q-list>
+        <s-menu-item
+          v-for="(item, index) in settings.items"
+          :key="index"
+          :caption="item.caption"
+          :class="`menu-item-${index}`"
+          @click="changeLanguage(item.lang)"
+        >
+          <template #icon>
+            <img :alt="item.caption" height="18" :src="item.flag" width="18" />
+          </template>
+        </s-menu-item>
+      </q-list>
+    </s-menu>
+  </s-nav-button>
 </template>

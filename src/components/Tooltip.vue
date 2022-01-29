@@ -1,6 +1,8 @@
 <script lang="ts">
+import type { QTooltipProps, QTooltipSlots } from "quasar";
 import { computed, defineComponent, inject } from "vue";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import type { Direction, TooltipSettings } from "./Tooltip.extras";
 import {
@@ -47,9 +49,11 @@ type Self =
 export default defineComponent({
   name: "s-tooltip",
   props: {
+    ...({} as PropsToPropOptions<QTooltipProps>),
     direction: propOptions(isDirectionU)
   },
-  setup(props) {
+  // eslint-disable-next-line @skylib/prefer-readonly
+  setup(props, { slots }) {
     const direction = computed<Direction>(() => props.direction ?? "down");
 
     const settings = inject(
@@ -121,6 +125,9 @@ export default defineComponent({
             return [0, 10];
         }
       }),
+      passThroughSlots: computed<Array<keyof QTooltipSlots>>(
+        () => Object.keys(slots) as Array<keyof QTooltipSlots>
+      ),
       self: computed<Self>(() => {
         switch (direction.value) {
           case "down":
@@ -222,6 +229,8 @@ export default defineComponent({
     :transition-hide="transitionHide"
     :transition-show="transitionShow"
   >
-    <slot></slot>
+    <template v-for="name in passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
+    </template>
   </q-tooltip>
 </template>

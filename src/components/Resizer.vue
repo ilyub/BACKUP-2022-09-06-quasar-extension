@@ -38,7 +38,7 @@ export default defineComponent({
     modelValue: propOptions.required(is.number)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: number) {
       return is.number(value);
     }
   },

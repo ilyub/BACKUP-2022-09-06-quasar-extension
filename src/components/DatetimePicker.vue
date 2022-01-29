@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { QField } from "quasar";
+import type { QField, QFieldProps } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import { compare } from "@skylib/facades/es/compare";
@@ -9,6 +9,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import { icons, lang } from "./DatetimePicker.extras";
 import NavButton from "./NavButton.vue";
@@ -24,15 +25,17 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
+    ...({} as PropsToPropOptions<QFieldProps>),
     max: propOptions(is.stringU),
     min: propOptions(is.stringU),
     modelValue: propOptions(is.stringU)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: stringU) {
       return is.stringU(value);
     }
   },
+  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     const dialogShow = ref(false);
 

@@ -11,6 +11,7 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import type { IconPickerSettings } from "./IconPicker.extras";
 import {
@@ -20,10 +21,11 @@ import {
   lang
 } from "./IconPicker.extras";
 import Input from "./Input.vue";
+import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton.vue";
 
 interface Button {
-  readonly icon?: unknown;
+  readonly icon?: string;
   readonly padding: boolean;
   readonly selected: boolean;
   readonly tooltip?: stringU;
@@ -52,6 +54,7 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
+    ...({} as PropsToPropOptions<NavButtonProps>),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
@@ -59,7 +62,7 @@ export default defineComponent({
     spinnerSize: propOptions.default(is.string, "70px")
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: stringU) {
       return is.stringU(value);
     }
   },

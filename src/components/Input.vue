@@ -1,24 +1,27 @@
 <script lang="ts">
-import type { QInput } from "quasar";
+import type { QInput, QInputProps, QInputSlots } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import type { NumStrE } from "@skylib/functions/es/types/core";
+import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import { icons } from "./Input.extras";
 
 export default defineComponent({
   name: "s-input",
   props: {
+    ...({} as PropsToPropOptions<QInputProps>),
     modelValue: propOptions(is.stringU)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: stringU) {
       return is.stringU(value);
     }
   },
+  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit, slots }) {
     const input = ref<QInput | undefined>(undefined);
 
@@ -26,16 +29,18 @@ export default defineComponent({
       canReset: computed<boolean>(() => is.not.empty(props.modelValue)),
       icons,
       input,
-      passThroughSlots: computed<never[]>(() => Object.keys(slots) as never[]),
+      passThroughSlots: computed<Array<keyof QInputSlots>>(
+        () => Object.keys(slots) as Array<keyof QInputSlots>
+      ),
       reset(): void {
         emit("update:model-value", undefined);
         assert.not.empty(input.value);
         input.value.focus();
       },
-      updateModelValue(value: NumStrE): void {
+      updateModel(value: NumStrE): void {
         emit(
           "update:model-value",
-          is.not.null(value) && value !== "" ? value : undefined
+          is.string(value) && value !== "" ? value : undefined
         );
       }
     };
@@ -48,7 +53,7 @@ export default defineComponent({
     ref="input"
     dense
     :model-value="modelValue"
-    @update:model-value="updateModelValue"
+    @update:model-value="updateModel"
   >
     <template v-for="name in passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

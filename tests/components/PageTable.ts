@@ -49,8 +49,10 @@ it.each([
         })
       ),
       props: o.removeUndefinedKeys({
+        columns: [],
         extraPageOffset,
-        limit
+        limit,
+        rows: []
       })
     });
 

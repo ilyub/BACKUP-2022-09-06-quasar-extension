@@ -34,7 +34,7 @@ export default defineComponent({
     move: propOptions(isMoveU)
   },
   emits: {
-    "dropped"(item: unknown, group: unknown) {
+    "dropped"(item: object, group: string) {
       return is.object(item) && is.string(group);
     },
     "update:model-value"(value: unknown) {

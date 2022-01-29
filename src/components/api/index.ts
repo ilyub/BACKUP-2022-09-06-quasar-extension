@@ -24,6 +24,10 @@ export interface PropOptionsRequired<T> extends PropOptions<T> {
   readonly required: true;
 }
 
+export type PropsToPropOptions<T> = {
+  readonly [K in keyof T]-?: PropOptions<T[K]>;
+};
+
 /**
  * Injects required value.
  *

@@ -1,23 +1,26 @@
 <script lang="ts">
+import type { QItemProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 
 export default defineComponent({
   name: "s-menu-item",
   props: {
+    ...({} as PropsToPropOptions<QItemProps>),
     caption: propOptions.required(is.string),
     header: propOptions.boolean(),
     icon: propOptions(is.stringU)
   },
-  setup(props, ctx) {
+  setup(props, { slots }) {
     return {
       hasIcon: computed<boolean>(
-        () => is.not.empty(props.icon) || is.not.empty(ctx.slots["icon"])
+        () => is.not.empty(props.icon) || is.not.empty(slots["icon"])
       ),
-      hasRightSlot: computed<boolean>(() => is.not.empty(ctx.slots["right"]))
+      hasRightSlot: computed<boolean>(() => is.not.empty(slots["right"]))
     };
   }
 });

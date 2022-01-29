@@ -1,17 +1,20 @@
 <script lang="ts">
+import type { QKnobProps } from "quasar";
 import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 
 export default defineComponent({
   name: "s-knob",
   props: {
+    ...({} as PropsToPropOptions<QKnobProps>),
     modelValue: propOptions.required(is.number)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: number) {
       return is.number(value);
     }
   }

@@ -1,8 +1,10 @@
 <script lang="ts">
+import type { QBtnProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import { isDirectionU } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
@@ -13,12 +15,13 @@ export default defineComponent({
     "s-tooltip": Tooltip
   },
   props: {
+    ...({} as PropsToPropOptions<QBtnProps>),
     modelValue: propOptions.boolean(),
     tooltip: propOptions(is.stringU),
     tooltipDirection: propOptions(isDirectionU)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: boolean) {
       return is.boolean(value);
     }
   },

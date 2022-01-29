@@ -1,11 +1,13 @@
 <script lang="ts">
+import type { QSelectProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import type { Writable } from "@skylib/functions/es/types/core";
+import type { NumStrU, Writable } from "@skylib/functions/es/types/core";
 
+import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import type { SelectOption, SelectOptions } from "./Select.extras";
 import { isSelectOption, isSelectOptions } from "./Select.extras";
@@ -13,14 +15,16 @@ import { isSelectOption, isSelectOptions } from "./Select.extras";
 export default defineComponent({
   name: "s-select",
   props: {
+    ...({} as PropsToPropOptions<QSelectProps>),
     modelValue: propOptions(is.numStrU),
     options: propOptions.required(isSelectOptions)
   },
   emits: {
-    "update:model-value"(value: unknown) {
+    "update:model-value"(this: undefined, value: NumStrU) {
       return is.numStrU(value);
     }
   },
+  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     return {
       activeOption: computed<SelectOption>(() => {
