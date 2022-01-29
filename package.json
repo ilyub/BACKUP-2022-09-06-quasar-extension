@@ -93,7 +93,8 @@
     "typeface-roboto-multilang": "^1.0.0",
     "vue-eslint-parser": "^8.2.0",
     "vue-jest": "^5.0.0-alpha.10",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-tsc": "^0.31.1"
   },
   "peerDependencies": {
     "@mdi/js-dynamic": "npm:@mdi/js@^6.5.95",
