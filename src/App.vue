@@ -11,13 +11,13 @@ import {
   mdiArrowLeft,
   mdiArrowRight,
   mdiArrowUp,
-  mdiClose,
   mdiImageEdit,
   mdiImageEditOutline,
   mdiMenu,
   mdiPen
 } from "@mdi/js";
 
+import { datetime } from "@skylib/facades/es/datetime";
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import * as a from "@skylib/functions/es/array";
@@ -169,6 +169,18 @@ export default defineComponent({
     );
 
     return {
+      datetimeMax: datetime
+        .create()
+        .add(3, "days")
+        .setHours(14)
+        .setMinutes(30)
+        .toString(),
+      datetimeMin: datetime
+        .create()
+        .sub(3, "days")
+        .setHours(9)
+        .setMinutes(30)
+        .toString(),
       datetimeValue: ref<stringU>(undefined),
       dropped(item: unknown, group: unknown): void {
         Notify.create(json.encode({ group, item }));
@@ -208,7 +220,6 @@ export default defineComponent({
       mdiArrowLeft,
       mdiArrowRight,
       mdiArrowUp,
-      mdiClose,
       mdiImageEdit,
       mdiImageEditOutline,
       mdiMenu,
@@ -265,7 +276,12 @@ export default defineComponent({
     <tr>
       <td>Date/time picker</td>
       <td>
-        <s-datetime-picker v-model="datetimeValue" clearable />
+        <s-datetime-picker
+          v-model="datetimeValue"
+          clearable
+          :max="datetimeMax"
+          :min="datetimeMin"
+        />
       </td>
     </tr>
     <tr>

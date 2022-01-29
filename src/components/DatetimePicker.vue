@@ -2,15 +2,21 @@
 import type { QField } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
+import { compare } from "@skylib/facades/es/compare";
 import type { DateTime } from "@skylib/facades/es/datetime";
 import { datetime } from "@skylib/facades/es/datetime";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
 import { icons, lang } from "./DatetimePicker.extras";
 import NavButton from "./NavButton.vue";
+
+interface Time {
+  readonly hours: number;
+  readonly minutes: number;
+}
 
 export default defineComponent({
   name: "s-datetime-picker",
@@ -18,6 +24,8 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
+    max: propOptions(is.stringU),
+    min: propOptions(is.stringU),
     modelValue: propOptions(is.stringU)
   },
   emits: {
@@ -30,55 +38,114 @@ export default defineComponent({
 
     const empty = computed<boolean>(() => is.empty(pickerValue.value));
 
+    const minDate = computed<stringU>(() =>
+      is.not.empty(props.min)
+        ? datetime.create(props.min).format("yyyy/MM/dd")
+        : undefined
+    );
+
+    const maxDate = computed<stringU>(() =>
+      is.not.empty(props.max)
+        ? datetime.create(props.max).format("yyyy/MM/dd")
+        : undefined
+    );
+
+    const minTime = computed<Time | undefined>(() => {
+      if (
+        is.not.empty(props.min) &&
+        is.not.empty(minDate.value) &&
+        is.not.empty(pickerDate.value) &&
+        pickerDate.value === minDate.value
+      ) {
+        const dt = datetime.create(props.min);
+
+        return {
+          hours: dt.hours(),
+          minutes: dt.minutes()
+        };
+      }
+
+      return undefined;
+    });
+
+    const maxTime = computed<Time | undefined>(() => {
+      if (
+        is.not.empty(props.max) &&
+        is.not.empty(maxDate.value) &&
+        is.not.empty(pickerDate.value) &&
+        pickerDate.value === maxDate.value
+      ) {
+        const dt = datetime.create(props.max);
+
+        return {
+          hours: dt.hours(),
+          minutes: dt.minutes()
+        };
+      }
+
+      return undefined;
+    });
+
     const nextStep = ref(false);
+
+    const pickerDate = computed<stringU>(() =>
+      is.not.empty(pickerValue.value)
+        ? datetime.create(pickerValue.value).format("yyyy/MM/dd")
+        : undefined
+    );
 
     const pickerValue = ref<stringU>(undefined);
 
-    const pm = ref(false);
+    const pm = computed<boolean>(() =>
+      is.not.empty(pickerValue.value)
+        ? datetime.create(pickerValue.value).hours() >= 12
+        : false
+    );
 
-    function modelDate(): DateTime | undefined {
+    function modelDt(): DateTime | undefined {
       return is.not.empty(props.modelValue) &&
         datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
         : undefined;
     }
 
-    function pickerDate(): DateTime | undefined {
+    function pickerDt(): DateTime | undefined {
       return is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value).add(pm.value ? 12 : 0, "hours")
         : undefined;
     }
 
     return {
-      date: computed<string>(
-        () => pickerDate()?.format("E, d MMM") ?? "\u2014"
-      ),
+      date: computed<string>(() => pickerDt()?.format("E, d MMM") ?? "\u2014"),
+      dateOptions(date: string): boolean {
+        if (
+          is.not.empty(minDate.value) &&
+          compare.strings(date, minDate.value) < 0
+        )
+          return false;
+
+        if (
+          is.not.empty(maxDate.value) &&
+          compare.strings(date, maxDate.value) > 0
+        )
+          return false;
+
+        return true;
+      },
       dateValueUpdate(value: unknown): void {
         assert.string(value);
         pickerValue.value = value;
         nextStep.value = true;
       },
       dialogBeforeShow(): void {
-        const date = modelDate();
-
         nextStep.value = false;
-        pickerValue.value = undefined;
-        pm.value = false;
-
-        if (date) {
-          if (date.hours() >= 12) {
-            date.sub(12, "hours");
-            pm.value = true;
-          }
-
-          pickerValue.value = date.toString();
-        }
+        pickerValue.value = modelDt()?.toString();
       },
       dialogShow,
       empty,
       icons,
       inputValue: computed<stringU>(() =>
-        modelDate()?.format("E, d MMM yyyy HHH:mm A")
+        modelDt()?.format("E, d MMM yyyy HHH:mm A")
       ),
       inputValueUpdate(value: unknown): void {
         if (is.empty(value)) emit("update:model-value", undefined);
@@ -94,22 +161,52 @@ export default defineComponent({
       pickerValue,
       pm,
       pmToggle(): void {
-        pm.value = !pm.value;
+        assert.not.empty(pickerValue.value);
+
+        const dt = datetime.create(pickerValue.value);
+
+        pickerValue.value =
+          dt.hours() >= 12
+            ? dt.sub(12, "hours").toString()
+            : dt.add(12, "hours").toString();
       },
       prevClick(): void {
         nextStep.value = false;
       },
       save(): void {
-        emit("update:model-value", pickerDate()?.toString());
+        emit("update:model-value", pickerDt()?.toString());
       },
-      time: computed<string>(
-        () => pickerDate()?.format("HHH:mm A") ?? "\u2014"
-      ),
+      time: computed<string>(() => pickerDt()?.format("HHH:mm A") ?? "\u2014"),
+      timeOptions(hours: number, minutes: numberU): boolean {
+        if (is.not.empty(minTime.value)) {
+          if (hours < minTime.value.hours) return false;
+
+          if (
+            is.not.empty(minutes) &&
+            hours === minTime.value.hours &&
+            minutes < minTime.value.minutes
+          )
+            return false;
+        }
+
+        if (is.not.empty(maxTime.value)) {
+          if (hours > maxTime.value.hours) return false;
+
+          if (
+            is.not.empty(minutes) &&
+            hours === maxTime.value.hours &&
+            minutes > maxTime.value.minutes
+          )
+            return false;
+        }
+
+        return true;
+      },
       timeValueUpdate(value: unknown): void {
         assert.string(value);
         pickerValue.value = value;
       },
-      year: computed<string>(() => pickerDate()?.format("yyyy") ?? "\u2013")
+      year: computed<string>(() => pickerDt()?.format("yyyy") ?? "\u2013")
     };
   }
 });
@@ -195,6 +292,7 @@ export default defineComponent({
               flat
               mask="YYYY-MM-DD HH:mm"
               :model-value="pickerValue"
+              :options="timeOptions"
               @update:model-value="timeValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
@@ -216,6 +314,7 @@ export default defineComponent({
               minimal
               :model-value="pickerValue"
               no-unset
+              :options="dateOptions"
               @update:model-value="dateValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
