@@ -239,7 +239,7 @@ export default defineComponent({
         a.fromRange(1, pageTableLimit.value).map(id => {
           return {
             id,
-            name: `Item ${id + 1}`
+            name: `Item ${id}`
           };
         })
       ),
