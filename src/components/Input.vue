@@ -2,7 +2,6 @@
 import type { QInput, QInputProps, QInputSlots } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
-import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
@@ -32,11 +31,6 @@ export default defineComponent({
       passThroughSlots: computed<Array<keyof QInputSlots>>(
         () => Object.keys(slots) as Array<keyof QInputSlots>
       ),
-      reset(): void {
-        emit("update:model-value", undefined);
-        assert.not.empty(input.value);
-        input.value.focus();
-      },
       updateModel(value: NumStrE): void {
         emit(
           "update:model-value",
