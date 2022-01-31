@@ -18,7 +18,7 @@ it("Menu", async () => {
   const menu = wrapper.findComponent(QMenu);
 
   for (const show of [true, false, true]) {
-    warnSpy.mockImplementation(warnMock);
+    warnSpy.mockImplementationOnce(warnMock);
     menu.vm.$emit("update:model-value", show);
     await nextTick();
     expect(disabled.value).toStrictEqual(show);

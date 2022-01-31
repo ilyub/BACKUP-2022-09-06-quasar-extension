@@ -60,7 +60,7 @@ it("emit: dropped", () => {
 
   const elements = buildElements(newItems, group, itemKey);
 
-  warnSpy.mockImplementation(warnMock);
+  warnSpy.mockImplementationOnce(warnMock);
   wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
   expect(warnMock).toBeCalledTimes(1);
@@ -105,7 +105,7 @@ it("emit: update:model-value", () => {
     ...buildElements([newItem], newGroup, itemKey)
   ];
 
-  warnSpy.mockImplementation(warnMock);
+  warnSpy.mockImplementationOnce(warnMock);
   wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);

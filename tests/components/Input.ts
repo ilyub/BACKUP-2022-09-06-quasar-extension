@@ -27,7 +27,7 @@ it.each([
   {
     const expected = [[expectedValue]];
 
-    warnSpy.mockImplementation(warnMock);
+    warnSpy.mockImplementationOnce(warnMock);
     expect(wrapper.emitted("update:model-value")).toBeUndefined();
     input.vm.$emit("update:model-value", value);
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);

@@ -23,7 +23,7 @@ it.each([0, 1, 2])("Select", index => {
 
   const warnSpy = jest.spyOn(console, "warn");
 
-  warnSpy.mockImplementation(warnMock);
+  warnSpy.mockImplementationOnce(warnMock);
   wrapper.findComponent(QSelect).vm.$emit("update:model-value", options[index]);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([
     [a.get(options, index).value]

@@ -16,7 +16,7 @@ it("Knob", () => {
 
   const warnSpy = jest.spyOn(console, "warn");
 
-  warnSpy.mockImplementation(warnMock);
+  warnSpy.mockImplementationOnce(warnMock);
   expect(wrapper.emitted("update:model-value")).toBeUndefined();
   knob.vm.$emit("update:model-value", 75);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[75]]);

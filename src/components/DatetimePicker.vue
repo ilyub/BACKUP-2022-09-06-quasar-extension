@@ -114,7 +114,7 @@ export default defineComponent({
 
     function pickerDt(): DateTime | undefined {
       return is.not.empty(pickerValue.value)
-        ? datetime.create(pickerValue.value).add(pm.value ? 12 : 0, "hours")
+        ? datetime.create(pickerValue.value)
         : undefined;
     }
 
@@ -147,10 +147,10 @@ export default defineComponent({
       dialogShow,
       empty,
       icons,
-      inputValue: computed<stringU>(() =>
+      inputModelValue: computed<stringU>(() =>
         modelDt()?.format("E, d MMM yyyy HHH:mm A")
       ),
-      inputValueUpdate(value: unknown): void {
+      inputUpdateModelValue(value: unknown): void {
         if (is.empty(value)) emit("update:model-value", undefined);
       },
       lang,
@@ -168,10 +168,7 @@ export default defineComponent({
 
         const dt = datetime.create(pickerValue.value);
 
-        pickerValue.value =
-          dt.hours() >= 12
-            ? dt.sub(12, "hours").toString()
-            : dt.add(12, "hours").toString();
+        pickerValue.value = dt.setHours((dt.hours() + 12) % 24).toString();
       },
       prevClick(): void {
         nextStep.value = false;
@@ -219,22 +216,22 @@ export default defineComponent({
   <q-field
     ref="main"
     dense
-    :model-value="inputValue"
-    @update:model-value="inputValueUpdate"
+    :model-value="inputModelValue"
+    @update:model-value="inputUpdateModelValue"
   >
     <template #prepend>
       <q-icon
-        class="cursor-pointer"
+        class="cursor-pointer ref-datetime-picker-icon"
         :name="icons.pickDate"
         @click="dialogShow = true"
       />
     </template>
     <template #control>
       <div
-        class="cursor-pointer full-width ref-datetime-picker-activator"
+        class="cursor-pointer full-width ref-datetime-picker-control"
         @click="dialogShow = true"
       >
-        {{ inputValue }}
+        {{ inputModelValue }}
       </div>
       <q-dialog
         v-model="dialogShow"
@@ -243,7 +240,7 @@ export default defineComponent({
         self="top left"
         @before-show="dialogBeforeShow"
       >
-        <q-card class="ref-datetime-picker-card">
+        <q-card>
           <q-card-section
             class="bg-primary items-center q-pr-sm row text-white"
           >
