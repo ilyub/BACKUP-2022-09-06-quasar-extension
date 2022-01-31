@@ -17,6 +17,7 @@
 ### Type aliases
 
 - [ComputedInjectionKey](components_api.md#computedinjectionkey)
+- [PropsToPropOptions](components_api.md#propstopropoptions)
 
 ### Functions
 
@@ -31,6 +32,18 @@
 ### ComputedInjectionKey
 
 Ƭ **ComputedInjectionKey**<`T`\>: `InjectionKey`<`ComputedRef`<`T`\>\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+___
+
+### PropsToPropOptions
+
+Ƭ **PropsToPropOptions**<`T`\>: { readonly [K in keyof T]-?: PropOptions<T[K]\> }
 
 #### Type parameters
 
