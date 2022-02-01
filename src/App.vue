@@ -228,7 +228,7 @@ export default defineComponent({
         {
           align: "left",
           field(row): string {
-            return row.name;
+            return `${row.name}!`;
           },
           label: "Name",
           name: "name"
@@ -243,6 +243,7 @@ export default defineComponent({
           };
         })
       ),
+      pageTableSelected: ref<TableItems>([]),
       resizerShow: ref(true),
       resizerWidth: ref(200),
       searchString: ref<stringU>(undefined),
@@ -484,12 +485,19 @@ export default defineComponent({
     <tr>
       <td>Page table</td>
       <td>
+        {{ pageTableSelected }}
         <s-page-table
           v-model:limit="pageTableLimit"
+          v-model:selected="pageTableSelected"
           :columns="pageTableColumns"
           flat
           :rows="pageTableRows"
-        />
+          selection="multiple"
+        >
+          <template #body-cell="{ row, value }">
+            <q-td>{{ value }} {{ row }}</q-td>
+          </template>
+        </s-page-table>
       </td>
     </tr>
     <tr>
