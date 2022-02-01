@@ -7,7 +7,7 @@ import type { DateTime } from "@skylib/facades/es/datetime";
 import { datetime } from "@skylib/facades/es/datetime";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import type { numberU, stringU } from "@skylib/functions/es/types/core";
+import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
@@ -177,7 +177,7 @@ export default defineComponent({
         emit("update:model-value", pickerDt()?.toString());
       },
       time: computed<string>(() => pickerDt()?.format("HHH:mm A") ?? "\u2014"),
-      timeOptions(hours: number, minutes: numberU): boolean {
+      timeOptions(hours: number, minutes: number | null): boolean {
         if (is.not.empty(minTime.value)) {
           if (hours < minTime.value.hours) return false;
 
