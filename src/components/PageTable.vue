@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { QTableProps, QTableSlots } from "quasar";
-import { computed, defineComponent, inject } from "vue";
+import { computed, defineComponent } from "vue";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
@@ -12,17 +12,8 @@ import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import { isVirtualScrollEvent } from "./extras/VirtualScroll";
 import { usePageContentHeight } from "./PageLayout.extras";
-import type {
-  Column,
-  Columns,
-  Field,
-  PageTableSettings
-} from "./PageTable.extras";
-import {
-  defaultPageTableSettings,
-  injectPageTableSettings,
-  isAlign
-} from "./PageTable.extras";
+import type { Column, Columns, Field } from "./PageTable.extras";
+import { injectPageTableSettings, isAlign } from "./PageTable.extras";
 
 interface BodyCellData {
   readonly row: unknown;
@@ -68,10 +59,7 @@ export default defineComponent({
   },
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit, slots }) {
-    const settings = inject(
-      injectPageTableSettings,
-      computed<PageTableSettings>(defaultPageTableSettings)
-    );
+    const settings = injectPageTableSettings();
 
     return {
       bodyCellData(

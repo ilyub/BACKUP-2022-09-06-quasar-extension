@@ -3,7 +3,7 @@ import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 
-import type { ComputedInjectionKey } from "./api";
+import { createInjectable } from "./api";
 
 declare global {
   namespace facades {
@@ -28,22 +28,16 @@ export interface IconPickerSettings {
   readonly iconTooltips: boolean;
 }
 
-export type InjectIconPickerSettings = ComputedInjectionKey<IconPickerSettings>;
-
-export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
-
-export const injectIconPickerSettings: InjectIconPickerSettings =
-  Symbol("IconPickerSettings");
-
-export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;
-
-/**
- * Returns default settings.
- *
- * @returns Default settings.
- */
-export function defaultIconPickerSettings(): IconPickerSettings {
+export const {
+  inject: injectIconPickerSettings,
+  provide: provideIconPickerSettings,
+  test: testIconPickerSettings
+} = createInjectable<IconPickerSettings>(() => {
   return {
     iconTooltips: false
   };
-}
+});
+
+export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
+
+export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;

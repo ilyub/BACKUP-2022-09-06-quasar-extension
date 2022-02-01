@@ -1,12 +1,11 @@
 <script lang="ts">
 import type { QTooltipProps, QTooltipSlots } from "quasar";
-import { computed, defineComponent, inject } from "vue";
+import { computed, defineComponent } from "vue";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { Direction, TooltipSettings } from "./Tooltip.extras";
+import type { Direction } from "./Tooltip.extras";
 import {
-  defaultTooltipSettings,
   disabled,
   injectTooltipSettings,
   isDirectionU
@@ -56,10 +55,7 @@ export default defineComponent({
   setup(props, { slots }) {
     const direction = computed<Direction>(() => props.direction ?? "down");
 
-    const settings = inject(
-      injectTooltipSettings,
-      computed<TooltipSettings>(defaultTooltipSettings)
-    );
+    const settings = injectTooltipSettings();
 
     return {
       anchor: computed<Anchor>(() => {

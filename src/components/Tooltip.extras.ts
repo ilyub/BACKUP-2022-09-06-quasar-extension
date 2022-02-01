@@ -4,7 +4,7 @@ import { computed, onUnmounted, ref, watch } from "vue";
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { ComputedInjectionKey } from "./api";
+import { createInjectable } from "./api";
 
 export type Direction =
   | "down"
@@ -23,8 +23,6 @@ export type Direction =
 export interface DisableTooltips {
   readonly active: Ref<boolean>;
 }
-
-export type InjectTooltipSettings = ComputedInjectionKey<TooltipSettings>;
 
 export interface TooltipSettings {
   readonly delay: number;
@@ -48,24 +46,9 @@ export const DirectionVO = createValidationObject<Direction>({
 
 export const disabled = computed<boolean>(() => counter.value > 0);
 
-export const injectTooltipSettings: InjectTooltipSettings =
-  Symbol("TooltipSettings");
-
 export const isDirection = is.factory(is.enumeration, DirectionVO);
 
 export const isDirectionU = is.or.factory(isDirection, is.undefined);
-
-/**
- * Returns default settings.
- *
- * @returns Default settings.
- */
-export function defaultTooltipSettings(): TooltipSettings {
-  return {
-    delay: 0,
-    show: true
-  };
-}
 
 /**
  * Returns DisableTooltips mixin.
@@ -86,6 +69,17 @@ export function useDisableTooltips(): DisableTooltips {
 
   return { active };
 }
+
+export const {
+  inject: injectTooltipSettings,
+  provide: provideTooltipSettings,
+  test: testTooltipSettings
+} = createInjectable<TooltipSettings>(() => {
+  return {
+    delay: 0,
+    show: true
+  };
+});
 
 /*
 |*******************************************************************************

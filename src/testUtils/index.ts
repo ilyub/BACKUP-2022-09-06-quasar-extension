@@ -1,5 +1,4 @@
 import type { Directive } from "vue";
-import { computed } from "vue";
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
@@ -11,19 +10,19 @@ import type { numberU } from "@skylib/functions/es/types/core";
 
 // eslint-disable-next-line import/no-unassigned-import
 import "../components";
-import { injectPageOffset } from "../components/api/injections";
+import { testPageOffset } from "../components/api/injections";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
-import { injectIconPickerSettings } from "../components/IconPicker.extras";
+import { testIconPickerSettings } from "../components/IconPicker.extras";
 import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
-import { injectLanguagePickerSettings } from "../components/LanguagePicker.extras";
+import { testLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
-import { injectPageLayoutSettings } from "../components/PageLayout.extras";
+import { testPageLayoutSettings } from "../components/PageLayout.extras";
 import type { PageTableSettings } from "../components/PageTable.extras";
-import { injectPageTableSettings } from "../components/PageTable.extras";
+import { testPageTableSettings } from "../components/PageTable.extras";
 import type { SortableSettings } from "../components/Sortable.extras";
-import { injectSortableSettings } from "../components/Sortable.extras";
+import { testSortableSettings } from "../components/Sortable.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
-import { injectTooltipSettings } from "../components/Tooltip.extras";
+import { testTooltipSettings } from "../components/Tooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
 
 declare global {
@@ -99,58 +98,25 @@ export function globalMountOptions(
 ): GlobalMountOptions {
   const provide: Record<symbol, unknown> = {};
 
-  if ("iconPickerSettings" in options) {
-    const iconPickerSettings = options.iconPickerSettings;
+  if ("iconPickerSettings" in options)
+    testIconPickerSettings(provide, options.iconPickerSettings);
 
-    provide[injectIconPickerSettings as symbol] = computed<IconPickerSettings>(
-      () => iconPickerSettings
-    );
-  }
+  if ("languagePickerSettings" in options)
+    testLanguagePickerSettings(provide, options.languagePickerSettings);
 
-  if ("languagePickerSettings" in options) {
-    const languagePickerSettings = options.languagePickerSettings;
+  if ("pageLayoutSettings" in options)
+    testPageLayoutSettings(provide, options.pageLayoutSettings);
 
-    provide[injectLanguagePickerSettings as symbol] =
-      computed<LanguagePickerSettings>(() => languagePickerSettings);
-  }
+  if ("pageOffset" in options) testPageOffset(provide, options.pageOffset);
 
-  if ("pageLayoutSettings" in options) {
-    const pageLayoutSettings = options.pageLayoutSettings;
+  if ("pageTableSettings" in options)
+    testPageTableSettings(provide, options.pageTableSettings);
 
-    provide[injectPageLayoutSettings as symbol] = computed<PageLayoutSettings>(
-      () => pageLayoutSettings
-    );
-  }
+  if ("sortableSettings" in options)
+    testSortableSettings(provide, options.sortableSettings);
 
-  if ("pageOffset" in options) {
-    const pageOffset = options.pageOffset;
-
-    provide[injectPageOffset as symbol] = computed<numberU>(() => pageOffset);
-  }
-
-  if ("pageTableSettings" in options) {
-    const pageTableSettings = options.pageTableSettings;
-
-    provide[injectPageTableSettings as symbol] = computed<PageTableSettings>(
-      () => pageTableSettings
-    );
-  }
-
-  if ("sortableSettings" in options) {
-    const sortableSettings = options.sortableSettings;
-
-    provide[injectSortableSettings as symbol] = computed<SortableSettings>(
-      () => sortableSettings
-    );
-  }
-
-  if ("tooltipSettings" in options) {
-    const tooltipSettings = options.tooltipSettings;
-
-    provide[injectTooltipSettings as symbol] = computed<TooltipSettings>(
-      () => tooltipSettings
-    );
-  }
+  if ("tooltipSettings" in options)
+    testTooltipSettings(provide, options.tooltipSettings);
 
   return { provide };
 }

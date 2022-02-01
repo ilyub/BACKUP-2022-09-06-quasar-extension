@@ -1,16 +1,11 @@
 <script lang="ts">
-import { computed, defineComponent, inject } from "vue";
+import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
 import NavButton from "./NavButton.vue";
-import type { PageLayoutSettings } from "./PageLayout.extras";
-import {
-  defaultPageLayoutSettings,
-  icons,
-  injectPageLayoutSettings
-} from "./PageLayout.extras";
+import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 
 export default defineComponent({
   name: "s-page-layout",
@@ -23,10 +18,7 @@ export default defineComponent({
     title: propOptions(is.stringU)
   },
   setup(props) {
-    const settings = inject(
-      injectPageLayoutSettings,
-      computed<PageLayoutSettings>(defaultPageLayoutSettings)
-    );
+    const settings = injectPageLayoutSettings();
 
     return {
       hasCloseButton: computed<boolean>(() => {

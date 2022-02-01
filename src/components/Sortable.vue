@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent, inject } from "vue";
+import { computed, defineComponent } from "vue";
 import Draggable from "vuedraggable";
 
 import * as a from "@skylib/functions/es/array";
@@ -9,10 +9,9 @@ import * as reflect from "@skylib/functions/es/reflect";
 import type { Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions } from "./api";
-import type { Elems, SortableSettings } from "./Sortable.extras";
+import type { Elems } from "./Sortable.extras";
 import {
   buildElements,
-  defaultSortableSettings,
   injectSortableSettings,
   isElems,
   isMoveData,
@@ -79,10 +78,7 @@ export default defineComponent({
       end(): void {
         active.value = false;
       },
-      settings: inject(
-        injectSortableSettings,
-        computed<SortableSettings>(defaultSortableSettings)
-      ),
+      settings: injectSortableSettings(),
       start(): void {
         active.value = true;
       },

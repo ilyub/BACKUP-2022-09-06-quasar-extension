@@ -2,13 +2,11 @@ import * as vueTestUtils from "@vue/test-utils";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { defaultPageLayoutSettings } from "@/components/PageLayout.extras";
 import PageLayout from "@/components/PageLayout.vue";
 import * as testUtils from "@/testUtils";
 
 it.each([true, false, undefined])("PageLayout", async closeButtonSetting => {
-  const closeButton =
-    closeButtonSetting ?? defaultPageLayoutSettings().closeButton;
+  const closeButton = closeButtonSetting ?? true;
 
   const wrapper = vueTestUtils.mount(PageLayout, {
     global: testUtils.globalMountOptions(

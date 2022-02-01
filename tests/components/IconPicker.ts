@@ -12,7 +12,6 @@ import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 
-import { defaultIconPickerSettings } from "@/components/IconPicker.extras";
 import IconPicker from "@/components/IconPicker.vue";
 import NavButton from "@/components/NavButton.vue";
 import * as testUtils from "@/testUtils";
@@ -35,8 +34,7 @@ it.each(
   })
 )("IconPicker", async ({ first, iconTooltipsSetting }) => {
   await functionsTestUtils.run(async () => {
-    const iconTooltips =
-      iconTooltipsSetting ?? defaultIconPickerSettings().iconTooltips;
+    const iconTooltips = iconTooltipsSetting ?? false;
 
     const wrapper = vueTestUtils.mount(IconPicker, {
       global: testUtils.globalMountOptions(

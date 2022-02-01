@@ -1,7 +1,9 @@
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import type { ComputedInjectionKey } from ".";
+import { createInjectable } from ".";
 
-export type InjectPageOffset = ComputedInjectionKey<numberU>;
-
-export const injectPageOffset: InjectPageOffset = Symbol("InjectPageOffset");
+export const {
+  inject: injectPageOffset,
+  provide: providePageOffset,
+  test: testPageOffset
+} = createInjectable<numberU>(() => undefined);

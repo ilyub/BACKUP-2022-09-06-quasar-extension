@@ -1,11 +1,8 @@
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import type { ComputedInjectionKey } from "./api";
+import { createInjectable } from "./api";
 
 export type ChangeLanguageAction = (language: LocaleName) => void;
-
-export type InjectLanguagePickerSettings =
-  ComputedInjectionKey<LanguagePickerSettings>;
 
 export interface LanguagePickerItem {
   readonly caption: string;
@@ -20,5 +17,8 @@ export interface LanguagePickerSettings {
   readonly items: LanguagePickerItems;
 }
 
-export const injectLanguagePickerSettings: InjectLanguagePickerSettings =
-  Symbol("LanguagePickerSettings");
+export const {
+  inject: injectLanguagePickerSettings,
+  provide: provideLanguagePickerSettings,
+  test: testLanguagePickerSettings
+} = createInjectable<LanguagePickerSettings>();

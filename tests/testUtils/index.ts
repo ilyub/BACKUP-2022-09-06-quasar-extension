@@ -1,24 +1,29 @@
-import type { ComputedRef } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as assert from "@skylib/functions/es/assertions";
-import * as reflect from "@skylib/functions/es/reflect";
-import type { numberU } from "@skylib/functions/es/types/core";
-
-import { injectPageOffset } from "@/components/api/injections";
+import { createInjectable } from "@/components/api";
 import * as testUtils from "@/testUtils";
 
-it.each([undefined, 1000])("globalMountOptions", pageOffset => {
-  const provide = testUtils.globalMountOptions({ pageOffset }).provide;
+it("createInjectable", () => {
+  const injectable = createInjectable<string>();
 
-  assert.not.empty(provide);
+  const wrapper = vueTestUtils.mount({
+    components: {
+      child: {
+        setup() {
+          return {
+            value: injectable.inject()
+          };
+        },
+        template: "<div>{{value }}</div>"
+      }
+    },
+    setup() {
+      injectable.provide(() => "test-string");
+    },
+    template: "<child />"
+  });
 
-  const injected = reflect.get(
-    provide,
-    injectPageOffset as symbol
-  ) as ComputedRef<numberU>;
-
-  expect(injected.value).toStrictEqual(pageOffset);
+  expect(wrapper).textToEqual("test-string");
 });
 
 it("htmlToEqual", () => {

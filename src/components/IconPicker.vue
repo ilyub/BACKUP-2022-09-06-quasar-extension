@@ -1,6 +1,6 @@
 <script lang="ts">
 import * as _ from "lodash-es";
-import { computed, defineComponent, inject, ref, watch } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
@@ -13,13 +13,7 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { IconPickerSettings } from "./IconPicker.extras";
-import {
-  defaultIconPickerSettings,
-  icons,
-  injectIconPickerSettings,
-  lang
-} from "./IconPicker.extras";
+import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import Input from "./Input.vue";
 import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton.vue";
@@ -79,10 +73,7 @@ export default defineComponent({
       inlineSearch.create("id", ["description"], items.value)
     );
 
-    const settings = inject(
-      injectIconPickerSettings,
-      computed<IconPickerSettings>(defaultIconPickerSettings)
-    );
+    const settings = injectIconPickerSettings();
 
     const items = computed<Items>(() =>
       mdi.value

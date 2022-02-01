@@ -4,7 +4,7 @@ import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { ComputedInjectionKey } from "./api";
+import { createInjectable } from "./api";
 
 export interface Elem {
   readonly elementId: string;
@@ -14,8 +14,6 @@ export interface Elem {
 }
 
 export type Elems = readonly Elem[];
-
-export type InjectSortableSettings = ComputedInjectionKey<SortableSettings>;
 
 export type Move = (
   destId: stringU,
@@ -32,9 +30,6 @@ export interface MoveData {
 export interface SortableSettings {
   readonly animationDuration: number;
 }
-
-export const injectSortableSettings: InjectSortableSettings =
-  Symbol("SortableSettings");
 
 export const isElem: is.Guard<Elem> = is.factory(
   is.object.of,
@@ -64,6 +59,16 @@ export const isMoveData: is.Guard<MoveData> = is.factory(
   {}
 );
 
+export const {
+  inject: injectSortableSettings,
+  provide: provideSortableSettings,
+  test: testSortableSettings
+} = createInjectable<SortableSettings>(() => {
+  return {
+    animationDuration: 500
+  };
+});
+
 /**
  * Builds vuedraggable elements.
  *
@@ -89,15 +94,4 @@ export function buildElements(
       item
     };
   });
-}
-
-/**
- * Returns default settings.
- *
- * @returns Default settings.
- */
-export function defaultSortableSettings(): SortableSettings {
-  return {
-    animationDuration: 500
-  };
 }

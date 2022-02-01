@@ -5,7 +5,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 
 import type { PropsToPropOptions } from "./api";
-import { injectRequire, propOptions } from "./api";
+import { propOptions } from "./api";
 import type { LanguagePickerItem } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
 import Menu from "./Menu.vue";
@@ -25,7 +25,7 @@ export default defineComponent({
     language: propOptions.required(is.unknown)
   },
   setup(props) {
-    const settings = injectRequire(injectLanguagePickerSettings);
+    const settings = injectLanguagePickerSettings();
 
     return {
       activeItem: computed<LanguagePickerItem>(() => {

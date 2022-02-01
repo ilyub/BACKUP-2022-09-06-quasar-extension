@@ -4,7 +4,7 @@ import "typeface-roboto-multilang/latin-ext.css";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import { Notify } from "quasar";
-import { computed, defineComponent, provide, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import {
   mdiAccount,
   mdiArrowDown,
@@ -23,31 +23,24 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 import * as json from "@skylib/functions/es/json";
-import type {
-  numberU,
-  NumStrU,
-  stringU
-} from "@skylib/functions/es/types/core";
+import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import { injectPageOffset } from "./components/api/injections";
+import { providePageOffset } from "./components/api/injections";
 import DatetimePicker from "./components/DatetimePicker.vue";
 import Droppable from "./components/Droppable.vue";
 import type { GroupItems } from "./components/Group.extras";
 import Group from "./components/Group.vue";
-import type { IconPickerSettings } from "./components/IconPicker.extras";
-import { injectIconPickerSettings } from "./components/IconPicker.extras";
+import { provideIconPickerSettings } from "./components/IconPicker.extras";
 import IconPicker from "./components/IconPicker.vue";
 import Input from "./components/Input.vue";
 import Knob from "./components/Knob.vue";
-import type { LanguagePickerSettings } from "./components/LanguagePicker.extras";
-import { injectLanguagePickerSettings } from "./components/LanguagePicker.extras";
+import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
 import LanguagePicker from "./components/LanguagePicker.vue";
 import Menu from "./components/Menu.vue";
 import MenuItem from "./components/MenuItem.vue";
 import NavButton from "./components/NavButton.vue";
-import type { PageLayoutSettings } from "./components/PageLayout.extras";
-import { injectPageLayoutSettings } from "./components/PageLayout.extras";
+import { providePageLayoutSettings } from "./components/PageLayout.extras";
 import PageLayout from "./components/PageLayout.vue";
 import PageMarkupTable from "./components/PageMarkupTable.vue";
 import type { Columns } from "./components/PageTable.extras";
@@ -56,8 +49,7 @@ import Resizer from "./components/Resizer.vue";
 import type { SelectOptions } from "./components/Select.extras";
 import Select from "./components/Select.vue";
 import Sortable from "./components/Sortable.vue";
-import type { TooltipSettings } from "./components/Tooltip.extras";
-import { injectTooltipSettings } from "./components/Tooltip.extras";
+import { provideTooltipSettings } from "./components/Tooltip.extras";
 import Tooltip from "./components/Tooltip.vue";
 
 interface TableItem {
@@ -107,66 +99,51 @@ export default defineComponent({
 
     const tooltipShow = ref(true);
 
-    provide(
-      injectIconPickerSettings,
-      computed<IconPickerSettings>(() => {
-        return {
-          iconTooltips: iconTooltips.value
-        };
-      })
-    );
+    provideIconPickerSettings(() => {
+      return {
+        iconTooltips: iconTooltips.value
+      };
+    });
 
-    provide(
-      injectLanguagePickerSettings,
-      computed<LanguagePickerSettings>(() => {
-        return {
-          changeLanguageAction(value): void {
-            language.value = value;
-            Dictionary.configure({ localeName: value });
+    provideLanguagePickerSettings(() => {
+      return {
+        changeLanguageAction(value): void {
+          language.value = value;
+          Dictionary.configure({ localeName: value });
+        },
+        items: [
+          {
+            caption: "English (USA)",
+            flag: us,
+            lang: "en-US"
           },
-          items: [
-            {
-              caption: "English (USA)",
-              flag: us,
-              lang: "en-US"
-            },
-            {
-              caption: "Russian",
-              flag: ru,
-              lang: "ru-RU"
-            }
-          ]
-        };
-      })
-    );
+          {
+            caption: "Russian",
+            flag: ru,
+            lang: "ru-RU"
+          }
+        ]
+      };
+    });
 
-    provide(
-      injectPageLayoutSettings,
-      computed<PageLayoutSettings>(() => {
-        return {
-          closeButton: false,
-          headerHeight: "50px",
-          paddingX: "5px",
-          paddingY: "15px",
-          sectionMargin: "10px"
-        };
-      })
-    );
+    providePageLayoutSettings(() => {
+      return {
+        closeButton: false,
+        headerHeight: "50px",
+        paddingX: "5px",
+        paddingY: "15px",
+        sectionMargin: "10px"
+      };
+    });
 
-    provide(
-      injectPageOffset,
-      computed<numberU>(() => 0)
-    );
+    providePageOffset(() => 0);
 
-    provide(
-      injectTooltipSettings,
-      computed<TooltipSettings>(() => {
-        return {
-          delay: tooltipDelay.value,
-          show: tooltipShow.value
-        };
-      })
-    );
+    provideTooltipSettings(() => {
+      return {
+        delay: tooltipDelay.value,
+        show: tooltipShow.value
+      };
+    });
 
     return {
       datetimeMax: datetime
