@@ -9,6 +9,7 @@ import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 
 import type { VirtualScrollEvent } from "@/components/extras/VirtualScroll";
+import type { Columns } from "@/components/PageTable.extras";
 import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
 
@@ -50,6 +51,18 @@ it.each([
     to
   }) => {
     await functionsTestUtils.run(async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const columns: Columns<any> = [
+        {
+          align: "left",
+          field(row: unknown): string {
+            return String(row);
+          },
+          label: "Sample label",
+          name: "column1"
+        }
+      ];
+
       const wrapper = vueTestUtils.mount(PageTable, {
         global: testUtils.globalMountOptions(
           o.removeUndefinedKeys({
@@ -58,16 +71,7 @@ it.each([
           })
         ),
         props: o.removeUndefinedKeys({
-          columns: [
-            {
-              align: "left",
-              field(row: string): string {
-                return row;
-              },
-              label: "Sample label",
-              name: "column1"
-            }
-          ],
+          columns,
           extraPageOffset,
           limit,
           rows: ["Sample row"],
