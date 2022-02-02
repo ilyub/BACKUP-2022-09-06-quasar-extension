@@ -27,33 +27,32 @@ import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
-import BaseButton from "./components/BaseButton.vue";
-import Button from "./components/Button.vue";
-import DatetimePicker from "./components/DatetimePicker.vue";
-import Droppable from "./components/Droppable.vue";
-import FormButton from "./components/FormButton.vue";
-import type { GroupItems } from "./components/Group.extras";
-import Group from "./components/Group.vue";
-import { provideIconPickerSettings } from "./components/IconPicker.extras";
-import IconPicker from "./components/IconPicker.vue";
-import Input from "./components/Input.vue";
-import Knob from "./components/Knob.vue";
-import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
-import LanguagePicker from "./components/LanguagePicker.vue";
-import Menu from "./components/Menu.vue";
-import MenuItem from "./components/MenuItem.vue";
-import NavButton from "./components/NavButton.vue";
-import { providePageLayoutSettings } from "./components/PageLayout.extras";
-import PageLayout from "./components/PageLayout.vue";
-import PageMarkupTable from "./components/PageMarkupTable.vue";
-import type { Columns } from "./components/PageTable.extras";
-import PageTable from "./components/PageTable.vue";
-import Resizer from "./components/Resizer.vue";
-import type { SelectOptions } from "./components/Select.extras";
-import Select from "./components/Select.vue";
-import Sortable from "./components/Sortable.vue";
-import { provideTooltipSettings } from "./components/Tooltip.extras";
-import Tooltip from "./components/Tooltip.vue";
+import XButton from "./components/XButton.vue";
+import XDatetimePicker from "./components/XDatetimePicker.vue";
+import XDroppable from "./components/XDroppable.vue";
+import XFormButton from "./components/XFormButton.vue";
+import type { GroupItems } from "./components/XGroup.extras";
+import XGroup from "./components/XGroup.vue";
+import { provideIconPickerSettings } from "./components/XIconPicker.extras";
+import XIconPicker from "./components/XIconPicker.vue";
+import XInput from "./components/XInput.vue";
+import XKnob from "./components/XKnob.vue";
+import { provideLanguagePickerSettings } from "./components/XLanguagePicker.extras";
+import XLanguagePicker from "./components/XLanguagePicker.vue";
+import XMenu from "./components/XMenu.vue";
+import XMenuItem from "./components/XMenuItem.vue";
+import XNavButton from "./components/XNavButton.vue";
+import { providePageLayoutSettings } from "./components/XPageLayout.extras";
+import XPageLayout from "./components/XPageLayout.vue";
+import XPageMarkupTable from "./components/XPageMarkupTable.vue";
+import type { Columns } from "./components/XPageTable.extras";
+import XPageTable from "./components/XPageTable.vue";
+import XResizer from "./components/XResizer.vue";
+import type { SelectOptions } from "./components/XSelect.extras";
+import XSelect from "./components/XSelect.vue";
+import XSortable from "./components/XSortable.vue";
+import { provideTooltipSettings } from "./components/XTooltip.extras";
+import XTooltip from "./components/XTooltip.vue";
 
 interface TableItem {
   readonly id: number;
@@ -65,26 +64,25 @@ type TableItems = readonly TableItem[];
 export default defineComponent({
   name: "app",
   components: {
-    "s-base-button": BaseButton,
-    "s-button": Button,
-    "s-datetime-picker": DatetimePicker,
-    "s-droppable": Droppable,
-    "s-form-button": FormButton,
-    "s-group": Group,
-    "s-icon-picker": IconPicker,
-    "s-input": Input,
-    "s-knob": Knob,
-    "s-language-picker": LanguagePicker,
-    "s-menu": Menu,
-    "s-menu-item": MenuItem,
-    "s-nav-button": NavButton,
-    "s-page-layout": PageLayout,
-    "s-page-markup-table": PageMarkupTable,
-    "s-page-table": PageTable,
-    "s-resizer": Resizer,
-    "s-select": Select,
-    "s-sortable": Sortable,
-    "s-tooltip": Tooltip
+    "x-button": XButton,
+    "x-datetime-picker": XDatetimePicker,
+    "x-droppable": XDroppable,
+    "x-form-button": XFormButton,
+    "x-group": XGroup,
+    "x-icon-picker": XIconPicker,
+    "x-input": XInput,
+    "x-knob": XKnob,
+    "x-language-picker": XLanguagePicker,
+    "x-menu": XMenu,
+    "x-menu-item": XMenuItem,
+    "x-nav-button": XNavButton,
+    "x-page-layout": XPageLayout,
+    "x-page-markup-table": XPageMarkupTable,
+    "x-page-table": XPageTable,
+    "x-resizer": XResizer,
+    "x-select": XSelect,
+    "x-sortable": XSortable,
+    "x-tooltip": XTooltip
   },
   setup() {
     const iconTooltips = ref(false);
@@ -258,45 +256,27 @@ export default defineComponent({
 <template>
   <table class="wrapper">
     <tr>
-      <td>Base button</td>
-      <td>
-        <s-base-button tooltip="Down tooltip">Down tooltip</s-base-button>
-        <s-base-button tooltip="Down tooltip" tooltip-direction="down">
-          Down tooltip
-        </s-base-button>
-        <s-base-button tooltip="Left tooltip" tooltip-direction="left">
-          Left tooltip
-        </s-base-button>
-        <s-base-button tooltip="Right tooltip" tooltip-direction="right">
-          Right tooltip
-        </s-base-button>
-        <s-base-button tooltip="Up tooltip" tooltip-direction="up">
-          Up tooltip
-        </s-base-button>
-      </td>
-    </tr>
-    <tr>
       <td>Button</td>
       <td>
-        <s-button tooltip="Down tooltip">Down tooltip</s-button>
-        <s-button tooltip="Down tooltip" tooltip-direction="down">
+        <x-button tooltip="Down tooltip">Down tooltip</x-button>
+        <x-button tooltip="Down tooltip" tooltip-direction="down">
           Down tooltip
-        </s-button>
-        <s-button tooltip="Left tooltip" tooltip-direction="left">
+        </x-button>
+        <x-button tooltip="Left tooltip" tooltip-direction="left">
           Left tooltip
-        </s-button>
-        <s-button tooltip="Right tooltip" tooltip-direction="right">
+        </x-button>
+        <x-button tooltip="Right tooltip" tooltip-direction="right">
           Right tooltip
-        </s-button>
-        <s-button tooltip="Up tooltip" tooltip-direction="up">
+        </x-button>
+        <x-button tooltip="Up tooltip" tooltip-direction="up">
           Up tooltip
-        </s-button>
+        </x-button>
       </td>
     </tr>
     <tr>
       <td>Date/time picker</td>
       <td>
-        <s-datetime-picker
+        <x-datetime-picker
           v-model="datetimeValue"
           clearable
           :max="datetimeMax"
@@ -307,7 +287,7 @@ export default defineComponent({
     <tr>
       <td>Droppable</td>
       <td>
-        <s-sortable
+        <x-sortable
           v-model="sortable1"
           class="sortable"
           group="sortable"
@@ -318,10 +298,10 @@ export default defineComponent({
         >
           <template #item="{ item }">
             {{ item.name }}
-            <s-tooltip>Sample tooltip</s-tooltip>
+            <x-tooltip>Sample tooltip</x-tooltip>
           </template>
-        </s-sortable>
-        <s-sortable
+        </x-sortable>
+        <x-sortable
           v-model="sortable2"
           class="q-mt-md sortable"
           group="sortable"
@@ -332,40 +312,40 @@ export default defineComponent({
         >
           <template #item="{ item }">
             {{ item.name }}
-            <s-tooltip>Sample tooltip</s-tooltip>
+            <x-tooltip>Sample tooltip</x-tooltip>
           </template>
-        </s-sortable>
-        <s-droppable
+        </x-sortable>
+        <x-droppable
           class="droppable q-mt-md"
           group="droppable"
           @dropped="dropped"
         >
           D
-        </s-droppable>
+        </x-droppable>
       </td>
     </tr>
     <tr>
       <td>Form button</td>
       <td>
-        <s-form-button tooltip="Down tooltip">Down tooltip</s-form-button>
-        <s-form-button tooltip="Down tooltip" tooltip-direction="down">
+        <x-form-button tooltip="Down tooltip">Down tooltip</x-form-button>
+        <x-form-button tooltip="Down tooltip" tooltip-direction="down">
           Down tooltip
-        </s-form-button>
-        <s-form-button tooltip="Left tooltip" tooltip-direction="left">
+        </x-form-button>
+        <x-form-button tooltip="Left tooltip" tooltip-direction="left">
           Left tooltip
-        </s-form-button>
-        <s-form-button tooltip="Right tooltip" tooltip-direction="right">
+        </x-form-button>
+        <x-form-button tooltip="Right tooltip" tooltip-direction="right">
           Right tooltip
-        </s-form-button>
-        <s-form-button tooltip="Up tooltip" tooltip-direction="up">
+        </x-form-button>
+        <x-form-button tooltip="Up tooltip" tooltip-direction="up">
           Up tooltip
-        </s-form-button>
+        </x-form-button>
       </td>
     </tr>
     <tr>
       <td>Group</td>
       <td>
-        <s-input v-model="searchString" label="Search for settings" />
+        <x-input v-model="searchString" label="Search for settings" />
         <div class="q-mt-md">
           Show
           <q-checkbox v-model="showSection1" /> 1
@@ -373,7 +353,7 @@ export default defineComponent({
           <q-checkbox v-model="showSection3" /> 3
           <q-checkbox v-model="showSection4" /> 4
         </div>
-        <s-group
+        <x-group
           class="q-mt-lg"
           :items="groupItems"
           not-found-label="No results found"
@@ -383,14 +363,14 @@ export default defineComponent({
           <template #section1>Section 1</template>
           <template #section3>Section 11</template>
           <template #section4>Section 12</template>
-        </s-group>
+        </x-group>
       </td>
     </tr>
     <tr>
       <td>Icon picker</td>
       <td>
-        <s-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
-        <s-icon-picker
+        <x-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
+        <x-icon-picker
           v-model="icon2"
           :cols="2"
           :placeholder="mdiImageEditOutline"
@@ -408,96 +388,96 @@ export default defineComponent({
     <tr>
       <td>Input</td>
       <td>
-        <s-input v-model="inputValue1" />
-        <s-input v-model="inputValue2" clearable />
+        <x-input v-model="inputValue1" />
+        <x-input v-model="inputValue2" clearable />
       </td>
     </tr>
     <tr>
       <td>Knob</td>
       <td>
-        <s-knob v-model="knobValue" :max="1000" :step="10" />
+        <x-knob v-model="knobValue" :max="1000" :step="10" />
       </td>
     </tr>
     <tr>
       <td>Language picker</td>
       <td class="flex items-center">
-        <s-language-picker :language="language" />
+        <x-language-picker :language="language" />
         {{ lang.SampleWord }}
       </td>
     </tr>
     <tr>
       <td>Menu item</td>
       <td>
-        <s-nav-button :icon="mdiAccount">
-          <s-menu>
+        <x-nav-button :icon="mdiAccount">
+          <x-menu>
             <q-list>
-              <s-menu-item caption="Settings" :icon="mdiPen" />
-              <s-menu-item caption="Language">
+              <x-menu-item caption="Settings" :icon="mdiPen" />
+              <x-menu-item caption="Language">
                 <template #icon>
                   <img alt="Alt text" height="18" :src="us" width="18" />
                 </template>
-              </s-menu-item>
+              </x-menu-item>
               <q-separator />
-              <s-menu-item caption="Exit" />
+              <x-menu-item caption="Exit" />
             </q-list>
-          </s-menu>
-        </s-nav-button>
+          </x-menu>
+        </x-nav-button>
       </td>
     </tr>
     <tr>
       <td>Nav button</td>
       <td>
-        <s-nav-button :icon="mdiArrowDown" tooltip="Down tooltip" />
-        <s-nav-button
+        <x-nav-button :icon="mdiArrowDown" tooltip="Down tooltip" />
+        <x-nav-button
           :icon="mdiArrowDown"
           tooltip="Down tooltip"
           tooltip-direction="down"
         />
-        <s-nav-button
+        <x-nav-button
           :icon="mdiArrowLeft"
           tooltip="Left tooltip"
           tooltip-direction="left"
         />
-        <s-nav-button
+        <x-nav-button
           :icon="mdiArrowRight"
           tooltip="Right tooltip"
           tooltip-direction="right"
         />
-        <s-nav-button
+        <x-nav-button
           :icon="mdiArrowUp"
           tooltip="Up tooltip"
           tooltip-direction="up"
         />
-        <s-nav-button>
+        <x-nav-button>
           <img alt="Alt text" height="20" :src="us" width="20" />
-        </s-nav-button>
+        </x-nav-button>
       </td>
     </tr>
     <tr>
       <td>Page layout</td>
       <td>
-        <s-page-layout class="page-layout">
+        <x-page-layout class="page-layout">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </s-page-layout>
-        <s-page-layout class="page-layout q-mt-md" title="Title">
+        </x-page-layout>
+        <x-page-layout class="page-layout q-mt-md" title="Title">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </s-page-layout>
-        <s-page-layout class="page-layout q-mt-md" close-button title="Title">
+        </x-page-layout>
+        <x-page-layout class="page-layout q-mt-md" close-button title="Title">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
-        </s-page-layout>
+        </x-page-layout>
       </td>
     </tr>
     <tr>
       <td>Page markup table</td>
       <td>
-        <s-page-layout class="page-layout">
-          <s-page-markup-table class="page-markup-table" flat>
+        <x-page-layout class="page-layout">
+          <x-page-markup-table class="page-markup-table" flat>
             <thead>
               <tr>
                 <th v-for="row in 3" :key="row">H:{{ row }}</th>
@@ -513,16 +493,16 @@ export default defineComponent({
                 <th v-for="row in 3" :key="row">F:{{ row }}</th>
               </tr>
             </tfoot>
-          </s-page-markup-table>
-        </s-page-layout>
+          </x-page-markup-table>
+        </x-page-layout>
       </td>
     </tr>
     <tr>
       <td>Page table</td>
       <td>
         {{ pageTableSelected }}
-        <s-page-layout class="page-layout" title="Title">
-          <s-page-table
+        <x-page-layout class="page-layout" title="Title">
+          <x-page-table
             v-model:limit="pageTableLimit"
             v-model:selected="pageTableSelected"
             class="page-table"
@@ -534,8 +514,8 @@ export default defineComponent({
             <template #body-cell="{ row, value }">
               <q-td>{{ value }} {{ row }}</q-td>
             </template>
-          </s-page-table>
-        </s-page-layout>
+          </x-page-table>
+        </x-page-layout>
       </td>
     </tr>
     <tr>
@@ -548,7 +528,7 @@ export default defineComponent({
             width: `${resizerWidth}px`
           }"
         >
-          <s-resizer
+          <x-resizer
             v-show="resizerShow"
             v-model="resizerWidth"
             :max="300"
@@ -560,13 +540,13 @@ export default defineComponent({
     <tr>
       <td>Select</td>
       <td>
-        <s-select v-model="selectValue" :options="selectOptions" />
+        <x-select v-model="selectValue" :options="selectOptions" />
       </td>
     </tr>
     <tr>
       <td>Sortable</td>
       <td>
-        <s-sortable
+        <x-sortable
           v-model="sortable1"
           class="sortable"
           group="sortable"
@@ -577,10 +557,10 @@ export default defineComponent({
         >
           <template #item="{ item }">
             {{ item.name }}
-            <s-tooltip>Sample tooltip</s-tooltip>
+            <x-tooltip>Sample tooltip</x-tooltip>
           </template>
-        </s-sortable>
-        <s-sortable
+        </x-sortable>
+        <x-sortable
           v-model="sortable2"
           class="q-mt-md sortable"
           group="sortable"
@@ -591,9 +571,9 @@ export default defineComponent({
         >
           <template #item="{ item }">
             {{ item.name }}
-            <s-tooltip>Sample tooltip</s-tooltip>
+            <x-tooltip>Sample tooltip</x-tooltip>
           </template>
-        </s-sortable>
+        </x-sortable>
       </td>
     </tr>
     <tr>
@@ -603,7 +583,7 @@ export default defineComponent({
           Show tooltips:
           <q-toggle v-model="tooltipShow" />
           with delay of
-          <s-knob
+          <x-knob
             v-model="tooltipDelay"
             class="q-ml-sm q-mr-sm"
             :disable="!tooltipShow"
@@ -613,53 +593,53 @@ export default defineComponent({
           ms
         </div>
         <div>
-          <s-nav-button :icon="mdiMenu">
-            <s-menu>
+          <x-nav-button :icon="mdiMenu">
+            <x-menu>
               <q-list>
-                <s-menu-item caption="Menu item" />
+                <x-menu-item caption="Menu item" />
               </q-list>
-            </s-menu>
-            <s-tooltip>Sample tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowDown">
-            <s-tooltip>Down tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowDown">
-            <s-tooltip direction="down">Down tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowDown">
-            <s-tooltip direction="down-left">Down-left tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowDown">
-            <s-tooltip direction="down-right">Down-right tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowLeft">
-            <s-tooltip direction="left">Left tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowLeft">
-            <s-tooltip direction="left-down">Left-down tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowLeft">
-            <s-tooltip direction="left-up">Left-up tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowRight">
-            <s-tooltip direction="right">Right tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowRight">
-            <s-tooltip direction="right-down">Right-down tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowRight">
-            <s-tooltip direction="right-up">Right-up tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowUp">
-            <s-tooltip direction="up">Up tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowUp">
-            <s-tooltip direction="up-left">Up-left tooltip</s-tooltip>
-          </s-nav-button>
-          <s-nav-button :icon="mdiArrowUp">
-            <s-tooltip direction="up-right">Up-right tooltip</s-tooltip>
-          </s-nav-button>
+            </x-menu>
+            <x-tooltip>Sample tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowDown">
+            <x-tooltip>Down tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowDown">
+            <x-tooltip direction="down">Down tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowDown">
+            <x-tooltip direction="down-left">Down-left tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowDown">
+            <x-tooltip direction="down-right">Down-right tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowLeft">
+            <x-tooltip direction="left">Left tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowLeft">
+            <x-tooltip direction="left-down">Left-down tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowLeft">
+            <x-tooltip direction="left-up">Left-up tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowRight">
+            <x-tooltip direction="right">Right tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowRight">
+            <x-tooltip direction="right-down">Right-down tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowRight">
+            <x-tooltip direction="right-up">Right-up tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowUp">
+            <x-tooltip direction="up">Up tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowUp">
+            <x-tooltip direction="up-left">Up-left tooltip</x-tooltip>
+          </x-nav-button>
+          <x-nav-button :icon="mdiArrowUp">
+            <x-tooltip direction="up-right">Up-right tooltip</x-tooltip>
+          </x-nav-button>
         </div>
       </td>
     </tr>
@@ -726,6 +706,6 @@ table {
 }
 
 .wrapper {
-  margin: 35px 35px 100px 35px;
+  margin: 50px 50px 100px;
 }
 </style>

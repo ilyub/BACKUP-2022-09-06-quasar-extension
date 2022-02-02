@@ -6,7 +6,7 @@ $nav-button-group-spacing : 2px !default;
   margin-left: $button-group-spacing;
 }
 
-.button-group-member.nav-button-group-member + .button-group-member.nav-button-group-member {
+.nav-button-group-member + .nav-button-group-member {
   margin-left: $nav-button-group-spacing;
 }
 

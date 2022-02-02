@@ -11,18 +11,18 @@ import type { stringU } from "@skylib/functions/es/types/core";
 // eslint-disable-next-line import/no-unassigned-import
 import "../components";
 import { testPageOffset } from "../components/api/pageContentHeight";
-import type { IconPickerSettings } from "../components/IconPicker.extras";
-import { testIconPickerSettings } from "../components/IconPicker.extras";
-import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
-import { testLanguagePickerSettings } from "../components/LanguagePicker.extras";
-import type { PageLayoutSettings } from "../components/PageLayout.extras";
-import { testPageLayoutSettings } from "../components/PageLayout.extras";
-import type { PageTableSettings } from "../components/PageTable.extras";
-import { testPageTableSettings } from "../components/PageTable.extras";
-import type { SortableSettings } from "../components/Sortable.extras";
-import { testSortableSettings } from "../components/Sortable.extras";
-import type { TooltipSettings } from "../components/Tooltip.extras";
-import { testTooltipSettings } from "../components/Tooltip.extras";
+import type { IconPickerSettings } from "../components/XIconPicker.extras";
+import { testIconPickerSettings } from "../components/XIconPicker.extras";
+import type { LanguagePickerSettings } from "../components/XLanguagePicker.extras";
+import { testLanguagePickerSettings } from "../components/XLanguagePicker.extras";
+import type { PageLayoutSettings } from "../components/XPageLayout.extras";
+import { testPageLayoutSettings } from "../components/XPageLayout.extras";
+import type { PageTableSettings } from "../components/XPageTable.extras";
+import { testPageTableSettings } from "../components/XPageTable.extras";
+import type { SortableSettings } from "../components/XSortable.extras";
+import { testSortableSettings } from "../components/XSortable.extras";
+import type { TooltipSettings } from "../components/XTooltip.extras";
+import { testTooltipSettings } from "../components/XTooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
 
 declare global {

@@ -1,1 +1,23 @@
-module.exports = require("./commitlint.scopes");
+module.exports = [
+  ...require("./commitlint.scopes"),
+  "BaseButton",
+  "Button",
+  "DatetimePicker",
+  "Droppable",
+  "FormButton",
+  "Group",
+  "IconPicker",
+  "Input",
+  "Knob",
+  "LanguagePicker",
+  "Menu",
+  "MenuItem",
+  "NavButton",
+  "PageLayout",
+  "PageMarkupTable",
+  "PageTable",
+  "Resizer",
+  "Select",
+  "Sortable",
+  "Tooltip"
+];
