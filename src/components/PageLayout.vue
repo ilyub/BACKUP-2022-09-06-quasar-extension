@@ -4,6 +4,7 @@ import { computed, defineComponent } from "vue";
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
+import { injectPageOffset, providePageOffset } from "./api/pageContentHeight";
 import NavButton from "./NavButton.vue";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 
@@ -18,7 +19,27 @@ export default defineComponent({
     title: propOptions(is.stringU)
   },
   setup(props) {
+    const hasTitle = computed<boolean>(() => is.not.empty(props.title));
+
+    const pageOffset = injectPageOffset();
+
     const settings = injectPageLayoutSettings();
+
+    providePageOffset(() => {
+      if (is.not.empty(pageOffset.value)) {
+        const po = pageOffset.value;
+
+        const hh = settings.value.headerHeight;
+
+        const py = settings.value.paddingY;
+
+        return hasTitle.value
+          ? `((${po}) + 2 * ${py} + ${hh})`
+          : `((${po}) + 2 * ${py})`;
+      }
+
+      return undefined;
+    });
 
     return {
       hasCloseButton: computed<boolean>(() => {
@@ -28,7 +49,7 @@ export default defineComponent({
 
         return settings.value.closeButton;
       }),
-      hasTitle: computed<boolean>(() => is.not.empty(props.title)),
+      hasTitle,
       icons,
       padding: computed<string>(
         () => `${settings.value.paddingY} ${settings.value.paddingX}`

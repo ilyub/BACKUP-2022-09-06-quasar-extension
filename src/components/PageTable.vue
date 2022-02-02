@@ -10,8 +10,8 @@ import type { Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
+import { usePageContentHeight } from "./api/pageContentHeight";
 import { isVirtualScrollEvent } from "./extras/VirtualScroll";
-import { usePageContentHeight } from "./PageLayout.extras";
 import type { Column, Columns, Field } from "./PageTable.extras";
 import { injectPageTableSettings, isAlign } from "./PageTable.extras";
 

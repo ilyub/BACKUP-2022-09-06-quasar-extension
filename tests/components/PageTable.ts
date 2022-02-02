@@ -2,7 +2,6 @@ import type { QVirtualScroll } from "quasar";
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
@@ -21,20 +20,20 @@ it.each([
   },
   {
     limit: 15,
-    pageOffset: 0,
+    pageOffset: "0px",
     to: 14
   },
   {
     extraPageOffset: "10px",
     limit: 25,
-    pageOffset: 10,
+    pageOffset: "15px",
     to: 24
   },
   {
     bodyCellSlot: "Sample body cell slot",
     extraPageOffset: "20px",
     limit: 35,
-    pageOffset: 20,
+    pageOffset: "25px",
     pageTableSettings: { growPageBy: 20 },
     selected: [],
     to: 34
@@ -90,21 +89,9 @@ it.each([
       }
 
       {
-        const expected = fn.run(() => {
-          if (is.not.empty(pageOffset)) {
-            const po = pageOffset;
-
-            const hh = "60px";
-
-            const py = "15px";
-
-            const epo = extraPageOffset ?? "0px";
-
-            return `height: calc(100vh - ${po}px - ${hh} - 2 * ${py} - ${epo});`;
-          }
-
-          return "height: auto;";
-        });
+        const expected = is.not.empty(pageOffset)
+          ? `height: calc(100vh - ${pageOffset} - ${extraPageOffset ?? "0px"});`
+          : "height: auto;";
 
         expect(table.attributes("style")).toStrictEqual(expected);
       }

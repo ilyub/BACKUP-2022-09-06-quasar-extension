@@ -22,6 +22,7 @@ module.exports = [
   "components.api",
   "components.api.index",
   "components.api.injection",
+  "components.api.pageContentHeight",
   "components.extras",
   "components.extras.Table",
   "components.extras.VirtualScroll",

@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import { usePageContentHeight } from "./PageLayout.extras";
+import { usePageContentHeight } from "./api/pageContentHeight";
 
 export default defineComponent({
   name: "s-page-markup-table",

@@ -14,15 +14,15 @@ it.each([
   },
   {
     extraPageOffset: undefined,
-    pageOffset: 0
+    pageOffset: "0px"
   },
   {
     extraPageOffset: "10px",
-    pageOffset: 10
+    pageOffset: "15px"
   },
   {
     extraPageOffset: "20px",
-    pageOffset: 20
+    pageOffset: "25px"
   }
 ])("PageMarkupTable", ({ extraPageOffset, pageOffset }) => {
   const wrapper = vueTestUtils.mount(PageMarkupTable, {
@@ -38,17 +38,9 @@ it.each([
 
   const markupTable = wrapper.findComponent(QMarkupTable);
 
-  if (is.not.empty(pageOffset)) {
-    const po = pageOffset;
+  const expected = is.not.empty(pageOffset)
+    ? `height: calc(100vh - ${pageOffset} - ${extraPageOffset ?? "0px"});`
+    : "height: auto;";
 
-    const hh = "60px";
-
-    const py = "15px";
-
-    const epo = extraPageOffset ?? "0px";
-
-    const expected = `height: calc(100vh - ${po}px - ${hh} - 2 * ${py} - ${epo});`;
-
-    expect(markupTable.attributes("style")).toStrictEqual(expected);
-  } else expect(markupTable.attributes("style")).toStrictEqual("height: auto;");
+  expect(markupTable.attributes("style")).toStrictEqual(expected);
 });

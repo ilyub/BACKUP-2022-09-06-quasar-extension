@@ -26,7 +26,7 @@ import * as json from "@skylib/functions/es/json";
 import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import { providePageOffset } from "./components/api/injections";
+import { providePageOffset } from "./components/api/pageContentHeight";
 import DatetimePicker from "./components/DatetimePicker.vue";
 import Droppable from "./components/Droppable.vue";
 import type { GroupItems } from "./components/Group.extras";
@@ -136,7 +136,7 @@ export default defineComponent({
       };
     });
 
-    providePageOffset(() => 0);
+    providePageOffset(() => "20px");
 
     provideTooltipSettings(() => {
       return {
@@ -421,16 +421,12 @@ export default defineComponent({
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
         </s-page-layout>
-        <s-page-layout class="page-layout q-mt-md" title="Sample-title">
+        <s-page-layout class="page-layout q-mt-md" title="Title">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
         </s-page-layout>
-        <s-page-layout
-          class="page-layout q-mt-md"
-          close-button
-          title="Sample-title"
-        >
+        <s-page-layout class="page-layout q-mt-md" close-button title="Title">
           <div class="page-section">Section 1</div>
           <div class="page-section">Section 2</div>
           <div class="page-section">Section 3</div>
@@ -440,41 +436,46 @@ export default defineComponent({
     <tr>
       <td>Page markup table</td>
       <td>
-        <s-page-markup-table flat>
-          <thead>
-            <tr>
-              <th v-for="row in 3" :key="row">H:{{ row }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="col in 20" :key="col">
-              <td v-for="row in 3" :key="row">{{ col }}:{{ row }}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th v-for="row in 3" :key="row">F:{{ row }}</th>
-            </tr>
-          </tfoot>
-        </s-page-markup-table>
+        <s-page-layout class="page-layout">
+          <s-page-markup-table class="page-markup-table" flat>
+            <thead>
+              <tr>
+                <th v-for="row in 3" :key="row">H:{{ row }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="col in 20" :key="col">
+                <td v-for="row in 3" :key="row">{{ col }}:{{ row }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th v-for="row in 3" :key="row">F:{{ row }}</th>
+              </tr>
+            </tfoot>
+          </s-page-markup-table>
+        </s-page-layout>
       </td>
     </tr>
     <tr>
       <td>Page table</td>
       <td>
         {{ pageTableSelected }}
-        <s-page-table
-          v-model:limit="pageTableLimit"
-          v-model:selected="pageTableSelected"
-          :columns="pageTableColumns"
-          flat
-          :rows="pageTableRows"
-          selection="multiple"
-        >
-          <template #body-cell="{ row, value }">
-            <q-td>{{ value }} {{ row }}</q-td>
-          </template>
-        </s-page-table>
+        <s-page-layout class="page-layout" title="Title">
+          <s-page-table
+            v-model:limit="pageTableLimit"
+            v-model:selected="pageTableSelected"
+            class="page-table"
+            :columns="pageTableColumns"
+            flat
+            :rows="pageTableRows"
+            selection="multiple"
+          >
+            <template #body-cell="{ row, value }">
+              <q-td>{{ value }} {{ row }}</q-td>
+            </template>
+          </s-page-table>
+        </s-page-layout>
       </td>
     </tr>
     <tr>
@@ -627,7 +628,7 @@ table {
 }
 
 .page-layout {
-  border: 1px solid $grey-3;
+  border: 1px solid red;
 }
 
 .page-section {
@@ -639,6 +640,14 @@ table {
   position: relative;
   height: 50px;
   background: blue;
+}
+
+.page-markup-table {
+  border: 1px solid blue;
+}
+
+.page-table {
+  border: 1px solid blue;
 }
 
 .sortable {

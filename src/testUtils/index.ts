@@ -6,11 +6,11 @@ import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type * as testUtils from "@skylib/functions/es/testUtils";
-import type { numberU } from "@skylib/functions/es/types/core";
+import type { stringU } from "@skylib/functions/es/types/core";
 
 // eslint-disable-next-line import/no-unassigned-import
 import "../components";
-import { testPageOffset } from "../components/api/injections";
+import { testPageOffset } from "../components/api/pageContentHeight";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
 import { testIconPickerSettings } from "../components/IconPicker.extras";
 import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
@@ -70,7 +70,7 @@ export interface CustomGlobalMountOptions {
   readonly iconPickerSettings?: IconPickerSettings;
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
-  readonly pageOffset?: numberU;
+  readonly pageOffset?: stringU;
   readonly pageTableSettings?: PageTableSettings;
   readonly sortableSettings?: SortableSettings;
   readonly tooltipSettings?: TooltipSettings;
