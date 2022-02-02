@@ -1,7 +1,10 @@
 module.exports = [
   "App",
+  "BaseButton",
+  "Button",
   "DatetimePicker",
   "Droppable",
+  "FormButton",
   "Group",
   "IconPicker",
   "Input",

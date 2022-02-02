@@ -13,9 +13,9 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
+import type { BaseButtonProps } from "./BaseButton";
 import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import Input from "./Input.vue";
-import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton.vue";
 
 interface Button {
@@ -48,7 +48,7 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
-    ...({} as PropsToPropOptions<NavButtonProps>),
+    ...({} as PropsToPropOptions<BaseButtonProps>),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),

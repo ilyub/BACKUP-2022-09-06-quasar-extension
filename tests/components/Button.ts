@@ -1,10 +1,10 @@
 import * as vueTestUtils from "@vue/test-utils";
 
-import NavButton from "@/components/NavButton.vue";
+import Button from "@/components/Button.vue";
 import * as testUtils from "@/testUtils";
 
-it("NavButton", () => {
-  const wrapper = vueTestUtils.mount(NavButton, {
+it("Button", () => {
+  const wrapper = vueTestUtils.mount(Button, {
     global: testUtils.globalMountOptions()
   });
 

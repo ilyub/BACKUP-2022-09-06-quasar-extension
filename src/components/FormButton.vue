@@ -6,7 +6,7 @@ import type { BaseButtonProps } from "./BaseButton";
 import BaseButton from "./BaseButton.vue";
 
 export default defineComponent({
-  name: "s-nav-button",
+  name: "s-form-button",
   components: {
     "s-base-button": BaseButton
   },
@@ -15,7 +15,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <s-base-button class="nav-button-group-member" flat round>
+  <s-base-button flat>
     <slot></slot>
   </s-base-button>
 </template>

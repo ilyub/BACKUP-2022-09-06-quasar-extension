@@ -2,8 +2,12 @@ $button-group-spacing : 5px !default;
 $inline-input-margin : 5px !default;
 $nav-button-group-spacing : 2px !default;
 
-.button-group > * + * {
+.button-group-member + .button-group-member {
   margin-left: $button-group-spacing;
+}
+
+.button-group-member.nav-button-group-member + .button-group-member.nav-button-group-member {
+  margin-left: $nav-button-group-spacing;
 }
 
 .flex-grow-1 {
@@ -17,10 +21,6 @@ $nav-button-group-spacing : 2px !default;
 .inline-input-margin {
   margin-right: $inline-input-margin;
   margin-left: $inline-input-margin;
-}
-
-.nav-button-group-member + .nav-button-group-member {
-  margin-left: $nav-button-group-spacing;
 }
 
 .shrink-table-column {

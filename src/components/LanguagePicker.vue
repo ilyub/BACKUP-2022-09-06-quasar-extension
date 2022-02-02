@@ -6,11 +6,11 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
+import type { BaseButtonProps } from "./BaseButton";
 import type { LanguagePickerItem } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
 import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
-import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton.vue";
 
 export default defineComponent({
@@ -21,7 +21,7 @@ export default defineComponent({
     "s-nav-button": NavButton
   },
   props: {
-    ...({} as PropsToPropOptions<NavButtonProps>),
+    ...({} as PropsToPropOptions<BaseButtonProps>),
     language: propOptions.required(is.unknown)
   },
   setup(props) {

@@ -27,8 +27,11 @@ import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
+import BaseButton from "./components/BaseButton.vue";
+import Button from "./components/Button.vue";
 import DatetimePicker from "./components/DatetimePicker.vue";
 import Droppable from "./components/Droppable.vue";
+import FormButton from "./components/FormButton.vue";
 import type { GroupItems } from "./components/Group.extras";
 import Group from "./components/Group.vue";
 import { provideIconPickerSettings } from "./components/IconPicker.extras";
@@ -62,8 +65,11 @@ type TableItems = readonly TableItem[];
 export default defineComponent({
   name: "app",
   components: {
+    "s-base-button": BaseButton,
+    "s-button": Button,
     "s-datetime-picker": DatetimePicker,
     "s-droppable": Droppable,
+    "s-form-button": FormButton,
     "s-group": Group,
     "s-icon-picker": IconPicker,
     "s-input": Input,
@@ -250,7 +256,43 @@ export default defineComponent({
 </script>
 
 <template>
-  <table class="q-ma-lg wrapper">
+  <table class="wrapper">
+    <tr>
+      <td>Base button</td>
+      <td>
+        <s-base-button tooltip="Down tooltip">Down tooltip</s-base-button>
+        <s-base-button tooltip="Down tooltip" tooltip-direction="down">
+          Down tooltip
+        </s-base-button>
+        <s-base-button tooltip="Left tooltip" tooltip-direction="left">
+          Left tooltip
+        </s-base-button>
+        <s-base-button tooltip="Right tooltip" tooltip-direction="right">
+          Right tooltip
+        </s-base-button>
+        <s-base-button tooltip="Up tooltip" tooltip-direction="up">
+          Up tooltip
+        </s-base-button>
+      </td>
+    </tr>
+    <tr>
+      <td>Button</td>
+      <td>
+        <s-button tooltip="Down tooltip">Down tooltip</s-button>
+        <s-button tooltip="Down tooltip" tooltip-direction="down">
+          Down tooltip
+        </s-button>
+        <s-button tooltip="Left tooltip" tooltip-direction="left">
+          Left tooltip
+        </s-button>
+        <s-button tooltip="Right tooltip" tooltip-direction="right">
+          Right tooltip
+        </s-button>
+        <s-button tooltip="Up tooltip" tooltip-direction="up">
+          Up tooltip
+        </s-button>
+      </td>
+    </tr>
     <tr>
       <td>Date/time picker</td>
       <td>
@@ -300,6 +342,24 @@ export default defineComponent({
         >
           D
         </s-droppable>
+      </td>
+    </tr>
+    <tr>
+      <td>Form button</td>
+      <td>
+        <s-form-button tooltip="Down tooltip">Down tooltip</s-form-button>
+        <s-form-button tooltip="Down tooltip" tooltip-direction="down">
+          Down tooltip
+        </s-form-button>
+        <s-form-button tooltip="Left tooltip" tooltip-direction="left">
+          Left tooltip
+        </s-form-button>
+        <s-form-button tooltip="Right tooltip" tooltip-direction="right">
+          Right tooltip
+        </s-form-button>
+        <s-form-button tooltip="Up tooltip" tooltip-direction="up">
+          Up tooltip
+        </s-form-button>
       </td>
     </tr>
     <tr>
@@ -666,6 +726,6 @@ table {
 }
 
 .wrapper {
-  margin-bottom: 100px;
+  margin: 35px 35px 100px 35px;
 }
 </style>
