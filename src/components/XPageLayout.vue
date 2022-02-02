@@ -5,13 +5,13 @@ import * as is from "@skylib/functions/es/guards";
 
 import { propOptions } from "./api";
 import { injectPageOffset, providePageOffset } from "./api/pageContentHeight";
-import XNavButton from "./XNavButton.vue";
+import XIconButton from "./XIconButton.vue";
 import { icons, injectPageLayoutSettings } from "./XPageLayout.extras";
 
 export default defineComponent({
   name: "x-page-layout",
   components: {
-    "x-nav-button": XNavButton
+    "x-icon-button": XIconButton
   },
   props: {
     closeButton: propOptions.boolean(),
@@ -77,9 +77,9 @@ export default defineComponent({
         {{ title }}
         <template v-if="hasCloseButton">
           <q-space />
-          <div class="nav-button-group">
+          <div class="icon-button-group">
             <slot name="actions"></slot>
-            <x-nav-button
+            <x-icon-button
               class="ref-close-button"
               :icon="icons.close"
               to="/back"

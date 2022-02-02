@@ -19,5 +19,6 @@ module.exports = [
   "Resizer",
   "Select",
   "Sortable",
-  "Tooltip"
+  "Tooltip",
+  "XNavButton"
 ];

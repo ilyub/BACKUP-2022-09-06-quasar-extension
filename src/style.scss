@@ -1,13 +1,13 @@
 $button-group-spacing : 5px !default;
 $inline-input-margin : 5px !default;
-$nav-button-group-spacing : 2px !default;
+$icon-button-group-spacing : 2px !default;
 
 .button-group-member + .button-group-member {
   margin-left: $button-group-spacing;
 }
 
-.nav-button-group-member + .nav-button-group-member {
-  margin-left: $nav-button-group-spacing;
+.icon-button-group-member + .icon-button-group-member {
+  margin-left: $icon-button-group-spacing;
 }
 
 .flex-grow-1 {

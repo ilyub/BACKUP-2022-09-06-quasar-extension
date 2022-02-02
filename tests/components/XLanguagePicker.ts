@@ -1,8 +1,8 @@
 import { QList } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
+import XIconButton from "@/components/XIconButton.vue";
 import XLanguagePicker from "@/components/XLanguagePicker.vue";
-import XNavButton from "@/components/XNavButton.vue";
 import * as testUtils from "@/testUtils";
 
 it("XLanguagePicker", async () => {
@@ -31,7 +31,7 @@ it("XLanguagePicker", async () => {
     }
   });
 
-  const button = wrapper.findComponent(XNavButton);
+  const button = wrapper.findComponent(XIconButton);
 
   {
     expect(list()).not.toExist();

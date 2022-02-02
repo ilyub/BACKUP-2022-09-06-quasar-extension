@@ -33,6 +33,7 @@ import XDroppable from "./components/XDroppable.vue";
 import XFormButton from "./components/XFormButton.vue";
 import type { GroupItems } from "./components/XGroup.extras";
 import XGroup from "./components/XGroup.vue";
+import XIconButton from "./components/XIconButton.vue";
 import { provideIconPickerSettings } from "./components/XIconPicker.extras";
 import XIconPicker from "./components/XIconPicker.vue";
 import XInput from "./components/XInput.vue";
@@ -41,7 +42,6 @@ import { provideLanguagePickerSettings } from "./components/XLanguagePicker.extr
 import XLanguagePicker from "./components/XLanguagePicker.vue";
 import XMenu from "./components/XMenu.vue";
 import XMenuItem from "./components/XMenuItem.vue";
-import XNavButton from "./components/XNavButton.vue";
 import { providePageLayoutSettings } from "./components/XPageLayout.extras";
 import XPageLayout from "./components/XPageLayout.vue";
 import XPageMarkupTable from "./components/XPageMarkupTable.vue";
@@ -69,13 +69,13 @@ export default defineComponent({
     "x-droppable": XDroppable,
     "x-form-button": XFormButton,
     "x-group": XGroup,
+    "x-icon-button": XIconButton,
     "x-icon-picker": XIconPicker,
     "x-input": XInput,
     "x-knob": XKnob,
     "x-language-picker": XLanguagePicker,
     "x-menu": XMenu,
     "x-menu-item": XMenuItem,
-    "x-nav-button": XNavButton,
     "x-page-layout": XPageLayout,
     "x-page-markup-table": XPageMarkupTable,
     "x-page-table": XPageTable,
@@ -408,7 +408,7 @@ export default defineComponent({
     <tr>
       <td>Menu item</td>
       <td>
-        <x-nav-button :icon="mdiAccount">
+        <x-icon-button :icon="mdiAccount">
           <x-menu>
             <q-list>
               <x-menu-item caption="Settings" :icon="mdiPen" />
@@ -421,36 +421,36 @@ export default defineComponent({
               <x-menu-item caption="Exit" />
             </q-list>
           </x-menu>
-        </x-nav-button>
+        </x-icon-button>
       </td>
     </tr>
     <tr>
-      <td>Nav button</td>
+      <td>Icon button</td>
       <td>
-        <x-nav-button :icon="mdiArrowDown" tooltip="Down tooltip" />
-        <x-nav-button
+        <x-icon-button :icon="mdiArrowDown" tooltip="Down tooltip" />
+        <x-icon-button
           :icon="mdiArrowDown"
           tooltip="Down tooltip"
           tooltip-direction="down"
         />
-        <x-nav-button
+        <x-icon-button
           :icon="mdiArrowLeft"
           tooltip="Left tooltip"
           tooltip-direction="left"
         />
-        <x-nav-button
+        <x-icon-button
           :icon="mdiArrowRight"
           tooltip="Right tooltip"
           tooltip-direction="right"
         />
-        <x-nav-button
+        <x-icon-button
           :icon="mdiArrowUp"
           tooltip="Up tooltip"
           tooltip-direction="up"
         />
-        <x-nav-button>
+        <x-icon-button>
           <img alt="Alt text" height="20" :src="us" width="20" />
-        </x-nav-button>
+        </x-icon-button>
       </td>
     </tr>
     <tr>
@@ -593,53 +593,53 @@ export default defineComponent({
           ms
         </div>
         <div>
-          <x-nav-button :icon="mdiMenu">
+          <x-icon-button :icon="mdiMenu">
             <x-menu>
               <q-list>
                 <x-menu-item caption="Menu item" />
               </q-list>
             </x-menu>
             <x-tooltip>Sample tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowDown">
             <x-tooltip>Down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowDown">
             <x-tooltip direction="down">Down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowDown">
             <x-tooltip direction="down-left">Down-left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowDown">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowDown">
             <x-tooltip direction="down-right">Down-right tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowLeft">
             <x-tooltip direction="left">Left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowLeft">
             <x-tooltip direction="left-down">Left-down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowLeft">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowLeft">
             <x-tooltip direction="left-up">Left-up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowRight">
             <x-tooltip direction="right">Right tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowRight">
             <x-tooltip direction="right-down">Right-down tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowRight">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowRight">
             <x-tooltip direction="right-up">Right-up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowUp">
             <x-tooltip direction="up">Up tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowUp">
             <x-tooltip direction="up-left">Up-left tooltip</x-tooltip>
-          </x-nav-button>
-          <x-nav-button :icon="mdiArrowUp">
+          </x-icon-button>
+          <x-icon-button :icon="mdiArrowUp">
             <x-tooltip direction="up-right">Up-right tooltip</x-tooltip>
-          </x-nav-button>
+          </x-icon-button>
         </div>
       </td>
     </tr>

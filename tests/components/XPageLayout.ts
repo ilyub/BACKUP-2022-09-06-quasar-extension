@@ -5,7 +5,7 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 
 import { injectPageOffset } from "@/components/api/pageContentHeight";
-import XNavButton from "@/components/XNavButton.vue";
+import XIconButton from "@/components/XIconButton.vue";
 import type { PageLayoutSettings } from "@/components/XPageLayout.extras";
 import XPageLayout from "@/components/XPageLayout.vue";
 import * as testUtils from "@/testUtils";
@@ -47,7 +47,7 @@ it.each([
 
   const wrapper = vueTestUtils.mount(XPageLayout, {
     components: {
-      "x-nav-button": XNavButton
+      "x-icon-button": XIconButton
     },
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({

@@ -6,7 +6,7 @@ import type { BaseButtonProps } from "./XBaseButton";
 import XBaseButton from "./XBaseButton.vue";
 
 export default defineComponent({
-  name: "x-nav-button",
+  name: "x-icon-button",
   components: {
     "x-base-button": XBaseButton
   },
@@ -15,7 +15,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-base-button class="nav-button-group-member" flat round>
+  <x-base-button class="icon-button-group-member" flat round>
     <slot></slot>
   </x-base-button>
 </template>

@@ -12,8 +12,8 @@ import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 
+import XIconButton from "@/components/XIconButton.vue";
 import XIconPicker from "@/components/XIconPicker.vue";
-import XNavButton from "@/components/XNavButton.vue";
 import * as testUtils from "@/testUtils";
 
 functionsTestUtils.installFakeTimer();
@@ -51,7 +51,7 @@ it.each(
       }
     });
 
-    const button = wrapper.findComponent(XNavButton);
+    const button = wrapper.findComponent(XIconButton);
 
     const dialog = wrapper.findComponent(QDialog);
 

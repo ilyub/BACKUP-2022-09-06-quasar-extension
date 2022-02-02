@@ -14,9 +14,9 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import type { BaseButtonProps } from "./XBaseButton";
+import XIconButton from "./XIconButton.vue";
 import { icons, injectIconPickerSettings, lang } from "./XIconPicker.extras";
 import XInput from "./XInput.vue";
-import XNavButton from "./XNavButton.vue";
 
 interface Button {
   readonly icon?: string;
@@ -44,8 +44,8 @@ const mdi = ref<Mdi | undefined>(undefined);
 export default defineComponent({
   name: "x-icon-picker",
   components: {
-    "x-input": XInput,
-    "x-nav-button": XNavButton
+    "x-icon-button": XIconButton,
+    "x-input": XInput
   },
   props: {
     ...({} as PropsToPropOptions<BaseButtonProps>),
@@ -190,7 +190,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-nav-button
+  <x-icon-button
     :class="{
       'text-grey-5': notSelected
     }"
@@ -203,7 +203,7 @@ export default defineComponent({
           <div class="flex text-h6">
             {{ lang.IconPicker }}
             <q-space />
-            <x-nav-button v-close-popup class="close" :icon="icons.close" />
+            <x-icon-button v-close-popup class="close" :icon="icons.close" />
           </div>
           <x-input v-model="searchString" class="q-pb-md search" />
           <div class="relative-position">
@@ -214,7 +214,7 @@ export default defineComponent({
               <q-spinner color="primary" :size="spinnerSize" />
             </div>
             <div v-for="(row, i) in frame" :key="i">
-              <x-nav-button
+              <x-icon-button
                 v-for="(button, j) in row"
                 :key="j"
                 :class="{
@@ -232,7 +232,7 @@ export default defineComponent({
           </div>
         </q-card-section>
         <q-card-actions>
-          <x-nav-button
+          <x-icon-button
             class="prev"
             :disable="prevDisable"
             :icon="icons.chevronLeft"
@@ -248,7 +248,7 @@ export default defineComponent({
             {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
           </span>
           <q-space />
-          <x-nav-button
+          <x-icon-button
             class="next"
             :disable="nextDisable"
             :icon="icons.chevronRight"
@@ -257,5 +257,5 @@ export default defineComponent({
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </x-nav-button>
+  </x-icon-button>
 </template>

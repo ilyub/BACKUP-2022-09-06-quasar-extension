@@ -7,18 +7,18 @@ import * as is from "@skylib/functions/es/guards";
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import type { BaseButtonProps } from "./XBaseButton";
+import XIconButton from "./XIconButton.vue";
 import type { LanguagePickerItem } from "./XLanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./XLanguagePicker.extras";
 import XMenu from "./XMenu.vue";
 import XMenuItem from "./XMenuItem.vue";
-import XNavButton from "./XNavButton.vue";
 
 export default defineComponent({
   name: "x-language-picker",
   components: {
+    "x-icon-button": XIconButton,
     "x-menu": XMenu,
-    "x-menu-item": XMenuItem,
-    "x-nav-button": XNavButton
+    "x-menu-item": XMenuItem
   },
   props: {
     ...({} as PropsToPropOptions<BaseButtonProps>),
@@ -52,7 +52,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-nav-button>
+  <x-icon-button>
     <img
       :alt="activeItem.caption"
       height="20"
@@ -74,5 +74,5 @@ export default defineComponent({
         </x-menu-item>
       </q-list>
     </x-menu>
-  </x-nav-button>
+  </x-icon-button>
 </template>

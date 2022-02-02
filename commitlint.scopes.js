@@ -12,7 +12,7 @@ module.exports = [
   "XLanguagePicker",
   "XMenu",
   "XMenuItem",
-  "XNavButton",
+  "XIconButton",
   "XPageLayout",
   "XPageMarkupTable",
   "XPageTable",

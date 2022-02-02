@@ -12,7 +12,7 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import { icons, lang } from "./XDatetimePicker.extras";
-import XNavButton from "./XNavButton.vue";
+import XIconButton from "./XIconButton.vue";
 
 interface Time {
   readonly hours: number;
@@ -22,7 +22,7 @@ interface Time {
 export default defineComponent({
   name: "x-datetime-picker",
   components: {
-    "x-nav-button": XNavButton
+    "x-icon-button": XIconButton
   },
   props: {
     ...({} as PropsToPropOptions<QFieldProps>),
@@ -275,14 +275,14 @@ export default defineComponent({
               </div>
             </div>
             <q-space />
-            <div class="nav-button-group">
-              <x-nav-button
+            <div class="icon-button-group">
+              <x-icon-button
                 class="ref-datetime-picker-pm"
                 :disable="empty"
                 :icon="pm ? icons.am : icons.pm"
                 @click="pmToggle"
               />
-              <x-nav-button v-close-popup :icon="icons.close" />
+              <x-icon-button v-close-popup :icon="icons.close" />
             </div>
           </q-card-section>
           <q-card-section>
