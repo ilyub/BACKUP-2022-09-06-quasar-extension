@@ -37,7 +37,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-btn flat round @click="onClick">
+  <q-btn class="nav-button-group-member" flat round @click="onClick">
     <slot></slot>
     <s-tooltip v-if="hasTooltip" :direction="tooltipDirection">
       {{ tooltip }}

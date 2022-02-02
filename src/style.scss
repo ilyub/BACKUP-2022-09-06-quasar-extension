@@ -1,7 +1,6 @@
 $button-group-spacing : 5px !default;
 $inline-input-margin : 5px !default;
 $nav-button-group-spacing : 2px !default;
-$radio-group-spacing : 5px !default;
 
 .button-group > * + * {
   margin-left: $button-group-spacing;
@@ -20,12 +19,8 @@ $radio-group-spacing : 5px !default;
   margin-left: $inline-input-margin;
 }
 
-.nav-button-group > * + * {
+.nav-button-group-member + .nav-button-group-member {
   margin-left: $nav-button-group-spacing;
-}
-
-.radio-group > * + * {
-  margin-left: $radio-group-spacing;
 }
 
 .shrink-table-column {
