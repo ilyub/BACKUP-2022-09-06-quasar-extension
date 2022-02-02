@@ -57,8 +57,6 @@ it.each(
 
     const icon = mdi[a.first(o.keys(mdi).filter(id => id.startsWith("mdi")))];
 
-    window.scrollTo = jest.fn();
-
     {
       expect(dialog.props("modelValue")).toBeFalse();
       await button.trigger("click");

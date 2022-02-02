@@ -27,10 +27,6 @@ const props = {
   modelValue: items
 };
 
-const warnMock = jest.fn();
-
-const warnSpy = jest.spyOn(console, "warn");
-
 it.each([undefined, 1000])("animationDuration", animationDuration => {
   const wrapper = vueTestUtils.mount(XSortable, {
     global: testUtils.globalMountOptions(
@@ -60,14 +56,8 @@ it("emit: dropped", () => {
 
   const elements = buildElements(newItems, group, itemKey);
 
-  warnSpy.mockImplementationOnce(warnMock);
   wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
-  expect(warnMock).toBeCalledTimes(1);
-  expect(warnMock).toBeCalledWith(
-    '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
-  );
-  warnMock.mockClear();
 });
 
 it("end, start", async () => {
@@ -105,15 +95,9 @@ it("emit: update:model-value", () => {
     ...buildElements([newItem], newGroup, itemKey)
   ];
 
-  warnSpy.mockImplementationOnce(warnMock);
   wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
   expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
-  expect(warnMock).toBeCalledTimes(1);
-  expect(warnMock).toBeCalledWith(
-    '[Vue warn]: Component emitted event "update:model-value" but it is neither declared in the emits option nor as an "onUpdate:model-value" prop.'
-  );
-  warnMock.mockClear();
 });
 
 it.each([
@@ -171,5 +155,4 @@ it.each([
   baseMove(moveData);
   expect(move).toBeCalledTimes(1);
   expect(move).toBeCalledWith(dest.id, dest.group, source.id, source.group);
-  warnMock.mockClear();
 });

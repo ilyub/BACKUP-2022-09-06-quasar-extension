@@ -11,8 +11,6 @@ import * as reflect from "@skylib/functions/es/reflect";
 import XDatetimePicker from "@/components/XDatetimePicker.vue";
 import * as testUtils from "@/testUtils";
 
-window.scrollTo = jest.fn();
-
 it.each([undefined, "2001-02-03 10:30"])(
   "XDatetimePicker",
   async modelValue => {
@@ -28,10 +26,6 @@ it.each([undefined, "2001-02-03 10:30"])(
     });
 
     const timeOptions = reflect.get(wrapper.vm, "timeOptions");
-
-    const warnMock = jest.fn();
-
-    const warnSpy = jest.spyOn(console, "warn");
 
     assert.callable(dateOptions);
     assert.callable(timeOptions);
@@ -51,11 +45,9 @@ it.each([undefined, "2001-02-03 10:30"])(
     }
 
     {
-      warnSpy.mockImplementationOnce(warnMock);
       comp(QDialog).vm.$emit("update:model-value", false);
       await nextTick();
-      expect(warnMock).toBeCalledTimes(1);
-      warnMock.mockClear();
+      expect(comp(QCard)).not.toExist();
     }
 
     {
@@ -108,24 +100,18 @@ it.each([undefined, "2001-02-03 10:30"])(
     {
       const expected = [[modelValue], [undefined]];
 
-      warnSpy.mockImplementationOnce(warnMock);
       main.vm.$emit("update:model-value", undefined);
       expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-      expect(warnMock).toBeCalledTimes(1);
-      warnMock.mockClear();
     }
 
     {
       const expected = [[modelValue], [undefined], ["2001-02-04 22:30"]];
 
-      warnSpy.mockImplementationOnce(warnMock);
       comp("date").vm.$emit("update:model-value", "2001-02-04 22:30");
       await popupElem("prev").trigger("click");
       comp("date-save").vm.$emit("click");
       await popupElem("next").trigger("click");
       expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-      expect(warnMock).toBeCalledTimes(1);
-      warnMock.mockClear();
     }
 
     {
@@ -136,12 +122,9 @@ it.each([undefined, "2001-02-03 10:30"])(
         ["2001-02-04 23:30"]
       ];
 
-      warnSpy.mockImplementationOnce(warnMock);
       comp("time").vm.$emit("update:model-value", "2001-02-04 23:30");
       comp("time-save").vm.$emit("click");
       expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-      expect(warnMock).toBeCalledTimes(1);
-      warnMock.mockClear();
     }
 
     {
@@ -153,12 +136,9 @@ it.each([undefined, "2001-02-03 10:30"])(
         ["2001-02-04 11:30"]
       ];
 
-      warnSpy.mockImplementationOnce(warnMock);
       comp("pm").vm.$emit("click");
       comp("time-save").vm.$emit("click");
       expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-      expect(warnMock).toBeCalledTimes(1);
-      warnMock.mockClear();
     }
 
     {

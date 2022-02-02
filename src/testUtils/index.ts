@@ -87,6 +87,24 @@ export interface TouchPanMock {
 }
 
 /**
+ * Creates console.warn mock.
+ *
+ * @param prev - Orignial console.warn function.
+ * @returns Mock.
+ */
+export function consoleWarnMock(
+  prev: (message: string) => void
+): (value: unknown) => void {
+  return (value: unknown): void => {
+    assert.string(value);
+
+    if (value.startsWith("[Vue warn]: Component emitted event")) {
+      // Expected warning
+    } else prev(value);
+  };
+}
+
+/**
  * Returns global mount options.
  *
  * @param options - Options.
@@ -179,30 +197,13 @@ export function jestSetup(): void {
     expect.extend(expectExtend as jest.ExpectExtendMap & ExpectExtendMap);
   }
 
+  // eslint-disable-next-line no-console
+  const consoleWarn = console.warn;
+
+  jest.spyOn(console, "warn").mockImplementation(consoleWarnMock(consoleWarn));
+  window.scrollTo = jest.fn();
   installQuasarPlugin();
   jestReset();
-}
-
-/**
- * Mocks v-touch-pan directive.
- *
- * @returns Mock.
- */
-export function mockTouchPan(): TouchPanMock {
-  function triggerTouchPan(...args: unknown[]): void {
-    assert.callable(touchPanValue);
-    touchPanValue(...args);
-  }
-
-  let touchPanValue: unknown = undefined;
-
-  const touchPan: Directive = {
-    created(_el, binding) {
-      touchPanValue = binding.value;
-    }
-  };
-
-  return { touchPan, triggerTouchPan };
 }
 
 /**
@@ -302,4 +303,26 @@ export function toHaveClass(
           `Expected Vue wrapper to have "${expected}" class`,
         pass: false
       };
+}
+
+/**
+ * Mocks v-touch-pan directive.
+ *
+ * @returns Mock.
+ */
+export function touchPanMock(): TouchPanMock {
+  function triggerTouchPan(...args: unknown[]): void {
+    assert.callable(touchPanValue);
+    touchPanValue(...args);
+  }
+
+  let touchPanValue: unknown = undefined;
+
+  const touchPan: Directive = {
+    created(_el, binding) {
+      touchPanValue = binding.value;
+    }
+  };
+
+  return { touchPan, triggerTouchPan };
 }

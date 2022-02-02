@@ -15,7 +15,7 @@ it.each([
   { min: 100, value: 10 },
   { min: 100, value: 110 }
 ])("XResizer", options => {
-  const { touchPan, triggerTouchPan } = testUtils.mockTouchPan();
+  const { touchPan, triggerTouchPan } = testUtils.touchPanMock();
 
   const wrapper = vueTestUtils.mount(XResizer, {
     directives: {
