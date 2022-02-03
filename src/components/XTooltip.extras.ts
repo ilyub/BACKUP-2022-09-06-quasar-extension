@@ -2,6 +2,7 @@ import type { Ref } from "vue";
 import { computed, onUnmounted, ref, watch } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
+import type { stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import { createInjectable } from "./api";
@@ -26,6 +27,7 @@ export interface DisableTooltips {
 
 export interface TooltipSettings {
   readonly delay: number;
+  readonly fontSize?: stringU;
   readonly show: boolean;
 }
 

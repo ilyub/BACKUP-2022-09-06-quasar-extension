@@ -219,6 +219,9 @@ export default defineComponent({
     :delay="settings.delay"
     :offset="offset"
     :self="self"
+    :style="{
+      fontSize: settings.fontSize
+    }"
     :transition-hide="transitionHide"
     :transition-show="transitionShow"
   >
