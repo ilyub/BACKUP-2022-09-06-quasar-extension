@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 import type { PropsToPropOptions } from "./api";
-import type { XBaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton.extras";
 import XBaseButton from "./XBaseButton.vue";
 
 export default defineComponent({

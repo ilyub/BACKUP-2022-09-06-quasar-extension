@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { XBaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton.extras";
 import XIconButton from "./XIconButton.vue";
 import type { LanguagePickerItem } from "./XLanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./XLanguagePicker.extras";

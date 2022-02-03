@@ -13,7 +13,8 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { XBaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton.extras";
+import XCard from "./XCard.vue";
 import XIconButton from "./XIconButton.vue";
 import { icons, injectIconPickerSettings, lang } from "./XIconPicker.extras";
 import XInput from "./XInput.vue";
@@ -44,6 +45,7 @@ const mdi = ref<Mdi | undefined>(undefined);
 export default defineComponent({
   name: "x-icon-picker",
   components: {
+    "x-card": XCard,
     "x-icon-button": XIconButton,
     "x-input": XInput
   },
@@ -194,40 +196,33 @@ export default defineComponent({
     @click="open"
   >
     <q-dialog v-model="show">
-      <q-card>
-        <q-card-section>
-          <div class="flex text-h6">
-            {{ lang.IconPicker }}
-            <q-space />
-            <x-icon-button v-close-popup class="close" :icon="icons.close" />
+      <x-card :title="lang.IconPicker" transparent-header>
+        <x-input v-model="searchString" class="q-pb-md search" />
+        <div class="relative-position">
+          <div
+            v-if="loading"
+            class="absolute fit flex items-center justify-center loading"
+          >
+            <q-spinner color="primary" :size="spinnerSize" />
           </div>
-          <x-input v-model="searchString" class="q-pb-md search" />
-          <div class="relative-position">
-            <div
-              v-if="loading"
-              class="absolute fit flex items-center justify-center loading"
-            >
-              <q-spinner color="primary" :size="spinnerSize" />
-            </div>
-            <div v-for="(row, i) in frame" :key="i">
-              <x-icon-button
-                v-for="(button, j) in row"
-                :key="j"
-                :class="{
-                  'text-white': button.selected,
-                  'bg-primary': button.selected,
-                  'invisible': button.padding,
-                  'pick-icon': true
-                }"
-                :disable="button.padding"
-                :icon="button.icon"
-                :tooltip="button.tooltip"
-                @click="pickIcon(button.icon)"
-              />
-            </div>
+          <div v-for="(row, i) in frame" :key="i">
+            <x-icon-button
+              v-for="(button, j) in row"
+              :key="j"
+              :class="{
+                'text-white': button.selected,
+                'bg-primary': button.selected,
+                'invisible': button.padding,
+                'pick-icon': true
+              }"
+              :disable="button.padding"
+              :icon="button.icon"
+              :tooltip="button.tooltip"
+              @click="pickIcon(button.icon)"
+            />
           </div>
-        </q-card-section>
-        <q-card-actions>
+        </div>
+        <template #footer>
           <x-icon-button
             class="prev"
             :disable="prevDisable"
@@ -250,8 +245,8 @@ export default defineComponent({
             :icon="icons.chevronRight"
             @click="nextClick"
           />
-        </q-card-actions>
-      </q-card>
+        </template>
+      </x-card>
     </q-dialog>
   </x-icon-button>
 </template>

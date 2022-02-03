@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unassigned-import */
 
+import "./XCard.extras";
 import "./XDatetimePicker.extras";
 import "./XGroup.extras";
 import "./XIconPicker.extras";

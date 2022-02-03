@@ -2,6 +2,7 @@ module.exports = [
   "App",
   "XBaseButton",
   "XButton",
+  "XCard",
   "XDatetimePicker",
   "XDroppable",
   "XFormButton",
