@@ -77,14 +77,12 @@ export default defineComponent({
         {{ title }}
         <template v-if="hasCloseButton">
           <q-space />
-          <div class="icon-button-group">
-            <slot name="actions"></slot>
-            <x-icon-button
-              class="ref-close-button"
-              :icon="icons.close"
-              to="/back"
-            />
-          </div>
+          <slot name="actions"></slot>
+          <x-icon-button
+            class="ref-close-button"
+            :icon="icons.close"
+            to="/back"
+          />
         </template>
       </div>
     </div>
