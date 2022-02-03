@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 import type { PropsToPropOptions } from "./api";
-import type { BaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton";
 import XBaseButton from "./XBaseButton.vue";
 
 export default defineComponent({
@@ -10,7 +10,7 @@ export default defineComponent({
   components: {
     "x-base-button": XBaseButton
   },
-  props: {} as PropsToPropOptions<BaseButtonProps>
+  props: {} as PropsToPropOptions<XBaseButtonProps>
 });
 </script>
 

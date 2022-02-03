@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { BaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton";
 import XIconButton from "./XIconButton.vue";
 import type { LanguagePickerItem } from "./XLanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./XLanguagePicker.extras";
@@ -21,7 +21,7 @@ export default defineComponent({
     "x-menu-item": XMenuItem
   },
   props: {
-    ...({} as PropsToPropOptions<BaseButtonProps>),
+    ...({} as PropsToPropOptions<XBaseButtonProps>),
     language: propOptions.required(is.unknown)
   },
   setup(props) {

@@ -5,7 +5,7 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type { Direction } from "./XTooltip.extras";
 
 // eslint-disable-next-line @skylib/prefer-readonly
-export interface BaseButtonProps extends QBtnProps {
+export interface XBaseButtonProps extends QBtnProps {
   readonly modelValue?: boolean;
   readonly tooltip?: stringU;
   readonly tooltipDirection?: Direction | undefined;

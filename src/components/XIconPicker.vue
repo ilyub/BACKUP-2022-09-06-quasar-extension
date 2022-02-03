@@ -13,7 +13,7 @@ import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import type { BaseButtonProps } from "./XBaseButton";
+import type { XBaseButtonProps } from "./XBaseButton";
 import XIconButton from "./XIconButton.vue";
 import { icons, injectIconPickerSettings, lang } from "./XIconPicker.extras";
 import XInput from "./XInput.vue";
@@ -48,7 +48,7 @@ export default defineComponent({
     "x-input": XInput
   },
   props: {
-    ...({} as PropsToPropOptions<BaseButtonProps>),
+    ...({} as PropsToPropOptions<XBaseButtonProps>),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
