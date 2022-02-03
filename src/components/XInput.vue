@@ -13,7 +13,7 @@ export default defineComponent({
   name: "x-input",
   props: {
     ...({} as PropsToPropOptions<QInputProps>),
-    modelValue: propOptions(is.stringU)
+    modelValue: propOptions.required(is.stringU)
   },
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
@@ -47,8 +47,8 @@ export default defineComponent({
     :model-value="modelValue"
     @update:model-value="updateModel"
   >
-    <template v-for="name in passThroughSlots" #[name]="data">
-      <slot :name="name" v-bind="data ?? {}"></slot>
+    <template v-for="name in passThroughSlots" #[name]>
+      <slot :name="name"></slot>
     </template>
   </q-input>
 </template>
