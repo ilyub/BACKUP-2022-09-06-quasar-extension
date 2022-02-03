@@ -23,7 +23,11 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 import * as json from "@skylib/functions/es/json";
-import type { NumStrU, stringU } from "@skylib/functions/es/types/core";
+import type {
+  numberU,
+  NumStrU,
+  stringU
+} from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
@@ -207,7 +211,7 @@ export default defineComponent({
       mdiImageEditOutline,
       mdiMenu,
       mdiPen,
-      numericInputValue: ref(0),
+      numericInputValue: ref<numberU>(undefined),
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
@@ -459,7 +463,7 @@ export default defineComponent({
     <tr>
       <td>Numeric input</td>
       <td>
-        <x-numeric-input v-model="numericInputValue" />
+        <x-numeric-input v-model="numericInputValue" :max="100" />
       </td>
     </tr>
     <tr>

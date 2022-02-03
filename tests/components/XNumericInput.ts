@@ -12,6 +12,7 @@ it("XNumericInput", async () => {
   const wrapper = vueTestUtils.mount(XNumericInput, {
     global: testUtils.globalMountOptions(),
     props: {
+      max: 100,
       modelValue: 0
     }
   });
