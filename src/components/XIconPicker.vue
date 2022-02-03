@@ -164,7 +164,6 @@ export default defineComponent({
           );
         });
       },
-      page,
       pickIcon(icon: unknown): void {
         assert.string(icon);
         emit(
@@ -178,7 +177,6 @@ export default defineComponent({
       },
       prevDisable: computed<boolean>(() => from.value <= 1),
       searchString,
-      settings,
       show,
       to,
       total

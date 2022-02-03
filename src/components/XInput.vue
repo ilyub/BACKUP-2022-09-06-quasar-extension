@@ -7,7 +7,6 @@ import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
-import { icons } from "./XInput.extras";
 
 export default defineComponent({
   name: "x-input",
@@ -19,12 +18,10 @@ export default defineComponent({
     "update:model-value": (value: stringU) => is.stringU(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props, { emit, slots }) {
+  setup(_props, { emit, slots }) {
     const input = ref<QInput | undefined>(undefined);
 
     return {
-      canReset: computed<boolean>(() => is.not.empty(props.modelValue)),
-      icons,
       input,
       passThroughSlots: computed<Array<keyof QInputSlots>>(
         () => Object.keys(slots) as Array<keyof QInputSlots>

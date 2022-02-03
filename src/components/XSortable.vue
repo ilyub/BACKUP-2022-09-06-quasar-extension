@@ -75,6 +75,12 @@ export default defineComponent({
       end(): void {
         active.value = false;
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      itemSlotData(data: unknown): any {
+        assert.indexedObject(data);
+
+        return data;
+      },
       settings: injectSortableSettings(),
       start(): void {
         active.value = true;
@@ -126,7 +132,7 @@ export default defineComponent({
         :data-id="element.id"
         v-bind="itemComponentData"
       >
-        <slot :item="element.item" name="item"></slot>
+        <slot :item="itemSlotData(element.item)" name="item"></slot>
       </component>
     </template>
     <template #footer><slot name="footer"></slot></template>

@@ -17,9 +17,8 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     return {
-      hasIcon: computed<boolean>(
-        () => is.not.empty(props.icon) || is.not.empty(slots["icon"])
-      ),
+      hasIcon: computed<boolean>(() => is.not.empty(props.icon)),
+      hasIconSlot: computed<boolean>(() => is.not.empty(slots["icon"])),
       hasRightSlot: computed<boolean>(() => is.not.empty(slots["right"]))
     };
   }
@@ -29,7 +28,7 @@ export default defineComponent({
 <template>
   <q-item v-close-popup :clickable="!header">
     <slot name="prepend"></slot>
-    <q-item-section v-if="hasIcon" side>
+    <q-item-section v-if="hasIcon || hasIconSlot" side>
       <slot name="icon">
         <q-icon :name="icon" size="20px" />
       </slot>

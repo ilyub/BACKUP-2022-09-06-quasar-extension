@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { QInputProps, QInputSlots } from "quasar";
+import type { QInputProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as cast from "@skylib/functions/es/converters";
@@ -20,16 +20,13 @@ export default defineComponent({
     "update:model-value": (value: number) => is.number(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props, { emit, slots }) {
+  setup(props, { emit }) {
     return {
       icons,
       inputModelValue: computed<string>(() => cast.string(props.modelValue)),
       inputUpdateModelValue(value: NumStrE): void {
         emit("update:model-value", cast.number(value));
       },
-      passThroughSlots: computed<Array<keyof QInputSlots>>(
-        () => Object.keys(slots) as Array<keyof QInputSlots>
-      ),
       upDown(delta: number): void {
         emit("update:model-value", cast.number(props.modelValue) + delta);
       }
@@ -45,9 +42,6 @@ export default defineComponent({
     :model-value="inputModelValue"
     @update:model-value="inputUpdateModelValue"
   >
-    <template v-for="name in passThroughSlots" #[name]>
-      <slot :name="name"></slot>
-    </template>
     <template #prepend>
       <q-icon
         class="icon ref-numeric-input-prev"

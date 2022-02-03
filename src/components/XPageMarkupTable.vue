@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { QMarkupTableProps, QMarkupTableSlots } from "quasar";
-import { computed, defineComponent } from "vue";
+import type { QMarkupTableProps } from "quasar";
+import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
@@ -14,12 +14,9 @@ export default defineComponent({
     ...({} as PropsToPropOptions<QMarkupTableProps>),
     extraPageOffset: propOptions(is.stringU)
   },
-  setup(props, { slots }) {
+  setup(props) {
     return {
-      height: usePageContentHeight(() => props.extraPageOffset),
-      passThroughSlots: computed<Array<keyof QMarkupTableSlots>>(
-        () => Object.keys(slots) as Array<keyof QMarkupTableSlots>
-      )
+      height: usePageContentHeight(() => props.extraPageOffset)
     };
   }
 });
@@ -32,8 +29,6 @@ export default defineComponent({
       height
     }"
   >
-    <template v-for="name in passThroughSlots" #[name]>
-      <slot :name="name"></slot>
-    </template>
+    <slot></slot>
   </q-markup-table>
 </template>

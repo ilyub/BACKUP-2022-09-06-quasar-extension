@@ -59,7 +59,7 @@ export default defineComponent({
     const settings = injectPageTableSettings();
 
     return {
-      bodyCellData(
+      bodyCellSlotData(
         data: Readonly<Parameters<QTableSlots["body-cell"]>[0]>
       ): BodyCellData {
         return data;
@@ -107,7 +107,7 @@ export default defineComponent({
       <slot :name="name"></slot>
     </template>
     <template v-if="$slots['body-cell']" #body-cell="data">
-      <slot name="body-cell" v-bind="bodyCellData(data)"></slot>
+      <slot name="body-cell" v-bind="bodyCellSlotData(data)"></slot>
     </template>
   </q-table>
 </template>
