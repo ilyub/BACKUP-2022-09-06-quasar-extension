@@ -32,8 +32,8 @@ export default defineComponent({
       height
     }"
   >
-    <template v-for="name in passThroughSlots" #[name]="data">
-      <slot :name="name" v-bind="data ?? {}"></slot>
+    <template v-for="name in passThroughSlots" #[name]>
+      <slot :name="name"></slot>
     </template>
   </q-markup-table>
 </template>

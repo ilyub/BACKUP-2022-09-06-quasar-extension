@@ -225,8 +225,8 @@ export default defineComponent({
     :transition-hide="transitionHide"
     :transition-show="transitionShow"
   >
-    <template v-for="name in passThroughSlots" #[name]="data">
-      <slot :name="name" v-bind="data ?? {}"></slot>
+    <template v-for="name in passThroughSlots" #[name]>
+      <slot :name="name"></slot>
     </template>
   </q-tooltip>
 </template>
