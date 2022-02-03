@@ -42,6 +42,7 @@ import { provideLanguagePickerSettings } from "./components/XLanguagePicker.extr
 import XLanguagePicker from "./components/XLanguagePicker.vue";
 import XMenu from "./components/XMenu.vue";
 import XMenuItem from "./components/XMenuItem.vue";
+import XNumericInput from "./components/XNumericInput.vue";
 import { providePageLayoutSettings } from "./components/XPageLayout.extras";
 import XPageLayout from "./components/XPageLayout.vue";
 import XPageMarkupTable from "./components/XPageMarkupTable.vue";
@@ -76,6 +77,7 @@ export default defineComponent({
     "x-language-picker": XLanguagePicker,
     "x-menu": XMenu,
     "x-menu-item": XMenuItem,
+    "x-numeric-input": XNumericInput,
     "x-page-layout": XPageLayout,
     "x-page-markup-table": XPageMarkupTable,
     "x-page-table": XPageTable,
@@ -205,6 +207,7 @@ export default defineComponent({
       mdiImageEditOutline,
       mdiMenu,
       mdiPen,
+      numericInputValue: ref(0),
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
@@ -451,6 +454,12 @@ export default defineComponent({
         <x-icon-button>
           <img alt="Alt text" height="20" :src="us" width="20" />
         </x-icon-button>
+      </td>
+    </tr>
+    <tr>
+      <td>Numeric input</td>
+      <td>
+        <x-numeric-input v-model="numericInputValue" />
       </td>
     </tr>
     <tr>

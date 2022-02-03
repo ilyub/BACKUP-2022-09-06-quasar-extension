@@ -13,6 +13,7 @@ module.exports = [
   "XMenu",
   "XMenuItem",
   "XIconButton",
+  "XNumericInput",
   "XPageLayout",
   "XPageMarkupTable",
   "XPageTable",

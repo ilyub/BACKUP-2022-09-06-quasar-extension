@@ -4,6 +4,7 @@ import "./XDatetimePicker.extras";
 import "./XGroup.extras";
 import "./XIconPicker.extras";
 import "./XInput.extras";
+import "./XNumericInput.extras";
 import "./XLanguagePicker.extras";
 import "./XPageLayout.extras";
 import "./XPageTable.extras";
