@@ -23,9 +23,7 @@ export default defineComponent({
     tooltipDirection: propOptions(isDirectionU)
   },
   emits: {
-    "update:model-value"(this: undefined, value: boolean) {
-      return is.boolean(value);
-    }
+    "update:model-value": (value: boolean) => is.boolean(value)
   },
   setup(props, { emit }) {
     return {

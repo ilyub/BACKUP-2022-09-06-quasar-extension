@@ -31,9 +31,7 @@ export default defineComponent({
     modelValue: propOptions(is.stringU)
   },
   emits: {
-    "update:model-value"(this: undefined, value: stringU) {
-      return is.stringU(value);
-    }
+    "update:model-value": (value: stringU) => is.stringU(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {

@@ -56,9 +56,7 @@ export default defineComponent({
     spinnerSize: propOptions.default(is.string, "70px")
   },
   emits: {
-    "update:model-value"(this: undefined, value: stringU) {
-      return is.stringU(value);
-    }
+    "update:model-value": (value: stringU) => is.stringU(value)
   },
   setup(props, { emit }) {
     const filteredItems = computed<Items>(() =>

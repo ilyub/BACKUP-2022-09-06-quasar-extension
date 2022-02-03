@@ -8,7 +8,7 @@ import { createInjectable } from "./api";
 
 export interface Elem {
   readonly elementId: string;
-  readonly group: stringU;
+  readonly group: string;
   readonly id: string;
   readonly item: object;
 }
@@ -35,7 +35,7 @@ export const isElem: is.Guard<Elem> = is.factory(
   is.object.of,
   {
     elementId: is.string,
-    group: is.stringU,
+    group: is.string,
     id: is.string,
     item: is.object
   },

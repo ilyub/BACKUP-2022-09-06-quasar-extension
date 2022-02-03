@@ -50,12 +50,9 @@ export default defineComponent({
     selected: propOptions(is.factory(is.array.of, is.unknown))
   },
   emits: {
-    "update:limit"(this: undefined, value: number) {
-      return is.number(value);
-    },
-    "update:selected"(this: undefined, value: readonly unknown[] | undefined) {
-      return is.or(value, is.array, is.undefined);
-    }
+    "update:limit": (value: number) => is.number(value),
+    "update:selected": (value: readonly unknown[] | undefined) =>
+      is.or(value, is.array, is.undefined)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit, slots }) {

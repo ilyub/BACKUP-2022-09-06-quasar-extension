@@ -33,12 +33,9 @@ export default defineComponent({
     move: propOptions(isMoveU)
   },
   emits: {
-    "dropped"(item: object, group: string) {
-      return is.object(item) && is.string(group);
-    },
-    "update:model-value"(value: unknown) {
-      return is.objects(value);
-    }
+    "dropped": (item: object, group: string) =>
+      is.object(item) && is.string(group),
+    "update:model-value": (value: readonly object[]) => is.objects(value)
   },
   setup(props, { emit }) {
     const { active } = useDisableTooltips();

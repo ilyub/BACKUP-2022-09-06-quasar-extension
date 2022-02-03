@@ -14,9 +14,7 @@ export default defineComponent({
     modelValue: propOptions.required(is.number)
   },
   emits: {
-    "update:model-value"(this: undefined, value: number) {
-      return is.number(value);
-    }
+    "update:model-value": (value: number) => is.number(value)
   }
 });
 </script>

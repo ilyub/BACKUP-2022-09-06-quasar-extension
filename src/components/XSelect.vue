@@ -20,9 +20,7 @@ export default defineComponent({
     options: propOptions.required(isSelectOptions)
   },
   emits: {
-    "update:model-value"(this: undefined, value: NumStrU) {
-      return is.numStrU(value);
-    }
+    "update:model-value": (value: NumStrU) => is.numStrU(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
