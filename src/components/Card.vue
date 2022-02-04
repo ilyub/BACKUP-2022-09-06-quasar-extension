@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { QCard } from "quasar";
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
@@ -19,10 +19,8 @@ export default defineComponent({
     title: propOptions(is.stringU),
     transparentHeader: propOptions.boolean()
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
-  setup(_props, { slots }) {
+  setup() {
     return {
-      hasFooterSlot: computed<boolean>(() => is.not.empty(slots["footer"])),
       icons
     };
   }
@@ -50,12 +48,7 @@ export default defineComponent({
       <slot name="header-actions"></slot>
       <x-icon-button v-close-popup :icon="icons.close" />
     </q-card-section>
-    <q-card-section>
-      <slot></slot>
-    </q-card-section>
-    <q-card-actions v-if="hasFooterSlot" class="q-pt-none">
-      <slot name="footer"></slot>
-    </q-card-actions>
+    <slot></slot>
   </q-card>
 </template>
 

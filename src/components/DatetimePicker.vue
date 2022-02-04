@@ -12,6 +12,7 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
 import Card from "./Card.vue";
+import CardSection from "./CardSection.vue";
 import { icons, lang } from "./DatetimePicker.extras";
 import IconButton from "./IconButton.vue";
 
@@ -24,6 +25,7 @@ export default defineComponent({
   name: "x-datetime-picker",
   components: {
     "x-card": Card,
+    "x-card-section": CardSection,
     "x-icon-button": IconButton
   },
   props: {
@@ -281,48 +283,50 @@ export default defineComponent({
               @click="pmToggle"
             />
           </template>
-          <q-time
-            v-if="nextStep"
-            class="ref-datetime-picker-time"
-            flat
-            mask="YYYY-MM-DD HH:mm"
-            :model-value="pickerValue"
-            :options="timeOptions"
-            @update:model-value="timeValueUpdate"
-          >
-            <div class="footer-actions items-center justify-end row">
-              <q-btn
-                v-close-popup
-                class="ref-datetime-picker-time-save"
-                color="primary"
-                flat
-                :label="lang.Save"
-                @click="save"
-              />
-            </div>
-          </q-time>
-          <q-date
-            v-else
-            class="ref-datetime-picker-date"
-            flat
-            mask="YYYY-MM-DD HH:mm"
-            minimal
-            :model-value="pickerValue"
-            no-unset
-            :options="dateOptions"
-            @update:model-value="dateValueUpdate"
-          >
-            <div class="footer-actions items-center justify-end row">
-              <q-btn
-                v-close-popup
-                class="ref-datetime-picker-date-save"
-                color="primary"
-                flat
-                :label="lang.Save"
-                @click="save"
-              />
-            </div>
-          </q-date>
+          <x-card-section>
+            <q-time
+              v-if="nextStep"
+              class="ref-datetime-picker-time"
+              flat
+              mask="YYYY-MM-DD HH:mm"
+              :model-value="pickerValue"
+              :options="timeOptions"
+              @update:model-value="timeValueUpdate"
+            >
+              <div class="footer-actions items-center justify-end row">
+                <q-btn
+                  v-close-popup
+                  class="ref-datetime-picker-time-save"
+                  color="primary"
+                  flat
+                  :label="lang.Save"
+                  @click="save"
+                />
+              </div>
+            </q-time>
+            <q-date
+              v-else
+              class="ref-datetime-picker-date"
+              flat
+              mask="YYYY-MM-DD HH:mm"
+              minimal
+              :model-value="pickerValue"
+              no-unset
+              :options="dateOptions"
+              @update:model-value="dateValueUpdate"
+            >
+              <div class="footer-actions items-center justify-end row">
+                <q-btn
+                  v-close-popup
+                  class="ref-datetime-picker-date-save"
+                  color="primary"
+                  flat
+                  :label="lang.Save"
+                  @click="save"
+                />
+              </div>
+            </q-date>
+          </x-card-section>
         </x-card>
       </q-dialog>
     </template>
