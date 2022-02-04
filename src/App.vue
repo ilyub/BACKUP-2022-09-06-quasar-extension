@@ -31,33 +31,33 @@ import type {
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
-import XButton from "./components/XButton.vue";
-import XDatetimePicker from "./components/XDatetimePicker.vue";
-import XDroppable from "./components/XDroppable.vue";
-import XFormButton from "./components/XFormButton.vue";
-import type { GroupItems } from "./components/XGroup.extras";
-import XGroup from "./components/XGroup.vue";
-import XIconButton from "./components/XIconButton.vue";
-import { provideIconPickerSettings } from "./components/XIconPicker.extras";
-import XIconPicker from "./components/XIconPicker.vue";
-import XInput from "./components/XInput.vue";
-import XKnob from "./components/XKnob.vue";
-import { provideLanguagePickerSettings } from "./components/XLanguagePicker.extras";
-import XLanguagePicker from "./components/XLanguagePicker.vue";
-import XMenu from "./components/XMenu.vue";
-import XMenuItem from "./components/XMenuItem.vue";
-import XNumericInput from "./components/XNumericInput.vue";
-import { providePageLayoutSettings } from "./components/XPageLayout.extras";
-import XPageLayout from "./components/XPageLayout.vue";
-import XPageMarkupTable from "./components/XPageMarkupTable.vue";
-import type { Columns } from "./components/XPageTable.extras";
-import XPageTable from "./components/XPageTable.vue";
-import XResizer from "./components/XResizer.vue";
-import type { SelectOptions } from "./components/XSelect.extras";
-import XSelect from "./components/XSelect.vue";
-import XSortable from "./components/XSortable.vue";
-import { provideTooltipSettings } from "./components/XTooltip.extras";
-import XTooltip from "./components/XTooltip.vue";
+import Button from "./components/Button.vue";
+import DatetimePicker from "./components/DatetimePicker.vue";
+import Droppable from "./components/Droppable.vue";
+import FormButton from "./components/FormButton.vue";
+import type { GroupItems } from "./components/Group.extras";
+import Group from "./components/Group.vue";
+import IconButton from "./components/IconButton.vue";
+import { provideIconPickerSettings } from "./components/IconPicker.extras";
+import IconPicker from "./components/IconPicker.vue";
+import Input from "./components/Input.vue";
+import Knob from "./components/Knob.vue";
+import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
+import LanguagePicker from "./components/LanguagePicker.vue";
+import Menu from "./components/Menu.vue";
+import MenuItem from "./components/MenuItem.vue";
+import NumericInput from "./components/NumericInput.vue";
+import { providePageLayoutSettings } from "./components/PageLayout.extras";
+import PageLayout from "./components/PageLayout.vue";
+import PageMarkupTable from "./components/PageMarkupTable.vue";
+import type { Columns } from "./components/PageTable.extras";
+import PageTable from "./components/PageTable.vue";
+import Resizer from "./components/Resizer.vue";
+import type { SelectOptions } from "./components/Select.extras";
+import Select from "./components/Select.vue";
+import Sortable from "./components/Sortable.vue";
+import { provideTooltipSettings } from "./components/Tooltip.extras";
+import Tooltip from "./components/Tooltip.vue";
 
 interface TableItem {
   readonly id: number;
@@ -69,26 +69,26 @@ type TableItems = readonly TableItem[];
 export default defineComponent({
   name: "app",
   components: {
-    "x-button": XButton,
-    "x-datetime-picker": XDatetimePicker,
-    "x-droppable": XDroppable,
-    "x-form-button": XFormButton,
-    "x-group": XGroup,
-    "x-icon-button": XIconButton,
-    "x-icon-picker": XIconPicker,
-    "x-input": XInput,
-    "x-knob": XKnob,
-    "x-language-picker": XLanguagePicker,
-    "x-menu": XMenu,
-    "x-menu-item": XMenuItem,
-    "x-numeric-input": XNumericInput,
-    "x-page-layout": XPageLayout,
-    "x-page-markup-table": XPageMarkupTable,
-    "x-page-table": XPageTable,
-    "x-resizer": XResizer,
-    "x-select": XSelect,
-    "x-sortable": XSortable,
-    "x-tooltip": XTooltip
+    "x-button": Button,
+    "x-datetime-picker": DatetimePicker,
+    "x-droppable": Droppable,
+    "x-form-button": FormButton,
+    "x-group": Group,
+    "x-icon-button": IconButton,
+    "x-icon-picker": IconPicker,
+    "x-input": Input,
+    "x-knob": Knob,
+    "x-language-picker": LanguagePicker,
+    "x-menu": Menu,
+    "x-menu-item": MenuItem,
+    "x-numeric-input": NumericInput,
+    "x-page-layout": PageLayout,
+    "x-page-markup-table": PageMarkupTable,
+    "x-page-table": PageTable,
+    "x-resizer": Resizer,
+    "x-select": Select,
+    "x-sortable": Sortable,
+    "x-tooltip": Tooltip
   },
   setup() {
     const iconTooltips = ref(false);

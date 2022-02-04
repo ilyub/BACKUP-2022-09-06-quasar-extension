@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unassigned-import */
 
-import "./XCard.extras";
-import "./XDatetimePicker.extras";
-import "./XGroup.extras";
-import "./XIconPicker.extras";
-import "./XNumericInput.extras";
-import "./XLanguagePicker.extras";
-import "./XPageLayout.extras";
-import "./XPageTable.extras";
-import "./XSelect.extras";
-import "./XSortable.extras";
-import "./XTooltip.extras";
+import "./Card.extras";
+import "./DatetimePicker.extras";
+import "./Group.extras";
+import "./IconPicker.extras";
+import "./NumericInput.extras";
+import "./LanguagePicker.extras";
+import "./PageLayout.extras";
+import "./PageTable.extras";
+import "./Select.extras";
+import "./Sortable.extras";
+import "./Tooltip.extras";
