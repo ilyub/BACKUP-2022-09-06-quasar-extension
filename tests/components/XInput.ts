@@ -15,7 +15,10 @@ it.each([
   }
 ])("XInput", ({ expectedValue, value }) => {
   const wrapper = vueTestUtils.mount(XInput, {
-    global: testUtils.globalMountOptions()
+    global: testUtils.globalMountOptions(),
+    props: {
+      modelValue: undefined
+    }
   });
 
   const input = wrapper.findComponent(QInput);
