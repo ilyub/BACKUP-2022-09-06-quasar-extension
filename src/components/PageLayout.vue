@@ -54,7 +54,6 @@ export default defineComponent({
       padding: computed<string>(
         () => `${settings.value.paddingY} ${settings.value.paddingX}`
       ),
-      // eslint-disable-next-line vue/no-unused-properties
       sectionMargin: computed<string>(() => settings.value.sectionMargin),
       settings
     };
