@@ -20,19 +20,19 @@
 
 ### iconPickerSettings
 
-• `Optional` `Readonly` **iconPickerSettings**: [`IconPickerSettings`](components_XIconPicker_extras.IconPickerSettings.md)
+• `Optional` `Readonly` **iconPickerSettings**: [`IconPickerSettings`](components_IconPicker_extras.IconPickerSettings.md)
 
 ___
 
 ### languagePickerSettings
 
-• `Optional` `Readonly` **languagePickerSettings**: [`LanguagePickerSettings`](components_XLanguagePicker_extras.LanguagePickerSettings.md)
+• `Optional` `Readonly` **languagePickerSettings**: [`LanguagePickerSettings`](components_LanguagePicker_extras.LanguagePickerSettings.md)
 
 ___
 
 ### pageLayoutSettings
 
-• `Optional` `Readonly` **pageLayoutSettings**: [`PageLayoutSettings`](components_XPageLayout_extras.PageLayoutSettings.md)
+• `Optional` `Readonly` **pageLayoutSettings**: [`PageLayoutSettings`](components_PageLayout_extras.PageLayoutSettings.md)
 
 ___
 
@@ -44,16 +44,16 @@ ___
 
 ### pageTableSettings
 
-• `Optional` `Readonly` **pageTableSettings**: [`PageTableSettings`](components_XPageTable_extras.PageTableSettings.md)
+• `Optional` `Readonly` **pageTableSettings**: [`PageTableSettings`](components_PageTable_extras.PageTableSettings.md)
 
 ___
 
 ### sortableSettings
 
-• `Optional` `Readonly` **sortableSettings**: [`SortableSettings`](components_XSortable_extras.SortableSettings.md)
+• `Optional` `Readonly` **sortableSettings**: [`SortableSettings`](components_Sortable_extras.SortableSettings.md)
 
 ___
 
 ### tooltipSettings
 
-• `Optional` `Readonly` **tooltipSettings**: [`TooltipSettings`](components_XTooltip_extras.TooltipSettings.md)
+• `Optional` `Readonly` **tooltipSettings**: [`TooltipSettings`](components_Tooltip_extras.TooltipSettings.md)
