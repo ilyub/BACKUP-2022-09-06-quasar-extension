@@ -16,6 +16,7 @@ export default defineComponent({
   },
   props: {
     ...({} as PropsToPropOptions<QCard>),
+    minWidth: propOptions(is.stringU),
     title: propOptions(is.stringU),
     transparentHeader: propOptions.boolean()
   },
@@ -28,7 +29,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-card>
+  <q-card
+    :style="{
+      minWidth
+    }"
+  >
     <q-card-section
       v-if="transparentHeader"
       class="items-center q-pb-none row text-h6"
