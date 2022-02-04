@@ -1,27 +1,27 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Group.extras
+[Quasar Framework](../index.md) / [Exports](../modules.md) / components/XGroup.extras
 
-# Module: components/Group.extras
+# Module: components/XGroup.extras
 
 ## Table of contents
 
 ### Interfaces
 
-- [GroupItem](../interfaces/components_Group_extras.GroupItem.md)
+- [GroupItem](../interfaces/components_XGroup_extras.GroupItem.md)
 
 ### Type aliases
 
-- [GroupItems](components_Group_extras.md#groupitems)
+- [GroupItems](components_XGroup_extras.md#groupitems)
 
 ### Functions
 
-- [isGroupItem](components_Group_extras.md#isgroupitem)
-- [isGroupItems](components_Group_extras.md#isgroupitems)
+- [isGroupItem](components_XGroup_extras.md#isgroupitem)
+- [isGroupItems](components_XGroup_extras.md#isgroupitems)
 
 ## Type aliases
 
 ### GroupItems
 
-Ƭ **GroupItems**: readonly [`GroupItem`](../interfaces/components_Group_extras.GroupItem.md)[]
+Ƭ **GroupItems**: readonly [`GroupItem`](../interfaces/components_XGroup_extras.GroupItem.md)[]
 
 ## Functions
 

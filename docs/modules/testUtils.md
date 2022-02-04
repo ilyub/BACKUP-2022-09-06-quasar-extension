@@ -11,17 +11,54 @@
 
 ### Functions
 
+- [consoleWarnMock](testUtils.md#consolewarnmock)
 - [globalMountOptions](testUtils.md#globalmountoptions)
 - [htmlToEqual](testUtils.md#htmltoequal)
 - [jestReset](testUtils.md#jestreset)
 - [jestSetup](testUtils.md#jestsetup)
-- [mockTouchPan](testUtils.md#mocktouchpan)
 - [textToEqual](testUtils.md#texttoequal)
 - [toBeVisible](testUtils.md#tobevisible)
 - [toExist](testUtils.md#toexist)
 - [toHaveClass](testUtils.md#tohaveclass)
+- [touchPanMock](testUtils.md#touchpanmock)
 
 ## Functions
+
+### consoleWarnMock
+
+▸ **consoleWarnMock**(`prev`): (`value`: `unknown`) => `void`
+
+Creates console.warn mock.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `prev` | (`message`: `string`) => `void` | Orignial console.warn function. |
+
+#### Returns
+
+`fn`
+
+Mock.
+
+▸ (`value`): `void`
+
+Creates console.warn mock.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+##### Returns
+
+`void`
+
+Mock.
+
+___
 
 ### globalMountOptions
 
@@ -85,20 +122,6 @@ Jest setup.
 #### Returns
 
 `void`
-
-___
-
-### mockTouchPan
-
-▸ **mockTouchPan**(): [`TouchPanMock`](../interfaces/testUtils.TouchPanMock.md)
-
-Mocks v-touch-pan directive.
-
-#### Returns
-
-[`TouchPanMock`](../interfaces/testUtils.TouchPanMock.md)
-
-Mock.
 
 ___
 
@@ -181,3 +204,17 @@ Checks that Vue wrapper has class.
 `testUtils.ExpectReturnType`
 
 Result object.
+
+___
+
+### touchPanMock
+
+▸ **touchPanMock**(): [`TouchPanMock`](../interfaces/testUtils.TouchPanMock.md)
+
+Mocks v-touch-pan directive.
+
+#### Returns
+
+[`TouchPanMock`](../interfaces/testUtils.TouchPanMock.md)
+
+Mock.

@@ -1,27 +1,27 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Select.extras
+[Quasar Framework](../index.md) / [Exports](../modules.md) / components/XSelect.extras
 
-# Module: components/Select.extras
+# Module: components/XSelect.extras
 
 ## Table of contents
 
 ### Interfaces
 
-- [SelectOption](../interfaces/components_Select_extras.SelectOption.md)
+- [SelectOption](../interfaces/components_XSelect_extras.SelectOption.md)
 
 ### Type aliases
 
-- [SelectOptions](components_Select_extras.md#selectoptions)
+- [SelectOptions](components_XSelect_extras.md#selectoptions)
 
 ### Functions
 
-- [isSelectOption](components_Select_extras.md#isselectoption)
-- [isSelectOptions](components_Select_extras.md#isselectoptions)
+- [isSelectOption](components_XSelect_extras.md#isselectoption)
+- [isSelectOptions](components_XSelect_extras.md#isselectoptions)
 
 ## Type aliases
 
 ### SelectOptions
 
-Ƭ **SelectOptions**<`T`\>: `ReadonlyArray`<[`SelectOption`](../interfaces/components_Select_extras.SelectOption.md)<`T`\>\>
+Ƭ **SelectOptions**<`T`\>: `ReadonlyArray`<[`SelectOption`](../interfaces/components_XSelect_extras.SelectOption.md)<`T`\>\>
 
 #### Type parameters
 

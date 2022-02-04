@@ -10,17 +10,18 @@
 
 ### Interfaces
 
+- [Injectable](../interfaces/components_api.Injectable.md)
 - [PropOptions](../interfaces/components_api.PropOptions.md)
 - [PropOptionsDefault](../interfaces/components_api.PropOptionsDefault.md)
 - [PropOptionsRequired](../interfaces/components_api.PropOptionsRequired.md)
 
 ### Type aliases
 
-- [ComputedInjectionKey](components_api.md#computedinjectionkey)
 - [PropsToPropOptions](components_api.md#propstopropoptions)
 
 ### Functions
 
+- [createInjectable](components_api.md#createinjectable)
 - [injectRequire](components_api.md#injectrequire)
 - [propOptions](components_api.md#propoptions)
 - [propOptionsBoolean](components_api.md#propoptionsboolean)
@@ -28,18 +29,6 @@
 - [propOptionsRequired](components_api.md#propoptionsrequired)
 
 ## Type aliases
-
-### ComputedInjectionKey
-
-Ƭ **ComputedInjectionKey**<`T`\>: `InjectionKey`<`ComputedRef`<`T`\>\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-___
 
 ### PropsToPropOptions
 
@@ -52,6 +41,32 @@ ___
 | `T` |
 
 ## Functions
+
+### createInjectable
+
+▸ **createInjectable**<`T`\>(`createDefault?`): [`Injectable`](../interfaces/components_api.Injectable.md)<`T`\>
+
+Creates injectable.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `createDefault?` | () => `T` | Returns default value. |
+
+#### Returns
+
+[`Injectable`](../interfaces/components_api.Injectable.md)<`T`\>
+
+Injectable.
+
+___
 
 ### injectRequire
 

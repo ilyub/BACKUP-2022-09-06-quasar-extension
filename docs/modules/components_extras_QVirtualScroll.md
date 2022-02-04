@@ -1,26 +1,26 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/extras/VirtualScroll
+[Quasar Framework](../index.md) / [Exports](../modules.md) / components/extras/QVirtualScroll
 
-# Module: components/extras/VirtualScroll
+# Module: components/extras/QVirtualScroll
 
 ## Table of contents
 
 ### Interfaces
 
-- [VirtualScrollEvent](../interfaces/components_extras_VirtualScroll.VirtualScrollEvent.md)
+- [VirtualScrollEvent](../interfaces/components_extras_QVirtualScroll.VirtualScrollEvent.md)
 
 ### Type aliases
 
-- [Direction](components_extras_VirtualScroll.md#direction)
+- [Direction](components_extras_QVirtualScroll.md#direction)
 
 ### Variables
 
-- [DirectionVO](components_extras_VirtualScroll.md#directionvo)
+- [DirectionVO](components_extras_QVirtualScroll.md#directionvo)
 
 ### Functions
 
-- [isDirection](components_extras_VirtualScroll.md#isdirection)
-- [isVirtualScroll](components_extras_VirtualScroll.md#isvirtualscroll)
-- [isVirtualScrollEvent](components_extras_VirtualScroll.md#isvirtualscrollevent)
+- [isDirection](components_extras_QVirtualScroll.md#isdirection)
+- [isVirtualScroll](components_extras_QVirtualScroll.md#isvirtualscroll)
+- [isVirtualScrollEvent](components_extras_QVirtualScroll.md#isvirtualscrollevent)
 
 ## Type aliases
 
@@ -32,7 +32,7 @@
 
 ### DirectionVO
 
-• **DirectionVO**: `ValidationObject`<[`Direction`](components_extras_VirtualScroll.md#direction)\>
+• **DirectionVO**: `ValidationObject`<[`Direction`](components_extras_QVirtualScroll.md#direction)\>
 
 ## Functions
 

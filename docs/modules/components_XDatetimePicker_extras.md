@@ -1,13 +1,13 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/DatetimePicker.extras
+[Quasar Framework](../index.md) / [Exports](../modules.md) / components/XDatetimePicker.extras
 
-# Module: components/DatetimePicker.extras
+# Module: components/XDatetimePicker.extras
 
 ## Table of contents
 
 ### Variables
 
-- [icons](components_DatetimePicker_extras.md#icons)
-- [lang](components_DatetimePicker_extras.md#lang)
+- [icons](components_XDatetimePicker_extras.md#icons)
+- [lang](components_XDatetimePicker_extras.md#lang)
 
 ## Variables
 
