@@ -6,6 +6,7 @@ import "./Group.extras";
 import "./IconPicker.extras";
 import "./NumericInput.extras";
 import "./LanguagePicker.extras";
+import "./OptionGroup.extras";
 import "./PageLayout.extras";
 import "./PageTable.extras";
 import "./Select.extras";
