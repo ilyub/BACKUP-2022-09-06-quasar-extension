@@ -11,4 +11,5 @@ import "./PageLayout.extras";
 import "./PageTable.extras";
 import "./Select.extras";
 import "./Sortable.extras";
+import "./Switchable.extras";
 import "./Tooltip.extras";

@@ -23,11 +23,7 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 import * as json from "@skylib/functions/es/json";
-import type {
-  numberU,
-  NumStrU,
-  stringU
-} from "@skylib/functions/es/types/core";
+import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
@@ -47,6 +43,8 @@ import LanguagePicker from "./components/LanguagePicker.vue";
 import Menu from "./components/Menu.vue";
 import MenuItem from "./components/MenuItem.vue";
 import NumericInput from "./components/NumericInput.vue";
+import type { OptionGroupOptions } from "./components/OptionGroup.extras";
+import OptionGroup from "./components/OptionGroup.vue";
 import { providePageLayoutSettings } from "./components/PageLayout.extras";
 import PageLayout from "./components/PageLayout.vue";
 import PageMarkupTable from "./components/PageMarkupTable.vue";
@@ -56,6 +54,9 @@ import Resizer from "./components/Resizer.vue";
 import type { SelectOptions } from "./components/Select.extras";
 import Select from "./components/Select.vue";
 import Sortable from "./components/Sortable.vue";
+import type { Transition } from "./components/Switchable.extras";
+import { provideSwitchableSettings } from "./components/Switchable.extras";
+import Switchable from "./components/Switchable.vue";
 import { provideTooltipSettings } from "./components/Tooltip.extras";
 import Tooltip from "./components/Tooltip.vue";
 
@@ -82,12 +83,14 @@ export default defineComponent({
     "x-menu": Menu,
     "x-menu-item": MenuItem,
     "x-numeric-input": NumericInput,
+    "x-option-group": OptionGroup,
     "x-page-layout": PageLayout,
     "x-page-markup-table": PageMarkupTable,
     "x-page-table": PageTable,
     "x-resizer": Resizer,
     "x-select": Select,
     "x-sortable": Sortable,
+    "x-switchable": Switchable,
     "x-tooltip": Tooltip
   },
   setup() {
@@ -104,6 +107,8 @@ export default defineComponent({
     const showSection3 = ref(true);
 
     const showSection4 = ref(true);
+
+    const switchableTransition = ref<Transition>("fade");
 
     const tooltipDelay = ref(1000);
 
@@ -133,6 +138,14 @@ export default defineComponent({
             lang: "ru-RU"
           }
         ]
+      };
+    });
+
+    provideSwitchableSettings(() => {
+      return {
+        fadeOpacity: 0.5,
+        transition: switchableTransition.value,
+        transitionDuration: 500
       };
     });
 
@@ -212,6 +225,13 @@ export default defineComponent({
       mdiMenu,
       mdiPen,
       numericInputValue: ref<numberU>(undefined),
+      optionGroupOptions: fn.run<OptionGroupOptions>(() => [
+        { label: "Select option", value: undefined },
+        { label: "Option 1", value: 1 },
+        { label: "Option 2", value: "a" },
+        { disable: true, label: "Option 3", value: "b" }
+      ]),
+      optionGroupValue: ref<unknown>("a"),
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
@@ -241,7 +261,7 @@ export default defineComponent({
         { label: "Option 2", value: "a" },
         { disable: true, label: "Option 3", value: "b" }
       ]),
-      selectValue: ref<NumStrU>(undefined),
+      selectValue: ref<unknown>("a"),
       showSection1,
       showSection2,
       showSection3,
@@ -252,6 +272,21 @@ export default defineComponent({
         { id: "c", name: "C" }
       ]),
       sortable2: ref([]),
+      switchableOn: ref(true),
+      switchableSampleKnob: ref(5),
+      switchableTransition,
+      switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
+        () => [
+          {
+            label: "Fade",
+            value: "fade"
+          },
+          {
+            label: "Slide",
+            value: "slide"
+          }
+        ]
+      ),
       tooltipDelay,
       tooltipShow,
       us
@@ -262,6 +297,40 @@ export default defineComponent({
 
 <template>
   <table class="wrapper">
+    <tr>
+      <td>Option group</td>
+      <td>
+        <x-option-group
+          v-model="optionGroupValue"
+          inline
+          :options="optionGroupOptions"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Switchable</td>
+      <td>
+        <div>
+          Transition:
+          <x-option-group
+            v-model="switchableTransition"
+            class="inline-block"
+            inline
+            :options="switchableTransitionOptions"
+          />
+        </div>
+        <q-toggle v-model="switchableOn" />
+        <x-switchable :on="switchableOn">
+          Sample knob
+          <x-knob
+            v-model="switchableSampleKnob"
+            class="q-ml-sm"
+            :max="10"
+            :step="1"
+          />
+        </x-switchable>
+      </td>
+    </tr>
     <tr>
       <td>Button</td>
       <td>
@@ -689,18 +758,18 @@ table {
   background: $grey-3;
 }
 
-.resizer {
-  position: relative;
-  height: 50px;
-  background: blue;
-}
-
 .page-markup-table {
   border: 1px solid blue;
 }
 
 .page-table {
   border: 1px solid blue;
+}
+
+.resizer {
+  position: relative;
+  height: 50px;
+  background: blue;
 }
 
 .sortable {

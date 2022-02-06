@@ -21,6 +21,8 @@ import type { PageTableSettings } from "../components/PageTable.extras";
 import { testPageTableSettings } from "../components/PageTable.extras";
 import type { SortableSettings } from "../components/Sortable.extras";
 import { testSortableSettings } from "../components/Sortable.extras";
+import type { SwitchableSettings } from "../components/Switchable.extras";
+import { testSwitchableSettings } from "../components/Switchable.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
 import { testTooltipSettings } from "../components/Tooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
@@ -73,6 +75,7 @@ export interface CustomGlobalMountOptions {
   readonly pageOffset?: stringU;
   readonly pageTableSettings?: PageTableSettings;
   readonly sortableSettings?: SortableSettings;
+  readonly switchableSettings?: SwitchableSettings;
   readonly tooltipSettings?: TooltipSettings;
 }
 
@@ -129,6 +132,9 @@ export function globalMountOptions(
 
   if ("pageTableSettings" in options)
     testPageTableSettings(provide, options.pageTableSettings);
+
+  if ("switchableSettings" in options)
+    testSwitchableSettings(provide, options.switchableSettings);
 
   if ("sortableSettings" in options)
     testSortableSettings(provide, options.sortableSettings);

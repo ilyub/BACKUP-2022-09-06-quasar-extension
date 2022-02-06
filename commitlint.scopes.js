@@ -23,6 +23,7 @@ module.exports = [
   "Resizer",
   "Select",
   "Sortable",
+  "Switchable",
   "Tooltip",
   "boot",
   "components",
