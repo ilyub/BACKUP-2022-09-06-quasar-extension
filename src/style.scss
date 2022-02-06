@@ -18,7 +18,15 @@ $icon-button-group-spacing : 2px !default;
   display: inline-block;
 }
 
-.inline-input-margin {
+.pl-inline-input {
+  margin-left: $inline-input-margin;
+}
+
+.pr-inline-input {
+  margin-right: $inline-input-margin;
+}
+
+.px-inline-input {
   margin-right: $inline-input-margin;
   margin-left: $inline-input-margin;
 }
