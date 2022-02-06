@@ -57,7 +57,7 @@ export default defineComponent({
   </q-card>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @use "sass:map";
 
 .header-actions {

@@ -90,7 +90,7 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .body {
   > :deep(*) {
     margin-top: v-bind(sectionMargin);
