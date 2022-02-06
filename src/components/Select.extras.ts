@@ -1,19 +1,16 @@
 import * as is from "@skylib/functions/es/guards";
-import type { NumStrU } from "@skylib/functions/es/types/core";
 
-export interface SelectOption<T extends NumStrU = NumStrU> {
+export interface SelectOption<T = unknown> {
   readonly disable?: boolean;
   readonly label: string;
   readonly value: T;
 }
 
-export type SelectOptions<T extends NumStrU = NumStrU> = ReadonlyArray<
-  SelectOption<T>
->;
+export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
 
 export const isSelectOption: is.Guard<SelectOption> = is.factory(
   is.object.of,
-  { label: is.string, value: is.numStrU },
+  { label: is.string, value: is.unknown },
   { disable: is.boolean }
 );
 

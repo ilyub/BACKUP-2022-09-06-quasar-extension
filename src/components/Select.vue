@@ -5,7 +5,7 @@ import { computed, defineComponent } from "vue";
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
-import type { NumStrU, Writable } from "@skylib/functions/es/types/core";
+import type { Writable } from "@skylib/functions/es/types/core";
 
 import type { PropsToPropOptions } from "./api";
 import { propOptions } from "./api";
@@ -16,28 +16,28 @@ export default defineComponent({
   name: "x-select",
   props: {
     ...({} as PropsToPropOptions<QSelectProps>),
-    modelValue: propOptions(is.numStrU),
+    modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isSelectOptions)
   },
   emits: {
-    "update:model-value": (value: NumStrU) => is.numStrU(value)
+    "update:model-value": (value: unknown) => is.unknown(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     return {
-      activeOption: computed<SelectOption>(() => {
+      selectModelValue: computed<SelectOption>(() => {
         const result = props.options.find(
           option => option.value === props.modelValue
         );
 
-        assert.not.empty(result, "invalid value");
+        assert.not.empty(result, "Invalid value");
 
         return result;
       }),
       selectOptions: computed<Writable<SelectOptions>>(() =>
         a.clone(props.options)
       ),
-      updateModelValue(value: unknown): void {
+      selectUpdateModelValue(value: unknown): void {
         assert.byGuard(value, isSelectOption);
         emit("update:model-value", value.value);
       }
@@ -49,8 +49,8 @@ export default defineComponent({
 <template>
   <q-select
     dense
-    :model-value="activeOption"
+    :model-value="selectModelValue"
     :options="selectOptions"
-    @update:model-value="updateModelValue"
+    @update:model-value="selectUpdateModelValue"
   />
 </template>

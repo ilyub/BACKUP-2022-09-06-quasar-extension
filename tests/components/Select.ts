@@ -1,26 +1,29 @@
 import { QSelect } from "quasar";
 import * as testUtils from "@vue/test-utils";
 
-import * as a from "@skylib/functions/es/array";
-
 import type { SelectOptions } from "@/components/Select.extras";
 import Select from "@/components/Select.vue";
 
-it.each([0, 1, 2])("Select", index => {
-  const options: SelectOptions<undefined | 1 | "a"> = [
-    { disable: true, label: "Select option", value: undefined },
-    { label: "Option 1", value: 1 },
-    { label: "Option 2", value: "a" }
+it.each([
+  { disable: true, label: "Option 1", value: undefined },
+  { label: "Option 2", value: 1 },
+  { label: "Option 3", value: "a" }
+])("Select", option => {
+  const options: SelectOptions = [
+    { disable: true, label: "Option 1", value: undefined },
+    { label: "Option 2", value: 1 },
+    { label: "Option 3", value: "a" }
   ];
 
   const wrapper = testUtils.mount(Select, {
     props: {
+      modelValue: undefined,
       options
     }
   });
 
-  wrapper.findComponent(QSelect).vm.$emit("update:model-value", options[index]);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([
-    [a.get(options, index).value]
-  ]);
+  const expected = [[option.value]];
+
+  wrapper.findComponent(QSelect).vm.$emit("update:model-value", option);
+  expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
 });
