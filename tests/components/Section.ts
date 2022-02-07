@@ -1,10 +1,10 @@
 import * as vueTestUtils from "@vue/test-utils";
 
-import PageSection from "@/components/PageSection.vue";
+import Section from "@/components/Section.vue";
 import * as testUtils from "@/testUtils";
 
-it("PageSection", () => {
-  const wrapper = vueTestUtils.mount(PageSection, {
+it("Section", () => {
+  const wrapper = vueTestUtils.mount(Section, {
     global: testUtils.globalMountOptions()
   });
 
