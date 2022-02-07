@@ -8,6 +8,7 @@
 
 - [Elem](../interfaces/components_Sortable_extras.Elem.md)
 - [MoveData](../interfaces/components_Sortable_extras.MoveData.md)
+- [SortablePropOptions](../interfaces/components_Sortable_extras.SortablePropOptions.md)
 - [SortableSettings](../interfaces/components_Sortable_extras.SortableSettings.md)
 
 ### Type aliases

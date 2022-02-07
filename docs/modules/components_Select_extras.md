@@ -11,6 +11,7 @@
 ### Type aliases
 
 - [SelectOptions](components_Select_extras.md#selectoptions)
+- [SelectPropOptions](components_Select_extras.md#selectpropoptions)
 
 ### Functions
 
@@ -27,13 +28,19 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `NumStrU` = `NumStrU` |
+| `T` | `unknown` |
+
+___
+
+### SelectPropOptions
+
+Ƭ **SelectPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<`QSelectProps`, { `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\> ; `options`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`SelectOptions`](components_Select_extras.md#selectoptions)\>  }\>
 
 ## Functions
 
 ### isSelectOption
 
-▸ `Const` **isSelectOption**(`value`): value is SelectOption<NumStrU\>
+▸ `Const` **isSelectOption**(`value`): value is SelectOption<unknown\>
 
 #### Parameters
 
@@ -43,13 +50,13 @@
 
 #### Returns
 
-value is SelectOption<NumStrU\>
+value is SelectOption<unknown\>
 
 ___
 
 ### isSelectOptions
 
-▸ `Const` **isSelectOptions**(`value`): value is readonly SelectOption<NumStrU\>[]
+▸ `Const` **isSelectOptions**(`value`): value is readonly SelectOption<unknown\>[]
 
 #### Parameters
 
@@ -59,4 +66,4 @@ ___
 
 #### Returns
 
-value is readonly SelectOption<NumStrU\>[]
+value is readonly SelectOption<unknown\>[]

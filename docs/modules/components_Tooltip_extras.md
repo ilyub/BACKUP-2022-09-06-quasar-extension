@@ -12,6 +12,7 @@
 ### Type aliases
 
 - [Direction](components_Tooltip_extras.md#direction)
+- [TooltipOptions](components_Tooltip_extras.md#tooltipoptions)
 
 ### Variables
 
@@ -32,6 +33,12 @@
 ### Direction
 
 Ƭ **Direction**: ``"down"`` \| ``"down-left"`` \| ``"down-right"`` \| ``"left"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right"`` \| ``"right-down"`` \| ``"right-up"`` \| ``"up"`` \| ``"up-left"`` \| ``"up-right"``
+
+___
+
+### TooltipOptions
+
+Ƭ **TooltipOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<`QTooltipProps`, { `direction`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>
 
 ## Variables
 

@@ -4,6 +4,12 @@
 
 ## Table of contents
 
-### Interfaces
+### Type aliases
 
-- [BaseButtonProps](../interfaces/components_BaseButton_extras.BaseButtonProps.md)
+- [BaseButtonPropOptions](components_BaseButton_extras.md#basebuttonpropoptions)
+
+## Type aliases
+
+### BaseButtonPropOptions
+
+Ƭ **BaseButtonPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QBtnProps`, { `modelValue`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `tooltip`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `tooltipDirection`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>

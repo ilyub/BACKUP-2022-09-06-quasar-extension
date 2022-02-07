@@ -14,6 +14,7 @@
 - [Align](components_PageTable_extras.md#align)
 - [Columns](components_PageTable_extras.md#columns)
 - [Field](components_PageTable_extras.md#field)
+- [PageTablePropOptions](components_PageTable_extras.md#pagetablepropoptions)
 
 ### Variables
 
@@ -69,6 +70,12 @@ ___
 ##### Returns
 
 `string`
+
+___
+
+### PageTablePropOptions
+
+Ƭ **PageTablePropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTableProps`, { `columns`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`Columns`](components_PageTable_extras.md#columns)<`any`\>\> ; `extraPageOffset`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `limit`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`numberU`\> ; `rows`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<readonly `unknown`[]\> ; `selected`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<readonly `unknown`[]\>  }\>
 
 ## Variables
 

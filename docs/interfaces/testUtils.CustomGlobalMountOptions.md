@@ -14,6 +14,7 @@
 - [pageOffset](testUtils.CustomGlobalMountOptions.md#pageoffset)
 - [pageTableSettings](testUtils.CustomGlobalMountOptions.md#pagetablesettings)
 - [sortableSettings](testUtils.CustomGlobalMountOptions.md#sortablesettings)
+- [switchableSettings](testUtils.CustomGlobalMountOptions.md#switchablesettings)
 - [tooltipSettings](testUtils.CustomGlobalMountOptions.md#tooltipsettings)
 
 ## Properties
@@ -51,6 +52,12 @@ ___
 ### sortableSettings
 
 • `Optional` `Readonly` **sortableSettings**: [`SortableSettings`](components_Sortable_extras.SortableSettings.md)
+
+___
+
+### switchableSettings
+
+• `Optional` `Readonly` **switchableSettings**: [`SwitchableSettings`](components_Switchable_extras.SwitchableSettings.md)
 
 ___
 

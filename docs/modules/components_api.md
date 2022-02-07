@@ -17,7 +17,11 @@
 
 ### Type aliases
 
+- [ExtendPropOptions](components_api.md#extendpropoptions)
+- [LooseRequired](components_api.md#looserequired)
+- [PropOptionsBoolean](components_api.md#propoptionsboolean)
 - [PropsToPropOptions](components_api.md#propstopropoptions)
+- [SetupProps](components_api.md#setupprops)
 
 ### Functions
 
@@ -30,15 +34,59 @@
 
 ## Type aliases
 
-### PropsToPropOptions
+### ExtendPropOptions
 
-Ƭ **PropsToPropOptions**<`T`\>: { readonly [K in keyof T]-?: PropOptions<T[K]\> }
+Ƭ **ExtendPropOptions**<`T`, `B`\>: { readonly [K in Exclude<OptionalKeys<T\>, keyof B\>]: PropOptions<T[K]\> } & `B`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+| `B` | `object` |
+
+___
+
+### LooseRequired
+
+Ƭ **LooseRequired**<`T`\>: { [P in string & keyof T]: T[P] }
 
 #### Type parameters
 
 | Name |
 | :------ |
 | `T` |
+
+___
+
+### PropOptionsBoolean
+
+Ƭ **PropOptionsBoolean**: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
+
+___
+
+### PropsToPropOptions
+
+Ƭ **PropsToPropOptions**<`T`, `B`\>: `Join2`<{ readonly [K in Exclude<OptionalKeys<T\>, keyof B\>]: PropOptions<T[K]\> }, { readonly [K in Exclude<RequiredKeys<T\>, keyof B\>]: PropOptionsRequired<T[K]\> }\> & `B`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+| `B` | `object` |
+
+___
+
+### SetupProps
+
+Ƭ **SetupProps**<`T`\>: `Readonly`<[`LooseRequired`](components_api.md#looserequired)<`Readonly`<`ExtractPropTypes`<`T`\>\>\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
 
 ## Functions
 
@@ -122,7 +170,7 @@ ___
 
 ### propOptionsBoolean
 
-▸ **propOptionsBoolean**(`defVal?`): [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
+▸ **propOptionsBoolean**(`defVal?`): [`PropOptionsBoolean`](components_api.md#propoptionsboolean)
 
 Creates Vue property.
 
@@ -134,7 +182,7 @@ Creates Vue property.
 
 #### Returns
 
-[`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
+[`PropOptionsBoolean`](components_api.md#propoptionsboolean)
 
 Vue property.
 

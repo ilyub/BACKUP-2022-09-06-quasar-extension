@@ -7,6 +7,7 @@
 ### Interfaces
 
 - [GroupItem](../interfaces/components_Group_extras.GroupItem.md)
+- [GroupPropOptions](../interfaces/components_Group_extras.GroupPropOptions.md)
 
 ### Type aliases
 

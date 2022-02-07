@@ -8,6 +8,10 @@
 
 - [IconPickerSettings](../interfaces/components_IconPicker_extras.IconPickerSettings.md)
 
+### Type aliases
+
+- [IconPickerPropOptions](components_IconPicker_extras.md#iconpickerpropoptions)
+
 ### Variables
 
 - [icons](components_IconPicker_extras.md#icons)
@@ -18,6 +22,12 @@
 - [injectIconPickerSettings](components_IconPicker_extras.md#injecticonpickersettings)
 - [provideIconPickerSettings](components_IconPicker_extras.md#provideiconpickersettings)
 - [testIconPickerSettings](components_IconPicker_extras.md#testiconpickersettings)
+
+## Type aliases
+
+### IconPickerPropOptions
+
+Ƭ **IconPickerPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconButtonPropOptions`](components_IconButton_extras.md#iconbuttonpropoptions), { `cols`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`number`\> ; `modelValue`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `placeholder`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`string`\> ; `rows`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`number`\> ; `spinnerSize`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`string`\>  }\>
 
 ## Variables
 

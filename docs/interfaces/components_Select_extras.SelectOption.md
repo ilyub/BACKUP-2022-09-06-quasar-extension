@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `NumStrU` = `NumStrU` |
+| `T` | `unknown` |
 
 ## Table of contents
 

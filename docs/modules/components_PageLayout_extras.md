@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [PageLayoutPropOptions](../interfaces/components_PageLayout_extras.PageLayoutPropOptions.md)
 - [PageLayoutSettings](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
 
 ### Variables

@@ -13,6 +13,7 @@
 
 - [ChangeLanguageAction](components_LanguagePicker_extras.md#changelanguageaction)
 - [LanguagePickerItems](components_LanguagePicker_extras.md#languagepickeritems)
+- [LanguagePickerOptions](components_LanguagePicker_extras.md#languagepickeroptions)
 
 ### Functions
 
@@ -45,6 +46,12 @@ ___
 ### LanguagePickerItems
 
 Ƭ **LanguagePickerItems**: readonly [`LanguagePickerItem`](../interfaces/components_LanguagePicker_extras.LanguagePickerItem.md)[]
+
+___
+
+### LanguagePickerOptions
+
+Ƭ **LanguagePickerOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconPickerPropOptions`](components_IconPicker_extras.md#iconpickerpropoptions), { `language`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\>  }\>
 
 ## Functions
 
