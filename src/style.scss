@@ -1,14 +1,8 @@
 $button-group-spacing : 5px !default;
 $inline-input-margin : 5px !default;
 $icon-button-group-spacing : 2px !default;
-
-.button-group-member + .button-group-member {
-  margin-left: $button-group-spacing;
-}
-
-.icon-button-group-member + .icon-button-group-member {
-  margin-left: $icon-button-group-spacing;
-}
+$page-section-spacing: 20px !default;
+$section-spacing: 10px !default;
 
 .flex-grow-1 {
   flex-grow: 1;
@@ -62,4 +56,20 @@ $icon-button-group-spacing : 2px !default;
       bottom: 0;
     }
   }
+}
+
+.x-button-group-member + .x-button-group-member {
+  margin-left: $button-group-spacing;
+}
+
+.x-icon-button-group-member + .x-icon-button-group-member {
+  margin-left: $icon-button-group-spacing;
+}
+
+.x-page-section + .x-page-section {
+  margin-top: $page-section-spacing;
+}
+
+.x-section + .x-section {
+  margin-top: $section-spacing;
 }

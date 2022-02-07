@@ -48,9 +48,11 @@ import OptionGroup from "./components/OptionGroup.vue";
 import { providePageLayoutSettings } from "./components/PageLayout.extras";
 import PageLayout from "./components/PageLayout.vue";
 import PageMarkupTable from "./components/PageMarkupTable.vue";
+import PageSection from "./components/PageSection.vue";
 import type { Columns } from "./components/PageTable.extras";
 import PageTable from "./components/PageTable.vue";
 import Resizer from "./components/Resizer.vue";
+import Section from "./components/Section.vue";
 import type { SelectOptions } from "./components/Select.extras";
 import Select from "./components/Select.vue";
 import Sortable from "./components/Sortable.vue";
@@ -86,8 +88,10 @@ export default defineComponent({
     "x-option-group": OptionGroup,
     "x-page-layout": PageLayout,
     "x-page-markup-table": PageMarkupTable,
+    "x-page-section": PageSection,
     "x-page-table": PageTable,
     "x-resizer": Resizer,
+    "x-section": Section,
     "x-select": Select,
     "x-sortable": Sortable,
     "x-switchable": Switchable,
@@ -539,19 +543,13 @@ export default defineComponent({
       <td>Page layout</td>
       <td>
         <x-page-layout class="page-layout">
-          <div class="page-section">Section 1</div>
-          <div class="page-section">Section 2</div>
-          <div class="page-section">Section 3</div>
+          <div class="bg-grey-3 q-pa-md">Content</div>
         </x-page-layout>
         <x-page-layout class="page-layout q-mt-md" title="Title">
-          <div class="page-section">Section 1</div>
-          <div class="page-section">Section 2</div>
-          <div class="page-section">Section 3</div>
+          <div class="bg-grey-3 q-pa-md">Content</div>
         </x-page-layout>
         <x-page-layout class="page-layout q-mt-md" close-button title="Title">
-          <div class="page-section">Section 1</div>
-          <div class="page-section">Section 2</div>
-          <div class="page-section">Section 3</div>
+          <div class="bg-grey-3 q-pa-md">Content</div>
         </x-page-layout>
       </td>
     </tr>
@@ -577,6 +575,14 @@ export default defineComponent({
             </tfoot>
           </x-page-markup-table>
         </x-page-layout>
+      </td>
+    </tr>
+    <tr>
+      <td>Page Section</td>
+      <td>
+        <x-page-section class="bg-grey-3 q-pa-md">Content</x-page-section>
+        <x-page-section class="bg-grey-3 q-pa-md">Content</x-page-section>
+        <x-page-section class="bg-grey-3 q-pa-md">Content</x-page-section>
       </td>
     </tr>
     <tr>
@@ -617,6 +623,14 @@ export default defineComponent({
             :min="100"
           />
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Section</td>
+      <td>
+        <x-section class="bg-grey-3 q-pa-md">Content</x-section>
+        <x-section class="bg-grey-3 q-pa-md">Content</x-section>
+        <x-section class="bg-grey-3 q-pa-md">Content</x-section>
       </td>
     </tr>
     <tr>
@@ -751,11 +765,6 @@ table {
 
 .page-layout {
   border: 1px solid red;
-}
-
-.page-section {
-  padding: map.get($space-sm, "y") map.get($space-sm, "x");
-  background: $grey-3;
 }
 
 .page-markup-table {
