@@ -1,4 +1,8 @@
+import type { QOptionGroupProps } from "quasar";
+
 import * as is from "@skylib/functions/es/guards";
+
+import type { PropOptionsRequired, PropsToPropOptions } from "./api";
 
 export interface OptionGroupOption<T = unknown> {
   readonly disable?: boolean;
@@ -8,6 +12,14 @@ export interface OptionGroupOption<T = unknown> {
 
 export type OptionGroupOptions<T = unknown> = ReadonlyArray<
   OptionGroupOption<T>
+>;
+
+export type OptionGroupPropOptions = PropsToPropOptions<
+  QOptionGroupProps,
+  {
+    readonly modelValue: PropOptionsRequired<unknown>;
+    readonly options: PropOptionsRequired<OptionGroupOptions>;
+  }
 >;
 
 export const isOptionGroupOption: is.Guard<OptionGroupOption> = is.factory(

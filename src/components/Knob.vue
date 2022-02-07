@@ -1,24 +1,24 @@
 <script lang="ts">
-import type { QKnobProps } from "quasar";
 import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { KnobPropOptions } from "./Knob.extras";
 import { injectDisable } from "./Switchable.extras";
 
 export default defineComponent({
   name: "x-knob",
   props: {
-    ...({} as PropsToPropOptions<QKnobProps>),
+    ...({} as KnobPropOptions),
     disable: propOptions.boolean(),
     modelValue: propOptions.required(is.number)
   },
   emits: {
     "update:model-value": (value: number) => is.number(value)
   },
-  setup() {
+  setup(_props: SetupProps<KnobPropOptions>) {
     return {
       globalDisable: injectDisable()
     };

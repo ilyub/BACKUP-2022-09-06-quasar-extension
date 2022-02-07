@@ -1,7 +1,12 @@
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
+import type { PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
+
+export interface SwitchablePropOptions {
+  readonly on: PropOptionsBoolean;
+}
 
 export interface SwitchableSettings {
   readonly fadeOpacity: number;

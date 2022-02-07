@@ -3,9 +3,11 @@ import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { injectPageOffset, providePageOffset } from "./api/pageContentHeight";
 import IconButton from "./IconButton.vue";
+import type { PageLayoutPropOptions } from "./PageLayout.extras";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 
 export default defineComponent({
@@ -18,7 +20,7 @@ export default defineComponent({
     hideCloseButton: propOptions.boolean(),
     title: propOptions(is.stringU)
   },
-  setup(props) {
+  setup(props: SetupProps<PageLayoutPropOptions>) {
     const hasTitle = computed<boolean>(() => is.not.empty(props.title));
 
     const pageOffset = injectPageOffset();

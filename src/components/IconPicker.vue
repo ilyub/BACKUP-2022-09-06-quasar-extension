@@ -11,13 +11,13 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { BaseButtonProps } from "./BaseButton.extras";
 import Card from "./Card.vue";
 import CardActions from "./CardActions.vue";
 import CardSection from "./CardSection.vue";
 import IconButton from "./IconButton.vue";
+import type { IconPickerPropOptions } from "./IconPicker.extras";
 import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import Input from "./Input.vue";
 
@@ -54,7 +54,7 @@ export default defineComponent({
     "x-input": Input
   },
   props: {
-    ...({} as PropsToPropOptions<BaseButtonProps>),
+    ...({} as IconPickerPropOptions),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
@@ -64,7 +64,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  setup(props, { emit }) {
+  setup(props: SetupProps<IconPickerPropOptions>, { emit }) {
     const filteredItems = computed<Items>(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)

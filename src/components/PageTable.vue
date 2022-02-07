@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { QTableProps, QTableSlots } from "quasar";
+import type { QTableSlots } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -8,11 +8,16 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { Writable } from "@skylib/functions/es/types/core";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
-import type { Column, Columns, Field } from "./PageTable.extras";
+import type {
+  Column,
+  Columns,
+  Field,
+  PageTablePropOptions
+} from "./PageTable.extras";
 import { injectPageTableSettings, isAlign } from "./PageTable.extras";
 
 interface BodyCellData {
@@ -42,7 +47,7 @@ const isColumns = is.factory(is.array.of, isColumn);
 export default defineComponent({
   name: "x-page-table",
   props: {
-    ...({} as PropsToPropOptions<QTableProps>),
+    ...({} as PageTablePropOptions),
     columns: propOptions.required(isColumns),
     extraPageOffset: propOptions(is.stringU),
     limit: propOptions(is.numberU),
@@ -54,8 +59,8 @@ export default defineComponent({
     "update:selected": (value: readonly unknown[] | undefined) =>
       is.or(value, is.array, is.undefined)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props, { emit, slots }) {
+  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
+  setup(props: SetupProps<PageTablePropOptions>, { emit, slots }) {
     const settings = injectPageTableSettings();
 
     return {

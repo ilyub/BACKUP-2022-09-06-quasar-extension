@@ -1,13 +1,17 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import type { SetupProps } from "./api";
+import type { DroppablePropOptions } from "./Droppable.extra";
 import Sortable from "./Sortable.vue";
 
 export default defineComponent({
   name: "x-droppable",
   components: {
     "x-sortable": Sortable
-  }
+  },
+  props: {} as DroppablePropOptions,
+  setup(_props: SetupProps<DroppablePropOptions>) {}
 });
 </script>
 

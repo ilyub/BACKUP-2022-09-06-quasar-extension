@@ -1,7 +1,12 @@
+import type { QFieldProps } from "quasar";
+
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
+import type { stringU } from "@skylib/functions/es/types/core";
+
+import type { PropOptions, PropsToPropOptions } from "./api";
 
 declare global {
   namespace facades {
@@ -28,3 +33,12 @@ export const icons: Icons<"am" | "close" | "pickDate" | "pickTime" | "pm"> =
   baseIcons;
 
 export const lang: DictionaryAndWords<"PickDate" | "Save"> = baseLang;
+
+export type DatetimePickerPropOptions = PropsToPropOptions<
+  QFieldProps,
+  {
+    readonly max: PropOptions<stringU>;
+    readonly min: PropOptions<stringU>;
+    readonly modelValue: PropOptions<stringU>;
+  }
+>;

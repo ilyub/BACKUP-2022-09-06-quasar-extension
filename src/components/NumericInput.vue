@@ -1,19 +1,19 @@
 <script lang="ts">
-import type { QInputProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { NumericInputPropOptions } from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
 export default defineComponent({
   name: "x-numeric-input",
   props: {
-    ...({} as PropsToPropOptions<QInputProps>),
+    ...({} as NumericInputPropOptions),
     max: propOptions.required(is.number),
     min: propOptions.default(is.number, 0),
     modelValue: propOptions.required(is.numberU)
@@ -21,8 +21,8 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: numberU) => is.numberU(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props, { emit }) {
+  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
+  setup(props: SetupProps<NumericInputPropOptions>, { emit }) {
     return {
       icons,
       inputModelValue: computed<string>(() => cast.string(props.modelValue)),

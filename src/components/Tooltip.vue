@@ -1,10 +1,9 @@
 <script lang="ts">
-import type { QTooltipProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { Direction } from "./Tooltip.extras";
+import type { Direction, TooltipOptions } from "./Tooltip.extras";
 import {
   disabled,
   injectTooltipSettings,
@@ -48,11 +47,11 @@ type Self =
 export default defineComponent({
   name: "x-tooltip",
   props: {
-    ...({} as PropsToPropOptions<QTooltipProps>),
+    ...({} as TooltipOptions),
     direction: propOptions(isDirectionU)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props) {
+  setup(props: SetupProps<TooltipOptions>) {
     const direction = computed<Direction>(() => props.direction ?? "down");
 
     const settings = injectTooltipSettings();

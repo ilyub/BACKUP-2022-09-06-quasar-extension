@@ -1,15 +1,13 @@
 <script lang="ts">
-import type { QBtnProps } from "quasar";
 import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { BaseButtonPropOptions } from "./BaseButton.extras";
 import { isDirectionU } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
-
-const baseProps = {} as PropsToPropOptions<QBtnProps>;
 
 export default defineComponent({
   name: "x-base-button",
@@ -17,7 +15,7 @@ export default defineComponent({
     "x-tooltip": Tooltip
   },
   props: {
-    ...baseProps,
+    ...({} as BaseButtonPropOptions),
     modelValue: propOptions.boolean(),
     tooltip: propOptions(is.stringU),
     tooltipDirection: propOptions(isDirectionU)
@@ -25,7 +23,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: boolean) => is.boolean(value)
   },
-  setup(props, { emit }) {
+  setup(props: SetupProps<BaseButtonPropOptions>, { emit }) {
     return {
       hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip)),
       onClick(): void {

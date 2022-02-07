@@ -13,6 +13,7 @@ module.exports = {
     "ComputedRef",
     "DirectiveBinding",
     "DOMWrapper",
+    "Element",
     "FunctionalComponent",
     "HTMLElement",
     "InjectionKey",

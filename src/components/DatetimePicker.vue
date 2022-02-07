@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { QField, QFieldProps } from "quasar";
+import type { QField } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import { compare } from "@skylib/facades/es/compare";
@@ -9,10 +9,11 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import Card from "./Card.vue";
 import CardSection from "./CardSection.vue";
+import type { DatetimePickerPropOptions } from "./DatetimePicker.extras";
 import { icons, lang } from "./DatetimePicker.extras";
 import IconButton from "./IconButton.vue";
 
@@ -29,7 +30,7 @@ export default defineComponent({
     "x-icon-button": IconButton
   },
   props: {
-    ...({} as PropsToPropOptions<QFieldProps>),
+    ...({} as DatetimePickerPropOptions),
     max: propOptions(is.stringU),
     min: propOptions(is.stringU),
     modelValue: propOptions(is.stringU)
@@ -38,7 +39,7 @@ export default defineComponent({
     "update:model-value": (value: stringU) => is.stringU(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props, { emit }) {
+  setup(props: SetupProps<DatetimePickerPropOptions>, { emit }) {
     const dialogShow = ref(false);
 
     const empty = computed<boolean>(() => is.empty(pickerValue.value));

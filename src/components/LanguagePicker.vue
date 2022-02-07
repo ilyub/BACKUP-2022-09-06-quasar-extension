@@ -4,11 +4,13 @@ import { computed, defineComponent } from "vue";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { BaseButtonProps } from "./BaseButton.extras";
 import IconButton from "./IconButton.vue";
-import type { LanguagePickerItem } from "./LanguagePicker.extras";
+import type {
+  LanguagePickerItem,
+  LanguagePickerOptions
+} from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
 import Menu from "./Menu.vue";
 import MenuItem from "./MenuItem.vue";
@@ -21,10 +23,10 @@ export default defineComponent({
     "x-menu-item": MenuItem
   },
   props: {
-    ...({} as PropsToPropOptions<BaseButtonProps>),
+    ...({} as LanguagePickerOptions),
     language: propOptions.required(is.unknown)
   },
-  setup(props) {
+  setup(props: SetupProps<LanguagePickerOptions>) {
     const settings = injectLanguagePickerSettings();
 
     return {

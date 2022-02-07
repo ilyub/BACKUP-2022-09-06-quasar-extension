@@ -5,7 +5,9 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU } from "@skylib/functions/es/types/core";
 
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { ResizerPropOptions } from "./Resizer.extras";
 
 interface Offset {
   readonly x: number;
@@ -33,6 +35,7 @@ const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
 export default defineComponent({
   name: "x-resizer",
   props: {
+    ...({} as ResizerPropOptions),
     max: propOptions(is.numberU),
     min: propOptions.required(is.number),
     modelValue: propOptions.required(is.number)
@@ -40,7 +43,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: number) => is.number(value)
   },
-  setup(props, { emit }) {
+  setup(props: SetupProps<ResizerPropOptions>, { emit }) {
     let initialValue: numberU = undefined;
 
     return {

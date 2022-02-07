@@ -1,12 +1,13 @@
 <script lang="ts">
-import type { QCardActions } from "quasar";
 import { defineComponent } from "vue";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
+import type { CardActionsPropOptions } from "./CardActions.extras";
 
 export default defineComponent({
   name: "x-card-actions",
-  props: {} as PropsToPropOptions<QCardActions>
+  props: {} as CardActionsPropOptions,
+  setup(_props: SetupProps<CardActionsPropOptions>) {}
 });
 </script>
 

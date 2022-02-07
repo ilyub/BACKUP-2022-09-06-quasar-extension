@@ -1,8 +1,16 @@
-import type { ComputedRef, InjectionKey, PropType } from "vue";
+import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
+import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
+import type {
+  ComputedRef,
+  ExtractPropTypes,
+  InjectionKey,
+  PropType
+} from "vue";
 import { computed, inject, provide } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
+import type { Join2 } from "@skylib/functions/es/types/core";
 
 export interface Injectable<T> {
   /**
@@ -26,12 +34,23 @@ export interface Injectable<T> {
   readonly test: (mutableProvide: Record<symbol, unknown>, settings: T) => void;
 }
 
+export type ExtendPropOptions<T extends object, B = object> = {
+  readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]>;
+} & B;
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type LooseRequired<T> = {
+  [P in string & keyof T]: T[P];
+};
+
 export interface PropOptions<T> {
   readonly default?: T;
   readonly required?: true;
   readonly type?: PropType<T>;
   readonly validator?: is.Guard<T>;
 }
+
+export type PropOptionsBoolean = PropOptionsDefault<boolean>;
 
 export interface PropOptionsDefault<T> extends PropOptions<T> {
   readonly default: T;
@@ -41,9 +60,19 @@ export interface PropOptionsRequired<T> extends PropOptions<T> {
   readonly required: true;
 }
 
-export type PropsToPropOptions<T> = {
-  readonly [K in keyof T]-?: PropOptions<T[K]>;
-};
+export type PropsToPropOptions<T extends object, B = object> = Join2<
+  { readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]> },
+  {
+    readonly [K in Exclude<RequiredKeys<T>, keyof B>]: PropOptionsRequired<
+      T[K]
+    >;
+  }
+> &
+  B;
+
+export type SetupProps<T extends object> = Readonly<
+  LooseRequired<Readonly<ExtractPropTypes<T>>>
+>;
 
 /**
  * Creates injectable.
@@ -99,9 +128,7 @@ export function propOptions<T>(validator: is.Guard<T>): PropOptions<T> {
  * @param defVal - Default value.
  * @returns Vue property.
  */
-export function propOptionsBoolean(
-  defVal = false
-): PropOptionsDefault<boolean> {
+export function propOptionsBoolean(defVal = false): PropOptionsBoolean {
   return { default: defVal, type: Boolean };
 }
 

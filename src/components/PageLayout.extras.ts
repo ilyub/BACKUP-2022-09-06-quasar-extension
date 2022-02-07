@@ -1,6 +1,8 @@
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
+import type { stringU } from "@skylib/functions/es/types/core";
 
+import type { PropOptions, PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
 
 declare global {
@@ -11,6 +13,12 @@ declare global {
       }
     }
   }
+}
+
+export interface PageLayoutPropOptions {
+  readonly closeButton: PropOptionsBoolean;
+  readonly hideCloseButton: PropOptionsBoolean;
+  readonly title: PropOptions<stringU>;
 }
 
 export interface PageLayoutSettings {

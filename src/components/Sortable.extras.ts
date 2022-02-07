@@ -2,8 +2,13 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { objectU, stringU } from "@skylib/functions/es/types/core";
 
+import type {
+  PropOptions,
+  PropOptionsDefault,
+  PropOptionsRequired
+} from "./api";
 import { createInjectable } from "./api";
 
 export interface Elem {
@@ -25,6 +30,15 @@ export type Move = (
 export interface MoveData {
   readonly dragged: HTMLElement;
   readonly related: HTMLElement;
+}
+
+export interface SortablePropOptions {
+  readonly group: PropOptionsRequired<string>;
+  readonly itemComponentData: PropOptions<objectU>;
+  readonly itemKey: PropOptionsRequired<string>;
+  readonly itemTag: PropOptionsDefault<unknown>;
+  readonly modelValue: PropOptionsRequired<readonly object[]>;
+  readonly move: PropOptionsDefault<Move | undefined>;
 }
 
 export interface SortableSettings {

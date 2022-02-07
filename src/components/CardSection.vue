@@ -1,12 +1,13 @@
 <script lang="ts">
-import type { QCardSection } from "quasar";
 import { defineComponent } from "vue";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
+import type { CardSectionPropOptions } from "./CardSection.extras";
 
 export default defineComponent({
   name: "x-card-section",
-  props: {} as PropsToPropOptions<QCardSection>
+  props: {} as CardSectionPropOptions,
+  setup(_props: SetupProps<CardSectionPropOptions>) {}
 });
 </script>
 

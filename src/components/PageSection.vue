@@ -1,7 +1,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({ name: "x-page-section" });
+import type { SetupProps } from "./api";
+import type { PageSectionPropOptions } from "./PageSection.extras";
+
+export default defineComponent({
+  name: "x-page-section",
+  props: {} as PageSectionPropOptions,
+  setup(_props: SetupProps<PageSectionPropOptions>) {}
+});
 </script>
 
 <template>

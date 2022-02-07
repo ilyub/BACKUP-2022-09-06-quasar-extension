@@ -1,24 +1,25 @@
 <script lang="ts">
-import type { QInput, QInputProps, QInputSlots } from "quasar";
+import type { QInput, QInputSlots } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { InputPropOptions } from "./Input.extras";
 
 export default defineComponent({
   name: "x-input",
   props: {
-    ...({} as PropsToPropOptions<QInputProps>),
+    ...({} as InputPropOptions),
     modelValue: propOptions.required(is.stringU)
   },
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
-  setup(_props, { emit, slots }) {
+  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
+  setup(_props: SetupProps<InputPropOptions>, { emit, slots }) {
     const input = ref<QInput | undefined>(undefined);
 
     return {

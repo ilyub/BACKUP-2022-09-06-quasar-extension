@@ -1,11 +1,11 @@
 <script lang="ts">
-import type { QCard } from "quasar";
 import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { PropsToPropOptions } from "./api";
+import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import type { CardPropOptions } from "./Card.extras";
 import { icons } from "./Card.extras";
 import IconButton from "./IconButton.vue";
 
@@ -15,12 +15,12 @@ export default defineComponent({
     "x-icon-button": IconButton
   },
   props: {
-    ...({} as PropsToPropOptions<QCard>),
+    ...({} as CardPropOptions),
     minWidth: propOptions(is.stringU),
     title: propOptions(is.stringU),
     transparentHeader: propOptions.boolean()
   },
-  setup() {
+  setup(_props: SetupProps<CardPropOptions>) {
     return {
       icons
     };
