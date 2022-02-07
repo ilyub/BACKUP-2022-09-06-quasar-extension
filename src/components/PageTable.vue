@@ -13,36 +13,15 @@ import { propOptions } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
 import type {
-  Column,
+  BodyCellSlotData,
   Columns,
-  Field,
   PageTablePropOptions
 } from "./PageTable.extras";
-import { injectPageTableSettings, isAlign } from "./PageTable.extras";
-
-interface BodyCellData {
-  readonly row: unknown;
-  readonly value: unknown;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isField: is.Guard<Field<any>> = is.callable;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isColumn: is.Guard<Column<any>> = is.factory(
-  is.object.of,
-  {
-    align: isAlign,
-    field: isField,
-    label: is.string,
-    name: is.string
-  },
-  {
-    sortable: is.true
-  }
-);
-
-const isColumns = is.factory(is.array.of, isColumn);
+import {
+  injectPageTableSettings,
+  isBodyCellSlotData,
+  isColumns
+} from "./PageTable.extras";
 
 export default defineComponent({
   name: "x-page-table",
@@ -64,9 +43,9 @@ export default defineComponent({
     const settings = injectPageTableSettings();
 
     return {
-      bodyCellSlotData(
-        data: Readonly<Parameters<QTableSlots["body-cell"]>[0]>
-      ): BodyCellData {
+      bodyCellSlotData(data: unknown): BodyCellSlotData {
+        assert.byGuard(data, isBodyCellSlotData);
+
         return data;
       },
       height: usePageContentHeight(() => props.extraPageOffset),
@@ -80,9 +59,7 @@ export default defineComponent({
         () =>
           Object.keys(o.omit(slots, "body-cell")) as Array<keyof QTableSlots>
       ),
-      tableColumns: computed<Writable<Columns<unknown>>>(() =>
-        a.clone(props.columns)
-      ),
+      tableColumns: computed<Writable<Columns>>(() => a.clone(props.columns)),
       tableRows: computed<unknown[]>(() => a.clone(props.rows)),
       tableSelected: computed<unknown[] | undefined>(() =>
         props.selected ? a.clone(props.selected) : undefined

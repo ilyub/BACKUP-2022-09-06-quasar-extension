@@ -50,8 +50,7 @@ it.each([
     to
   }) => {
     await functionsTestUtils.run(async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const columns: Columns<any> = [
+      const columns: Columns = [
         {
           align: "left",
           field(row: unknown): string {

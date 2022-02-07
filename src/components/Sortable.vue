@@ -76,9 +76,8 @@ export default defineComponent({
       end(): void {
         active.value = false;
       },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      itemSlotData(data: unknown): any {
-        assert.indexedObject(data);
+      itemSlotData(data: unknown): object {
+        assert.object(data);
 
         return data;
       },

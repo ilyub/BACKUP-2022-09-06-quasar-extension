@@ -13,7 +13,12 @@ import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
 
-export interface Column<T> {
+export interface BodyCellSlotData<T = unknown> {
+  readonly row: T;
+  readonly value: string;
+}
+
+export interface Column<T = unknown> {
   readonly align: Align;
   readonly field: Field<T>;
   readonly label: string;
@@ -21,19 +26,18 @@ export interface Column<T> {
   readonly sortable?: true;
 }
 
-export type Columns<T> = ReadonlyArray<Column<T>>;
+export type Columns<T = unknown> = ReadonlyArray<Column<T>>;
 
-export type Field<T> = (row: T) => string;
+export type Field<T = unknown> = (row: T) => string;
 
-export type PageTablePropOptions = PropsToPropOptions<
+export type PageTablePropOptions<T = unknown> = PropsToPropOptions<
   QTableProps,
   {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    readonly columns: PropOptionsRequired<Columns<any>>;
+    readonly columns: PropOptionsRequired<Columns>;
     readonly extraPageOffset: PropOptions<stringU>;
     readonly limit: PropOptions<numberU>;
-    readonly rows: PropOptionsRequired<readonly unknown[]>;
-    readonly selected: PropOptions<readonly unknown[]>;
+    readonly rows: PropOptionsRequired<readonly T[]>;
+    readonly selected: PropOptions<readonly T[]>;
   }
 >;
 
@@ -48,6 +52,29 @@ export const AlignVO = createValidationObject<Align>({
 });
 
 export const isAlign = is.factory(is.enumeration, AlignVO);
+
+export const isBodyCellSlotData = is.factory(
+  is.object.of,
+  { row: is.unknown, value: is.string },
+  {}
+);
+
+export const isField: is.Guard<Field> = is.callable;
+
+export const isColumn: is.Guard<Column> = is.factory(
+  is.object.of,
+  {
+    align: isAlign,
+    field: isField,
+    label: is.string,
+    name: is.string
+  },
+  {
+    sortable: is.true
+  }
+);
+
+export const isColumns = is.factory(is.array.of, isColumn);
 
 export const {
   inject: injectPageTableSettings,

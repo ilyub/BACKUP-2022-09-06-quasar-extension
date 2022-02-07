@@ -21,8 +21,11 @@ import { datetime } from "@skylib/facades/es/datetime";
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import * as a from "@skylib/functions/es/array";
+import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
+import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
+import * as reflect from "@skylib/functions/es/reflect";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
@@ -236,10 +239,12 @@ export default defineComponent({
         { disable: true, label: "Option 3", value: "b" }
       ]),
       optionGroupValue: ref<unknown>("a"),
-      pageTableColumns: fn.run<Columns<TableItem>>(() => [
+      pageTableColumns: fn.run<Columns>(() => [
         {
           align: "left",
           field(row): string {
+            assert.object.of(row, { name: is.string }, {});
+
             return `${row.name}!`;
           },
           label: "Name",
@@ -276,6 +281,9 @@ export default defineComponent({
         { id: "c", name: "C" }
       ]),
       sortable2: ref([]),
+      sortableName(item: object): unknown {
+        return reflect.get(item, "name");
+      },
       switchableOn: ref(true),
       switchableSampleKnob: ref(5),
       switchableTransition,
@@ -377,7 +385,7 @@ export default defineComponent({
           item-key="id"
         >
           <template #item="{ item }">
-            {{ item.name }}
+            {{ sortableName(item) }}
             <x-tooltip>Sample tooltip</x-tooltip>
           </template>
         </x-sortable>
@@ -391,7 +399,7 @@ export default defineComponent({
           item-key="id"
         >
           <template #item="{ item }">
-            {{ item.name }}
+            {{ sortableName(item) }}
             <x-tooltip>Sample tooltip</x-tooltip>
           </template>
         </x-sortable>
@@ -652,7 +660,7 @@ export default defineComponent({
           item-key="id"
         >
           <template #item="{ item }">
-            {{ item.name }}
+            {{ sortableName(item) }}
             <x-tooltip>Sample tooltip</x-tooltip>
           </template>
         </x-sortable>
@@ -666,7 +674,7 @@ export default defineComponent({
           item-key="id"
         >
           <template #item="{ item }">
-            {{ item.name }}
+            {{ sortableName(item) }}
             <x-tooltip>Sample tooltip</x-tooltip>
           </template>
         </x-sortable>
