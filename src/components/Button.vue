@@ -15,7 +15,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-base-button class="button-group-member" color="primary">
+  <x-base-button class="x-button-group-member" color="primary">
     <slot></slot>
   </x-base-button>
 </template>

@@ -9,6 +9,7 @@ module.exports = [
   "Droppable",
   "FormButton",
   "Group",
+  "IconButton",
   "IconPicker",
   "Input",
   "Knob",
