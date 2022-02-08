@@ -8,7 +8,7 @@ import type {
   BodyCellSlotData,
   PageTablePropOptions
 } from "../components/PageTable.extras";
-import { PageTable } from "../components/PageTable.vue";
+import { PageTableFactory } from "../components/PageTable.vue";
 
 import type { TableItem } from "./PageTable.extras";
 import { isBodyCellSlotData, isTableItem } from "./PageTable.extras";
@@ -17,7 +17,7 @@ export default defineComponent({
   name: "page-table",
   components: {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-    "x-page-table": PageTable(isTableItem)
+    "x-page-table": PageTableFactory(isTableItem)
   },
   props: {} as PageTablePropOptions<TableItem>,
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly

@@ -72,7 +72,7 @@ const component = new Helper().createComponent(is.unknown);
 // eslint-disable-next-line vue/require-direct-export
 export default component;
 
-export function PageTable<T>(
+export function PageTableFactory<T>(
   _guard: is.Guard<T>
 ): ReturnType<Helper<T>["createComponent"]> {
   return component as ReturnType<Helper<T>["createComponent"]>;
