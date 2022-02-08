@@ -1,6 +1,4 @@
 <script lang="ts">
-import "typeface-roboto-multilang/cyrillic.css";
-import "typeface-roboto-multilang/latin-ext.css";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";

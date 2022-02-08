@@ -1,6 +1,4 @@
 <script lang="ts">
-import "typeface-roboto-multilang/cyrillic.css";
-import "typeface-roboto-multilang/latin-ext.css";
 import { defineComponent } from "vue";
 
 import Section from "../components/Section.vue";
