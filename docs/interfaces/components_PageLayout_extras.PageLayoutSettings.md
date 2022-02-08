@@ -12,7 +12,6 @@
 - [headerHeight](components_PageLayout_extras.PageLayoutSettings.md#headerheight)
 - [paddingX](components_PageLayout_extras.PageLayoutSettings.md#paddingx)
 - [paddingY](components_PageLayout_extras.PageLayoutSettings.md#paddingy)
-- [sectionMargin](components_PageLayout_extras.PageLayoutSettings.md#sectionmargin)
 
 ## Properties
 
@@ -37,9 +36,3 @@ ___
 ### paddingY
 
 • `Readonly` **paddingY**: `string`
-
-___
-
-### sectionMargin
-
-• `Readonly` **sectionMargin**: `string`

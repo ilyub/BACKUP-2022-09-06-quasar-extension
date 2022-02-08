@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [BodyCellSlotData](../interfaces/components_PageTable_extras.BodyCellSlotData.md)
 - [Column](../interfaces/components_PageTable_extras.Column.md)
 - [PageTableSettings](../interfaces/components_PageTable_extras.PageTableSettings.md)
 
@@ -24,6 +25,10 @@
 
 - [injectPageTableSettings](components_PageTable_extras.md#injectpagetablesettings)
 - [isAlign](components_PageTable_extras.md#isalign)
+- [isBodyCellSlotDataFactory](components_PageTable_extras.md#isbodycellslotdatafactory)
+- [isColumnFactory](components_PageTable_extras.md#iscolumnfactory)
+- [isColumnsFactory](components_PageTable_extras.md#iscolumnsfactory)
+- [isFieldFactory](components_PageTable_extras.md#isfieldfactory)
 - [providePageTableSettings](components_PageTable_extras.md#providepagetablesettings)
 - [testPageTableSettings](components_PageTable_extras.md#testpagetablesettings)
 
@@ -41,9 +46,9 @@ ___
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
 
 ___
 
@@ -53,9 +58,9 @@ ___
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
 
 #### Type declaration
 
@@ -75,7 +80,13 @@ ___
 
 ### PageTablePropOptions
 
-Ƭ **PageTablePropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTableProps`, { `columns`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`Columns`](components_PageTable_extras.md#columns)<`any`\>\> ; `extraPageOffset`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `limit`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`numberU`\> ; `rows`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<readonly `unknown`[]\> ; `selected`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<readonly `unknown`[]\>  }\>
+Ƭ **PageTablePropOptions**<`T`\>: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTableProps`, { `columns`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<[`Columns`](components_PageTable_extras.md#columns)<`T`\>\> ; `extraPageOffset`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `limit`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`numberU`\> ; `rows`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<readonly `T`[]\> ; `selected`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<readonly `T`[]\>  }\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
 
 ## Variables
 
@@ -112,6 +123,92 @@ ___
 #### Returns
 
 value is Align
+
+___
+
+### isBodyCellSlotDataFactory
+
+▸ **isBodyCellSlotDataFactory**<`T`\>(`guard`): `is.Guard`<[`BodyCellSlotData`](../interfaces/components_PageTable_extras.BodyCellSlotData.md)<`T`\>\>
+
+Creates guard for BodyCellSlotData\<T\> type.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `guard` | `Guard`<`T`\> | Guard for type T. |
+
+#### Returns
+
+`is.Guard`<[`BodyCellSlotData`](../interfaces/components_PageTable_extras.BodyCellSlotData.md)<`T`\>\>
+
+Guard for BodyCellSlotData\<T\> type.
+
+___
+
+### isColumnFactory
+
+▸ **isColumnFactory**<`T`\>(): `is.Guard`<[`Column`](../interfaces/components_PageTable_extras.Column.md)<`T`\>\>
+
+Creates guard for Column\<T\> type.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+#### Returns
+
+`is.Guard`<[`Column`](../interfaces/components_PageTable_extras.Column.md)<`T`\>\>
+
+Guard for Column\<T\> type.
+
+___
+
+### isColumnsFactory
+
+▸ **isColumnsFactory**<`T`\>(): `is.Guard`<[`Columns`](components_PageTable_extras.md#columns)<`T`\>\>
+
+Creates guard for Columns\<T\> type.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+#### Returns
+
+`is.Guard`<[`Columns`](components_PageTable_extras.md#columns)<`T`\>\>
+
+Guard for Columns\<T\> type.
+
+___
+
+### isFieldFactory
+
+▸ **isFieldFactory**<`T`\>(): `is.Guard`<[`Field`](components_PageTable_extras.md#field)<`T`\>\>
+
+Creates guard for Field\<T\> type.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+#### Returns
+
+`is.Guard`<[`Field`](components_PageTable_extras.md#field)<`T`\>\>
+
+Guard for Field\<T\> type.
 
 ___
 
