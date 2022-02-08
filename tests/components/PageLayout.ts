@@ -14,16 +14,14 @@ const pageLayoutSettings1: PageLayoutSettings = {
   closeButton: false,
   headerHeight: "50px",
   paddingX: "10px",
-  paddingY: "10px",
-  sectionMargin: "10px"
+  paddingY: "10px"
 };
 
 const pageLayoutSettings2: PageLayoutSettings = {
   closeButton: true,
   headerHeight: "50px",
   paddingX: "10px",
-  paddingY: "10px",
-  sectionMargin: "10px"
+  paddingY: "10px"
 };
 
 it.each([

@@ -56,7 +56,6 @@ export default defineComponent({
       padding: computed<string>(
         () => `${settings.value.paddingY} ${settings.value.paddingX}`
       ),
-      sectionMargin: computed<string>(() => settings.value.sectionMargin),
       settings
     };
   }
@@ -91,15 +90,3 @@ export default defineComponent({
     <div class="body"><slot></slot></div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.body {
-  > :deep(*) {
-    margin-top: v-bind(sectionMargin);
-  }
-
-  > :deep(*:first-child) {
-    margin-top: 0;
-  }
-}
-</style>

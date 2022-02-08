@@ -26,7 +26,6 @@ export interface PageLayoutSettings {
   readonly headerHeight: string;
   readonly paddingX: string;
   readonly paddingY: string;
-  readonly sectionMargin: string;
 }
 
 export const icons: Icons<"close"> = baseIcons;
@@ -40,7 +39,6 @@ export const {
     closeButton: true,
     headerHeight: "60px",
     paddingX: "15px",
-    paddingY: "15px",
-    sectionMargin: "20px"
+    paddingY: "15px"
   };
 });

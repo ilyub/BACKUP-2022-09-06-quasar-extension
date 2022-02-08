@@ -76,8 +76,7 @@ export default defineComponent({
         closeButton: true,
         headerHeight: "50px",
         paddingX: "10px",
-        paddingY: "20px",
-        sectionMargin: "20px"
+        paddingY: "20px"
       };
     });
 
