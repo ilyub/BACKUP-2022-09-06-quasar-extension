@@ -2,7 +2,7 @@
 import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
-import type { DroppablePropOptions } from "./Droppable.extra";
+import type { DroppablePropOptions } from "./Droppable.extras";
 import Sortable from "./Sortable.vue";
 
 export default defineComponent({
