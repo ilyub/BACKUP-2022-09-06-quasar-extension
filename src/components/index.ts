@@ -1,15 +1,29 @@
 /* eslint-disable import/no-unassigned-import */
 
 import "./BaseButton.extras";
+import "./Button.extras";
 import "./Card.extras";
+import "./CardActions.extras";
+import "./CardSection.extras";
 import "./DatetimePicker.extras";
+import "./Droppable.extras";
+import "./FormButton.extras";
 import "./Group.extras";
+import "./IconButton.extras";
 import "./IconPicker.extras";
+import "./Input.extras";
+import "./Knob.extras";
 import "./LanguagePicker.extras";
+import "./Menu.extras";
+import "./MenuItem.extras";
 import "./NumericInput.extras";
 import "./OptionGroup.extras";
 import "./PageLayout.extras";
+import "./PageMarkupTable.extras";
+import "./PageSection.extras";
 import "./PageTable.extras";
+import "./Resizer.extras";
+import "./Section.extras";
 import "./Select.extras";
 import "./Sortable.extras";
 import "./Switchable.extras";
