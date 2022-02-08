@@ -27,6 +27,7 @@ module.exports = [
   "Select",
   "Sortable",
   "Switchable",
+  "Toggle",
   "Tooltip",
   "boot",
   "components",

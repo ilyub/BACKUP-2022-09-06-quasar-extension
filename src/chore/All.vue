@@ -25,6 +25,7 @@ import Section from "./Section.vue";
 import Select from "./Select.vue";
 import Sortable from "./Sortable.vue";
 import Switchable from "./Switchable.vue";
+import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
 
 export default defineComponent({
@@ -57,6 +58,7 @@ export default defineComponent({
           Select,
           Sortable,
           Switchable,
+          Toggle,
           Tooltip
         ].map(component => [component, _.startCase(component.name)])
       )
@@ -66,10 +68,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <table>
+  <table class="border-collapse">
     <tr v-for="([component, name], index) in components" :key="index">
-      <td class="q-pa-lg">{{ name }}</td>
-      <td class="q-pa-lg"><component :is="component" /></td>
+      <td class="cell">{{ name }}</td>
+      <td class="cell"><component :is="component" /></td>
     </tr>
   </table>
 </template>
+
+<style lang="scss" scoped>
+@use "sass:map";
+
+.cell {
+  padding: map.get($space-lg, "y") map.get($space-lg, "x");
+  vertical-align: top;
+  border: 1px solid black;
+}
+</style>
