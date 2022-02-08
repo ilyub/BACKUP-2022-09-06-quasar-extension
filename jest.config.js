@@ -5,6 +5,7 @@ module.exports = {
     ...config.collectCoverageFrom,
     "!src/App.vue",
     "!src/boot/**",
+    "!src/chore/**",
     "!src/router/**",
     "!src/routes.ts"
   ],

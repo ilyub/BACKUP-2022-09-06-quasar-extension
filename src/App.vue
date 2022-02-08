@@ -21,14 +21,14 @@ import { datetime } from "@skylib/facades/es/datetime";
 import { lang } from "@skylib/facades/es/lang";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import * as a from "@skylib/functions/es/array";
-import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
-import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
+import type { TableItem, TableItems } from "./chore/PageTable.extras";
+import PageTable from "./chore/PageTable.vue";
 import { providePageOffset } from "./components/api/pageContentHeight";
 import Button from "./components/Button.vue";
 import DatetimePicker from "./components/DatetimePicker.vue";
@@ -53,7 +53,6 @@ import PageLayout from "./components/PageLayout.vue";
 import PageMarkupTable from "./components/PageMarkupTable.vue";
 import PageSection from "./components/PageSection.vue";
 import type { Columns } from "./components/PageTable.extras";
-import PageTable from "./components/PageTable.vue";
 import Resizer from "./components/Resizer.vue";
 import Section from "./components/Section.vue";
 import type { SelectOptions } from "./components/Select.extras";
@@ -64,13 +63,6 @@ import { provideSwitchableSettings } from "./components/Switchable.extras";
 import Switchable from "./components/Switchable.vue";
 import { provideTooltipSettings } from "./components/Tooltip.extras";
 import Tooltip from "./components/Tooltip.vue";
-
-interface TableItem {
-  readonly id: number;
-  readonly name: string;
-}
-
-type TableItems = readonly TableItem[];
 
 export default defineComponent({
   name: "app",
@@ -239,12 +231,10 @@ export default defineComponent({
         { disable: true, label: "Option 3", value: "b" }
       ]),
       optionGroupValue: ref<unknown>("a"),
-      pageTableColumns: fn.run<Columns>(() => [
+      pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
           field(row): string {
-            assert.object.of(row, { name: is.string }, {});
-
             return `${row.name}!`;
           },
           label: "Name",

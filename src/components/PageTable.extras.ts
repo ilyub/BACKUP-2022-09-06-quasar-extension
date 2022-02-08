@@ -6,7 +6,7 @@ import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import type {
   PropOptions,
-  PropOptionsRequired,
+  PropOptionsDefault,
   PropsToPropOptions
 } from "./api";
 import { createInjectable } from "./api";
@@ -33,11 +33,11 @@ export type Field<T = unknown> = (row: T) => string;
 export type PageTablePropOptions<T = unknown> = PropsToPropOptions<
   QTableProps,
   {
-    readonly columns: PropOptionsRequired<Columns>;
+    readonly columns: PropOptionsDefault<Columns<T>>;
     readonly extraPageOffset: PropOptions<stringU>;
     readonly limit: PropOptions<numberU>;
-    readonly rows: PropOptionsRequired<readonly T[]>;
-    readonly selected: PropOptions<readonly T[]>;
+    readonly rows: PropOptionsDefault<readonly T[]>;
+    readonly selected: PropOptionsDefault<readonly T[]>;
   }
 >;
 
@@ -53,29 +53,6 @@ export const AlignVO = createValidationObject<Align>({
 
 export const isAlign = is.factory(is.enumeration, AlignVO);
 
-export const isBodyCellSlotData = is.factory(
-  is.object.of,
-  { row: is.unknown, value: is.string },
-  {}
-);
-
-export const isField: is.Guard<Field> = is.callable;
-
-export const isColumn: is.Guard<Column> = is.factory(
-  is.object.of,
-  {
-    align: isAlign,
-    field: isField,
-    label: is.string,
-    name: is.string
-  },
-  {
-    sortable: is.true
-  }
-);
-
-export const isColumns = is.factory(is.array.of, isColumn);
-
 export const {
   inject: injectPageTableSettings,
   provide: providePageTableSettings,
@@ -85,3 +62,60 @@ export const {
     growPageBy: 10
   };
 });
+
+/**
+ * Creates guard for BodyCellSlotData\<T\> type.
+ *
+ * @param guard - Guard for type T.
+ * @returns Guard for BodyCellSlotData\<T\> type.
+ */
+export function isBodyCellSlotDataFactory<T = unknown>(
+  guard: is.Guard<T>
+): is.Guard<BodyCellSlotData<T>> {
+  return is.factory(
+    is.object.of,
+    {
+      row: guard,
+      value: is.string
+    },
+    {}
+  );
+}
+
+/**
+ * Creates guard for Column\<T\> type.
+ *
+ * @returns Guard for Column\<T\> type.
+ */
+export function isColumnFactory<T = unknown>(): is.Guard<Column<T>> {
+  return is.factory(
+    is.object.of,
+    {
+      align: isAlign,
+      field: isFieldFactory<T>(),
+      label: is.string,
+      name: is.string
+    },
+    {
+      sortable: is.true
+    }
+  );
+}
+
+/**
+ * Creates guard for Columns\<T\> type.
+ *
+ * @returns Guard for Columns\<T\> type.
+ */
+export function isColumnsFactory<T = unknown>(): is.Guard<Columns<T>> {
+  return is.factory(is.array.of, isColumnFactory<T>());
+}
+
+/**
+ * Creates guard for Field\<T\> type.
+ *
+ * @returns Guard for Field\<T\> type.
+ */
+export function isFieldFactory<T = unknown>(): is.Guard<Field<T>> {
+  return is.callable;
+}

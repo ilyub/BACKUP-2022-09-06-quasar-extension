@@ -12,61 +12,71 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
-import type {
-  BodyCellSlotData,
-  Columns,
-  PageTablePropOptions
-} from "./PageTable.extras";
-import {
-  injectPageTableSettings,
-  isBodyCellSlotData,
-  isColumns
-} from "./PageTable.extras";
+import type { Columns, PageTablePropOptions } from "./PageTable.extras";
+import { injectPageTableSettings, isColumnsFactory } from "./PageTable.extras";
 
-export default defineComponent({
-  name: "x-page-table",
-  props: {
-    ...({} as PageTablePropOptions),
-    columns: propOptions.required(isColumns),
-    extraPageOffset: propOptions(is.stringU),
-    limit: propOptions(is.numberU),
-    rows: propOptions.required(is.factory(is.array.of, is.unknown)),
-    selected: propOptions(is.factory(is.array.of, is.unknown))
-  },
-  emits: {
-    "update:limit": (value: number) => is.number(value),
-    "update:selected": (value: readonly unknown[] | undefined) =>
-      is.or(value, is.array, is.undefined)
-  },
-  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(props: SetupProps<PageTablePropOptions>, { emit, slots }) {
-    const settings = injectPageTableSettings();
+class Helper<T> {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  public createComponent(guard: is.Guard<T>) {
+    const isItems = is.factory(is.array.of, guard);
 
-    return {
-      bodyCellSlotData(data: unknown): BodyCellSlotData {
-        assert.byGuard(data, isBodyCellSlotData);
-
-        return data;
+    return defineComponent({
+      name: "x-page-table",
+      props: {
+        ...({} as PageTablePropOptions),
+        columns: propOptions.default(isColumnsFactory<T>(), []),
+        extraPageOffset: propOptions(is.stringU),
+        limit: propOptions(is.numberU),
+        rows: propOptions.default(isItems, []),
+        selected: propOptions.default(isItems, [])
       },
-      height: usePageContentHeight(() => props.extraPageOffset),
-      onScroll(event: unknown): void {
-        assert.byGuard(event, isVirtualScrollEvent);
-
-        if (is.not.empty(props.limit) && event.to === props.limit - 1)
-          emit("update:limit", props.limit + settings.value.growPageBy);
+      emits: {
+        "update:limit": (value: number) => is.number(value),
+        "update:selected": (value: readonly T[]) => isItems(value)
       },
-      passThroughSlots: computed<Array<keyof QTableSlots>>(
-        () =>
-          Object.keys(o.omit(slots, "body-cell")) as Array<keyof QTableSlots>
-      ),
-      tableColumns: computed<Writable<Columns>>(() => a.clone(props.columns)),
-      tableRows: computed<unknown[]>(() => a.clone(props.rows)),
-      tableSelected: computed<unknown[] | undefined>(() =>
-        props.selected ? a.clone(props.selected) : undefined
-      )
-    };
+      // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
+      setup(props: SetupProps<PageTablePropOptions<T>>, { emit, slots }) {
+        const settings = injectPageTableSettings();
+
+        return {
+          bodyCellSlotData(data: unknown): unknown {
+            return data;
+          },
+          height: usePageContentHeight(() => props.extraPageOffset),
+          onScroll(event: unknown): void {
+            assert.byGuard(event, isVirtualScrollEvent);
+
+            if (is.not.empty(props.limit) && event.to === props.limit - 1)
+              emit("update:limit", props.limit + settings.value.growPageBy);
+          },
+          passThroughSlots: computed<Array<keyof QTableSlots>>(
+            () =>
+              Object.keys(o.omit(slots, "body-cell")) as Array<
+                keyof QTableSlots
+              >
+          ),
+          tableColumns: computed<Writable<Columns<T>>>(() =>
+            a.clone(props.columns)
+          ),
+          tableRows: computed<T[]>(() => a.clone(props.rows)),
+          tableSelected: computed<T[]>(() => a.clone(props.selected))
+        };
+      }
+    });
   }
-});
+}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+const component = new Helper().createComponent(is.unknown);
+
+// eslint-disable-next-line vue/require-direct-export
+export default component;
+
+export function PageTable<T>(
+  _guard: is.Guard<T>
+): ReturnType<Helper<T>["createComponent"]> {
+  return component as ReturnType<Helper<T>["createComponent"]>;
+}
 </script>
 
 <template>
