@@ -1,42 +1,77 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import "typeface-roboto-multilang/cyrillic.css";
+import "typeface-roboto-multilang/latin-ext.css";
+import { computed, defineComponent, ref } from "vue";
 
-import * as assert from "@skylib/functions/es/assertions";
+import * as a from "@skylib/functions/es/array";
+import * as fn from "@skylib/functions/es/function";
 
-import type { SetupProps } from "../components/api";
-import type {
-  BodyCellSlotData,
-  PageTablePropOptions
-} from "../components/PageTable.extras";
-import { PageTableFactory } from "../components/PageTable.vue";
+import PageLayout from "../components/PageLayout.vue";
+import type { Columns } from "../components/PageTable.extras";
 
-import type { TableItem } from "./PageTable.extras";
-import { isBodyCellSlotData, isTableItem } from "./PageTable.extras";
+import type { TableItem, TableItems } from "./PageTableTyped.extras";
+import PageTableTyped from "./PageTableTyped.vue";
 
 export default defineComponent({
-  name: "page-table",
+  name: "sample-page-table",
   components: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-    "x-page-table": PageTableFactory(isTableItem)
+    "sample-page-table-typed": PageTableTyped,
+    "x-page-layout": PageLayout
   },
-  props: {} as PageTablePropOptions<TableItem>,
-  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(_props: SetupProps<PageTablePropOptions<TableItem>>) {
-    return {
-      bodyCellSlotData(data: unknown): BodyCellSlotData<TableItem> {
-        assert.byGuard(data, isBodyCellSlotData);
+  setup() {
+    const pageTableLimit = ref(20);
 
-        return data;
-      }
+    return {
+      pageTableColumns: fn.run<Columns<TableItem>>(() => [
+        {
+          align: "left",
+          field(row): string {
+            return `${row.name}!`;
+          },
+          label: "Name",
+          name: "name"
+        }
+      ]),
+      pageTableLimit,
+      pageTableRows: computed<TableItems>(() =>
+        a.fromRange(1, pageTableLimit.value).map(id => {
+          return {
+            id,
+            name: `Item ${id}`
+          };
+        })
+      ),
+      pageTableSelected: ref<TableItems>([])
     };
   }
 });
 </script>
 
 <template>
-  <x-page-table>
-    <template v-if="$slots['body-cell']" #body-cell="data">
-      <slot name="body-cell" v-bind="bodyCellSlotData(data)"></slot>
-    </template>
-  </x-page-table>
+  {{ pageTableSelected }}
+  <x-page-layout class="page-layout" title="Title">
+    <sample-page-table-typed
+      v-model:limit="pageTableLimit"
+      v-model:selected="pageTableSelected"
+      class="page-table"
+      :columns="pageTableColumns"
+      flat
+      :rows="pageTableRows"
+      selection="multiple"
+    >
+      <template #body-cell="{ row, value }">
+        <q-td>{{ value }} {{ row }}</q-td>
+      </template>
+    </sample-page-table-typed>
+  </x-page-layout>
 </template>
+
+<style lang="scss" scoped>
+.page-layout {
+  border: 1px solid red;
+}
+
+.page-table {
+  border: 1px solid blue;
+}
+</style>

@@ -15,7 +15,6 @@ declare module "*.vue" {
    * @param guard - Guard for type T.
    * @returns Component.
    */
-  // eslint-disable-next-line @skylib/prefer-readonly
   export function PageTableFactory<T>(
     guard: is.Guard<T>
   ): DefineComponent<object, object, unknown>;

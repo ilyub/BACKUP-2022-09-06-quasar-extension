@@ -8,7 +8,8 @@ module.exports = {
     {
       files: ["*.vue"],
       rules: {
-        "@skylib/require-jsdoc": "off"
+        "@skylib/require-jsdoc": "off",
+        "vue/no-multiple-template-root": "off"
       }
     }
   ]
