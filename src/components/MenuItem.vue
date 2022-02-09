@@ -13,7 +13,7 @@ export default defineComponent({
   name: "x-menu-item",
   props: {
     ...({} as MenuItemPropOptions),
-    caption: propOptions.required(is.string),
+    caption: propOptions(is.stringU),
     header: propOptions.boolean(),
     icon: propOptions(is.stringU)
   },
@@ -36,7 +36,7 @@ export default defineComponent({
       </slot>
     </q-item-section>
     <q-item-section no-wrap>
-      {{ caption }}
+      <slot>{{ caption }}</slot>
     </q-item-section>
     <q-item-section v-if="hasRightSlot" side>
       <slot name="right"></slot>

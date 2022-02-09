@@ -5,14 +5,13 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type {
   PropOptions,
   PropOptionsBoolean,
-  PropOptionsRequired,
   PropsToPropOptions
 } from "./api";
 
 export type MenuItemPropOptions = PropsToPropOptions<
   QItemProps,
   {
-    readonly caption: PropOptionsRequired<string>;
+    readonly caption: PropOptions<stringU>;
     readonly header: PropOptionsBoolean;
     readonly icon: PropOptions<stringU>;
   }
