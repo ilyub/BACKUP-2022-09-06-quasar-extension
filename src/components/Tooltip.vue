@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Tooltip] */
+
 import { computed, defineComponent } from "vue";
 
 import type { SetupProps } from "./api";

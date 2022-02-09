@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Card] */
+
 import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
@@ -7,11 +9,13 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import type { CardPropOptions } from "./Card.extras";
 import { icons } from "./Card.extras";
+import CardSection from "./CardSection.vue";
 import IconButton from "./IconButton.vue";
 
 export default defineComponent({
   name: "x-card",
   components: {
+    "x-card-section": CardSection,
     "x-icon-button": IconButton
   },
   props: {
@@ -34,7 +38,7 @@ export default defineComponent({
       minWidth
     }"
   >
-    <q-card-section
+    <x-card-section
       v-if="transparentHeader"
       class="items-center q-pb-none row text-h6"
     >
@@ -43,8 +47,8 @@ export default defineComponent({
         <slot name="header-actions"></slot>
         <x-icon-button v-close-popup :icon="icons.close" />
       </div>
-    </q-card-section>
-    <q-card-section
+    </x-card-section>
+    <x-card-section
       v-else
       class="bg-primary items-center q-pr-sm row text-h6 text-white"
     >
@@ -52,7 +56,7 @@ export default defineComponent({
       <q-space />
       <slot name="header-actions"></slot>
       <x-icon-button v-close-popup :icon="icons.close" />
-    </q-card-section>
+    </x-card-section>
     <slot></slot>
   </q-card>
 </template>

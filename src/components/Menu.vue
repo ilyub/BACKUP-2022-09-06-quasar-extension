@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Menu] */
+
 import { defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";

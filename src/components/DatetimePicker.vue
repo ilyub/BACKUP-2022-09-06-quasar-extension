@@ -15,6 +15,7 @@ import Card from "./Card.vue";
 import CardSection from "./CardSection.vue";
 import type { DatetimePickerPropOptions } from "./DatetimePicker.extras";
 import { icons, lang } from "./DatetimePicker.extras";
+import FormButton from "./FormButton.vue";
 import IconButton from "./IconButton.vue";
 
 interface Time {
@@ -27,6 +28,7 @@ export default defineComponent({
   components: {
     "x-card": Card,
     "x-card-section": CardSection,
+    "x-form-button": FormButton,
     "x-icon-button": IconButton
   },
   props: {
@@ -295,11 +297,10 @@ export default defineComponent({
               @update:model-value="timeValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
-                <q-btn
+                <x-form-button
                   v-close-popup
                   class="ref-datetime-picker-time-save"
                   color="primary"
-                  flat
                   :label="lang.Save"
                   @click="save"
                 />
@@ -317,11 +318,10 @@ export default defineComponent({
               @update:model-value="dateValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
-                <q-btn
+                <x-form-button
                   v-close-popup
                   class="ref-datetime-picker-date-save"
                   color="primary"
-                  flat
                   :label="lang.Save"
                   @click="save"
                 />

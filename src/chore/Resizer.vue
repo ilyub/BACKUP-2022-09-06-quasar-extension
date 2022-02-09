@@ -2,11 +2,13 @@
 import { defineComponent, ref } from "vue";
 
 import Resizer from "../components/Resizer.vue";
+import Toggle from "../components/Toggle.vue";
 
 export default defineComponent({
   name: "sample-resizer",
   components: {
-    "x-resizer": Resizer
+    "x-resizer": Resizer,
+    "x-toggle": Toggle
   },
   setup() {
     return {
@@ -18,7 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-toggle v-model="resizerShow" />
+  <x-toggle v-model="resizerShow" />
   <div
     class="q-mt-sm resizer"
     :style="{

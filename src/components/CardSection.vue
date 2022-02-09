@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[CardSection] */
+
 import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";

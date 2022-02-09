@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[BaseButton] */
+
 import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";

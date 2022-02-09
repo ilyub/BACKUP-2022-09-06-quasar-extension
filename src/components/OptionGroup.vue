@@ -1,4 +1,6 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[OptionGroup] */
+
 import { computed, defineComponent } from "vue";
 
 import * as a from "@skylib/functions/es/array";

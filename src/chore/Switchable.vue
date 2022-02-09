@@ -25,7 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-toggle v-model="on" />
+  <x-toggle v-model="on" />
   <x-switchable class="q-pt-sm" :on="on">
     <x-section>
       Sample knob:

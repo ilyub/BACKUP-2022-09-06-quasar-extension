@@ -23,6 +23,7 @@ import { providePageTableSettings } from "./components/PageTable.extras";
 import { provideSortableSettings } from "./components/Sortable.extras";
 import type { Transition } from "./components/Switchable.extras";
 import { provideSwitchableSettings } from "./components/Switchable.extras";
+import Toggle from "./components/Toggle.vue";
 import { provideTooltipSettings } from "./components/Tooltip.extras";
 
 export default defineComponent({
@@ -31,7 +32,8 @@ export default defineComponent({
     "all-samples": All,
     "x-knob": Knob,
     "x-language-picker": LanguagePicker,
-    "x-option-group": OptionGroup
+    "x-option-group": OptionGroup,
+    "x-toggle": Toggle
   },
   setup() {
     const iconTooltips = ref(false);
@@ -144,7 +146,7 @@ export default defineComponent({
     </div>
     <div>
       Show tooltips:
-      <q-toggle v-model="tooltipShow" />
+      <x-toggle v-model="tooltipShow" />
       with delay of
       <x-knob
         v-model="tooltipDelay"
