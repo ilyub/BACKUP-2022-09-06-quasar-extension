@@ -81,7 +81,7 @@ export default defineComponent({
 
 .cell {
   padding: map.get($space-lg, "y") map.get($space-lg, "x");
-  vertical-align: top;
   border: 1px solid black;
+  vertical-align: top;
 }
 </style>
