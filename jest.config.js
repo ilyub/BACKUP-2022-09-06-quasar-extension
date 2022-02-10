@@ -9,11 +9,6 @@ module.exports = {
     "!src/router/**",
     "!src/routes.ts"
   ],
-  globals: {
-    ...config.globals,
-    "__DEV__": true,
-    "vue-jest": { pug: { doctype: "html" } }
-  },
   moduleNameMapper: {
     ...config.moduleNameMapper,
     [/^flag-icon-css\/flags\/1x1\/(\w+)\.svg$/u.source]:
@@ -23,9 +18,9 @@ module.exports = {
   },
   preset: "@skylib/config/src",
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
-  testEnvironment: undefined,
+  testEnvironment: "@skylib/config/src/jest-env-jsdom",
   transform: {
     ...config.transform,
-    [/\.vue$/u.source]: "vue-jest"
+    [/\.vue$/u.source]: "@vue/vue3-jest"
   }
 };
