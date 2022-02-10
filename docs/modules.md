@@ -39,6 +39,7 @@
 - [components/Select.extras](modules/components_Select_extras.md)
 - [components/Sortable.extras](modules/components_Sortable_extras.md)
 - [components/Switchable.extras](modules/components_Switchable_extras.md)
+- [components/Toggle.extras](modules/components_Toggle_extras.md)
 - [components/Tooltip.extras](modules/components_Tooltip_extras.md)
 - [components/api](modules/components_api.md)
 - [components/api/pageContentHeight](modules/components_api_pageContentHeight.md)

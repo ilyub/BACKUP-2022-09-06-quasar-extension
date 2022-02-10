@@ -12,4 +12,4 @@
 
 ### MenuItemPropOptions
 
-Ƭ **MenuItemPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QItemProps`, { `caption`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`string`\> ; `header`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `icon`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }\>
+Ƭ **MenuItemPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QItemProps`, { `caption`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `header`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `icon`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }\>
