@@ -30,7 +30,7 @@ export default defineComponent({
 
 <template>
   <x-icon-button :icon="mdiAccount">
-    <x-menu>
+    <x-menu auto-close>
       <q-list>
         <x-list-item caption="Settings" :icon="mdiPen" @click="click" />
         <x-list-item caption="Language">
