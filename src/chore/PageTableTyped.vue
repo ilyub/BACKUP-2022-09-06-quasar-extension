@@ -1,7 +1,9 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import type { QTableSlots } from "quasar";
+import { computed, defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
+import * as o from "@skylib/functions/es/object";
 
 import type { SetupProps } from "../components/api";
 import type {
@@ -13,6 +15,8 @@ import { PageTableFactory } from "../components/PageTable.vue";
 import type { TableItem } from "./PageTableTyped.extras";
 import { isBodyCellSlotData, isTableItem } from "./PageTableTyped.extras";
 
+type SlotKeys = ReadonlyArray<keyof QTableSlots>;
+
 export default defineComponent({
   name: "sample-page-table-typed",
   components: {
@@ -21,13 +25,17 @@ export default defineComponent({
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as PageTablePropOptions<TableItem>,
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(_props: SetupProps<PageTablePropOptions<TableItem>>) {
+  setup(_props: SetupProps<PageTablePropOptions<TableItem>>, { slots }) {
     return {
       bodyCellSlotData(data: unknown): BodyCellSlotData<TableItem> {
         assert.byGuard(data, isBodyCellSlotData);
 
         return data;
-      }
+      },
+      passThroughSlots: computed<SlotKeys>(
+        // eslint-disable-next-line no-type-assertion/no-type-assertion
+        () => Object.keys(o.omit(slots, "body-cell")) as SlotKeys
+      )
     };
   }
 });
@@ -35,6 +43,9 @@ export default defineComponent({
 
 <template>
   <x-page-table>
+    <template v-for="name in passThroughSlots" #[name]>
+      <slot :name="name"></slot>
+    </template>
     <template v-if="$slots['body-cell']" #body-cell="data">
       <slot name="body-cell" v-bind="bodyCellSlotData(data)"></slot>
     </template>
