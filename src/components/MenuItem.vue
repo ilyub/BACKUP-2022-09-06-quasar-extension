@@ -30,7 +30,6 @@ export default defineComponent({
 
 <template>
   <q-item v-close-popup :clickable="!header">
-    <slot name="prepend"></slot>
     <q-item-section v-if="hasIcon || hasIconSlot" side>
       <slot name="icon">
         <q-icon :name="icon" size="20px" />
@@ -42,6 +41,5 @@ export default defineComponent({
     <q-item-section v-if="hasRightSlot" side>
       <slot name="right"></slot>
     </q-item-section>
-    <slot name="append"></slot>
   </q-item>
 </template>
