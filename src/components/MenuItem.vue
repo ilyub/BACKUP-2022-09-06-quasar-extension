@@ -12,6 +12,7 @@ import type { MenuItemPropOptions } from "./MenuItem.extras";
 export default defineComponent({
   name: "x-menu-item",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as MenuItemPropOptions),
     caption: propOptions(is.stringU),
     header: propOptions.boolean(),

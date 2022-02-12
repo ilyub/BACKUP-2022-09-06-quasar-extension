@@ -18,6 +18,7 @@ export default defineComponent({
   components: {
     "x-page-table": PageTableFactory(isTableItem)
   },
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as PageTablePropOptions<TableItem>,
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
   setup(_props: SetupProps<PageTablePropOptions<TableItem>>) {

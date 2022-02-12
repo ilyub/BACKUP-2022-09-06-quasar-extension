@@ -200,6 +200,7 @@ export function jestSetup(): void {
       toHaveClass
     };
 
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     expect.extend(expectExtend as jest.ExpectExtendMap & ExpectExtendMap);
   }
 

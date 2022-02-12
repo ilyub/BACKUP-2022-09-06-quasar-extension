@@ -9,9 +9,12 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import type { InputPropOptions } from "./Input.extras";
 
+type SlotKeys = ReadonlyArray<keyof QInputSlots>;
+
 export default defineComponent({
   name: "x-input",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as InputPropOptions),
     modelValue: propOptions.required(is.stringU)
   },
@@ -24,8 +27,9 @@ export default defineComponent({
 
     return {
       input,
-      passThroughSlots: computed<Array<keyof QInputSlots>>(
-        () => Object.keys(slots) as Array<keyof QInputSlots>
+      passThroughSlots: computed<SlotKeys>(
+        // eslint-disable-next-line no-type-assertion/no-type-assertion
+        () => Object.keys(slots) as SlotKeys
       ),
       updateModel(value: NumStrE): void {
         emit(

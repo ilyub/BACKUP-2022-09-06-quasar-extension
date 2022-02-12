@@ -19,6 +19,7 @@ export default defineComponent({
     "x-icon-button": IconButton
   },
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as CardPropOptions),
     minWidth: propOptions(is.stringU),
     title: propOptions(is.stringU),

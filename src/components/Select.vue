@@ -18,6 +18,7 @@ import { isSelectOption, isSelectOptions } from "./Select.extras";
 export default defineComponent({
   name: "x-select",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as SelectPropOptions),
     modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isSelectOptions)

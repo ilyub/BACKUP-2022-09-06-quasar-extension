@@ -11,6 +11,7 @@ import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "x-menu",
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as MenuPropOptions,
   // eslint-disable-next-line @skylib/prefer-readonly
   setup(_props: SetupProps<MenuPropOptions>) {

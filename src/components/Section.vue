@@ -6,6 +6,7 @@ import type { SectionPropOptions } from "./Section.extras";
 
 export default defineComponent({
   name: "x-section",
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as SectionPropOptions,
   setup(_props: SetupProps<SectionPropOptions>) {}
 });

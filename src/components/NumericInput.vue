@@ -13,6 +13,7 @@ import { icons } from "./NumericInput.extras";
 export default defineComponent({
   name: "x-numeric-input",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as NumericInputPropOptions),
     max: propOptions.required(is.number),
     min: propOptions.default(is.number, 0),

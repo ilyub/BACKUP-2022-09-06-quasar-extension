@@ -11,6 +11,7 @@ import * as fn from "@skylib/functions/es/function";
 
 export const implementation = fn.run<Facade>(() => {
   function vueStorage<T extends object>(obj: T): T {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     return reactive(obj) as T;
   }
 

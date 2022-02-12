@@ -32,6 +32,7 @@ export default defineComponent({
     "x-icon-button": IconButton
   },
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as DatetimePickerPropOptions),
     max: propOptions(is.stringU),
     min: propOptions(is.stringU),

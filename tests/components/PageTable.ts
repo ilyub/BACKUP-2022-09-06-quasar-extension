@@ -107,6 +107,7 @@ it.each([
           direction: "increase",
           from: 0,
           index: 0,
+          // eslint-disable-next-line no-type-assertion/no-type-assertion
           ref: {} as QVirtualScroll,
           to
         };

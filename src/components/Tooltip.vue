@@ -49,6 +49,7 @@ type Self =
 export default defineComponent({
   name: "x-tooltip",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as TooltipOptions),
     direction: propOptions(isDirectionU)
   },

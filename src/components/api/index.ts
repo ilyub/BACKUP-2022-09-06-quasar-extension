@@ -93,6 +93,7 @@ export function createInjectable<T>(createDefault?: () => T): Injectable<T> {
       provide(settingsId, computed<T>(settings));
     },
     test(mutableProvide: Record<symbol, unknown>, settings: T): void {
+      // eslint-disable-next-line no-type-assertion/no-type-assertion
       mutableProvide[settingsId as symbol] = computed<T>(() => settings);
     }
   };

@@ -17,6 +17,7 @@ export default defineComponent({
     "x-tooltip": Tooltip
   },
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as BaseButtonPropOptions),
     modelValue: propOptions.boolean(),
     tooltip: propOptions(is.stringU),

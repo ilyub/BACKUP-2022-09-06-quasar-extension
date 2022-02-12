@@ -23,6 +23,7 @@ export default defineComponent({
     "x-menu-item": MenuItem
   },
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as LanguagePickerOptions),
     language: propOptions.required(is.unknown)
   },

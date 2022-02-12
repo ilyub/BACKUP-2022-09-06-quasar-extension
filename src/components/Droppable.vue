@@ -10,6 +10,7 @@ export default defineComponent({
   components: {
     "x-sortable": Sortable
   },
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as DroppablePropOptions,
   setup(_props: SetupProps<DroppablePropOptions>) {}
 });

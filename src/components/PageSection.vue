@@ -6,6 +6,7 @@ import type { PageSectionPropOptions } from "./PageSection.extras";
 
 export default defineComponent({
   name: "x-page-section",
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as PageSectionPropOptions,
   setup(_props: SetupProps<PageSectionPropOptions>) {}
 });

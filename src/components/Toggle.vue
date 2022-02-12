@@ -13,6 +13,7 @@ import type { TogglePropOptions } from "./Toggle.extras";
 export default defineComponent({
   name: "x-toggle",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as TogglePropOptions),
     disable: propOptions.boolean(),
     modelValue: propOptions.required(is.boolean)

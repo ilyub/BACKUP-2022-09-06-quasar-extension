@@ -15,6 +15,11 @@ import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
 import type { Columns, PageTablePropOptions } from "./PageTable.extras";
 import { injectPageTableSettings, isColumnsFactory } from "./PageTable.extras";
 
+// eslint-disable-next-line @skylib/prefer-readonly
+type Component<T> = ReturnType<Helper<T>["createComponent"]>;
+
+type SlotKeys = ReadonlyArray<keyof QTableSlots>;
+
 class Helper<T> {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public createComponent(guard: is.Guard<T>) {
@@ -23,6 +28,7 @@ class Helper<T> {
     return defineComponent({
       name: "x-page-table",
       props: {
+        // eslint-disable-next-line no-type-assertion/no-type-assertion
         ...({} as PageTablePropOptions),
         columns: propOptions.default(isColumnsFactory<T>(), []),
         extraPageOffset: propOptions(is.stringU),
@@ -49,11 +55,9 @@ class Helper<T> {
             if (is.not.empty(props.limit) && event.to === props.limit - 1)
               emit("update:limit", props.limit + settings.value.growPageBy);
           },
-          passThroughSlots: computed<Array<keyof QTableSlots>>(
-            () =>
-              Object.keys(o.omit(slots, "body-cell")) as Array<
-                keyof QTableSlots
-              >
+          passThroughSlots: computed<SlotKeys>(
+            // eslint-disable-next-line no-type-assertion/no-type-assertion
+            () => Object.keys(o.omit(slots, "body-cell")) as SlotKeys
           ),
           tableColumns: computed<Writable<Columns<T>>>(() =>
             a.clone(props.columns)
@@ -72,10 +76,9 @@ const component = new Helper().createComponent(is.unknown);
 // eslint-disable-next-line vue/require-direct-export
 export default component;
 
-export function PageTableFactory<T>(
-  _guard: is.Guard<T>
-): ReturnType<Helper<T>["createComponent"]> {
-  return component as ReturnType<Helper<T>["createComponent"]>;
+export function PageTableFactory<T>(_guard: is.Guard<T>): Component<T> {
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
+  return component as Component<T>;
 }
 </script>
 

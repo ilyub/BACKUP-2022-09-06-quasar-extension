@@ -10,6 +10,7 @@ export default defineComponent({
   components: {
     "x-base-button": BaseButton
   },
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as ButtonPropOptions,
   setup(_props: SetupProps<ButtonPropOptions>) {}
 });

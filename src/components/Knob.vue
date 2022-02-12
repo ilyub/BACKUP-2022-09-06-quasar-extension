@@ -13,6 +13,7 @@ import { injectDisable } from "./Switchable.extras";
 export default defineComponent({
   name: "x-knob",
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as KnobPropOptions),
     disable: propOptions.boolean(),
     modelValue: propOptions.required(is.number)

@@ -8,6 +8,7 @@ import type { CardSectionPropOptions } from "./CardSection.extras";
 
 export default defineComponent({
   name: "x-card-section",
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as CardSectionPropOptions,
   setup(_props: SetupProps<CardSectionPropOptions>) {}
 });

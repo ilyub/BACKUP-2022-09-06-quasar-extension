@@ -54,6 +54,7 @@ export default defineComponent({
     "x-input": Input
   },
   props: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as IconPickerPropOptions),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),

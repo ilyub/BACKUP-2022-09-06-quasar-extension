@@ -128,6 +128,7 @@ it.each([
     props
   });
 
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
   const baseMove = wrapper.findComponent(Draggable).props("move") as unknown;
 
   const moveData = {
