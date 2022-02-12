@@ -1,5 +1,6 @@
 <script lang="ts">
 import us from "flag-icon-css/flags/1x1/us.svg";
+import { Notify } from "quasar";
 import { defineComponent } from "vue";
 import { mdiAccount, mdiPen } from "@mdi/js";
 
@@ -16,6 +17,9 @@ export default defineComponent({
   },
   setup() {
     return {
+      click(): void {
+        Notify.create("Clicked");
+      },
       mdiAccount,
       mdiPen,
       us
@@ -28,7 +32,7 @@ export default defineComponent({
   <x-icon-button :icon="mdiAccount">
     <x-menu>
       <q-list>
-        <x-list-item caption="Settings" :icon="mdiPen" />
+        <x-list-item caption="Settings" :icon="mdiPen" @click="click" />
         <x-list-item caption="Language">
           <template #icon>
             <img alt="Alt text" height="18" :src="us" width="18" />
