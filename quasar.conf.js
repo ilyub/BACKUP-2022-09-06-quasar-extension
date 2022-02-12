@@ -11,8 +11,8 @@ module.exports = configure(ctx => {
       },
       gzip: false,
       preloadChunks: true,
-      productDescription: "Quasar Framework",
-      productName: "Quasar Framework",
+      productDescription: "Quasar extension",
+      productName: "Quasar extension",
       publicPath: "/",
       rtl: true,
       showProgress: true,
@@ -26,14 +26,14 @@ module.exports = configure(ctx => {
     cordova: {},
     css: ["app.scss"],
     devServer: {
-      host: "framework.local.host",
+      host: "quasar-extension.local.host",
       https: true,
       open: true,
       port: 9300
     },
     electron: {
       builder: {
-        appId: "quasar-framework"
+        appId: "quasar-extension"
       },
       bundler: "packager",
       chainWebpack() {
@@ -56,7 +56,7 @@ module.exports = configure(ctx => {
       },
       manifest: {
         background_color: "#ffffff",
-        description: "Quasar Framework",
+        description: "Quasar extension",
         display: "standalone",
         icons: [
           {
@@ -85,9 +85,9 @@ module.exports = configure(ctx => {
             type: "image/png"
           }
         ],
-        name: "Quasar Framework",
+        name: "Quasar extension",
         orientation: "portrait",
-        short_name: "Quasar Framework",
+        short_name: "Quasar extension",
         theme_color: "#027be3"
       },
       workboxOptions: {},

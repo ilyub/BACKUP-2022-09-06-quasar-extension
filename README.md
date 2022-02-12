@@ -1,3 +1,3 @@
-# Quasar framework
+# Quasar extension
 
 Under construction.
