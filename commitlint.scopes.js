@@ -15,7 +15,7 @@ module.exports = [
   "Knob",
   "LanguagePicker",
   "Menu",
-  "MenuItem",
+  "ListItem",
   "NavButton",
   "OptionGroup",
   "PageLayout",

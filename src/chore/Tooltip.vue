@@ -9,16 +9,16 @@ import {
 } from "@mdi/js";
 
 import IconButton from "../components/IconButton.vue";
+import ListItem from "../components/ListItem.vue";
 import Menu from "../components/Menu.vue";
-import MenuItem from "../components/MenuItem.vue";
 import Tooltip from "../components/Tooltip.vue";
 
 export default defineComponent({
   name: "sample-tooltip",
   components: {
     "x-icon-button": IconButton,
+    "x-list-item": ListItem,
     "x-menu": Menu,
-    "x-menu-item": MenuItem,
     "x-tooltip": Tooltip
   },
   setup() {
@@ -37,7 +37,7 @@ export default defineComponent({
   <x-icon-button :icon="mdiMenu">
     <x-menu>
       <q-list>
-        <x-menu-item caption="Menu item" />
+        <x-list-item caption="Menu item" />
       </q-list>
     </x-menu>
     <x-tooltip>Sample tooltip</x-tooltip>

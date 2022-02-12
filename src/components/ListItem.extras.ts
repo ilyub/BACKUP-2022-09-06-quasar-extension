@@ -8,7 +8,7 @@ import type {
   PropsToPropOptions
 } from "./api";
 
-export type MenuItemPropOptions = PropsToPropOptions<
+export type ListItemPropOptions = PropsToPropOptions<
   QItemProps,
   {
     readonly caption: PropOptions<stringU>;

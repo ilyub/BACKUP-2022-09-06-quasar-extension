@@ -15,7 +15,7 @@ import "./Input.extras";
 import "./Knob.extras";
 import "./LanguagePicker.extras";
 import "./Menu.extras";
-import "./MenuItem.extras";
+import "./ListItem.extras";
 import "./NumericInput.extras";
 import "./OptionGroup.extras";
 import "./PageLayout.extras";

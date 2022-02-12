@@ -4,15 +4,15 @@ import { defineComponent } from "vue";
 import { mdiAccount, mdiPen } from "@mdi/js";
 
 import IconButton from "../components/IconButton.vue";
+import ListItem from "../components/ListItem.vue";
 import Menu from "../components/Menu.vue";
-import MenuItem from "../components/MenuItem.vue";
 
 export default defineComponent({
   name: "sample-icon-button",
   components: {
     "x-icon-button": IconButton,
-    "x-menu": Menu,
-    "x-menu-item": MenuItem
+    "x-list-item": ListItem,
+    "x-menu": Menu
   },
   setup() {
     return {
@@ -28,14 +28,14 @@ export default defineComponent({
   <x-icon-button :icon="mdiAccount">
     <x-menu>
       <q-list>
-        <x-menu-item caption="Settings" :icon="mdiPen" />
-        <x-menu-item caption="Language">
+        <x-list-item caption="Settings" :icon="mdiPen" />
+        <x-list-item caption="Language">
           <template #icon>
             <img alt="Alt text" height="18" :src="us" width="18" />
           </template>
-        </x-menu-item>
+        </x-list-item>
         <q-separator />
-        <x-menu-item caption="Exit" />
+        <x-list-item caption="Exit" />
       </q-list>
     </x-menu>
   </x-icon-button>

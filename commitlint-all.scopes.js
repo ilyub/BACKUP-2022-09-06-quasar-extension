@@ -1,5 +1,6 @@
 module.exports = [
   ...require("./commitlint.scopes"),
+  "MenuItem",
   "NavButton",
   "XBaseButton",
   "XButton",

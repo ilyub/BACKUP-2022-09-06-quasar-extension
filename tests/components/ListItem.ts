@@ -1,11 +1,11 @@
 import { QItem } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import MenuItem from "@/components/MenuItem.vue";
+import ListItem from "@/components/ListItem.vue";
 import * as testUtils from "@/testUtils";
 
 it("prop: caption", () => {
-  const wrapper = vueTestUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
@@ -18,7 +18,7 @@ it("prop: caption", () => {
 });
 
 it("prop: header", async () => {
-  const wrapper = vueTestUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
@@ -31,7 +31,7 @@ it("prop: header", async () => {
 });
 
 it("prop: icon", async () => {
-  const wrapper = vueTestUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
@@ -44,7 +44,7 @@ it("prop: icon", async () => {
 });
 
 it("slot: icon", () => {
-  const wrapper = vueTestUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"
@@ -58,7 +58,7 @@ it("slot: icon", () => {
 });
 
 it("slot: right", () => {
-  const wrapper = vueTestUtils.mount(MenuItem, {
+  const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
       caption: "sample-caption"

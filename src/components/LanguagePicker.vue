@@ -12,15 +12,15 @@ import type {
   LanguagePickerOptions
 } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
+import ListItem from "./ListItem.vue";
 import Menu from "./Menu.vue";
-import MenuItem from "./MenuItem.vue";
 
 export default defineComponent({
   name: "x-language-picker",
   components: {
     "x-icon-button": IconButton,
-    "x-menu": Menu,
-    "x-menu-item": MenuItem
+    "x-list-item": ListItem,
+    "x-menu": Menu
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -64,7 +64,7 @@ export default defineComponent({
     />
     <x-menu>
       <q-list>
-        <x-menu-item
+        <x-list-item
           v-for="(item, index) in settings.items"
           :key="index"
           :caption="item.caption"
@@ -74,7 +74,7 @@ export default defineComponent({
           <template #icon>
             <img :alt="item.caption" height="18" :src="item.flag" width="18" />
           </template>
-        </x-menu-item>
+        </x-list-item>
       </q-list>
     </x-menu>
   </x-icon-button>

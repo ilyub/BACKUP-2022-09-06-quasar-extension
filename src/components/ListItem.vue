@@ -1,4 +1,9 @@
 <script lang="ts">
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[ListItem] */
+
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[MenuItem] */
 
 import { computed, defineComponent } from "vue";
@@ -7,18 +12,18 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { MenuItemPropOptions } from "./MenuItem.extras";
+import type { ListItemPropOptions } from "./ListItem.extras";
 
 export default defineComponent({
-  name: "x-menu-item",
+  name: "x-list-item",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as MenuItemPropOptions),
+    ...({} as ListItemPropOptions),
     caption: propOptions(is.stringU),
     header: propOptions.boolean(),
     icon: propOptions(is.stringU)
   },
-  setup(props: SetupProps<MenuItemPropOptions>, { slots }) {
+  setup(props: SetupProps<ListItemPropOptions>, { slots }) {
     return {
       hasIcon: computed<boolean>(() => is.not.empty(props.icon)),
       hasIconSlot: computed<boolean>(() => is.not.empty(slots["icon"])),
