@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/Select.extras](../modules/components_Select_extras.md) / SelectOption
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Select.extras](../modules/components_Select_extras.md) / SelectOption
 
 # Interface: SelectOption<T\>
 

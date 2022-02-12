@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / boot/lang/ru
+[Quasar extension](../index.md) / [Exports](../modules.md) / boot/lang/ru
 
 # Module: boot/lang/ru
 

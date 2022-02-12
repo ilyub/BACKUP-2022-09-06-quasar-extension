@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/NumericInput.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/NumericInput.extras
 
 # Module: components/NumericInput.extras
 

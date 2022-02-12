@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/api](../modules/components_api.md) / PropOptionsRequired
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api](../modules/components_api.md) / PropOptionsRequired
 
 # Interface: PropOptionsRequired<T\>
 

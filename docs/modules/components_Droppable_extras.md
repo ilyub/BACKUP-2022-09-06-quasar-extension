@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Droppable.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Droppable.extras
 
 # Module: components/Droppable.extras
 

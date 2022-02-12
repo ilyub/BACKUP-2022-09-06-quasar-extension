@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Button.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Button.extras
 
 # Module: components/Button.extras
 

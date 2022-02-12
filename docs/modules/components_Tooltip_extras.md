@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Tooltip.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Tooltip.extras
 
 # Module: components/Tooltip.extras
 

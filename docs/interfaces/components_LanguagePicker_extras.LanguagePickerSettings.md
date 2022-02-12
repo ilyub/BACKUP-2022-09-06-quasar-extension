@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/LanguagePicker.extras](../modules/components_LanguagePicker_extras.md) / LanguagePickerSettings
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/LanguagePicker.extras](../modules/components_LanguagePicker_extras.md) / LanguagePickerSettings
 
 # Interface: LanguagePickerSettings
 

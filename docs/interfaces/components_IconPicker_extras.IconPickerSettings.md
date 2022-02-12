@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/IconPicker.extras](../modules/components_IconPicker_extras.md) / IconPickerSettings
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/IconPicker.extras](../modules/components_IconPicker_extras.md) / IconPickerSettings
 
 # Interface: IconPickerSettings
 

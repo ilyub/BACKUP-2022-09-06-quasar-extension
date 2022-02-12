@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Knob.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Knob.extras
 
 # Module: components/Knob.extras
 

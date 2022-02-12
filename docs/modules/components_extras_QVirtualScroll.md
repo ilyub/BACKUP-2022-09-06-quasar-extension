@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/extras/QVirtualScroll
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/extras/QVirtualScroll
 
 # Module: components/extras/QVirtualScroll
 

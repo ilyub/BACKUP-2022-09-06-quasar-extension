@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/Group.extras](../modules/components_Group_extras.md) / GroupItem
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Group.extras](../modules/components_Group_extras.md) / GroupItem
 
 # Interface: GroupItem
 

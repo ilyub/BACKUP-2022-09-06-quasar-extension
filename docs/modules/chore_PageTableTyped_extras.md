@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / chore/PageTableTyped.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / chore/PageTableTyped.extras
 
 # Module: chore/PageTableTyped.extras
 

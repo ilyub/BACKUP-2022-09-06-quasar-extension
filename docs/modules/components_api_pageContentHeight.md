@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/api/pageContentHeight
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/api/pageContentHeight
 
 # Module: components/api/pageContentHeight
 

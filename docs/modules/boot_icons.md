@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / boot/icons
+[Quasar extension](../index.md) / [Exports](../modules.md) / boot/icons
 
 # Module: boot/icons
 

@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/api
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/api
 
 # Module: components/api
 

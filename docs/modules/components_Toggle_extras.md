@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Toggle.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Toggle.extras
 
 # Module: components/Toggle.extras
 

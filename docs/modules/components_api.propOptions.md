@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/api](components_api.md) / propOptions
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api](components_api.md) / propOptions
 
 # Namespace: propOptions
 

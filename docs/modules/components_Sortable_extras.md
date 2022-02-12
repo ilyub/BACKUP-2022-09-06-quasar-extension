@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Sortable.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Sortable.extras
 
 # Module: components/Sortable.extras
 

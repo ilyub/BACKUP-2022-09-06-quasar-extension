@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/IconPicker.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/IconPicker.extras
 
 # Module: components/IconPicker.extras
 

@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/PageLayout.extras](../modules/components_PageLayout_extras.md) / PageLayoutPropOptions
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/PageLayout.extras](../modules/components_PageLayout_extras.md) / PageLayoutPropOptions
 
 # Interface: PageLayoutPropOptions
 

@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / typings/svg
+[Quasar extension](../index.md) / [Exports](../modules.md) / typings/svg
 
 # Module: typings/svg
 

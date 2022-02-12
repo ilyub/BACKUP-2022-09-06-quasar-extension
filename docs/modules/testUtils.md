@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / testUtils
+[Quasar extension](../index.md) / [Exports](../modules.md) / testUtils
 
 # Module: testUtils
 

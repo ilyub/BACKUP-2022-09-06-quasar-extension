@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/OptionGroup.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/OptionGroup.extras
 
 # Module: components/OptionGroup.extras
 

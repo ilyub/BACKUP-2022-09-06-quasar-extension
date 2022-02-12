@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/extras/QVirtualScroll](../modules/components_extras_QVirtualScroll.md) / VirtualScrollEvent
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/extras/QVirtualScroll](../modules/components_extras_QVirtualScroll.md) / VirtualScrollEvent
 
 # Interface: VirtualScrollEvent
 

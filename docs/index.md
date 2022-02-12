@@ -1,5 +1,5 @@
-Quasar Framework / [Exports](modules.md)
+Quasar extension / [Exports](modules.md)
 
-# Quasar framework
+# Quasar extension
 
 Under construction.

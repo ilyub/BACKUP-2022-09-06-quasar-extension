@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/LanguagePicker.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/LanguagePicker.extras
 
 # Module: components/LanguagePicker.extras
 

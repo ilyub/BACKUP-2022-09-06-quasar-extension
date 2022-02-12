@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [chore/PageTableTyped.extras](../modules/chore_PageTableTyped_extras.md) / TableItem
+[Quasar extension](../index.md) / [Exports](../modules.md) / [chore/PageTableTyped.extras](../modules/chore_PageTableTyped_extras.md) / TableItem
 
 # Interface: TableItem
 

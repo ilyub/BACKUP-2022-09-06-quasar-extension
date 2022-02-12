@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/Resizer.extras](../modules/components_Resizer_extras.md) / ResizerPropOptions
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Resizer.extras](../modules/components_Resizer_extras.md) / ResizerPropOptions
 
 # Interface: ResizerPropOptions
 

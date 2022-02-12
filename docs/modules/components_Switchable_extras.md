@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Switchable.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Switchable.extras
 
 # Module: components/Switchable.extras
 

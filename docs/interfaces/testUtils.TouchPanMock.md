@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [testUtils](../modules/testUtils.md) / TouchPanMock
+[Quasar extension](../index.md) / [Exports](../modules.md) / [testUtils](../modules/testUtils.md) / TouchPanMock
 
 # Interface: TouchPanMock
 

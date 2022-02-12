@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/PageTable.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/PageTable.extras
 
 # Module: components/PageTable.extras
 

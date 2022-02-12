@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / typings/vue
+[Quasar extension](../index.md) / [Exports](../modules.md) / typings/vue
 
 # Module: typings/vue
 

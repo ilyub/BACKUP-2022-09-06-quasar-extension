@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / [components/Switchable.extras](../modules/components_Switchable_extras.md) / SwitchablePropOptions
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Switchable.extras](../modules/components_Switchable_extras.md) / SwitchablePropOptions
 
 # Interface: SwitchablePropOptions
 

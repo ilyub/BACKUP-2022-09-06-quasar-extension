@@ -1,6 +1,6 @@
-[Quasar Framework](index.md) / Exports
+[Quasar extension](index.md) / Exports
 
-# Quasar Framework
+# Quasar extension
 
 ## Table of contents
 

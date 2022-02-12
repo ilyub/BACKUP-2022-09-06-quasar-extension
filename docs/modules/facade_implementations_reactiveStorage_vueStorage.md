@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / facade-implementations/reactiveStorage/vueStorage
+[Quasar extension](../index.md) / [Exports](../modules.md) / facade-implementations/reactiveStorage/vueStorage
 
 # Module: facade-implementations/reactiveStorage/vueStorage
 

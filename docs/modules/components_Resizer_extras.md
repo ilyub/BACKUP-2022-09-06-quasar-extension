@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/Resizer.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Resizer.extras
 
 # Module: components/Resizer.extras
 

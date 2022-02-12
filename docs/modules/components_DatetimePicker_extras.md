@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / components/DatetimePicker.extras
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/DatetimePicker.extras
 
 # Module: components/DatetimePicker.extras
 

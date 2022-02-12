@@ -1,4 +1,4 @@
-[Quasar Framework](../index.md) / [Exports](../modules.md) / routes
+[Quasar extension](../index.md) / [Exports](../modules.md) / routes
 
 # Module: routes
 
