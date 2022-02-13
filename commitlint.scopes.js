@@ -35,6 +35,7 @@ module.exports = [
   "components.api.index",
   "components.api.injection",
   "components.api.pageContentHeight",
+  "components.api.rootElement",
   "components.extras",
   "components.extras.Table",
   "components.extras.VirtualScroll",
