@@ -2,28 +2,29 @@ import * as vueTestUtils from "@vue/test-utils";
 
 import * as o from "@skylib/functions/es/object";
 
-import type { Component, GroupItems } from "@/components/Group.extras";
+import type { RootElement } from "@/components/api/rootElement";
+import type { GroupItems } from "@/components/Group.extras";
 import Group from "@/components/Group.vue";
 import * as testUtils from "@/testUtils";
 
-const component1: Component = "div";
+const rootElement1: RootElement = "div";
 
-const component2: Component = "page-section";
+const rootElement2: RootElement = "page-section";
 
-const component3: Component = "section";
+const rootElement3: RootElement = "section";
 
 it.each([
   {},
   {
-    component: component1
+    rootElement: rootElement1
   },
   {
-    component: component2
+    rootElement: rootElement2
   },
   {
-    component: component3
+    rootElement: rootElement3
   }
-])("Group", async ({ component }) => {
+])("Group", async ({ rootElement }) => {
   const items: GroupItems = [
     {
       id: "section2",
@@ -50,9 +51,9 @@ it.each([
   const wrapper = vueTestUtils.mount(Group, {
     global: testUtils.globalMountOptions(),
     props: o.removeUndefinedKeys({
-      component,
       items,
-      notFoundLabel: "No results found"
+      notFoundLabel: "No results found",
+      rootElement
     }),
     slots: {
       section1: '<div class="slot">slot-1</div>',
