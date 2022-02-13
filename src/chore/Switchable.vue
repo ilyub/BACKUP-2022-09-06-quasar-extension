@@ -31,14 +31,14 @@ export default defineComponent({
       Sample knob:
       <m-knob
         v-model="sampleKnob"
-        class="pl-inline-input"
+        class="ml-inline-element"
         :max="10"
         :step="1"
       />
     </m-section>
     <m-section>
       Sample toggle:
-      <m-toggle v-model="sampleToggle" class="pl-inline-input" />
+      <m-toggle v-model="sampleToggle" class="ml-inline-element" />
     </m-section>
   </m-switchable>
 </template>

@@ -1,6 +1,6 @@
 $button-group-spacing : 4px !default;
-$indent-padding: 16px !default;
-$inline-input-margin : 4px !default;
+$indent-padding : 16px !default;
+$inline-element-margin : 4px !default;
 $icon-button-group-spacing : 2px !default;
 $page-section-spacing : 16px !default;
 $section-spacing : 8px !default;
@@ -17,17 +17,17 @@ $section-spacing : 8px !default;
   display: inline-block;
 }
 
-.pl-inline-input {
-  margin-left: $inline-input-margin;
+.ml-inline-element {
+  margin-left: $inline-element-margin;
 }
 
-.pr-inline-input {
-  margin-right: $inline-input-margin;
+.mr-inline-element {
+  margin-right: $inline-element-margin;
 }
 
-.px-inline-input {
-  margin-right: $inline-input-margin;
-  margin-left: $inline-input-margin;
+.mx-inline-element {
+  margin-right: $inline-element-margin;
+  margin-left: $inline-element-margin;
 }
 
 .shrink-table-column {
