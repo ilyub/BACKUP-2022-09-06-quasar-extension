@@ -65,7 +65,8 @@ export default defineComponent({
     <q-checkbox v-model="showSection4" /> 4
   </div>
   <x-group
-    class="q-mt-lg"
+    class="section"
+    component="section"
     :items="groupItems"
     not-found-label="No results found"
     :search-string="searchString"
@@ -76,3 +77,9 @@ export default defineComponent({
     <template #section4>Section 12</template>
   </x-group>
 </template>
+
+<style lang="scss" scoped>
+.section {
+  border: 1px solid blue;
+}
+</style>

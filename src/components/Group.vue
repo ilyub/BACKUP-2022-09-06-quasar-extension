@@ -9,12 +9,15 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
+import { rootComponent, rootElementProps } from "./api/rootElement";
 import type { GroupItem, GroupItems, GroupPropOptions } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
   name: "x-group",
+  inheritAttrs: false,
   props: {
+    ...rootElementProps,
     items: propOptions.required(isGroupItems),
     notFoundLabel: propOptions(is.stringU),
     searchString: propOptions(is.stringU)
@@ -51,30 +54,30 @@ export default defineComponent({
       ),
       notFoundLabelShow: computed<boolean>(
         () => !filteredItems.value.some(item => item.show)
-      )
+      ),
+      rootComponent
     };
   }
 });
 </script>
 
 <template>
-  <div>
-    <div
-      v-for="(item, index) in filteredItems"
-      v-show="item.show"
-      :key="item.id"
-      :class="{
-        'q-mt-lg': index
-      }"
-    >
-      <slot :name="item.id"></slot>
-    </div>
-    <div
-      v-if="notFoundLabelExists"
-      v-show="notFoundLabelShow"
-      class="not-found text-grey-7"
-    >
-      {{ notFoundLabel }}
-    </div>
-  </div>
+  <component
+    v-bind="$attrs"
+    :is="rootComponent"
+    v-for="item in filteredItems"
+    v-show="item.show"
+    :key="item.id"
+  >
+    <slot :name="item.id"></slot>
+  </component>
+  <component
+    v-bind="$attrs"
+    :is="rootComponent"
+    v-if="notFoundLabelExists"
+    v-show="notFoundLabelShow"
+    class="text-grey-7"
+  >
+    {{ notFoundLabel }}
+  </component>
 </template>
