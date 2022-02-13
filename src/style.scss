@@ -1,4 +1,5 @@
 $button-group-spacing : 4px !default;
+$indent-padding: 16px !default;
 $inline-input-margin : 4px !default;
 $icon-button-group-spacing : 2px !default;
 $page-section-spacing : 16px !default;
@@ -68,6 +69,10 @@ $section-spacing : 8px !default;
 
 .x-icon-button-group-member + .x-icon-button-group-member {
   margin-left: $icon-button-group-spacing;
+}
+
+.x-indent {
+  padding-left: $indent-padding;
 }
 
 .x-page-section + .x-page-section {

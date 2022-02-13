@@ -11,6 +11,7 @@ module.exports = [
   "Group",
   "IconButton",
   "IconPicker",
+  "Indent",
   "Input",
   "Knob",
   "LanguagePicker",

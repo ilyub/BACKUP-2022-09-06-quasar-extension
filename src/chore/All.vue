@@ -10,6 +10,7 @@ import FormButton from "./FormButton.vue";
 import Group from "./Group.vue";
 import IconButton from "./IconButton.vue";
 import IconPicker from "./IconPicker.vue";
+import Indent from "./Indent.vue";
 import Input from "./Input.vue";
 import Knob from "./Knob.vue";
 import LanguagePicker from "./LanguagePicker.vue";
@@ -43,6 +44,7 @@ export default defineComponent({
           Group,
           IconButton,
           IconPicker,
+          Indent,
           Input,
           Knob,
           LanguagePicker,
