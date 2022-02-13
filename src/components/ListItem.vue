@@ -15,7 +15,7 @@ import { propOptions } from "./api";
 import type { ListItemPropOptions } from "./ListItem.extras";
 
 export default defineComponent({
-  name: "x-list-item",
+  name: "m-list-item",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as ListItemPropOptions),

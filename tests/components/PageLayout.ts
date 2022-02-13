@@ -45,7 +45,7 @@ it.each([
 
   const wrapper = vueTestUtils.mount(PageLayout, {
     components: {
-      "x-icon-button": IconButton
+      "m-icon-button": IconButton
     },
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({

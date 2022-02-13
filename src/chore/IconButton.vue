@@ -10,9 +10,9 @@ import Menu from "../components/Menu.vue";
 export default defineComponent({
   name: "sample-icon-button",
   components: {
-    "x-icon-button": IconButton,
-    "x-list-item": ListItem,
-    "x-menu": Menu
+    "m-icon-button": IconButton,
+    "m-list-item": ListItem,
+    "m-menu": Menu
   },
   setup() {
     return {
@@ -25,18 +25,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-icon-button :icon="mdiAccount">
-    <x-menu>
+  <m-icon-button :icon="mdiAccount">
+    <m-menu>
       <q-list>
-        <x-list-item caption="Settings" :icon="mdiPen" />
-        <x-list-item caption="Language">
+        <m-list-item caption="Settings" :icon="mdiPen" />
+        <m-list-item caption="Language">
           <template #icon>
             <img alt="Alt text" height="18" :src="us" width="18" />
           </template>
-        </x-list-item>
+        </m-list-item>
         <q-separator />
-        <x-list-item caption="Exit" />
+        <m-list-item caption="Exit" />
       </q-list>
-    </x-menu>
-  </x-icon-button>
+    </m-menu>
+  </m-icon-button>
 </template>

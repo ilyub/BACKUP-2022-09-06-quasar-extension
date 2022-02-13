@@ -12,9 +12,9 @@ import { isDirectionU } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
 
 export default defineComponent({
-  name: "x-base-button",
+  name: "m-base-button",
   components: {
-    "x-tooltip": Tooltip
+    "m-tooltip": Tooltip
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -40,8 +40,8 @@ export default defineComponent({
 <template>
   <q-btn @click="onClick">
     <slot></slot>
-    <x-tooltip v-if="hasTooltip" :direction="tooltipDirection">
+    <m-tooltip v-if="hasTooltip" :direction="tooltipDirection">
       {{ tooltip }}
-    </x-tooltip>
+    </m-tooltip>
   </q-btn>
 </template>

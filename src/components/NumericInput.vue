@@ -11,7 +11,7 @@ import type { NumericInputPropOptions } from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
 export default defineComponent({
-  name: "x-numeric-input",
+  name: "m-numeric-input",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as NumericInputPropOptions),

@@ -9,7 +9,7 @@ import { usePageContentHeight } from "./api/pageContentHeight";
 import type { PageMarkupTablePropOptions } from "./PageMarkupTable.extras";
 
 export default defineComponent({
-  name: "x-page-markup-table",
+  name: "m-page-markup-table",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as PageMarkupTablePropOptions),

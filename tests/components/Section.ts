@@ -8,5 +8,5 @@ it("Section", () => {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("x-section");
+  expect(wrapper).toHaveClass("m-section");
 });

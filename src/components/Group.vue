@@ -14,7 +14,7 @@ import type { GroupItem, GroupItems, GroupPropOptions } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
-  name: "x-group",
+  name: "m-group",
   inheritAttrs: false,
   props: {
     ...rootElementProps,

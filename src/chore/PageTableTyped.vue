@@ -20,7 +20,7 @@ type SlotKeys = ReadonlyArray<keyof QTableSlots>;
 export default defineComponent({
   name: "sample-page-table-typed",
   components: {
-    "x-page-table": PageTableFactory(isTableItem)
+    "m-page-table": PageTableFactory(isTableItem)
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as PageTablePropOptions<TableItem>,
@@ -42,12 +42,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-page-table>
+  <m-page-table>
     <template v-for="name in passThroughSlots" #[name]>
       <slot :name="name"></slot>
     </template>
     <template v-if="$slots['body-cell']" #body-cell="data">
       <slot name="body-cell" v-bind="bodyCellSlotData(data)"></slot>
     </template>
-  </x-page-table>
+  </m-page-table>
 </template>

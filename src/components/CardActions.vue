@@ -7,7 +7,7 @@ import type { SetupProps } from "./api";
 import type { CardActionsPropOptions } from "./CardActions.extras";
 
 export default defineComponent({
-  name: "x-card-actions",
+  name: "m-card-actions",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as CardActionsPropOptions,
   setup(_props: SetupProps<CardActionsPropOptions>) {}

@@ -13,10 +13,10 @@ import CardSection from "./CardSection.vue";
 import IconButton from "./IconButton.vue";
 
 export default defineComponent({
-  name: "x-card",
+  name: "m-card",
   components: {
-    "x-card-section": CardSection,
-    "x-icon-button": IconButton
+    "m-card-section": CardSection,
+    "m-icon-button": IconButton
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -39,25 +39,25 @@ export default defineComponent({
       minWidth
     }"
   >
-    <x-card-section
+    <m-card-section
       v-if="transparentHeader"
       class="items-center q-pb-none row text-h6"
     >
       <slot name="title">{{ title }}</slot>
       <div class="header-actions">
         <slot name="header-actions"></slot>
-        <x-icon-button v-close-popup :icon="icons.close" />
+        <m-icon-button v-close-popup :icon="icons.close" />
       </div>
-    </x-card-section>
-    <x-card-section
+    </m-card-section>
+    <m-card-section
       v-else
       class="bg-primary items-center q-pr-sm row text-h6 text-white"
     >
       <slot name="title">{{ title }}</slot>
       <q-space />
       <slot name="header-actions"></slot>
-      <x-icon-button v-close-popup :icon="icons.close" />
-    </x-card-section>
+      <m-icon-button v-close-popup :icon="icons.close" />
+    </m-card-section>
     <slot></slot>
   </q-card>
 </template>

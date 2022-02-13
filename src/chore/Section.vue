@@ -6,14 +6,14 @@ import Section from "../components/Section.vue";
 export default defineComponent({
   name: "sample-section",
   components: {
-    "x-section": Section
+    "m-section": Section
   },
   setup() {}
 });
 </script>
 
 <template>
-  <x-section class="bg-grey-3 q-pa-md">Content</x-section>
-  <x-section class="bg-grey-3 q-pa-md">Content</x-section>
-  <x-section class="bg-grey-3 q-pa-md">Content</x-section>
+  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
 </template>

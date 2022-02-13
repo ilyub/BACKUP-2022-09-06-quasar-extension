@@ -6,9 +6,9 @@ import BaseButton from "./BaseButton.vue";
 import type { IconButtonPropOptions } from "./IconButton.extras";
 
 export default defineComponent({
-  name: "x-icon-button",
+  name: "m-icon-button",
   components: {
-    "x-base-button": BaseButton
+    "m-base-button": BaseButton
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as IconButtonPropOptions,
@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-base-button class="x-icon-button-group-member" flat round>
+  <m-base-button class="m-icon-button-group-member" flat round>
     <slot></slot>
-  </x-base-button>
+  </m-base-button>
 </template>

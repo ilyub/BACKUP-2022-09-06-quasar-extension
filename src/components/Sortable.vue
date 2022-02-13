@@ -21,7 +21,7 @@ import {
 import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
-  name: "x-sortable",
+  name: "m-sortable",
   components: {
     draggable: Draggable
   },

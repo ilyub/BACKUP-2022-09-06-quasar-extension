@@ -45,13 +45,13 @@ type Mdi = typeof import("@mdi/js-dynamic");
 const mdi = ref<Mdi | undefined>(undefined);
 
 export default defineComponent({
-  name: "x-icon-picker",
+  name: "m-icon-picker",
   components: {
-    "x-card": Card,
-    "x-card-actions": CardActions,
-    "x-card-section": CardSection,
-    "x-icon-button": IconButton,
-    "x-input": Input
+    "m-card": Card,
+    "m-card-actions": CardActions,
+    "m-card-section": CardSection,
+    "m-icon-button": IconButton,
+    "m-input": Input
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -193,7 +193,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-icon-button
+  <m-icon-button
     :class="{
       'text-grey-5': notSelected
     }"
@@ -201,9 +201,9 @@ export default defineComponent({
     @click="open"
   >
     <q-dialog v-model="show">
-      <x-card :title="lang.IconPicker" transparent-header>
-        <x-card-section>
-          <x-input v-model="searchString" class="q-pb-md search" />
+      <m-card :title="lang.IconPicker" transparent-header>
+        <m-card-section>
+          <m-input v-model="searchString" class="q-pb-md search" />
           <div class="relative-position">
             <div
               v-if="loading"
@@ -212,7 +212,7 @@ export default defineComponent({
               <q-spinner color="primary" :size="spinnerSize" />
             </div>
             <div v-for="(row, i) in frame" :key="i">
-              <x-icon-button
+              <m-icon-button
                 v-for="(button, j) in row"
                 :key="j"
                 :class="{
@@ -228,9 +228,9 @@ export default defineComponent({
               />
             </div>
           </div>
-        </x-card-section>
-        <x-card-actions>
-          <x-icon-button
+        </m-card-section>
+        <m-card-actions>
+          <m-icon-button
             class="prev"
             :disable="prevDisable"
             :icon="icons.chevronLeft"
@@ -246,14 +246,14 @@ export default defineComponent({
             {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
           </span>
           <q-space />
-          <x-icon-button
+          <m-icon-button
             class="next"
             :disable="nextDisable"
             :icon="icons.chevronRight"
             @click="nextClick"
           />
-        </x-card-actions>
-      </x-card>
+        </m-card-actions>
+      </m-card>
     </q-dialog>
-  </x-icon-button>
+  </m-icon-button>
 </template>

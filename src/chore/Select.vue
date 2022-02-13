@@ -9,7 +9,7 @@ import Select from "../components/Select.vue";
 export default defineComponent({
   name: "sample-select",
   components: {
-    "x-select": Select
+    "m-select": Select
   },
   setup() {
     return {
@@ -26,5 +26,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-select v-model="selectValue" :options="selectOptions" />
+  <m-select v-model="selectValue" :options="selectOptions" />
 </template>

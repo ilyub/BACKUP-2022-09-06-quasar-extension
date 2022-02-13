@@ -12,7 +12,7 @@ import type { InputPropOptions } from "./Input.extras";
 type SlotKeys = ReadonlyArray<keyof QInputSlots>;
 
 export default defineComponent({
-  name: "x-input",
+  name: "m-input",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as InputPropOptions),

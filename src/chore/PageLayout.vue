@@ -6,21 +6,21 @@ import PageLayout from "../components/PageLayout.vue";
 export default defineComponent({
   name: "sample-page-layout",
   components: {
-    "x-page-layout": PageLayout
+    "m-page-layout": PageLayout
   }
 });
 </script>
 
 <template>
-  <x-page-layout class="page-layout">
+  <m-page-layout class="page-layout">
     <div class="bg-grey-3 q-pa-md">Content</div>
-  </x-page-layout>
-  <x-page-layout class="page-layout q-mt-md" title="Title">
+  </m-page-layout>
+  <m-page-layout class="page-layout q-mt-md" title="Title">
     <div class="bg-grey-3 q-pa-md">Content</div>
-  </x-page-layout>
-  <x-page-layout class="page-layout q-mt-md" close-button title="Title">
+  </m-page-layout>
+  <m-page-layout class="page-layout q-mt-md" close-button title="Title">
     <div class="bg-grey-3 q-pa-md">Content</div>
-  </x-page-layout>
+  </m-page-layout>
 </template>
 
 <style lang="scss" scoped>

@@ -6,9 +6,9 @@ import type { DroppablePropOptions } from "./Droppable.extras";
 import Sortable from "./Sortable.vue";
 
 export default defineComponent({
-  name: "x-droppable",
+  name: "m-droppable",
   components: {
-    "x-sortable": Sortable
+    "m-sortable": Sortable
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as DroppablePropOptions,
@@ -17,14 +17,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-sortable
+  <m-sortable
     ghost-class="droppable-ghost-class"
     group="droppable"
     item-key="id"
     :model-value="[]"
   >
     <template #header><slot></slot></template>
-  </x-sortable>
+  </m-sortable>
 </template>
 
 <style lang="scss" scoped>

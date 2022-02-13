@@ -7,15 +7,15 @@ import PageMarkupTable from "../components/PageMarkupTable.vue";
 export default defineComponent({
   name: "sample-page-markup-table",
   components: {
-    "x-page-layout": PageLayout,
-    "x-page-markup-table": PageMarkupTable
+    "m-page-layout": PageLayout,
+    "m-page-markup-table": PageMarkupTable
   }
 });
 </script>
 
 <template>
-  <x-page-layout class="page-layout">
-    <x-page-markup-table class="page-markup-table" flat>
+  <m-page-layout class="page-layout">
+    <m-page-markup-table class="page-markup-table" flat>
       <thead>
         <tr>
           <th v-for="row in 3" :key="row">H:{{ row }}</th>
@@ -31,8 +31,8 @@ export default defineComponent({
           <th v-for="row in 3" :key="row">F:{{ row }}</th>
         </tr>
       </tfoot>
-    </x-page-markup-table>
-  </x-page-layout>
+    </m-page-markup-table>
+  </m-page-layout>
 </template>
 
 <style lang="scss" scoped>

@@ -7,7 +7,7 @@ import type { SwitchablePropOptions } from "./Switchable.extras";
 import { injectSwitchableSettings, provideDisable } from "./Switchable.extras";
 
 export default defineComponent({
-  name: "x-switchable",
+  name: "m-switchable",
   props: {
     on: propOptions.boolean()
   },

@@ -10,8 +10,8 @@ import Input from "../components/Input.vue";
 export default defineComponent({
   name: "sample-group",
   components: {
-    "x-group": Group,
-    "x-input": Input
+    "m-group": Group,
+    "m-input": Input
   },
   setup() {
     const showSection1 = ref(true);
@@ -56,7 +56,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-input v-model="searchString" label="Search for settings" />
+  <m-input v-model="searchString" label="Search for settings" />
   <div class="q-mt-md">
     Show
     <q-checkbox v-model="showSection1" /> 1
@@ -64,7 +64,7 @@ export default defineComponent({
     <q-checkbox v-model="showSection3" /> 3
     <q-checkbox v-model="showSection4" /> 4
   </div>
-  <x-group
+  <m-group
     class="section"
     component="section"
     :items="groupItems"
@@ -75,7 +75,7 @@ export default defineComponent({
     <template #section1>Section 1</template>
     <template #section3>Section 11</template>
     <template #section4>Section 12</template>
-  </x-group>
+  </m-group>
 </template>
 
 <style lang="scss" scoped>

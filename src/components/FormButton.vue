@@ -6,9 +6,9 @@ import BaseButton from "./BaseButton.vue";
 import type { FormButtonPropOptions } from "./FormButton.extras";
 
 export default defineComponent({
-  name: "x-form-button",
+  name: "m-form-button",
   components: {
-    "x-base-button": BaseButton
+    "m-base-button": BaseButton
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as FormButtonPropOptions,
@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-base-button class="x-button-group-member" flat>
+  <m-base-button class="m-button-group-member" flat>
     <slot></slot>
-  </x-base-button>
+  </m-base-button>
 </template>

@@ -8,5 +8,5 @@ it("Indent", () => {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("x-indent");
+  expect(wrapper).toHaveClass("m-indent");
 });

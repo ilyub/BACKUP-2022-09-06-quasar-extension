@@ -9,7 +9,7 @@ import DatetimePicker from "../components/DatetimePicker.vue";
 export default defineComponent({
   name: "sample-datetime-picker",
   components: {
-    "x-datetime-picker": DatetimePicker
+    "m-datetime-picker": DatetimePicker
   },
   setup() {
     return {
@@ -32,7 +32,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-datetime-picker
+  <m-datetime-picker
     v-model="datetimeValue"
     clearable
     :max="datetimeMax"

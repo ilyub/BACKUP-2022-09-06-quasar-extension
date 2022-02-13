@@ -6,7 +6,7 @@ import Knob from "../components/Knob.vue";
 export default defineComponent({
   name: "sample-knob",
   components: {
-    "x-knob": Knob
+    "m-knob": Knob
   },
   setup() {
     return {
@@ -17,5 +17,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-knob v-model="value" :max="1000" :step="10" />
+  <m-knob v-model="value" :max="1000" :step="10" />
 </template>

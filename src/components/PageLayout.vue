@@ -11,9 +11,9 @@ import type { PageLayoutPropOptions } from "./PageLayout.extras";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 
 export default defineComponent({
-  name: "x-page-layout",
+  name: "m-page-layout",
   components: {
-    "x-icon-button": IconButton
+    "m-icon-button": IconButton
   },
   props: {
     closeButton: propOptions.boolean(),
@@ -79,7 +79,7 @@ export default defineComponent({
         <template v-if="hasCloseButton">
           <q-space />
           <slot name="actions"></slot>
-          <x-icon-button
+          <m-icon-button
             class="ref-close-button"
             :icon="icons.close"
             to="/back"

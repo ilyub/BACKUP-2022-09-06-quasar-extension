@@ -24,12 +24,12 @@ interface Time {
 }
 
 export default defineComponent({
-  name: "x-datetime-picker",
+  name: "m-datetime-picker",
   components: {
-    "x-card": Card,
-    "x-card-section": CardSection,
-    "x-form-button": FormButton,
-    "x-icon-button": IconButton
+    "m-card": Card,
+    "m-card-section": CardSection,
+    "m-form-button": FormButton,
+    "m-icon-button": IconButton
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -246,7 +246,7 @@ export default defineComponent({
         self="top left"
         @before-show="dialogBeforeShow"
       >
-        <x-card>
+        <m-card>
           <template #title>
             <div class="items-end row">
               <div
@@ -280,14 +280,14 @@ export default defineComponent({
             </div>
           </template>
           <template #header-actions>
-            <x-icon-button
+            <m-icon-button
               class="ref-datetime-picker-pm"
               :disable="empty"
               :icon="pm ? icons.am : icons.pm"
               @click="pmToggle"
             />
           </template>
-          <x-card-section>
+          <m-card-section>
             <q-time
               v-if="nextStep"
               class="ref-datetime-picker-time"
@@ -298,7 +298,7 @@ export default defineComponent({
               @update:model-value="timeValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
-                <x-form-button
+                <m-form-button
                   v-close-popup
                   class="ref-datetime-picker-time-save"
                   color="primary"
@@ -319,7 +319,7 @@ export default defineComponent({
               @update:model-value="dateValueUpdate"
             >
               <div class="footer-actions items-center justify-end row">
-                <x-form-button
+                <m-form-button
                   v-close-popup
                   class="ref-datetime-picker-date-save"
                   color="primary"
@@ -328,8 +328,8 @@ export default defineComponent({
                 />
               </div>
             </q-date>
-          </x-card-section>
-        </x-card>
+          </m-card-section>
+        </m-card>
       </q-dialog>
     </template>
   </q-field>

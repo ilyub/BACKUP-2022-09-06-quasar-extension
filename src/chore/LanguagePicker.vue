@@ -8,7 +8,7 @@ import LanguagePicker from "../components/LanguagePicker.vue";
 export default defineComponent({
   name: "sample-language-picker",
   components: {
-    "x-language-picker": LanguagePicker
+    "m-language-picker": LanguagePicker
   },
   setup() {
     return {
@@ -19,5 +19,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-language-picker :language="language" />
+  <m-language-picker :language="language" />
 </template>

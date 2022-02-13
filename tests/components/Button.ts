@@ -8,5 +8,5 @@ it("Button", () => {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("x-button-group-member");
+  expect(wrapper).toHaveClass("m-button-group-member");
 });

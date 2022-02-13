@@ -14,7 +14,7 @@ export default defineComponent({
   name: "sample-page-table",
   components: {
     "sample-page-table-typed": PageTableTyped,
-    "x-page-layout": PageLayout
+    "m-page-layout": PageLayout
   },
   setup() {
     const pageTableLimit = ref(20);
@@ -47,7 +47,7 @@ export default defineComponent({
 
 <template>
   {{ pageTableSelected }}
-  <x-page-layout class="page-layout" title="Title">
+  <m-page-layout class="page-layout" title="Title">
     <sample-page-table-typed
       v-model:limit="pageTableLimit"
       v-model:selected="pageTableSelected"
@@ -61,7 +61,7 @@ export default defineComponent({
         <q-td>{{ value }} {{ row }}</q-td>
       </template>
     </sample-page-table-typed>
-  </x-page-layout>
+  </m-page-layout>
 </template>
 
 <style lang="scss" scoped>

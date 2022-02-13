@@ -9,10 +9,10 @@ import Toggle from "../components/Toggle.vue";
 export default defineComponent({
   name: "sample-switchable",
   components: {
-    "x-knob": Knob,
-    "x-section": Section,
-    "x-switchable": Switchable,
-    "x-toggle": Toggle
+    "m-knob": Knob,
+    "m-section": Section,
+    "m-switchable": Switchable,
+    "m-toggle": Toggle
   },
   setup() {
     return {
@@ -25,20 +25,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-toggle v-model="on" />
-  <x-switchable class="q-pt-sm" :on="on">
-    <x-section>
+  <m-toggle v-model="on" />
+  <m-switchable class="q-pt-sm" :on="on">
+    <m-section>
       Sample knob:
-      <x-knob
+      <m-knob
         v-model="sampleKnob"
         class="pl-inline-input"
         :max="10"
         :step="1"
       />
-    </x-section>
-    <x-section>
+    </m-section>
+    <m-section>
       Sample toggle:
-      <x-toggle v-model="sampleToggle" class="pl-inline-input" />
-    </x-section>
-  </x-switchable>
+      <m-toggle v-model="sampleToggle" class="pl-inline-input" />
+    </m-section>
+  </m-switchable>
 </template>

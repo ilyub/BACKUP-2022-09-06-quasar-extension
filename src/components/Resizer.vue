@@ -33,7 +33,7 @@ const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
 );
 
 export default defineComponent({
-  name: "x-resizer",
+  name: "m-resizer",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as ResizerPropOptions),

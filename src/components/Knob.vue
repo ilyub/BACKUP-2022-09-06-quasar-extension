@@ -11,7 +11,7 @@ import type { KnobPropOptions } from "./Knob.extras";
 import { injectDisable } from "./Switchable.extras";
 
 export default defineComponent({
-  name: "x-knob",
+  name: "m-knob",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as KnobPropOptions),

@@ -8,7 +8,7 @@ import Input from "../components/Input.vue";
 export default defineComponent({
   name: "sample-input",
   components: {
-    "x-input": Input
+    "m-input": Input
   },
   setup() {
     return {
@@ -20,6 +20,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-input v-model="inputValue1" />
-  <x-input v-model="inputValue2" clearable />
+  <m-input v-model="inputValue1" />
+  <m-input v-model="inputValue2" clearable />
 </template>

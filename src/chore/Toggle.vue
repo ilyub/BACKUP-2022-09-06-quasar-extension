@@ -6,7 +6,7 @@ import Toggle from "../components/Toggle.vue";
 export default defineComponent({
   name: "sample-toggle",
   components: {
-    "x-toggle": Toggle
+    "m-toggle": Toggle
   },
   setup() {
     return {
@@ -17,5 +17,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-toggle v-model="value" />
+  <m-toggle v-model="value" />
 </template>

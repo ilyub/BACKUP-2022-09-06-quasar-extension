@@ -16,7 +16,7 @@ import type {
 import { isOptionGroupOptions } from "./OptionGroup.extras";
 
 export default defineComponent({
-  name: "x-option-group",
+  name: "m-option-group",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as OptionGroupPropOptions),

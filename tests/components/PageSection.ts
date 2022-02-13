@@ -8,5 +8,5 @@ it("PageSection", () => {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("x-page-section");
+  expect(wrapper).toHaveClass("m-page-section");
 });

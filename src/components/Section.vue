@@ -5,7 +5,7 @@ import type { SetupProps } from "./api";
 import type { SectionPropOptions } from "./Section.extras";
 
 export default defineComponent({
-  name: "x-section",
+  name: "m-section",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as SectionPropOptions,
   setup(_props: SetupProps<SectionPropOptions>) {}
@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="x-section">
+  <div class="m-section">
     <slot></slot>
   </div>
 </template>

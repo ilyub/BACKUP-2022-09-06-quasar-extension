@@ -30,10 +30,10 @@ export default defineComponent({
   name: "app",
   components: {
     "all-samples": All,
-    "x-knob": Knob,
-    "x-language-picker": LanguagePicker,
-    "x-option-group": OptionGroup,
-    "x-toggle": Toggle
+    "m-knob": Knob,
+    "m-language-picker": LanguagePicker,
+    "m-option-group": OptionGroup,
+    "m-toggle": Toggle
   },
   setup() {
     const iconTooltips = ref(false);
@@ -146,9 +146,9 @@ export default defineComponent({
     </div>
     <div>
       Show tooltips:
-      <x-toggle v-model="tooltipShow" />
+      <m-toggle v-model="tooltipShow" />
       with delay of
-      <x-knob
+      <m-knob
         v-model="tooltipDelay"
         class="q-ml-sm q-mr-sm"
         :disable="!tooltipShow"
@@ -158,12 +158,12 @@ export default defineComponent({
       ms
     </div>
     <div>
-      <x-language-picker :language="language" />
+      <m-language-picker :language="language" />
       {{ lang.SampleWord }}
     </div>
     <div>
       Transition:
-      <x-option-group
+      <m-option-group
         v-model="switchableTransition"
         class="inline-block"
         inline

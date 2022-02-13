@@ -8,7 +8,7 @@ import NumericInput from "../components/NumericInput.vue";
 export default defineComponent({
   name: "sample-numeric-input",
   components: {
-    "x-numeric-input": NumericInput
+    "m-numeric-input": NumericInput
   },
   setup() {
     return {
@@ -19,5 +19,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-numeric-input v-model="value" :max="100" />
+  <m-numeric-input v-model="value" :max="100" />
 </template>

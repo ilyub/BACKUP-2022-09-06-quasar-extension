@@ -9,7 +9,7 @@ import IconPicker from "../components/IconPicker.vue";
 export default defineComponent({
   name: "sample-icon-picker",
   components: {
-    "x-icon-picker": IconPicker
+    "m-icon-picker": IconPicker
   },
   setup() {
     return {
@@ -23,8 +23,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
-  <x-icon-picker
+  <m-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
+  <m-icon-picker
     v-model="icon2"
     :cols="2"
     :placeholder="mdiImageEditOutline"

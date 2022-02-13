@@ -7,8 +7,8 @@ import Toggle from "../components/Toggle.vue";
 export default defineComponent({
   name: "sample-resizer",
   components: {
-    "x-resizer": Resizer,
-    "x-toggle": Toggle
+    "m-resizer": Resizer,
+    "m-toggle": Toggle
   },
   setup() {
     return {
@@ -20,14 +20,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-toggle v-model="resizerShow" />
+  <m-toggle v-model="resizerShow" />
   <div
     class="q-mt-sm resizer"
     :style="{
       width: `${resizerWidth}px`
     }"
   >
-    <x-resizer
+    <m-resizer
       v-show="resizerShow"
       v-model="resizerWidth"
       :max="300"

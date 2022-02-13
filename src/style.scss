@@ -63,22 +63,22 @@ $section-spacing : 8px !default;
   }
 }
 
-.x-button-group-member + .x-button-group-member {
+.m-button-group-member + .m-button-group-member {
   margin-left: $button-group-spacing;
 }
 
-.x-icon-button-group-member + .x-icon-button-group-member {
+.m-icon-button-group-member + .m-icon-button-group-member {
   margin-left: $icon-button-group-spacing;
 }
 
-.x-indent {
+.m-indent {
   padding-left: $indent-padding;
 }
 
-.x-page-section + .x-page-section {
+.m-page-section + .m-page-section {
   margin-top: $page-section-spacing;
 }
 
-.x-section + .x-section {
+.m-section + .m-section {
   margin-top: $section-spacing;
 }

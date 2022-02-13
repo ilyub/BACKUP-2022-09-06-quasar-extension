@@ -5,7 +5,7 @@ import type { SetupProps } from "./api";
 import type { IndentPropOptions } from "./Indent.extras";
 
 export default defineComponent({
-  name: "x-indent",
+  name: "m-indent",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as IndentPropOptions,
   setup(_props: SetupProps<IndentPropOptions>) {}
@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="x-indent">
+  <div class="m-indent">
     <slot></slot>
   </div>
 </template>

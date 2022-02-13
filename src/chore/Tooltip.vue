@@ -16,10 +16,10 @@ import Tooltip from "../components/Tooltip.vue";
 export default defineComponent({
   name: "sample-tooltip",
   components: {
-    "x-icon-button": IconButton,
-    "x-list-item": ListItem,
-    "x-menu": Menu,
-    "x-tooltip": Tooltip
+    "m-icon-button": IconButton,
+    "m-list-item": ListItem,
+    "m-menu": Menu,
+    "m-tooltip": Tooltip
   },
   setup() {
     return {
@@ -34,51 +34,51 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-icon-button :icon="mdiMenu">
-    <x-menu>
+  <m-icon-button :icon="mdiMenu">
+    <m-menu>
       <q-list>
-        <x-list-item caption="Menu item" />
+        <m-list-item caption="Menu item" />
       </q-list>
-    </x-menu>
-    <x-tooltip>Sample tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowDown">
-    <x-tooltip>Down tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowDown">
-    <x-tooltip direction="down">Down tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowDown">
-    <x-tooltip direction="down-left">Down-left tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowDown">
-    <x-tooltip direction="down-right">Down-right tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowLeft">
-    <x-tooltip direction="left">Left tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowLeft">
-    <x-tooltip direction="left-down">Left-down tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowLeft">
-    <x-tooltip direction="left-up">Left-up tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowRight">
-    <x-tooltip direction="right">Right tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowRight">
-    <x-tooltip direction="right-down">Right-down tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowRight">
-    <x-tooltip direction="right-up">Right-up tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowUp">
-    <x-tooltip direction="up">Up tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowUp">
-    <x-tooltip direction="up-left">Up-left tooltip</x-tooltip>
-  </x-icon-button>
-  <x-icon-button :icon="mdiArrowUp">
-    <x-tooltip direction="up-right">Up-right tooltip</x-tooltip>
-  </x-icon-button>
+    </m-menu>
+    <m-tooltip>Sample tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowDown">
+    <m-tooltip>Down tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowDown">
+    <m-tooltip direction="down">Down tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowDown">
+    <m-tooltip direction="down-left">Down-left tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowDown">
+    <m-tooltip direction="down-right">Down-right tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowLeft">
+    <m-tooltip direction="left">Left tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowLeft">
+    <m-tooltip direction="left-down">Left-down tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowLeft">
+    <m-tooltip direction="left-up">Left-up tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowRight">
+    <m-tooltip direction="right">Right tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowRight">
+    <m-tooltip direction="right-down">Right-down tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowRight">
+    <m-tooltip direction="right-up">Right-up tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowUp">
+    <m-tooltip direction="up">Up tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowUp">
+    <m-tooltip direction="up-left">Up-left tooltip</m-tooltip>
+  </m-icon-button>
+  <m-icon-button :icon="mdiArrowUp">
+    <m-tooltip direction="up-right">Up-right tooltip</m-tooltip>
+  </m-icon-button>
 </template>

@@ -16,11 +16,11 @@ import ListItem from "./ListItem.vue";
 import Menu from "./Menu.vue";
 
 export default defineComponent({
-  name: "x-language-picker",
+  name: "m-language-picker",
   components: {
-    "x-icon-button": IconButton,
-    "x-list-item": ListItem,
-    "x-menu": Menu
+    "m-icon-button": IconButton,
+    "m-list-item": ListItem,
+    "m-menu": Menu
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
@@ -55,16 +55,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-icon-button>
+  <m-icon-button>
     <img
       :alt="activeItem.caption"
       height="20"
       :src="activeItem.flag"
       width="20"
     />
-    <x-menu>
+    <m-menu>
       <q-list>
-        <x-list-item
+        <m-list-item
           v-for="(item, index) in settings.items"
           :key="index"
           :caption="item.caption"
@@ -74,8 +74,8 @@ export default defineComponent({
           <template #icon>
             <img :alt="item.caption" height="18" :src="item.flag" width="18" />
           </template>
-        </x-list-item>
+        </m-list-item>
       </q-list>
-    </x-menu>
-  </x-icon-button>
+    </m-menu>
+  </m-icon-button>
 </template>

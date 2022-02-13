@@ -12,9 +12,9 @@ import Tooltip from "../components/Tooltip.vue";
 export default defineComponent({
   name: "sample-droppable",
   components: {
-    "x-droppable": Droppable,
-    "x-sortable": Sortable,
-    "x-tooltip": Tooltip
+    "m-droppable": Droppable,
+    "m-sortable": Sortable,
+    "m-tooltip": Tooltip
   },
   setup() {
     return {
@@ -36,7 +36,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-sortable
+  <m-sortable
     v-model="sortable1"
     class="sortable"
     group="sortable"
@@ -47,10 +47,10 @@ export default defineComponent({
   >
     <template #item="{ item }">
       {{ sortableName(item) }}
-      <x-tooltip>Sample tooltip</x-tooltip>
+      <m-tooltip>Sample tooltip</m-tooltip>
     </template>
-  </x-sortable>
-  <x-sortable
+  </m-sortable>
+  <m-sortable
     v-model="sortable2"
     class="q-mt-md sortable"
     group="sortable"
@@ -61,12 +61,12 @@ export default defineComponent({
   >
     <template #item="{ item }">
       {{ sortableName(item) }}
-      <x-tooltip>Sample tooltip</x-tooltip>
+      <m-tooltip>Sample tooltip</m-tooltip>
     </template>
-  </x-sortable>
-  <x-droppable class="droppable q-mt-md" group="droppable" @dropped="dropped">
+  </m-sortable>
+  <m-droppable class="droppable q-mt-md" group="droppable" @dropped="dropped">
     D
-  </x-droppable>
+  </m-droppable>
 </template>
 
 <style lang="scss" scoped>

@@ -47,7 +47,7 @@ type Self =
   | "top start";
 
 export default defineComponent({
-  name: "x-tooltip",
+  name: "m-tooltip",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as TooltipOptions),

@@ -11,7 +11,7 @@ import { injectDisable } from "./Switchable.extras";
 import type { TogglePropOptions } from "./Toggle.extras";
 
 export default defineComponent({
-  name: "x-toggle",
+  name: "m-toggle",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as TogglePropOptions),

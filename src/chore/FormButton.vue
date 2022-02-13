@@ -6,7 +6,7 @@ import FormButton from "../components/FormButton.vue";
 export default defineComponent({
   name: "sample-form-button",
   components: {
-    "x-form-button": FormButton
+    "m-form-button": FormButton
   },
   setup() {
     return {};
@@ -15,17 +15,17 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-form-button tooltip="Down tooltip">Down</x-form-button>
-  <x-form-button tooltip="Down tooltip" tooltip-direction="down">
+  <m-form-button tooltip="Down tooltip">Down</m-form-button>
+  <m-form-button tooltip="Down tooltip" tooltip-direction="down">
     Down
-  </x-form-button>
-  <x-form-button tooltip="Left tooltip" tooltip-direction="left">
+  </m-form-button>
+  <m-form-button tooltip="Left tooltip" tooltip-direction="left">
     Left
-  </x-form-button>
-  <x-form-button tooltip="Right tooltip" tooltip-direction="right">
+  </m-form-button>
+  <m-form-button tooltip="Right tooltip" tooltip-direction="right">
     Right
-  </x-form-button>
-  <x-form-button tooltip="Up tooltip" tooltip-direction="up">
+  </m-form-button>
+  <m-form-button tooltip="Up tooltip" tooltip-direction="up">
     Up
-  </x-form-button>
+  </m-form-button>
 </template>

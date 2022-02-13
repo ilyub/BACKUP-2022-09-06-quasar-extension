@@ -5,7 +5,7 @@ import type { SetupProps } from "./api";
 import type { PageSectionPropOptions } from "./PageSection.extras";
 
 export default defineComponent({
-  name: "x-page-section",
+  name: "m-page-section",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as PageSectionPropOptions,
   setup(_props: SetupProps<PageSectionPropOptions>) {}
@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="x-page-section">
+  <div class="m-page-section">
     <slot></slot>
   </div>
 </template>

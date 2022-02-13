@@ -26,7 +26,7 @@ class Helper<T> {
     const isItems = is.factory(is.array.of, guard);
 
     return defineComponent({
-      name: "x-page-table",
+      name: "m-page-table",
       props: {
         // eslint-disable-next-line no-type-assertion/no-type-assertion
         ...({} as PageTablePropOptions),

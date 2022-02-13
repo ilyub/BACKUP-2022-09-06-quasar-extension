@@ -6,9 +6,9 @@ import BaseButton from "./BaseButton.vue";
 import type { ButtonPropOptions } from "./Button.extras";
 
 export default defineComponent({
-  name: "x-button",
+  name: "m-button",
   components: {
-    "x-base-button": BaseButton
+    "m-base-button": BaseButton
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {} as ButtonPropOptions,
@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-base-button class="x-button-group-member" color="primary">
+  <m-base-button class="m-button-group-member" color="primary">
     <slot></slot>
-  </x-base-button>
+  </m-base-button>
 </template>

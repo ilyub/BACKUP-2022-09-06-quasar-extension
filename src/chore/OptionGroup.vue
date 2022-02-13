@@ -9,7 +9,7 @@ import OptionGroup from "../components/OptionGroup.vue";
 export default defineComponent({
   name: "sample-option-group",
   components: {
-    "x-option-group": OptionGroup
+    "m-option-group": OptionGroup
   },
   setup() {
     return {
@@ -26,5 +26,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <x-option-group v-model="value" inline :options="options" />
+  <m-option-group v-model="value" inline :options="options" />
 </template>
