@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { ExtendPropOptions, PropOptions } from "./api";
+import type { PropOptions, PropsToPropOptions } from "./api";
 import { createInjectable } from "./api";
 
 export type Direction =
@@ -27,7 +27,7 @@ export interface DisableTooltips {
   readonly active: Ref<boolean>;
 }
 
-export type TooltipOptions = ExtendPropOptions<
+export type TooltipOptions = PropsToPropOptions<
   QTooltipProps,
   {
     readonly direction: PropOptions<Direction | undefined>;

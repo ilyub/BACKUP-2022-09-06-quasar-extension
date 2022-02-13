@@ -4,36 +4,39 @@ import { computed } from "vue";
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
+// eslint-disable-next-line import/no-relative-parent-imports
+import PageSection from "../PageSection.vue";
+// eslint-disable-next-line import/no-relative-parent-imports
+import Section from "../Section.vue";
+
 import type { PropOptionsDefault, SetupProps } from ".";
 import { propOptions } from ".";
-import PageSection from "./PageSection.vue";
-import Section from "./Section.vue";
 
-export type RootElement = "div" | "page-section" | "section";
+export type RootElementProp = "div" | "page-section" | "section";
 
 export interface RootElementProps {
-  readonly rootElement: PropOptionsDefault<RootElement>;
+  readonly rootElement: PropOptionsDefault<RootElementProp>;
 }
 
-export const RootElementVO = createValidationObject<RootElement>({
+export const RootElementPropVO = createValidationObject<RootElementProp>({
   "div": "div",
   "page-section": "page-section",
   "section": "section"
 });
 
-export const isRootElement = is.factory(is.enumeration, RootElementVO);
+export const isRootElementProp = is.factory(is.enumeration, RootElementPropVO);
 
 export const rootElementProps: RootElementProps = {
-  rootElement: propOptions.default(isRootElement, "div")
+  rootElement: propOptions.default(isRootElementProp, "div")
 };
 
 /**
- * Returns component for root element.
+ * Root element module.
  *
  * @param props - Vue props.
- * @returns Component for root element.
+ * @returns Root component.
  */
-export function rootComponent(
+export function useRootElement(
   props: SetupProps<RootElementProps>
 ): ComputedRef<unknown> {
   return computed<unknown>(() => {

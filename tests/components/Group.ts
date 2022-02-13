@@ -2,16 +2,16 @@ import * as vueTestUtils from "@vue/test-utils";
 
 import * as o from "@skylib/functions/es/object";
 
-import type { RootElement } from "@/components/api/rootElement";
+import type { RootElementProp } from "@/components/api/rootElement";
 import type { GroupItems } from "@/components/Group.extras";
 import Group from "@/components/Group.vue";
 import * as testUtils from "@/testUtils";
 
-const rootElement1: RootElement = "div";
+const rootElement1: RootElementProp = "div";
 
-const rootElement2: RootElement = "page-section";
+const rootElement2: RootElementProp = "page-section";
 
-const rootElement3: RootElement = "section";
+const rootElement3: RootElementProp = "section";
 
 it.each([
   {},

@@ -13,8 +13,8 @@ import PageTableTyped from "./PageTableTyped.vue";
 export default defineComponent({
   name: "sample-page-table",
   components: {
-    "sample-page-table-typed": PageTableTyped,
-    "m-page-layout": PageLayout
+    "m-page-layout": PageLayout,
+    "sample-page-table-typed": PageTableTyped
   },
   setup() {
     const pageTableLimit = ref(20);

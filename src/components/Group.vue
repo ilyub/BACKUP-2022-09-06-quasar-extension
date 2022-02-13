@@ -9,7 +9,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import { rootComponent, rootElementProps } from "./api/rootElement";
+import { rootElementProps, useRootElement } from "./api/rootElement";
 import type { GroupItem, GroupItems, GroupPropOptions } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
@@ -55,7 +55,7 @@ export default defineComponent({
       notFoundLabelShow: computed<boolean>(
         () => !filteredItems.value.some(item => item.show)
       ),
-      rootComponent
+      rootComponent: useRootElement(props)
     };
   }
 });
