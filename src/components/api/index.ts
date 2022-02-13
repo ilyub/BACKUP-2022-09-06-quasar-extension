@@ -35,7 +35,7 @@ export interface Injectable<T> {
 }
 
 export type ExtendPropOptions<T extends object, B = object> = {
-  readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]>;
+  readonly [K in Exclude<keyof T, keyof B>]: T[K];
 } & B;
 
 // eslint-disable-next-line @skylib/prefer-readonly
