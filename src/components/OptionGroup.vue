@@ -20,6 +20,7 @@ export default defineComponent({
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as OptionGroupPropOptions),
+    inline: propOptions.boolean(),
     modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isOptionGroupOptions)
   },
@@ -38,6 +39,10 @@ export default defineComponent({
 
 <template>
   <q-option-group
+    :class="{
+      'inline-block': inline
+    }"
+    :inline="inline"
     :model-value="modelValue"
     :options="optionGroupOptions"
     @update:model-value="$emit('update:model-value', $event)"
