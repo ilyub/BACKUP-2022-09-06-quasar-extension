@@ -1,3 +1,5 @@
-import type { ReadonlyRecord } from "@skylib/functions/es/types/core";
+import type { PropOptionsBoolean } from "./api";
 
-export type SectionPropOptions = ReadonlyRecord<string, never>;
+export interface SectionPropOptions {
+  readonly indent: PropOptionsBoolean;
+}
