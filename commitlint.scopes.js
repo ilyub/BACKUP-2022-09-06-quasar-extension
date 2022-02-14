@@ -27,6 +27,7 @@ module.exports = [
   "Section",
   "Select",
   "Sortable",
+  "Subsection",
   "Switchable",
   "Toggle",
   "Tooltip",

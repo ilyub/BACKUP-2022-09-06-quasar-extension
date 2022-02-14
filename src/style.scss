@@ -1,9 +1,10 @@
 $button-group-spacing : 4px !default;
-$indent-padding : 16px !default;
+$indent-padding : 24px !default;
 $inline-element-margin : 4px !default;
 $icon-button-group-spacing : 2px !default;
-$page-section-spacing : 16px !default;
-$section-spacing : 8px !default;
+$page-section-spacing : 24px !default;
+$section-spacing : 16px !default;
+$subsection-spacing : 8px !default;
 
 .border-collapse {
   border-collapse: collapse;
@@ -81,4 +82,8 @@ $section-spacing : 8px !default;
 
 .m-section + .m-section {
   margin-top: $section-spacing;
+}
+
+.m-subsection + .m-subsection {
+  margin-top: $subsection-spacing;
 }
