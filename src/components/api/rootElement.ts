@@ -8,11 +8,13 @@ import { createValidationObject } from "@skylib/functions/es/types/core";
 import PageSection from "../PageSection.vue";
 // eslint-disable-next-line import/no-relative-parent-imports
 import Section from "../Section.vue";
+// eslint-disable-next-line import/no-relative-parent-imports
+import Subsection from "../Subsection.vue";
 
 import type { PropOptionsDefault, SetupProps } from ".";
 import { propOptions } from ".";
 
-export type RootElementProp = "div" | "page-section" | "section";
+export type RootElementProp = "div" | "page-section" | "section" | "subsection";
 
 export interface RootElementProps {
   readonly rootElement: PropOptionsDefault<RootElementProp>;
@@ -21,7 +23,8 @@ export interface RootElementProps {
 export const RootElementPropVO = createValidationObject<RootElementProp>({
   "div": "div",
   "page-section": "page-section",
-  "section": "section"
+  "section": "section",
+  "subsection": "subsection"
 });
 
 export const isRootElementProp = is.factory(is.enumeration, RootElementPropVO);
@@ -49,6 +52,9 @@ export function useRootElement(
 
       case "section":
         return Section;
+
+      case "subsection":
+        return Subsection;
     }
   });
 }
