@@ -10,7 +10,6 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as fn from "@skylib/functions/es/function";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import All from "./chore/All.vue";
 import { providePageOffset } from "./components/api/pageContentHeight";
 import { provideIconPickerSettings } from "./components/IconPicker.extras";
 import Knob from "./components/Knob.vue";
@@ -28,6 +27,7 @@ import type { Transition } from "./components/Switchable.extras";
 import { provideSwitchableSettings } from "./components/Switchable.extras";
 import Toggle from "./components/Toggle.vue";
 import { provideTooltipSettings } from "./components/Tooltip.extras";
+import All from "./samples/All.vue";
 
 export default defineComponent({
   name: "app",

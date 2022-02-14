@@ -3,9 +3,9 @@ module.exports = {
   extraChoreLocations: [
     "src/App.vue",
     "src/boot/**",
-    "src/chore/**",
     "src/router/**",
     "src/routes.ts",
+    "src/samples/**",
     "src/typings/**"
   ],
   readonlyIgnoreTypes: [
