@@ -19,8 +19,11 @@ import LanguagePicker from "./components/LanguagePicker.vue";
 import type { OptionGroupOptions } from "./components/OptionGroup.extras";
 import OptionGroup from "./components/OptionGroup.vue";
 import { providePageLayoutSettings } from "./components/PageLayout.extras";
+import PageSection from "./components/PageSection.vue";
 import { providePageTableSettings } from "./components/PageTable.extras";
+import Section from "./components/Section.vue";
 import { provideSortableSettings } from "./components/Sortable.extras";
+import Subsection from "./components/Subsection.vue";
 import type { Transition } from "./components/Switchable.extras";
 import { provideSwitchableSettings } from "./components/Switchable.extras";
 import Toggle from "./components/Toggle.vue";
@@ -33,6 +36,9 @@ export default defineComponent({
     "m-knob": Knob,
     "m-language-picker": LanguagePicker,
     "m-option-group": OptionGroup,
+    "m-page-section": PageSection,
+    "m-section": Section,
+    "m-subsection": Subsection,
     "m-toggle": Toggle
   },
   setup() {
@@ -137,40 +143,42 @@ export default defineComponent({
 
 <template>
   <div class="q-ma-xl">
-    <div>
-      <q-checkbox
-        v-model="iconTooltips"
-        class="q-ml-md"
-        label="Icon tooltips"
-      />
-    </div>
-    <div>
-      Show tooltips:
-      <m-toggle v-model="tooltipShow" />
-      with delay of
-      <m-knob
-        v-model="tooltipDelay"
-        class="q-ml-sm q-mr-sm"
-        :disable="!tooltipShow"
-        :max="3000"
-        :step="100"
-      />
-      ms
-    </div>
-    <div>
-      <m-language-picker :language="language" />
-      {{ lang.SampleWord }}
-    </div>
-    <div>
-      Transition:
-      <m-option-group
-        v-model="switchableTransition"
-        class="inline-block"
-        inline
-        :options="switchableTransitionOptions"
-      />
-    </div>
-    <all-samples />
+    <m-page-section>
+      <m-section>
+        <q-checkbox v-model="iconTooltips" label="Icon tooltips:" left-label />
+      </m-section>
+      <m-section>
+        <m-subsection>
+          <m-toggle v-model="tooltipShow" label="Show tooltips:" left-label />
+        </m-subsection>
+        <m-subsection indent>
+          with delay of
+          <m-knob
+            v-model="tooltipDelay"
+            :disable="!tooltipShow"
+            inline
+            :max="3000"
+            :step="100"
+          />
+          ms
+        </m-subsection>
+      </m-section>
+      <m-section>
+        Language:
+        <m-language-picker :language="language" />
+        {{ lang.SampleWord }}
+      </m-section>
+      <m-section>
+        Transition:
+        <m-option-group
+          v-model="switchableTransition"
+          inline
+          :options="switchableTransitionOptions"
+        />
+      </m-section>
+    </m-page-section>
+    <m-page-section>
+      <all-samples />
+    </m-page-section>
   </div>
-  >
 </template>
