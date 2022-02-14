@@ -28,8 +28,8 @@ export default defineComponent({
   <m-subsection>
     <m-toggle v-model="on" />
   </m-subsection>
-  <m-subsection indent>
-    <m-switchable :on="on">
+  <m-subsection>
+    <m-switchable indent :on="on">
       <m-subsection>
         Sample knob:
         <m-knob v-model="sampleKnob" inline :max="10" :step="1" />

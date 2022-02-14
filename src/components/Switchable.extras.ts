@@ -5,6 +5,7 @@ import type { PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
 
 export interface SwitchableProps {
+  readonly indent: PropOptionsBoolean;
   readonly on: PropOptionsBoolean;
 }
 
