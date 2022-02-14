@@ -1,6 +1,5 @@
 $button-group-spacing : 4px !default;
 $indent-padding : 24px !default;
-$inline-element-margin : 4px !default;
 $icon-button-group-spacing : 2px !default;
 $page-section-spacing : 24px !default;
 $section-spacing : 16px !default;
@@ -16,19 +15,6 @@ $subsection-spacing : 8px !default;
 
 .inline-block {
   display: inline-block;
-}
-
-.ml-inline-element {
-  margin-left: $inline-element-margin;
-}
-
-.mr-inline-element {
-  margin-right: $inline-element-margin;
-}
-
-.mx-inline-element {
-  margin-right: $inline-element-margin;
-  margin-left: $inline-element-margin;
 }
 
 .shrink-table-column {

@@ -29,16 +29,11 @@ export default defineComponent({
   <m-switchable class="q-pt-sm" :on="on">
     <m-section>
       Sample knob:
-      <m-knob
-        v-model="sampleKnob"
-        class="ml-inline-element"
-        :max="10"
-        :step="1"
-      />
+      <m-knob v-model="sampleKnob" :max="10" :step="1" />
     </m-section>
     <m-section>
       Sample toggle:
-      <m-toggle v-model="sampleToggle" class="ml-inline-element" />
+      <m-toggle v-model="sampleToggle" />
     </m-section>
   </m-switchable>
 </template>
