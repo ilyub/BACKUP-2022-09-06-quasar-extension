@@ -7,11 +7,11 @@
 ### Interfaces
 
 - [GroupItem](../interfaces/components_Group_extras.GroupItem.md)
-- [GroupPropOptions](../interfaces/components_Group_extras.GroupPropOptions.md)
 
 ### Type aliases
 
 - [GroupItems](components_Group_extras.md#groupitems)
+- [GroupPropOptions](components_Group_extras.md#grouppropoptions)
 
 ### Functions
 
@@ -23,6 +23,12 @@
 ### GroupItems
 
 Ƭ **GroupItems**: readonly [`GroupItem`](../interfaces/components_Group_extras.GroupItem.md)[]
+
+___
+
+### GroupPropOptions
+
+Ƭ **GroupPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<{ `items`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`GroupItems`](components_Group_extras.md#groupitems)\> ; `notFoundLabel`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `searchString`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }, [`RootElementProps`](../interfaces/components_api_rootElement.RootElementProps.md)\>
 
 ## Functions
 

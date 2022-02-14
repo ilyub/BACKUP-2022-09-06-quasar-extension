@@ -38,7 +38,7 @@ ___
 
 ### TooltipOptions
 
-Ƭ **TooltipOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<`QTooltipProps`, { `direction`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>
+Ƭ **TooltipOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTooltipProps`, { `direction`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>
 
 ## Variables
 

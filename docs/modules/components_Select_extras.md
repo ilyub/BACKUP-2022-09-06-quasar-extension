@@ -34,7 +34,7 @@ ___
 
 ### SelectPropOptions
 
-Ƭ **SelectPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<`QSelectProps`, { `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\> ; `options`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`SelectOptions`](components_Select_extras.md#selectoptions)\>  }\>
+Ƭ **SelectPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QSelectProps`, { `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\> ; `options`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`SelectOptions`](components_Select_extras.md#selectoptions)\>  }\>
 
 ## Functions
 

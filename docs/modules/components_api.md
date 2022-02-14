@@ -36,7 +36,7 @@
 
 ### ExtendPropOptions
 
-Ƭ **ExtendPropOptions**<`T`, `B`\>: { readonly [K in Exclude<OptionalKeys<T\>, keyof B\>]: PropOptions<T[K]\> } & `B`
+Ƭ **ExtendPropOptions**<`T`, `B`\>: { readonly [K in Exclude<keyof T, keyof B\>]: T[K] } & `B`
 
 #### Type parameters
 

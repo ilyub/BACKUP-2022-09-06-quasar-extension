@@ -51,7 +51,7 @@ ___
 
 ### LanguagePickerOptions
 
-Ƭ **LanguagePickerOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconPickerPropOptions`](components_IconPicker_extras.md#iconpickerpropoptions), { `language`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\>  }\>
+Ƭ **LanguagePickerOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconButtonPropOptions`](components_IconButton_extras.md#iconbuttonpropoptions), { `language`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\>  }\>
 
 ## Functions
 
