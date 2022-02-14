@@ -25,6 +25,7 @@ import Resizer from "./Resizer.vue";
 import Section from "./Section.vue";
 import Select from "./Select.vue";
 import Sortable from "./Sortable.vue";
+import Subsection from "./Subsection.vue";
 import Switchable from "./Switchable.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
@@ -59,6 +60,7 @@ export default defineComponent({
           Section,
           Select,
           Sortable,
+          Subsection,
           Switchable,
           Toggle,
           Tooltip
