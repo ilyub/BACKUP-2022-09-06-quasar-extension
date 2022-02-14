@@ -2,27 +2,24 @@
 import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
-import { propOptions } from "./api";
 import type { PageSectionProps } from "./PageSection.extras";
+import Switchable from "./Switchable.vue";
 
 export default defineComponent({
   name: "m-page-section",
+  components: {
+    "m-switchable": Switchable
+  },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as PageSectionProps),
-    indent: propOptions.boolean()
+    ...({} as PageSectionProps)
   },
   setup(_props: SetupProps<PageSectionProps>) {}
 });
 </script>
 
 <template>
-  <div
-    :class="{
-      'm-indent': indent,
-      'm-page-section': true
-    }"
-  >
+  <m-switchable class="m-page-section">
     <slot></slot>
-  </div>
+  </m-switchable>
 </template>

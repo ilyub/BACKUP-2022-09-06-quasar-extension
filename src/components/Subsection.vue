@@ -2,27 +2,24 @@
 import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
-import { propOptions } from "./api";
 import type { SubsectionProps } from "./Subsection.extras";
+import Switchable from "./Switchable.vue";
 
 export default defineComponent({
   name: "m-subsection",
+  components: {
+    "m-switchable": Switchable
+  },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as SubsectionProps),
-    indent: propOptions.boolean()
+    ...({} as SubsectionProps)
   },
   setup(_props: SetupProps<SubsectionProps>) {}
 });
 </script>
 
 <template>
-  <div
-    :class="{
-      'm-indent': indent,
-      'm-subsection': true
-    }"
-  >
+  <m-switchable class="m-subsection">
     <slot></slot>
-  </div>
+  </m-switchable>
 </template>
