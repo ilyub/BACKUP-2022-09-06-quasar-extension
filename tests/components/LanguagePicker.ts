@@ -5,7 +5,16 @@ import IconButton from "@/components/IconButton.vue";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 import * as testUtils from "@/testUtils";
 
-it("LanguagePicker", async () => {
+it.each([
+  {
+    expected: "en-US",
+    menuItemIndex: 0
+  },
+  {
+    expected: "ru-RU",
+    menuItemIndex: 1
+  }
+])("LanguagePicker", async ({ expected, menuItemIndex }) => {
   const changeLanguageAction = jest.fn();
 
   const wrapper = vueTestUtils.mount(LanguagePicker, {
@@ -36,23 +45,14 @@ it("LanguagePicker", async () => {
   {
     expect(list()).not.toExist();
     await button.trigger("click");
-    expect(menuItem0()).toExist();
-    expect(menuItem1()).toExist();
+    expect(list()).toExist();
   }
 
   {
     expect(changeLanguageAction).not.toBeCalled();
-    await menuItem0().trigger("click");
+    await menuItem().trigger("click");
     expect(changeLanguageAction).toBeCalledTimes(1);
-    expect(changeLanguageAction).toBeCalledWith("en-US");
-    changeLanguageAction.mockClear();
-  }
-
-  {
-    expect(changeLanguageAction).not.toBeCalled();
-    await menuItem1().trigger("click");
-    expect(changeLanguageAction).toBeCalledTimes(1);
-    expect(changeLanguageAction).toBeCalledWith("ru-RU");
+    expect(changeLanguageAction).toBeCalledWith(expected);
     changeLanguageAction.mockClear();
   }
 
@@ -60,11 +60,7 @@ it("LanguagePicker", async () => {
     return wrapper.findComponent(QList);
   }
 
-  function menuItem0(): vueTestUtils.DOMWrapper<Element> {
-    return wrapper.findComponent(QList).find(".menu-item-0");
-  }
-
-  function menuItem1(): vueTestUtils.DOMWrapper<Element> {
-    return wrapper.findComponent(QList).find(".menu-item-1");
+  function menuItem(): vueTestUtils.DOMWrapper<Element> {
+    return wrapper.findComponent(QList).find(`.menu-item-${menuItemIndex}`);
   }
 });
