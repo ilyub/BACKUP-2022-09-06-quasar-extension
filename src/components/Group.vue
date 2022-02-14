@@ -76,7 +76,7 @@ export default defineComponent({
     :is="rootComponent"
     v-if="notFoundLabelExists"
     v-show="notFoundLabelShow"
-    class="text-grey-7"
+    class="ref-group-not-found text-grey-7"
   >
     {{ notFoundLabel }}
   </component>

@@ -63,7 +63,7 @@ it.each([
     }
   });
 
-  const notFound = wrapper.find(".not-found");
+  const notFound = wrapper.find(".ref-group-not-found");
 
   const slots = wrapper.findAll(".slot");
 
