@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
@@ -12,14 +12,9 @@ export default defineComponent({
     on: propOptions.boolean()
   },
   setup(props: SetupProps<SwitchablePropOptions>) {
-    const settings = injectSwitchableSettings();
-
     provideDisable(() => !props.on);
 
     return {
-      cssTransitionDuration: computed<string>(
-        () => `${settings.value.transitionDuration}ms`
-      ),
       settings: injectSwitchableSettings()
     };
   }
@@ -27,13 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    v-if="settings.transition === 'fade'"
-    class="main"
-    :style="{
-      opacity: on ? 1 : settings.fadeOpacity
-    }"
-  >
+  <div v-if="settings.transition === 'none'">
     <slot></slot>
   </div>
   <q-slide-transition
@@ -43,9 +32,3 @@ export default defineComponent({
     <div v-show="on"><slot></slot></div>
   </q-slide-transition>
 </template>
-
-<style lang="scss" scoped>
-.main {
-  transition: opacity v-bind(cssTransitionDuration) ease;
-}
-</style>

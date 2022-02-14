@@ -1,7 +1,6 @@
 import * as vueTestUtils from "@vue/test-utils";
 
 import * as o from "@skylib/functions/es/object";
-import * as reflect from "@skylib/functions/es/reflect";
 
 import type { SwitchableSettings } from "@/components/Switchable.extras";
 import { injectDisable } from "@/components/Switchable.extras";
@@ -9,13 +8,11 @@ import Switchable from "@/components/Switchable.vue";
 import * as testUtils from "@/testUtils";
 
 const switchableSettings1: SwitchableSettings = {
-  fadeOpacity: 0.3,
-  transition: "fade",
+  transition: "none",
   transitionDuration: 300
 };
 
 const switchableSettings2: SwitchableSettings = {
-  fadeOpacity: 0.4,
   transition: "slide",
   transitionDuration: 400
 };
@@ -54,7 +51,5 @@ it.each([
 
   expect(injectDisableCallback).toBeCalledTimes(1);
   expect(injectDisableCallback).lastCalledWith(!(on ?? false));
-  expect(reflect.get(wrapper.vm, "cssTransitionDuration")).toStrictEqual(
-    `${switchableSettings?.transitionDuration ?? 200}ms`
-  );
+  expect(wrapper).toExist();
 });

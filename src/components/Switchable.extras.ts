@@ -9,15 +9,14 @@ export interface SwitchablePropOptions {
 }
 
 export interface SwitchableSettings {
-  readonly fadeOpacity: number;
   readonly transition: Transition;
   readonly transitionDuration: number;
 }
 
-export type Transition = "slide" | "fade";
+export type Transition = "none" | "slide";
 
 export const TransitionVO = createValidationObject<Transition>({
-  fade: "fade",
+  none: "none",
   slide: "slide"
 });
 
@@ -35,8 +34,7 @@ export const {
   test: testSwitchableSettings
 } = createInjectable<SwitchableSettings>(() => {
   return {
-    fadeOpacity: 0.5,
-    transition: "fade",
+    transition: "none",
     transitionDuration: 200
   };
 });

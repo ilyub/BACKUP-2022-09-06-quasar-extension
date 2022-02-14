@@ -2,7 +2,7 @@
 import { defineComponent, ref } from "vue";
 
 import Knob from "../components/Knob.vue";
-import Section from "../components/Section.vue";
+import Subsection from "../components/Subsection.vue";
 import Switchable from "../components/Switchable.vue";
 import Toggle from "../components/Toggle.vue";
 
@@ -10,7 +10,7 @@ export default defineComponent({
   name: "sample-switchable",
   components: {
     "m-knob": Knob,
-    "m-section": Section,
+    "m-subsection": Subsection,
     "m-switchable": Switchable,
     "m-toggle": Toggle
   },
@@ -25,15 +25,18 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-toggle v-model="on" />
-  <m-switchable class="q-pt-sm" :on="on">
-    <m-section>
-      Sample knob:
-      <m-knob v-model="sampleKnob" :max="10" :step="1" />
-    </m-section>
-    <m-section>
-      Sample toggle:
-      <m-toggle v-model="sampleToggle" />
-    </m-section>
-  </m-switchable>
+  <m-subsection>
+    <m-toggle v-model="on" />
+  </m-subsection>
+  <m-subsection indent>
+    <m-switchable :on="on">
+      <m-subsection>
+        Sample knob:
+        <m-knob v-model="sampleKnob" inline :max="10" :step="1" />
+      </m-subsection>
+      <m-subsection>
+        <m-toggle v-model="sampleToggle" label="Sample toggle:" left-label />
+      </m-subsection>
+    </m-switchable>
+  </m-subsection>
 </template>

@@ -46,7 +46,7 @@ export default defineComponent({
 
     const language = ref<LocaleName>("en-US");
 
-    const switchableTransition = ref<Transition>("fade");
+    const switchableTransition = ref<Transition>("none");
 
     const tooltipDelay = ref(1000);
 
@@ -104,7 +104,6 @@ export default defineComponent({
 
     provideSwitchableSettings(() => {
       return {
-        fadeOpacity: 0.5,
         transition: switchableTransition.value,
         transitionDuration: 500
       };
@@ -125,8 +124,8 @@ export default defineComponent({
       switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
         () => [
           {
-            label: "Fade",
-            value: "fade"
+            label: "None",
+            value: "none"
           },
           {
             label: "Slide",
