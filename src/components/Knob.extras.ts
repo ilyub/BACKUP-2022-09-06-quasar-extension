@@ -10,6 +10,7 @@ export type KnobPropOptions = PropsToPropOptions<
   QKnobProps,
   {
     readonly disable: PropOptionsBoolean;
+    readonly inline: PropOptionsBoolean;
     readonly modelValue: PropOptionsRequired<number>;
   }
 >;
