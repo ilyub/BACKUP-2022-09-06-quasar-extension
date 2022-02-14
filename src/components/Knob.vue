@@ -16,6 +16,7 @@ export default defineComponent({
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as KnobPropOptions),
     disable: propOptions.boolean(),
+    inline: propOptions.boolean(),
     modelValue: propOptions.required(is.number)
   },
   emits: {
@@ -31,6 +32,9 @@ export default defineComponent({
 
 <template>
   <q-knob
+    :class="{
+      inline
+    }"
     color="primary"
     :disable="disable || globalDisable"
     :model-value="modelValue"
@@ -41,3 +45,12 @@ export default defineComponent({
     @update:model-value="$emit('update:model-value', $event)"
   />
 </template>
+
+<style lang="scss" scoped>
+@use "sass:map";
+
+.inline {
+  margin-left: map.get($space-sm, "x");
+  margin-right: map.get($space-sm, "x");
+}
+</style>
