@@ -4,11 +4,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type {
-  PropOptions,
-  PropOptionsDefault,
-  PropsToPropOptions
-} from "./api";
+import type { ExtendQuasarProps, PropOptions, PropOptionsDefault } from "./api";
 import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
@@ -30,7 +26,7 @@ export type Columns<T = unknown> = ReadonlyArray<Column<T>>;
 
 export type Field<T = unknown> = (row: T) => string;
 
-export type PageTablePropOptions<T = unknown> = PropsToPropOptions<
+export type PageTableProps<T = unknown> = ExtendQuasarProps<
   QTableProps,
   {
     readonly columns: PropOptionsDefault<Columns<T>>;

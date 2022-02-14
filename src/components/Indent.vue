@@ -2,13 +2,13 @@
 import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
-import type { IndentPropOptions } from "./Indent.extras";
+import type { IndentProps } from "./Indent.extras";
 
 export default defineComponent({
   name: "m-indent",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as IndentPropOptions,
-  setup(_props: SetupProps<IndentPropOptions>) {}
+  props: {} as IndentProps,
+  setup(_props: SetupProps<IndentProps>) {}
 });
 </script>
 

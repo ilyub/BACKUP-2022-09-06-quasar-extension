@@ -2,7 +2,7 @@ import type { QSelectProps } from "quasar";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { PropOptionsRequired, PropsToPropOptions } from "./api";
+import type { ExtendQuasarProps, PropOptionsRequired } from "./api";
 
 export interface SelectOption<T = unknown> {
   readonly disable?: boolean;
@@ -12,7 +12,7 @@ export interface SelectOption<T = unknown> {
 
 export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
 
-export type SelectPropOptions = PropsToPropOptions<
+export type SelectProps = ExtendQuasarProps<
   QSelectProps,
   {
     readonly modelValue: PropOptionsRequired<unknown>;

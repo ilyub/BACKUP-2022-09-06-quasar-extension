@@ -1,5 +1,5 @@
 import type { QCardActionsProps } from "quasar";
 
-import type { PropsToPropOptions } from "./api";
+import type { ExtendQuasarProps } from "./api";
 
-export type CardActionsPropOptions = PropsToPropOptions<QCardActionsProps>;
+export type CardActionsProps = ExtendQuasarProps<QCardActionsProps>;

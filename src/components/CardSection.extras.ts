@@ -1,5 +1,5 @@
 import type { QCardSectionProps } from "quasar";
 
-import type { PropsToPropOptions } from "./api";
+import type { ExtendQuasarProps } from "./api";
 
-export type CardSectionPropOptions = PropsToPropOptions<QCardSectionProps>;
+export type CardSectionProps = ExtendQuasarProps<QCardSectionProps>;

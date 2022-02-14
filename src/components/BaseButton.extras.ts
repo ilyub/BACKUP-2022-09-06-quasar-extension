@@ -2,14 +2,10 @@ import type { QBtnProps } from "quasar";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type {
-  PropOptions,
-  PropOptionsBoolean,
-  PropsToPropOptions
-} from "./api";
+import type { ExtendQuasarProps, PropOptions, PropOptionsBoolean } from "./api";
 import type { Direction } from "./Tooltip.extras";
 
-export type BaseButtonPropOptions = PropsToPropOptions<
+export type BaseButtonProps = ExtendQuasarProps<
   QBtnProps,
   {
     readonly modelValue: PropOptionsBoolean;

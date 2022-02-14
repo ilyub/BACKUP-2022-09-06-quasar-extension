@@ -1,12 +1,12 @@
 import type { QKnobProps } from "quasar";
 
 import type {
+  ExtendQuasarProps,
   PropOptionsBoolean,
-  PropOptionsRequired,
-  PropsToPropOptions
+  PropOptionsRequired
 } from "./api";
 
-export type KnobPropOptions = PropsToPropOptions<
+export type KnobProps = ExtendQuasarProps<
   QKnobProps,
   {
     readonly disable: PropOptionsBoolean;

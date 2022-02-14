@@ -1,5 +1,5 @@
 import type { PropOptionsBoolean } from "./api";
 
-export interface PageSectionPropOptions {
+export interface PageSectionProps {
   readonly indent: PropOptionsBoolean;
 }

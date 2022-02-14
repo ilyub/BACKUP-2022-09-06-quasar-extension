@@ -7,7 +7,7 @@ import type { numberU } from "@skylib/functions/es/types/core";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { ResizerPropOptions } from "./Resizer.extras";
+import type { ResizerProps } from "./Resizer.extras";
 
 interface Offset {
   readonly x: number;
@@ -36,7 +36,7 @@ export default defineComponent({
   name: "m-resizer",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as ResizerPropOptions),
+    ...({} as ResizerProps),
     max: propOptions(is.numberU),
     min: propOptions.required(is.number),
     modelValue: propOptions.required(is.number)
@@ -44,7 +44,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: number) => is.number(value)
   },
-  setup(props: SetupProps<ResizerPropOptions>, { emit }) {
+  setup(props: SetupProps<ResizerProps>, { emit }) {
     let initialValue: numberU = undefined;
 
     return {

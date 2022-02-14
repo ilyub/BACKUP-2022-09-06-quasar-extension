@@ -7,14 +7,14 @@ import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { NumericInputPropOptions } from "./NumericInput.extras";
+import type { NumericInputProps } from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
 export default defineComponent({
   name: "m-numeric-input",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as NumericInputPropOptions),
+    ...({} as NumericInputProps),
     max: propOptions.required(is.number),
     min: propOptions.default(is.number, 0),
     modelValue: propOptions.required(is.numberU)
@@ -23,7 +23,7 @@ export default defineComponent({
     "update:model-value": (value: numberU) => is.numberU(value)
   },
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(props: SetupProps<NumericInputPropOptions>, { emit }) {
+  setup(props: SetupProps<NumericInputProps>, { emit }) {
     return {
       icons,
       inputModelValue: computed<string>(() => cast.string(props.modelValue)),

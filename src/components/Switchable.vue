@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { SwitchablePropOptions } from "./Switchable.extras";
+import type { SwitchableProps } from "./Switchable.extras";
 import { injectSwitchableSettings, provideDisable } from "./Switchable.extras";
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
   props: {
     on: propOptions.boolean()
   },
-  setup(props: SetupProps<SwitchablePropOptions>) {
+  setup(props: SetupProps<SwitchableProps>) {
     provideDisable(() => !props.on);
 
     return {

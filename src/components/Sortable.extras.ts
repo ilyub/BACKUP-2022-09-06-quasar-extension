@@ -32,7 +32,7 @@ export interface MoveData {
   readonly related: HTMLElement;
 }
 
-export interface SortablePropOptions {
+export interface SortableProps {
   readonly group: PropOptionsRequired<string>;
   readonly itemComponentData: PropOptions<objectU>;
   readonly itemKey: PropOptionsRequired<string>;

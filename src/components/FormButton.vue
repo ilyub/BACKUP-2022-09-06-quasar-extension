@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
 import BaseButton from "./BaseButton.vue";
-import type { FormButtonPropOptions } from "./FormButton.extras";
+import type { FormButtonProps } from "./FormButton.extras";
 
 export default defineComponent({
   name: "m-form-button",
@@ -11,8 +11,8 @@ export default defineComponent({
     "m-base-button": BaseButton
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as FormButtonPropOptions,
-  setup(_props: SetupProps<FormButtonPropOptions>) {}
+  props: {} as FormButtonProps,
+  setup(_props: SetupProps<FormButtonProps>) {}
 });
 </script>
 

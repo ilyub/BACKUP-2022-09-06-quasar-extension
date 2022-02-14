@@ -6,16 +6,16 @@ import * as is from "@skylib/functions/es/guards";
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
-import type { PageMarkupTablePropOptions } from "./PageMarkupTable.extras";
+import type { PageMarkupTableProps } from "./PageMarkupTable.extras";
 
 export default defineComponent({
   name: "m-page-markup-table",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as PageMarkupTablePropOptions),
+    ...({} as PageMarkupTableProps),
     extraPageOffset: propOptions(is.stringU)
   },
-  setup(props: SetupProps<PageMarkupTablePropOptions>) {
+  setup(props: SetupProps<PageMarkupTableProps>) {
     return {
       height: usePageContentHeight(() => props.extraPageOffset)
     };

@@ -7,7 +7,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { CardPropOptions } from "./Card.extras";
+import type { CardProps } from "./Card.extras";
 import { icons } from "./Card.extras";
 import CardSection from "./CardSection.vue";
 import IconButton from "./IconButton.vue";
@@ -20,12 +20,12 @@ export default defineComponent({
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as CardPropOptions),
+    ...({} as CardProps),
     minWidth: propOptions(is.stringU),
     title: propOptions(is.stringU),
     transparentHeader: propOptions.boolean()
   },
-  setup(_props: SetupProps<CardPropOptions>) {
+  setup(_props: SetupProps<CardProps>) {
     return {
       icons
     };

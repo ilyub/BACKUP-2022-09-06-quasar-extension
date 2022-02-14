@@ -8,7 +8,7 @@ import * as o from "@skylib/functions/es/object";
 import type { SetupProps } from "../components/api";
 import type {
   BodyCellSlotData,
-  PageTablePropOptions
+  PageTableProps
 } from "../components/PageTable.extras";
 import { PageTableFactory } from "../components/PageTable.vue";
 
@@ -23,9 +23,9 @@ export default defineComponent({
     "m-page-table": PageTableFactory(isTableItem)
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as PageTablePropOptions<TableItem>,
+  props: {} as PageTableProps<TableItem>,
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(_props: SetupProps<PageTablePropOptions<TableItem>>, { slots }) {
+  setup(_props: SetupProps<PageTableProps<TableItem>>, { slots }) {
     return {
       bodyCellSlotData(data: unknown): BodyCellSlotData<TableItem> {
         assert.byGuard(data, isBodyCellSlotData);

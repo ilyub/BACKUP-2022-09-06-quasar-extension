@@ -3,7 +3,7 @@ import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
 import BaseButton from "./BaseButton.vue";
-import type { IconButtonPropOptions } from "./IconButton.extras";
+import type { IconButtonProps } from "./IconButton.extras";
 
 export default defineComponent({
   name: "m-icon-button",
@@ -11,8 +11,8 @@ export default defineComponent({
     "m-base-button": BaseButton
   },
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as IconButtonPropOptions,
-  setup(_props: SetupProps<IconButtonPropOptions>) {}
+  props: {} as IconButtonProps,
+  setup(_props: SetupProps<IconButtonProps>) {}
 });
 </script>
 

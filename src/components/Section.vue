@@ -3,17 +3,16 @@ import { defineComponent } from "vue";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { SectionPropOptions } from "./Section.extras";
+import type { SectionProps } from "./Section.extras";
 
 export default defineComponent({
   name: "m-section",
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as SectionPropOptions),
+    ...({} as SectionProps),
     indent: propOptions.boolean()
   },
-  setup(_props: SetupProps<SectionPropOptions>) {}
+  setup(_props: SetupProps<SectionProps>) {}
 });
 </script>
 

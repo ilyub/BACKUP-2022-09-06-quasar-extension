@@ -1,3 +1,3 @@
-import type { BaseButtonPropOptions } from "./BaseButton.extras";
+import type { BaseButtonProps } from "./BaseButton.extras";
 
-export type ButtonPropOptions = BaseButtonPropOptions;
+export type ButtonProps = BaseButtonProps;

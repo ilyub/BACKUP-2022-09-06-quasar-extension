@@ -6,7 +6,7 @@ import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { PropOptions, PropsToPropOptions } from "./api";
+import type { ExtendQuasarProps, PropOptions } from "./api";
 
 declare global {
   namespace facades {
@@ -34,7 +34,7 @@ export const icons: Icons<"am" | "close" | "pickDate" | "pickTime" | "pm"> =
 
 export const lang: DictionaryAndWords<"PickDate" | "Save"> = baseLang;
 
-export type DatetimePickerPropOptions = PropsToPropOptions<
+export type DatetimePickerProps = ExtendQuasarProps<
   QFieldProps,
   {
     readonly max: PropOptions<stringU>;

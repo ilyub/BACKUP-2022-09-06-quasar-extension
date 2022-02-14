@@ -4,11 +4,7 @@ import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type {
-  PropOptions,
-  PropOptionsBoolean,
-  PropsToPropOptions
-} from "./api";
+import type { ExtendQuasarProps, PropOptions, PropOptionsBoolean } from "./api";
 
 declare global {
   namespace facades {
@@ -22,7 +18,7 @@ declare global {
 
 export const icons: Icons<"close"> = baseIcons;
 
-export type CardPropOptions = PropsToPropOptions<
+export type CardProps = ExtendQuasarProps<
   QCardProps,
   {
     readonly minWidth: PropOptions<stringU>;

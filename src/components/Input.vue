@@ -7,7 +7,7 @@ import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { InputPropOptions } from "./Input.extras";
+import type { InputProps } from "./Input.extras";
 
 type SlotKeys = ReadonlyArray<keyof QInputSlots>;
 
@@ -15,14 +15,14 @@ export default defineComponent({
   name: "m-input",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as InputPropOptions),
+    ...({} as InputProps),
     modelValue: propOptions.required(is.stringU)
   },
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(_props: SetupProps<InputPropOptions>, { emit, slots }) {
+  setup(_props: SetupProps<InputProps>, { emit, slots }) {
     const input = ref<QInput | undefined>(undefined);
 
     return {

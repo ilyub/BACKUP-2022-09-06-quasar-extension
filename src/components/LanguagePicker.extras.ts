@@ -1,8 +1,8 @@
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import type { ExtendPropOptions, PropOptionsRequired } from "./api";
+import type { ExtendProps, PropOptionsRequired } from "./api";
 import { createInjectable } from "./api";
-import type { IconButtonPropOptions } from "./IconButton.extras";
+import type { IconButtonProps } from "./IconButton.extras";
 
 export type ChangeLanguageAction = (language: LocaleName) => void;
 
@@ -14,8 +14,8 @@ export interface LanguagePickerItem {
 
 export type LanguagePickerItems = readonly LanguagePickerItem[];
 
-export type LanguagePickerOptions = ExtendPropOptions<
-  IconButtonPropOptions,
+export type LanguagePickerOptions = ExtendProps<
+  IconButtonProps,
   {
     readonly language: PropOptionsRequired<unknown>;
   }

@@ -3,9 +3,9 @@ import type { QOptionGroupProps } from "quasar";
 import * as is from "@skylib/functions/es/guards";
 
 import type {
+  ExtendQuasarProps,
   PropOptionsBoolean,
-  PropOptionsRequired,
-  PropsToPropOptions
+  PropOptionsRequired
 } from "./api";
 
 export interface OptionGroupOption<T = unknown> {
@@ -18,7 +18,7 @@ export type OptionGroupOptions<T = unknown> = ReadonlyArray<
   OptionGroupOption<T>
 >;
 
-export type OptionGroupPropOptions = PropsToPropOptions<
+export type OptionGroupProps = ExtendQuasarProps<
   QOptionGroupProps,
   {
     readonly inline: PropOptionsBoolean;

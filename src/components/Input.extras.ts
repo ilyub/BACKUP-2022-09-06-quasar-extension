@@ -2,9 +2,9 @@ import type { QInputProps } from "quasar";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { PropOptionsRequired, PropsToPropOptions } from "./api";
+import type { ExtendQuasarProps, PropOptionsRequired } from "./api";
 
-export type InputPropOptions = PropsToPropOptions<
+export type InputProps = ExtendQuasarProps<
   QInputProps,
   {
     readonly modelValue: PropOptionsRequired<stringU>;

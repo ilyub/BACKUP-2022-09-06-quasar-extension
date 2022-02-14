@@ -10,7 +10,7 @@ import type { Writable } from "@skylib/functions/es/types/core";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { Elems, SortablePropOptions } from "./Sortable.extras";
+import type { Elems, SortableProps } from "./Sortable.extras";
 import {
   buildElements,
   injectSortableSettings,
@@ -38,7 +38,7 @@ export default defineComponent({
       is.object(item) && is.string(group),
     "update:model-value": (value: readonly object[]) => is.objects(value)
   },
-  setup(props: SetupProps<SortablePropOptions>, { emit }) {
+  setup(props: SetupProps<SortableProps>, { emit }) {
     const { active } = useDisableTooltips();
 
     return {

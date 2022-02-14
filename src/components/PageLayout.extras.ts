@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-export interface PageLayoutPropOptions {
+export interface PageLayoutProps {
   readonly closeButton: PropOptionsBoolean;
   readonly hideCloseButton: PropOptionsBoolean;
   readonly title: PropOptions<stringU>;

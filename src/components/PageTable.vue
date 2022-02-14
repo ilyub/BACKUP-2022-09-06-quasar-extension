@@ -12,7 +12,7 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
-import type { Columns, PageTablePropOptions } from "./PageTable.extras";
+import type { Columns, PageTableProps } from "./PageTable.extras";
 import { injectPageTableSettings, isColumnsFactory } from "./PageTable.extras";
 
 // eslint-disable-next-line @skylib/prefer-readonly
@@ -29,7 +29,7 @@ class Helper<T> {
       name: "m-page-table",
       props: {
         // eslint-disable-next-line no-type-assertion/no-type-assertion
-        ...({} as PageTablePropOptions),
+        ...({} as PageTableProps),
         columns: propOptions.default(isColumnsFactory<T>(), []),
         extraPageOffset: propOptions(is.stringU),
         limit: propOptions(is.numberU),
@@ -41,7 +41,7 @@ class Helper<T> {
         "update:selected": (value: readonly T[]) => isItems(value)
       },
       // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-      setup(props: SetupProps<PageTablePropOptions<T>>, { emit, slots }) {
+      setup(props: SetupProps<PageTableProps<T>>, { emit, slots }) {
         const settings = injectPageTableSettings();
 
         return {

@@ -1,11 +1,7 @@
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type {
-  ExtendPropOptions,
-  PropOptions,
-  PropOptionsRequired
-} from "./api";
+import type { ExtendProps, PropOptions, PropOptionsRequired } from "./api";
 import type { RootElementProps } from "./api/rootElement";
 
 export interface GroupItem {
@@ -24,7 +20,7 @@ export const isGroupItem: is.Guard<GroupItem> = is.factory(
 
 export const isGroupItems = is.factory(is.array.of, isGroupItem);
 
-export type GroupPropOptions = ExtendPropOptions<
+export type GroupProps = ExtendProps<
   {
     readonly items: PropOptionsRequired<GroupItems>;
     readonly notFoundLabel: PropOptions<stringU>;

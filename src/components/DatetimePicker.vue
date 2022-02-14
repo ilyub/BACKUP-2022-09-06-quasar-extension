@@ -13,7 +13,7 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import Card from "./Card.vue";
 import CardSection from "./CardSection.vue";
-import type { DatetimePickerPropOptions } from "./DatetimePicker.extras";
+import type { DatetimePickerProps } from "./DatetimePicker.extras";
 import { icons, lang } from "./DatetimePicker.extras";
 import FormButton from "./FormButton.vue";
 import IconButton from "./IconButton.vue";
@@ -33,7 +33,7 @@ export default defineComponent({
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as DatetimePickerPropOptions),
+    ...({} as DatetimePickerProps),
     max: propOptions(is.stringU),
     min: propOptions(is.stringU),
     modelValue: propOptions(is.stringU)
@@ -42,7 +42,7 @@ export default defineComponent({
     "update:model-value": (value: stringU) => is.stringU(value)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props: SetupProps<DatetimePickerPropOptions>, { emit }) {
+  setup(props: SetupProps<DatetimePickerProps>, { emit }) {
     const dialogShow = ref(false);
 
     const empty = computed<boolean>(() => is.empty(pickerValue.value));

@@ -10,7 +10,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { rootElementProps, useRootElement } from "./api/rootElement";
-import type { GroupItem, GroupItems, GroupPropOptions } from "./Group.extras";
+import type { GroupItem, GroupItems, GroupProps } from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
     notFoundLabel: propOptions(is.stringU),
     searchString: propOptions(is.stringU)
   },
-  setup(props: SetupProps<GroupPropOptions>) {
+  setup(props: SetupProps<GroupProps>) {
     const filteredItems = computed<GroupItems>(() => {
       if (is.not.empty(props.searchString)) {
         const ids = new Set(

@@ -17,7 +17,7 @@ import Card from "./Card.vue";
 import CardActions from "./CardActions.vue";
 import CardSection from "./CardSection.vue";
 import IconButton from "./IconButton.vue";
-import type { IconPickerPropOptions } from "./IconPicker.extras";
+import type { IconPickerProps } from "./IconPicker.extras";
 import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import Input from "./Input.vue";
 
@@ -55,7 +55,7 @@ export default defineComponent({
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as IconPickerPropOptions),
+    ...({} as IconPickerProps),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
@@ -65,7 +65,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  setup(props: SetupProps<IconPickerPropOptions>, { emit }) {
+  setup(props: SetupProps<IconPickerProps>, { emit }) {
     const filteredItems = computed<Items>(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)

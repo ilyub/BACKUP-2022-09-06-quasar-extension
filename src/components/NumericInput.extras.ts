@@ -5,9 +5,9 @@ import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { numberU } from "@skylib/functions/es/types/core";
 
 import type {
+  ExtendQuasarProps,
   PropOptionsDefault,
-  PropOptionsRequired,
-  PropsToPropOptions
+  PropOptionsRequired
 } from "./api";
 
 declare global {
@@ -21,7 +21,7 @@ declare global {
   }
 }
 
-export type NumericInputPropOptions = PropsToPropOptions<
+export type NumericInputProps = ExtendQuasarProps<
   QInputProps,
   {
     readonly max: PropOptionsRequired<number>;

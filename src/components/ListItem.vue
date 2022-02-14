@@ -12,17 +12,17 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { ListItemPropOptions } from "./ListItem.extras";
+import type { ListItemProps } from "./ListItem.extras";
 
 export default defineComponent({
   name: "m-list-item",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as ListItemPropOptions),
+    ...({} as ListItemProps),
     caption: propOptions(is.stringU),
     icon: propOptions(is.stringU)
   },
-  setup(props: SetupProps<ListItemPropOptions>) {
+  setup(props: SetupProps<ListItemProps>) {
     const attrs = useAttrs();
 
     return {

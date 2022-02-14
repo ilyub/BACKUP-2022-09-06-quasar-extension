@@ -7,7 +7,7 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { BaseButtonPropOptions } from "./BaseButton.extras";
+import type { BaseButtonProps } from "./BaseButton.extras";
 import { isDirectionU } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
 
@@ -18,7 +18,7 @@ export default defineComponent({
   },
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as BaseButtonPropOptions),
+    ...({} as BaseButtonProps),
     modelValue: propOptions.boolean(),
     tooltip: propOptions(is.stringU),
     tooltipDirection: propOptions(isDirectionU)
@@ -26,7 +26,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: boolean) => is.boolean(value)
   },
-  setup(props: SetupProps<BaseButtonPropOptions>, { emit }) {
+  setup(props: SetupProps<BaseButtonProps>, { emit }) {
     return {
       hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip)),
       onClick(): void {

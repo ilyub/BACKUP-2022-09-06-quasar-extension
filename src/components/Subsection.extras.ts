@@ -1,5 +1,5 @@
 import type { PropOptionsBoolean } from "./api";
 
-export interface SubsectionPropOptions {
+export interface SubsectionProps {
   readonly indent: PropOptionsBoolean;
 }

@@ -8,20 +8,20 @@ import * as is from "@skylib/functions/es/guards";
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import { injectDisable } from "./Switchable.extras";
-import type { TogglePropOptions } from "./Toggle.extras";
+import type { ToggleProps } from "./Toggle.extras";
 
 export default defineComponent({
   name: "m-toggle",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as TogglePropOptions),
+    ...({} as ToggleProps),
     disable: propOptions.boolean(),
     modelValue: propOptions.required(is.boolean)
   },
   emits: {
     "update:model-value": (value: boolean) => is.boolean(value)
   },
-  setup(_props: SetupProps<TogglePropOptions>) {
+  setup(_props: SetupProps<ToggleProps>) {
     return {
       globalDisable: injectDisable()
     };

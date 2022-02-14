@@ -6,15 +6,15 @@ import { defineComponent } from "vue";
 import * as assert from "@skylib/functions/es/assertions";
 
 import type { SetupProps } from "./api";
-import type { MenuPropOptions } from "./Menu.extras";
+import type { MenuProps } from "./Menu.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-menu",
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as MenuPropOptions,
+  props: {} as MenuProps,
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(_props: SetupProps<MenuPropOptions>) {
+  setup(_props: SetupProps<MenuProps>) {
     const { active } = useDisableTooltips();
 
     return {

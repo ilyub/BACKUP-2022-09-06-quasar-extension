@@ -4,7 +4,7 @@ import { createValidationObject } from "@skylib/functions/es/types/core";
 import type { PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
 
-export interface SwitchablePropOptions {
+export interface SwitchableProps {
   readonly on: PropOptionsBoolean;
 }
 

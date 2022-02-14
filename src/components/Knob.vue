@@ -7,14 +7,14 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type { KnobPropOptions } from "./Knob.extras";
+import type { KnobProps } from "./Knob.extras";
 import { injectDisable } from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-knob",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as KnobPropOptions),
+    ...({} as KnobProps),
     disable: propOptions.boolean(),
     inline: propOptions.boolean(),
     modelValue: propOptions.required(is.number)
@@ -22,7 +22,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: number) => is.number(value)
   },
-  setup(_props: SetupProps<KnobPropOptions>) {
+  setup(_props: SetupProps<KnobProps>) {
     return {
       globalDisable: injectDisable()
     };

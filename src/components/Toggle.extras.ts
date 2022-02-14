@@ -1,12 +1,12 @@
 import type { QToggleProps } from "quasar";
 
 import type {
+  ExtendQuasarProps,
   PropOptionsBoolean,
-  PropOptionsRequired,
-  PropsToPropOptions
+  PropOptionsRequired
 } from "./api";
 
-export type TogglePropOptions = PropsToPropOptions<
+export type ToggleProps = ExtendQuasarProps<
   QToggleProps,
   {
     readonly disable: PropOptionsBoolean;

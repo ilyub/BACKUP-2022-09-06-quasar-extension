@@ -11,7 +11,7 @@ import type { SetupProps } from "./api";
 import { propOptions } from "./api";
 import type {
   OptionGroupOptions,
-  OptionGroupPropOptions
+  OptionGroupProps
 } from "./OptionGroup.extras";
 import { isOptionGroupOptions } from "./OptionGroup.extras";
 
@@ -19,7 +19,7 @@ export default defineComponent({
   name: "m-option-group",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as OptionGroupPropOptions),
+    ...({} as OptionGroupProps),
     inline: propOptions.boolean(),
     modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isOptionGroupOptions)
@@ -27,7 +27,7 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: unknown) => is.unknown(value)
   },
-  setup(props: SetupProps<OptionGroupPropOptions>) {
+  setup(props: SetupProps<OptionGroupProps>) {
     return {
       optionGroupOptions: computed<Writable<OptionGroupOptions>>(() =>
         a.clone(props.options)

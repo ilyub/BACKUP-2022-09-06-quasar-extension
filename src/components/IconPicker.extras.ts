@@ -5,13 +5,13 @@ import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import type {
-  ExtendPropOptions,
+  ExtendProps,
   PropOptions,
   PropOptionsDefault,
   PropOptionsRequired
 } from "./api";
 import { createInjectable } from "./api";
-import type { IconButtonPropOptions } from "./IconButton.extras";
+import type { IconButtonProps } from "./IconButton.extras";
 
 declare global {
   namespace facades {
@@ -50,8 +50,8 @@ export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
 
 export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;
 
-export type IconPickerPropOptions = ExtendPropOptions<
-  IconButtonPropOptions,
+export type IconPickerProps = ExtendProps<
+  IconButtonProps,
   {
     readonly cols: PropOptionsDefault<number>;
     readonly modelValue: PropOptions<stringU>;

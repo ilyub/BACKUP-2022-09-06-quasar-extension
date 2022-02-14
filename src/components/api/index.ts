@@ -34,9 +34,19 @@ export interface Injectable<T> {
   readonly test: (mutableProvide: Record<symbol, unknown>, settings: T) => void;
 }
 
-export type ExtendPropOptions<T extends object, B = object> = {
+export type ExtendProps<T extends object, B = object> = {
   readonly [K in Exclude<keyof T, keyof B>]: T[K];
 } & B;
+
+export type ExtendQuasarProps<T extends object, B = object> = Join2<
+  { readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]> },
+  {
+    readonly [K in Exclude<RequiredKeys<T>, keyof B>]: PropOptionsRequired<
+      T[K]
+    >;
+  }
+> &
+  B;
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export type LooseRequired<T> = {
@@ -59,16 +69,6 @@ export interface PropOptionsDefault<T> extends PropOptions<T> {
 export interface PropOptionsRequired<T> extends PropOptions<T> {
   readonly required: true;
 }
-
-export type PropsToPropOptions<T extends object, B = object> = Join2<
-  { readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]> },
-  {
-    readonly [K in Exclude<RequiredKeys<T>, keyof B>]: PropOptionsRequired<
-      T[K]
-    >;
-  }
-> &
-  B;
 
 export type SetupProps<T extends object> = Readonly<
   LooseRequired<Readonly<ExtractPropTypes<T>>>

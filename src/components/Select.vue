@@ -8,18 +8,14 @@ import type { Writable } from "@skylib/functions/es/types/core";
 
 import type { SetupProps } from "./api";
 import { propOptions } from "./api";
-import type {
-  SelectOption,
-  SelectOptions,
-  SelectPropOptions
-} from "./Select.extras";
+import type { SelectOption, SelectOptions, SelectProps } from "./Select.extras";
 import { isSelectOption, isSelectOptions } from "./Select.extras";
 
 export default defineComponent({
   name: "m-select",
   props: {
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as SelectPropOptions),
+    ...({} as SelectProps),
     modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isSelectOptions)
   },
@@ -27,7 +23,7 @@ export default defineComponent({
     "update:model-value": (value: unknown) => is.unknown(value)
   },
   // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(props: SetupProps<SelectPropOptions>, { emit }) {
+  setup(props: SetupProps<SelectProps>, { emit }) {
     return {
       selectModelValue: computed<SelectOption>(() => {
         const result = props.options.find(
