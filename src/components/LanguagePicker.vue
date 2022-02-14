@@ -62,7 +62,7 @@ export default defineComponent({
       :src="activeItem.flag"
       width="20"
     />
-    <m-menu>
+    <m-menu auto-close>
       <q-list>
         <m-list-item
           v-for="(item, index) in settings.items"
