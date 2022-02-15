@@ -12,7 +12,7 @@ export default defineComponent({
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     ...({} as SwitchableProps),
     indent: propOptions.boolean(),
-    on: propOptions.boolean()
+    on: propOptions.boolean(true)
   },
   setup(props: SetupProps<SwitchableProps>) {
     provideDisable(() => !props.on);
