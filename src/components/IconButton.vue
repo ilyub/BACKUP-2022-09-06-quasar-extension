@@ -1,23 +1,31 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import BaseButton from "./BaseButton.vue";
-import type { IconButtonProps } from "./IconButton.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  IconButtonOwnProps,
+  IconButtonParentProps,
+  IconButtonSlots
+} from "./IconButton.extras";
 
 export default defineComponent({
   name: "m-icon-button",
-  components: {
-    "m-base-button": BaseButton
-  },
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as IconButtonProps,
-  setup(_props: SetupProps<IconButtonProps>) {}
+  props: propsToPropDefinitions<IconButtonParentProps>(),
+  setup(props) {
+    validateProps<IconButtonOwnProps>(props);
+
+    return {
+      slotNames: useSlotsNames<IconButtonSlots>()()
+    };
+  }
 });
 </script>
 
 <template>
   <m-base-button class="m-icon-button-group-member" flat round>
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </m-base-button>
 </template>

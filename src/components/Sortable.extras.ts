@@ -1,14 +1,12 @@
+import type { GlobalComponentConstructor } from "quasar";
+import type { VNode } from "vue";
+
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { objectU, stringU } from "@skylib/functions/es/types/core";
 
-import type {
-  PropOptions,
-  PropOptionsDefault,
-  PropOptionsRequired
-} from "./api";
 import { createInjectable } from "./api";
 
 export interface Elem {
@@ -19,6 +17,15 @@ export interface Elem {
 }
 
 export type Elems = readonly Elem[];
+
+export type GlobalSortable = GlobalComponentConstructor<
+  SortableProps,
+  SortableSlots
+>;
+
+export interface ItemSlotData {
+  readonly item: object;
+}
 
 export type Move = (
   destId: stringU,
@@ -33,12 +40,34 @@ export interface MoveData {
 }
 
 export interface SortableProps {
-  readonly group: PropOptionsRequired<string>;
-  readonly itemComponentData: PropOptions<objectU>;
-  readonly itemKey: PropOptionsRequired<string>;
-  readonly itemTag: PropOptionsDefault<unknown>;
-  readonly modelValue: PropOptionsRequired<readonly object[]>;
-  readonly move: PropOptionsDefault<Move | undefined>;
+  readonly group: string;
+  readonly itemComponentData?: objectU;
+  readonly itemKey: string;
+  readonly itemTag?: unknown;
+  readonly modelValue: readonly object[];
+  readonly move?: Move | undefined;
+}
+
+export interface SortableSlots {
+  /**
+   * Footer slot.
+   *
+   * @returns Node.
+   */
+  readonly footer: () => readonly VNode[];
+  /**
+   *Header slot.
+   *
+   * @returns Node.
+   */
+  readonly header: () => readonly VNode[];
+  /**
+   * Item slot.
+   *
+   * @param data - Data.
+   * @returns Node.
+   */
+  readonly item: (data: ItemSlotData) => readonly VNode[];
 }
 
 export interface SortableSettings {

@@ -1,18 +1,24 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import type { DroppableProps } from "./Droppable.extras";
-import Sortable from "./Sortable.vue";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  DroppableOwnProps,
+  DroppableParentProps,
+  DroppableSlots
+} from "./Droppable.extras";
 
 export default defineComponent({
   name: "m-droppable",
-  components: {
-    "m-sortable": Sortable
-  },
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as DroppableProps,
-  setup(_props: SetupProps<DroppableProps>) {}
+  props: propsToPropDefinitions<DroppableParentProps>(),
+  setup(props) {
+    validateProps<DroppableOwnProps>(props);
+
+    return {
+      slotNames: useSlotsNames<DroppableSlots>()("default")
+    };
+  }
 });
 </script>
 
@@ -23,7 +29,9 @@ export default defineComponent({
     item-key="id"
     :model-value="[]"
   >
-    <template #header><slot></slot></template>
+    <template v-if="$slots[slotNames.default]" #header>
+      <slot :name="slotNames.default"></slot>
+    </template>
   </m-sortable>
 </template>
 

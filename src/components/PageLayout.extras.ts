@@ -1,8 +1,10 @@
+import type { GlobalComponentConstructor } from "quasar";
+import type { VNode } from "vue";
+
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
-import type { PropOptions, PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
 
 declare global {
@@ -15,10 +17,30 @@ declare global {
   }
 }
 
+export type GlobalPageLayout = GlobalComponentConstructor<
+  PageLayoutProps,
+  PageLayoutSlots
+>;
+
 export interface PageLayoutProps {
-  readonly closeButton: PropOptionsBoolean;
-  readonly hideCloseButton: PropOptionsBoolean;
-  readonly title: PropOptions<stringU>;
+  readonly closeButton?: booleanU;
+  readonly hideCloseButton?: booleanU;
+  readonly title?: stringU;
+}
+
+export interface PageLayoutSlots {
+  /**
+   * Actions slot.
+   *
+   * @returns Node.
+   */
+  readonly actions: () => readonly VNode[];
+  /**
+   * Default slot.
+   *
+   * @returns Node.
+   */
+  readonly default: () => readonly VNode[];
 }
 
 export interface PageLayoutSettings {

@@ -1,13 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import Button from "../components/Button.vue";
-
 export default defineComponent({
-  name: "sample-button",
-  components: {
-    "m-button": Button
-  }
+  name: "sample-button"
 });
 </script>
 

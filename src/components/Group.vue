@@ -7,22 +7,29 @@ import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import { rootElementProps, useRootElement } from "./api/rootElement";
-import type { GroupItem, GroupItems, GroupProps } from "./Group.extras";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { rootElementPropsOptions, useRootElement } from "./api/rootElement";
+import type {
+  GroupItem,
+  GroupItems,
+  GroupOwnProps,
+  GroupParentProps
+} from "./Group.extras";
 import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
   name: "m-group",
   inheritAttrs: false,
   props: {
-    ...rootElementProps,
+    ...propsToPropDefinitions<GroupParentProps>(),
+    ...rootElementPropsOptions,
     items: propOptions.required(isGroupItems),
     notFoundLabel: propOptions(is.stringU),
     searchString: propOptions(is.stringU)
   },
-  setup(props: SetupProps<GroupProps>) {
+  setup(props) {
+    validateProps<GroupOwnProps>(props);
+
     const filteredItems = computed<GroupItems>(() => {
       if (is.not.empty(props.searchString)) {
         const ids = new Set(

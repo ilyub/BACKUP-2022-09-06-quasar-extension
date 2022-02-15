@@ -1,5 +1,16 @@
-import type { QMenuProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QMenuProps,
+  QMenuSlots
+} from "quasar";
 
-import type { ExtendQuasarProps } from "./api";
+export type GlobalMenu = GlobalComponentConstructor<MenuProps, MenuSlots>;
 
-export type MenuProps = ExtendQuasarProps<QMenuProps>;
+export type MenuParentProps = QMenuProps;
+
+export interface MenuOwnProps {}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export interface MenuProps extends MenuParentProps, MenuOwnProps {}
+
+export type MenuSlots = QMenuSlots;

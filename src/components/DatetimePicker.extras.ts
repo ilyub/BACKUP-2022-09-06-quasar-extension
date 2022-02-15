@@ -1,4 +1,8 @@
-import type { QFieldProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QFieldProps,
+  QFieldSlots
+} from "quasar";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
@@ -6,7 +10,7 @@ import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { ExtendQuasarProps, PropOptions } from "./api";
+import type { ReadonlyOmit } from "./api";
 
 declare global {
   namespace facades {
@@ -29,16 +33,29 @@ declare global {
   }
 }
 
+// eslint-disable-next-line @skylib/prefer-readonly
+export type DatetimePickerParentProps = ReadonlyOmit<QFieldProps, "modelValue">;
+
+export interface DatetimePickerOwnProps {
+  readonly max?: stringU;
+  readonly min?: stringU;
+  readonly modelValue?: stringU;
+}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export interface DatetimePickerProps
+  extends DatetimePickerParentProps,
+    DatetimePickerOwnProps {}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type DatetimePickerSlots = QFieldSlots;
+
+export type GlobalDatetimePicker = GlobalComponentConstructor<
+  DatetimePickerProps,
+  DatetimePickerSlots
+>;
+
 export const icons: Icons<"am" | "close" | "pickDate" | "pickTime" | "pm"> =
   baseIcons;
 
 export const lang: DictionaryAndWords<"PickDate" | "Save"> = baseLang;
-
-export type DatetimePickerProps = ExtendQuasarProps<
-  QFieldProps,
-  {
-    readonly max: PropOptions<stringU>;
-    readonly min: PropOptions<stringU>;
-    readonly modelValue: PropOptions<stringU>;
-  }
->;

@@ -4,17 +4,8 @@ import { Notify } from "quasar";
 import { defineComponent } from "vue";
 import { mdiAccount, mdiPen } from "@mdi/js";
 
-import IconButton from "../components/IconButton.vue";
-import ListItem from "../components/ListItem.vue";
-import Menu from "../components/Menu.vue";
-
 export default defineComponent({
   name: "sample-menu",
-  components: {
-    "m-icon-button": IconButton,
-    "m-list-item": ListItem,
-    "m-menu": Menu
-  },
   setup() {
     return {
       click(): void {

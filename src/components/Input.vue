@@ -1,36 +1,31 @@
 <script lang="ts">
-import type { QInput, QInputSlots } from "quasar";
-import { computed, defineComponent, ref } from "vue";
+import type { QInput } from "quasar";
+import { defineComponent, ref } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
+import { propOptions, propsToPropDefinitions } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { ButtonSlots } from "./Button.extras";
 import type { InputProps } from "./Input.extras";
-
-type SlotKeys = ReadonlyArray<keyof QInputSlots>;
 
 export default defineComponent({
   name: "m-input",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as InputProps),
+    ...propsToPropDefinitions<InputProps>(),
     modelValue: propOptions.required(is.stringU)
   },
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(_props: SetupProps<InputProps>, { emit, slots }) {
+  // eslint-disable-next-line @skylib/prefer-readonly
+  setup(_props, { emit }) {
     const input = ref<QInput | undefined>(undefined);
 
     return {
       input,
-      passThroughSlots: computed<SlotKeys>(
-        // eslint-disable-next-line no-type-assertion/no-type-assertion
-        () => Object.keys(slots) as SlotKeys
-      ),
+      slotNames: useSlotsNames<ButtonSlots>()(),
       updateModel(value: NumStrE): void {
         emit(
           "update:model-value",
@@ -49,8 +44,8 @@ export default defineComponent({
     :model-value="modelValue"
     @update:model-value="updateModel"
   >
-    <template v-for="name in passThroughSlots" #[name]>
-      <slot :name="name"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
     </template>
   </q-input>
 </template>

@@ -3,9 +3,14 @@
 
 import { computed, defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { Direction, TooltipOptions } from "./Tooltip.extras";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  Direction,
+  TooltipOwnProps,
+  TooltipParentProps,
+  TooltipSlots
+} from "./Tooltip.extras";
 import {
   disabled,
   injectTooltipSettings,
@@ -49,12 +54,13 @@ type Self =
 export default defineComponent({
   name: "m-tooltip",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as TooltipOptions),
+    ...propsToPropDefinitions<TooltipParentProps>(),
     direction: propOptions(isDirectionU)
   },
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(props: SetupProps<TooltipOptions>) {
+  setup(props) {
+    validateProps<TooltipOwnProps>(props);
+
     const direction = computed<Direction>(() => props.direction ?? "down");
 
     const settings = injectTooltipSettings();
@@ -163,6 +169,7 @@ export default defineComponent({
         }
       }),
       settings,
+      slotNames: useSlotsNames<TooltipSlots>()(),
       transitionHide: computed<string>(() => {
         switch (direction.value) {
           case "down":
@@ -227,6 +234,8 @@ export default defineComponent({
     :transition-hide="transitionHide"
     :transition-show="transitionShow"
   >
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </q-tooltip>
 </template>

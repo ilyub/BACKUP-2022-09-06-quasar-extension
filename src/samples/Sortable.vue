@@ -3,15 +3,8 @@ import { defineComponent, ref } from "vue";
 
 import * as reflect from "@skylib/functions/es/reflect";
 
-import Sortable from "../components/Sortable.vue";
-import Tooltip from "../components/Tooltip.vue";
-
 export default defineComponent({
   name: "sample-sortable",
-  components: {
-    "m-sortable": Sortable,
-    "m-tooltip": Tooltip
-  },
   setup() {
     return {
       sortable1: ref([

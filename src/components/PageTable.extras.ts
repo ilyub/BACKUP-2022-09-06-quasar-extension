@@ -1,10 +1,15 @@
-import type { QTableProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QTableProps,
+  QTableSlots
+} from "quasar";
+import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { ExtendQuasarProps, PropOptions, PropOptionsDefault } from "./api";
+import type { ReadonlyOmit } from "./api";
 import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
@@ -26,16 +31,41 @@ export type Columns<T = unknown> = ReadonlyArray<Column<T>>;
 
 export type Field<T = unknown> = (row: T) => string;
 
-export type PageTableProps<T = unknown> = ExtendQuasarProps<
-  QTableProps,
-  {
-    readonly columns: PropOptionsDefault<Columns<T>>;
-    readonly extraPageOffset: PropOptions<stringU>;
-    readonly limit: PropOptions<numberU>;
-    readonly rows: PropOptionsDefault<readonly T[]>;
-    readonly selected: PropOptionsDefault<readonly T[]>;
-  }
+export type GlobalPageTable<T = unknown> = GlobalComponentConstructor<
+  PageTableProps<T>,
+  PageTableSlots<T>
 >;
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type PageTableParentProps = ReadonlyOmit<
+  QTableProps,
+  "columns" | "rows" | "selected"
+>;
+
+export interface PageTableOwnProps<T = unknown> {
+  readonly columns?: Columns<T> | undefined;
+  readonly extraPageOffset?: stringU;
+  readonly limit?: numberU;
+  readonly rows?: readonly T[] | undefined;
+  readonly selected?: readonly T[] | undefined;
+}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export interface PageTableProps<T = unknown>
+  extends PageTableParentProps,
+    PageTableOwnProps<T> {}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export interface PageTableSlots<T = unknown>
+  extends Omit<QTableSlots, "body-cell"> {
+  /**
+   * Body cell slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
+}
 
 export interface PageTableSettings {
   readonly growPageBy: number;

@@ -3,17 +3,8 @@ import us from "flag-icon-css/flags/1x1/us.svg";
 import { defineComponent } from "vue";
 import { mdiAccount, mdiPen } from "@mdi/js";
 
-import IconButton from "../components/IconButton.vue";
-import ListItem from "../components/ListItem.vue";
-import Menu from "../components/Menu.vue";
-
 export default defineComponent({
   name: "sample-icon-button",
-  components: {
-    "m-icon-button": IconButton,
-    "m-list-item": ListItem,
-    "m-menu": Menu
-  },
   setup() {
     return {
       mdiAccount,

@@ -1,25 +1,31 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import type { SectionProps } from "./Section.extras";
-import Switchable from "./Switchable.vue";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  SectionOwnProps,
+  SectionParentProps,
+  SectionSlots
+} from "./Section.extras";
 
 export default defineComponent({
   name: "m-section",
-  components: {
-    "m-switchable": Switchable
-  },
-  props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as SectionProps)
-  },
-  setup(_props: SetupProps<SectionProps>) {}
+  props: propsToPropDefinitions<SectionParentProps>(),
+  setup(props) {
+    validateProps<SectionOwnProps>(props);
+
+    return {
+      slotNames: useSlotsNames<SectionSlots>()()
+    };
+  }
 });
 </script>
 
 <template>
   <m-switchable class="m-section">
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </m-switchable>
 </template>

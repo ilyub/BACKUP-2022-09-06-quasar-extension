@@ -5,17 +5,8 @@ import { defineComponent, ref } from "vue";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 
-import Droppable from "../components/Droppable.vue";
-import Sortable from "../components/Sortable.vue";
-import Tooltip from "../components/Tooltip.vue";
-
 export default defineComponent({
   name: "sample-droppable",
-  components: {
-    "m-droppable": Droppable,
-    "m-sortable": Sortable,
-    "m-tooltip": Tooltip
-  },
   setup() {
     return {
       dropped(item: unknown, group: unknown): void {
@@ -64,9 +55,7 @@ export default defineComponent({
       <m-tooltip>Sample tooltip</m-tooltip>
     </template>
   </m-sortable>
-  <m-droppable class="droppable q-mt-md" group="droppable" @dropped="dropped">
-    D
-  </m-droppable>
+  <m-droppable class="droppable q-mt-md" @dropped="dropped">D</m-droppable>
 </template>
 
 <style lang="scss" scoped>

@@ -5,19 +5,23 @@ import { defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 
-import type { SetupProps } from "./api";
-import type { MenuProps } from "./Menu.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { ButtonSlots } from "./Button.extras";
+import type { MenuOwnProps, MenuParentProps } from "./Menu.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-menu",
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as MenuProps,
+  props: propsToPropDefinitions<MenuParentProps>(),
   // eslint-disable-next-line @skylib/prefer-readonly
-  setup(_props: SetupProps<MenuProps>) {
+  setup(props) {
+    validateProps<MenuOwnProps>(props);
+
     const { active } = useDisableTooltips();
 
     return {
+      slotNames: useSlotsNames<ButtonSlots>()(),
       updateModel(event: unknown): void {
         assert.boolean(event);
         active.value = event;
@@ -28,5 +32,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-menu @update:model-value="updateModel"><slot></slot></q-menu>
+  <q-menu @update:model-value="updateModel">
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
+  </q-menu>
 </template>

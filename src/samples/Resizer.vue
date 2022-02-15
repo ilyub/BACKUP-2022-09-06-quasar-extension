@@ -1,15 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 
-import Resizer from "../components/Resizer.vue";
-import Toggle from "../components/Toggle.vue";
-
 export default defineComponent({
   name: "sample-resizer",
-  components: {
-    "m-resizer": Resizer,
-    "m-toggle": Toggle
-  },
   setup() {
     return {
       resizerShow: ref(true),

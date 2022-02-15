@@ -3,19 +3,31 @@
 
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import type { CardActionsProps } from "./CardActions.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  CardActionsOwnProps,
+  CardActionsParentProps,
+  CardActionsSlots
+} from "./CardActions.extras";
 
 export default defineComponent({
   name: "m-card-actions",
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as CardActionsProps,
-  setup(_props: SetupProps<CardActionsProps>) {}
+  props: propsToPropDefinitions<CardActionsParentProps>(),
+  setup(props) {
+    validateProps<CardActionsOwnProps>(props);
+
+    return {
+      slotNames: useSlotsNames<CardActionsSlots>()()
+    };
+  }
 });
 </script>
 
 <template>
   <q-card-actions class="q-pt-none">
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </q-card-actions>
 </template>

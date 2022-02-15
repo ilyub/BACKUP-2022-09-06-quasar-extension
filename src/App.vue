@@ -12,34 +12,20 @@ import type { LocaleName } from "@skylib/functions/es/types/locales";
 
 import { providePageOffset } from "./components/api/pageContentHeight";
 import { provideIconPickerSettings } from "./components/IconPicker.extras";
-import Knob from "./components/Knob.vue";
 import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
-import LanguagePicker from "./components/LanguagePicker.vue";
 import type { OptionGroupOptions } from "./components/OptionGroup.extras";
-import OptionGroup from "./components/OptionGroup.vue";
 import { providePageLayoutSettings } from "./components/PageLayout.extras";
-import PageSection from "./components/PageSection.vue";
 import { providePageTableSettings } from "./components/PageTable.extras";
-import Section from "./components/Section.vue";
 import { provideSortableSettings } from "./components/Sortable.extras";
-import Subsection from "./components/Subsection.vue";
 import type { Transition } from "./components/Switchable.extras";
 import { provideSwitchableSettings } from "./components/Switchable.extras";
-import Toggle from "./components/Toggle.vue";
 import { provideTooltipSettings } from "./components/Tooltip.extras";
 import All from "./samples/All.vue";
 
 export default defineComponent({
   name: "app",
   components: {
-    "all-samples": All,
-    "m-knob": Knob,
-    "m-language-picker": LanguagePicker,
-    "m-option-group": OptionGroup,
-    "m-page-section": PageSection,
-    "m-section": Section,
-    "m-subsection": Subsection,
-    "m-toggle": Toggle
+    "all-samples": All
   },
   setup() {
     const iconTooltips = ref(false);

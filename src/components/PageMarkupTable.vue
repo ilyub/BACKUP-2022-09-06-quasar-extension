@@ -3,21 +3,27 @@ import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
-import type { PageMarkupTableProps } from "./PageMarkupTable.extras";
+import { useSlotsNames } from "./api/slotNames";
+import type { BaseButtonSlots } from "./BaseButton.extras";
+import type {
+  PageMarkupTableOwnerProps,
+  PageMarkupTableParentProps
+} from "./PageMarkupTable.extras";
 
 export default defineComponent({
   name: "m-page-markup-table",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as PageMarkupTableProps),
+    ...propsToPropDefinitions<PageMarkupTableParentProps>(),
     extraPageOffset: propOptions(is.stringU)
   },
-  setup(props: SetupProps<PageMarkupTableProps>) {
+  setup(props) {
+    validateProps<PageMarkupTableOwnerProps>(props);
+
     return {
-      height: usePageContentHeight(() => props.extraPageOffset)
+      height: usePageContentHeight(() => props.extraPageOffset),
+      slotNames: useSlotsNames<BaseButtonSlots>()()
     };
   }
 });
@@ -30,6 +36,8 @@ export default defineComponent({
       height
     }"
   >
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </q-markup-table>
 </template>

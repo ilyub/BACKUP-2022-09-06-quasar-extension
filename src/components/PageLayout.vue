@@ -3,24 +3,22 @@ import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
+import { propOptions, validateProps } from "./api";
 import { injectPageOffset, providePageOffset } from "./api/pageContentHeight";
-import IconButton from "./IconButton.vue";
-import type { PageLayoutProps } from "./PageLayout.extras";
+import { useSlotsNames } from "./api/slotNames";
+import type { PageLayoutProps, PageLayoutSlots } from "./PageLayout.extras";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 
 export default defineComponent({
   name: "m-page-layout",
-  components: {
-    "m-icon-button": IconButton
-  },
   props: {
     closeButton: propOptions.boolean(),
     hideCloseButton: propOptions.boolean(),
     title: propOptions(is.stringU)
   },
-  setup(props: SetupProps<PageLayoutProps>) {
+  setup(props) {
+    validateProps<PageLayoutProps>(props);
+
     const hasTitle = computed<boolean>(() => is.not.empty(props.title));
 
     const pageOffset = injectPageOffset();
@@ -56,7 +54,8 @@ export default defineComponent({
       padding: computed<string>(
         () => `${settings.value.paddingY} ${settings.value.paddingX}`
       ),
-      settings
+      settings,
+      slotNames: useSlotsNames<PageLayoutSlots>()("actions", "default")
     };
   }
 });
@@ -78,7 +77,7 @@ export default defineComponent({
         {{ title }}
         <template v-if="hasCloseButton">
           <q-space />
-          <slot name="actions"></slot>
+          <slot :name="slotNames.actions"></slot>
           <m-icon-button
             class="ref-close-button"
             :icon="icons.close"
@@ -87,6 +86,8 @@ export default defineComponent({
         </template>
       </div>
     </div>
-    <div class="body"><slot></slot></div>
+    <div class="body">
+      <slot :name="slotNames.default"></slot>
+    </div>
   </div>
 </template>

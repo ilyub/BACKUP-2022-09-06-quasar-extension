@@ -1,19 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 
-import Knob from "../components/Knob.vue";
-import Subsection from "../components/Subsection.vue";
-import Switchable from "../components/Switchable.vue";
-import Toggle from "../components/Toggle.vue";
-
 export default defineComponent({
   name: "sample-switchable",
-  components: {
-    "m-knob": Knob,
-    "m-subsection": Subsection,
-    "m-switchable": Switchable,
-    "m-toggle": Toggle
-  },
   setup() {
     return {
       on: ref(true),

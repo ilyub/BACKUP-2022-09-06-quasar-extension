@@ -3,13 +3,8 @@ import { defineComponent, ref } from "vue";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import Input from "../components/Input.vue";
-
 export default defineComponent({
   name: "sample-input",
-  components: {
-    "m-input": Input
-  },
   setup() {
     return {
       inputValue1: ref<stringU>(undefined),

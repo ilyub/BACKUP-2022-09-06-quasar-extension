@@ -1,15 +1,23 @@
-import type { QToggleProps } from "quasar";
-
 import type {
-  ExtendQuasarProps,
-  PropOptionsBoolean,
-  PropOptionsRequired
-} from "./api";
-
-export type ToggleProps = ExtendQuasarProps<
+  GlobalComponentConstructor,
   QToggleProps,
-  {
-    readonly disable: PropOptionsBoolean;
-    readonly modelValue: PropOptionsRequired<boolean>;
-  }
+  QToggleSlots
+} from "quasar";
+
+import type { ReadonlyOmit } from "./api";
+
+export type GlobalToggle = GlobalComponentConstructor<ToggleProps, ToggleSlots>;
+
+export type ToggleParentProps = ReadonlyOmit<
+  QToggleProps,
+  "disable" | "modelValue"
 >;
+
+export interface ToggleOwnProps {
+  readonly disable?: boolean;
+  readonly modelValue: boolean;
+}
+
+export interface ToggleProps extends ToggleParentProps, ToggleOwnProps {}
+
+export type ToggleSlots = QToggleSlots;

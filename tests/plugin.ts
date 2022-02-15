@@ -5,7 +5,12 @@ import * as assert from "@skylib/functions/es/assertions";
 import { plugin } from "@/plugin";
 
 test("plugin", () => {
-  assert.not.empty(plugin.install);
+  const component = jest.fn();
+
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  plugin.install({} as App);
+  const app = { component } as unknown as App;
+
+  assert.not.empty(plugin.install);
+  plugin.install(app);
+  expect(component).toBeCalled();
 });

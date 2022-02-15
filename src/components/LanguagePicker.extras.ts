@@ -1,10 +1,17 @@
+import type { GlobalComponentConstructor } from "quasar";
+
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import type { ExtendProps, PropOptionsRequired } from "./api";
+import type { PropOptionsRequired } from "./api";
 import { createInjectable } from "./api";
-import type { IconButtonProps } from "./IconButton.extras";
+import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
 export type ChangeLanguageAction = (language: LocaleName) => void;
+
+export type GlobalLanguagePicker = GlobalComponentConstructor<
+  LanguagePickerProps,
+  LanguagePickerSlots
+>;
 
 export interface LanguagePickerItem {
   readonly caption: string;
@@ -14,12 +21,22 @@ export interface LanguagePickerItem {
 
 export type LanguagePickerItems = readonly LanguagePickerItem[];
 
-export type LanguagePickerOptions = ExtendProps<
-  IconButtonProps,
-  {
-    readonly language: PropOptionsRequired<unknown>;
-  }
->;
+// eslint-disable-next-line @skylib/prefer-readonly
+export type LanguagePickerParentProps = IconButtonProps;
+
+export interface LanguagePickerOwnProps {
+  readonly language: unknown;
+}
+
+export interface LanguagePickerProps
+  extends LanguagePickerParentProps,
+    LanguagePickerOwnProps {}
+
+export type LanguagePickerSlots = IconButtonSlots;
+
+export interface LanguagePickerOptions extends IconButtonProps {
+  readonly language: PropOptionsRequired<unknown>;
+}
 
 export interface LanguagePickerSettings {
   readonly changeLanguageAction: ChangeLanguageAction;

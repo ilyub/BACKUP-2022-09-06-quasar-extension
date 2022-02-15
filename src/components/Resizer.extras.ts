@@ -1,9 +1,24 @@
+import type { GlobalComponentConstructor } from "quasar";
+import type { VNode } from "vue";
+
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import type { PropOptions, PropOptionsRequired } from "./api";
+export type GlobalResizer = GlobalComponentConstructor<
+  ResizerProps,
+  ResizerSlots
+>;
 
 export interface ResizerProps {
-  readonly max: PropOptions<numberU>;
-  readonly min: PropOptionsRequired<number>;
-  readonly modelValue: PropOptionsRequired<number>;
+  readonly max?: numberU;
+  readonly min: number;
+  readonly modelValue: number;
+}
+
+export interface ResizerSlots {
+  /**
+   * Default slot.
+   *
+   * @returns Node.
+   */
+  readonly default: () => readonly VNode[];
 }

@@ -4,17 +4,22 @@ import { computed, defineComponent, ref } from "vue";
 import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 
-import PageLayout from "../components/PageLayout.vue";
-import type { Columns } from "../components/PageTable.extras";
+import type { Columns, GlobalPageTable } from "../components/PageTable.extras";
+import PageTable from "../components/PageTable.vue";
 
-import type { TableItem, TableItems } from "./PageTableTyped.extras";
-import PageTableTyped from "./PageTableTyped.vue";
+interface TableItem {
+  readonly id: number;
+  readonly name: string;
+}
+
+type TableItems = readonly TableItem[];
 
 export default defineComponent({
   name: "sample-page-table",
   components: {
-    "m-page-layout": PageLayout,
-    "sample-page-table-typed": PageTableTyped
+    "sample-page-table-typed":
+      // eslint-disable-next-line no-type-assertion/no-type-assertion
+      PageTable as unknown as GlobalPageTable<TableItem>
   },
   setup() {
     const pageTableLimit = ref(20);

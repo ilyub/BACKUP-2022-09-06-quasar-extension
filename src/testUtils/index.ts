@@ -1,15 +1,15 @@
-import type { Directive } from "vue";
+import type { Component, Directive } from "vue";
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import * as assert from "@skylib/functions/es/assertions";
+import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import type * as testUtils from "@skylib/functions/es/testUtils";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-// eslint-disable-next-line import/no-unassigned-import
-import "../components";
+import { components } from "../components";
 import { testPageOffset } from "../components/api/pageContentHeight";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
 import { testIconPickerSettings } from "../components/IconPicker.extras";
@@ -117,32 +117,43 @@ export function globalMountOptions(
   options: CustomGlobalMountOptions = {}
   // eslint-disable-next-line @skylib/no-mutable-signature
 ): GlobalMountOptions {
-  const provide: Record<symbol, unknown> = {};
+  return {
+    components: fn.run(() => {
+      const result: Record<string, Component | object> = {};
 
-  if ("iconPickerSettings" in options)
-    testIconPickerSettings(provide, options.iconPickerSettings);
+      for (const component of components) result[component.name] = component;
 
-  if ("languagePickerSettings" in options)
-    testLanguagePickerSettings(provide, options.languagePickerSettings);
+      return result;
+    }),
+    provide: fn.run(() => {
+      const result: Record<symbol, unknown> = {};
 
-  if ("pageLayoutSettings" in options)
-    testPageLayoutSettings(provide, options.pageLayoutSettings);
+      if ("iconPickerSettings" in options)
+        testIconPickerSettings(result, options.iconPickerSettings);
 
-  if ("pageOffset" in options) testPageOffset(provide, options.pageOffset);
+      if ("languagePickerSettings" in options)
+        testLanguagePickerSettings(result, options.languagePickerSettings);
 
-  if ("pageTableSettings" in options)
-    testPageTableSettings(provide, options.pageTableSettings);
+      if ("pageLayoutSettings" in options)
+        testPageLayoutSettings(result, options.pageLayoutSettings);
 
-  if ("switchableSettings" in options)
-    testSwitchableSettings(provide, options.switchableSettings);
+      if ("pageOffset" in options) testPageOffset(result, options.pageOffset);
 
-  if ("sortableSettings" in options)
-    testSortableSettings(provide, options.sortableSettings);
+      if ("pageTableSettings" in options)
+        testPageTableSettings(result, options.pageTableSettings);
 
-  if ("tooltipSettings" in options)
-    testTooltipSettings(provide, options.tooltipSettings);
+      if ("switchableSettings" in options)
+        testSwitchableSettings(result, options.switchableSettings);
 
-  return { provide };
+      if ("sortableSettings" in options)
+        testSortableSettings(result, options.sortableSettings);
+
+      if ("tooltipSettings" in options)
+        testTooltipSettings(result, options.tooltipSettings);
+
+      return result;
+    })
+  };
 }
 
 /**

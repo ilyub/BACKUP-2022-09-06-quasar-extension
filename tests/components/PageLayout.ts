@@ -5,7 +5,6 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 
 import { injectPageOffset } from "@/components/api/pageContentHeight";
-import IconButton from "@/components/IconButton.vue";
 import type { PageLayoutSettings } from "@/components/PageLayout.extras";
 import PageLayout from "@/components/PageLayout.vue";
 import * as testUtils from "@/testUtils";
@@ -44,9 +43,6 @@ it.each([
   const injectPageOffsetCallback = jest.fn();
 
   const wrapper = vueTestUtils.mount(PageLayout, {
-    components: {
-      "m-icon-button": IconButton
-    },
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({
         pageLayoutSettings,

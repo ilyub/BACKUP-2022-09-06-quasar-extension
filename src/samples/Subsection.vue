@@ -1,13 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import Subsection from "../components/Subsection.vue";
-
 export default defineComponent({
-  name: "sample-subsection",
-  components: {
-    "m-subsection": Subsection
-  }
+  name: "sample-subsection"
 });
 </script>
 

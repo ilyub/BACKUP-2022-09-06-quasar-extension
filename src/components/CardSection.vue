@@ -3,19 +3,31 @@
 
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import type { CardSectionProps } from "./CardSection.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  CardSectionOwnProps,
+  CardSectionParentProps,
+  CardSectionSlots
+} from "./CardSection.extras";
 
 export default defineComponent({
   name: "m-card-section",
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  props: {} as CardSectionProps,
-  setup(_props: SetupProps<CardSectionProps>) {}
+  props: propsToPropDefinitions<CardSectionParentProps>(),
+  setup(props) {
+    validateProps<CardSectionOwnProps>(props);
+
+    return {
+      slotNames: useSlotsNames<CardSectionSlots>()()
+    };
+  }
 });
 </script>
 
 <template>
   <q-card-section>
-    <slot></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
   </q-card-section>
 </template>

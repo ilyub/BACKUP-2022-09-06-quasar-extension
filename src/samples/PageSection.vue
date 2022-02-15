@@ -1,13 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import PageSection from "../components/PageSection.vue";
-
 export default defineComponent({
-  name: "sample-page-section",
-  components: {
-    "m-page-section": PageSection
-  }
+  name: "sample-page-section"
 });
 </script>
 

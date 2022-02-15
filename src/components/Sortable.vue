@@ -8,9 +8,9 @@ import * as is from "@skylib/functions/es/guards";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { Writable } from "@skylib/functions/es/types/core";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { Elems, SortableProps } from "./Sortable.extras";
+import { propOptions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { Elems, SortableProps, SortableSlots } from "./Sortable.extras";
 import {
   buildElements,
   injectSortableSettings,
@@ -38,7 +38,9 @@ export default defineComponent({
       is.object(item) && is.string(group),
     "update:model-value": (value: readonly object[]) => is.objects(value)
   },
-  setup(props: SetupProps<SortableProps>, { emit }) {
+  setup(props, { emit }) {
+    validateProps<SortableProps>(props);
+
     const { active } = useDisableTooltips();
 
     return {
@@ -82,6 +84,7 @@ export default defineComponent({
         return data;
       },
       settings: injectSortableSettings(),
+      slotNames: useSlotsNames<SortableSlots>()("footer", "header", "item"),
       start(): void {
         active.value = true;
       },
@@ -124,7 +127,12 @@ export default defineComponent({
     @start="start"
     @update:model-value="updateModel"
   >
-    <template #header><slot name="header"></slot></template>
+    <template v-if="$slots[slotNames.header]" #header>
+      <slot :name="slotNames.header"></slot>
+    </template>
+    <template v-if="$slots[slotNames.footer]" #footer>
+      <slot :name="slotNames.footer"></slot>
+    </template>
     <template #item="{ element }">
       <component
         :is="itemTag"
@@ -132,9 +140,8 @@ export default defineComponent({
         :data-id="element.id"
         v-bind="itemComponentData"
       >
-        <slot :item="itemSlotData(element.item)" name="item"></slot>
+        <slot :item="itemSlotData(element.item)" :name="slotNames.item"></slot>
       </component>
     </template>
-    <template #footer><slot name="footer"></slot></template>
   </draggable>
 </template>

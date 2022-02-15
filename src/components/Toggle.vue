@@ -5,25 +5,31 @@ import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 import { injectDisable } from "./Switchable.extras";
-import type { ToggleProps } from "./Toggle.extras";
+import type {
+  ToggleOwnProps,
+  ToggleParentProps,
+  ToggleSlots
+} from "./Toggle.extras";
 
 export default defineComponent({
   name: "m-toggle",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as ToggleProps),
+    ...propsToPropDefinitions<ToggleParentProps>(),
     disable: propOptions.boolean(),
     modelValue: propOptions.required(is.boolean)
   },
   emits: {
     "update:model-value": (value: boolean) => is.boolean(value)
   },
-  setup(_props: SetupProps<ToggleProps>) {
+  setup(props) {
+    validateProps<ToggleOwnProps>(props);
+
     return {
-      globalDisable: injectDisable()
+      globalDisable: injectDisable(),
+      slotNames: useSlotsNames<ToggleSlots>()()
     };
   }
 });
@@ -34,5 +40,9 @@ export default defineComponent({
     :disable="disable || globalDisable"
     :model-value="modelValue"
     @update:model-value="$emit('update:model-value', $event)"
-  />
+  >
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
+    </template>
+  </q-toggle>
 </template>

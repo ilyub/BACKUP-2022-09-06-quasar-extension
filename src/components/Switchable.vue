@@ -1,24 +1,24 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { SwitchableProps } from "./Switchable.extras";
+import { propOptions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 import { injectSwitchableSettings, provideDisable } from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-switchable",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as SwitchableProps),
     indent: propOptions.boolean(),
     on: propOptions.boolean(true)
   },
-  setup(props: SetupProps<SwitchableProps>) {
+  setup(props) {
+    validateProps<SwitchableProps>(props);
     provideDisable(() => !props.on);
 
     return {
-      settings: injectSwitchableSettings()
+      settings: injectSwitchableSettings(),
+      slotNames: useSlotsNames<SwitchableSlots>()("default")
     };
   }
 });
@@ -31,7 +31,7 @@ export default defineComponent({
       'm-indent': indent
     }"
   >
-    <slot></slot>
+    <slot :name="slotNames.default"></slot>
   </div>
   <q-slide-transition
     v-else-if="settings.transition === 'slide'"
@@ -41,7 +41,7 @@ export default defineComponent({
     :duration="settings.transitionDuration"
   >
     <div v-show="on">
-      <slot></slot>
+      <slot :name="slotNames.default"></slot>
     </div>
   </q-slide-transition>
 </template>

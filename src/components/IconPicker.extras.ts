@@ -1,17 +1,14 @@
+import type { GlobalComponentConstructor } from "quasar";
+
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
-import type {
-  ExtendProps,
-  PropOptions,
-  PropOptionsDefault,
-  PropOptionsRequired
-} from "./api";
+import type { ReadonlyOmit } from "./api";
 import { createInjectable } from "./api";
-import type { IconButtonProps } from "./IconButton.extras";
+import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
 declare global {
   namespace facades {
@@ -32,9 +29,30 @@ declare global {
   }
 }
 
+export type GlobalIconPicker = GlobalComponentConstructor<
+  IconPickerProps,
+  IconPickerSlots
+>;
+
+export type IconPickerParentProps = ReadonlyOmit<IconButtonProps, "modelValue">;
+
+export interface IconPickerOwnProps {
+  readonly cols?: numberU;
+  readonly modelValue?: stringU;
+  readonly placeholder: string;
+  readonly rows?: numberU;
+  readonly spinnerSize?: stringU;
+}
+
+export interface IconPickerProps
+  extends IconPickerParentProps,
+    IconPickerOwnProps {}
+
 export interface IconPickerSettings {
   readonly iconTooltips: boolean;
 }
+
+export type IconPickerSlots = IconButtonSlots;
 
 export const {
   inject: injectIconPickerSettings,
@@ -49,14 +67,3 @@ export const {
 export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
 
 export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;
-
-export type IconPickerProps = ExtendProps<
-  IconButtonProps,
-  {
-    readonly cols: PropOptionsDefault<number>;
-    readonly modelValue: PropOptions<stringU>;
-    readonly placeholder: PropOptionsRequired<string>;
-    readonly rows: PropOptionsDefault<number>;
-    readonly spinnerSize: PropOptionsDefault<string>;
-  }
->;

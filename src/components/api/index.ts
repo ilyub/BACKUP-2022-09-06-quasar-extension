@@ -12,6 +12,10 @@ import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
 import type { Join2 } from "@skylib/functions/es/types/core";
 
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+export type ReadonlyOmit<T, K extends PropertyKey> = Readonly<Omit<T, K>>;
+
 export interface Injectable<T> {
   /**
    * Injects settings.
@@ -34,19 +38,10 @@ export interface Injectable<T> {
   readonly test: (mutableProvide: Record<symbol, unknown>, settings: T) => void;
 }
 
-export type ExtendProps<T extends object, B = object> = {
-  readonly [K in Exclude<keyof T, keyof B>]: T[K];
-} & B;
-
-export type ExtendQuasarProps<T extends object, B = object> = Join2<
-  { readonly [K in Exclude<OptionalKeys<T>, keyof B>]: PropOptions<T[K]> },
-  {
-    readonly [K in Exclude<RequiredKeys<T>, keyof B>]: PropOptionsRequired<
-      T[K]
-    >;
-  }
-> &
-  B;
+export type ExtendQuasarProps<T extends object> = Join2<
+  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
+  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
+>;
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export type LooseRequired<T> = {
@@ -97,6 +92,18 @@ export function createInjectable<T>(createDefault?: () => T): Injectable<T> {
       mutableProvide[settingsId as symbol] = computed<T>(() => settings);
     }
   };
+}
+
+/**
+ * Creates extandable quasar component.
+ *
+ * @returns Extandable quasar component.
+ */
+export function propsToPropDefinitions<
+  T extends object
+>(): ExtendQuasarProps<T> {
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
+  return {} as ExtendQuasarProps<T>;
 }
 
 /**
@@ -164,3 +171,12 @@ export function propOptionsRequired<T>(
 }
 
 propOptions.required = propOptionsRequired;
+
+/**
+ * Validates props.
+ *
+ * @param props - Props.
+ */
+export function validateProps<T>(props: T): void {
+  assert.object(props);
+}

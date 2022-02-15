@@ -1,13 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import PageLayout from "../components/PageLayout.vue";
-
 export default defineComponent({
-  name: "sample-page-layout",
-  components: {
-    "m-page-layout": PageLayout
-  }
+  name: "sample-page-layout"
 });
 </script>
 

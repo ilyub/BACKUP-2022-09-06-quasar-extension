@@ -1,4 +1,8 @@
-import type { QTooltipProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QTooltipProps,
+  QTooltipSlots
+} from "quasar";
 import type { Ref } from "vue";
 import { computed, onUnmounted, ref, watch } from "vue";
 
@@ -6,7 +10,6 @@ import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { ExtendQuasarProps, PropOptions } from "./api";
 import { createInjectable } from "./api";
 
 export type Direction =
@@ -27,18 +30,27 @@ export interface DisableTooltips {
   readonly active: Ref<boolean>;
 }
 
-export type TooltipOptions = ExtendQuasarProps<
-  QTooltipProps,
-  {
-    readonly direction: PropOptions<Direction | undefined>;
-  }
+export type GlobalTooltip = GlobalComponentConstructor<
+  TooltipProps,
+  TooltipSlots
 >;
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type TooltipParentProps = QTooltipProps;
+
+export interface TooltipOwnProps {
+  readonly direction?: Direction | undefined;
+}
+
+export interface TooltipProps extends TooltipParentProps, TooltipOwnProps {}
 
 export interface TooltipSettings {
   readonly delay: number;
   readonly fontSize?: stringU;
   readonly show: boolean;
 }
+
+export type TooltipSlots = QTooltipSlots;
 
 export const DirectionVO = createValidationObject<Direction>({
   "down": "down",

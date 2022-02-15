@@ -1,5 +1,22 @@
-import type { QCardSectionProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QCardSectionProps,
+  QCardSectionSlots
+} from "quasar";
 
-import type { ExtendQuasarProps } from "./api";
+// eslint-disable-next-line @skylib/prefer-readonly
+export type CardSectionParentProps = QCardSectionProps;
 
-export type CardSectionProps = ExtendQuasarProps<QCardSectionProps>;
+export interface CardSectionOwnProps {}
+
+export interface CardSectionProps
+  extends CardSectionParentProps,
+    CardSectionOwnProps {}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type CardSectionSlots = QCardSectionSlots;
+
+export type GlobalCardSection = GlobalComponentConstructor<
+  CardSectionProps,
+  CardSectionSlots
+>;

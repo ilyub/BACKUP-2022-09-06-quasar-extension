@@ -1,16 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import FormButton from "../components/FormButton.vue";
-
 export default defineComponent({
-  name: "sample-form-button",
-  components: {
-    "m-form-button": FormButton
-  },
-  setup() {
-    return {};
-  }
+  name: "sample-form-button"
 });
 </script>
 

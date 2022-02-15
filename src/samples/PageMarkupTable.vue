@@ -1,15 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import PageLayout from "../components/PageLayout.vue";
-import PageMarkupTable from "../components/PageMarkupTable.vue";
-
 export default defineComponent({
-  name: "sample-page-markup-table",
-  components: {
-    "m-page-layout": PageLayout,
-    "m-page-markup-table": PageMarkupTable
-  }
+  name: "sample-page-markup-table"
 });
 </script>
 

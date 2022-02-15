@@ -4,13 +4,8 @@ import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import IconPicker from "../components/IconPicker.vue";
-
 export default defineComponent({
   name: "sample-icon-picker",
-  components: {
-    "m-icon-picker": IconPicker
-  },
   setup() {
     return {
       icon1: ref<stringU>(undefined),

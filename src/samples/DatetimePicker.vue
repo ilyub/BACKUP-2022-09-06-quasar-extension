@@ -4,13 +4,8 @@ import { defineComponent, ref } from "vue";
 import { datetime } from "@skylib/facades/es/datetime";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import DatetimePicker from "../components/DatetimePicker.vue";
-
 export default defineComponent({
   name: "sample-datetime-picker",
-  components: {
-    "m-datetime-picker": DatetimePicker
-  },
   setup() {
     return {
       datetimeMax: datetime

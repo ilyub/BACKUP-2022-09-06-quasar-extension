@@ -1,17 +1,34 @@
+import type { GlobalComponentConstructor } from "quasar";
+import type { VNode } from "vue";
+
 import * as is from "@skylib/functions/es/guards";
+import type { booleanU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { PropOptionsBoolean } from "./api";
 import { createInjectable } from "./api";
 
+export type GlobalSwitchable = GlobalComponentConstructor<
+  SwitchableProps,
+  SwitchableSlots
+>;
+
 export interface SwitchableProps {
-  readonly indent: PropOptionsBoolean;
-  readonly on: PropOptionsBoolean;
+  readonly indent?: booleanU;
+  readonly on?: booleanU;
 }
 
 export interface SwitchableSettings {
   readonly transition: Transition;
   readonly transitionDuration: number;
+}
+
+export interface SwitchableSlots {
+  /**
+   * Default slot.
+   *
+   * @returns Node.
+   */
+  readonly default: () => readonly VNode[];
 }
 
 export type Transition = "none" | "slide";

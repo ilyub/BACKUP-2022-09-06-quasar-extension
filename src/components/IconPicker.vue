@@ -11,15 +11,12 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import Card from "./Card.vue";
-import CardActions from "./CardActions.vue";
-import CardSection from "./CardSection.vue";
-import IconButton from "./IconButton.vue";
-import type { IconPickerProps } from "./IconPicker.extras";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import type {
+  IconPickerOwnProps,
+  IconPickerParentProps
+} from "./IconPicker.extras";
 import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
-import Input from "./Input.vue";
 
 interface Button {
   readonly icon?: string;
@@ -46,16 +43,8 @@ const mdi = ref<Mdi | undefined>(undefined);
 
 export default defineComponent({
   name: "m-icon-picker",
-  components: {
-    "m-card": Card,
-    "m-card-actions": CardActions,
-    "m-card-section": CardSection,
-    "m-icon-button": IconButton,
-    "m-input": Input
-  },
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as IconPickerProps),
+    ...propsToPropDefinitions<IconPickerParentProps>(),
     cols: propOptions.default(is.number, 7),
     modelValue: propOptions(is.stringU),
     placeholder: propOptions.required(is.string),
@@ -65,7 +54,9 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  setup(props: SetupProps<IconPickerProps>, { emit }) {
+  setup(props, { emit }) {
+    validateProps<IconPickerOwnProps>(props);
+
     const filteredItems = computed<Items>(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)

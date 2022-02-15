@@ -8,19 +8,8 @@ import {
   mdiMenu
 } from "@mdi/js";
 
-import IconButton from "../components/IconButton.vue";
-import ListItem from "../components/ListItem.vue";
-import Menu from "../components/Menu.vue";
-import Tooltip from "../components/Tooltip.vue";
-
 export default defineComponent({
   name: "sample-tooltip",
-  components: {
-    "m-icon-button": IconButton,
-    "m-list-item": ListItem,
-    "m-menu": Menu,
-    "m-tooltip": Tooltip
-  },
   setup() {
     return {
       mdiArrowDown,

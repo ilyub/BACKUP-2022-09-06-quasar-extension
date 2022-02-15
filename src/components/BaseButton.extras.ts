@@ -1,15 +1,24 @@
-import type { QBtnProps } from "quasar";
+import type { GlobalComponentConstructor, QBtnProps, QBtnSlots } from "quasar";
 
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
-import type { ExtendQuasarProps, PropOptions, PropOptionsBoolean } from "./api";
 import type { Direction } from "./Tooltip.extras";
 
-export type BaseButtonProps = ExtendQuasarProps<
-  QBtnProps,
-  {
-    readonly modelValue: PropOptionsBoolean;
-    readonly tooltip: PropOptions<stringU>;
-    readonly tooltipDirection: PropOptions<Direction | undefined>;
-  }
+export type BaseButtonParentProps = QBtnProps;
+
+export interface BaseButtonOwnProps {
+  readonly modelValue?: booleanU;
+  readonly tooltip?: stringU;
+  readonly tooltipDirection?: Direction | undefined;
+}
+
+export interface BaseButtonProps
+  extends BaseButtonParentProps,
+    BaseButtonOwnProps {}
+
+export type BaseButtonSlots = QBtnSlots;
+
+export type GlobalBaseButton = GlobalComponentConstructor<
+  BaseButtonProps,
+  BaseButtonSlots
 >;

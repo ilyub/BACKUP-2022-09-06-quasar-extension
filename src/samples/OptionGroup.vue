@@ -4,13 +4,9 @@ import { defineComponent, ref } from "vue";
 import * as fn from "@skylib/functions/es/function";
 
 import type { OptionGroupOptions } from "../components/OptionGroup.extras";
-import OptionGroup from "../components/OptionGroup.vue";
 
 export default defineComponent({
   name: "sample-option-group",
-  components: {
-    "m-option-group": OptionGroup
-  },
   setup() {
     return {
       options: fn.run<OptionGroupOptions>(() => [

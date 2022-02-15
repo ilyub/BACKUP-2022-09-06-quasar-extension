@@ -50,6 +50,6 @@ it.each([
   });
 
   expect(injectDisableCallback).toBeCalledTimes(1);
-  expect(injectDisableCallback).lastCalledWith(!(on ?? false));
+  expect(injectDisableCallback).lastCalledWith(!(on ?? true));
   expect(wrapper).toExist();
 });

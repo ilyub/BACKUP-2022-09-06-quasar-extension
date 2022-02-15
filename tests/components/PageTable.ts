@@ -9,7 +9,7 @@ import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 
 import type { VirtualScrollEvent } from "@/components/extras/QVirtualScroll";
 import type { Columns } from "@/components/PageTable.extras";
-import PageTable, { PageTableFactory } from "@/components/PageTable.vue";
+import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
 
 functionsTestUtils.installFakeTimer();
@@ -123,7 +123,3 @@ it.each([
     });
   }
 );
-
-it("PageTableFactory", () => {
-  expect(() => PageTableFactory(is.unknown)).not.toThrow();
-});

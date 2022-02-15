@@ -4,15 +4,9 @@ import { computed, defineComponent, ref } from "vue";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { GroupItems } from "../components/Group.extras";
-import Group from "../components/Group.vue";
-import Input from "../components/Input.vue";
 
 export default defineComponent({
   name: "sample-group",
-  components: {
-    "m-group": Group,
-    "m-input": Input
-  },
   setup() {
     const showSection1 = ref(true);
 

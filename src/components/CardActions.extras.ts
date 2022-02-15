@@ -1,5 +1,21 @@
-import type { QCardActionsProps } from "quasar";
+import type {
+  GlobalComponentConstructor,
+  QCardActionsProps,
+  QCardActionsSlots
+} from "quasar";
 
-import type { ExtendQuasarProps } from "./api";
+export type CardActionsParentProps = QCardActionsProps;
 
-export type CardActionsProps = ExtendQuasarProps<QCardActionsProps>;
+export interface CardActionsOwnProps {}
+
+export interface CardActionsProps
+  extends CardActionsParentProps,
+    CardActionsOwnProps {}
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type CardActionsSlots = QCardActionsSlots;
+
+export type GlobalCardActions = GlobalComponentConstructor<
+  CardActionsProps,
+  CardActionsSlots
+>;

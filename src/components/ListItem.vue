@@ -10,25 +10,37 @@ import { computed, defineComponent, useAttrs } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { ListItemProps } from "./ListItem.extras";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  ListItemOwnProps,
+  ListItemParentProps,
+  ListItemSlots
+} from "./ListItem.extras";
 
 export default defineComponent({
   name: "m-list-item",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as ListItemProps),
+    ...propsToPropDefinitions<ListItemParentProps>(),
     caption: propOptions(is.stringU),
     icon: propOptions(is.stringU)
   },
-  setup(props: SetupProps<ListItemProps>) {
+  setup(props) {
+    validateProps<ListItemOwnProps>(props);
+
     const attrs = useAttrs();
+
+    const slotNames = useSlotsNames<ListItemSlots>()(
+      "caption",
+      "default",
+      "icon"
+    );
 
     return {
       clickable: computed<boolean>(() => is.not.empty(attrs["onClick"])),
       hasCaption: computed<boolean>(() => is.not.empty(props.caption)),
-      hasIcon: computed<boolean>(() => is.not.empty(props.icon))
+      hasIcon: computed<boolean>(() => is.not.empty(props.icon)),
+      slotNames
     };
   }
 });
@@ -36,13 +48,16 @@ export default defineComponent({
 
 <template>
   <q-item :clickable="clickable">
-    <slot>
-      <q-item-section v-if="hasIcon" side>
+    <q-item-section v-if="hasIcon || $slots[slotNames.icon]" side>
+      <slot :name="slotNames.icon">
         <q-icon :name="icon" />
-      </q-item-section>
-      <q-item-section v-if="hasCaption" no-wrap>
+      </slot>
+    </q-item-section>
+    <q-item-section v-if="hasCaption || $slots[slotNames.caption]" no-wrap>
+      <slot :name="slotNames.caption">
         {{ caption }}
-      </q-item-section>
-    </slot>
+      </slot>
+    </q-item-section>
+    <slot :name="slotNames.default"></slot>
   </q-item>
 </template>

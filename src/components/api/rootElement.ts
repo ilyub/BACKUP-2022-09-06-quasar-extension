@@ -11,13 +11,13 @@ import Section from "../Section.vue";
 // eslint-disable-next-line import/no-relative-parent-imports
 import Subsection from "../Subsection.vue";
 
-import type { PropOptionsDefault, SetupProps } from ".";
+import type { SetupProps } from ".";
 import { propOptions } from ".";
 
 export type RootElementProp = "div" | "page-section" | "section" | "subsection";
 
 export interface RootElementProps {
-  readonly rootElement: PropOptionsDefault<RootElementProp>;
+  readonly rootElement?: RootElementProp | undefined;
 }
 
 export const RootElementPropVO = createValidationObject<RootElementProp>({
@@ -29,9 +29,9 @@ export const RootElementPropVO = createValidationObject<RootElementProp>({
 
 export const isRootElementProp = is.factory(is.enumeration, RootElementPropVO);
 
-export const rootElementProps: RootElementProps = {
+export const rootElementPropsOptions = {
   rootElement: propOptions.default(isRootElementProp, "div")
-};
+} as const;
 
 /**
  * Root element module.
@@ -43,7 +43,7 @@ export function useRootElement(
   props: SetupProps<RootElementProps>
 ): ComputedRef<unknown> {
   return computed<unknown>(() => {
-    switch (props.rootElement) {
+    switch (props.rootElement ?? "div") {
       case "div":
         return "div";
 

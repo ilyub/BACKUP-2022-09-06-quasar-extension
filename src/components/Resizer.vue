@@ -5,9 +5,9 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { ResizerProps } from "./Resizer.extras";
+import { propOptions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
 
 interface Offset {
   readonly x: number;
@@ -35,8 +35,6 @@ const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
 export default defineComponent({
   name: "m-resizer",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as ResizerProps),
     max: propOptions(is.numberU),
     min: propOptions.required(is.number),
     modelValue: propOptions.required(is.number)
@@ -44,7 +42,9 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: number) => is.number(value)
   },
-  setup(props: SetupProps<ResizerProps>, { emit }) {
+  setup(props, { emit }) {
+    validateProps<ResizerProps>(props);
+
     let initialValue: numberU = undefined;
 
     return {
@@ -66,7 +66,8 @@ export default defineComponent({
         } else
           document.documentElement.style.cursor =
             limitedValue === value ? "ew-resize" : "not-allowed";
-      }
+      },
+      slotNames: useSlotsNames<ResizerSlots>()("default")
     };
 
     function limitMax(value: number): number {
@@ -81,7 +82,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-touch-pan.horizontal.mouse="handlePan"></div>
+  <div v-touch-pan.horizontal.mouse="handlePan">
+    <slot :name="slotNames.default"></slot>
+  </div>
 </template>
 
 <style lang="scss" scoped>

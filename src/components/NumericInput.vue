@@ -5,25 +5,30 @@ import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
-import type { SetupProps } from "./api";
-import { propOptions } from "./api";
-import type { NumericInputProps } from "./NumericInput.extras";
+import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type {
+  NumericInputOwnProps,
+  NumericInputParentProps,
+  NumericInputSlots
+} from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
 export default defineComponent({
   name: "m-numeric-input",
   props: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
-    ...({} as NumericInputProps),
+    ...propsToPropDefinitions<NumericInputParentProps>(),
     max: propOptions.required(is.number),
     min: propOptions.default(is.number, 0),
-    modelValue: propOptions.required(is.numberU)
+    modelValue: propOptions(is.numberU)
   },
   emits: {
     "update:model-value": (value: numberU) => is.numberU(value)
   },
-  // eslint-disable-next-line @skylib/no-mutable-signature, @skylib/prefer-readonly
-  setup(props: SetupProps<NumericInputProps>, { emit }) {
+  // eslint-disable-next-line @skylib/prefer-readonly
+  setup(props, { emit }) {
+    validateProps<NumericInputOwnProps>(props);
+
     return {
       icons,
       inputModelValue: computed<string>(() => cast.string(props.modelValue)),
@@ -45,7 +50,8 @@ export default defineComponent({
       },
       prevClickable: computed<boolean>(
         () => is.empty(props.modelValue) || props.modelValue > props.min
-      )
+      ),
+      slotNames: useSlotsNames<NumericInputSlots>()("append", "prepend")
     };
   }
 });
@@ -58,25 +64,32 @@ export default defineComponent({
     :model-value="inputModelValue"
     @update:model-value="inputUpdateModelValue"
   >
-    <template #prepend>
-      <q-icon
-        :class="{
-          'clickable': prevClickable,
-          'icon ref-numeric-input-prev': true
-        }"
-        :name="icons.chevronLeftCircle"
-        @click="prevClick"
-      />
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
+      <slot :name="slotName"></slot>
     </template>
     <template #append>
-      <q-icon
-        :class="{
-          'clickable': nextClickable,
-          'icon ref-numeric-input-next': true
-        }"
-        :name="icons.chevronRightCircle"
-        @click="nextClick"
-      />
+      <slot :name="slotNames.append">
+        <q-icon
+          :class="{
+            'clickable': nextClickable,
+            'icon ref-numeric-input-next': true
+          }"
+          :name="icons.chevronRightCircle"
+          @click="nextClick"
+        />
+      </slot>
+    </template>
+    <template #prepend>
+      <slot :name="slotNames.prepend">
+        <q-icon
+          :class="{
+            'clickable': prevClickable,
+            'icon ref-numeric-input-prev': true
+          }"
+          :name="icons.chevronLeftCircle"
+          @click="prevClick"
+        />
+      </slot>
     </template>
   </q-input>
 </template>
