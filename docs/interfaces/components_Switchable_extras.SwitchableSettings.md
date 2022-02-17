@@ -8,17 +8,10 @@
 
 ### Properties
 
-- [fadeOpacity](components_Switchable_extras.SwitchableSettings.md#fadeopacity)
 - [transition](components_Switchable_extras.SwitchableSettings.md#transition)
 - [transitionDuration](components_Switchable_extras.SwitchableSettings.md#transitionduration)
 
 ## Properties
-
-### fadeOpacity
-
-• `Readonly` **fadeOpacity**: `number`
-
-___
 
 ### transition
 

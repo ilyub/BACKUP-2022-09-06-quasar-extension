@@ -4,6 +4,12 @@
 
 [components/api/rootElement](../modules/components_api_rootElement.md).RootElementProps
 
+## Hierarchy
+
+- **`RootElementProps`**
+
+  ↳ [`GroupOwnProps`](components_Group_extras.GroupOwnProps.md)
+
 ## Table of contents
 
 ### Properties
@@ -14,4 +20,4 @@
 
 ### rootElement
 
-• `Readonly` **rootElement**: [`PropOptionsDefault`](components_api.PropOptionsDefault.md)<[`RootElementProp`](../modules/components_api_rootElement.md#rootelementprop)\>
+• `Optional` `Readonly` **rootElement**: [`RootElementProp`](../modules/components_api_rootElement.md#rootelementprop)

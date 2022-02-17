@@ -4,12 +4,25 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [DroppableOwnProps](../interfaces/components_Droppable_extras.DroppableOwnProps.md)
+- [DroppableProps](../interfaces/components_Droppable_extras.DroppableProps.md)
+- [DroppableSlots](../interfaces/components_Droppable_extras.DroppableSlots.md)
+
 ### Type aliases
 
-- [DroppablePropOptions](components_Droppable_extras.md#droppablepropoptions)
+- [DroppableParentProps](components_Droppable_extras.md#droppableparentprops)
+- [GlobalDroppable](components_Droppable_extras.md#globaldroppable)
 
 ## Type aliases
 
-### DroppablePropOptions
+### DroppableParentProps
 
-Ƭ **DroppablePropOptions**: `ReadonlyRecord`<`string`, `never`\>
+Ƭ **DroppableParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), ``"group"`` \| ``"itemKey"`` \| ``"modelValue"``\>
+
+___
+
+### GlobalDroppable
+
+Ƭ **GlobalDroppable**: `GlobalComponentConstructor`<[`DroppableProps`](../interfaces/components_Droppable_extras.DroppableProps.md), [`DroppableSlots`](../interfaces/components_Droppable_extras.DroppableSlots.md)\>

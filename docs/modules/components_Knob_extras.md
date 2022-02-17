@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [KnobOwnProps](../interfaces/components_Knob_extras.KnobOwnProps.md)
+- [KnobProps](../interfaces/components_Knob_extras.KnobProps.md)
+
 ### Type aliases
 
-- [KnobPropOptions](components_Knob_extras.md#knobpropoptions)
+- [GlobalKnob](components_Knob_extras.md#globalknob)
+- [KnobParentProps](components_Knob_extras.md#knobparentprops)
+- [KnobSlots](components_Knob_extras.md#knobslots)
 
 ## Type aliases
 
-### KnobPropOptions
+### GlobalKnob
 
-Ƭ **KnobPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QKnobProps`, { `disable`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`number`\>  }\>
+Ƭ **GlobalKnob**: `GlobalComponentConstructor`<[`KnobOwnProps`](../interfaces/components_Knob_extras.KnobOwnProps.md), [`KnobSlots`](components_Knob_extras.md#knobslots)\>
+
+___
+
+### KnobParentProps
+
+Ƭ **KnobParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QKnobProps`, ``"disable"`` \| ``"modelValue"``\>
+
+___
+
+### KnobSlots
+
+Ƭ **KnobSlots**: `QKnobSlots`

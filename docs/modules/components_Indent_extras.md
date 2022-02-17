@@ -4,12 +4,17 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [IndentProps](../interfaces/components_Indent_extras.IndentProps.md)
+- [IndentSlots](../interfaces/components_Indent_extras.IndentSlots.md)
+
 ### Type aliases
 
-- [IndentPropOptions](components_Indent_extras.md#indentpropoptions)
+- [GlobalIndent](components_Indent_extras.md#globalindent)
 
 ## Type aliases
 
-### IndentPropOptions
+### GlobalIndent
 
-Ƭ **IndentPropOptions**: `ReadonlyRecord`<`string`, `never`\>
+Ƭ **GlobalIndent**: `GlobalComponentConstructor`<[`IndentProps`](../interfaces/components_Indent_extras.IndentProps.md), [`IndentSlots`](../interfaces/components_Indent_extras.IndentSlots.md)\>

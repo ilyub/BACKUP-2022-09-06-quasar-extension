@@ -4,12 +4,25 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [ListItemOwnProps](../interfaces/components_ListItem_extras.ListItemOwnProps.md)
+- [ListItemProps](../interfaces/components_ListItem_extras.ListItemProps.md)
+- [ListItemSlots](../interfaces/components_ListItem_extras.ListItemSlots.md)
+
 ### Type aliases
 
-- [ListItemPropOptions](components_ListItem_extras.md#listitempropoptions)
+- [GlobalListItem](components_ListItem_extras.md#globallistitem)
+- [ListItemParentProps](components_ListItem_extras.md#listitemparentprops)
 
 ## Type aliases
 
-### ListItemPropOptions
+### GlobalListItem
 
-Ƭ **ListItemPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QItemProps`, { `caption`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `icon`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }\>
+Ƭ **GlobalListItem**: `GlobalComponentConstructor`<[`ListItemProps`](../interfaces/components_ListItem_extras.ListItemProps.md), [`ListItemSlots`](../interfaces/components_ListItem_extras.ListItemSlots.md)\>
+
+___
+
+### ListItemParentProps
+
+Ƭ **ListItemParentProps**: `QItemProps`

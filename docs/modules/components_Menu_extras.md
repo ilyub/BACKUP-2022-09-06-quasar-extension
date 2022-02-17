@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [MenuOwnProps](../interfaces/components_Menu_extras.MenuOwnProps.md)
+- [MenuProps](../interfaces/components_Menu_extras.MenuProps.md)
+
 ### Type aliases
 
-- [MenuPropOptions](components_Menu_extras.md#menupropoptions)
+- [GlobalMenu](components_Menu_extras.md#globalmenu)
+- [MenuParentProps](components_Menu_extras.md#menuparentprops)
+- [MenuSlots](components_Menu_extras.md#menuslots)
 
 ## Type aliases
 
-### MenuPropOptions
+### GlobalMenu
 
-Ƭ **MenuPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QMenuProps`\>
+Ƭ **GlobalMenu**: `GlobalComponentConstructor`<[`MenuProps`](../interfaces/components_Menu_extras.MenuProps.md), [`MenuSlots`](components_Menu_extras.md#menuslots)\>
+
+___
+
+### MenuParentProps
+
+Ƭ **MenuParentProps**: `QMenuProps`
+
+___
+
+### MenuSlots
+
+Ƭ **MenuSlots**: `QMenuSlots`

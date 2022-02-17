@@ -7,12 +7,16 @@
 ### Interfaces
 
 - [DisableTooltips](../interfaces/components_Tooltip_extras.DisableTooltips.md)
+- [TooltipOwnProps](../interfaces/components_Tooltip_extras.TooltipOwnProps.md)
+- [TooltipProps](../interfaces/components_Tooltip_extras.TooltipProps.md)
 - [TooltipSettings](../interfaces/components_Tooltip_extras.TooltipSettings.md)
 
 ### Type aliases
 
 - [Direction](components_Tooltip_extras.md#direction)
-- [TooltipOptions](components_Tooltip_extras.md#tooltipoptions)
+- [GlobalTooltip](components_Tooltip_extras.md#globaltooltip)
+- [TooltipParentProps](components_Tooltip_extras.md#tooltipparentprops)
+- [TooltipSlots](components_Tooltip_extras.md#tooltipslots)
 
 ### Variables
 
@@ -36,9 +40,21 @@
 
 ___
 
-### TooltipOptions
+### GlobalTooltip
 
-Ƭ **TooltipOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTooltipProps`, { `direction`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>
+Ƭ **GlobalTooltip**: `GlobalComponentConstructor`<[`TooltipProps`](../interfaces/components_Tooltip_extras.TooltipProps.md), [`TooltipSlots`](components_Tooltip_extras.md#tooltipslots)\>
+
+___
+
+### TooltipParentProps
+
+Ƭ **TooltipParentProps**: `QTooltipProps`
+
+___
+
+### TooltipSlots
+
+Ƭ **TooltipSlots**: `QTooltipSlots`
 
 ## Variables
 

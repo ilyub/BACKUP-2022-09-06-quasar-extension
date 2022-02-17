@@ -7,13 +7,16 @@
 ### Interfaces
 
 - [Elem](../interfaces/components_Sortable_extras.Elem.md)
+- [ItemSlotData](../interfaces/components_Sortable_extras.ItemSlotData.md)
 - [MoveData](../interfaces/components_Sortable_extras.MoveData.md)
-- [SortablePropOptions](../interfaces/components_Sortable_extras.SortablePropOptions.md)
+- [SortableProps](../interfaces/components_Sortable_extras.SortableProps.md)
 - [SortableSettings](../interfaces/components_Sortable_extras.SortableSettings.md)
+- [SortableSlots](../interfaces/components_Sortable_extras.SortableSlots.md)
 
 ### Type aliases
 
 - [Elems](components_Sortable_extras.md#elems)
+- [GlobalSortable](components_Sortable_extras.md#globalsortable)
 - [Move](components_Sortable_extras.md#move)
 
 ### Functions
@@ -34,6 +37,12 @@
 ### Elems
 
 Ƭ **Elems**: readonly [`Elem`](../interfaces/components_Sortable_extras.Elem.md)[]
+
+___
+
+### GlobalSortable
+
+Ƭ **GlobalSortable**: `GlobalComponentConstructor`<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)\>
 
 ___
 

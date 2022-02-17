@@ -17,10 +17,10 @@
 
 ### Type aliases
 
-- [ExtendPropOptions](components_api.md#extendpropoptions)
+- [ExtendQuasarProps](components_api.md#extendquasarprops)
 - [LooseRequired](components_api.md#looserequired)
 - [PropOptionsBoolean](components_api.md#propoptionsboolean)
-- [PropsToPropOptions](components_api.md#propstopropoptions)
+- [ReadonlyOmit](components_api.md#readonlyomit)
 - [SetupProps](components_api.md#setupprops)
 
 ### Functions
@@ -31,19 +31,20 @@
 - [propOptionsBoolean](components_api.md#propoptionsboolean)
 - [propOptionsDefault](components_api.md#propoptionsdefault)
 - [propOptionsRequired](components_api.md#propoptionsrequired)
+- [propsToPropDefinitions](components_api.md#propstopropdefinitions)
+- [validateProps](components_api.md#validateprops)
 
 ## Type aliases
 
-### ExtendPropOptions
+### ExtendQuasarProps
 
-Ƭ **ExtendPropOptions**<`T`, `B`\>: { readonly [K in Exclude<keyof T, keyof B\>]: T[K] } & `B`
+Ƭ **ExtendQuasarProps**<`T`\>: `Join2`<{ readonly [K in OptionalKeys<T\>]: PropOptions<T[K]\> }, { readonly [K in RequiredKeys<T\>]: PropOptionsRequired<T[K]\> }\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | extends `object` |
-| `B` | `object` |
 
 ___
 
@@ -65,16 +66,16 @@ ___
 
 ___
 
-### PropsToPropOptions
+### ReadonlyOmit
 
-Ƭ **PropsToPropOptions**<`T`, `B`\>: `Join2`<{ readonly [K in Exclude<OptionalKeys<T\>, keyof B\>]: PropOptions<T[K]\> }, { readonly [K in Exclude<RequiredKeys<T\>, keyof B\>]: PropOptionsRequired<T[K]\> }\> & `B`
+Ƭ **ReadonlyOmit**<`T`, `K`\>: `Readonly`<`Omit`<`T`, `K`\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `object` |
-| `B` | `object` |
+| `T` | `T` |
+| `K` | extends `PropertyKey` |
 
 ___
 
@@ -238,3 +239,49 @@ Creates Vue property.
 [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`T`\>
 
 Vue property.
+
+___
+
+### propsToPropDefinitions
+
+▸ **propsToPropDefinitions**<`T`\>(): [`ExtendQuasarProps`](components_api.md#extendquasarprops)<`T`\>
+
+Creates extandable quasar component.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+#### Returns
+
+[`ExtendQuasarProps`](components_api.md#extendquasarprops)<`T`\>
+
+Extandable quasar component.
+
+___
+
+### validateProps
+
+▸ **validateProps**<`T`\>(`props`): `T`
+
+Validates props.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | `T` | Props. |
+
+#### Returns
+
+`T`
+
+Props.

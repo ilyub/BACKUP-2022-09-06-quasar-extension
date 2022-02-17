@@ -4,9 +4,16 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [DatetimePickerOwnProps](../interfaces/components_DatetimePicker_extras.DatetimePickerOwnProps.md)
+- [DatetimePickerProps](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md)
+
 ### Type aliases
 
-- [DatetimePickerPropOptions](components_DatetimePicker_extras.md#datetimepickerpropoptions)
+- [DatetimePickerParentProps](components_DatetimePicker_extras.md#datetimepickerparentprops)
+- [DatetimePickerSlots](components_DatetimePicker_extras.md#datetimepickerslots)
+- [GlobalDatetimePicker](components_DatetimePicker_extras.md#globaldatetimepicker)
 
 ### Variables
 
@@ -15,9 +22,21 @@
 
 ## Type aliases
 
-### DatetimePickerPropOptions
+### DatetimePickerParentProps
 
-Ƭ **DatetimePickerPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QFieldProps`, { `max`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `min`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `modelValue`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }\>
+Ƭ **DatetimePickerParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QFieldProps`, ``"modelValue"``\>
+
+___
+
+### DatetimePickerSlots
+
+Ƭ **DatetimePickerSlots**: `QFieldSlots`
+
+___
+
+### GlobalDatetimePicker
+
+Ƭ **GlobalDatetimePicker**: `GlobalComponentConstructor`<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
 
 ## Variables
 

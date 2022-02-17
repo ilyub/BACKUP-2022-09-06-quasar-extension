@@ -6,11 +6,15 @@
 
 ### Interfaces
 
+- [IconPickerOwnProps](../interfaces/components_IconPicker_extras.IconPickerOwnProps.md)
+- [IconPickerProps](../interfaces/components_IconPicker_extras.IconPickerProps.md)
 - [IconPickerSettings](../interfaces/components_IconPicker_extras.IconPickerSettings.md)
 
 ### Type aliases
 
-- [IconPickerPropOptions](components_IconPicker_extras.md#iconpickerpropoptions)
+- [GlobalIconPicker](components_IconPicker_extras.md#globaliconpicker)
+- [IconPickerParentProps](components_IconPicker_extras.md#iconpickerparentprops)
+- [IconPickerSlots](components_IconPicker_extras.md#iconpickerslots)
 
 ### Variables
 
@@ -25,9 +29,21 @@
 
 ## Type aliases
 
-### IconPickerPropOptions
+### GlobalIconPicker
 
-Ƭ **IconPickerPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconButtonPropOptions`](components_IconButton_extras.md#iconbuttonpropoptions), { `cols`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`number`\> ; `modelValue`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `placeholder`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`string`\> ; `rows`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`number`\> ; `spinnerSize`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`string`\>  }\>
+Ƭ **GlobalIconPicker**: `GlobalComponentConstructor`<[`IconPickerProps`](../interfaces/components_IconPicker_extras.IconPickerProps.md), [`IconPickerSlots`](components_IconPicker_extras.md#iconpickerslots)\>
+
+___
+
+### IconPickerParentProps
+
+Ƭ **IconPickerParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<[`IconButtonProps`](../interfaces/components_IconButton_extras.IconButtonProps.md), ``"modelValue"``\>
+
+___
+
+### IconPickerSlots
+
+Ƭ **IconPickerSlots**: [`IconButtonSlots`](components_IconButton_extras.md#iconbuttonslots)
 
 ## Variables
 

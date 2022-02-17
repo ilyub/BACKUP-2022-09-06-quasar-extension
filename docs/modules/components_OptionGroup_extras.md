@@ -7,11 +7,15 @@
 ### Interfaces
 
 - [OptionGroupOption](../interfaces/components_OptionGroup_extras.OptionGroupOption.md)
+- [OptionGroupOwnProps](../interfaces/components_OptionGroup_extras.OptionGroupOwnProps.md)
+- [OptionGroupProps](../interfaces/components_OptionGroup_extras.OptionGroupProps.md)
 
 ### Type aliases
 
+- [GlobalOptionGroup](components_OptionGroup_extras.md#globaloptiongroup)
 - [OptionGroupOptions](components_OptionGroup_extras.md#optiongroupoptions)
-- [OptionGroupPropOptions](components_OptionGroup_extras.md#optiongrouppropoptions)
+- [OptionGroupParentProps](components_OptionGroup_extras.md#optiongroupparentprops)
+- [OptionGroupSlots](components_OptionGroup_extras.md#optiongroupslots)
 
 ### Functions
 
@@ -19,6 +23,18 @@
 - [isOptionGroupOptions](components_OptionGroup_extras.md#isoptiongroupoptions)
 
 ## Type aliases
+
+### GlobalOptionGroup
+
+Ƭ **GlobalOptionGroup**<`T`\>: `GlobalComponentConstructor`<[`OptionGroupProps`](../interfaces/components_OptionGroup_extras.OptionGroupProps.md)<`T`\>, [`OptionGroupSlots`](components_OptionGroup_extras.md#optiongroupslots)\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+___
 
 ### OptionGroupOptions
 
@@ -32,9 +48,15 @@
 
 ___
 
-### OptionGroupPropOptions
+### OptionGroupParentProps
 
-Ƭ **OptionGroupPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QOptionGroupProps`, { `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\> ; `options`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`OptionGroupOptions`](components_OptionGroup_extras.md#optiongroupoptions)\>  }\>
+Ƭ **OptionGroupParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QOptionGroupProps`, ``"inline"`` \| ``"modelValue"`` \| ``"options"``\>
+
+___
+
+### OptionGroupSlots
+
+Ƭ **OptionGroupSlots**: `QOptionGroupProps`
 
 ## Functions
 

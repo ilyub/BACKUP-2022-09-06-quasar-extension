@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [CardActionsOwnProps](../interfaces/components_CardActions_extras.CardActionsOwnProps.md)
+- [CardActionsProps](../interfaces/components_CardActions_extras.CardActionsProps.md)
+
 ### Type aliases
 
-- [CardActionsPropOptions](components_CardActions_extras.md#cardactionspropoptions)
+- [CardActionsParentProps](components_CardActions_extras.md#cardactionsparentprops)
+- [CardActionsSlots](components_CardActions_extras.md#cardactionsslots)
+- [GlobalCardActions](components_CardActions_extras.md#globalcardactions)
 
 ## Type aliases
 
-### CardActionsPropOptions
+### CardActionsParentProps
 
-Ƭ **CardActionsPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QCardActionsProps`\>
+Ƭ **CardActionsParentProps**: `QCardActionsProps`
+
+___
+
+### CardActionsSlots
+
+Ƭ **CardActionsSlots**: `QCardActionsSlots`
+
+___
+
+### GlobalCardActions
+
+Ƭ **GlobalCardActions**: `GlobalComponentConstructor`<[`CardActionsProps`](../interfaces/components_CardActions_extras.CardActionsProps.md), [`CardActionsSlots`](components_CardActions_extras.md#cardactionsslots)\>

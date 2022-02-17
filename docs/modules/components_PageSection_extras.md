@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [PageSectionOwnerProps](../interfaces/components_PageSection_extras.PageSectionOwnerProps.md)
+- [PageSectionProps](../interfaces/components_PageSection_extras.PageSectionProps.md)
+
 ### Type aliases
 
-- [PageSectionPropOptions](components_PageSection_extras.md#pagesectionpropoptions)
+- [GlobalPageSection](components_PageSection_extras.md#globalpagesection)
+- [PageSectionParentProps](components_PageSection_extras.md#pagesectionparentprops)
+- [PageSectionSlots](components_PageSection_extras.md#pagesectionslots)
 
 ## Type aliases
 
-### PageSectionPropOptions
+### GlobalPageSection
 
-Ƭ **PageSectionPropOptions**: `ReadonlyRecord`<`string`, `never`\>
+Ƭ **GlobalPageSection**: `GlobalComponentConstructor`<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
+
+___
+
+### PageSectionParentProps
+
+Ƭ **PageSectionParentProps**: [`SwitchableProps`](../interfaces/components_Switchable_extras.SwitchableProps.md)
+
+___
+
+### PageSectionSlots
+
+Ƭ **PageSectionSlots**: [`SwitchableSlots`](../interfaces/components_Switchable_extras.SwitchableSlots.md)

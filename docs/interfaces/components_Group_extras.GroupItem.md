@@ -1,8 +1,14 @@
 [Quasar extension](../index.md) / [Exports](../modules.md) / [components/Group.extras](../modules/components_Group_extras.md) / GroupItem
 
-# Interface: GroupItem
+# Interface: GroupItem<T\>
 
 [components/Group.extras](../modules/components_Group_extras.md).GroupItem
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `string` |
 
 ## Table of contents
 
@@ -16,7 +22,7 @@
 
 ### id
 
-• `Readonly` **id**: `string`
+• `Readonly` **id**: `T`
 
 ___
 

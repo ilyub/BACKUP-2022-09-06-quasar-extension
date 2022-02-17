@@ -8,14 +8,18 @@
 
 - [BodyCellSlotData](../interfaces/components_PageTable_extras.BodyCellSlotData.md)
 - [Column](../interfaces/components_PageTable_extras.Column.md)
+- [PageTableOwnProps](../interfaces/components_PageTable_extras.PageTableOwnProps.md)
+- [PageTableProps](../interfaces/components_PageTable_extras.PageTableProps.md)
 - [PageTableSettings](../interfaces/components_PageTable_extras.PageTableSettings.md)
+- [PageTableSlots](../interfaces/components_PageTable_extras.PageTableSlots.md)
 
 ### Type aliases
 
 - [Align](components_PageTable_extras.md#align)
 - [Columns](components_PageTable_extras.md#columns)
 - [Field](components_PageTable_extras.md#field)
-- [PageTablePropOptions](components_PageTable_extras.md#pagetablepropoptions)
+- [GlobalPageTable](components_PageTable_extras.md#globalpagetable)
+- [PageTableParentProps](components_PageTable_extras.md#pagetableparentprops)
 
 ### Variables
 
@@ -78,15 +82,21 @@ ___
 
 ___
 
-### PageTablePropOptions
+### GlobalPageTable
 
-Ƭ **PageTablePropOptions**<`T`\>: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QTableProps`, { `columns`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<[`Columns`](components_PageTable_extras.md#columns)<`T`\>\> ; `extraPageOffset`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `limit`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`numberU`\> ; `rows`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<readonly `T`[]\> ; `selected`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<readonly `T`[]\>  }\>
+Ƭ **GlobalPageTable**<`T`\>: `GlobalComponentConstructor`<[`PageTableProps`](../interfaces/components_PageTable_extras.PageTableProps.md)<`T`\>, [`PageTableSlots`](../interfaces/components_PageTable_extras.PageTableSlots.md)<`T`\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | `unknown` |
+
+___
+
+### PageTableParentProps
+
+Ƭ **PageTableParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QTableProps`, ``"columns"`` \| ``"rows"`` \| ``"selected"``\>
 
 ## Variables
 

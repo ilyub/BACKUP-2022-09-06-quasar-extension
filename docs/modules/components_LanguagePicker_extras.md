@@ -7,13 +7,18 @@
 ### Interfaces
 
 - [LanguagePickerItem](../interfaces/components_LanguagePicker_extras.LanguagePickerItem.md)
+- [LanguagePickerOptions](../interfaces/components_LanguagePicker_extras.LanguagePickerOptions.md)
+- [LanguagePickerOwnProps](../interfaces/components_LanguagePicker_extras.LanguagePickerOwnProps.md)
+- [LanguagePickerProps](../interfaces/components_LanguagePicker_extras.LanguagePickerProps.md)
 - [LanguagePickerSettings](../interfaces/components_LanguagePicker_extras.LanguagePickerSettings.md)
 
 ### Type aliases
 
 - [ChangeLanguageAction](components_LanguagePicker_extras.md#changelanguageaction)
+- [GlobalLanguagePicker](components_LanguagePicker_extras.md#globallanguagepicker)
 - [LanguagePickerItems](components_LanguagePicker_extras.md#languagepickeritems)
-- [LanguagePickerOptions](components_LanguagePicker_extras.md#languagepickeroptions)
+- [LanguagePickerParentProps](components_LanguagePicker_extras.md#languagepickerparentprops)
+- [LanguagePickerSlots](components_LanguagePicker_extras.md#languagepickerslots)
 
 ### Functions
 
@@ -43,15 +48,27 @@
 
 ___
 
+### GlobalLanguagePicker
+
+Ƭ **GlobalLanguagePicker**: `GlobalComponentConstructor`<[`LanguagePickerProps`](../interfaces/components_LanguagePicker_extras.LanguagePickerProps.md), [`LanguagePickerSlots`](components_LanguagePicker_extras.md#languagepickerslots)\>
+
+___
+
 ### LanguagePickerItems
 
 Ƭ **LanguagePickerItems**: readonly [`LanguagePickerItem`](../interfaces/components_LanguagePicker_extras.LanguagePickerItem.md)[]
 
 ___
 
-### LanguagePickerOptions
+### LanguagePickerParentProps
 
-Ƭ **LanguagePickerOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<[`IconButtonPropOptions`](components_IconButton_extras.md#iconbuttonpropoptions), { `language`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\>  }\>
+Ƭ **LanguagePickerParentProps**: [`IconButtonProps`](../interfaces/components_IconButton_extras.IconButtonProps.md)
+
+___
+
+### LanguagePickerSlots
+
+Ƭ **LanguagePickerSlots**: [`IconButtonSlots`](components_IconButton_extras.md#iconbuttonslots)
 
 ## Functions
 

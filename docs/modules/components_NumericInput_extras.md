@@ -4,9 +4,16 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [NumericInputOwnProps](../interfaces/components_NumericInput_extras.NumericInputOwnProps.md)
+- [NumericInputProps](../interfaces/components_NumericInput_extras.NumericInputProps.md)
+
 ### Type aliases
 
-- [NumericInputPropOptions](components_NumericInput_extras.md#numericinputpropoptions)
+- [GlobalNumericInput](components_NumericInput_extras.md#globalnumericinput)
+- [NumericInputParentProps](components_NumericInput_extras.md#numericinputparentprops)
+- [NumericInputSlots](components_NumericInput_extras.md#numericinputslots)
 
 ### Variables
 
@@ -14,9 +21,21 @@
 
 ## Type aliases
 
-### NumericInputPropOptions
+### GlobalNumericInput
 
-Ƭ **NumericInputPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QInputProps`, { `max`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`number`\> ; `min`: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`number`\> ; `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`numberU`\>  }\>
+Ƭ **GlobalNumericInput**: `GlobalComponentConstructor`<[`NumericInputProps`](../interfaces/components_NumericInput_extras.NumericInputProps.md), [`NumericInputSlots`](components_NumericInput_extras.md#numericinputslots)\>
+
+___
+
+### NumericInputParentProps
+
+Ƭ **NumericInputParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QInputProps`, ``"modelValue"``\>
+
+___
+
+### NumericInputSlots
+
+Ƭ **NumericInputSlots**: `QInputSlots`
 
 ## Variables
 

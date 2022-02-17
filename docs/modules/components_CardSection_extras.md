@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [CardSectionOwnProps](../interfaces/components_CardSection_extras.CardSectionOwnProps.md)
+- [CardSectionProps](../interfaces/components_CardSection_extras.CardSectionProps.md)
+
 ### Type aliases
 
-- [CardSectionPropOptions](components_CardSection_extras.md#cardsectionpropoptions)
+- [CardSectionParentProps](components_CardSection_extras.md#cardsectionparentprops)
+- [CardSectionSlots](components_CardSection_extras.md#cardsectionslots)
+- [GlobalCardSection](components_CardSection_extras.md#globalcardsection)
 
 ## Type aliases
 
-### CardSectionPropOptions
+### CardSectionParentProps
 
-Ƭ **CardSectionPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QCardSectionProps`\>
+Ƭ **CardSectionParentProps**: `QCardSectionProps`
+
+___
+
+### CardSectionSlots
+
+Ƭ **CardSectionSlots**: `QCardSectionSlots`
+
+___
+
+### GlobalCardSection
+
+Ƭ **GlobalCardSection**: `GlobalComponentConstructor`<[`CardSectionProps`](../interfaces/components_CardSection_extras.CardSectionProps.md), [`CardSectionSlots`](components_CardSection_extras.md#cardsectionslots)\>

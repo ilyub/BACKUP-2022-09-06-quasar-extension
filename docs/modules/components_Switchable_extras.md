@@ -6,11 +6,13 @@
 
 ### Interfaces
 
-- [SwitchablePropOptions](../interfaces/components_Switchable_extras.SwitchablePropOptions.md)
+- [SwitchableProps](../interfaces/components_Switchable_extras.SwitchableProps.md)
 - [SwitchableSettings](../interfaces/components_Switchable_extras.SwitchableSettings.md)
+- [SwitchableSlots](../interfaces/components_Switchable_extras.SwitchableSlots.md)
 
 ### Type aliases
 
+- [GlobalSwitchable](components_Switchable_extras.md#globalswitchable)
 - [Transition](components_Switchable_extras.md#transition)
 
 ### Variables
@@ -29,9 +31,15 @@
 
 ## Type aliases
 
+### GlobalSwitchable
+
+Ƭ **GlobalSwitchable**: `GlobalComponentConstructor`<[`SwitchableProps`](../interfaces/components_Switchable_extras.SwitchableProps.md), [`SwitchableSlots`](../interfaces/components_Switchable_extras.SwitchableSlots.md)\>
+
+___
+
 ### Transition
 
-Ƭ **Transition**: ``"slide"`` \| ``"fade"``
+Ƭ **Transition**: ``"none"`` \| ``"slide"``
 
 ## Variables
 

@@ -7,11 +7,15 @@
 ### Interfaces
 
 - [SelectOption](../interfaces/components_Select_extras.SelectOption.md)
+- [SelectOwnProps](../interfaces/components_Select_extras.SelectOwnProps.md)
+- [SelectProps](../interfaces/components_Select_extras.SelectProps.md)
 
 ### Type aliases
 
+- [GlobalSelect](components_Select_extras.md#globalselect)
 - [SelectOptions](components_Select_extras.md#selectoptions)
-- [SelectPropOptions](components_Select_extras.md#selectpropoptions)
+- [SelectParentProps](components_Select_extras.md#selectparentprops)
+- [SelectSlots](components_Select_extras.md#selectslots)
 
 ### Functions
 
@@ -19,6 +23,18 @@
 - [isSelectOptions](components_Select_extras.md#isselectoptions)
 
 ## Type aliases
+
+### GlobalSelect
+
+Ƭ **GlobalSelect**<`T`\>: `GlobalComponentConstructor`<[`SelectProps`](../interfaces/components_Select_extras.SelectProps.md)<`T`\>, [`SelectSlots`](components_Select_extras.md#selectslots)\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+___
 
 ### SelectOptions
 
@@ -32,9 +48,15 @@
 
 ___
 
-### SelectPropOptions
+### SelectParentProps
 
-Ƭ **SelectPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QSelectProps`, { `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`unknown`\> ; `options`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`SelectOptions`](components_Select_extras.md#selectoptions)\>  }\>
+Ƭ **SelectParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QSelectProps`, ``"modelValue"`` \| ``"options"``\>
+
+___
+
+### SelectSlots
+
+Ƭ **SelectSlots**: `QSelectSlots`
 
 ## Functions
 

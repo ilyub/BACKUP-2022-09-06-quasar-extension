@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [ToggleOwnProps](../interfaces/components_Toggle_extras.ToggleOwnProps.md)
+- [ToggleProps](../interfaces/components_Toggle_extras.ToggleProps.md)
+
 ### Type aliases
 
-- [TogglePropOptions](components_Toggle_extras.md#togglepropoptions)
+- [GlobalToggle](components_Toggle_extras.md#globaltoggle)
+- [ToggleParentProps](components_Toggle_extras.md#toggleparentprops)
+- [ToggleSlots](components_Toggle_extras.md#toggleslots)
 
 ## Type aliases
 
-### TogglePropOptions
+### GlobalToggle
 
-Ƭ **TogglePropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QToggleProps`, { `disable`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `modelValue`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`boolean`\>  }\>
+Ƭ **GlobalToggle**: `GlobalComponentConstructor`<[`ToggleProps`](../interfaces/components_Toggle_extras.ToggleProps.md), [`ToggleSlots`](components_Toggle_extras.md#toggleslots)\>
+
+___
+
+### ToggleParentProps
+
+Ƭ **ToggleParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QToggleProps`, ``"disable"`` \| ``"modelValue"``\>
+
+___
+
+### ToggleSlots
+
+Ƭ **ToggleSlots**: `QToggleSlots`

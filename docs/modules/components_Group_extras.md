@@ -7,11 +7,15 @@
 ### Interfaces
 
 - [GroupItem](../interfaces/components_Group_extras.GroupItem.md)
+- [GroupOwnProps](../interfaces/components_Group_extras.GroupOwnProps.md)
+- [GroupParentProps](../interfaces/components_Group_extras.GroupParentProps.md)
+- [GroupProps](../interfaces/components_Group_extras.GroupProps.md)
 
 ### Type aliases
 
+- [GlobalGroup](components_Group_extras.md#globalgroup)
 - [GroupItems](components_Group_extras.md#groupitems)
-- [GroupPropOptions](components_Group_extras.md#grouppropoptions)
+- [GroupSlots](components_Group_extras.md#groupslots)
 
 ### Functions
 
@@ -20,21 +24,45 @@
 
 ## Type aliases
 
-### GroupItems
+### GlobalGroup
 
-Ƭ **GroupItems**: readonly [`GroupItem`](../interfaces/components_Group_extras.GroupItem.md)[]
+Ƭ **GlobalGroup**<`T`\>: `GlobalComponentConstructor`<[`GroupProps`](../interfaces/components_Group_extras.GroupProps.md)<`T`\>, [`GroupSlots`](components_Group_extras.md#groupslots)<`T`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `string` |
 
 ___
 
-### GroupPropOptions
+### GroupItems
 
-Ƭ **GroupPropOptions**: [`ExtendPropOptions`](components_api.md#extendpropoptions)<{ `items`: [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<[`GroupItems`](components_Group_extras.md#groupitems)\> ; `notFoundLabel`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `searchString`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\>  }, [`RootElementProps`](../interfaces/components_api_rootElement.RootElementProps.md)\>
+Ƭ **GroupItems**<`T`\>: `ReadonlyArray`<[`GroupItem`](../interfaces/components_Group_extras.GroupItem.md)<`T`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `string` |
+
+___
+
+### GroupSlots
+
+Ƭ **GroupSlots**<`T`\>: `ReadonlyRecord`<`T`, () => readonly `VNode`[]\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` = `string` |
 
 ## Functions
 
 ### isGroupItem
 
-▸ `Const` **isGroupItem**(`value`): value is GroupItem
+▸ `Const` **isGroupItem**(`value`): value is GroupItem<string\>
 
 #### Parameters
 
@@ -44,13 +72,13 @@ ___
 
 #### Returns
 
-value is GroupItem
+value is GroupItem<string\>
 
 ___
 
 ### isGroupItems
 
-▸ `Const` **isGroupItems**(`value`): value is readonly GroupItem[]
+▸ `Const` **isGroupItems**(`value`): value is readonly GroupItem<string\>[]
 
 #### Parameters
 
@@ -60,4 +88,4 @@ ___
 
 #### Returns
 
-value is readonly GroupItem[]
+value is readonly GroupItem<string\>[]

@@ -6,8 +6,13 @@
 
 ### Interfaces
 
-- [PageLayoutPropOptions](../interfaces/components_PageLayout_extras.PageLayoutPropOptions.md)
+- [PageLayoutProps](../interfaces/components_PageLayout_extras.PageLayoutProps.md)
 - [PageLayoutSettings](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
+- [PageLayoutSlots](../interfaces/components_PageLayout_extras.PageLayoutSlots.md)
+
+### Type aliases
+
+- [GlobalPageLayout](components_PageLayout_extras.md#globalpagelayout)
 
 ### Variables
 
@@ -18,6 +23,12 @@
 - [injectPageLayoutSettings](components_PageLayout_extras.md#injectpagelayoutsettings)
 - [providePageLayoutSettings](components_PageLayout_extras.md#providepagelayoutsettings)
 - [testPageLayoutSettings](components_PageLayout_extras.md#testpagelayoutsettings)
+
+## Type aliases
+
+### GlobalPageLayout
+
+Ƭ **GlobalPageLayout**: `GlobalComponentConstructor`<[`PageLayoutProps`](../interfaces/components_PageLayout_extras.PageLayoutProps.md), [`PageLayoutSlots`](../interfaces/components_PageLayout_extras.PageLayoutSlots.md)\>
 
 ## Variables
 

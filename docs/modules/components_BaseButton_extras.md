@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [BaseButtonOwnProps](../interfaces/components_BaseButton_extras.BaseButtonOwnProps.md)
+- [BaseButtonProps](../interfaces/components_BaseButton_extras.BaseButtonProps.md)
+
 ### Type aliases
 
-- [BaseButtonPropOptions](components_BaseButton_extras.md#basebuttonpropoptions)
+- [BaseButtonParentProps](components_BaseButton_extras.md#basebuttonparentprops)
+- [BaseButtonSlots](components_BaseButton_extras.md#basebuttonslots)
+- [GlobalBaseButton](components_BaseButton_extras.md#globalbasebutton)
 
 ## Type aliases
 
-### BaseButtonPropOptions
+### BaseButtonParentProps
 
-Ƭ **BaseButtonPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QBtnProps`, { `modelValue`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean) ; `tooltip`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `tooltipDirection`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<[`Direction`](components_Tooltip_extras.md#direction) \| `undefined`\>  }\>
+Ƭ **BaseButtonParentProps**: `QBtnProps`
+
+___
+
+### BaseButtonSlots
+
+Ƭ **BaseButtonSlots**: `QBtnSlots`
+
+___
+
+### GlobalBaseButton
+
+Ƭ **GlobalBaseButton**: `GlobalComponentConstructor`<[`BaseButtonProps`](../interfaces/components_BaseButton_extras.BaseButtonProps.md), [`BaseButtonSlots`](components_BaseButton_extras.md#basebuttonslots)\>

@@ -4,12 +4,31 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [ButtonOwnProps](../interfaces/components_Button_extras.ButtonOwnProps.md)
+- [ButtonProps](../interfaces/components_Button_extras.ButtonProps.md)
+
 ### Type aliases
 
-- [ButtonPropOptions](components_Button_extras.md#buttonpropoptions)
+- [ButtonParentProps](components_Button_extras.md#buttonparentprops)
+- [ButtonSlots](components_Button_extras.md#buttonslots)
+- [GlobalButton](components_Button_extras.md#globalbutton)
 
 ## Type aliases
 
-### ButtonPropOptions
+### ButtonParentProps
 
-Ƭ **ButtonPropOptions**: [`BaseButtonPropOptions`](components_BaseButton_extras.md#basebuttonpropoptions)
+Ƭ **ButtonParentProps**: [`BaseButtonProps`](../interfaces/components_BaseButton_extras.BaseButtonProps.md)
+
+___
+
+### ButtonSlots
+
+Ƭ **ButtonSlots**: [`BaseButtonSlots`](components_BaseButton_extras.md#basebuttonslots)
+
+___
+
+### GlobalButton
+
+Ƭ **GlobalButton**: `GlobalComponentConstructor`<[`ButtonProps`](../interfaces/components_Button_extras.ButtonProps.md), [`ButtonSlots`](components_Button_extras.md#buttonslots)\>

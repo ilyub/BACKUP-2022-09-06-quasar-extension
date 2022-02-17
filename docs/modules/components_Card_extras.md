@@ -4,9 +4,16 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [CardOwnProps](../interfaces/components_Card_extras.CardOwnProps.md)
+- [CardProps](../interfaces/components_Card_extras.CardProps.md)
+- [CardSlots](../interfaces/components_Card_extras.CardSlots.md)
+
 ### Type aliases
 
-- [CardPropOptions](components_Card_extras.md#cardpropoptions)
+- [CardParentProps](components_Card_extras.md#cardparentprops)
+- [GlobalCard](components_Card_extras.md#globalcard)
 
 ### Variables
 
@@ -14,9 +21,15 @@
 
 ## Type aliases
 
-### CardPropOptions
+### CardParentProps
 
-Ƭ **CardPropOptions**: [`PropsToPropOptions`](components_api.md#propstopropoptions)<`QCardProps`, { `minWidth`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `title`: [`PropOptions`](../interfaces/components_api.PropOptions.md)<`stringU`\> ; `transparentHeader`: [`PropOptionsBoolean`](components_api.md#propoptionsboolean)  }\>
+Ƭ **CardParentProps**: `QCardProps`
+
+___
+
+### GlobalCard
+
+Ƭ **GlobalCard**: `GlobalComponentConstructor`<[`CardProps`](../interfaces/components_Card_extras.CardProps.md), [`CardSlots`](../interfaces/components_Card_extras.CardSlots.md)\>
 
 ## Variables
 

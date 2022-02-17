@@ -15,18 +15,19 @@
 ### Variables
 
 - [RootElementPropVO](components_api_rootElement.md#rootelementpropvo)
-- [rootElementProps](components_api_rootElement.md#rootelementprops)
+- [rootElementPropsOptions](components_api_rootElement.md#rootelementpropsoptions)
 
 ### Functions
 
 - [isRootElementProp](components_api_rootElement.md#isrootelementprop)
+- [isRootElementPropU](components_api_rootElement.md#isrootelementpropu)
 - [useRootElement](components_api_rootElement.md#userootelement)
 
 ## Type aliases
 
 ### RootElementProp
 
-Ƭ **RootElementProp**: ``"div"`` \| ``"page-section"`` \| ``"section"``
+Ƭ **RootElementProp**: ``"div"`` \| ``"page-section"`` \| ``"section"`` \| ``"subsection"``
 
 ## Variables
 
@@ -36,9 +37,15 @@
 
 ___
 
-### rootElementProps
+### rootElementPropsOptions
 
-• **rootElementProps**: [`RootElementProps`](../interfaces/components_api_rootElement.RootElementProps.md)
+• **rootElementPropsOptions**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `rootElement` | [`PropOptions`](../interfaces/components_api.PropOptions.md)<`undefined` \| [`RootElementProp`](components_api_rootElement.md#rootelementprop)\> |
 
 ## Functions
 
@@ -55,6 +62,22 @@ ___
 #### Returns
 
 value is RootElementProp
+
+___
+
+### isRootElementPropU
+
+▸ `Const` **isRootElementPropU**(`value`): value is undefined \| RootElementProp
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is undefined \| RootElementProp
 
 ___
 
