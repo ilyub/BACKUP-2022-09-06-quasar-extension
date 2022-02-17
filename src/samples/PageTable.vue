@@ -4,8 +4,8 @@ import { computed, defineComponent, ref } from "vue";
 import * as a from "@skylib/functions/es/array";
 import * as fn from "@skylib/functions/es/function";
 
-import type { Columns, GlobalPageTable } from "../components/PageTable.extras";
-import PageTable from "../components/PageTable.vue";
+import type { Columns } from "../components/PageTable.extras";
+import { genericPageTable } from "../components/PageTable.generic";
 
 interface TableItem {
   readonly id: number;
@@ -17,9 +17,7 @@ type TableItems = readonly TableItem[];
 export default defineComponent({
   name: "sample-page-table",
   components: {
-    "sample-page-table-typed":
-      // eslint-disable-next-line no-type-assertion/no-type-assertion
-      PageTable as unknown as GlobalPageTable<TableItem>
+    "generic-page-table": genericPageTable<TableItem>()
   },
   setup() {
     const pageTableLimit = ref(20);
@@ -53,7 +51,7 @@ export default defineComponent({
 <template>
   {{ pageTableSelected }}
   <m-page-layout class="page-layout" title="Title">
-    <sample-page-table-typed
+    <generic-page-table
       v-model:limit="pageTableLimit"
       v-model:selected="pageTableSelected"
       class="page-table"
@@ -65,7 +63,7 @@ export default defineComponent({
       <template #body-cell="{ row, value }">
         <q-td>{{ value }} {{ row }}</q-td>
       </template>
-    </sample-page-table-typed>
+    </generic-page-table>
   </m-page-layout>
 </template>
 
