@@ -28,7 +28,7 @@ export type SelectParentProps = ReadonlyOmit<
 >;
 
 export interface SelectOwnProps<T = unknown> {
-  readonly modelValue: unknown;
+  readonly modelValue: T;
   readonly options: SelectOptions<T>;
 }
 
