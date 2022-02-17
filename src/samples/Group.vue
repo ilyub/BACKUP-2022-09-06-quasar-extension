@@ -66,9 +66,9 @@ export default defineComponent({
   </div>
   <generic-group
     class="section"
-    component="section"
     :items="groupItems"
     not-found-label="No results found"
+    root-element="section"
     :search-string="searchString"
   >
     <template #section2>Section 2</template>
