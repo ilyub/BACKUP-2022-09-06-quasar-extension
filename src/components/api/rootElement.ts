@@ -29,8 +29,13 @@ export const RootElementPropVO = createValidationObject<RootElementProp>({
 
 export const isRootElementProp = is.factory(is.enumeration, RootElementPropVO);
 
+export const isRootElementPropU = is.or.factory(
+  isRootElementProp,
+  is.undefined
+);
+
 export const rootElementPropsOptions = {
-  rootElement: propOptions.default(isRootElementProp, "div")
+  rootElement: propOptions(isRootElementPropU)
 } as const;
 
 /**
