@@ -176,7 +176,8 @@ propOptions.required = propOptionsRequired;
  * Validates props.
  *
  * @param props - Props.
+ * @returns Props.
  */
-export function validateProps<T>(props: T): void {
-  assert.object(props);
+export function validateProps<T>(props: T): T {
+  return props;
 }
