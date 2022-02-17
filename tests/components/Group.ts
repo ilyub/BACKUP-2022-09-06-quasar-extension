@@ -13,6 +13,8 @@ const rootElement2: RootElementProp = "page-section";
 
 const rootElement3: RootElementProp = "section";
 
+const rootElement4: RootElementProp = "subsection";
+
 it.each([
   {},
   {
@@ -23,6 +25,9 @@ it.each([
   },
   {
     rootElement: rootElement3
+  },
+  {
+    rootElement: rootElement4
   }
 ])("Group", async ({ rootElement }) => {
   const items: GroupItems = [
