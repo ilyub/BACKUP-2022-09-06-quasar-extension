@@ -10,8 +10,8 @@ import type { GlobalCardActions } from "./CardActions.extras";
 import CardActions from "./CardActions.vue";
 import type { GlobalCardSection } from "./CardSection.extras";
 import CardSection from "./CardSection.vue";
+import type { GlobalDatetimePicker } from "./DatetimePicker.extras";
 import DatetimePicker from "./DatetimePicker.vue";
-import type { GlobalDroppable } from "./Droppable.extras";
 import Droppable from "./Droppable.vue";
 import type { GlobalFormButton } from "./FormButton.extras";
 import FormButton from "./FormButton.vue";
@@ -70,7 +70,7 @@ declare module "@vue/runtime-core" {
     readonly "m-card": GlobalCard;
     readonly "m-card-actions": GlobalCardActions;
     readonly "m-card-section": GlobalCardSection;
-    readonly "m-datetime-picker": GlobalDroppable;
+    readonly "m-datetime-picker": GlobalDatetimePicker;
     readonly "m-form-button": GlobalFormButton;
     readonly "m-group": GlobalGroup;
     readonly "m-icon-button": GlobalIconButton;
