@@ -4,8 +4,8 @@ import * as is from "@skylib/functions/es/guards";
 
 import type { ReadonlyOmit } from "./api";
 
-export type GlobalOptionGroup = GlobalComponentConstructor<
-  OptionGroupProps,
+export type GlobalOptionGroup<T = unknown> = GlobalComponentConstructor<
+  OptionGroupProps<T>,
   OptionGroupSlots
 >;
 
@@ -26,7 +26,7 @@ export type OptionGroupParentProps = ReadonlyOmit<
 
 export interface OptionGroupOwnProps<T = unknown> {
   readonly inline?: boolean;
-  readonly modelValue: unknown;
+  readonly modelValue: T;
   readonly options: OptionGroupOptions<T>;
 }
 
