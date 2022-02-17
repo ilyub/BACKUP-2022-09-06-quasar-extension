@@ -6,27 +6,36 @@ import type { ReadonlyRecord, stringU } from "@skylib/functions/es/types/core";
 
 import type { RootElementProps } from "./api/rootElement";
 
-export interface GroupItem {
-  readonly id: string;
+export interface GroupItem<T extends string = string> {
+  readonly id: T;
   readonly show: boolean;
   readonly title: string;
 }
 
-export type GroupItems = readonly GroupItem[];
+export type GroupItems<T extends string = string> = ReadonlyArray<GroupItem<T>>;
 
-export type GlobalGroup = GlobalComponentConstructor<GroupProps, GroupSlots>;
+export type GlobalGroup<T extends string = string> = GlobalComponentConstructor<
+  GroupProps<T>,
+  GroupSlots<T>
+>;
 
 export interface GroupParentProps {}
 
-export interface GroupOwnProps extends RootElementProps {
-  readonly items: GroupItems;
+export interface GroupOwnProps<T extends string = string>
+  extends RootElementProps {
+  readonly items: GroupItems<T>;
   readonly notFoundLabel?: stringU;
   readonly searchString?: stringU;
 }
 
-export interface GroupProps extends GroupParentProps, GroupOwnProps {}
+export interface GroupProps<T extends string = string>
+  extends GroupParentProps,
+    GroupOwnProps<T> {}
 
-export type GroupSlots = ReadonlyRecord<string, () => readonly VNode[]>;
+export type GroupSlots<T extends string = string> = ReadonlyRecord<
+  T,
+  () => readonly VNode[]
+>;
 
 export const isGroupItem: is.Guard<GroupItem> = is.factory(
   is.object.of,

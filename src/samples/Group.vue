@@ -4,9 +4,15 @@ import { computed, defineComponent, ref } from "vue";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { GroupItems } from "../components/Group.extras";
+import { genericGroup } from "../components/Group.generic";
+
+type Section = "section1" | "section2" | "section3" | "section4";
 
 export default defineComponent({
   name: "sample-group",
+  components: {
+    "generic-group": genericGroup<Section>()
+  },
   setup() {
     const showSection1 = ref(true);
 
@@ -17,7 +23,7 @@ export default defineComponent({
     const showSection4 = ref(true);
 
     return {
-      groupItems: computed<GroupItems>(() => [
+      groupItems: computed<GroupItems<Section>>(() => [
         {
           id: "section2",
           show: showSection2.value,
@@ -58,7 +64,7 @@ export default defineComponent({
     <q-checkbox v-model="showSection3" /> 3
     <q-checkbox v-model="showSection4" /> 4
   </div>
-  <m-group
+  <generic-group
     class="section"
     component="section"
     :items="groupItems"
@@ -69,7 +75,7 @@ export default defineComponent({
     <template #section1>Section 1</template>
     <template #section3>Section 11</template>
     <template #section4>Section 12</template>
-  </m-group>
+  </generic-group>
 </template>
 
 <style lang="scss" scoped>
