@@ -8,7 +8,6 @@ export type GlobalListItem = GlobalComponentConstructor<
   ListItemSlots
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type ListItemParentProps = QItemProps;
 
 export interface ListItemOwnProps {

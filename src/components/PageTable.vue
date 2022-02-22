@@ -32,7 +32,6 @@ export default defineComponent({
     "update:limit": (value: number) => is.number(value),
     "update:selected": (value: unknowns) => is.array(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     validateProps<PageTableOwnProps>(props);
 

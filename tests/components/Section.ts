@@ -3,7 +3,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import Section from "@/components/Section.vue";
 import * as testUtils from "@/testUtils";
 
-it("Section", () => {
+test("section", () => {
   const wrapper = vueTestUtils.mount(Section, {
     global: testUtils.globalMountOptions()
   });

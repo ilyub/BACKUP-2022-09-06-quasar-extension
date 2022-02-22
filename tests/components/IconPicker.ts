@@ -1,3 +1,7 @@
+/* eslint-disable jest/no-conditional-expect */
+
+/* eslint-disable jest/no-conditional-in-test */
+
 import { QBtn, QCard, QDialog } from "quasar";
 import type { ComponentPublicInstance } from "vue";
 import { nextTick } from "vue";
@@ -15,7 +19,7 @@ import IconButton from "@/components/IconButton.vue";
 import IconPicker from "@/components/IconPicker.vue";
 import * as testUtils from "@/testUtils";
 
-functionsTestUtils.installFakeTimer();
+beforeAll(functionsTestUtils.installFakeTimer);
 
 beforeEach(() => {
   configurableTestDelay.configure({
@@ -24,14 +28,15 @@ beforeEach(() => {
   });
 });
 
-it.each(
+// eslint-disable-next-line jest/prefer-expect-assertions
+test.each(
   [true, false, undefined].map((value, index) => {
     return {
       first: index === 0,
       iconTooltipsSetting: value
     };
   })
-)("IconPicker", async ({ first, iconTooltipsSetting }) => {
+)("iconPicker", async ({ first, iconTooltipsSetting }) => {
   await functionsTestUtils.run(async () => {
     const iconTooltips = iconTooltipsSetting ?? false;
 

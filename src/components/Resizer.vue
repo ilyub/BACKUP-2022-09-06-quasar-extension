@@ -45,7 +45,7 @@ export default defineComponent({
   setup(props, { emit }) {
     validateProps<ResizerProps>(props);
 
-    let initialValue: numberU = undefined;
+    let initialValue: numberU;
 
     return {
       handlePan(event: unknown): void {

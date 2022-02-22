@@ -4,7 +4,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import BaseButton from "@/components/BaseButton.vue";
 import * as testUtils from "@/testUtils";
 
-it.each([true, false])("prop: modelValue", async modelValue => {
+test.each([true, false])("prop: modelValue", async modelValue => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions(),
     props: {
@@ -17,7 +17,7 @@ it.each([true, false])("prop: modelValue", async modelValue => {
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[!modelValue]]);
 });
 
-it("prop: tooltip", async () => {
+test("prop: tooltip", async () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions()
   });
@@ -27,7 +27,7 @@ it("prop: tooltip", async () => {
   expect(wrapper.findComponent(QTooltip)).toExist();
 });
 
-it("slot: default", () => {
+test("slot: default", () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions(),
     slots: {

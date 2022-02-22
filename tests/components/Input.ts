@@ -4,7 +4,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import Input from "@/components/Input.vue";
 import * as testUtils from "@/testUtils";
 
-it.each([
+test.each([
   {
     expectedValue: undefined,
     value: ""
@@ -13,7 +13,7 @@ it.each([
     expectedValue: "sample-value",
     value: "sample-value"
   }
-])("Input", ({ expectedValue, value }) => {
+])("input", ({ expectedValue, value }) => {
   const wrapper = vueTestUtils.mount(Input, {
     global: testUtils.globalMountOptions(),
     props: {

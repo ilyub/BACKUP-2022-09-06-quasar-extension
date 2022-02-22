@@ -57,7 +57,6 @@ export default defineComponent({
     ...propsToPropDefinitions<TooltipParentProps>(),
     direction: propOptions(isDirectionU)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props) {
     validateProps<TooltipOwnProps>(props);
 

@@ -3,7 +3,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import ListItem from "@/components/ListItem.vue";
 import * as testUtils from "@/testUtils";
 
-it("prop: caption", () => {
+test("prop: caption", () => {
   const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {
@@ -16,7 +16,7 @@ it("prop: caption", () => {
   );
 });
 
-it("prop: icon", async () => {
+test("prop: icon", async () => {
   const wrapper = vueTestUtils.mount(ListItem, {
     global: testUtils.globalMountOptions(),
     props: {

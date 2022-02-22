@@ -11,7 +11,6 @@ export type GlobalPageMarkupTable = GlobalComponentConstructor<
   PageMarkupTableSlots
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type PageMarkupTableParentProps = QMarkupTableProps;
 
 export interface PageMarkupTableOwnerProps {

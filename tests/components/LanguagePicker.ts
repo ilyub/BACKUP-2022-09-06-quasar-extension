@@ -5,7 +5,7 @@ import IconButton from "@/components/IconButton.vue";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 import * as testUtils from "@/testUtils";
 
-it.each([
+test.each([
   {
     expected: "en-US",
     menuItemIndex: 0
@@ -14,7 +14,7 @@ it.each([
     expected: "ru-RU",
     menuItemIndex: 1
   }
-])("LanguagePicker", async ({ expected, menuItemIndex }) => {
+])("languagePicker", async ({ expected, menuItemIndex }) => {
   const changeLanguageAction = jest.fn();
 
   const wrapper = vueTestUtils.mount(LanguagePicker, {
@@ -49,10 +49,10 @@ it.each([
   }
 
   {
-    expect(changeLanguageAction).not.toBeCalled();
+    expect(changeLanguageAction).not.toHaveBeenCalled();
     await menuItem().trigger("click");
-    expect(changeLanguageAction).toBeCalledTimes(1);
-    expect(changeLanguageAction).toBeCalledWith(expected);
+    expect(changeLanguageAction).toHaveBeenCalledTimes(1);
+    expect(changeLanguageAction).toHaveBeenCalledWith(expected);
     changeLanguageAction.mockClear();
   }
 

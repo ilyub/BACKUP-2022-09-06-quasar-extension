@@ -10,7 +10,6 @@ export type MenuParentProps = QMenuProps;
 
 export interface MenuOwnProps {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface MenuProps extends MenuParentProps, MenuOwnProps {}
 
 export type MenuSlots = QMenuSlots;

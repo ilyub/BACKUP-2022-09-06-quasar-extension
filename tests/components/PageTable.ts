@@ -1,3 +1,5 @@
+/* eslint-disable jest/no-conditional-in-test */
+
 import type { QVirtualScroll } from "quasar";
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
@@ -12,9 +14,9 @@ import type { Columns } from "@/components/PageTable.extras";
 import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
 
-functionsTestUtils.installFakeTimer();
+beforeAll(functionsTestUtils.installFakeTimer);
 
-it.each([
+test.each([
   {
     to: 4
   },
@@ -39,7 +41,7 @@ it.each([
     to: 34
   }
 ])(
-  "PageTable",
+  "pageTable",
   async ({
     bodyCellSlot,
     extraPageOffset,
@@ -49,6 +51,8 @@ it.each([
     selected,
     to
   }) => {
+    expect.assertions(4);
+
     await functionsTestUtils.run(async () => {
       const columns: Columns = [
         {

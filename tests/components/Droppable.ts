@@ -4,7 +4,7 @@ import Droppable from "@/components/Droppable.vue";
 import Sortable from "@/components/Sortable.vue";
 import * as testUtils from "@/testUtils";
 
-it("Droppable", () => {
+test("droppable", () => {
   const wrapper = vueTestUtils.mount(Droppable, {
     global: testUtils.globalMountOptions(),
     props: {

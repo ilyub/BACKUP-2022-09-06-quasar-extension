@@ -15,7 +15,7 @@ const rootElement3: RootElementProp = "section";
 
 const rootElement4: RootElementProp = "subsection";
 
-it.each([
+test.each([
   {},
   {
     rootElement: rootElement1
@@ -29,7 +29,7 @@ it.each([
   {
     rootElement: rootElement4
   }
-])("Group", async ({ rootElement }) => {
+])("group", async ({ rootElement }) => {
   const items: GroupItems = [
     {
       id: "section2",

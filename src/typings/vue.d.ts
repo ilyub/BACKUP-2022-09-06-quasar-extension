@@ -4,6 +4,5 @@ declare module "*.vue" {
   // eslint-disable-next-line @skylib/prefer-readonly
   const component: DefineComponent<object, object, unknown>;
 
-  // eslint-disable-next-line import/no-default-export
   export default component;
 }

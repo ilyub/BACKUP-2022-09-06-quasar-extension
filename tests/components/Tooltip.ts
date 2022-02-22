@@ -8,30 +8,28 @@ import * as testUtils from "@/testUtils";
 interface TestOption {
   readonly delay: number;
   readonly direction: Direction;
-  readonly show: boolean;
 }
 
-it.each<TestOption>([
-  { delay: 0, direction: "down", show: true },
-  { delay: 0, direction: "down-left", show: true },
-  { delay: 0, direction: "down-right", show: true },
-  { delay: 0, direction: "left", show: true },
-  { delay: 0, direction: "left-down", show: true },
-  { delay: 0, direction: "left-up", show: true },
-  { delay: 0, direction: "right", show: true },
-  { delay: 0, direction: "right-down", show: true },
-  { delay: 0, direction: "right-up", show: true },
-  { delay: 0, direction: "up", show: true },
-  { delay: 0, direction: "up-left", show: true },
-  { delay: 0, direction: "up-right", show: true },
-  { delay: 1000, direction: "down", show: true },
-  { delay: 1000, direction: "down", show: false }
+test.each<TestOption>([
+  { delay: 0, direction: "down" },
+  { delay: 0, direction: "down-left" },
+  { delay: 0, direction: "down-right" },
+  { delay: 0, direction: "left" },
+  { delay: 0, direction: "left-down" },
+  { delay: 0, direction: "left-up" },
+  { delay: 0, direction: "right" },
+  { delay: 0, direction: "right-down" },
+  { delay: 0, direction: "right-up" },
+  { delay: 0, direction: "up" },
+  { delay: 0, direction: "up-left" },
+  { delay: 0, direction: "up-right" },
+  { delay: 1000, direction: "down" }
 ])("delay", options => {
   const wrapper = vueTestUtils.mount(Tooltip, {
     global: testUtils.globalMountOptions({
       tooltipSettings: {
         delay: options.delay,
-        show: options.show
+        show: true
       }
     }),
     props: {
@@ -41,6 +39,20 @@ it.each<TestOption>([
 
   const tooltip = wrapper.findComponent(QTooltip);
 
-  if (options.show) expect(tooltip.vm.delay).toStrictEqual(options.delay);
-  else expect(tooltip).not.toExist();
+  expect(tooltip.vm.delay).toStrictEqual(options.delay);
+});
+
+test("delay", () => {
+  const wrapper = vueTestUtils.mount(Tooltip, {
+    global: testUtils.globalMountOptions({
+      tooltipSettings: {
+        delay: 1000,
+        show: false
+      }
+    })
+  });
+
+  const tooltip = wrapper.findComponent(QTooltip);
+
+  expect(tooltip).not.toExist();
 });

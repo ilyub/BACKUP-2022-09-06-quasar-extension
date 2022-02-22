@@ -1,5 +1,7 @@
-import type { Component, Directive } from "vue";
+import type { ComponentConstructor } from "quasar";
+import type { Component, ComponentPublicInstance, Directive } from "vue";
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
+import type * as vueTestUtils from "@vue/test-utils";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
@@ -29,7 +31,6 @@ import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorag
 
 declare global {
   namespace jest {
-    // eslint-disable-next-line @skylib/prefer-readonly
     interface Matchers<R> {
       /**
        * Checks that Vue wrapper contains expected HTML code.
@@ -105,6 +106,24 @@ export function consoleWarnMock(
       // Expected warning
     } else prev(value);
   };
+}
+
+/**
+ * Finds component factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Finds component function.
+ */
+export function findComponentFactory(
+  prefix: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  wrapper: vueTestUtils.VueWrapper<any>
+) {
+  return (ref: ComponentConstructor | string): vueTestUtils.VueWrapper =>
+    wrapper.findComponent<ComponentPublicInstance>(
+      is.string(ref) ? `${prefix}${ref}` : ref
+    );
 }
 
 /**
@@ -212,7 +231,7 @@ export function jestSetup(): void {
     };
 
     // eslint-disable-next-line no-type-assertion/no-type-assertion
-    expect.extend(expectExtend as jest.ExpectExtendMap & ExpectExtendMap);
+    expect.extend(expectExtend as ExpectExtendMap & jest.ExpectExtendMap);
   }
 
   // eslint-disable-next-line no-console
@@ -334,7 +353,7 @@ export function touchPanMock(): TouchPanMock {
     touchPanValue(...args);
   }
 
-  let touchPanValue: unknown = undefined;
+  let touchPanValue: unknown;
 
   const touchPan: Directive = {
     created(_el, binding) {

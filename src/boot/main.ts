@@ -23,7 +23,6 @@ import { plugin } from "../plugin";
 import { icons as iconsImplementation } from "./icons";
 import { definitions } from "./lang";
 
-// eslint-disable-next-line import/no-default-export
 export default boot(({ app }) => {
   {
     compare.setImplementation(naturalCompareWrapper.implementation);
@@ -56,7 +55,6 @@ export default boot(({ app }) => {
   }
 
   {
-    // eslint-disable-next-line @skylib/prefer-readonly
     app.config.errorHandler = function (err, _vm, info): void {
       // eslint-disable-next-line no-console
       console.error(err, info);
@@ -66,7 +64,6 @@ export default boot(({ app }) => {
       });
     };
 
-    // eslint-disable-next-line @skylib/prefer-readonly
     app.config.warnHandler = function (err, _vm, info): void {
       // eslint-disable-next-line no-console
       console.warn(err, info);

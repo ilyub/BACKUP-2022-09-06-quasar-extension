@@ -6,7 +6,6 @@ import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
-import type { ReadonlyOmit } from "./api";
 import { createInjectable } from "./api";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
@@ -34,7 +33,8 @@ export type GlobalIconPicker = GlobalComponentConstructor<
   IconPickerSlots
 >;
 
-export type IconPickerParentProps = ReadonlyOmit<IconButtonProps, "modelValue">;
+export interface IconPickerParentProps
+  extends Omit<IconButtonProps, "modelValue"> {}
 
 export interface IconPickerOwnProps {
   readonly cols?: numberU;

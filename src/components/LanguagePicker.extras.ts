@@ -6,7 +6,14 @@ import type { PropOptionsRequired } from "./api";
 import { createInjectable } from "./api";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
-export type ChangeLanguageAction = (language: LocaleName) => void;
+export interface ChangeLanguageAction {
+  /**
+   * Change language action.
+   *
+   * @param language - Language.
+   */
+  (language: LocaleName): void;
+}
 
 export type GlobalLanguagePicker = GlobalComponentConstructor<
   LanguagePickerProps,
@@ -21,7 +28,6 @@ export interface LanguagePickerItem {
 
 export type LanguagePickerItems = readonly LanguagePickerItem[];
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type LanguagePickerParentProps = IconButtonProps;
 
 export interface LanguagePickerOwnProps {

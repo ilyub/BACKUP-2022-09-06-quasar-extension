@@ -6,17 +6,29 @@ import Menu from "@/components/Menu.vue";
 import { disabled } from "@/components/Tooltip.extras";
 import * as testUtils from "@/testUtils";
 
-it("Menu", async () => {
+test("menu", async () => {
   const wrapper = vueTestUtils.mount(Menu, {
     global: testUtils.globalMountOptions()
   });
 
   const menu = wrapper.findComponent(QMenu);
 
-  for (const show of [true, false, true]) {
-    menu.vm.$emit("update:model-value", show);
+  {
+    menu.vm.$emit("update:model-value", true);
     await nextTick();
-    expect(disabled.value).toStrictEqual(show);
+    expect(disabled.value).toBeTrue();
+  }
+
+  {
+    menu.vm.$emit("update:model-value", false);
+    await nextTick();
+    expect(disabled.value).toBeFalse();
+  }
+
+  {
+    menu.vm.$emit("update:model-value", true);
+    await nextTick();
+    expect(disabled.value).toBeTrue();
   }
 
   wrapper.unmount();

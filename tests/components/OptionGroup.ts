@@ -4,7 +4,7 @@ import * as testUtils from "@vue/test-utils";
 import type { OptionGroupOptions } from "@/components/OptionGroup.extras";
 import OptionGroup from "@/components/OptionGroup.vue";
 
-it.each([undefined, 1, "a"])("OptionGroup", value => {
+test.each([undefined, 1, "a"])("optionGroup", value => {
   const options: OptionGroupOptions = [
     { disable: true, label: "Option 1", value: undefined },
     { label: "Option 2", value: 1 },

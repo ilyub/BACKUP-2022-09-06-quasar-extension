@@ -6,14 +6,10 @@ import type {
 
 import type { booleanU } from "@skylib/functions/es/types/core";
 
-import type { ReadonlyOmit } from "./api";
-
 export type GlobalKnob = GlobalComponentConstructor<KnobOwnProps, KnobSlots>;
 
-export type KnobParentProps = ReadonlyOmit<
-  QKnobProps,
-  "disable" | "modelValue"
->;
+export interface KnobParentProps
+  extends Omit<QKnobProps, "disable" | "modelValue"> {}
 
 export interface KnobOwnProps {
   readonly disable?: booleanU;

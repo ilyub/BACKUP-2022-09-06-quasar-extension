@@ -3,7 +3,7 @@ import * as testUtils from "@vue/test-utils";
 
 import Toggle from "@/components/Toggle.vue";
 
-it("Toggle", () => {
+test("toggle", () => {
   const wrapper = testUtils.mount(Toggle, {
     props: {
       modelValue: false

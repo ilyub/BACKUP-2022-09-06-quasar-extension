@@ -1,14 +1,10 @@
-import type { ComponentConstructor } from "quasar";
 import { QInput } from "quasar";
-import type { ComponentPublicInstance } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
-
-import * as is from "@skylib/functions/es/guards";
 
 import NumericInput from "@/components/NumericInput.vue";
 import * as testUtils from "@/testUtils";
 
-it("NumericInput", async () => {
+test("numericInput", async () => {
   const wrapper = vueTestUtils.mount(NumericInput, {
     global: testUtils.globalMountOptions(),
     props: {
@@ -16,6 +12,8 @@ it("NumericInput", async () => {
       modelValue: undefined
     }
   });
+
+  const comp = testUtils.findComponentFactory(".ref-numeric-input-", wrapper);
 
   const main = comp(QInput);
 
@@ -77,11 +75,5 @@ it("NumericInput", async () => {
 
     await comp("prev").trigger("click");
     expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
-  }
-
-  function comp(ref: string | ComponentConstructor): vueTestUtils.VueWrapper {
-    return wrapper.findComponent<ComponentPublicInstance>(
-      is.string(ref) ? `.ref-numeric-input-${ref}` : ref
-    );
   }
 });

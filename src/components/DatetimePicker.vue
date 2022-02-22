@@ -34,7 +34,6 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     validateProps<DatetimePickerOwnProps>(props);
 

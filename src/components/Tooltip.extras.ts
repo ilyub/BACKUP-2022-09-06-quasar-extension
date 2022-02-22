@@ -13,18 +13,18 @@ import { createValidationObject } from "@skylib/functions/es/types/core";
 import { createInjectable } from "./api";
 
 export type Direction =
-  | "down"
   | "down-left"
   | "down-right"
-  | "left"
+  | "down"
   | "left-down"
   | "left-up"
-  | "right"
+  | "left"
   | "right-down"
   | "right-up"
-  | "up"
+  | "right"
   | "up-left"
-  | "up-right";
+  | "up-right"
+  | "up";
 
 export interface DisableTooltips {
   readonly active: Ref<boolean>;
@@ -35,7 +35,6 @@ export type GlobalTooltip = GlobalComponentConstructor<
   TooltipSlots
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type TooltipParentProps = QTooltipProps;
 
 export interface TooltipOwnProps {

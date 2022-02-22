@@ -27,12 +27,23 @@ export interface ItemSlotData {
   readonly item: object;
 }
 
-export type Move = (
-  destId: stringU,
-  destGroup: string,
-  sourceId: string,
-  sourceGroup: string
-) => boolean;
+export interface Move {
+  /**
+   * Determines whether dragged item can be dropped.
+   *
+   * @param destId - Dest ID.
+   * @param destGroup - Dest group.
+   * @param sourceId - Source ID.
+   * @param sourceGroup - Source group.
+   * @returns _True_ if dragged item can be dropped, _false_ otherwise.
+   */
+  (
+    destId: stringU,
+    destGroup: string,
+    sourceId: string,
+    sourceGroup: string
+  ): boolean;
+}
 
 export interface MoveData {
   readonly dragged: HTMLElement;

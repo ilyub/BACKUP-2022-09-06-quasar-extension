@@ -6,7 +6,6 @@ export type FormButtonParentProps = BaseButtonProps;
 
 export interface FormButtonOwnProps {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface FormButtonProps
   extends FormButtonParentProps,
     FormButtonOwnProps {}

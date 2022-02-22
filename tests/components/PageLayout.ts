@@ -1,6 +1,9 @@
+/* eslint-disable jest/no-conditional-expect */
+
+/* eslint-disable jest/no-conditional-in-test */
+
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 
@@ -23,78 +26,75 @@ const pageLayoutSettings2: PageLayoutSettings = {
   paddingY: "10px"
 };
 
-it.each([
+test.each([
   {},
   {
+    expectedPageOffset: "((15px) + 2 * 10px)",
     pageLayoutSettings: pageLayoutSettings1,
-    pageOffset: "10px"
+    pageOffset: "15px"
   },
   {
+    expectedPageOffset: "((25px) + 2 * 10px + 50px)",
     pageLayoutSettings: pageLayoutSettings1,
-    pageOffset: "20px",
+    pageOffset: "25px",
     title: "Sample title"
   },
   {
+    expectedPageOffset: "((35px) + 2 * 10px + 50px)",
     pageLayoutSettings: pageLayoutSettings2,
-    pageOffset: "30px",
+    pageOffset: "35px",
     title: "Sample title"
   }
-])("PageLayout", async ({ pageLayoutSettings, pageOffset, title }) => {
-  const injectPageOffsetCallback = jest.fn();
+])(
+  "pageLayout",
+  async ({ expectedPageOffset, pageLayoutSettings, pageOffset, title }) => {
+    const injectPageOffsetCallback = jest.fn();
 
-  const wrapper = vueTestUtils.mount(PageLayout, {
-    global: testUtils.globalMountOptions(
-      o.removeUndefinedKeys({
-        pageLayoutSettings,
-        pageOffset
-      })
-    ),
-    props: {
-      title
-    },
-    slots: {
-      default: {
-        setup() {
-          injectPageOffsetCallback(injectPageOffset().value);
-        },
-        template: "<div></div>"
+    const wrapper = vueTestUtils.mount(PageLayout, {
+      global: testUtils.globalMountOptions(
+        o.removeUndefinedKeys({
+          pageLayoutSettings,
+          pageOffset
+        })
+      ),
+      props: {
+        title
+      },
+      slots: {
+        default: {
+          setup() {
+            injectPageOffsetCallback(injectPageOffset().value);
+          },
+          template: "<div></div>"
+        }
       }
-    }
-  });
-
-  {
-    const expected = fn.run(() => {
-      if (is.not.empty(pageOffset))
-        return is.not.empty(title)
-          ? `((${pageOffset}) + 2 * 10px + 50px)`
-          : `((${pageOffset}) + 2 * 10px)`;
-
-      return undefined;
     });
 
-    expect(injectPageOffsetCallback).toBeCalledTimes(1);
-    expect(injectPageOffsetCallback).toBeCalledWith(expected);
+    {
+      expect(injectPageOffsetCallback).toHaveBeenCalledTimes(1);
+      expect(injectPageOffsetCallback).toHaveBeenCalledWith(expectedPageOffset);
+    }
+
+    if (is.not.empty(title)) {
+      const closeButton = pageLayoutSettings?.closeButton ?? true;
+
+      const props = closeButton
+        ? { hideCloseButton: true }
+        : { closeButton: true };
+
+      expect(closeButtonComponent().exists()).toStrictEqual(closeButton);
+      await wrapper.setProps(props);
+      expect(closeButtonComponent().exists()).toStrictEqual(!closeButton);
+    } else {
+      const props = { closeButton: true };
+
+      expect(closeButtonComponent()).not.toExist();
+      await wrapper.setProps(props);
+      expect(closeButtonComponent()).not.toExist();
+    }
+
+    function closeButtonComponent(): vueTestUtils.DOMWrapper<Element> {
+      return wrapper.find(".ref-close-button");
+    }
   }
-
-  if (is.not.empty(title)) {
-    const closeButton = pageLayoutSettings?.closeButton ?? true;
-
-    const props = closeButton
-      ? { hideCloseButton: true }
-      : { closeButton: true };
-
-    expect(closeButtonComponent().exists()).toStrictEqual(closeButton);
-    await wrapper.setProps(props);
-    expect(closeButtonComponent().exists()).toStrictEqual(!closeButton);
-  } else {
-    const props = { closeButton: true };
-
-    expect(closeButtonComponent()).not.toExist();
-    await wrapper.setProps(props);
-    expect(closeButtonComponent()).not.toExist();
-  }
-
-  function closeButtonComponent(): vueTestUtils.DOMWrapper<Element> {
-    return wrapper.find(".ref-close-button");
-  }
-});
+);

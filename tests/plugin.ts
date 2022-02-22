@@ -12,5 +12,6 @@ test("plugin", () => {
 
   assert.not.empty(plugin.install);
   plugin.install(app);
-  expect(component).toBeCalled();
+  // eslint-disable-next-line jest/prefer-called-with
+  expect(component).toHaveBeenCalled();
 });

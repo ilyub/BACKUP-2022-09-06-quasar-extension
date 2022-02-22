@@ -19,7 +19,6 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: stringU) => is.stringU(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(_props, { emit }) {
     const input = ref<QInput | undefined>(undefined);
 

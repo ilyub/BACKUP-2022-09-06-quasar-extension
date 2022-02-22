@@ -6,8 +6,6 @@ import type {
 
 import * as is from "@skylib/functions/es/guards";
 
-import type { ReadonlyOmit } from "./api";
-
 export type GlobalSelect<T = unknown> = GlobalComponentConstructor<
   SelectProps<T>,
   SelectSlots
@@ -21,11 +19,8 @@ export interface SelectOption<T = unknown> {
 
 export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
 
-// eslint-disable-next-line @skylib/prefer-readonly
-export type SelectParentProps = ReadonlyOmit<
-  QSelectProps,
-  "modelValue" | "options"
->;
+export interface SelectParentProps
+  extends Omit<QSelectProps, "modelValue" | "options"> {}
 
 export interface SelectOwnProps<T = unknown> {
   readonly modelValue: T;

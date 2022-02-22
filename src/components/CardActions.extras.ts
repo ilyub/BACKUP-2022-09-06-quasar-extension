@@ -12,7 +12,6 @@ export interface CardActionsProps
   extends CardActionsParentProps,
     CardActionsOwnProps {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type CardActionsSlots = QCardActionsSlots;
 
 export type GlobalCardActions = GlobalComponentConstructor<

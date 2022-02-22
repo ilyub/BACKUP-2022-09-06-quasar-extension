@@ -10,8 +10,6 @@ import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import type { ReadonlyOmit } from "./api";
-
 declare global {
   namespace facades {
     namespace icons {
@@ -33,8 +31,8 @@ declare global {
   }
 }
 
-// eslint-disable-next-line @skylib/prefer-readonly
-export type DatetimePickerParentProps = ReadonlyOmit<QFieldProps, "modelValue">;
+export interface DatetimePickerParentProps
+  extends Omit<QFieldProps, "modelValue"> {}
 
 export interface DatetimePickerOwnProps {
   readonly max?: stringU;
@@ -42,12 +40,10 @@ export interface DatetimePickerOwnProps {
   readonly modelValue?: stringU;
 }
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface DatetimePickerProps
   extends DatetimePickerParentProps,
     DatetimePickerOwnProps {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type DatetimePickerSlots = QFieldSlots;
 
 export type GlobalDatetimePicker = GlobalComponentConstructor<

@@ -5,6 +5,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
+import * as o from "@skylib/functions/es/object";
 
 import { buildElements } from "@/components/Sortable.extras";
 import Sortable from "@/components/Sortable.vue";
@@ -27,22 +28,30 @@ const props = {
   modelValue: items
 };
 
-it.each([undefined, 1000])("animationDuration", animationDuration => {
+test.each([
+  {
+    animationDuration: 500
+  },
+  {
+    animationDuration: 1000,
+    sortableSettings: { animationDuration: 1000 }
+  }
+])("animationDuration", ({ animationDuration, sortableSettings }) => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions(
-      is.not.empty(animationDuration)
-        ? { sortableSettings: { animationDuration } }
-        : {}
+      o.removeUndefinedKeys({
+        sortableSettings
+      })
     ),
     props
   });
 
   expect(wrapper.findComponent(Draggable).vm.$attrs["animation"]).toStrictEqual(
-    animationDuration ?? 500
+    animationDuration
   );
 });
 
-it("emit: dropped", () => {
+test("emit: dropped", () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions(),
     props
@@ -60,7 +69,7 @@ it("emit: dropped", () => {
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
 });
 
-it("end, start", async () => {
+test("end, start", async () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions(),
     props
@@ -68,17 +77,31 @@ it("end, start", async () => {
 
   const draggable = wrapper.findComponent(Draggable);
 
-  for (const show of [true, false, true]) {
-    draggable.vm.$emit(show ? "start" : "end");
+  {
+    draggable.vm.$emit("start");
     await nextTick();
-    expect(disabled.value).toStrictEqual(show);
+    expect(disabled.value).toBeTrue();
   }
 
-  wrapper.unmount();
-  expect(disabled.value).toBeFalse();
+  {
+    draggable.vm.$emit("end");
+    await nextTick();
+    expect(disabled.value).toBeFalse();
+  }
+
+  {
+    draggable.vm.$emit("start");
+    await nextTick();
+    expect(disabled.value).toBeTrue();
+  }
+
+  {
+    wrapper.unmount();
+    expect(disabled.value).toBeFalse();
+  }
 });
 
-it("emit: update:model-value", () => {
+test("emit: update:model-value", () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions({}),
     props
@@ -100,7 +123,7 @@ it("emit: update:model-value", () => {
   expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
 });
 
-it.each([
+test.each([
   {
     dest: {
       group: "dest-group",
@@ -136,7 +159,7 @@ it.each([
       const result = document.createElement("div");
 
       for (const [key, value] of Object.entries(source))
-        result.dataset[key] = value;
+        result.setAttribute(`data-${key}`, value);
 
       return result;
     }),
@@ -144,16 +167,26 @@ it.each([
       const result = document.createElement("div");
 
       for (const [key, value] of Object.entries(dest))
-        result.dataset[key] = value;
+        result.setAttribute(`data-${key}`, value);
 
       return result;
     })
   };
 
   assert.byGuard(baseMove, is.callable);
+
   baseMove(moveData);
+
   await wrapper.setProps({ move });
+
   baseMove(moveData);
-  expect(move).toBeCalledTimes(1);
-  expect(move).toBeCalledWith(dest.id, dest.group, source.id, source.group);
+
+  expect(move).toHaveBeenCalledTimes(1);
+
+  expect(move).toHaveBeenCalledWith(
+    dest.id,
+    dest.group,
+    source.id,
+    source.group
+  );
 });

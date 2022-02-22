@@ -1,5 +1,5 @@
 import { genericPageTable } from "@/components/PageTable.generic";
 
-it("genericPageTable", () => {
+test("genericPageTable", () => {
   expect(genericPageTable()).toBeDefined();
 });

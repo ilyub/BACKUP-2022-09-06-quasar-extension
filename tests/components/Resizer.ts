@@ -1,20 +1,18 @@
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as is from "@skylib/functions/es/guards";
-
 import Resizer from "@/components/Resizer.vue";
 import * as testUtils from "@/testUtils";
 
-it.each([
-  { max: 300, min: 100, value: -110 },
-  { max: 300, min: 100, value: -10 },
-  { max: 300, min: 100, value: 10 },
-  { max: 300, min: 100, value: 110 },
-  { min: 100, value: -110 },
-  { min: 100, value: -10 },
-  { min: 100, value: 10 },
-  { min: 100, value: 110 }
-])("Resizer", options => {
+test.each([
+  { cursor: "not-allowed", max: 300, min: 100, offset: -110, value: 100 },
+  { cursor: "ew-resize", max: 300, min: 100, offset: -10, value: 190 },
+  { cursor: "ew-resize", max: 300, min: 100, offset: 10, value: 210 },
+  { cursor: "not-allowed", max: 300, min: 100, offset: 110, value: 300 },
+  { cursor: "not-allowed", min: 100, offset: -110, value: 100 },
+  { cursor: "ew-resize", min: 100, offset: -10, value: 190 },
+  { cursor: "ew-resize", min: 100, offset: 10, value: 210 },
+  { cursor: "ew-resize", min: 100, offset: 110, value: 310 }
+])("resizer", ({ cursor, max, min, offset, value }) => {
   const { touchPan, triggerTouchPan } = testUtils.touchPanMock();
 
   const wrapper = vueTestUtils.mount(Resizer, {
@@ -22,29 +20,20 @@ it.each([
       touchPan
     },
     props: {
-      max: options.max,
-      min: options.min,
+      max,
+      min,
       modelValue: 200
     }
   });
-
-  const value = 200 + options.value;
-
-  const limitedValue = Math.max(
-    is.not.empty(options.max) ? Math.min(value, options.max) : value,
-    options.min
-  );
 
   {
     const event = {
       isFinal: false,
       isFirst: true,
-      offset: { x: options.value, y: 0 }
+      offset: { x: offset, y: 0 }
     };
 
-    const cursor = limitedValue === value ? "ew-resize" : "not-allowed";
-
-    const emitted = [[limitedValue]];
+    const emitted = [[value]];
 
     document.documentElement.style.cursor = "";
     triggerTouchPan(event);
@@ -56,14 +45,14 @@ it.each([
     const event = {
       isFinal: true,
       isFirst: false,
-      offset: { x: options.value, y: 0 }
+      offset: { x: offset, y: 0 }
     };
 
-    const emitted = [[limitedValue], [limitedValue]];
+    const emitted = [[value], [value]];
 
     document.documentElement.style.cursor = "";
     triggerTouchPan(event);
-    expect(document.documentElement.style.cursor).toStrictEqual("");
+    expect(document.documentElement.style.cursor).toBe("");
     expect(wrapper.emitted("update:model-value")).toStrictEqual(emitted);
   }
 });

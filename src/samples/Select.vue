@@ -6,7 +6,7 @@ import * as fn from "@skylib/functions/es/function";
 import type { SelectOptions } from "../components/Select.extras";
 import { genericSelect } from "../components/Select.generic";
 
-type Value = undefined | 1 | "a" | "b";
+type Value = "a" | "b" | 1 | undefined;
 
 export default defineComponent({
   name: "sample-select",

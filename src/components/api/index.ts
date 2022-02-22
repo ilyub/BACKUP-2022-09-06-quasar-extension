@@ -12,10 +12,6 @@ import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
 import type { Join2 } from "@skylib/functions/es/types/core";
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
-export type ReadonlyOmit<T, K extends PropertyKey> = Readonly<Omit<T, K>>;
-
 export interface Injectable<T> {
   /**
    * Injects settings.
@@ -43,7 +39,6 @@ export type ExtendQuasarProps<T extends object> = Join2<
   { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type LooseRequired<T> = {
   [P in string & keyof T]: T[P];
 };
@@ -55,7 +50,7 @@ export interface PropOptions<T> {
   readonly validator?: is.Guard<T>;
 }
 
-export type PropOptionsBoolean = PropOptionsDefault<boolean>;
+export interface PropOptionsBoolean extends PropOptionsDefault<boolean> {}
 
 export interface PropOptionsDefault<T> extends PropOptions<T> {
   readonly default: T;
@@ -112,7 +107,7 @@ export function propsToPropDefinitions<
  * @param key - Key.
  * @returns Value.
  */
-export function injectRequire<T>(key: string | InjectionKey<T>): T {
+export function injectRequire<T>(key: InjectionKey<T> | string): T {
   const result = inject(key);
 
   assert.not.empty(result);

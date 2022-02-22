@@ -9,7 +9,6 @@ import * as is from "@skylib/functions/es/guards";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
-import type { ReadonlyOmit } from "./api";
 import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
@@ -29,18 +28,22 @@ export interface Column<T = unknown> {
 
 export type Columns<T = unknown> = ReadonlyArray<Column<T>>;
 
-export type Field<T = unknown> = (row: T) => string;
+export interface Field<T = unknown> {
+  /**
+   * Returns formatted field.
+   *
+   * @param row - Row.
+   */
+  (row: T): string;
+}
 
 export type GlobalPageTable<T = unknown> = GlobalComponentConstructor<
   PageTableProps<T>,
   PageTableSlots<T>
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
-export type PageTableParentProps = ReadonlyOmit<
-  QTableProps,
-  "columns" | "rows" | "selected"
->;
+export interface PageTableParentProps
+  extends Omit<QTableProps, "columns" | "rows" | "selected"> {}
 
 export interface PageTableOwnProps<T = unknown> {
   readonly columns?: Columns<T> | undefined;
@@ -50,12 +53,10 @@ export interface PageTableOwnProps<T = unknown> {
   readonly selected?: readonly T[] | undefined;
 }
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface PageTableProps<T = unknown>
   extends PageTableParentProps,
     PageTableOwnProps<T> {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface PageTableSlots<T = unknown>
   extends Omit<QTableSlots, "body-cell"> {
   /**

@@ -11,7 +11,6 @@ export type IconButtonParentProps = BaseButtonProps;
 
 export interface IconButtonOwnProps {}
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export interface IconButtonProps
   extends IconButtonParentProps,
     IconButtonOwnProps {}

@@ -10,7 +10,6 @@ import * as fn from "@skylib/functions/es/function";
 
 import { routes } from "../routes";
 
-// eslint-disable-next-line import/no-default-export
 export default route(() => {
   const createHistory = fn.run(() => {
     switch (process.env["VUE_ROUTER_MODE"]) {

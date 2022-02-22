@@ -17,20 +17,24 @@ const switchableSettings2: SwitchableSettings = {
   transitionDuration: 400
 };
 
-it.each([
-  {},
+test.each([
   {
+    disable: false
+  },
+  {
+    disable: false,
     on: true,
     switchableSettings: switchableSettings1
   },
   {
+    disable: true,
     on: false,
     switchableSettings: switchableSettings2
   }
-])("Switchable", ({ on, switchableSettings }) => {
-  const injectDisableCallback = jest.fn();
+])("switchable", ({ disable, on, switchableSettings }) => {
+  expect.assertions(1);
 
-  const wrapper = vueTestUtils.mount(Switchable, {
+  vueTestUtils.mount(Switchable, {
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({
         switchableSettings
@@ -42,14 +46,10 @@ it.each([
     slots: {
       default: {
         setup() {
-          injectDisableCallback(injectDisable().value);
+          expect(injectDisable().value).toStrictEqual(disable);
         },
         template: "<div></div>"
       }
     }
   });
-
-  expect(injectDisableCallback).toBeCalledTimes(1);
-  expect(injectDisableCallback).lastCalledWith(!(on ?? true));
-  expect(wrapper).toExist();
 });

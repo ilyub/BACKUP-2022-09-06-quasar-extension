@@ -27,7 +27,6 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: unknown) => is.unknown(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     validateProps<SelectOwnProps>(props);
 

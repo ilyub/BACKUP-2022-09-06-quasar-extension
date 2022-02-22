@@ -3,18 +3,18 @@ import * as vueTestUtils from "@vue/test-utils";
 import { createInjectable } from "@/components/api";
 import * as testUtils from "@/testUtils";
 
-it("consoleWarnMock", () => {
+test("consoleWarnMock", () => {
   const callback = jest.fn();
 
   const mock = testUtils.consoleWarnMock(callback);
 
   mock("Test warning");
-  expect(callback).toBeCalledTimes(1);
-  expect(callback).toBeCalledWith("Test warning");
+  expect(callback).toHaveBeenCalledTimes(1);
+  expect(callback).toHaveBeenCalledWith("Test warning");
   callback.mockClear();
 });
 
-it("createInjectable", () => {
+test("createInjectable", () => {
   const injectable = createInjectable<string>();
 
   const wrapper = vueTestUtils.mount({
@@ -37,7 +37,7 @@ it("createInjectable", () => {
   expect(wrapper).textToEqual("test-string");
 });
 
-it("htmlToEqual", () => {
+test("htmlToEqual", () => {
   const wrapper = vueTestUtils.mount({
     template: `
       <div>sample-text</div>
@@ -48,7 +48,7 @@ it("htmlToEqual", () => {
     const result = testUtils.htmlToEqual(wrapper, "<div>sample-text</div>");
 
     expect(result.pass).toBeTrue();
-    expect(result.message()).toStrictEqual(
+    expect(result.message()).toBe(
       'Expected HTML code not to be "<div>sample-text</div>"'
     );
   }
@@ -57,13 +57,13 @@ it("htmlToEqual", () => {
     const result = testUtils.htmlToEqual(wrapper, "<div>sample-text-2</div>");
 
     expect(result.pass).toBeFalse();
-    expect(result.message()).toStrictEqual(
+    expect(result.message()).toBe(
       'Expected HTML code to be "<div>sample-text-2</div>", got "<div>sample-text</div>"'
     );
   }
 });
 
-it("textToEqual", () => {
+test("textToEqual", () => {
   const wrapper = vueTestUtils.mount({
     template: `
       <div>sample-text</div>
@@ -74,22 +74,20 @@ it("textToEqual", () => {
     const result = testUtils.textToEqual(wrapper, "sample-text");
 
     expect(result.pass).toBeTrue();
-    expect(result.message()).toStrictEqual(
-      'Expected text not to be "sample-text"'
-    );
+    expect(result.message()).toBe('Expected text not to be "sample-text"');
   }
 
   {
     const result = testUtils.textToEqual(wrapper, "sample-text-2");
 
     expect(result.pass).toBeFalse();
-    expect(result.message()).toStrictEqual(
+    expect(result.message()).toBe(
       'Expected text to be "sample-text-2", got "sample-text"'
     );
   }
 });
 
-it("toBeVisible", () => {
+test("toBeVisible", () => {
   const wrapper = vueTestUtils.mount({
     template: `
       <div>
@@ -103,22 +101,18 @@ it("toBeVisible", () => {
     const result = testUtils.toBeVisible(wrapper.find(".visible"));
 
     expect(result.pass).toBeTrue();
-    expect(result.message()).toStrictEqual(
-      "Expected Vue wrapper not to be visible"
-    );
+    expect(result.message()).toBe("Expected Vue wrapper not to be visible");
   }
 
   {
     const result = testUtils.toBeVisible(wrapper.find(".invisible"));
 
     expect(result.pass).toBeFalse();
-    expect(result.message()).toStrictEqual(
-      "Expected Vue wrapper to be visible"
-    );
+    expect(result.message()).toBe("Expected Vue wrapper to be visible");
   }
 });
 
-it("toExist", () => {
+test("toExist", () => {
   const wrapper = vueTestUtils.mount({
     template: `
       <div class="existent"></div>
@@ -129,18 +123,18 @@ it("toExist", () => {
     const result = testUtils.toExist(wrapper.find(".existent"));
 
     expect(result.pass).toBeTrue();
-    expect(result.message()).toStrictEqual("Expected Vue wrapper not to exist");
+    expect(result.message()).toBe("Expected Vue wrapper not to exist");
   }
 
   {
     const result = testUtils.toExist(wrapper.find(".non-existent"));
 
     expect(result.pass).toBeFalse();
-    expect(result.message()).toStrictEqual("Expected Vue wrapper to exist");
+    expect(result.message()).toBe("Expected Vue wrapper to exist");
   }
 });
 
-it("toHaveClass", () => {
+test("toHaveClass", () => {
   const wrapper = vueTestUtils.mount({
     template: `
       <div class="sample-class"></div>
@@ -151,7 +145,7 @@ it("toHaveClass", () => {
     const result = testUtils.toHaveClass(wrapper, "sample-class");
 
     expect(result.pass).toBeTrue();
-    expect(result.message()).toStrictEqual(
+    expect(result.message()).toBe(
       'Expected Vue wrapper not to have "sample-class" class'
     );
   }
@@ -160,7 +154,7 @@ it("toHaveClass", () => {
     const result = testUtils.toHaveClass(wrapper, "sample-class-2");
 
     expect(result.pass).toBeFalse();
-    expect(result.message()).toStrictEqual(
+    expect(result.message()).toBe(
       'Expected Vue wrapper to have "sample-class-2" class'
     );
   }

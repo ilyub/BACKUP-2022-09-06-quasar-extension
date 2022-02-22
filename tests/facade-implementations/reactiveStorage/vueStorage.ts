@@ -2,7 +2,7 @@ import { nextTick } from "vue";
 
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 
-it("reactiveStorage", async () => {
+test("reactiveStorage", async () => {
   const callback = jest.fn();
 
   const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
@@ -12,16 +12,16 @@ it("reactiveStorage", async () => {
   {
     obj.x = 1;
     await nextTick();
-    expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ x: 1, y: { z: 0 } });
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 0 } });
     callback.mockClear();
   }
 
   {
     obj.y.z = 1;
     await nextTick();
-    expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ x: 1, y: { z: 1 } });
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 1 } });
     callback.mockClear();
   }
 
@@ -30,11 +30,11 @@ it("reactiveStorage", async () => {
     obj.x = 2;
     obj.y.z = 2;
     await nextTick();
-    expect(callback).not.toBeCalled();
+    expect(callback).not.toHaveBeenCalled();
   }
 });
 
-it("reactiveStorage: reducer", async () => {
+test("reactiveStorage: reducer", async () => {
   const callback = jest.fn();
 
   const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
@@ -44,15 +44,15 @@ it("reactiveStorage: reducer", async () => {
   {
     obj.x = 1;
     await nextTick();
-    expect(callback).toBeCalledTimes(1);
-    expect(callback).toBeCalledWith({ x: 1, y: { z: 0 } });
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 0 } });
     callback.mockClear();
   }
 
   {
     obj.y.z = 1;
     await nextTick();
-    expect(callback).not.toBeCalled();
+    expect(callback).not.toHaveBeenCalled();
   }
 
   {
@@ -60,6 +60,6 @@ it("reactiveStorage: reducer", async () => {
     obj.x = 2;
     obj.y.z = 2;
     await nextTick();
-    expect(callback).not.toBeCalled();
+    expect(callback).not.toHaveBeenCalled();
   }
 });

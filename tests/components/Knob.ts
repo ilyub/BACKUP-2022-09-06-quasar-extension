@@ -3,7 +3,7 @@ import * as testUtils from "@vue/test-utils";
 
 import Knob from "@/components/Knob.vue";
 
-it("Knob", () => {
+test("knob", () => {
   const wrapper = testUtils.mount(Knob, {
     props: {
       modelValue: 50

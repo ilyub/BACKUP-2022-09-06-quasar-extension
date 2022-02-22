@@ -1,10 +1,9 @@
 import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
-import type { ReadonlyOmit } from "./api";
 import type { SortableProps, SortableSlots } from "./Sortable.extras";
 
-export type DroppableParentProps = ReadonlyOmit<
+export type DroppableParentProps = Omit<
   SortableProps,
   "group" | "itemKey" | "modelValue"
 >;

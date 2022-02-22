@@ -1,11 +1,6 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[ListItem] */
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
-
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[MenuItem] */
-
 import { computed, defineComponent, useAttrs } from "vue";
 
 import * as is from "@skylib/functions/es/guards";

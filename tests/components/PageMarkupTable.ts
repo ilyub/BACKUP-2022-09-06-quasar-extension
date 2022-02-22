@@ -1,30 +1,33 @@
 import { QMarkupTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 
 import PageMarkupTable from "@/components/PageMarkupTable.vue";
 import * as testUtils from "@/testUtils";
 
-it.each([
+test.each([
   {
+    expected: "height: auto;",
     extraPageOffset: undefined,
     pageOffset: undefined
   },
   {
+    expected: "height: calc(100vh - 5px - 0px);",
     extraPageOffset: undefined,
-    pageOffset: "0px"
+    pageOffset: "5px"
   },
   {
+    expected: "height: calc(100vh - 15px - 10px);",
     extraPageOffset: "10px",
     pageOffset: "15px"
   },
   {
+    expected: "height: calc(100vh - 25px - 20px);",
     extraPageOffset: "20px",
     pageOffset: "25px"
   }
-])("PageMarkupTable", ({ extraPageOffset, pageOffset }) => {
+])("pageMarkupTable", ({ expected, extraPageOffset, pageOffset }) => {
   const wrapper = vueTestUtils.mount(PageMarkupTable, {
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({
@@ -37,10 +40,6 @@ it.each([
   });
 
   const markupTable = wrapper.findComponent(QMarkupTable);
-
-  const expected = is.not.empty(pageOffset)
-    ? `height: calc(100vh - ${pageOffset} - ${extraPageOffset ?? "0px"});`
-    : "height: auto;";
 
   expect(markupTable.attributes("style")).toStrictEqual(expected);
 });

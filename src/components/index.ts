@@ -63,7 +63,6 @@ import type { GlobalTooltip } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
 
 declare module "@vue/runtime-core" {
-  // eslint-disable-next-line @skylib/prefer-readonly
   export interface GlobalComponents {
     readonly "m-base-button": GlobalBaseButton;
     readonly "m-button": GlobalButton;

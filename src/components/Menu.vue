@@ -14,7 +14,6 @@ import { useDisableTooltips } from "./Tooltip.extras";
 export default defineComponent({
   name: "m-menu",
   props: propsToPropDefinitions<MenuParentProps>(),
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props) {
     validateProps<MenuOwnProps>(props);
 

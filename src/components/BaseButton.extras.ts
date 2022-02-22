@@ -4,7 +4,7 @@ import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
 import type { Direction } from "./Tooltip.extras";
 
-export type BaseButtonParentProps = QBtnProps;
+export type BaseButtonParentProps = Readonly<QBtnProps>;
 
 export interface BaseButtonOwnProps {
   readonly modelValue?: booleanU;
@@ -16,7 +16,7 @@ export interface BaseButtonProps
   extends BaseButtonParentProps,
     BaseButtonOwnProps {}
 
-export type BaseButtonSlots = QBtnSlots;
+export type BaseButtonSlots = Readonly<QBtnSlots>;
 
 export type GlobalBaseButton = GlobalComponentConstructor<
   BaseButtonProps,

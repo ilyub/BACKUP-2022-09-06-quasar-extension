@@ -25,7 +25,6 @@ export default defineComponent({
   emits: {
     "update:model-value": (value: numberU) => is.numberU(value)
   },
-  // eslint-disable-next-line @skylib/prefer-readonly
   setup(props, { emit }) {
     validateProps<NumericInputOwnProps>(props);
 
@@ -39,6 +38,9 @@ export default defineComponent({
         if (is.empty(props.modelValue)) emit("update:model-value", props.min);
         else if (props.modelValue < props.max)
           emit("update:model-value", props.modelValue + 1);
+        else {
+          // Not clickable
+        }
       },
       nextClickable: computed<boolean>(
         () => is.empty(props.modelValue) || props.modelValue < props.max
@@ -47,6 +49,9 @@ export default defineComponent({
         if (is.empty(props.modelValue)) emit("update:model-value", props.max);
         else if (props.modelValue > props.min)
           emit("update:model-value", props.modelValue - 1);
+        else {
+          // Not clickable
+        }
       },
       prevClickable: computed<boolean>(
         () => is.empty(props.modelValue) || props.modelValue > props.min

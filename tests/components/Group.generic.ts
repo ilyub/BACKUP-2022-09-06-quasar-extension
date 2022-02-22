@@ -1,5 +1,5 @@
 import { genericGroup } from "@/components/Group.generic";
 
-it("genericGroup", () => {
+test("genericGroup", () => {
   expect(genericGroup()).toBeDefined();
 });

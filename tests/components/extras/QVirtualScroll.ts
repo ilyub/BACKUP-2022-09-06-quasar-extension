@@ -1,6 +1,6 @@
 import { isVirtualScroll } from "@/components/extras/QVirtualScroll";
 
-it("isVirtualScroll", () => {
+test("isVirtualScroll", () => {
   expect(isVirtualScroll({})).toBeTrue();
   expect(isVirtualScroll(false)).toBeFalse();
 });

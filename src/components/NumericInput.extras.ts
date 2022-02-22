@@ -8,8 +8,6 @@ import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import type { ReadonlyOmit } from "./api";
-
 declare global {
   namespace facades {
     namespace icons {
@@ -26,8 +24,8 @@ export type GlobalNumericInput = GlobalComponentConstructor<
   NumericInputSlots
 >;
 
-// eslint-disable-next-line @skylib/prefer-readonly
-export type NumericInputParentProps = ReadonlyOmit<QInputProps, "modelValue">;
+export interface NumericInputParentProps
+  extends Omit<QInputProps, "modelValue"> {}
 
 export interface NumericInputOwnProps {
   readonly max: number;
