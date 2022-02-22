@@ -65,7 +65,7 @@ export default defineComponent({
     <q-checkbox v-model="showSection4" /> 4
   </div>
   <generic-group
-    class="section"
+    :class="$style.section"
     :items="groupItems"
     not-found-label="No results found"
     root-element="section"
@@ -78,7 +78,7 @@ export default defineComponent({
   </generic-group>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .section {
   border: 1px solid blue;
 }

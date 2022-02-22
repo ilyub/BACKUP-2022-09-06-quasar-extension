@@ -50,11 +50,11 @@ export default defineComponent({
 
 <template>
   {{ pageTableSelected }}
-  <m-page-layout class="page-layout" title="Title">
+  <m-page-layout :class="$style.pageLayout" title="Title">
     <generic-page-table
       v-model:limit="pageTableLimit"
       v-model:selected="pageTableSelected"
-      class="page-table"
+      :class="$style.pageTable"
       :columns="pageTableColumns"
       flat
       :rows="pageTableRows"
@@ -67,12 +67,12 @@ export default defineComponent({
   </m-page-layout>
 </template>
 
-<style lang="scss" scoped>
-.page-layout {
+<style lang="scss" module>
+.pageLayout {
   border: 1px solid red;
 }
 
-.page-table {
+.pageTable {
   border: 1px solid blue;
 }
 </style>

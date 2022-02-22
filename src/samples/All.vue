@@ -74,13 +74,13 @@ export default defineComponent({
 <template>
   <table class="border-collapse">
     <tr v-for="([component, name], index) in components" :key="index">
-      <td class="cell">{{ name }}</td>
-      <td class="cell"><component :is="component" /></td>
+      <td :class="$style.cell">{{ name }}</td>
+      <td :class="$style.cell"><component :is="component" /></td>
     </tr>
   </table>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 @use "sass:map";
 
 .cell {

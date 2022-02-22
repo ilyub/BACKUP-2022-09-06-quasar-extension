@@ -7,19 +7,25 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-page-layout class="page-layout">
-    <div class="bg-grey-3 q-pa-md">Content</div>
-  </m-page-layout>
-  <m-page-layout class="page-layout q-mt-md" title="Title">
-    <div class="bg-grey-3 q-pa-md">Content</div>
-  </m-page-layout>
-  <m-page-layout class="page-layout q-mt-md" close-button title="Title">
-    <div class="bg-grey-3 q-pa-md">Content</div>
-  </m-page-layout>
+  <m-section>
+    <m-page-layout :class="$style.pageLayout">
+      <div class="bg-grey-3 q-pa-md">Content</div>
+    </m-page-layout>
+  </m-section>
+  <m-section>
+    <m-page-layout :class="$style.pageLayout" title="Title">
+      <div class="bg-grey-3 q-pa-md">Content</div>
+    </m-page-layout>
+  </m-section>
+  <m-section>
+    <m-page-layout :class="$style.pageLayout" close-button title="Title">
+      <div class="bg-grey-3 q-pa-md">Content</div>
+    </m-page-layout>
+  </m-section>
 </template>
 
-<style lang="scss" scoped>
-.page-layout {
+<style lang="scss" module>
+.pageLayout {
   border: 1px solid red;
 }
 </style>

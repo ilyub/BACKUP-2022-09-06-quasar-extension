@@ -22,42 +22,46 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-sortable
-    v-model="sortable1"
-    class="sortable"
-    group="sortable"
-    :item-component-data="{
-      class: 'q-mr-sm sortable-item'
-    }"
-    item-key="id"
-  >
-    <template #item="{ item }">
-      {{ sortableName(item) }}
-      <m-tooltip>Sample tooltip</m-tooltip>
-    </template>
-  </m-sortable>
-  <m-sortable
-    v-model="sortable2"
-    class="q-mt-md sortable"
-    group="sortable"
-    :item-component-data="{
-      class: 'q-mr-sm sortable-item'
-    }"
-    item-key="id"
-  >
-    <template #item="{ item }">
-      {{ sortableName(item) }}
-      <m-tooltip>Sample tooltip</m-tooltip>
-    </template>
-  </m-sortable>
+  <m-section>
+    <m-sortable
+      v-model="sortable1"
+      :class="$style.sortable"
+      group="sortable"
+      :item-component-data="{
+        class: `${$style.sortableItem} q-mr-sm`
+      }"
+      item-key="id"
+    >
+      <template #item="{ item }">
+        {{ sortableName(item) }}
+        <m-tooltip>Sample tooltip</m-tooltip>
+      </template>
+    </m-sortable>
+  </m-section>
+  <m-section>
+    <m-sortable
+      v-model="sortable2"
+      :class="$style.sortable"
+      group="sortable"
+      :item-component-data="{
+        class: `${$style.sortableItem} q-mr-sm`
+      }"
+      item-key="id"
+    >
+      <template #item="{ item }">
+        {{ sortableName(item) }}
+        <m-tooltip>Sample tooltip</m-tooltip>
+      </template>
+    </m-sortable>
+  </m-section>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .sortable {
   height: 50px;
   background: $grey-3;
 
-  :deep(.sortable-item) {
+  .sortableItem {
     display: inline-flex;
     align-items: center;
     justify-content: center;

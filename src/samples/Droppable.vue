@@ -29,10 +29,10 @@ export default defineComponent({
 <template>
   <m-sortable
     v-model="sortable1"
-    class="sortable"
+    :class="$style.sortable"
     group="sortable"
     :item-component-data="{
-      class: 'q-mr-sm sortable-item'
+      class: `${$style.sortableItem} q-mr-sm`
     }"
     item-key="id"
   >
@@ -43,10 +43,10 @@ export default defineComponent({
   </m-sortable>
   <m-sortable
     v-model="sortable2"
-    class="q-mt-md sortable"
+    :class="`${$style.sortable} q-mt-md`"
     group="sortable"
     :item-component-data="{
-      class: 'q-mr-sm sortable-item'
+      class: `${$style.sortableItem} q-mr-sm`
     }"
     item-key="id"
   >
@@ -55,10 +55,12 @@ export default defineComponent({
       <m-tooltip>Sample tooltip</m-tooltip>
     </template>
   </m-sortable>
-  <m-droppable class="droppable q-mt-md" @dropped="dropped">D</m-droppable>
+  <m-droppable :class="`${$style.droppable} q-mt-md`" @dropped="dropped">
+    D
+  </m-droppable>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .droppable {
   display: flex;
   align-items: center;
@@ -72,7 +74,7 @@ export default defineComponent({
   height: 50px;
   background: $grey-3;
 
-  :deep(.sortable-item) {
+  .sortableItem {
     display: inline-flex;
     align-items: center;
     justify-content: center;

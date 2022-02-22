@@ -76,8 +76,9 @@ export default defineComponent({
       <slot :name="slotNames.append">
         <q-icon
           :class="{
-            'clickable': nextClickable,
-            'icon ref-numeric-input-next': true
+            [$style.clickable]: nextClickable,
+            [$style.icon]: true,
+            'ref-numeric-input-next': true
           }"
           :name="icons.chevronRightCircle"
           @click="nextClick"
@@ -88,8 +89,9 @@ export default defineComponent({
       <slot :name="slotNames.prepend">
         <q-icon
           :class="{
-            'clickable': prevClickable,
-            'icon ref-numeric-input-prev': true
+            [$style.clickable]: prevClickable,
+            [$style.icon]: true,
+            'ref-numeric-input-prev': true
           }"
           :name="icons.chevronLeftCircle"
           @click="prevClick"
@@ -99,7 +101,7 @@ export default defineComponent({
   </q-input>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .icon {
   color: $item-base-color;
 

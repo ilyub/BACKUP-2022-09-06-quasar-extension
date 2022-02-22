@@ -243,29 +243,31 @@ export default defineComponent({
               <div class="items-end row">
                 <div
                   :class="{
-                    'header-clickable': nextStep,
+                    [$style.headerClickable]: nextStep,
                     'ref-datetime-picker-prev': true,
                     'text-blue-2': nextStep
                   }"
                   @click="prevClick"
                 >
-                  <div class="header-text q-mb-xs text-body2 text-weight-thin">
+                  <div
+                    :class="`${$style.headerText} q-mb-xs text-body2 text-weight-thin`"
+                  >
                     {{ year }}
                   </div>
-                  <div class="header-text text-subtitle1">
+                  <div :class="`${$style.headerText} text-subtitle1`">
                     {{ date }}
                   </div>
                 </div>
                 <div
                   :class="{
-                    'header-clickable': !nextStep && !empty,
+                    [$style.headerClickable]: !nextStep && !empty,
                     'ref-datetime-picker-next': true,
                     'text-blue-2': !nextStep,
                     'q-ml-sm': true
                   }"
                   @click="nextClick"
                 >
-                  <div class="header-text text-subtitle1">
+                  <div :class="`${$style.headerText} text-subtitle1`">
                     {{ time }}
                   </div>
                 </div>
@@ -282,7 +284,7 @@ export default defineComponent({
             <m-card-section>
               <q-time
                 v-if="nextStep"
-                class="ref-datetime-picker-time"
+                class="ref-datetime-picker-time m-date-no-header"
                 flat
                 mask="YYYY-MM-DD HH:mm"
                 :model-value="pickerValue"
@@ -310,7 +312,9 @@ export default defineComponent({
                 :options="dateOptions"
                 @update:model-value="dateValueUpdate"
               >
-                <div class="footer-actions items-center justify-end row">
+                <div
+                  :class="`${$style.footerActions} items-center justify-end row`"
+                >
                   <m-form-button
                     v-close-popup
                     class="ref-datetime-picker-date-save"
@@ -337,12 +341,12 @@ export default defineComponent({
   </q-field>
 </template>
 
-<style lang="scss" scoped>
-.footer-actions {
+<style lang="scss" module>
+.footerActions {
   margin-right: -10px;
 }
 
-.header-clickable {
+.headerClickable {
   cursor: pointer;
 
   &:hover {
@@ -350,12 +354,8 @@ export default defineComponent({
   }
 }
 
-.header-text {
+.headerText {
   line-height: 1em;
   user-select: none;
-}
-
-:deep(.q-time__header) {
-  display: none;
 }
 </style>

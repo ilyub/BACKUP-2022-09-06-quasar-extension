@@ -50,6 +50,10 @@ $subsection-spacing : 8px !default;
   }
 }
 
+.m-date-no-header .q-time__header {
+  display: none;
+}
+
 .m-button-group-member + .m-button-group-member {
   margin-left: $button-group-spacing;
 }

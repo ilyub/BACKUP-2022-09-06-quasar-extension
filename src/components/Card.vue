@@ -52,7 +52,7 @@ export default defineComponent({
       >
         <slot :name="slotNames.title">{{ title }}</slot>
         <q-space v-if="!transparentHeader" />
-        <div :class="{ 'header-actions': transparentHeader }">
+        <div :class="{ [$style.headerActions]: transparentHeader }">
           <slot :name="slotNames.headerActions"></slot>
           <m-icon-button v-close-popup :icon="icons.close" />
         </div>
@@ -62,10 +62,10 @@ export default defineComponent({
   </q-card>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 @use "sass:map";
 
-.header-actions {
+.headerActions {
   position: absolute;
   top: map.get($space-sm, "y");
   right: map.get($space-sm, "x");

@@ -82,13 +82,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-touch-pan.horizontal.mouse="handlePan">
+  <div v-touch-pan.horizontal.mouse="handlePan" :class="$style.root">
     <slot :name="slotNames.default"></slot>
   </div>
 </template>
 
-<style lang="scss" scoped>
-div {
+<style lang="scss" module>
+.root {
   position: absolute;
   z-index: 1000;
   top: 0;

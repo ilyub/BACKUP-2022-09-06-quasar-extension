@@ -35,7 +35,7 @@ export default defineComponent({
 <template>
   <q-knob
     :class="{
-      inline
+      [$style.inline]: inline
     }"
     color="primary"
     :disable="disable || globalDisable"
@@ -52,7 +52,7 @@ export default defineComponent({
   </q-knob>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 @use "sass:map";
 
 .inline {

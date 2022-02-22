@@ -15,7 +15,7 @@ export default defineComponent({
 <template>
   <m-toggle v-model="resizerShow" />
   <div
-    class="q-mt-sm resizer"
+    :class="`${$style.resizer} q-mt-sm`"
     :style="{
       width: `${resizerWidth}px`
     }"
@@ -29,7 +29,7 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .resizer {
   position: relative;
   height: 50px;

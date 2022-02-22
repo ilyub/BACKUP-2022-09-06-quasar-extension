@@ -7,8 +7,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-page-layout class="page-layout">
-    <m-page-markup-table class="page-markup-table" flat>
+  <m-page-layout :class="$style.pageLayout">
+    <m-page-markup-table :class="$style.pageMarkupTable" flat>
       <thead>
         <tr>
           <th v-for="row in 3" :key="row">H:{{ row }}</th>
@@ -28,12 +28,12 @@ export default defineComponent({
   </m-page-layout>
 </template>
 
-<style lang="scss" scoped>
-.page-layout {
+<style lang="scss" module>
+.pageLayout {
   border: 1px solid red;
 }
 
-.page-markup-table {
+.pageMarkupTable {
   border: 1px solid blue;
 }
 </style>
