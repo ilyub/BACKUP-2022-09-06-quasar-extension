@@ -1,4 +1,6 @@
 import * as _ from "lodash-es";
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
 import type { CamelCase } from "type-fest";
 import type { ComputedRef } from "vue";
 import { computed, useSlots } from "vue";
