@@ -98,6 +98,7 @@ export default defineComponent({
     provideTooltipSettings(() => {
       return {
         delay: tooltipDelay.value,
+        fontSize: undefined,
         show: tooltipShow.value
       };
     });

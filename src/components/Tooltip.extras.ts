@@ -45,7 +45,7 @@ export interface TooltipProps extends TooltipParentProps, TooltipOwnProps {}
 
 export interface TooltipSettings {
   readonly delay: number;
-  readonly fontSize?: stringU;
+  readonly fontSize: stringU;
   readonly show: boolean;
 }
 
@@ -99,6 +99,7 @@ export const {
 } = createInjectable<TooltipSettings>(() => {
   return {
     delay: 0,
+    fontSize: undefined,
     show: true
   };
 });

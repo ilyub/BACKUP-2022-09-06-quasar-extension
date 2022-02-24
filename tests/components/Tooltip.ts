@@ -29,6 +29,7 @@ test.each<TestOption>([
     global: testUtils.globalMountOptions({
       tooltipSettings: {
         delay: options.delay,
+        fontSize: undefined,
         show: true
       }
     }),
@@ -47,6 +48,7 @@ test("delay", () => {
     global: testUtils.globalMountOptions({
       tooltipSettings: {
         delay: 1000,
+        fontSize: undefined,
         show: false
       }
     })
