@@ -1,9 +1,14 @@
-$button-group-spacing : 4px !default;
-$indent-padding : 24px !default;
-$icon-button-group-spacing : 2px !default;
-$page-section-spacing : 24px !default;
-$section-spacing : 16px !default;
-$subsection-spacing : 8px !default;
+@use "sass:map";
+
+@import "~quasar/src/css/variables.sass";
+
+$button-group-spacing : map.get($space-sm, "x") !default;
+$indent-padding : map.get($space-lg, "x") !default;
+$inline-element-margin : map.get($space-sm, "x") !default;
+$icon-button-group-spacing : map.get($space-xs, "x") !default;
+$page-section-spacing : map.get($space-lg, "y") !default;
+$section-spacing : map.get($space-md, "y") !default;
+$subsection-spacing : map.get($space-sm, "y") !default;
 
 .border-collapse {
   border-collapse: collapse;
