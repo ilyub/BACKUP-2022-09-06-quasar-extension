@@ -65,6 +65,8 @@ export default defineComponent({
 <style lang="scss" module>
 @use "sass:map";
 
+@import "~quasar/src/css/variables.sass";
+
 .headerActions {
   position: absolute;
   top: map.get($space-sm, "y");

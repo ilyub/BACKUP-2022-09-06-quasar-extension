@@ -55,6 +55,8 @@ export default defineComponent({
 <style lang="scss" module>
 @use "sass:map";
 
+@import "~quasar/src/css/variables.sass";
+
 .inline {
   margin-right: map.get($space-sm, "x");
   margin-left: map.get($space-sm, "x");

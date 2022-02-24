@@ -102,6 +102,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss" module>
+@import "~quasar/src/css/variables.sass";
+
 .icon {
   color: $item-base-color;
 
