@@ -8,7 +8,7 @@ module.exports = {
     "src/samples/**",
     "src/typings/**"
   ],
-  extraDefaultExport: [
+  extraDefaultExportLocations: [
     "__mocks__/flag-icon-css/*",
     "__mocks__/typeface-roboto-multilang/*"
   ],
