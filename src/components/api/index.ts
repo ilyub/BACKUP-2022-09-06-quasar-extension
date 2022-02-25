@@ -4,9 +4,10 @@ import type {
   ComputedRef,
   ExtractPropTypes,
   InjectionKey,
-  PropType
+  PropType,
+  Ref
 } from "vue";
-import { computed, inject, provide } from "vue";
+import { computed, inject, provide, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
@@ -63,6 +64,17 @@ export interface PropOptionsRequired<T> extends PropOptions<T> {
 export type SetupProps<T extends object> = Readonly<
   LooseRequired<Readonly<ExtractPropTypes<T>>>
 >;
+
+/**
+ * Returns Vue reference compatible with non-public class methods.
+ *
+ * @param value - Value.
+ * @returns Vue reference.
+ */
+export function classRef<T>(value: T): Ref<T> {
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
+  return ref(value) as Ref<T>;
+}
 
 /**
  * Creates injectable.
