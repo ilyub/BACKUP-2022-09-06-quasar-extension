@@ -206,11 +206,10 @@ export default defineComponent({
               <m-icon-button
                 v-for="(button, j) in row"
                 :key="j"
+                class="pick-icon"
                 :class="{
-                  'text-white': button.selected,
-                  'bg-primary': button.selected,
-                  'invisible': button.padding,
-                  'pick-icon': true
+                  'bg-primary text-white': button.selected,
+                  'invisible': button.padding
                 }"
                 :disable="button.padding"
                 :icon="button.icon"
@@ -229,9 +228,9 @@ export default defineComponent({
           />
           <q-space />
           <span
+            class="pagination"
             :class="{
-              invisible: loading || notFound,
-              pagination: true
+              invisible: loading || notFound
             }"
           >
             {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}

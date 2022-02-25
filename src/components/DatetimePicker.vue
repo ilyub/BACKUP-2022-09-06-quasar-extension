@@ -242,10 +242,9 @@ export default defineComponent({
             <template #title>
               <div class="items-end row">
                 <div
+                  class="ref-datetime-picker-prev"
                   :class="{
-                    [$style.headerClickable]: nextStep,
-                    'ref-datetime-picker-prev': true,
-                    'text-blue-2': nextStep
+                    [`${$style.headerClickable} text-blue-2`]: nextStep
                   }"
                   @click="prevClick"
                 >
@@ -259,11 +258,10 @@ export default defineComponent({
                   </div>
                 </div>
                 <div
+                  class="q-ml-sm ref-datetime-picker-next"
                   :class="{
                     [$style.headerClickable]: !nextStep && !empty,
-                    'ref-datetime-picker-next': true,
-                    'text-blue-2': !nextStep,
-                    'q-ml-sm': true
+                    'text-blue-2': !nextStep
                   }"
                   @click="nextClick"
                 >
@@ -284,7 +282,7 @@ export default defineComponent({
             <m-card-section>
               <q-time
                 v-if="nextStep"
-                class="ref-datetime-picker-time m-date-no-header"
+                class="m-date-no-header ref-datetime-picker-time"
                 flat
                 mask="YYYY-MM-DD HH:mm"
                 :model-value="pickerValue"

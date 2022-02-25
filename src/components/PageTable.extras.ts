@@ -91,25 +91,6 @@ export const {
 });
 
 /**
- * Creates guard for BodyCellSlotData\<T\> type.
- *
- * @param guard - Guard for type T.
- * @returns Guard for BodyCellSlotData\<T\> type.
- */
-export function isBodyCellSlotDataFactory<T = unknown>(
-  guard: is.Guard<T>
-): is.Guard<BodyCellSlotData<T>> {
-  return is.factory(
-    is.object.of,
-    {
-      row: guard,
-      value: is.string
-    },
-    {}
-  );
-}
-
-/**
  * Creates guard for Column\<T\> type.
  *
  * @returns Guard for Column\<T\> type.

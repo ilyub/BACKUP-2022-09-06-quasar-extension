@@ -2,8 +2,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "sample-section",
-  setup() {}
+  name: "sample-section"
 });
 </script>
 

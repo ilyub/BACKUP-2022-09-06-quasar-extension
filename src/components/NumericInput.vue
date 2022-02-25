@@ -75,10 +75,10 @@ export default defineComponent({
     <template #append>
       <slot :name="slotNames.append">
         <q-icon
+          class="ref-numeric-input-next"
           :class="{
             [$style.clickable]: nextClickable,
-            [$style.icon]: true,
-            'ref-numeric-input-next': true
+            [$style.icon]: true
           }"
           :name="icons.chevronRightCircle"
           @click="nextClick"
@@ -88,10 +88,10 @@ export default defineComponent({
     <template #prepend>
       <slot :name="slotNames.prepend">
         <q-icon
+          class="ref-numeric-input-prev"
           :class="{
             [$style.clickable]: prevClickable,
-            [$style.icon]: true,
-            'ref-numeric-input-prev': true
+            [$style.icon]: true
           }"
           :name="icons.chevronLeftCircle"
           @click="prevClick"
