@@ -6,7 +6,7 @@ import type {
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
-import type { numberU, stringU } from "@skylib/functions/es/types/core";
+import type { stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import { createInjectable } from "./api";
@@ -23,6 +23,17 @@ export interface Column<T = unknown> {
   readonly field: Field<T>;
   readonly label: string;
   readonly name: string;
+  /**
+   * Sorting function.
+   *
+   * @param value1 - Value 1.
+   * @param value2 - Value 2.
+   * @param row1 - Row 1.
+   * @param row2 - Row 2.
+   * @returns Comparison result.
+   */
+  readonly sort?: (value1: string, value2: string, row1: T, row2: T) => number;
+  readonly sortOrder?: "ad" | "da";
   readonly sortable?: true;
 }
 
@@ -43,12 +54,12 @@ export type GlobalPageTable<T = unknown> = GlobalComponentConstructor<
 >;
 
 export interface PageTableParentProps
-  extends Omit<QTableProps, "columns" | "rows" | "selected"> {}
+  extends Omit<QTableProps, "columns" | "pagination" | "rows" | "selected"> {}
 
 export interface PageTableOwnProps<T = unknown> {
   readonly columns?: Columns<T> | undefined;
   readonly extraPageOffset?: stringU;
-  readonly limit?: numberU;
+  readonly pagination?: Pagination | undefined;
   readonly rows?: readonly T[] | undefined;
   readonly selected?: readonly T[] | undefined;
 }
@@ -72,6 +83,15 @@ export interface PageTableSettings {
   readonly growPageBy: number;
 }
 
+export interface Pagination {
+  readonly descending?: boolean;
+  readonly limit?: number;
+  readonly page?: number;
+  readonly rowsNumber?: number;
+  readonly rowsPerPage?: number;
+  readonly sortBy?: string;
+}
+
 export const AlignVO = createValidationObject<Align>({
   center: "center",
   left: "left",
@@ -79,6 +99,19 @@ export const AlignVO = createValidationObject<Align>({
 });
 
 export const isAlign = is.factory(is.enumeration, AlignVO);
+
+export const isPagination: is.Guard<Pagination> = is.factory(
+  is.object.of,
+  {},
+  {
+    descending: is.boolean,
+    limit: is.number,
+    page: is.number,
+    rowsNumber: is.number,
+    rowsPerPage: is.number,
+    sortBy: is.string
+  }
+);
 
 export const {
   inject: injectPageTableSettings,

@@ -2,9 +2,10 @@
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
+import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 
-import type { Columns } from "../components/PageTable.extras";
+import type { Columns, Pagination } from "../components/PageTable.extras";
 import { genericPageTable } from "../components/PageTable.generic";
 
 interface TableItem {
@@ -20,7 +21,7 @@ export default defineComponent({
     "generic-page-table": genericPageTable<TableItem>()
   },
   setup() {
-    const pageTableLimit = ref(20);
+    const pagination = ref<Pagination>({ limit: 10 });
 
     return {
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
@@ -30,30 +31,41 @@ export default defineComponent({
             return `${row.name}!`;
           },
           label: "Name",
-          name: "name"
+          name: "name",
+          sort(_value1, _value2, row1, row2): number {
+            return row1.id - row2.id;
+          },
+          sortable: true
         }
       ]),
-      pageTableLimit,
-      pageTableRows: computed<TableItems>(() =>
-        a.fromRange(1, pageTableLimit.value).map(id => {
+      pageTableRows: computed<TableItems>(() => {
+        assert.not.empty(pagination.value.limit);
+
+        const ids =
+          pagination.value.descending ?? false
+            ? a.fromRange(1001 - pagination.value.limit, 1000)
+            : a.fromRange(1, pagination.value.limit);
+
+        return ids.map(id => {
           return {
             id,
             name: `Item ${id}`
           };
-        })
-      ),
-      pageTableSelected: ref<TableItems>([])
+        });
+      }),
+      pagination,
+      selected: ref<TableItems>([])
     };
   }
 });
 </script>
 
 <template>
-  {{ pageTableSelected }}
   <m-page-layout :class="$style.pageLayout" title="Title">
     <generic-page-table
-      v-model:limit="pageTableLimit"
-      v-model:selected="pageTableSelected"
+      v-model:pagination="pagination"
+      v-model:selected="selected"
+      binary-state-sort
       :class="$style.pageTable"
       :columns="pageTableColumns"
       flat
@@ -61,7 +73,7 @@ export default defineComponent({
       selection="multiple"
     >
       <template #body-cell="{ row, value }">
-        <q-td>{{ value }} {{ row }}</q-td>
+        <q-td>{{ value }} - {{ row.id }}</q-td>
       </template>
     </generic-page-table>
   </m-page-layout>

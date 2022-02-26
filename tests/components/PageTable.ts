@@ -1,16 +1,15 @@
-/* eslint-disable jest/no-conditional-in-test */
-
 import type { QVirtualScroll } from "quasar";
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as is from "@skylib/functions/es/guards";
+import * as cast from "@skylib/functions/es/converters";
 import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
+import type { unknowns, Writable } from "@skylib/functions/es/types/core";
 
 import type { VirtualScrollEvent } from "@/components/extras/QVirtualScroll";
-import type { Columns } from "@/components/PageTable.extras";
+import type { Columns, Pagination } from "@/components/PageTable.extras";
 import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
 
@@ -18,47 +17,47 @@ beforeAll(functionsTestUtils.installFakeTimer);
 
 test.each([
   {
-    to: 4
-  },
-  {
-    limit: 15,
-    pageOffset: "0px",
+    expectedHtml: "Sample row",
+    expectedLimit: 25,
+    expectedStyle: "height: calc(100vh - 10px - 0px);",
+    pageOffset: "10px",
+    pagination: { limit: 15 },
     to: 14
   },
   {
-    extraPageOffset: "10px",
-    limit: 25,
-    pageOffset: "15px",
-    to: 24
-  },
-  {
     bodyCellSlot: "Sample body cell slot",
-    extraPageOffset: "20px",
-    limit: 35,
-    pageOffset: "25px",
+    expectedHtml: "Sample body cell slot",
+    expectedLimit: 45,
+    expectedStyle: "height: calc(100vh - 20px - 5px);",
+    extraPageOffset: "5px",
+    pageOffset: "20px",
     pageTableSettings: { growPageBy: 20 },
+    pagination: { limit: 25 },
     selected: [],
-    to: 34
+    to: 24
   }
 ])(
   "pageTable",
   async ({
     bodyCellSlot,
+    expectedHtml,
+    expectedLimit,
+    expectedStyle,
     extraPageOffset,
-    limit,
     pageOffset,
     pageTableSettings,
+    pagination,
     selected,
     to
   }) => {
-    expect.assertions(4);
+    expect.hasAssertions();
 
     await functionsTestUtils.run(async () => {
       const columns: Columns = [
         {
           align: "left",
           field(row: unknown): string {
-            return String(row);
+            return cast.string(row);
           },
           label: "Sample label",
           name: "column1"
@@ -75,7 +74,7 @@ test.each([
         props: o.removeUndefinedKeys({
           columns,
           extraPageOffset,
-          limit,
+          pagination,
           rows: ["Sample row"],
           selected
         }),
@@ -84,30 +83,47 @@ test.each([
         })
       });
 
+      const emittedPagination: Writable<unknowns> = [];
+
+      const emittedSelected: Writable<unknowns> = [];
+
       const table = wrapper.findComponent(QTable);
 
       {
         await wait(1000);
-        expect(table.html()).toInclude(bodyCellSlot ?? "Sample row");
-      }
-
-      {
-        const expected = is.not.empty(pageOffset)
-          ? `height: calc(100vh - ${pageOffset} - ${extraPageOffset ?? "0px"});`
-          : "height: auto;";
-
-        expect(table.attributes("style")).toStrictEqual(expected);
+        expect(table.html()).toInclude(expectedHtml);
+        expect(table.attributes("style")).toStrictEqual(expectedStyle);
       }
 
       {
         const event = ["Sample row"];
 
+        emittedSelected.push([event]);
         table.vm.$emit("update:selected", event);
-        expect(wrapper.emitted("update:selected")).toStrictEqual([[event]]);
+        await wait(1000);
+        expect(wrapper.emitted("update:selected")).toStrictEqual(
+          emittedSelected
+        );
       }
 
       {
-        const event: VirtualScrollEvent = {
+        const event = [
+          o.removeUndefinedKeys({
+            descending: false,
+            limit: pagination.limit,
+            page: 1,
+            rowsPerPage: 0
+          })
+        ];
+
+        emittedPagination.push(event);
+        expect(wrapper.emitted("update:pagination")).toStrictEqual(
+          emittedPagination
+        );
+      }
+
+      {
+        const rawEvent: VirtualScrollEvent = {
           direction: "increase",
           from: 0,
           index: 0,
@@ -116,13 +132,47 @@ test.each([
           to
         };
 
-        const expected =
-          is.not.empty(limit) && to === limit - 1
-            ? [[limit + (pageTableSettings?.growPageBy ?? 10)]]
-            : undefined;
+        const event = [{ limit: expectedLimit }];
 
-        table.vm.$emit("virtual-scroll", event);
-        expect(wrapper.emitted("update:limit")).toStrictEqual(expected);
+        emittedPagination.push(event);
+        table.vm.$emit("virtual-scroll", rawEvent);
+        expect(wrapper.emitted("update:pagination")).toStrictEqual(
+          emittedPagination
+        );
+      }
+
+      {
+        const rawEvent: Pagination = { descending: true };
+
+        const event = [
+          {
+            descending: true,
+            limit: pagination.limit
+          }
+        ];
+
+        emittedPagination.push(event);
+        table.vm.$emit("update:pagination", rawEvent);
+        expect(wrapper.emitted("update:pagination")).toStrictEqual(
+          emittedPagination
+        );
+      }
+
+      {
+        const rawEvent: Pagination = { sortBy: "name" };
+
+        const event = [
+          {
+            limit: pagination.limit,
+            sortBy: "name"
+          }
+        ];
+
+        emittedPagination.push(event);
+        table.vm.$emit("update:pagination", rawEvent);
+        expect(wrapper.emitted("update:pagination")).toStrictEqual(
+          emittedPagination
+        );
       }
     });
   }
