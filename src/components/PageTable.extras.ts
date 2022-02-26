@@ -6,7 +6,7 @@ import type {
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import { createInjectable } from "./api";
@@ -58,6 +58,7 @@ export interface PageTableParentProps
 
 export interface PageTableOwnProps<T = unknown> {
   readonly columns?: Columns<T> | undefined;
+  readonly externalSorting?: booleanU;
   readonly extraPageOffset?: stringU;
   readonly pagination?: Pagination | undefined;
   readonly rows?: readonly T[] | undefined;

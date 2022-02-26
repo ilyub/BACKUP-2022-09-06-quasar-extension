@@ -2,7 +2,8 @@ import type { QVirtualScroll } from "quasar";
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as cast from "@skylib/functions/es/converters";
+import * as assert from "@skylib/functions/es/assertions";
+import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
@@ -17,11 +18,12 @@ beforeAll(functionsTestUtils.installFakeTimer);
 
 test.each([
   {
-    expectedHtml: "Sample row",
+    expectedHtml: "Sample row 1",
     expectedLimit: 25,
     expectedStyle: "height: calc(100vh - 10px - 0px);",
+    externalSorting: false,
     pageOffset: "10px",
-    pagination: { limit: 15 },
+    pagination: { limit: 15, sortBy: "name" },
     to: 14
   },
   {
@@ -29,10 +31,11 @@ test.each([
     expectedHtml: "Sample body cell slot",
     expectedLimit: 45,
     expectedStyle: "height: calc(100vh - 20px - 5px);",
+    externalSorting: true,
     extraPageOffset: "5px",
     pageOffset: "20px",
     pageTableSettings: { growPageBy: 20 },
-    pagination: { limit: 25 },
+    pagination: { descending: false, limit: 25, sortBy: "name" },
     selected: [],
     to: 24
   }
@@ -43,6 +46,7 @@ test.each([
     expectedHtml,
     expectedLimit,
     expectedStyle,
+    externalSorting,
     extraPageOffset,
     pageOffset,
     pageTableSettings,
@@ -56,8 +60,10 @@ test.each([
       const columns: Columns = [
         {
           align: "left",
-          field(row: unknown): string {
-            return cast.string(row);
+          field(row): string {
+            assert.object.of(row, { name: is.string }, {});
+
+            return row.name;
           },
           label: "Sample label",
           name: "column1"
@@ -73,9 +79,10 @@ test.each([
         ),
         props: o.removeUndefinedKeys({
           columns,
+          externalSorting,
           extraPageOffset,
           pagination,
-          rows: ["Sample row"],
+          rows: [{ name: "Sample row 1" }, { name: "Sample row 2" }],
           selected
         }),
         slots: o.removeUndefinedKeys({
@@ -96,7 +103,7 @@ test.each([
       }
 
       {
-        const event = ["Sample row"];
+        const event = [{ name: "Sample row 2" }];
 
         emittedSelected.push([event]);
         table.vm.$emit("update:selected", event);
@@ -112,7 +119,8 @@ test.each([
             descending: false,
             limit: pagination.limit,
             page: 1,
-            rowsPerPage: 0
+            rowsPerPage: 0,
+            sortBy: "name"
           })
         ];
 
@@ -132,7 +140,7 @@ test.each([
           to
         };
 
-        const event = [{ limit: expectedLimit }];
+        const event = [{ ...pagination, limit: expectedLimit }];
 
         emittedPagination.push(event);
         table.vm.$emit("virtual-scroll", rawEvent);
@@ -161,12 +169,7 @@ test.each([
       {
         const rawEvent: Pagination = { sortBy: "name" };
 
-        const event = [
-          {
-            limit: pagination.limit,
-            sortBy: "name"
-          }
-        ];
+        const event = [{ ...pagination, limit: pagination.limit }];
 
         emittedPagination.push(event);
         table.vm.$emit("update:pagination", rawEvent);

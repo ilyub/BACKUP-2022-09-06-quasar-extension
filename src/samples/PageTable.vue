@@ -21,7 +21,11 @@ export default defineComponent({
     "generic-page-table": genericPageTable<TableItem>()
   },
   setup() {
-    const pagination = ref<Pagination>({ limit: 10 });
+    const pagination = ref<Pagination>({
+      descending: false,
+      limit: 10,
+      sortBy: "name"
+    });
 
     return {
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
@@ -65,7 +69,6 @@ export default defineComponent({
     <generic-page-table
       v-model:pagination="pagination"
       v-model:selected="selected"
-      binary-state-sort
       :class="$style.pageTable"
       :columns="pageTableColumns"
       flat
