@@ -8,13 +8,13 @@
 
 - [SelectOption](../interfaces/components_Select_extras.SelectOption.md)
 - [SelectOwnProps](../interfaces/components_Select_extras.SelectOwnProps.md)
+- [SelectParentProps](../interfaces/components_Select_extras.SelectParentProps.md)
 - [SelectProps](../interfaces/components_Select_extras.SelectProps.md)
 
 ### Type aliases
 
 - [GlobalSelect](components_Select_extras.md#globalselect)
 - [SelectOptions](components_Select_extras.md#selectoptions)
-- [SelectParentProps](components_Select_extras.md#selectparentprops)
 - [SelectSlots](components_Select_extras.md#selectslots)
 
 ### Functions
@@ -48,12 +48,6 @@ ___
 
 ___
 
-### SelectParentProps
-
-Ƭ **SelectParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QSelectProps`, ``"modelValue"`` \| ``"options"``\>
-
-___
-
 ### SelectSlots
 
 Ƭ **SelectSlots**: `QSelectSlots`
@@ -62,7 +56,7 @@ ___
 
 ### isSelectOption
 
-▸ `Const` **isSelectOption**(`value`): value is SelectOption<unknown\>
+▸ **isSelectOption**(`value`): value is SelectOption<unknown\>
 
 #### Parameters
 
@@ -78,7 +72,7 @@ ___
 
 ### isSelectOptions
 
-▸ `Const` **isSelectOptions**(`value`): value is readonly SelectOption<unknown\>[]
+▸ **isSelectOptions**(`value`): value is readonly SelectOption<unknown\>[]
 
 #### Parameters
 

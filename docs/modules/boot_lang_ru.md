@@ -12,4 +12,4 @@
 
 ### ru
 
-• **ru**: `Definitions`
+• `Const` **ru**: `Definitions`

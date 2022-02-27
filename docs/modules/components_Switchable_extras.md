@@ -45,7 +45,7 @@ ___
 
 ### TransitionVO
 
-• **TransitionVO**: `ValidationObject`<[`Transition`](components_Switchable_extras.md#transition)\>
+• `Const` **TransitionVO**: `ValidationObject`<[`Transition`](components_Switchable_extras.md#transition)\>
 
 ## Functions
 
@@ -79,7 +79,7 @@ ___
 
 ### isTransition
 
-▸ `Const` **isTransition**(`value`): value is Transition
+▸ **isTransition**(`value`): value is Transition
 
 #### Parameters
 

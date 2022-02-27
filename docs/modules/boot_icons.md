@@ -12,4 +12,4 @@
 
 ### icons
 
-• **icons**: `Facade`
+• `Const` **icons**: `Facade`

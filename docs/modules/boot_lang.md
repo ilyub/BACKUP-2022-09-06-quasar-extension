@@ -12,4 +12,4 @@
 
 ### definitions
 
-• **definitions**: `ReadonlyRecord`<`LocaleName`, `Definitions`\>
+• `Const` **definitions**: `ReadonlyRecord`<`LocaleName`, `Definitions`\>

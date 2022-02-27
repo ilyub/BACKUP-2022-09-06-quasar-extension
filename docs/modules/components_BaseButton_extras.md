@@ -19,13 +19,13 @@
 
 ### BaseButtonParentProps
 
-Ƭ **BaseButtonParentProps**: `QBtnProps`
+Ƭ **BaseButtonParentProps**: `Readonly`<`QBtnProps`\>
 
 ___
 
 ### BaseButtonSlots
 
-Ƭ **BaseButtonSlots**: `QBtnSlots`
+Ƭ **BaseButtonSlots**: `Readonly`<`QBtnSlots`\>
 
 ___
 

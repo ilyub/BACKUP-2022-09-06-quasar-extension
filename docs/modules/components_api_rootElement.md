@@ -33,13 +33,13 @@
 
 ### RootElementPropVO
 
-• **RootElementPropVO**: `ValidationObject`<[`RootElementProp`](components_api_rootElement.md#rootelementprop)\>
+• `Const` **RootElementPropVO**: `ValidationObject`<[`RootElementProp`](components_api_rootElement.md#rootelementprop)\>
 
 ___
 
 ### rootElementPropsOptions
 
-• **rootElementPropsOptions**: `Object`
+• `Const` **rootElementPropsOptions**: `Object`
 
 #### Type declaration
 
@@ -51,7 +51,7 @@ ___
 
 ### isRootElementProp
 
-▸ `Const` **isRootElementProp**(`value`): value is RootElementProp
+▸ **isRootElementProp**(`value`): value is RootElementProp
 
 #### Parameters
 
@@ -67,7 +67,7 @@ ___
 
 ### isRootElementPropU
 
-▸ `Const` **isRootElementPropU**(`value`): value is undefined \| RootElementProp
+▸ **isRootElementPropU**(`value`): value is undefined \| RootElementProp
 
 #### Parameters
 

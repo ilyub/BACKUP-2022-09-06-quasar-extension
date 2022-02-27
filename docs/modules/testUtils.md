@@ -12,6 +12,7 @@
 ### Functions
 
 - [consoleWarnMock](testUtils.md#consolewarnmock)
+- [findComponentFactory](testUtils.md#findcomponentfactory)
 - [globalMountOptions](testUtils.md#globalmountoptions)
 - [htmlToEqual](testUtils.md#htmltoequal)
 - [jestReset](testUtils.md#jestreset)
@@ -57,6 +58,39 @@ Creates console.warn mock.
 `void`
 
 Mock.
+
+___
+
+### findComponentFactory
+
+▸ **findComponentFactory**(`prefix`, `wrapper`): (`ref`: `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\>) => `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+Finds component factory.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `prefix` | `string` | Prefix. |
+| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+
+#### Returns
+
+`fn`
+
+Finds component function.
+
+▸ (`ref`): `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ref` | `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\> |
+
+##### Returns
+
+`VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
 
 ___
 

@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`IconPickerParentProps`](../modules/components_IconPicker_extras.md#iconpickerparentprops)
+- [`IconPickerParentProps`](components_IconPicker_extras.IconPickerParentProps.md)
 
 - [`IconPickerOwnProps`](components_IconPicker_extras.IconPickerOwnProps.md)
 
@@ -82,7 +82,7 @@ ___
 
 #### Inherited from
 
-IconPickerParentProps.tooltip
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[tooltip](components_IconPicker_extras.IconPickerParentProps.md#tooltip)
 
 ___
 
@@ -92,4 +92,4 @@ ___
 
 #### Inherited from
 
-IconPickerParentProps.tooltipDirection
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[tooltipDirection](components_IconPicker_extras.IconPickerParentProps.md#tooltipdirection)

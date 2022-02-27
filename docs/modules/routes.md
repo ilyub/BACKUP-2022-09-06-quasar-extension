@@ -12,4 +12,4 @@
 
 ### routes
 
-• **routes**: readonly `RouteRecordRaw`[]
+• `Const` **routes**: readonly `RouteRecordRaw`[]

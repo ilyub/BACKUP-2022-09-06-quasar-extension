@@ -8,18 +8,19 @@
 
 - [BodyCellSlotData](../interfaces/components_PageTable_extras.BodyCellSlotData.md)
 - [Column](../interfaces/components_PageTable_extras.Column.md)
+- [Field](../interfaces/components_PageTable_extras.Field.md)
 - [PageTableOwnProps](../interfaces/components_PageTable_extras.PageTableOwnProps.md)
+- [PageTableParentProps](../interfaces/components_PageTable_extras.PageTableParentProps.md)
 - [PageTableProps](../interfaces/components_PageTable_extras.PageTableProps.md)
 - [PageTableSettings](../interfaces/components_PageTable_extras.PageTableSettings.md)
 - [PageTableSlots](../interfaces/components_PageTable_extras.PageTableSlots.md)
+- [Pagination](../interfaces/components_PageTable_extras.Pagination.md)
 
 ### Type aliases
 
 - [Align](components_PageTable_extras.md#align)
 - [Columns](components_PageTable_extras.md#columns)
-- [Field](components_PageTable_extras.md#field)
 - [GlobalPageTable](components_PageTable_extras.md#globalpagetable)
-- [PageTableParentProps](components_PageTable_extras.md#pagetableparentprops)
 
 ### Variables
 
@@ -29,10 +30,10 @@
 
 - [injectPageTableSettings](components_PageTable_extras.md#injectpagetablesettings)
 - [isAlign](components_PageTable_extras.md#isalign)
-- [isBodyCellSlotDataFactory](components_PageTable_extras.md#isbodycellslotdatafactory)
 - [isColumnFactory](components_PageTable_extras.md#iscolumnfactory)
 - [isColumnsFactory](components_PageTable_extras.md#iscolumnsfactory)
 - [isFieldFactory](components_PageTable_extras.md#isfieldfactory)
+- [isPagination](components_PageTable_extras.md#ispagination)
 - [providePageTableSettings](components_PageTable_extras.md#providepagetablesettings)
 - [testPageTableSettings](components_PageTable_extras.md#testpagetablesettings)
 
@@ -56,32 +57,6 @@ ___
 
 ___
 
-### Field
-
-Ƭ **Field**<`T`\>: (`row`: `T`) => `string`
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `unknown` |
-
-#### Type declaration
-
-▸ (`row`): `string`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `row` | `T` |
-
-##### Returns
-
-`string`
-
-___
-
 ### GlobalPageTable
 
 Ƭ **GlobalPageTable**<`T`\>: `GlobalComponentConstructor`<[`PageTableProps`](../interfaces/components_PageTable_extras.PageTableProps.md)<`T`\>, [`PageTableSlots`](../interfaces/components_PageTable_extras.PageTableSlots.md)<`T`\>\>
@@ -92,17 +67,11 @@ ___
 | :------ | :------ |
 | `T` | `unknown` |
 
-___
-
-### PageTableParentProps
-
-Ƭ **PageTableParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QTableProps`, ``"columns"`` \| ``"rows"`` \| ``"selected"``\>
-
 ## Variables
 
 ### AlignVO
 
-• **AlignVO**: `ValidationObject`<[`Align`](components_PageTable_extras.md#align)\>
+• `Const` **AlignVO**: `ValidationObject`<[`Align`](components_PageTable_extras.md#align)\>
 
 ## Functions
 
@@ -122,7 +91,7 @@ ___
 
 ### isAlign
 
-▸ `Const` **isAlign**(`value`): value is Align
+▸ **isAlign**(`value`): value is Align
 
 #### Parameters
 
@@ -133,32 +102,6 @@ ___
 #### Returns
 
 value is Align
-
-___
-
-### isBodyCellSlotDataFactory
-
-▸ **isBodyCellSlotDataFactory**<`T`\>(`guard`): `is.Guard`<[`BodyCellSlotData`](../interfaces/components_PageTable_extras.BodyCellSlotData.md)<`T`\>\>
-
-Creates guard for BodyCellSlotData\<T\> type.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `unknown` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `guard` | `Guard`<`T`\> | Guard for type T. |
-
-#### Returns
-
-`is.Guard`<[`BodyCellSlotData`](../interfaces/components_PageTable_extras.BodyCellSlotData.md)<`T`\>\>
-
-Guard for BodyCellSlotData\<T\> type.
 
 ___
 
@@ -204,7 +147,7 @@ ___
 
 ### isFieldFactory
 
-▸ **isFieldFactory**<`T`\>(): `is.Guard`<[`Field`](components_PageTable_extras.md#field)<`T`\>\>
+▸ **isFieldFactory**<`T`\>(): `is.Guard`<[`Field`](../interfaces/components_PageTable_extras.Field.md)<`T`\>\>
 
 Creates guard for Field\<T\> type.
 
@@ -216,9 +159,25 @@ Creates guard for Field\<T\> type.
 
 #### Returns
 
-`is.Guard`<[`Field`](components_PageTable_extras.md#field)<`T`\>\>
+`is.Guard`<[`Field`](../interfaces/components_PageTable_extras.Field.md)<`T`\>\>
 
 Guard for Field\<T\> type.
+
+___
+
+### isPagination
+
+▸ **isPagination**(`value`): value is Pagination
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is Pagination
 
 ___
 

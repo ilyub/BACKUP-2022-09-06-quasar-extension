@@ -62,7 +62,7 @@ ___
 
 ### isGroupItem
 
-▸ `Const` **isGroupItem**(`value`): value is GroupItem<string\>
+▸ **isGroupItem**(`value`): value is GroupItem<string\>
 
 #### Parameters
 
@@ -78,7 +78,7 @@ ___
 
 ### isGroupItems
 
-▸ `Const` **isGroupItems**(`value`): value is readonly GroupItem<string\>[]
+▸ **isGroupItems**(`value`): value is readonly GroupItem<string\>[]
 
 #### Parameters
 

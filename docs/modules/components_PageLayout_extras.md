@@ -34,7 +34,7 @@
 
 ### icons
 
-• **icons**: `Icons`<``"close"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<``"close"``\> = `baseIcons`
 
 ## Functions
 

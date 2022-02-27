@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`ToggleParentProps`](../modules/components_Toggle_extras.md#toggleparentprops)
+- [`ToggleParentProps`](components_Toggle_extras.ToggleParentProps.md)
 
 - [`ToggleOwnProps`](components_Toggle_extras.ToggleOwnProps.md)
 

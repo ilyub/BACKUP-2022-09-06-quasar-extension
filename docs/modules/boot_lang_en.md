@@ -12,4 +12,4 @@
 
 ### en
 
-• **en**: `Definitions`
+• `Const` **en**: `Definitions`

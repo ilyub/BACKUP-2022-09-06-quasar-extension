@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- [`OptionGroupParentProps`](../modules/components_OptionGroup_extras.md#optiongroupparentprops)
+- [`OptionGroupParentProps`](components_OptionGroup_extras.OptionGroupParentProps.md)
 
 - [`OptionGroupOwnProps`](components_OptionGroup_extras.OptionGroupOwnProps.md)<`T`\>
 

@@ -8,13 +8,13 @@
 
 - [OptionGroupOption](../interfaces/components_OptionGroup_extras.OptionGroupOption.md)
 - [OptionGroupOwnProps](../interfaces/components_OptionGroup_extras.OptionGroupOwnProps.md)
+- [OptionGroupParentProps](../interfaces/components_OptionGroup_extras.OptionGroupParentProps.md)
 - [OptionGroupProps](../interfaces/components_OptionGroup_extras.OptionGroupProps.md)
 
 ### Type aliases
 
 - [GlobalOptionGroup](components_OptionGroup_extras.md#globaloptiongroup)
 - [OptionGroupOptions](components_OptionGroup_extras.md#optiongroupoptions)
-- [OptionGroupParentProps](components_OptionGroup_extras.md#optiongroupparentprops)
 - [OptionGroupSlots](components_OptionGroup_extras.md#optiongroupslots)
 
 ### Functions
@@ -48,12 +48,6 @@ ___
 
 ___
 
-### OptionGroupParentProps
-
-Ƭ **OptionGroupParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QOptionGroupProps`, ``"inline"`` \| ``"modelValue"`` \| ``"options"``\>
-
-___
-
 ### OptionGroupSlots
 
 Ƭ **OptionGroupSlots**: `QOptionGroupProps`
@@ -62,7 +56,7 @@ ___
 
 ### isOptionGroupOption
 
-▸ `Const` **isOptionGroupOption**(`value`): value is OptionGroupOption<unknown\>
+▸ **isOptionGroupOption**(`value`): value is OptionGroupOption<unknown\>
 
 #### Parameters
 
@@ -78,7 +72,7 @@ ___
 
 ### isOptionGroupOptions
 
-▸ `Const` **isOptionGroupOptions**(`value`): value is readonly OptionGroupOption<unknown\>[]
+▸ **isOptionGroupOptions**(`value`): value is readonly OptionGroupOption<unknown\>[]
 
 #### Parameters
 

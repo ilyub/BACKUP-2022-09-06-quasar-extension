@@ -49,4 +49,4 @@ ___
 
 ### move
 
-• `Optional` `Readonly` **move**: [`Move`](../modules/components_Sortable_extras.md#move)
+• `Optional` `Readonly` **move**: [`Move`](components_Sortable_extras.Move.md)

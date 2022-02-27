@@ -12,4 +12,4 @@
 
 ### default
 
-• **default**: `DefineComponent`<`object`, `object`, `unknown`\>
+• `Const` **default**: `DefineComponent`<`object`, `object`, `unknown`\>

@@ -7,12 +7,12 @@
 ### Interfaces
 
 - [InputOwnProps](../interfaces/components_Input_extras.InputOwnProps.md)
+- [InputParentProps](../interfaces/components_Input_extras.InputParentProps.md)
 - [InputProps](../interfaces/components_Input_extras.InputProps.md)
 
 ### Type aliases
 
 - [GlobalInput](components_Input_extras.md#globalinput)
-- [InputParentProps](components_Input_extras.md#inputparentprops)
 - [InputSlots](components_Input_extras.md#inputslots)
 
 ## Type aliases
@@ -20,12 +20,6 @@
 ### GlobalInput
 
 Ƭ **GlobalInput**: `GlobalComponentConstructor`<[`InputProps`](../interfaces/components_Input_extras.InputProps.md), [`InputSlots`](components_Input_extras.md#inputslots)\>
-
-___
-
-### InputParentProps
-
-Ƭ **InputParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QInputProps`, ``"modelValue"``\>
 
 ___
 

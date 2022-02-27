@@ -21,8 +21,9 @@
 ### Properties
 
 - [columns](components_PageTable_extras.PageTableOwnProps.md#columns)
+- [externalSorting](components_PageTable_extras.PageTableOwnProps.md#externalsorting)
 - [extraPageOffset](components_PageTable_extras.PageTableOwnProps.md#extrapageoffset)
-- [limit](components_PageTable_extras.PageTableOwnProps.md#limit)
+- [pagination](components_PageTable_extras.PageTableOwnProps.md#pagination)
 - [rows](components_PageTable_extras.PageTableOwnProps.md#rows)
 - [selected](components_PageTable_extras.PageTableOwnProps.md#selected)
 
@@ -34,15 +35,21 @@
 
 ___
 
+### externalSorting
+
+• `Optional` `Readonly` **externalSorting**: `booleanU`
+
+___
+
 ### extraPageOffset
 
 • `Optional` `Readonly` **extraPageOffset**: `stringU`
 
 ___
 
-### limit
+### pagination
 
-• `Optional` `Readonly` **limit**: `numberU`
+• `Optional` `Readonly` **pagination**: [`Pagination`](components_PageTable_extras.Pagination.md)
 
 ___
 

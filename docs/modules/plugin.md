@@ -12,4 +12,4 @@
 
 ### plugin
 
-• **plugin**: `VuePlugin`
+• `Const` **plugin**: `VuePlugin`

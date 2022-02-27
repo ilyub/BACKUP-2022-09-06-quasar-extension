@@ -7,12 +7,12 @@
 ### Interfaces
 
 - [NumericInputOwnProps](../interfaces/components_NumericInput_extras.NumericInputOwnProps.md)
+- [NumericInputParentProps](../interfaces/components_NumericInput_extras.NumericInputParentProps.md)
 - [NumericInputProps](../interfaces/components_NumericInput_extras.NumericInputProps.md)
 
 ### Type aliases
 
 - [GlobalNumericInput](components_NumericInput_extras.md#globalnumericinput)
-- [NumericInputParentProps](components_NumericInput_extras.md#numericinputparentprops)
 - [NumericInputSlots](components_NumericInput_extras.md#numericinputslots)
 
 ### Variables
@@ -27,12 +27,6 @@
 
 ___
 
-### NumericInputParentProps
-
-Ƭ **NumericInputParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QInputProps`, ``"modelValue"``\>
-
-___
-
 ### NumericInputSlots
 
 Ƭ **NumericInputSlots**: `QInputSlots`
@@ -41,4 +35,4 @@ ___
 
 ### icons
 
-• **icons**: `Icons`<``"chevronLeftCircle"`` \| ``"chevronRightCircle"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<``"chevronLeftCircle"`` \| ``"chevronRightCircle"``\> = `baseIcons`

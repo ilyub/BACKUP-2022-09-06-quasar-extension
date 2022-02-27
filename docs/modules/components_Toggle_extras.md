@@ -7,12 +7,12 @@
 ### Interfaces
 
 - [ToggleOwnProps](../interfaces/components_Toggle_extras.ToggleOwnProps.md)
+- [ToggleParentProps](../interfaces/components_Toggle_extras.ToggleParentProps.md)
 - [ToggleProps](../interfaces/components_Toggle_extras.ToggleProps.md)
 
 ### Type aliases
 
 - [GlobalToggle](components_Toggle_extras.md#globaltoggle)
-- [ToggleParentProps](components_Toggle_extras.md#toggleparentprops)
 - [ToggleSlots](components_Toggle_extras.md#toggleslots)
 
 ## Type aliases
@@ -20,12 +20,6 @@
 ### GlobalToggle
 
 Ƭ **GlobalToggle**: `GlobalComponentConstructor`<[`ToggleProps`](../interfaces/components_Toggle_extras.ToggleProps.md), [`ToggleSlots`](components_Toggle_extras.md#toggleslots)\>
-
-___
-
-### ToggleParentProps
-
-Ƭ **ToggleParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QToggleProps`, ``"disable"`` \| ``"modelValue"``\>
 
 ___
 

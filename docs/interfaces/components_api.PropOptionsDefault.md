@@ -16,6 +16,8 @@
 
   ↳ **`PropOptionsDefault`**
 
+  ↳↳ [`PropOptionsBoolean`](components_api.PropOptionsBoolean.md)
+
 ## Table of contents
 
 ### Properties

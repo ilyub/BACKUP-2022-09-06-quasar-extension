@@ -32,13 +32,13 @@
 
 ### DirectionVO
 
-• **DirectionVO**: `ValidationObject`<[`Direction`](components_extras_QVirtualScroll.md#direction)\>
+• `Const` **DirectionVO**: `ValidationObject`<[`Direction`](components_extras_QVirtualScroll.md#direction)\>
 
 ## Functions
 
 ### isDirection
 
-▸ `Const` **isDirection**(`value`): value is Direction
+▸ **isDirection**(`value`): value is Direction
 
 #### Parameters
 
@@ -74,7 +74,7 @@ ___
 
 ### isVirtualScrollEvent
 
-▸ `Const` **isVirtualScrollEvent**(`value`): value is VirtualScrollEvent
+▸ **isVirtualScrollEvent**(`value`): value is VirtualScrollEvent
 
 #### Parameters
 

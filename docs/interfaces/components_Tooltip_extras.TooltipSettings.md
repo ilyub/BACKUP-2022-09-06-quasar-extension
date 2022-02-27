@@ -22,7 +22,7 @@ ___
 
 ### fontSize
 
-• `Optional` `Readonly` **fontSize**: `stringU`
+• `Readonly` **fontSize**: `stringU`
 
 ___
 

@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`DatetimePickerParentProps`](../modules/components_DatetimePicker_extras.md#datetimepickerparentprops)
+- [`DatetimePickerParentProps`](components_DatetimePicker_extras.DatetimePickerParentProps.md)
 
 - [`DatetimePickerOwnProps`](components_DatetimePicker_extras.DatetimePickerOwnProps.md)
 

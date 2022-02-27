@@ -14,12 +14,12 @@
 
 ### default
 
-▸ `Readonly` **default**(): readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+▸ `Readonly` **default**(): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Default slot.
 
 #### Returns
 
-readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Node.

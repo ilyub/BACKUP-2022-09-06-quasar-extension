@@ -26,7 +26,7 @@
 
 ### body-cell
 
-▸ `Readonly` **body-cell**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+▸ `Readonly` **body-cell**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Body cell slot.
 
@@ -38,6 +38,6 @@ Body cell slot.
 
 #### Returns
 
-readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Node.

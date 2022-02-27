@@ -7,12 +7,12 @@
 ### Interfaces
 
 - [KnobOwnProps](../interfaces/components_Knob_extras.KnobOwnProps.md)
+- [KnobParentProps](../interfaces/components_Knob_extras.KnobParentProps.md)
 - [KnobProps](../interfaces/components_Knob_extras.KnobProps.md)
 
 ### Type aliases
 
 - [GlobalKnob](components_Knob_extras.md#globalknob)
-- [KnobParentProps](components_Knob_extras.md#knobparentprops)
 - [KnobSlots](components_Knob_extras.md#knobslots)
 
 ## Type aliases
@@ -20,12 +20,6 @@
 ### GlobalKnob
 
 Ƭ **GlobalKnob**: `GlobalComponentConstructor`<[`KnobOwnProps`](../interfaces/components_Knob_extras.KnobOwnProps.md), [`KnobSlots`](components_Knob_extras.md#knobslots)\>
-
-___
-
-### KnobParentProps
-
-Ƭ **KnobParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<`QKnobProps`, ``"disable"`` \| ``"modelValue"``\>
 
 ___
 

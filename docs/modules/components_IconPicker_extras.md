@@ -7,13 +7,13 @@
 ### Interfaces
 
 - [IconPickerOwnProps](../interfaces/components_IconPicker_extras.IconPickerOwnProps.md)
+- [IconPickerParentProps](../interfaces/components_IconPicker_extras.IconPickerParentProps.md)
 - [IconPickerProps](../interfaces/components_IconPicker_extras.IconPickerProps.md)
 - [IconPickerSettings](../interfaces/components_IconPicker_extras.IconPickerSettings.md)
 
 ### Type aliases
 
 - [GlobalIconPicker](components_IconPicker_extras.md#globaliconpicker)
-- [IconPickerParentProps](components_IconPicker_extras.md#iconpickerparentprops)
 - [IconPickerSlots](components_IconPicker_extras.md#iconpickerslots)
 
 ### Variables
@@ -35,12 +35,6 @@
 
 ___
 
-### IconPickerParentProps
-
-Ƭ **IconPickerParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<[`IconButtonProps`](../interfaces/components_IconButton_extras.IconButtonProps.md), ``"modelValue"``\>
-
-___
-
 ### IconPickerSlots
 
 Ƭ **IconPickerSlots**: [`IconButtonSlots`](components_IconButton_extras.md#iconbuttonslots)
@@ -49,13 +43,13 @@ ___
 
 ### icons
 
-• **icons**: `Icons`<``"chevronLeft"`` \| ``"chevronRight"`` \| ``"close"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<``"chevronLeft"`` \| ``"chevronRight"`` \| ``"close"``\> = `baseIcons`
 
 ___
 
 ### lang
 
-• **lang**: `DictionaryAndWords`<``"IconPicker"`` \| ``"Of"``\> = `baseLang`
+• `Const` **lang**: `DictionaryAndWords`<``"IconPicker"`` \| ``"Of"``\> = `baseLang`
 
 ## Functions
 

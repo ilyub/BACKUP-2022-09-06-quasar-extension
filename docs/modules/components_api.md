@@ -12,6 +12,7 @@
 
 - [Injectable](../interfaces/components_api.Injectable.md)
 - [PropOptions](../interfaces/components_api.PropOptions.md)
+- [PropOptionsBoolean](../interfaces/components_api.PropOptionsBoolean.md)
 - [PropOptionsDefault](../interfaces/components_api.PropOptionsDefault.md)
 - [PropOptionsRequired](../interfaces/components_api.PropOptionsRequired.md)
 
@@ -19,12 +20,11 @@
 
 - [ExtendQuasarProps](components_api.md#extendquasarprops)
 - [LooseRequired](components_api.md#looserequired)
-- [PropOptionsBoolean](components_api.md#propoptionsboolean)
-- [ReadonlyOmit](components_api.md#readonlyomit)
 - [SetupProps](components_api.md#setupprops)
 
 ### Functions
 
+- [classRef](components_api.md#classref)
 - [createInjectable](components_api.md#createinjectable)
 - [injectRequire](components_api.md#injectrequire)
 - [propOptions](components_api.md#propoptions)
@@ -60,25 +60,6 @@ ___
 
 ___
 
-### PropOptionsBoolean
-
-Ƭ **PropOptionsBoolean**: [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`boolean`\>
-
-___
-
-### ReadonlyOmit
-
-Ƭ **ReadonlyOmit**<`T`, `K`\>: `Readonly`<`Omit`<`T`, `K`\>\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
-| `K` | extends `PropertyKey` |
-
-___
-
 ### SetupProps
 
 Ƭ **SetupProps**<`T`\>: `Readonly`<[`LooseRequired`](components_api.md#looserequired)<`Readonly`<`ExtractPropTypes`<`T`\>\>\>\>
@@ -90,6 +71,32 @@ ___
 | `T` | extends `object` |
 
 ## Functions
+
+### classRef
+
+▸ **classRef**<`T`\>(`value`): `Ref`<`T`\>
+
+Returns Vue reference compatible with non-public class methods.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+
+#### Returns
+
+`Ref`<`T`\>
+
+Vue reference.
+
+___
 
 ### createInjectable
 
@@ -171,7 +178,7 @@ ___
 
 ### propOptionsBoolean
 
-▸ **propOptionsBoolean**(`defVal?`): [`PropOptionsBoolean`](components_api.md#propoptionsboolean)
+▸ **propOptionsBoolean**(`defVal?`): [`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
 
 Creates Vue property.
 
@@ -183,7 +190,7 @@ Creates Vue property.
 
 #### Returns
 
-[`PropOptionsBoolean`](components_api.md#propoptionsboolean)
+[`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
 
 Vue property.
 

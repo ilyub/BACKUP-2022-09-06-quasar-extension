@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [ChangeLanguageAction](../interfaces/components_LanguagePicker_extras.ChangeLanguageAction.md)
 - [LanguagePickerItem](../interfaces/components_LanguagePicker_extras.LanguagePickerItem.md)
 - [LanguagePickerOptions](../interfaces/components_LanguagePicker_extras.LanguagePickerOptions.md)
 - [LanguagePickerOwnProps](../interfaces/components_LanguagePicker_extras.LanguagePickerOwnProps.md)
@@ -14,7 +15,6 @@
 
 ### Type aliases
 
-- [ChangeLanguageAction](components_LanguagePicker_extras.md#changelanguageaction)
 - [GlobalLanguagePicker](components_LanguagePicker_extras.md#globallanguagepicker)
 - [LanguagePickerItems](components_LanguagePicker_extras.md#languagepickeritems)
 - [LanguagePickerParentProps](components_LanguagePicker_extras.md#languagepickerparentprops)
@@ -27,26 +27,6 @@
 - [testLanguagePickerSettings](components_LanguagePicker_extras.md#testlanguagepickersettings)
 
 ## Type aliases
-
-### ChangeLanguageAction
-
-Ƭ **ChangeLanguageAction**: (`language`: `LocaleName`) => `void`
-
-#### Type declaration
-
-▸ (`language`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `language` | `LocaleName` |
-
-##### Returns
-
-`void`
-
-___
 
 ### GlobalLanguagePicker
 

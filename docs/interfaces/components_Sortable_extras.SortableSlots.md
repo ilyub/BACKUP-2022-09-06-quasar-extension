@@ -22,13 +22,13 @@
 
 ### footer
 
-▸ `Readonly` **footer**(): readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+▸ `Readonly` **footer**(): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Footer slot.
 
 #### Returns
 
-readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Node.
 
@@ -36,13 +36,13 @@ ___
 
 ### header
 
-▸ `Readonly` **header**(): readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+▸ `Readonly` **header**(): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Header slot.
 
 #### Returns
 
-readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Node.
 
@@ -50,7 +50,7 @@ ___
 
 ### item
 
-▸ `Readonly` **item**(`data`): readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+▸ `Readonly` **item**(`data`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Item slot.
 
@@ -62,6 +62,6 @@ Item slot.
 
 #### Returns
 
-readonly `VNode`<`RendererNode`, `RendererElement`, { [key: string]: `any`;  }\>[]
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Node.

@@ -19,7 +19,7 @@
 
 ### DroppableParentProps
 
-Ƭ **DroppableParentProps**: [`ReadonlyOmit`](components_api.md#readonlyomit)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), ``"group"`` \| ``"itemKey"`` \| ``"modelValue"``\>
+Ƭ **DroppableParentProps**: `Omit`<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), ``"group"`` \| ``"itemKey"`` \| ``"modelValue"``\>
 
 ___
 

@@ -8,6 +8,7 @@
 
 - [Elem](../interfaces/components_Sortable_extras.Elem.md)
 - [ItemSlotData](../interfaces/components_Sortable_extras.ItemSlotData.md)
+- [Move](../interfaces/components_Sortable_extras.Move.md)
 - [MoveData](../interfaces/components_Sortable_extras.MoveData.md)
 - [SortableProps](../interfaces/components_Sortable_extras.SortableProps.md)
 - [SortableSettings](../interfaces/components_Sortable_extras.SortableSettings.md)
@@ -17,7 +18,6 @@
 
 - [Elems](components_Sortable_extras.md#elems)
 - [GlobalSortable](components_Sortable_extras.md#globalsortable)
-- [Move](components_Sortable_extras.md#move)
 
 ### Functions
 
@@ -43,29 +43,6 @@ ___
 ### GlobalSortable
 
 Ƭ **GlobalSortable**: `GlobalComponentConstructor`<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)\>
-
-___
-
-### Move
-
-Ƭ **Move**: (`destId`: `stringU`, `destGroup`: `string`, `sourceId`: `string`, `sourceGroup`: `string`) => `boolean`
-
-#### Type declaration
-
-▸ (`destId`, `destGroup`, `sourceId`, `sourceGroup`): `boolean`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `destId` | `stringU` |
-| `destGroup` | `string` |
-| `sourceId` | `string` |
-| `sourceGroup` | `string` |
-
-##### Returns
-
-`boolean`
 
 ## Functions
 
@@ -107,7 +84,7 @@ ___
 
 ### isElem
 
-▸ `Const` **isElem**(`value`): value is Elem
+▸ **isElem**(`value`): value is Elem
 
 #### Parameters
 
@@ -123,7 +100,7 @@ ___
 
 ### isElems
 
-▸ `Const` **isElems**(`value`): value is readonly Elem[]
+▸ **isElems**(`value`): value is readonly Elem[]
 
 #### Parameters
 
@@ -139,7 +116,7 @@ ___
 
 ### isHtmlElement
 
-▸ `Const` **isHtmlElement**(`value`): value is HTMLElement
+▸ **isHtmlElement**(`value`): value is HTMLElement
 
 #### Parameters
 
@@ -155,7 +132,7 @@ ___
 
 ### isMove
 
-▸ `Const` **isMove**(`value`): value is Move
+▸ **isMove**(`value`): value is Move
 
 #### Parameters
 
@@ -171,7 +148,7 @@ ___
 
 ### isMoveData
 
-▸ `Const` **isMoveData**(`value`): value is MoveData
+▸ **isMoveData**(`value`): value is MoveData
 
 #### Parameters
 
@@ -187,7 +164,7 @@ ___
 
 ### isMoveU
 
-▸ `Const` **isMoveU**(`value`): value is undefined \| Move
+▸ **isMoveU**(`value`): value is undefined \| Move
 
 #### Parameters
 

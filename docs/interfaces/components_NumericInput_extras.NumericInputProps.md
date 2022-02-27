@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`NumericInputParentProps`](../modules/components_NumericInput_extras.md#numericinputparentprops)
+- [`NumericInputParentProps`](components_NumericInput_extras.NumericInputParentProps.md)
 
 - [`NumericInputOwnProps`](components_NumericInput_extras.NumericInputOwnProps.md)
 

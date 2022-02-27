@@ -12,4 +12,4 @@
 
 ### components
 
-• **components**: readonly `DefineComponent`<`object`, `object`, `unknown`, `ComputedOptions`, `MethodOptions`, `ComponentOptionsMixin`, `ComponentOptionsMixin`, {}, `string`, `PublicProps`, `object` & {}, {}\>[]
+• `Const` **components**: readonly `DefineComponent`<`object`, `object`, `unknown`, `ComputedOptions`, `MethodOptions`, `ComponentOptionsMixin`, `ComponentOptionsMixin`, {}, `string`, `PublicProps`, `object` & {}, {}\>[]

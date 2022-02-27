@@ -36,7 +36,7 @@
 
 ### Direction
 
-Ƭ **Direction**: ``"down"`` \| ``"down-left"`` \| ``"down-right"`` \| ``"left"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"right"`` \| ``"right-down"`` \| ``"right-up"`` \| ``"up"`` \| ``"up-left"`` \| ``"up-right"``
+Ƭ **Direction**: ``"down-left"`` \| ``"down-right"`` \| ``"down"`` \| ``"left-down"`` \| ``"left-up"`` \| ``"left"`` \| ``"right-down"`` \| ``"right-up"`` \| ``"right"`` \| ``"up-left"`` \| ``"up-right"`` \| ``"up"``
 
 ___
 
@@ -60,13 +60,13 @@ ___
 
 ### DirectionVO
 
-• **DirectionVO**: `ValidationObject`<[`Direction`](components_Tooltip_extras.md#direction)\>
+• `Const` **DirectionVO**: `ValidationObject`<[`Direction`](components_Tooltip_extras.md#direction)\>
 
 ___
 
 ### disabled
 
-• **disabled**: `ComputedRef`<`boolean`\>
+• `Const` **disabled**: `ComputedRef`<`boolean`\>
 
 ## Functions
 
@@ -86,7 +86,7 @@ ___
 
 ### isDirection
 
-▸ `Const` **isDirection**(`value`): value is Direction
+▸ **isDirection**(`value`): value is Direction
 
 #### Parameters
 
@@ -102,7 +102,7 @@ ___
 
 ### isDirectionU
 
-▸ `Const` **isDirectionU**(`value`): value is undefined \| Direction
+▸ **isDirectionU**(`value`): value is undefined \| Direction
 
 #### Parameters
 

@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- [`PageTableParentProps`](../modules/components_PageTable_extras.md#pagetableparentprops)
+- [`PageTableParentProps`](components_PageTable_extras.PageTableParentProps.md)
 
 - [`PageTableOwnProps`](components_PageTable_extras.PageTableOwnProps.md)<`T`\>
 
@@ -23,8 +23,9 @@
 ### Properties
 
 - [columns](components_PageTable_extras.PageTableProps.md#columns)
+- [externalSorting](components_PageTable_extras.PageTableProps.md#externalsorting)
 - [extraPageOffset](components_PageTable_extras.PageTableProps.md#extrapageoffset)
-- [limit](components_PageTable_extras.PageTableProps.md#limit)
+- [pagination](components_PageTable_extras.PageTableProps.md#pagination)
 - [rows](components_PageTable_extras.PageTableProps.md#rows)
 - [selected](components_PageTable_extras.PageTableProps.md#selected)
 
@@ -40,6 +41,16 @@
 
 ___
 
+### externalSorting
+
+• `Optional` `Readonly` **externalSorting**: `booleanU`
+
+#### Inherited from
+
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[externalSorting](components_PageTable_extras.PageTableOwnProps.md#externalsorting)
+
+___
+
 ### extraPageOffset
 
 • `Optional` `Readonly` **extraPageOffset**: `stringU`
@@ -50,13 +61,13 @@ ___
 
 ___
 
-### limit
+### pagination
 
-• `Optional` `Readonly` **limit**: `numberU`
+• `Optional` `Readonly` **pagination**: [`Pagination`](components_PageTable_extras.Pagination.md)
 
 #### Inherited from
 
-[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[limit](components_PageTable_extras.PageTableOwnProps.md#limit)
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[pagination](components_PageTable_extras.PageTableOwnProps.md#pagination)
 
 ___
 

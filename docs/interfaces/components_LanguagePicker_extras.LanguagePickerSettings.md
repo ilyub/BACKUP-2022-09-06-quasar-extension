@@ -15,7 +15,7 @@
 
 ### changeLanguageAction
 
-• `Readonly` **changeLanguageAction**: [`ChangeLanguageAction`](../modules/components_LanguagePicker_extras.md#changelanguageaction)
+• `Readonly` **changeLanguageAction**: [`ChangeLanguageAction`](components_LanguagePicker_extras.ChangeLanguageAction.md)
 
 ___
 

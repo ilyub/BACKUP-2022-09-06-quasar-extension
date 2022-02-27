@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`KnobParentProps`](../modules/components_Knob_extras.md#knobparentprops)
+- [`KnobParentProps`](components_Knob_extras.KnobParentProps.md)
 
 - [`KnobOwnProps`](components_Knob_extras.KnobOwnProps.md)
 

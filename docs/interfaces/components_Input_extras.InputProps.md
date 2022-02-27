@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`InputParentProps`](../modules/components_Input_extras.md#inputparentprops)
+- [`InputParentProps`](components_Input_extras.InputParentProps.md)
 
 - [`InputOwnProps`](components_Input_extras.InputOwnProps.md)
 

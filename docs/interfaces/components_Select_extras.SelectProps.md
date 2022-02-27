@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- [`SelectParentProps`](../modules/components_Select_extras.md#selectparentprops)
+- [`SelectParentProps`](components_Select_extras.SelectParentProps.md)
 
 - [`SelectOwnProps`](components_Select_extras.SelectOwnProps.md)<`T`\>
 
