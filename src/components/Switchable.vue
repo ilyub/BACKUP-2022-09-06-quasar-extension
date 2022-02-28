@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 import { propOptions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
-import { injectSwitchableSettings, provideDisable } from "./Switchable.extras";
+import {
+  injectDisable,
+  injectSwitchableSettings,
+  provideDisable
+} from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-switchable",
@@ -14,7 +18,10 @@ export default defineComponent({
   },
   setup(props) {
     validateProps<SwitchableProps>(props);
-    provideDisable(() => !props.on);
+
+    const parentDisable = injectDisable();
+
+    provideDisable(() => parentDisable.value || !props.on);
 
     return {
       settings: injectSwitchableSettings(),
