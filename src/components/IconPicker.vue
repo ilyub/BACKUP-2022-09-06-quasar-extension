@@ -157,7 +157,7 @@ export default defineComponent({
         handlePromise.silent(async (): Promise<void> => {
           await testDelay();
           mdi.value = await import(
-            /* webpackChunkName: "mdi" */
+            /* webpackChunkName: "dynamic/quasar-extension/mdi" */
             "@mdi/js-dynamic"
           );
         });
