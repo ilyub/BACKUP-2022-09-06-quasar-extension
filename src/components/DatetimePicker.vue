@@ -226,7 +226,7 @@ export default defineComponent({
     <template #control>
       <slot :name="slotNames.control">
         <div
-          class="cursor-pointer full-width ref-datetime-picker-control"
+          class="cursor-pointer fit items-center ref-datetime-picker-control row"
           @click="dialogShow = true"
         >
           {{ inputModelValue }}
@@ -289,7 +289,9 @@ export default defineComponent({
                 :options="timeOptions"
                 @update:model-value="timeValueUpdate"
               >
-                <div class="footer-actions items-center justify-end row">
+                <div
+                  :class="`${$style.footerActions} items-center justify-end row`"
+                >
                   <m-form-button
                     v-close-popup
                     class="ref-datetime-picker-time-save"
