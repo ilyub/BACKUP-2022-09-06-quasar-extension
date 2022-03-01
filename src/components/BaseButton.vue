@@ -12,12 +12,14 @@ import type {
   BaseButtonParentProps,
   BaseButtonSlots
 } from "./BaseButton.extras";
+import { injectDisable } from "./Switchable.extras";
 import { isDirectionU } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-base-button",
   props: {
     ...propsToPropDefinitions<BaseButtonParentProps>(),
+    disable: propOptions.boolean(),
     modelValue: propOptions.boolean(),
     tooltip: propOptions(is.stringU),
     tooltipDirection: propOptions(isDirectionU)
@@ -29,6 +31,7 @@ export default defineComponent({
     validateProps<BaseButtonOwnProps>(props);
 
     return {
+      globalDisable: injectDisable(),
       hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip)),
       onClick(): void {
         emit("update:model-value", !props.modelValue);
@@ -40,7 +43,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-btn @click="onClick">
+  <q-btn :disable="disable || globalDisable" @click="onClick">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
     </template>
