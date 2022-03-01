@@ -7,6 +7,7 @@ import { handlePromise } from "@skylib/facades/es/handlePromise";
 import { icons } from "@skylib/facades/es/icons";
 import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import { lang } from "@skylib/facades/es/lang";
+import { progressReporter } from "@skylib/facades/es/progressReporter";
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import { testDelay } from "@skylib/facades/es/testDelay";
 import * as naturalCompareWrapper from "@skylib/framework/es/facade-implementations/compare/natural-compare-wrapper";
@@ -14,6 +15,7 @@ import * as dateFnsWrapper from "@skylib/framework/es/facade-implementations/dat
 import * as promiseHandler from "@skylib/framework/es/facade-implementations/handlePromise/promiseHandler";
 import * as lunrWrapper from "@skylib/framework/es/facade-implementations/inlineSearch/lunr-wrapper";
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import * as progressBar from "@skylib/framework/es/facade-implementations/progressReporter/progressBar";
 import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
 import * as cast from "@skylib/functions/es/converters";
 
@@ -27,11 +29,12 @@ export default boot(({ app }) => {
   {
     compare.setImplementation(naturalCompareWrapper.implementation);
     datetime.setImplementation(dateFnsWrapper.implementation);
-    reactiveStorage.setImplementation(vueStorage.implementation);
     handlePromise.setImplementation(promiseHandler.implementation);
     icons.setImplementation(iconsImplementation);
     inlineSearch.setImplementation(lunrWrapper.implementation);
     lang.setImplementation(Dictionary.create(definitions));
+    progressReporter.setImplementation(progressBar.implementation);
+    reactiveStorage.setImplementation(vueStorage.implementation);
     testDelay.setImplementation(configurableTestDelay.implementation);
   }
 
@@ -41,6 +44,17 @@ export default boot(({ app }) => {
     configurableTestDelay.configure({
       enabled: true,
       timeout: 1000
+    });
+
+    progressBar.configure({
+      activeClass: "progress-bar-active",
+      enabled: true,
+      finalEasing: true,
+      finalEasingSpeed: 500,
+      latency: 100,
+      precision: 3,
+      selector: "#progressBar",
+      updateInterval: 100
     });
 
     promiseHandler.configure({

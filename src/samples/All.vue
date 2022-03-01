@@ -6,6 +6,7 @@ import Button from "./Button.vue";
 import Card from "./Card.vue";
 import DatetimePicker from "./DatetimePicker.vue";
 import Droppable from "./Droppable.vue";
+import Form from "./Form.vue";
 import FormButton from "./FormButton.vue";
 import Group from "./Group.vue";
 import IconButton from "./IconButton.vue";
@@ -37,6 +38,7 @@ export default defineComponent({
       // eslint-disable-next-line @skylib/disallow-by-regexp
       components: computed(() =>
         [
+          Form,
           Button,
           Card,
           DatetimePicker,

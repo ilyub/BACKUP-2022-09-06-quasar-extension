@@ -129,6 +129,7 @@ export default defineComponent({
 
 <template>
   <div class="q-ma-xl">
+    <div id="progressBar" :class="$style.progressBar"></div>
     <m-page-section>
       <m-section>
         <q-checkbox v-model="iconTooltips" label="Icon tooltips:" left-label />
@@ -168,3 +169,21 @@ export default defineComponent({
     </m-page-section>
   </div>
 </template>
+
+<style lang="scss" module>
+.progressBar {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: $blue-3;
+
+  &:global(.progress-bar-active) {
+    display: block;
+    transition: width 100ms ease;
+  }
+}
+</style>
