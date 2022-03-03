@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 import { propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
-  SubsectionOwnerProps,
+  SubsectionOwnProps,
   SubsectionParentProps,
   SubsectionSlots
 } from "./Subsection.extras";
@@ -13,7 +13,7 @@ export default defineComponent({
   name: "m-subsection",
   props: propsToPropDefinitions<SubsectionParentProps>(),
   setup(props) {
-    validateProps<SubsectionOwnerProps>(props);
+    validateProps<SubsectionOwnProps>(props);
 
     return {
       slotNames: useSlotsNames<SubsectionSlots>()()

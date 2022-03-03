@@ -1,12 +1,11 @@
-import type { GlobalComponentConstructor, QItemProps } from "quasar";
+import type { QItemProps } from "quasar";
 import type { VNode } from "vue";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-export type GlobalListItem = GlobalComponentConstructor<
-  ListItemProps,
-  ListItemSlots
->;
+import type { GlobalComponent } from "./api";
+
+export type GlobalListItem = GlobalComponent<ListItemProps, ListItemSlots>;
 
 export type ListItemParentProps = QItemProps;
 

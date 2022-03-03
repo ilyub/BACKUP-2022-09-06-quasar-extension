@@ -5,7 +5,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import { propOptions, validateProps } from "./api";
+import { propOptions, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
 
@@ -40,9 +40,10 @@ export default defineComponent({
     modelValue: propOptions.required(is.number)
   },
   emits: {
-    "update:model-value": (value: number) => is.number(value)
+    "update:modelValue": (value: number) => is.number(value)
   },
   setup(props, { emit }) {
+    validateEmit<ResizerProps>(emit);
     validateProps<ResizerProps>(props);
 
     let initialValue: numberU;
@@ -59,7 +60,7 @@ export default defineComponent({
 
         const limitedValue = limitMin(limitMax(value));
 
-        emit("update:model-value", limitedValue);
+        emit("update:modelValue", limitedValue);
 
         if (event.isFinal) {
           // Do not set cursor

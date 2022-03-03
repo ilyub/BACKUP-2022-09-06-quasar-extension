@@ -11,7 +11,12 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import type {
   IconPickerOwnProps,
   IconPickerParentProps
@@ -52,9 +57,10 @@ export default defineComponent({
     spinnerSize: propOptions.default(is.string, "70px")
   },
   emits: {
-    "update:model-value": (value: stringU) => is.stringU(value)
+    "update:modelValue": (value: stringU) => is.stringU(value)
   },
   setup(props, { emit }) {
+    validateEmit<IconPickerOwnProps>(emit);
     validateProps<IconPickerOwnProps>(props);
 
     const filteredItems = computed<Items>(() =>
@@ -164,10 +170,7 @@ export default defineComponent({
       },
       pickIcon(icon: unknown): void {
         assert.string(icon);
-        emit(
-          "update:model-value",
-          icon === props.modelValue ? undefined : icon
-        );
+        emit("update:modelValue", icon === props.modelValue ? undefined : icon);
         show.value = false;
       },
       prevClick(): void {

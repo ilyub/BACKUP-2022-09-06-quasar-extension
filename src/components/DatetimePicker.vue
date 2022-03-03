@@ -9,7 +9,12 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   DatetimePickerOwnProps,
@@ -32,9 +37,10 @@ export default defineComponent({
     modelValue: propOptions(is.stringU)
   },
   emits: {
-    "update:model-value": (value: stringU) => is.stringU(value)
+    "update:modelValue": (value: stringU) => is.stringU(value)
   },
   setup(props, { emit }) {
+    validateEmit<DatetimePickerOwnProps>(emit);
     validateProps<DatetimePickerOwnProps>(props);
 
     const dialogShow = ref(false);
@@ -151,7 +157,7 @@ export default defineComponent({
         modelDt()?.format("E, d MMM yyyy HHH:mm A")
       ),
       inputUpdateModelValue(value: unknown): void {
-        if (is.empty(value)) emit("update:model-value", undefined);
+        if (is.empty(value)) emit("update:modelValue", undefined);
       },
       lang,
       main: ref<QField | undefined>(undefined),
@@ -174,7 +180,7 @@ export default defineComponent({
         nextStep.value = false;
       },
       save(): void {
-        emit("update:model-value", pickerDt()?.toString());
+        emit("update:modelValue", pickerDt()?.toString());
       },
       slotNames: useSlotsNames<DatetimePickerSlots>()("control", "prepend"),
       time: computed<string>(() => pickerDt()?.format("HHH:mm A") ?? "\u2014"),
@@ -203,7 +209,7 @@ export default defineComponent({
 
         return true;
       },
-      timeValueUpdate(value: unknown): void {
+      timeValueUpdate(value: string | null): void {
         assert.string(value);
         pickerValue.value = value;
       },
@@ -218,7 +224,7 @@ export default defineComponent({
     ref="main"
     dense
     :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue"
+    @update:model-value="inputUpdateModelValue($event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
@@ -287,7 +293,7 @@ export default defineComponent({
                 mask="YYYY-MM-DD HH:mm"
                 :model-value="pickerValue"
                 :options="timeOptions"
-                @update:model-value="timeValueUpdate"
+                @update:model-value="timeValueUpdate($event)"
               >
                 <div
                   :class="`${$style.footerActions} items-center justify-end row`"
@@ -310,7 +316,7 @@ export default defineComponent({
                 :model-value="pickerValue"
                 no-unset
                 :options="dateOptions"
-                @update:model-value="dateValueUpdate"
+                @update:model-value="dateValueUpdate($event)"
               >
                 <div
                   :class="`${$style.footerActions} items-center justify-end row`"

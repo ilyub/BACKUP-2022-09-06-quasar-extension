@@ -12,7 +12,7 @@ test("toggle", () => {
 
   const toggle = wrapper.findComponent(QToggle);
 
-  expect(wrapper.emitted("update:model-value")).toBeUndefined();
-  toggle.vm.$emit("update:model-value", true);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([[true]]);
+  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  toggle.vm.$emit("update:modelValue", true);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[true]]);
 });

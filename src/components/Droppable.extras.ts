@@ -1,6 +1,6 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
+import type { GlobalComponent } from "./api";
 import type { SortableProps, SortableSlots } from "./Sortable.extras";
 
 export type DroppableParentProps = Omit<
@@ -23,7 +23,4 @@ export interface DroppableSlots extends SortableSlots {
   readonly default: () => readonly VNode[];
 }
 
-export type GlobalDroppable = GlobalComponentConstructor<
-  DroppableProps,
-  DroppableSlots
->;
+export type GlobalDroppable = GlobalComponent<DroppableProps, DroppableSlots>;

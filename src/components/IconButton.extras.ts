@@ -1,8 +1,7 @@
-import type { GlobalComponentConstructor } from "quasar";
-
+import type { GlobalComponent } from "./api";
 import type { BaseButtonProps, BaseButtonSlots } from "./BaseButton.extras";
 
-export type GlobalIconButton = GlobalComponentConstructor<
+export type GlobalIconButton = GlobalComponent<
   IconButtonProps,
   IconButtonSlots
 >;

@@ -1,5 +1,4 @@
-import type { GlobalComponentConstructor } from "quasar";
-
+import type { GlobalComponent } from "./api";
 import type { BaseButtonProps, BaseButtonSlots } from "./BaseButton.extras";
 
 export type FormButtonParentProps = BaseButtonProps;
@@ -12,7 +11,7 @@ export interface FormButtonProps
 
 export type FormButtonSlots = BaseButtonSlots;
 
-export type GlobalFormButton = GlobalComponentConstructor<
+export type GlobalFormButton = GlobalComponent<
   FormButtonProps,
   FormButtonSlots
 >;

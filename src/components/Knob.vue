@@ -5,7 +5,12 @@ import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { KnobOwnProps, KnobParentProps, KnobSlots } from "./Knob.extras";
 import { injectDisable } from "./Switchable.extras";
@@ -19,9 +24,10 @@ export default defineComponent({
     modelValue: propOptions.required(is.number)
   },
   emits: {
-    "update:model-value": (value: number) => is.number(value)
+    "update:modelValue": (value: number) => is.number(value)
   },
-  setup(props) {
+  setup(props, { emit }) {
+    validateEmit<KnobOwnProps>(emit);
     validateProps<KnobOwnProps>(props);
 
     return {
@@ -44,7 +50,7 @@ export default defineComponent({
     size="55px"
     :thickness="0.18"
     track-color="grey-3"
-    @update:model-value="$emit('update:model-value', $event)"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

@@ -1,8 +1,11 @@
-import type { GlobalComponentConstructor, QOptionGroupProps } from "quasar";
+import type { QOptionGroupProps } from "quasar";
 
 import * as is from "@skylib/functions/es/guards";
 
-export type GlobalOptionGroup<T = unknown> = GlobalComponentConstructor<
+import type { GlobalComponent } from "./api";
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type GlobalOptionGroup<T = unknown> = GlobalComponent<
   OptionGroupProps<T>,
   OptionGroupSlots
 >;
@@ -18,11 +21,20 @@ export type OptionGroupOptions<T = unknown> = ReadonlyArray<
 >;
 
 export interface OptionGroupParentProps
-  extends Omit<QOptionGroupProps, "inline" | "modelValue" | "options"> {}
+  extends Omit<
+    QOptionGroupProps,
+    "inline" | "modelValue" | "onUpdate:modelValue" | "options"
+  > {}
 
 export interface OptionGroupOwnProps<T = unknown> {
   readonly inline?: boolean;
   readonly modelValue: T;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: T) => void;
   readonly options: OptionGroupOptions<T>;
 }
 

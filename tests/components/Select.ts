@@ -24,6 +24,6 @@ test.each([
 
   const expected = [[option.value]];
 
-  wrapper.findComponent(QSelect).vm.$emit("update:model-value", option);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+  wrapper.findComponent(QSelect).vm.$emit("update:modelValue", option);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });

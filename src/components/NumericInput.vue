@@ -5,7 +5,12 @@ import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   NumericInputOwnProps,
@@ -23,21 +28,22 @@ export default defineComponent({
     modelValue: propOptions(is.numberU)
   },
   emits: {
-    "update:model-value": (value: numberU) => is.numberU(value)
+    "update:modelValue": (value: numberU) => is.numberU(value)
   },
   setup(props, { emit }) {
+    validateEmit<NumericInputOwnProps>(emit);
     validateProps<NumericInputOwnProps>(props);
 
     return {
       icons,
       inputModelValue: computed<string>(() => cast.string(props.modelValue)),
       inputUpdateModelValue(value: NumStrE): void {
-        emit("update:model-value", cast.numberU(value));
+        emit("update:modelValue", cast.numberU(value));
       },
       nextClick(): void {
-        if (is.empty(props.modelValue)) emit("update:model-value", props.min);
+        if (is.empty(props.modelValue)) emit("update:modelValue", props.min);
         else if (props.modelValue < props.max)
-          emit("update:model-value", props.modelValue + 1);
+          emit("update:modelValue", props.modelValue + 1);
         else {
           // Not clickable
         }
@@ -46,9 +52,9 @@ export default defineComponent({
         () => is.empty(props.modelValue) || props.modelValue < props.max
       ),
       prevClick(): void {
-        if (is.empty(props.modelValue)) emit("update:model-value", props.max);
+        if (is.empty(props.modelValue)) emit("update:modelValue", props.max);
         else if (props.modelValue > props.min)
-          emit("update:model-value", props.modelValue - 1);
+          emit("update:modelValue", props.modelValue - 1);
         else {
           // Not clickable
         }
@@ -67,7 +73,7 @@ export default defineComponent({
     dense
     mask="####################"
     :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue"
+    @update:model-value="inputUpdateModelValue($event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

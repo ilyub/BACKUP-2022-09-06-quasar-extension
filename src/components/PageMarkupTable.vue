@@ -8,7 +8,7 @@ import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
 import type { BaseButtonSlots } from "./BaseButton.extras";
 import type {
-  PageMarkupTableOwnerProps,
+  PageMarkupTableOwnProps,
   PageMarkupTableParentProps
 } from "./PageMarkupTable.extras";
 
@@ -19,7 +19,7 @@ export default defineComponent({
     extraPageOffset: propOptions(is.stringU)
   },
   setup(props) {
-    validateProps<PageMarkupTableOwnerProps>(props);
+    validateProps<PageMarkupTableOwnProps>(props);
 
     return {
       height: usePageContentHeight(() => props.extraPageOffset),

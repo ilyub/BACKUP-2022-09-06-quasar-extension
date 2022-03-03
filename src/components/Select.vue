@@ -6,7 +6,12 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { ButtonSlots } from "./Button.extras";
 import type {
@@ -25,9 +30,10 @@ export default defineComponent({
     options: propOptions.required(isSelectOptions)
   },
   emits: {
-    "update:model-value": (value: unknown) => is.unknown(value)
+    "update:modelValue": (value: unknown) => is.unknown(value)
   },
   setup(props, { emit }) {
+    validateEmit<SelectOwnProps>(emit);
     validateProps<SelectOwnProps>(props);
 
     return {
@@ -43,11 +49,11 @@ export default defineComponent({
       selectOptions: computed<Writable<SelectOptions>>(() =>
         a.clone(props.options)
       ),
-      selectUpdateModelValue(value: unknown): void {
+      slotNames: useSlotsNames<ButtonSlots>()(),
+      updateModelValue(value: unknown): void {
         assert.byGuard(value, isSelectOption);
-        emit("update:model-value", value.value);
-      },
-      slotNames: useSlotsNames<ButtonSlots>()()
+        emit("update:modelValue", value.value);
+      }
     };
   }
 });
@@ -58,7 +64,7 @@ export default defineComponent({
     dense
     :model-value="selectModelValue"
     :options="selectOptions"
-    @update:model-value="selectUpdateModelValue"
+    @update:model-value="updateModelValue($event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

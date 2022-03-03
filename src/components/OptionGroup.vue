@@ -7,11 +7,17 @@ import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 import type { Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   OptionGroupOptions,
-  OptionGroupProps,
+  OptionGroupOwnProps,
+  OptionGroupParentProps,
   OptionGroupSlots
 } from "./OptionGroup.extras";
 import { isOptionGroupOptions } from "./OptionGroup.extras";
@@ -19,15 +25,18 @@ import { isOptionGroupOptions } from "./OptionGroup.extras";
 export default defineComponent({
   name: "m-option-group",
   props: {
-    ...propsToPropDefinitions<OptionGroupProps>(),
+    ...propsToPropDefinitions<OptionGroupParentProps>(),
     inline: propOptions.boolean(),
     modelValue: propOptions.required(is.unknown),
     options: propOptions.required(isOptionGroupOptions)
   },
   emits: {
-    "update:model-value": (value: unknown) => is.unknown(value)
+    "update:modelValue": (value: unknown) => is.unknown(value)
   },
-  setup(props) {
+  setup(props, { emit }) {
+    validateEmit<OptionGroupOwnProps>(emit);
+    validateProps<OptionGroupOwnProps>(props);
+
     return {
       optionGroupOptions: computed<Writable<OptionGroupOptions>>(() =>
         a.clone(props.options)
@@ -46,7 +55,7 @@ export default defineComponent({
     :inline="inline"
     :model-value="modelValue"
     :options="optionGroupOptions"
-    @update:model-value="$emit('update:model-value', $event)"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

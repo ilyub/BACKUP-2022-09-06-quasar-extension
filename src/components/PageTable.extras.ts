@@ -1,14 +1,15 @@
-import type {
-  GlobalComponentConstructor,
-  QTableProps,
-  QTableSlots
-} from "quasar";
+import type { QTableProps, QTableSlots } from "quasar";
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
-import type { booleanU, stringU } from "@skylib/functions/es/types/core";
+import type {
+  booleanU,
+  stringU,
+  unknowns
+} from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
@@ -48,18 +49,39 @@ export interface Field<T = unknown> {
   (row: T): string;
 }
 
-export type GlobalPageTable<T = unknown> = GlobalComponentConstructor<
+// eslint-disable-next-line @skylib/prefer-readonly
+export type GlobalPageTable<T = unknown> = GlobalComponent<
   PageTableProps<T>,
   PageTableSlots<T>
 >;
 
 export interface PageTableParentProps
-  extends Omit<QTableProps, "columns" | "pagination" | "rows" | "selected"> {}
+  extends Omit<
+    QTableProps,
+    | "columns"
+    | "onUpdate:pagination"
+    | "onUpdate:selected"
+    | "pagination"
+    | "rows"
+    | "selected"
+  > {}
 
 export interface PageTableOwnProps<T = unknown> {
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
   readonly extraPageOffset?: stringU;
+  /**
+   * Emits "pagination" value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:pagination"?: (value: Pagination) => void;
+  /**
+   * Emits "selected" value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:selected"?: (value: unknowns) => void;
   readonly pagination?: Pagination | undefined;
   readonly rows?: readonly T[] | undefined;
   readonly selected?: readonly T[] | undefined;

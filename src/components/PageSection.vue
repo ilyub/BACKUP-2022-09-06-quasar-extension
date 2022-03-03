@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 import { propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
-  PageSectionOwnerProps,
+  PageSectionOwnProps,
   PageSectionParentProps,
   PageSectionSlots
 } from "./PageSection.extras";
@@ -13,7 +13,7 @@ export default defineComponent({
   name: "m-page-section",
   props: propsToPropDefinitions<PageSectionParentProps>(),
   setup(props) {
-    validateProps<PageSectionOwnerProps>(props);
+    validateProps<PageSectionOwnProps>(props);
 
     return {
       slotNames: useSlotsNames<PageSectionSlots>()()

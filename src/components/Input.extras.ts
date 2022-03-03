@@ -1,20 +1,24 @@
-import type {
-  GlobalComponentConstructor,
-  QInputProps,
-  QInputSlots
-} from "quasar";
+import type { QInputProps, QInputSlots } from "quasar";
 
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
-export type GlobalInput = GlobalComponentConstructor<InputProps, InputSlots>;
+import type { GlobalComponent } from "./api";
+
+export type GlobalInput = GlobalComponent<InputProps, InputSlots>;
 
 export interface InputOwnProps {
   readonly disable?: booleanU;
   readonly modelValue?: stringU;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: stringU) => void;
 }
 
 export interface InputParentProps
-  extends Omit<QInputProps, "disable" | "modelValue"> {}
+  extends Omit<QInputProps, "disable" | "modelValue" | "onUpdate:modelValue"> {}
 
 export interface InputProps extends InputParentProps, InputOwnProps {}
 

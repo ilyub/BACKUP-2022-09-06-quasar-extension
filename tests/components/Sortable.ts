@@ -65,8 +65,8 @@ test("emit: dropped", () => {
 
   const elements = buildElements(newItems, group, itemKey);
 
-  wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
+  wrapper.findComponent(Draggable).vm.$emit("update:modelValue", elements);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
 
 test("end, start", async () => {
@@ -101,7 +101,7 @@ test("end, start", async () => {
   }
 });
 
-test("emit: update:model-value", () => {
+test("emit: update:modelValue", () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions({}),
     props
@@ -118,9 +118,9 @@ test("emit: update:model-value", () => {
     ...buildElements([newItem], newGroup, itemKey)
   ];
 
-  wrapper.findComponent(Draggable).vm.$emit("update:model-value", elements);
+  wrapper.findComponent(Draggable).vm.$emit("update:modelValue", elements);
   expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([[newItems]]);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
 
 test.each([

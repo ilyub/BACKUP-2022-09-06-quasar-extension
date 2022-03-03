@@ -55,6 +55,7 @@ export default defineComponent({
       <m-tooltip>Sample tooltip</m-tooltip>
     </template>
   </m-sortable>
+  <!-- eslint-disable-next-line vue/v-on-function-call -->
   <m-droppable :class="`${$style.droppable} q-mt-md`" @dropped="dropped">
     D
   </m-droppable>

@@ -5,7 +5,12 @@ import { defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import { injectDisable } from "./Switchable.extras";
 import type {
@@ -22,9 +27,10 @@ export default defineComponent({
     modelValue: propOptions.required(is.boolean)
   },
   emits: {
-    "update:model-value": (value: boolean) => is.boolean(value)
+    "update:modelValue": (value: boolean) => is.boolean(value)
   },
-  setup(props) {
+  setup(props, { emit }) {
+    validateEmit<ToggleOwnProps>(emit);
     validateProps<ToggleOwnProps>(props);
 
     return {
@@ -39,7 +45,7 @@ export default defineComponent({
   <q-toggle
     :disable="disable || globalDisable"
     :model-value="modelValue"
-    @update:model-value="$emit('update:model-value', $event)"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

@@ -20,6 +20,6 @@ test.each([undefined, 1, "a"])("optionGroup", value => {
 
   const expected = [[value]];
 
-  wrapper.findComponent(QOptionGroup).vm.$emit("update:model-value", value);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+  wrapper.findComponent(QOptionGroup).vm.$emit("update:modelValue", value);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });

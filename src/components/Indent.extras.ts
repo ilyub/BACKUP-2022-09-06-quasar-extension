@@ -1,7 +1,8 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
-export type GlobalIndent = GlobalComponentConstructor<IndentProps, IndentSlots>;
+import type { GlobalComponent } from "./api";
+
+export type GlobalIndent = GlobalComponent<IndentProps, IndentSlots>;
 
 export interface IndentProps {}
 

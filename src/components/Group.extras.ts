@@ -1,9 +1,9 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 import type { ReadonlyRecord, stringU } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import type { RootElementProps } from "./api/rootElement";
 
 export interface GroupItem<T extends string = string> {
@@ -14,7 +14,7 @@ export interface GroupItem<T extends string = string> {
 
 export type GroupItems<T extends string = string> = ReadonlyArray<GroupItem<T>>;
 
-export type GlobalGroup<T extends string = string> = GlobalComponentConstructor<
+export type GlobalGroup<T extends string = string> = GlobalComponent<
   GroupProps<T>,
   GroupSlots<T>
 >;

@@ -1,5 +1,7 @@
+import type { PublicProps } from "quasar";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
+import type { ValueOf } from "type-fest";
 import type {
   ComputedRef,
   ExtractPropTypes,
@@ -11,7 +13,7 @@ import { computed, inject, provide, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
-import type { Join2 } from "@skylib/functions/es/types/core";
+import type { Callable, Join2 } from "@skylib/functions/es/types/core";
 
 export interface Injectable<T> {
   /**
@@ -180,11 +182,110 @@ export function propOptionsRequired<T>(
 propOptions.required = propOptionsRequired;
 
 /**
+ * Validates emit function.
+ *
+ * @param emit - Emit function.
+ * @returns Emit function.
+ */
+export function validateEmit<T>(emit: ValidateEmit<T>): ValidateEmit<T> {
+  return emit;
+}
+
+/**
  * Validates props.
  *
  * @param props - Props.
  * @returns Props.
  */
-export function validateProps<T>(props: T): T {
+export function validateProps<T>(props: ValidateProps<T>): ValidateProps<T> {
   return props;
 }
+
+export type ValidateEmit<T> = ValueOf<{
+  [K in keyof T & `on${Capital}${string}`]: T[K] extends Callable | undefined
+    ? (
+        event: K extends `on${Capital}${infer B}`
+          ? K extends `on${infer A}${B}`
+            ? `${Uncapitalize<A>}${B}`
+            : never
+          : never,
+        ...args: Parameters<Exclude<T[K], undefined>>
+      ) => ReturnType<Exclude<T[K], undefined>>
+    : never;
+}>;
+
+export type ValidateProps<T> = Omit<T, `on${Capital}${string}`>;
+
+export interface GlobalComponent<P, S> {
+  /**
+   * Component constructor.
+   */
+  new (): {
+    $props: Emits & P & PublicProps;
+    $slots: S;
+  };
+}
+
+export type Emits = {
+  readonly [K in `on${Capital}${string}`]: () => void;
+};
+
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+export type Capital =
+  | "A"
+  | "B"
+  | "C"
+  | "D"
+  | "E"
+  | "F"
+  | "G"
+  | "H"
+  | "I"
+  | "J"
+  | "K"
+  | "L"
+  | "M"
+  | "N"
+  | "O"
+  | "P"
+  | "Q"
+  | "R"
+  | "S"
+  | "T"
+  | "U"
+  | "V"
+  | "W"
+  | "X"
+  | "Y"
+  | "Z";
+
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+export type NonCapital =
+  | "a"
+  | "b"
+  | "c"
+  | "d"
+  | "e"
+  | "f"
+  | "g"
+  | "h"
+  | "i"
+  | "j"
+  | "k"
+  | "l"
+  | "m"
+  | "n"
+  | "o"
+  | "p"
+  | "q"
+  | "r"
+  | "s"
+  | "t"
+  | "u"
+  | "v"
+  | "w"
+  | "x"
+  | "y"
+  | "z";

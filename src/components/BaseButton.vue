@@ -5,7 +5,12 @@ import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   BaseButtonOwnProps,
@@ -25,17 +30,18 @@ export default defineComponent({
     tooltipDirection: propOptions(isDirectionU)
   },
   emits: {
-    "update:model-value": (value: boolean) => is.boolean(value)
+    "update:modelValue": (value: boolean) => is.boolean(value)
   },
   setup(props, { emit }) {
+    validateEmit<BaseButtonOwnProps>(emit);
     validateProps<BaseButtonOwnProps>(props);
 
     return {
+      click(): void {
+        emit("update:modelValue", !props.modelValue);
+      },
       globalDisable: injectDisable(),
       hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip)),
-      onClick(): void {
-        emit("update:model-value", !props.modelValue);
-      },
       slotNames: useSlotsNames<BaseButtonSlots>()("default")
     };
   }
@@ -43,7 +49,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-btn :disable="disable || globalDisable" @click="onClick">
+  <q-btn :disable="disable || globalDisable" @click="click">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
     </template>

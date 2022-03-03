@@ -1,10 +1,10 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
 declare global {
@@ -17,7 +17,7 @@ declare global {
   }
 }
 
-export type GlobalPageLayout = GlobalComponentConstructor<
+export type GlobalPageLayout = GlobalComponent<
   PageLayoutProps,
   PageLayoutSlots
 >;

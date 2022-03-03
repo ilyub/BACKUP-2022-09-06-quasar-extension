@@ -1,12 +1,10 @@
-import type {
-  GlobalComponentConstructor,
-  QInputProps,
-  QInputSlots
-} from "quasar";
+import type { QInputProps, QInputSlots } from "quasar";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { numberU } from "@skylib/functions/es/types/core";
+
+import type { GlobalComponent } from "./api";
 
 declare global {
   namespace facades {
@@ -19,18 +17,24 @@ declare global {
   }
 }
 
-export type GlobalNumericInput = GlobalComponentConstructor<
+export type GlobalNumericInput = GlobalComponent<
   NumericInputProps,
   NumericInputSlots
 >;
 
 export interface NumericInputParentProps
-  extends Omit<QInputProps, "modelValue"> {}
+  extends Omit<QInputProps, "modelValue" | "onUpdate:modelValue"> {}
 
 export interface NumericInputOwnProps {
   readonly max: number;
   readonly min?: numberU;
   readonly modelValue?: numberU;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: numberU) => void;
 }
 
 export interface NumericInputProps

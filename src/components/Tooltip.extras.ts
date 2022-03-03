@@ -1,8 +1,4 @@
-import type {
-  GlobalComponentConstructor,
-  QTooltipProps,
-  QTooltipSlots
-} from "quasar";
+import type { QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 import { computed, onUnmounted, ref, watch } from "vue";
 
@@ -10,6 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
 export type Direction =
@@ -30,10 +27,7 @@ export interface DisableTooltips {
   readonly active: Ref<boolean>;
 }
 
-export type GlobalTooltip = GlobalComponentConstructor<
-  TooltipProps,
-  TooltipSlots
->;
+export type GlobalTooltip = GlobalComponent<TooltipProps, TooltipSlots>;
 
 export type TooltipParentProps = QTooltipProps;
 

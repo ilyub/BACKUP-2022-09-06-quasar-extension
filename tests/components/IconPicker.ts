@@ -85,7 +85,7 @@ test.each(
       const expected = [[icon]];
 
       await pickIcon().trigger("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
       expect(dialog.props("modelValue")).toBeFalse();
       await button.trigger("click");
       expect(dialog.props("modelValue")).toBeTrue();
@@ -96,7 +96,7 @@ test.each(
 
       await wrapper.setProps({ modelValue: icon });
       await pickIcon().trigger("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
       expect(dialog.props("modelValue")).toBeFalse();
       await button.trigger("click");
       expect(dialog.props("modelValue")).toBeTrue();
@@ -116,7 +116,7 @@ test.each(
 
     {
       expect(pagination()).not.toHaveClass("invisible");
-      search().vm.$emit("update:model-value", "aB3umD5inT7g");
+      search().vm.$emit("update:modelValue", "aB3umD5inT7g");
       await nextTick();
       expect(pagination()).toHaveClass("invisible");
       expect(prev().findComponent(QBtn).props("disable")).toBeTrue();

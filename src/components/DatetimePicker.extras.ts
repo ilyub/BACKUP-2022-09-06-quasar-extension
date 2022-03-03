@@ -1,14 +1,12 @@
-import type {
-  GlobalComponentConstructor,
-  QFieldProps,
-  QFieldSlots
-} from "quasar";
+import type { QFieldProps, QFieldSlots } from "quasar";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
+
+import type { GlobalComponent } from "./api";
 
 declare global {
   namespace facades {
@@ -32,12 +30,18 @@ declare global {
 }
 
 export interface DatetimePickerParentProps
-  extends Omit<QFieldProps, "modelValue"> {}
+  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
 
 export interface DatetimePickerOwnProps {
   readonly max?: stringU;
   readonly min?: stringU;
   readonly modelValue?: stringU;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: stringU) => void;
 }
 
 export interface DatetimePickerProps
@@ -46,7 +50,7 @@ export interface DatetimePickerProps
 
 export type DatetimePickerSlots = QFieldSlots;
 
-export type GlobalDatetimePicker = GlobalComponentConstructor<
+export type GlobalDatetimePicker = GlobalComponent<
   DatetimePickerProps,
   DatetimePickerSlots
 >;

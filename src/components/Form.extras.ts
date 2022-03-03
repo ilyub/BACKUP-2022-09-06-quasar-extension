@@ -1,11 +1,9 @@
-import type {
-  GlobalComponentConstructor,
-  QFormProps,
-  QFormSlots
-} from "quasar";
+import type { QFormProps, QFormSlots } from "quasar";
 
 import type { TaskType } from "@skylib/facades/es/handlePromise";
 import * as is from "@skylib/functions/es/guards";
+
+import type { GlobalComponent } from "./api";
 
 export interface FormOwnProps {
   readonly asyncTaskType?: TaskType | undefined;
@@ -19,7 +17,7 @@ export interface FormProps extends FormParentProps, FormOwnProps {}
 
 export type FormSlots = Readonly<QFormSlots>;
 
-export type GlobalForm = GlobalComponentConstructor<FormProps, FormSlots>;
+export type GlobalForm = GlobalComponent<FormProps, FormSlots>;
 
 export interface OnSubmit {
   /**

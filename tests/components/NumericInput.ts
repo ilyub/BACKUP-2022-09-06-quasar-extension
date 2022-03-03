@@ -20,29 +20,29 @@ test("numericInput", async () => {
   {
     const expected = [[undefined]];
 
-    main.vm.$emit("update:model-value", "invalid");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    main.vm.$emit("update:modelValue", "invalid");
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1]];
 
-    main.vm.$emit("update:model-value", "1");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    main.vm.$emit("update:modelValue", "1");
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1], [0]];
 
     await comp("next").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1], [0], [2]];
 
     await comp("prev").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   await wrapper.setProps({ modelValue: 0 });
@@ -51,14 +51,14 @@ test("numericInput", async () => {
     const expected = [[undefined], [1], [0], [2], [1]];
 
     await comp("next").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1], [0], [2], [1]];
 
     await comp("prev").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   await wrapper.setProps({ modelValue: 2 });
@@ -67,13 +67,13 @@ test("numericInput", async () => {
     const expected = [[undefined], [1], [0], [2], [1]];
 
     await comp("next").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1], [0], [2], [1], [1]];
 
     await comp("prev").trigger("click");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 });

@@ -134,7 +134,6 @@ export function findComponentFactory(
  */
 export function globalMountOptions(
   options: CustomGlobalMountOptions = {}
-  // eslint-disable-next-line @skylib/no-mutable-signature
 ): GlobalMountOptions {
   return {
     components: fn.run(() => {

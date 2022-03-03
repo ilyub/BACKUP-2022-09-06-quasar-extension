@@ -1,13 +1,13 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 import type { booleanU } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
-export type GlobalSwitchable = GlobalComponentConstructor<
+export type GlobalSwitchable = GlobalComponent<
   SwitchableProps,
   SwitchableSlots
 >;

@@ -42,13 +42,13 @@ test.each([undefined, "2001-02-03 10:30"])(
     {
       const expected = [[modelValue]];
 
-      expect(wrapper.emitted("update:model-value")).toBeUndefined();
+      expect(wrapper.emitted("update:modelValue")).toBeUndefined();
       comp("date-save").vm.$emit("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
     }
 
     {
-      comp(QDialog).vm.$emit("update:model-value", false);
+      comp(QDialog).vm.$emit("update:modelValue", false);
       await nextTick();
       expect(comp(QCard)).not.toExist();
     }
@@ -97,18 +97,18 @@ test.each([undefined, "2001-02-03 10:30"])(
     {
       const expected = [[modelValue], [undefined]];
 
-      main.vm.$emit("update:model-value", undefined);
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      main.vm.$emit("update:modelValue", undefined);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
     }
 
     {
       const expected = [[modelValue], [undefined], ["2001-02-04 22:30"]];
 
-      comp("date").vm.$emit("update:model-value", "2001-02-04 22:30");
+      comp("date").vm.$emit("update:modelValue", "2001-02-04 22:30");
       await popupElem("prev").trigger("click");
       comp("date-save").vm.$emit("click");
       await popupElem("next").trigger("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
     }
 
     {
@@ -119,9 +119,9 @@ test.each([undefined, "2001-02-03 10:30"])(
         ["2001-02-04 23:30"]
       ];
 
-      comp("time").vm.$emit("update:model-value", "2001-02-04 23:30");
+      comp("time").vm.$emit("update:modelValue", "2001-02-04 23:30");
       comp("time-save").vm.$emit("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
     }
 
     {
@@ -135,7 +135,7 @@ test.each([undefined, "2001-02-03 10:30"])(
 
       comp("pm").vm.$emit("click");
       comp("time-save").vm.$emit("click");
-      expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
     }
 
     {

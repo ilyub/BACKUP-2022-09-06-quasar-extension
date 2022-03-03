@@ -12,7 +12,7 @@ test("knob", () => {
 
   const knob = wrapper.findComponent(QKnob);
 
-  expect(wrapper.emitted("update:model-value")).toBeUndefined();
-  knob.vm.$emit("update:model-value", 75);
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([[75]]);
+  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  knob.vm.$emit("update:modelValue", 75);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[75]]);
 });

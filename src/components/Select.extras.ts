@@ -1,12 +1,11 @@
-import type {
-  GlobalComponentConstructor,
-  QSelectProps,
-  QSelectSlots
-} from "quasar";
+import type { QSelectProps, QSelectSlots } from "quasar";
 
 import * as is from "@skylib/functions/es/guards";
 
-export type GlobalSelect<T = unknown> = GlobalComponentConstructor<
+import type { GlobalComponent } from "./api";
+
+// eslint-disable-next-line @skylib/prefer-readonly
+export type GlobalSelect<T = unknown> = GlobalComponent<
   SelectProps<T>,
   SelectSlots
 >;
@@ -20,10 +19,19 @@ export interface SelectOption<T = unknown> {
 export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
 
 export interface SelectParentProps
-  extends Omit<QSelectProps, "modelValue" | "options"> {}
+  extends Omit<
+    QSelectProps,
+    "modelValue" | "onUpdate:modelValue" | "options"
+  > {}
 
 export interface SelectOwnProps<T = unknown> {
   readonly modelValue: T;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: number) => void;
   readonly options: SelectOptions<T>;
 }
 

@@ -1,11 +1,10 @@
-import type { GlobalComponentConstructor } from "quasar";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
@@ -28,17 +27,23 @@ declare global {
   }
 }
 
-export type GlobalIconPicker = GlobalComponentConstructor<
+export type GlobalIconPicker = GlobalComponent<
   IconPickerProps,
   IconPickerSlots
 >;
 
 export interface IconPickerParentProps
-  extends Omit<IconButtonProps, "modelValue"> {}
+  extends Omit<IconButtonProps, "modelValue" | "onUpdate:modelValue"> {}
 
 export interface IconPickerOwnProps {
   readonly cols?: numberU;
   readonly modelValue?: stringU;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: stringU) => void;
   readonly placeholder: string;
   readonly rows?: numberU;
   readonly spinnerSize?: stringU;

@@ -14,19 +14,19 @@ test("menu", async () => {
   const menu = wrapper.findComponent(QMenu);
 
   {
-    menu.vm.$emit("update:model-value", true);
+    menu.vm.$emit("update:modelValue", true);
     await nextTick();
     expect(disabled.value).toBeTrue();
   }
 
   {
-    menu.vm.$emit("update:model-value", false);
+    menu.vm.$emit("update:modelValue", false);
     await nextTick();
     expect(disabled.value).toBeFalse();
   }
 
   {
-    menu.vm.$emit("update:model-value", true);
+    menu.vm.$emit("update:modelValue", true);
     await nextTick();
     expect(disabled.value).toBeTrue();
   }

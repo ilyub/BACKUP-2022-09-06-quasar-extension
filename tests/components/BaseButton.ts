@@ -12,9 +12,9 @@ test.each([true, false])("prop: modelValue", async modelValue => {
     }
   });
 
-  expect(wrapper.emitted("update:model-value")).toBeUndefined();
+  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
   await wrapper.trigger("click");
-  expect(wrapper.emitted("update:model-value")).toStrictEqual([[!modelValue]]);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[!modelValue]]);
 });
 
 test("prop: tooltip", async () => {

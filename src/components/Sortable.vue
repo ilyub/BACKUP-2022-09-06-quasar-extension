@@ -6,9 +6,9 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as reflect from "@skylib/functions/es/reflect";
-import type { Writable } from "@skylib/functions/es/types/core";
+import type { objects, Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, validateProps } from "./api";
+import { propOptions, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { Elems, SortableProps, SortableSlots } from "./Sortable.extras";
 import {
@@ -36,9 +36,10 @@ export default defineComponent({
   emits: {
     "dropped": (item: object, group: string) =>
       is.object(item) && is.string(group),
-    "update:model-value": (value: readonly object[]) => is.objects(value)
+    "update:modelValue": (value: objects) => is.objects(value)
   },
   setup(props, { emit }) {
+    validateEmit<SortableProps>(emit);
     validateProps<SortableProps>(props);
 
     const { active } = useDisableTooltips();
@@ -102,7 +103,7 @@ export default defineComponent({
           } else emit("dropped", element.item, element.group);
 
         emit(
-          "update:model-value",
+          "update:modelValue",
           elements.map(element => element.item)
         );
       }
@@ -125,7 +126,7 @@ export default defineComponent({
     :move="baseMove"
     @end="end"
     @start="start"
-    @update:model-value="updateModel"
+    @update:model-value="updateModel($event)"
   >
     <template v-if="$slots[slotNames.header]" #header>
       <slot :name="slotNames.header"></slot>

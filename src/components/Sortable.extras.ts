@@ -1,4 +1,3 @@
-import type { GlobalComponentConstructor } from "quasar";
 import type { VNode } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
@@ -7,6 +6,7 @@ import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { objectU, stringU } from "@skylib/functions/es/types/core";
 
+import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
 export interface Elem {
@@ -18,10 +18,7 @@ export interface Elem {
 
 export type Elems = readonly Elem[];
 
-export type GlobalSortable = GlobalComponentConstructor<
-  SortableProps,
-  SortableSlots
->;
+export type GlobalSortable = GlobalComponent<SortableProps, SortableSlots>;
 
 export interface ItemSlotData {
   readonly item: object;
@@ -57,6 +54,19 @@ export interface SortableProps {
   readonly itemTag?: unknown;
   readonly modelValue: readonly object[];
   readonly move?: Move | undefined;
+  /**
+   * Emits "dropped" event.
+   *
+   * @param item - Item.
+   * @param group - Group.
+   */
+  readonly onDropped?: (item: object, group: string) => void;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: (value: boolean) => void;
 }
 
 export interface SortableSlots {

@@ -38,7 +38,7 @@ test.each([
     document.documentElement.style.cursor = "";
     triggerTouchPan(event);
     expect(document.documentElement.style.cursor).toStrictEqual(cursor);
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(emitted);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(emitted);
   }
 
   {
@@ -53,6 +53,6 @@ test.each([
     document.documentElement.style.cursor = "";
     triggerTouchPan(event);
     expect(document.documentElement.style.cursor).toBe("");
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(emitted);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(emitted);
   }
 });

@@ -9,7 +9,12 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { unknowns, Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  propOptions,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
 import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
@@ -52,6 +57,7 @@ export default defineComponent({
     "update:selected": (value: unknowns) => is.array(value)
   },
   setup(props, { emit }) {
+    validateEmit<PageTableOwnProps>(emit);
     validateProps<PageTableOwnProps>(props);
 
     const settings = injectPageTableSettings();
@@ -131,9 +137,9 @@ export default defineComponent({
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
-    @update:pagination="updatePagination"
+    @update:pagination="updatePagination($event)"
     @update:selected="$emit('update:selected', $event)"
-    @virtual-scroll="onScroll"
+    @virtual-scroll="onScroll($event)"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

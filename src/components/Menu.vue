@@ -3,8 +3,6 @@
 
 import { defineComponent } from "vue";
 
-import * as assert from "@skylib/functions/es/assertions";
-
 import { propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { ButtonSlots } from "./Button.extras";
@@ -21,8 +19,7 @@ export default defineComponent({
 
     return {
       slotNames: useSlotsNames<ButtonSlots>()(),
-      updateModel(event: unknown): void {
-        assert.boolean(event);
+      updateModel(event: boolean): void {
         active.value = event;
       }
     };
@@ -31,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-menu @update:model-value="updateModel">
+  <q-menu @update:model-value="updateModel($event)">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
     </template>

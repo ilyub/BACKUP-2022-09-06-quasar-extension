@@ -1,8 +1,6 @@
-import type { GlobalComponentConstructor } from "quasar";
-
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import type { PropOptionsRequired } from "./api";
+import type { GlobalComponent, PropOptionsRequired } from "./api";
 import { createInjectable } from "./api";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
@@ -15,7 +13,7 @@ export interface ChangeLanguageAction {
   (language: LocaleName): void;
 }
 
-export type GlobalLanguagePicker = GlobalComponentConstructor<
+export type GlobalLanguagePicker = GlobalComponent<
   LanguagePickerProps,
   LanguagePickerSlots
 >;

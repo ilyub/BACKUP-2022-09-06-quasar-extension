@@ -1,18 +1,17 @@
-import type { GlobalComponentConstructor } from "quasar";
-
+import type { GlobalComponent } from "./api";
 import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 
-export type GlobalSubsection = GlobalComponentConstructor<
+export type GlobalSubsection = GlobalComponent<
   SubsectionProps,
   SubsectionSlots
 >;
 
 export type SubsectionParentProps = SwitchableProps;
 
-export interface SubsectionOwnerProps {}
+export interface SubsectionOwnProps {}
 
 export interface SubsectionProps
   extends SubsectionParentProps,
-    SubsectionOwnerProps {}
+    SubsectionOwnProps {}
 
 export type SubsectionSlots = SwitchableSlots;

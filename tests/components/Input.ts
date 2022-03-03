@@ -26,8 +26,8 @@ test.each([
   {
     const expected = [[expectedValue]];
 
-    expect(wrapper.emitted("update:model-value")).toBeUndefined();
-    input.vm.$emit("update:model-value", value);
-    expect(wrapper.emitted("update:model-value")).toStrictEqual(expected);
+    expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+    input.vm.$emit("update:modelValue", value);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 });

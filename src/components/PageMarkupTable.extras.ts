@@ -1,24 +1,22 @@
-import type {
-  GlobalComponentConstructor,
-  QMarkupTableProps,
-  QMarkupTableSlots
-} from "quasar";
+import type { QMarkupTableProps, QMarkupTableSlots } from "quasar";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
-export type GlobalPageMarkupTable = GlobalComponentConstructor<
+import type { GlobalComponent } from "./api";
+
+export type GlobalPageMarkupTable = GlobalComponent<
   PageMarkupTableProps,
   PageMarkupTableSlots
 >;
 
 export type PageMarkupTableParentProps = QMarkupTableProps;
 
-export interface PageMarkupTableOwnerProps {
+export interface PageMarkupTableOwnProps {
   readonly extraPageOffset?: stringU;
 }
 
 export interface PageMarkupTableProps
   extends PageMarkupTableParentProps,
-    PageMarkupTableOwnerProps {}
+    PageMarkupTableOwnProps {}
 
 export type PageMarkupTableSlots = QMarkupTableSlots;
