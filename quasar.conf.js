@@ -6,8 +6,17 @@ module.exports = configure(ctx => {
     boot: ["main"],
     build: {
       analyze: true,
-      chainWebpack() {
-        //
+      extendWebpack(config) {
+        config.optimization = {
+          ...config.optimization,
+          minimize: ctx.prod,
+          removeAvailableModules: true,
+          removeEmptyChunks: true,
+          splitChunks: {
+            maxSize: 200_000,
+            minSize: 50_000
+          }
+        };
       },
       gzip: false,
       preloadChunks: true,
@@ -16,6 +25,7 @@ module.exports = configure(ctx => {
       publicPath: "/",
       rtl: true,
       showProgress: true,
+      sourceMap: true,
       transpile: true,
       transpileDependencies: [],
       vueRouterMode: "history"
