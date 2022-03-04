@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import Draggable from "vuedraggable";
+// eslint-disable-next-line @skylib/consistent-import
+import VueDraggable from "vuedraggable";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
@@ -23,7 +24,7 @@ import { useDisableTooltips } from "./Tooltip.extras";
 export default defineComponent({
   name: "m-sortable",
   components: {
-    draggable: Draggable
+    "vue-draggable": VueDraggable
   },
   props: {
     group: propOptions.required(is.string),
@@ -113,7 +114,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <draggable
+  <vue-draggable
     :animation="settings.animationDuration"
     :data-group="group"
     :group="{
@@ -126,7 +127,7 @@ export default defineComponent({
     :move="baseMove"
     @end="end"
     @start="start"
-    @update:model-value="updateModel($event)"
+    @update:model-value="updateModel"
   >
     <template v-if="$slots[slotNames.header]" #header>
       <slot :name="slotNames.header"></slot>
@@ -144,5 +145,5 @@ export default defineComponent({
         <slot :item="itemSlotData(element.item)" :name="slotNames.item"></slot>
       </component>
     </template>
-  </draggable>
+  </vue-draggable>
 </template>

@@ -224,7 +224,7 @@ export default defineComponent({
     ref="main"
     dense
     :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue($event)"
+    @update:model-value="inputUpdateModelValue"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
@@ -293,7 +293,7 @@ export default defineComponent({
                 mask="YYYY-MM-DD HH:mm"
                 :model-value="pickerValue"
                 :options="timeOptions"
-                @update:model-value="timeValueUpdate($event)"
+                @update:model-value="timeValueUpdate"
               >
                 <div
                   :class="`${$style.footerActions} items-center justify-end row`"
@@ -316,7 +316,7 @@ export default defineComponent({
                 :model-value="pickerValue"
                 no-unset
                 :options="dateOptions"
-                @update:model-value="dateValueUpdate($event)"
+                @update:model-value="dateValueUpdate"
               >
                 <div
                   :class="`${$style.footerActions} items-center justify-end row`"

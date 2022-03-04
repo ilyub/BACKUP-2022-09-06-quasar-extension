@@ -9,12 +9,14 @@ import type { GlobalComponent } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade {
-        readonly chevronLeftCircle: string;
-        readonly chevronRightCircle: string;
-      }
+      interface Facade extends ModuleIcons {}
     }
   }
+}
+
+export interface ModuleIcons {
+  readonly chevronLeftCircle: string;
+  readonly chevronRightCircle: string;
 }
 
 export type GlobalNumericInput = GlobalComponent<

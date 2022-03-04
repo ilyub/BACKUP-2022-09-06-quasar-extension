@@ -55,7 +55,7 @@ export default defineComponent({
     dense
     :disable="disable || globalDisable"
     :model-value="modelValue"
-    @update:model-value="updateModel($event)"
+    @update:model-value="updateModel"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

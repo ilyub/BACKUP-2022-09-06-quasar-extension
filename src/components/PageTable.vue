@@ -137,9 +137,9 @@ export default defineComponent({
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
-    @update:pagination="updatePagination($event)"
+    @update:pagination="updatePagination"
     @update:selected="$emit('update:selected', $event)"
-    @virtual-scroll="onScroll($event)"
+    @virtual-scroll="onScroll"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

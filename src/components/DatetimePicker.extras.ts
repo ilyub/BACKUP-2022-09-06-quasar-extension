@@ -11,22 +11,26 @@ import type { GlobalComponent } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade {
-        readonly am: string;
-        readonly close: string;
-        readonly pickDate: string;
-        readonly pickTime: string;
-        readonly pm: string;
-      }
+      interface Facade extends ModuleIcons {}
     }
 
     namespace lang {
-      interface Word {
-        readonly PickDate: true;
-        readonly Save: true;
-      }
+      interface Word extends ModuleWord {}
     }
   }
+}
+
+export interface ModuleIcons {
+  readonly am: string;
+  readonly close: string;
+  readonly pickDate: string;
+  readonly pickTime: string;
+  readonly pm: string;
+}
+
+export interface ModuleWord {
+  readonly PickDate: true;
+  readonly Save: true;
 }
 
 export interface DatetimePickerParentProps
@@ -58,4 +62,4 @@ export type GlobalDatetimePicker = GlobalComponent<
 export const icons: Icons<"am" | "close" | "pickDate" | "pickTime" | "pm"> =
   baseIcons;
 
-export const lang: DictionaryAndWords<"PickDate" | "Save"> = baseLang;
+export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;

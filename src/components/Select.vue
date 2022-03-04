@@ -64,7 +64,7 @@ export default defineComponent({
     dense
     :model-value="selectModelValue"
     :options="selectOptions"
-    @update:model-value="updateModelValue($event)"
+    @update:model-value="updateModelValue"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

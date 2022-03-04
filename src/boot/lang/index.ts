@@ -15,11 +15,13 @@ declare global {
 
   namespace facades {
     namespace lang {
-      interface Word {
-        readonly SampleWord: true;
-      }
+      interface Word extends ModuleWord {}
     }
   }
+}
+
+export interface ModuleWord {
+  readonly SampleWord: true;
 }
 
 export const definitions: ReadonlyRecord<LocaleName, Definitions> = {

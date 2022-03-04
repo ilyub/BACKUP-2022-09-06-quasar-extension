@@ -11,20 +11,24 @@ import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade {
-        readonly chevronLeft: string;
-        readonly chevronRight: string;
-        readonly close: string;
-      }
+      interface Facade extends ModuleIcons {}
     }
 
     namespace lang {
-      interface Word {
-        readonly IconPicker: true;
-        readonly Of: true;
-      }
+      interface Word extends ModuleWord {}
     }
   }
+}
+
+export interface ModuleIcons {
+  readonly chevronLeft: string;
+  readonly chevronRight: string;
+  readonly close: string;
+}
+
+export interface ModuleWord {
+  readonly IconPicker: true;
+  readonly Of: true;
 }
 
 export type GlobalIconPicker = GlobalComponent<
@@ -71,4 +75,4 @@ export const {
 
 export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
 
-export const lang: DictionaryAndWords<"IconPicker" | "Of"> = baseLang;
+export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;

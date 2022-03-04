@@ -73,7 +73,7 @@ export default defineComponent({
     dense
     mask="####################"
     :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue($event)"
+    @update:model-value="inputUpdateModelValue"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>

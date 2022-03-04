@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-menu @update:model-value="updateModel($event)">
+  <q-menu @update:model-value="updateModel">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
       <slot :name="slotName"></slot>
     </template>

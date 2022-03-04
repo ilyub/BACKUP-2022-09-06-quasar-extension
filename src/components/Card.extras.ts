@@ -10,11 +10,13 @@ import type { GlobalComponent } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade {
-        readonly close: string;
-      }
+      interface Facade extends ModuleIcons {}
     }
   }
+}
+
+export interface ModuleIcons {
+  readonly close: string;
 }
 
 export type CardParentProps = QCardProps;
@@ -50,4 +52,4 @@ export interface CardSlots {
 
 export type GlobalCard = GlobalComponent<CardProps, CardSlots>;
 
-export const icons: Icons<"close"> = baseIcons;
+export const icons: Icons<keyof ModuleIcons> = baseIcons;

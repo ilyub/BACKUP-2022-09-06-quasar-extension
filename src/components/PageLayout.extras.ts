@@ -10,11 +10,13 @@ import { createInjectable } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade {
-        readonly close: string;
-      }
+      interface Facade extends ModuleIcons {}
     }
   }
+}
+
+export interface ModuleIcons {
+  readonly close: string;
 }
 
 export type GlobalPageLayout = GlobalComponent<
