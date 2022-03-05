@@ -1,4 +1,4 @@
-import type { QOptionGroupProps } from "quasar";
+import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 
 import * as is from "@skylib/functions/es/guards";
 
@@ -42,7 +42,7 @@ export interface OptionGroupProps<T = unknown>
   extends OptionGroupParentProps,
     OptionGroupOwnProps<T> {}
 
-export type OptionGroupSlots = QOptionGroupProps;
+export type OptionGroupSlots = QOptionGroupSlots;
 
 export const isOptionGroupOption: is.Guard<OptionGroupOption> = is.factory(
   is.object.of,
