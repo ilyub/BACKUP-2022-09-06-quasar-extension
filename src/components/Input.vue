@@ -57,8 +57,8 @@ export default defineComponent({
     :model-value="modelValue"
     @update:model-value="updateModel"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
-      <slot :name="slotName"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
+      <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
   </q-input>
 </template>

@@ -75,8 +75,8 @@ export default defineComponent({
     :model-value="inputModelValue"
     @update:model-value="inputUpdateModelValue"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
-      <slot :name="slotName"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
+      <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
     <template #append>
       <slot :name="slotNames.append">

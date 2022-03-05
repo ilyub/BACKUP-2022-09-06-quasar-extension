@@ -24,8 +24,8 @@ export default defineComponent({
 
 <template>
   <m-base-button class="m-button-group-member" flat>
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
-      <slot :name="slotName"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
+      <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
   </m-base-button>
 </template>

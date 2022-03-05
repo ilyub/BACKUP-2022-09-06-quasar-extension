@@ -141,8 +141,8 @@ export default defineComponent({
     @update:selected="$emit('update:selected', $event)"
     @virtual-scroll="onScroll"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
-      <slot :name="slotName"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
+      <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
     <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
       <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>

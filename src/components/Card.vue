@@ -39,8 +39,8 @@ export default defineComponent({
       minWidth
     }"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]>
-      <slot :name="slotName"></slot>
+    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
+      <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
     <template #default>
       <m-card-section
