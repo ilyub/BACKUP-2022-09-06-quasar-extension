@@ -5,6 +5,7 @@ module.exports = {
     // temp
     "@skylib/no-mutable-signature": "off",
     "vue-scoped-css/enforce-style-type": ["warn", { allows: ["module"] }],
+    "vue/custom-event-name-casing": ["warn", "camelCase"],
     "vue/v-on-function-call": ["warn", "never"]
   }
 };

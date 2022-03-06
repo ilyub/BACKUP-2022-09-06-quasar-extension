@@ -7,8 +7,11 @@ export const en = new Definitions({
   pluralReduce,
   wordForms: {},
   words: {
+    Cancel: "Cancel",
+    Confirm: "Confirm",
     IconPicker: "Icon picker",
     Of: "Of",
+    Ok: "Ok",
     PickDate: "Pick date",
     SampleWord: "Sample word",
     Save: "Save"

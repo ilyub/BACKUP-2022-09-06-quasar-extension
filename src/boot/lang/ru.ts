@@ -7,8 +7,11 @@ export const ru = new Definitions({
   pluralReduce: pluralReduce.ru,
   wordForms: {},
   words: {
+    Cancel: "Отменить",
+    Confirm: "Подтверждение",
     IconPicker: "Выбор иконки",
     Of: "Из",
+    Ok: "Ок",
     PickDate: "Выбор даты",
     SampleWord: "Пробное слово",
     Save: "Сохранить"

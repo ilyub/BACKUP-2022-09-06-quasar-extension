@@ -7,6 +7,13 @@ export default defineComponent({
 </script>
 
 <template>
+  <m-button
+    confirmation="Do you want to confirm button click?"
+    @click="$q.notify('Click')"
+    @confirmed-click="$q.notify('Confirmed click')"
+  >
+    Confirmation
+  </m-button>
   <m-button tooltip="Down tooltip">Down</m-button>
   <m-button tooltip="Down tooltip" tooltip-direction="down">Down</m-button>
   <m-button tooltip="Left tooltip" tooltip-direction="left">Left</m-button>
