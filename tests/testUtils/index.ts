@@ -3,17 +3,6 @@ import * as vueTestUtils from "@vue/test-utils";
 import { createInjectable } from "@/components/api";
 import * as testUtils from "@/testUtils";
 
-test("consoleWarnMock", () => {
-  const callback = jest.fn();
-
-  const mock = testUtils.consoleWarnMock(callback);
-
-  mock("Test warning");
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith("Test warning");
-  callback.mockClear();
-});
-
 test("createInjectable", () => {
   const injectable = createInjectable<string>();
 
