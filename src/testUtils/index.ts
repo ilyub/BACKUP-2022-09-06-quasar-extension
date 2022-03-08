@@ -91,11 +91,11 @@ export interface TouchPanMock {
 }
 
 /**
- * Finds component factory.
+ * Find component factory.
  *
  * @param prefix - Prefix.
  * @param wrapper - Wrapper.
- * @returns Finds component function.
+ * @returns Find component function.
  */
 export function findComponentFactory(
   prefix: string,
@@ -106,6 +106,22 @@ export function findComponentFactory(
     wrapper.findComponent<ComponentPublicInstance>(
       is.string(ref) ? `${prefix}${ref}` : ref
     );
+}
+
+/**
+ * Find HTML element factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Find HTML element function.
+ */
+export function findElementFactory(
+  prefix: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  wrapper: vueTestUtils.VueWrapper<any>
+) {
+  return (ref: string): vueTestUtils.DOMWrapper<Element> =>
+    wrapper.find(`${prefix}${ref}`);
 }
 
 /**
