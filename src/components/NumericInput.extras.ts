@@ -1,8 +1,8 @@
-import type { QInputProps, QInputSlots } from "quasar";
+import type { QFieldProps, QFieldSlots } from "quasar";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { numberU } from "@skylib/functions/es/types/core";
+import type { booleanU, numberU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 
@@ -15,8 +15,10 @@ declare global {
 }
 
 export interface ModuleIcons {
-  readonly chevronLeftCircle: string;
-  readonly chevronRightCircle: string;
+  readonly chevronDoubleLeft: string;
+  readonly chevronDoubleRight: string;
+  readonly chevronLeft: string;
+  readonly chevronRight: string;
 }
 
 export type GlobalNumericInput = GlobalComponent<
@@ -25,10 +27,11 @@ export type GlobalNumericInput = GlobalComponent<
 >;
 
 export interface NumericInputParentProps
-  extends Omit<QInputProps, "modelValue" | "onUpdate:modelValue"> {}
+  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
 
 export interface NumericInputOwnProps {
-  readonly max: number;
+  readonly bigStep?: numberU;
+  readonly max?: numberU;
   readonly min?: numberU;
   readonly modelValue?: numberU;
   /**
@@ -37,13 +40,14 @@ export interface NumericInputOwnProps {
    * @param value - Value.
    */
   readonly "onUpdate:modelValue"?: (value: numberU) => void;
+  readonly required?: booleanU;
+  readonly smallStep?: numberU;
 }
 
 export interface NumericInputProps
   extends NumericInputParentProps,
     NumericInputOwnProps {}
 
-export type NumericInputSlots = QInputSlots;
+export type NumericInputSlots = QFieldSlots;
 
-export const icons: Icons<"chevronLeftCircle" | "chevronRightCircle"> =
-  baseIcons;
+export const icons: Icons<keyof ModuleIcons> = baseIcons;

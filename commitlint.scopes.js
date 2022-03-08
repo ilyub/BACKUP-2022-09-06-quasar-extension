@@ -19,6 +19,7 @@ module.exports = [
   "Menu",
   "ListItem",
   "NavButton",
+  "NumericInput",
   "OptionGroup",
   "PageLayout",
   "PageMarkupTable",

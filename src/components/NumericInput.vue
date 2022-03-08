@@ -1,6 +1,8 @@
 <script lang="ts">
+import { maska } from "maska";
 import { computed, defineComponent } from "vue";
 
+import * as assert from "@skylib/functions/es/assertions";
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
@@ -19,13 +21,29 @@ import type {
 } from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+function stepCeil(value: number, step: number, from: number): number {
+  return Math.ceil((value - from) / step) * step + from;
+}
+
+// eslint-disable-next-line @skylib/disallow-by-regexp
+// temp
+function stepFloor(value: number, step: number, from: number): number {
+  return Math.floor((value - from) / step) * step + from;
+}
+
 export default defineComponent({
   name: "m-numeric-input",
+  directives: { maska },
   props: {
     ...propsToPropDefinitions<NumericInputParentProps>(),
-    max: propOptions.required(is.number),
+    bigStep: propOptions.default(is.number, 1),
+    max: propOptions.default(is.number, Number.MAX_VALUE),
     min: propOptions.default(is.number, 0),
-    modelValue: propOptions(is.numberU)
+    modelValue: propOptions(is.numberU),
+    required: propOptions.boolean(),
+    smallStep: propOptions.default(is.number, 1)
   },
   emits: {
     "update:modelValue": (value: numberU) => is.numberU(value)
@@ -35,45 +53,67 @@ export default defineComponent({
     validateProps<NumericInputOwnProps>(props);
 
     return {
+      downClick(step: number): void {
+        if (is.not.empty(props.modelValue))
+          if (props.modelValue > props.min)
+            emit(
+              "update:modelValue",
+              Math.max(
+                stepCeil(props.modelValue, step, props.min) - step,
+                props.min
+              )
+            );
+          else if (props.required) {
+            // Do nothing
+          } else emit("update:modelValue", undefined);
+      },
+      downDisable: computed<boolean>(() =>
+        is.not.empty(props.modelValue)
+          ? props.modelValue <= props.min && props.required
+          : true
+      ),
       icons,
-      inputModelValue: computed<string>(() => cast.string(props.modelValue)),
-      inputUpdateModelValue(value: NumStrE): void {
+      inputChange(e: Event, emitValue: (value: unknown) => void): void {
+        assert.object.of(e.target, { value: is.string }, {});
+        emitValue(e.target.value);
+      },
+      inputUpdateValue(value: NumStrE): void {
         emit("update:modelValue", cast.numberU(value));
       },
-      nextClick(): void {
-        if (is.empty(props.modelValue)) emit("update:modelValue", props.min);
-        else if (props.modelValue < props.max)
-          emit("update:modelValue", props.modelValue + 1);
-        else {
-          // Not clickable
-        }
-      },
-      nextClickable: computed<boolean>(
-        () => is.empty(props.modelValue) || props.modelValue < props.max
+      inputValue: computed<string>(() => cast.string(props.modelValue)),
+      slotNames: useSlotsNames<NumericInputSlots>()(
+        "append",
+        "control",
+        "prepend"
       ),
-      prevClick(): void {
-        if (is.empty(props.modelValue)) emit("update:modelValue", props.max);
-        else if (props.modelValue > props.min)
-          emit("update:modelValue", props.modelValue - 1);
-        else {
-          // Not clickable
-        }
+      upClick(step: number): void {
+        if (is.not.empty(props.modelValue))
+          if (props.modelValue < props.max)
+            emit(
+              "update:modelValue",
+              Math.min(
+                stepFloor(props.modelValue, step, props.min) + step,
+                props.max
+              )
+            );
+          else {
+            // Do nothing
+          }
+        else emit("update:modelValue", props.min);
       },
-      prevClickable: computed<boolean>(
-        () => is.empty(props.modelValue) || props.modelValue > props.min
-      ),
-      slotNames: useSlotsNames<NumericInputSlots>()("append", "prepend")
+      upDisable: computed<boolean>(() =>
+        is.not.empty(props.modelValue) ? props.modelValue >= props.max : false
+      )
     };
   }
 });
 </script>
 
 <template>
-  <q-input
+  <q-field
     dense
-    mask="####################"
-    :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue"
+    :model-value="inputValue"
+    @update:model-value="inputUpdateValue"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
@@ -81,44 +121,65 @@ export default defineComponent({
     <template #append>
       <slot :name="slotNames.append">
         <q-icon
-          class="ref-numeric-input-next"
+          class="q-field__focusable-action ref-numeric-input-up"
           :class="{
-            [$style.clickable]: nextClickable,
-            [$style.icon]: true
+            [$style.disable]: upDisable
           }"
-          :name="icons.chevronRightCircle"
-          @click="nextClick"
+          :name="icons.chevronRight"
+          @click="upClick(smallStep)"
+        />
+        <q-icon
+          v-if="bigStep > 1"
+          class="q-field__focusable-action ref-numeric-input-big-up"
+          :class="{
+            [$style.disable]: upDisable
+          }"
+          :name="icons.chevronDoubleRight"
+          @click="upClick(bigStep)"
+        />
+      </slot>
+    </template>
+    <template #control="{ emitValue }">
+      <slot :name="slotNames.control">
+        <input
+          v-maska="'#*'"
+          class="q-field__input ref-numeric-input-input"
+          :value="inputValue"
+          @change="inputChange($event, emitValue)"
         />
       </slot>
     </template>
     <template #prepend>
       <slot :name="slotNames.prepend">
         <q-icon
-          class="ref-numeric-input-prev"
+          v-if="bigStep > 1"
+          class="q-field__focusable-action ref-numeric-input-big-down"
           :class="{
-            [$style.clickable]: prevClickable,
-            [$style.icon]: true
+            [$style.disable]: downDisable
           }"
-          :name="icons.chevronLeftCircle"
-          @click="prevClick"
+          :name="icons.chevronDoubleLeft"
+          @click="downClick(bigStep)"
+        />
+        <q-icon
+          class="q-field__focusable-action ref-numeric-input-down"
+          :class="{
+            [$style.disable]: downDisable
+          }"
+          :name="icons.chevronLeft"
+          @click="downClick(smallStep)"
         />
       </slot>
     </template>
-  </q-input>
+  </q-field>
 </template>
 
 <style lang="scss" module>
-@import "~quasar/src/css/variables.sass";
-
-.icon {
-  color: $item-base-color;
-
-  &.clickable {
-    cursor: pointer;
-
-    &:hover {
-      color: $grey-7;
-    }
+.disable {
+  &,
+  &:focus,
+  &:hover {
+    opacity: 0.3;
+    cursor: default;
   }
 }
 </style>

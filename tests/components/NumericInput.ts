@@ -1,4 +1,3 @@
-import { QInput } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
 import NumericInput from "@/components/NumericInput.vue";
@@ -9,71 +8,90 @@ test("numericInput", async () => {
     global: testUtils.globalMountOptions(),
     props: {
       max: 2,
-      modelValue: undefined
+      modelValue: undefined,
+      required: true
     }
   });
 
   const comp = testUtils.findComponentFactory(".ref-numeric-input-", wrapper);
 
-  const main = comp(QInput);
+  const elem = testUtils.findElementFactory(".ref-numeric-input-", wrapper);
 
   {
     const expected = [[undefined]];
 
-    main.vm.$emit("update:modelValue", "invalid");
+    elem("input").element.setAttribute("value", "invalid");
+    await elem("input").trigger("change");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1]];
 
-    main.vm.$emit("update:modelValue", "1");
+    elem("input").element.setAttribute("value", "1");
+    await elem("input").trigger("change");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
     const expected = [[undefined], [1], [0]];
 
-    await comp("next").trigger("click");
+    await comp("up").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
-    const expected = [[undefined], [1], [0], [2]];
+    const expected = [[undefined], [1], [0]];
 
-    await comp("prev").trigger("click");
+    await comp("down").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   await wrapper.setProps({ modelValue: 0 });
 
   {
-    const expected = [[undefined], [1], [0], [2], [1]];
+    const expected = [[undefined], [1], [0], [1]];
 
-    await comp("next").trigger("click");
+    await comp("up").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
-    const expected = [[undefined], [1], [0], [2], [1]];
+    const expected = [[undefined], [1], [0], [1]];
 
-    await comp("prev").trigger("click");
+    await comp("down").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   await wrapper.setProps({ modelValue: 2 });
 
   {
-    const expected = [[undefined], [1], [0], [2], [1]];
+    const expected = [[undefined], [1], [0], [1]];
 
-    await comp("next").trigger("click");
+    await comp("up").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
 
   {
-    const expected = [[undefined], [1], [0], [2], [1], [1]];
+    const expected = [[undefined], [1], [0], [1], [1]];
 
-    await comp("prev").trigger("click");
+    await comp("down").trigger("click");
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   }
+});
+
+test.each(["big-down", "down"])("numericInput: undef", async down => {
+  const wrapper = vueTestUtils.mount(NumericInput, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      bigStep: 5,
+      max: 2,
+      modelValue: 0
+    }
+  });
+
+  const comp = testUtils.findComponentFactory(".ref-numeric-input-", wrapper);
+
+  await comp(down).trigger("click");
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[undefined]]);
 });

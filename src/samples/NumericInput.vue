@@ -14,5 +14,21 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-numeric-input v-model="value" :max="100" />
+  <m-section>
+    <m-numeric-input
+      v-model="value"
+      :big-step="15"
+      label="No undef"
+      :max="59"
+    />
+  </m-section>
+  <m-section>
+    <m-numeric-input
+      v-model="value"
+      :big-step="15"
+      can-undef
+      label="Undef"
+      :max="59"
+    />
+  </m-section>
 </template>
