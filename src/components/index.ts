@@ -59,6 +59,8 @@ import type { GlobalSubsection } from "./Subsection.extras";
 import Subsection from "./Subsection.vue";
 import type { GlobalSwitchable } from "./Switchable.extras";
 import Switchable from "./Switchable.vue";
+import type { GlobalTimeInput } from "./TimeInput.extras";
+import TimeInput from "./TimeInput.vue";
 import type { GlobalToggle } from "./Toggle.extras";
 import Toggle from "./Toggle.vue";
 import type { GlobalTooltip } from "./Tooltip.extras";
@@ -95,6 +97,7 @@ declare module "@vue/runtime-core" {
     readonly "m-sortable": GlobalSortable;
     readonly "m-subsection": GlobalSubsection;
     readonly "m-switchable": GlobalSwitchable;
+    readonly "m-time-input": GlobalTimeInput;
     readonly "m-toggle": GlobalToggle;
     readonly "m-tooltip": GlobalTooltip;
   }
@@ -131,6 +134,7 @@ export const components = o.freeze([
   Sortable,
   Subsection,
   Switchable,
+  TimeInput,
   Tooltip,
   Toggle
 ]);

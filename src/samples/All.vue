@@ -28,6 +28,7 @@ import Select from "./Select.vue";
 import Sortable from "./Sortable.vue";
 import Subsection from "./Subsection.vue";
 import Switchable from "./Switchable.vue";
+import TimeInput from "./TimeInput.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
 
@@ -38,11 +39,11 @@ export default defineComponent({
       // eslint-disable-next-line @skylib/disallow-by-regexp
       components: computed(() =>
         [
-          Form,
           Button,
           Card,
           DatetimePicker,
           Droppable,
+          Form,
           FormButton,
           Group,
           IconButton,
@@ -64,6 +65,7 @@ export default defineComponent({
           Sortable,
           Subsection,
           Switchable,
+          TimeInput,
           Toggle,
           Tooltip
         ].map(component => [component, _.startCase(component.name)])

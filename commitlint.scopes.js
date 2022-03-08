@@ -31,6 +31,7 @@ module.exports = [
   "Sortable",
   "Subsection",
   "Switchable",
+  "TimeInput",
   "Toggle",
   "Tooltip",
   "boot",
