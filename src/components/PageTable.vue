@@ -124,7 +124,7 @@ export default defineComponent({
   <q-table
     ref="table"
     binary-state-sort
-    class="sticky-header-table"
+    class="sticky-table"
     :columns="tableColumns"
     :pagination="pagination"
     :rows="tableRows"

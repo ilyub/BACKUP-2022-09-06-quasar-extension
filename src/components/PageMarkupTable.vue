@@ -31,7 +31,7 @@ export default defineComponent({
 
 <template>
   <q-markup-table
-    class="sticky-header-table"
+    class="sticky-table"
     :style="{
       height
     }"
