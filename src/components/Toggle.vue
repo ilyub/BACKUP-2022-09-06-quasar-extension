@@ -43,6 +43,7 @@ export default defineComponent({
 
 <template>
   <q-toggle
+    class="m-button-group-member"
     :disable="disable || globalDisable"
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
