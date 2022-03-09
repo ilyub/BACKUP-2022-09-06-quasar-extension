@@ -14,9 +14,16 @@
 
 ### Properties
 
+- [disable](components_Input_extras.InputOwnProps.md#disable)
 - [modelValue](components_Input_extras.InputOwnProps.md#modelvalue)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+___
 
 ### modelValue
 

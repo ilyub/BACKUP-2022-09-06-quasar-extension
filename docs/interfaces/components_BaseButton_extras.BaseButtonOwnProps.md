@@ -14,11 +14,18 @@
 
 ### Properties
 
+- [disable](components_BaseButton_extras.BaseButtonOwnProps.md#disable)
 - [modelValue](components_BaseButton_extras.BaseButtonOwnProps.md#modelvalue)
 - [tooltip](components_BaseButton_extras.BaseButtonOwnProps.md#tooltip)
 - [tooltipDirection](components_BaseButton_extras.BaseButtonOwnProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+___
 
 ### modelValue
 

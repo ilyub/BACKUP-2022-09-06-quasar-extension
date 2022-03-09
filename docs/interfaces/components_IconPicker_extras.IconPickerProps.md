@@ -17,6 +17,7 @@
 ### Properties
 
 - [cols](components_IconPicker_extras.IconPickerProps.md#cols)
+- [disable](components_IconPicker_extras.IconPickerProps.md#disable)
 - [modelValue](components_IconPicker_extras.IconPickerProps.md#modelvalue)
 - [placeholder](components_IconPicker_extras.IconPickerProps.md#placeholder)
 - [rows](components_IconPicker_extras.IconPickerProps.md#rows)
@@ -33,6 +34,16 @@
 #### Inherited from
 
 [IconPickerOwnProps](components_IconPicker_extras.IconPickerOwnProps.md).[cols](components_IconPicker_extras.IconPickerOwnProps.md#cols)
+
+___
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[disable](components_IconPicker_extras.IconPickerParentProps.md#disable)
 
 ___
 

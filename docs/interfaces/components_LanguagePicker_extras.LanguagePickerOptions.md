@@ -14,12 +14,23 @@
 
 ### Properties
 
+- [disable](components_LanguagePicker_extras.LanguagePickerOptions.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerOptions.md#language)
 - [modelValue](components_LanguagePicker_extras.LanguagePickerOptions.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[disable](components_IconButton_extras.IconButtonProps.md#disable)
+
+___
 
 ### language
 

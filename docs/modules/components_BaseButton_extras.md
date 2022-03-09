@@ -7,21 +7,15 @@
 ### Interfaces
 
 - [BaseButtonOwnProps](../interfaces/components_BaseButton_extras.BaseButtonOwnProps.md)
+- [BaseButtonParentProps](../interfaces/components_BaseButton_extras.BaseButtonParentProps.md)
 - [BaseButtonProps](../interfaces/components_BaseButton_extras.BaseButtonProps.md)
 
 ### Type aliases
 
-- [BaseButtonParentProps](components_BaseButton_extras.md#basebuttonparentprops)
 - [BaseButtonSlots](components_BaseButton_extras.md#basebuttonslots)
 - [GlobalBaseButton](components_BaseButton_extras.md#globalbasebutton)
 
 ## Type aliases
-
-### BaseButtonParentProps
-
-Ƭ **BaseButtonParentProps**: `Readonly`<`QBtnProps`\>
-
-___
 
 ### BaseButtonSlots
 

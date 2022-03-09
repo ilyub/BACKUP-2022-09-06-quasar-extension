@@ -16,12 +16,23 @@
 
 ### Properties
 
+- [disable](components_LanguagePicker_extras.LanguagePickerProps.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerProps.md#language)
 - [modelValue](components_LanguagePicker_extras.LanguagePickerProps.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerProps.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+LanguagePickerParentProps.disable
+
+___
 
 ### language
 

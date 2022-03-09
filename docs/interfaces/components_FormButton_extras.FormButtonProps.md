@@ -16,11 +16,22 @@
 
 ### Properties
 
+- [disable](components_FormButton_extras.FormButtonProps.md#disable)
 - [modelValue](components_FormButton_extras.FormButtonProps.md#modelvalue)
 - [tooltip](components_FormButton_extras.FormButtonProps.md#tooltip)
 - [tooltipDirection](components_FormButton_extras.FormButtonProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+FormButtonParentProps.disable
+
+___
 
 ### modelValue
 

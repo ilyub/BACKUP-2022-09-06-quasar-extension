@@ -18,11 +18,22 @@
 
 ### Properties
 
+- [disable](components_IconButton_extras.IconButtonProps.md#disable)
 - [modelValue](components_IconButton_extras.IconButtonProps.md#modelvalue)
 - [tooltip](components_IconButton_extras.IconButtonProps.md#tooltip)
 - [tooltipDirection](components_IconButton_extras.IconButtonProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+IconButtonParentProps.disable
+
+___
 
 ### modelValue
 

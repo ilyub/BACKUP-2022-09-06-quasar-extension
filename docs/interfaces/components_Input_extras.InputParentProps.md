@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QInputProps`, ``"modelValue"``\>
+- `Omit`<`QInputProps`, ``"disable"`` \| ``"modelValue"``\>
 
   ↳ **`InputParentProps`**
 

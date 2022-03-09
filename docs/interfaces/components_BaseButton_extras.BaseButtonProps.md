@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`BaseButtonParentProps`](../modules/components_BaseButton_extras.md#basebuttonparentprops)
+- [`BaseButtonParentProps`](components_BaseButton_extras.BaseButtonParentProps.md)
 
 - [`BaseButtonOwnProps`](components_BaseButton_extras.BaseButtonOwnProps.md)
 
@@ -16,11 +16,22 @@
 
 ### Properties
 
+- [disable](components_BaseButton_extras.BaseButtonProps.md#disable)
 - [modelValue](components_BaseButton_extras.BaseButtonProps.md#modelvalue)
 - [tooltip](components_BaseButton_extras.BaseButtonProps.md#tooltip)
 - [tooltipDirection](components_BaseButton_extras.BaseButtonProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+[BaseButtonOwnProps](components_BaseButton_extras.BaseButtonOwnProps.md).[disable](components_BaseButton_extras.BaseButtonOwnProps.md#disable)
+
+___
 
 ### modelValue
 

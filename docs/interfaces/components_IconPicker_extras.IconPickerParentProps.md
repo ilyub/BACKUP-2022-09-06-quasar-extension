@@ -16,10 +16,21 @@
 
 ### Properties
 
+- [disable](components_IconPicker_extras.IconPickerParentProps.md#disable)
 - [tooltip](components_IconPicker_extras.IconPickerParentProps.md#tooltip)
 - [tooltipDirection](components_IconPicker_extras.IconPickerParentProps.md#tooltipdirection)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+Omit.disable
+
+___
 
 ### tooltip
 
