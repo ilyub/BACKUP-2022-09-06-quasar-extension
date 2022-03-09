@@ -85,7 +85,10 @@ export default defineComponent({
       slotNames: useSlotsNames<PageTableSlots>()(
         "body-cell",
         "body-selection",
-        "header-selection"
+        "bottom",
+        "header-selection",
+        "no-data",
+        "steady-bottom"
       ),
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
@@ -149,18 +152,32 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
+    <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
+      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
+    </template>
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">
         <q-checkbox v-model="data.selected" :disable="empty" />
       </slot>
     </template>
-    <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
-      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
+    <template
+      v-if="$slots[slotNames.bottom] || $slots[slotNames.steadyBottom]"
+      #bottom="data"
+    >
+      <slot :name="slotNames.bottom" v-bind="data"></slot>
+      <slot :name="slotNames.steadyBottom"></slot>
     </template>
     <template #header-selection="data">
       <slot :name="slotNames.headerSelection" v-bind="data">
         <q-checkbox v-model="data.selected" :disable="empty" />
       </slot>
+    </template>
+    <template
+      v-if="$slots[slotNames.noData] || $slots[slotNames.steadyBottom]"
+      #no-data="data"
+    >
+      <slot :name="slotNames.noData" v-bind="data"></slot>
+      <slot :name="slotNames.steadyBottom"></slot>
     </template>
   </q-table>
 </template>

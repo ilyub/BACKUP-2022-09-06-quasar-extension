@@ -82,12 +82,13 @@ export default defineComponent({
       :rows="pageTableRows"
       selection="multiple"
     >
-      <template #top>
-        <m-toggle v-model="toggle" label="Toggle" />
-      </template>
       <template #body-cell="{ row, value }">
         <q-td>{{ value }} - {{ row.id }}</q-td>
       </template>
+      <template #top>
+        <m-toggle v-model="toggle" label="Toggle" />
+      </template>
+      <template #steady-bottom>Bottom</template>
     </generic-page-table>
   </m-page-layout>
 </template>

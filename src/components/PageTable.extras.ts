@@ -100,6 +100,12 @@ export interface PageTableSlots<T = unknown>
    * @returns Node.
    */
   readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
+  /**
+   * Steady bottom slot.
+   *
+   * @returns Node.
+   */
+  readonly "steady-bottom": () => readonly VNode[];
 }
 
 export interface PageTableSettings {
