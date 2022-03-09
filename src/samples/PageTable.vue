@@ -27,9 +27,13 @@ export default defineComponent({
       sortBy: "name"
     });
 
-    const toggle = ref(true);
+    const loading = ref(false);
+
+    const noData = ref(false);
 
     return {
+      loading,
+      noData,
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
@@ -45,27 +49,24 @@ export default defineComponent({
         }
       ]),
       pageTableRows: computed<TableItems>(() => {
-        if (toggle.value) {
-          assert.not.empty(pagination.value.limit);
+        if (noData.value) return [];
 
-          const ids =
-            pagination.value.descending ?? false
-              ? a.fromRange(1001 - pagination.value.limit, 1000)
-              : a.fromRange(1, pagination.value.limit);
+        assert.not.empty(pagination.value.limit);
 
-          return ids.map(id => {
-            return {
-              id,
-              name: `Item ${id}`
-            };
-          });
-        }
+        const ids =
+          pagination.value.descending ?? false
+            ? a.fromRange(1001 - pagination.value.limit, 1000)
+            : a.fromRange(1, pagination.value.limit);
 
-        return [];
+        return ids.map(id => {
+          return {
+            id,
+            name: `Item ${id}`
+          };
+        });
       }),
       pagination,
-      selected: ref<TableItems>([]),
-      toggle
+      selected: ref<TableItems>([])
     };
   }
 });
@@ -79,6 +80,7 @@ export default defineComponent({
       :class="$style.pageTable"
       :columns="pageTableColumns"
       flat
+      :loading="loading"
       :rows="pageTableRows"
       selection="multiple"
     >
@@ -86,7 +88,8 @@ export default defineComponent({
         <q-td>{{ value }} - {{ row.id }}</q-td>
       </template>
       <template #top>
-        <m-toggle v-model="toggle" label="Toggle" />
+        <m-toggle v-model="loading" label="Loading" />
+        <m-toggle v-model="noData" label="No data" />
       </template>
       <template #steady-bottom>Bottom</template>
     </generic-page-table>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Notify } from "quasar";
+import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 
 import * as json from "@skylib/functions/es/json";
@@ -8,9 +8,11 @@ import * as reflect from "@skylib/functions/es/reflect";
 export default defineComponent({
   name: "sample-droppable",
   setup() {
+    const $q = useQuasar();
+
     return {
       dropped(item: unknown, group: unknown): void {
-        Notify.create(json.encode({ group, item }));
+        $q.notify(json.encode({ group, item }));
       },
       sortable1: ref([
         { id: "a", name: "A" },

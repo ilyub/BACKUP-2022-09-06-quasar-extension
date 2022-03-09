@@ -17,7 +17,7 @@ import {
 } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
-import { isVirtualScrollEvent } from "./extras/QVirtualScroll";
+import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
   Columns,
   PageTableOwnProps,
@@ -65,17 +65,12 @@ export default defineComponent({
     const table = ref<QTable | undefined>(undefined);
 
     return {
-      bodyCellSlotData(data: unknown): unknown {
-        return data;
-      },
       empty: computed<boolean>(() => props.rows.length === 0),
       height: usePageContentHeight(() => props.extraPageOffset),
-      onScroll(event: unknown): void {
-        assert.byGuard(event, isVirtualScrollEvent);
-
+      onScroll(details: VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
-          event.to === props.pagination.limit - 1
+          details.to === props.pagination.limit - 1
         )
           emit("update:pagination", {
             ...props.pagination,
@@ -83,7 +78,6 @@ export default defineComponent({
           });
       },
       slotNames: useSlotsNames<PageTableSlots>()(
-        "body-cell",
         "body-selection",
         "bottom",
         "header-selection",
@@ -151,9 +145,6 @@ export default defineComponent({
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
-    </template>
-    <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
-      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
     </template>
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">

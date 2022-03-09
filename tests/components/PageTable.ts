@@ -1,4 +1,3 @@
-import type { QVirtualScroll } from "quasar";
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
@@ -9,7 +8,7 @@ import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { unknowns, Writable } from "@skylib/functions/es/types/core";
 
-import type { VirtualScrollEvent } from "@/components/extras/QVirtualScroll";
+import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
 import type { Columns, Pagination } from "@/components/PageTable.extras";
 import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
@@ -131,18 +130,17 @@ test.each([
       }
 
       {
-        const rawEvent: VirtualScrollEvent = {
+        const rawEvent: VirtualScrollDetails = {
           direction: "increase",
           from: 0,
           index: 0,
-          // eslint-disable-next-line no-type-assertion/no-type-assertion
-          ref: {} as QVirtualScroll,
           to
         };
 
         const event = [{ ...pagination, limit: expectedLimit }];
 
         emittedPagination.push(event);
+        // eslint-disable-next-line vue/custom-event-name-casing
         table.vm.$emit("virtual-scroll", rawEvent);
         expect(wrapper.emitted("update:pagination")).toStrictEqual(
           emittedPagination
