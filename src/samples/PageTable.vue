@@ -27,6 +27,8 @@ export default defineComponent({
       sortBy: "name"
     });
 
+    const toggle = ref(true);
+
     return {
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
@@ -43,22 +45,27 @@ export default defineComponent({
         }
       ]),
       pageTableRows: computed<TableItems>(() => {
-        assert.not.empty(pagination.value.limit);
+        if (toggle.value) {
+          assert.not.empty(pagination.value.limit);
 
-        const ids =
-          pagination.value.descending ?? false
-            ? a.fromRange(1001 - pagination.value.limit, 1000)
-            : a.fromRange(1, pagination.value.limit);
+          const ids =
+            pagination.value.descending ?? false
+              ? a.fromRange(1001 - pagination.value.limit, 1000)
+              : a.fromRange(1, pagination.value.limit);
 
-        return ids.map(id => {
-          return {
-            id,
-            name: `Item ${id}`
-          };
-        });
+          return ids.map(id => {
+            return {
+              id,
+              name: `Item ${id}`
+            };
+          });
+        }
+
+        return [];
       }),
       pagination,
-      selected: ref<TableItems>([])
+      selected: ref<TableItems>([]),
+      toggle
     };
   }
 });
@@ -75,6 +82,9 @@ export default defineComponent({
       :rows="pageTableRows"
       selection="multiple"
     >
+      <template #top>
+        <m-toggle v-model="toggle" label="Toggle" />
+      </template>
       <template #body-cell="{ row, value }">
         <q-td>{{ value }} - {{ row.id }}</q-td>
       </template>

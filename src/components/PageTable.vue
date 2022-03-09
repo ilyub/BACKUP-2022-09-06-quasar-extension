@@ -68,6 +68,7 @@ export default defineComponent({
       bodyCellSlotData(data: unknown): unknown {
         return data;
       },
+      empty: computed<boolean>(() => props.rows.length === 0),
       height: usePageContentHeight(() => props.extraPageOffset),
       onScroll(event: unknown): void {
         assert.byGuard(event, isVirtualScrollEvent);
@@ -81,7 +82,11 @@ export default defineComponent({
             limit: props.pagination.limit + settings.value.growPageBy
           });
       },
-      slotNames: useSlotsNames<PageTableSlots>()("body-cell"),
+      slotNames: useSlotsNames<PageTableSlots>()(
+        "body-cell",
+        "body-selection",
+        "header-selection"
+      ),
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
       ),
@@ -144,8 +149,18 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
+    <template #body-selection="data">
+      <slot :name="slotNames.bodySelection" v-bind="data">
+        <q-checkbox v-model="data.selected" :disable="empty" />
+      </slot>
+    </template>
     <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
       <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
+    </template>
+    <template #header-selection="data">
+      <slot :name="slotNames.headerSelection" v-bind="data">
+        <q-checkbox v-model="data.selected" :disable="empty" />
+      </slot>
     </template>
   </q-table>
 </template>
