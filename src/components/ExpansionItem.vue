@@ -33,6 +33,6 @@ export default defineComponent({
 
 <style lang="scss" module>
 .item :global(.q-expansion-item__container > .q-item .q-item__section--side) {
-  min-width: 0px;
+  min-width: 0;
 }
 </style>
