@@ -302,6 +302,7 @@ export default defineComponent({
                     v-close-popup
                     class="ref-datetime-picker-time-save"
                     color="primary"
+                    :disable="empty"
                     :label="lang.Save"
                     @click="save"
                   />
@@ -325,6 +326,7 @@ export default defineComponent({
                     v-close-popup
                     class="ref-datetime-picker-date-save"
                     color="primary"
+                    :disable="empty"
                     :label="lang.Save"
                     @click="save"
                   />
