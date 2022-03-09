@@ -142,9 +142,9 @@ export default defineComponent({
         return true;
       },
       dateValueUpdate(value: unknown): void {
-        assert.string(value);
-        pickerValue.value = value;
-        nextStep.value = true;
+        if (is.string(value)) pickerValue.value = value;
+
+        if (is.not.empty(pickerValue.value)) nextStep.value = true;
       },
       dialogBeforeShow(): void {
         nextStep.value = false;
@@ -315,7 +315,6 @@ export default defineComponent({
                 mask="YYYY-MM-DD HH:mm"
                 minimal
                 :model-value="pickerValue"
-                no-unset
                 :options="dateOptions"
                 @update:model-value="dateValueUpdate"
               >
