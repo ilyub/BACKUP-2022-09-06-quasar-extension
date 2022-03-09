@@ -6,10 +6,10 @@ import * as is from "@skylib/functions/es/guards";
 import { propOptions, propsToPropDefinitions, validateProps } from "./api";
 import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
-import type { BaseButtonSlots } from "./BaseButton.extras";
 import type {
   PageMarkupTableOwnProps,
-  PageMarkupTableParentProps
+  PageMarkupTableParentProps,
+  PageMarkupTableSlots
 } from "./PageMarkupTable.extras";
 
 export default defineComponent({
@@ -23,7 +23,7 @@ export default defineComponent({
 
     return {
       height: usePageContentHeight(() => props.extraPageOffset),
-      slotNames: useSlotsNames<BaseButtonSlots>()()
+      slotNames: useSlotsNames<PageMarkupTableSlots>()()
     };
   }
 });
