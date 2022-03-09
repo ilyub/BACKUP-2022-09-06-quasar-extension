@@ -20,6 +20,10 @@
 - [inline](components_Knob_extras.KnobProps.md#inline)
 - [modelValue](components_Knob_extras.KnobProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_Knob_extras.KnobProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### disable
@@ -49,3 +53,25 @@ ___
 #### Inherited from
 
 [KnobOwnProps](components_Knob_extras.KnobOwnProps.md).[modelValue](components_Knob_extras.KnobOwnProps.md#modelvalue)
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `number` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[KnobOwnProps](components_Knob_extras.KnobOwnProps.md).[onUpdate:modelValue](components_Knob_extras.KnobOwnProps.md#onupdate:modelvalue)

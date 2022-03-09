@@ -34,7 +34,7 @@ ___
 
 ### GlobalForm
 
-Ƭ **GlobalForm**: `GlobalComponentConstructor`<[`FormProps`](../interfaces/components_Form_extras.FormProps.md), [`FormSlots`](components_Form_extras.md#formslots)\>
+Ƭ **GlobalForm**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`FormProps`](../interfaces/components_Form_extras.FormProps.md), [`FormSlots`](components_Form_extras.md#formslots)\>
 
 ## Functions
 

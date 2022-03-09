@@ -6,7 +6,7 @@
 
 ### Interfaces
 
-- [PageSectionOwnerProps](../interfaces/components_PageSection_extras.PageSectionOwnerProps.md)
+- [PageSectionOwnProps](../interfaces/components_PageSection_extras.PageSectionOwnProps.md)
 - [PageSectionProps](../interfaces/components_PageSection_extras.PageSectionProps.md)
 
 ### Type aliases
@@ -19,7 +19,7 @@
 
 ### GlobalPageSection
 
-Ƭ **GlobalPageSection**: `GlobalComponentConstructor`<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
+Ƭ **GlobalPageSection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
 
 ___
 

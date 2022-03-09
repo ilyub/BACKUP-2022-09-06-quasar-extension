@@ -18,6 +18,10 @@
 - [min](components_DatetimePicker_extras.DatetimePickerOwnProps.md#min)
 - [modelValue](components_DatetimePicker_extras.DatetimePickerOwnProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_DatetimePicker_extras.DatetimePickerOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### max
@@ -35,3 +39,21 @@ ___
 ### modelValue
 
 • `Optional` `Readonly` **modelValue**: `stringU`
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `stringU` | Value. |
+
+#### Returns
+
+`void`

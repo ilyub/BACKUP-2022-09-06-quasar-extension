@@ -8,7 +8,7 @@
 
 - [`PageMarkupTableParentProps`](../modules/components_PageMarkupTable_extras.md#pagemarkuptableparentprops)
 
-- [`PageMarkupTableOwnerProps`](components_PageMarkupTable_extras.PageMarkupTableOwnerProps.md)
+- [`PageMarkupTableOwnProps`](components_PageMarkupTable_extras.PageMarkupTableOwnProps.md)
 
   ↳ **`PageMarkupTableProps`**
 
@@ -26,4 +26,4 @@
 
 #### Inherited from
 
-[PageMarkupTableOwnerProps](components_PageMarkupTable_extras.PageMarkupTableOwnerProps.md).[extraPageOffset](components_PageMarkupTable_extras.PageMarkupTableOwnerProps.md#extrapageoffset)
+[PageMarkupTableOwnProps](components_PageMarkupTable_extras.PageMarkupTableOwnProps.md).[extraPageOffset](components_PageMarkupTable_extras.PageMarkupTableOwnProps.md#extrapageoffset)

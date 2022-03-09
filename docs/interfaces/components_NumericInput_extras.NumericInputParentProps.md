@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QInputProps`, ``"modelValue"``\>
+- `Omit`<`QFieldProps`, ``"modelValue"`` \| ``"onUpdate:modelValue"``\>
 
   ↳ **`NumericInputParentProps`**
 

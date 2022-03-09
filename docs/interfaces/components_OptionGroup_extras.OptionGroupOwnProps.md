@@ -24,6 +24,10 @@
 - [modelValue](components_OptionGroup_extras.OptionGroupOwnProps.md#modelvalue)
 - [options](components_OptionGroup_extras.OptionGroupOwnProps.md#options)
 
+### Methods
+
+- [onUpdate:modelValue](components_OptionGroup_extras.OptionGroupOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### inline
@@ -41,3 +45,21 @@ ___
 ### options
 
 • `Readonly` **options**: [`OptionGroupOptions`](../modules/components_OptionGroup_extras.md#optiongroupoptions)<`T`\>
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+
+#### Returns
+
+`void`

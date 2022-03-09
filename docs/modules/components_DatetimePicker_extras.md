@@ -9,6 +9,8 @@
 - [DatetimePickerOwnProps](../interfaces/components_DatetimePicker_extras.DatetimePickerOwnProps.md)
 - [DatetimePickerParentProps](../interfaces/components_DatetimePicker_extras.DatetimePickerParentProps.md)
 - [DatetimePickerProps](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md)
+- [ModuleIcons](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)
+- [ModuleWord](../interfaces/components_DatetimePicker_extras.ModuleWord.md)
 
 ### Type aliases
 
@@ -30,7 +32,7 @@ ___
 
 ### GlobalDatetimePicker
 
-Ƭ **GlobalDatetimePicker**: `GlobalComponentConstructor`<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
+Ƭ **GlobalDatetimePicker**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
 
 ## Variables
 
@@ -42,4 +44,4 @@ ___
 
 ### lang
 
-• `Const` **lang**: `DictionaryAndWords`<``"PickDate"`` \| ``"Save"``\> = `baseLang`
+• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md)\> = `baseLang`

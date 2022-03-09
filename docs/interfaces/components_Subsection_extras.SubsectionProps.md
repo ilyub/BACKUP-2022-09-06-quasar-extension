@@ -8,7 +8,7 @@
 
 - [`SubsectionParentProps`](../modules/components_Subsection_extras.md#subsectionparentprops)
 
-- [`SubsectionOwnerProps`](components_Subsection_extras.SubsectionOwnerProps.md)
+- [`SubsectionOwnProps`](components_Subsection_extras.SubsectionOwnProps.md)
 
   ↳ **`SubsectionProps`**
 
@@ -16,10 +16,20 @@
 
 ### Properties
 
+- [disable](components_Subsection_extras.SubsectionProps.md#disable)
 - [indent](components_Subsection_extras.SubsectionProps.md#indent)
-- [on](components_Subsection_extras.SubsectionProps.md#on)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+SubsectionParentProps.disable
+
+___
 
 ### indent
 
@@ -28,13 +38,3 @@
 #### Inherited from
 
 SubsectionParentProps.indent
-
-___
-
-### on
-
-• `Optional` `Readonly` **on**: `booleanU`
-
-#### Inherited from
-
-SubsectionParentProps.on

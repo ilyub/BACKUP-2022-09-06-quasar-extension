@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QToggleProps`, ``"disable"`` \| ``"modelValue"``\>
+- `Omit`<`QToggleProps`, ``"disable"`` \| ``"modelValue"`` \| ``"onUpdate:modelValue"``\>
 
   ↳ **`ToggleParentProps`**
 

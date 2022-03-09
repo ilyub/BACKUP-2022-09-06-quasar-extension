@@ -20,6 +20,10 @@
 - [rows](components_IconPicker_extras.IconPickerOwnProps.md#rows)
 - [spinnerSize](components_IconPicker_extras.IconPickerOwnProps.md#spinnersize)
 
+### Methods
+
+- [onUpdate:modelValue](components_IconPicker_extras.IconPickerOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### cols
@@ -49,3 +53,21 @@ ___
 ### spinnerSize
 
 • `Optional` `Readonly` **spinnerSize**: `stringU`
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `stringU` | Value. |
+
+#### Returns
+
+`void`

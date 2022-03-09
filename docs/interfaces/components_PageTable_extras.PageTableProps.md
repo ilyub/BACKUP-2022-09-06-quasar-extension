@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 ## Hierarchy
 
@@ -26,8 +26,15 @@
 - [externalSorting](components_PageTable_extras.PageTableProps.md#externalsorting)
 - [extraPageOffset](components_PageTable_extras.PageTableProps.md#extrapageoffset)
 - [pagination](components_PageTable_extras.PageTableProps.md#pagination)
+- [rowKey](components_PageTable_extras.PageTableProps.md#rowkey)
 - [rows](components_PageTable_extras.PageTableProps.md#rows)
+- [selectByRowClick](components_PageTable_extras.PageTableProps.md#selectbyrowclick)
 - [selected](components_PageTable_extras.PageTableProps.md#selected)
+
+### Methods
+
+- [onUpdate:pagination](components_PageTable_extras.PageTableProps.md#onupdate:pagination)
+- [onUpdate:selected](components_PageTable_extras.PageTableProps.md#onupdate:selected)
 
 ## Properties
 
@@ -71,6 +78,16 @@ ___
 
 ___
 
+### rowKey
+
+• `Optional` `Readonly` **rowKey**: `stringU`
+
+#### Inherited from
+
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[rowKey](components_PageTable_extras.PageTableOwnProps.md#rowkey)
+
+___
+
 ### rows
 
 • `Optional` `Readonly` **rows**: readonly `T`[]
@@ -81,6 +98,16 @@ ___
 
 ___
 
+### selectByRowClick
+
+• `Optional` `Readonly` **selectByRowClick**: `booleanU`
+
+#### Inherited from
+
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[selectByRowClick](components_PageTable_extras.PageTableOwnProps.md#selectbyrowclick)
+
+___
+
 ### selected
 
 • `Optional` `Readonly` **selected**: readonly `T`[]
@@ -88,3 +115,47 @@ ___
 #### Inherited from
 
 [PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[selected](components_PageTable_extras.PageTableOwnProps.md#selected)
+
+## Methods
+
+### onUpdate:pagination
+
+▸ `Optional` `Readonly` **onUpdate:pagination**(`value`): `void`
+
+Emits "pagination" value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`Pagination`](components_PageTable_extras.Pagination.md) | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[onUpdate:pagination](components_PageTable_extras.PageTableOwnProps.md#onupdate:pagination)
+
+___
+
+### onUpdate:selected
+
+▸ `Optional` `Readonly` **onUpdate:selected**(`value`): `void`
+
+Emits "selected" value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `objects` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[PageTableOwnProps](components_PageTable_extras.PageTableOwnProps.md).[onUpdate:selected](components_PageTable_extras.PageTableOwnProps.md#onupdate:selected)

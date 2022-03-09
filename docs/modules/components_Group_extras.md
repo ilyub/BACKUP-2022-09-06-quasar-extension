@@ -26,7 +26,7 @@
 
 ### GlobalGroup
 
-Ƭ **GlobalGroup**<`T`\>: `GlobalComponentConstructor`<[`GroupProps`](../interfaces/components_Group_extras.GroupProps.md)<`T`\>, [`GroupSlots`](components_Group_extras.md#groupslots)<`T`\>\>
+Ƭ **GlobalGroup**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`GroupProps`](../interfaces/components_Group_extras.GroupProps.md)<`T`\>, [`GroupSlots`](components_Group_extras.md#groupslots)<`T`\>\>
 
 #### Type parameters
 

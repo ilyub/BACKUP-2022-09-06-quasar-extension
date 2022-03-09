@@ -19,7 +19,7 @@
 
 ### GlobalIconButton
 
-Ƭ **GlobalIconButton**: `GlobalComponentConstructor`<[`IconButtonProps`](../interfaces/components_IconButton_extras.IconButtonProps.md), [`IconButtonSlots`](components_IconButton_extras.md#iconbuttonslots)\>
+Ƭ **GlobalIconButton**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`IconButtonProps`](../interfaces/components_IconButton_extras.IconButtonProps.md), [`IconButtonSlots`](components_IconButton_extras.md#iconbuttonslots)\>
 
 ___
 

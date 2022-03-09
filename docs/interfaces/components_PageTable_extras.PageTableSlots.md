@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 ## Hierarchy
 
@@ -21,6 +21,7 @@
 ### Methods
 
 - [body-cell](components_PageTable_extras.PageTableSlots.md#body-cell)
+- [steady-bottom](components_PageTable_extras.PageTableSlots.md#steady-bottom)
 
 ## Methods
 
@@ -35,6 +36,20 @@ Body cell slot.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scope` | [`BodyCellSlotData`](components_PageTable_extras.BodyCellSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### steady-bottom
+
+▸ `Readonly` **steady-bottom**(): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Steady bottom slot.
 
 #### Returns
 

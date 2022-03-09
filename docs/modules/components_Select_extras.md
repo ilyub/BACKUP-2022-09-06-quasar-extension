@@ -26,7 +26,7 @@
 
 ### GlobalSelect
 
-Ƭ **GlobalSelect**<`T`\>: `GlobalComponentConstructor`<[`SelectProps`](../interfaces/components_Select_extras.SelectProps.md)<`T`\>, [`SelectSlots`](components_Select_extras.md#selectslots)\>
+Ƭ **GlobalSelect**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SelectProps`](../interfaces/components_Select_extras.SelectProps.md)<`T`\>, [`SelectSlots`](components_Select_extras.md#selectslots)\>
 
 #### Type parameters
 

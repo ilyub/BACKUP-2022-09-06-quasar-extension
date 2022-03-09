@@ -25,6 +25,10 @@
 - [modelValue](components_Select_extras.SelectProps.md#modelvalue)
 - [options](components_Select_extras.SelectProps.md#options)
 
+### Methods
+
+- [onUpdate:modelValue](components_Select_extras.SelectProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### modelValue
@@ -44,3 +48,25 @@ ___
 #### Inherited from
 
 [SelectOwnProps](components_Select_extras.SelectOwnProps.md).[options](components_Select_extras.SelectOwnProps.md#options)
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `number` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[SelectOwnProps](components_Select_extras.SelectOwnProps.md).[onUpdate:modelValue](components_Select_extras.SelectOwnProps.md#onupdate:modelvalue)

@@ -31,4 +31,4 @@ ___
 
 ### GlobalFormButton
 
-Ƭ **GlobalFormButton**: `GlobalComponentConstructor`<[`FormButtonProps`](../interfaces/components_FormButton_extras.FormButtonProps.md), [`FormButtonSlots`](components_FormButton_extras.md#formbuttonslots)\>
+Ƭ **GlobalFormButton**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`FormButtonProps`](../interfaces/components_FormButton_extras.FormButtonProps.md), [`FormButtonSlots`](components_FormButton_extras.md#formbuttonslots)\>

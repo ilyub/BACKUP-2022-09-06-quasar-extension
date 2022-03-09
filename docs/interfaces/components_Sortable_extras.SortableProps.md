@@ -15,6 +15,11 @@
 - [modelValue](components_Sortable_extras.SortableProps.md#modelvalue)
 - [move](components_Sortable_extras.SortableProps.md#move)
 
+### Methods
+
+- [onDropped](components_Sortable_extras.SortableProps.md#ondropped)
+- [onUpdate:modelValue](components_Sortable_extras.SortableProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### group
@@ -50,3 +55,40 @@ ___
 ### move
 
 • `Optional` `Readonly` **move**: [`Move`](components_Sortable_extras.Move.md)
+
+## Methods
+
+### onDropped
+
+▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
+
+Emits "dropped" event.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `object` | Item. |
+| `group` | `string` | Group. |
+
+#### Returns
+
+`void`
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`

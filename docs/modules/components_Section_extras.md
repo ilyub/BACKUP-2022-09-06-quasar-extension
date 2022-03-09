@@ -19,7 +19,7 @@
 
 ### GlobalSection
 
-Ƭ **GlobalSection**: `GlobalComponentConstructor`<[`SectionProps`](../interfaces/components_Section_extras.SectionProps.md), [`SectionSlots`](components_Section_extras.md#sectionslots)\>
+Ƭ **GlobalSection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SectionProps`](../interfaces/components_Section_extras.SectionProps.md), [`SectionSlots`](components_Section_extras.md#sectionslots)\>
 
 ___
 

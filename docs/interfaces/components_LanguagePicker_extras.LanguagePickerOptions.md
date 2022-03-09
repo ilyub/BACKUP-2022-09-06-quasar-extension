@@ -14,13 +14,29 @@
 
 ### Properties
 
+- [confirmation](components_LanguagePicker_extras.LanguagePickerOptions.md#confirmation)
 - [disable](components_LanguagePicker_extras.LanguagePickerOptions.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerOptions.md#language)
 - [modelValue](components_LanguagePicker_extras.LanguagePickerOptions.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltipdirection)
 
+### Methods
+
+- [onConfirmedClick](components_LanguagePicker_extras.LanguagePickerOptions.md#onconfirmedclick)
+- [onUpdate:modelValue](components_LanguagePicker_extras.LanguagePickerOptions.md#onupdate:modelvalue)
+
 ## Properties
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[confirmation](components_IconButton_extras.IconButtonProps.md#confirmation)
+
+___
 
 ### disable
 
@@ -65,3 +81,41 @@ ___
 #### Inherited from
 
 [IconButtonProps](components_IconButton_extras.IconButtonProps.md).[tooltipDirection](components_IconButton_extras.IconButtonProps.md#tooltipdirection)
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[onConfirmedClick](components_IconButton_extras.IconButtonProps.md#onconfirmedclick)
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[onUpdate:modelValue](components_IconButton_extras.IconButtonProps.md#onupdate:modelvalue)

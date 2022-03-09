@@ -16,13 +16,29 @@
 
 ### Properties
 
+- [confirmation](components_LanguagePicker_extras.LanguagePickerProps.md#confirmation)
 - [disable](components_LanguagePicker_extras.LanguagePickerProps.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerProps.md#language)
 - [modelValue](components_LanguagePicker_extras.LanguagePickerProps.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerProps.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerProps.md#tooltipdirection)
 
+### Methods
+
+- [onConfirmedClick](components_LanguagePicker_extras.LanguagePickerProps.md#onconfirmedclick)
+- [onUpdate:modelValue](components_LanguagePicker_extras.LanguagePickerProps.md#onupdate:modelvalue)
+
 ## Properties
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+LanguagePickerParentProps.confirmation
+
+___
 
 ### disable
 
@@ -71,3 +87,41 @@ ___
 #### Inherited from
 
 LanguagePickerParentProps.tooltipDirection
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+LanguagePickerParentProps.onConfirmedClick
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+LanguagePickerParentProps.onUpdate:modelValue

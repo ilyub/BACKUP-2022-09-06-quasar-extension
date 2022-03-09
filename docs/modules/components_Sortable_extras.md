@@ -42,7 +42,7 @@ ___
 
 ### GlobalSortable
 
-Ƭ **GlobalSortable**: `GlobalComponentConstructor`<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)\>
+Ƭ **GlobalSortable**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)\>
 
 ## Functions
 

@@ -16,10 +16,20 @@
 
 ### Properties
 
+- [disable](components_Section_extras.SectionProps.md#disable)
 - [indent](components_Section_extras.SectionProps.md#indent)
-- [on](components_Section_extras.SectionProps.md#on)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+SectionParentProps.disable
+
+___
 
 ### indent
 
@@ -28,13 +38,3 @@
 #### Inherited from
 
 SectionParentProps.indent
-
-___
-
-### on
-
-• `Optional` `Readonly` **on**: `booleanU`
-
-#### Inherited from
-
-SectionParentProps.on

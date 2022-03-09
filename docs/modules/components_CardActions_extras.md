@@ -31,4 +31,4 @@ ___
 
 ### GlobalCardActions
 
-Ƭ **GlobalCardActions**: `GlobalComponentConstructor`<[`CardActionsProps`](../interfaces/components_CardActions_extras.CardActionsProps.md), [`CardActionsSlots`](components_CardActions_extras.md#cardactionsslots)\>
+Ƭ **GlobalCardActions**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`CardActionsProps`](../interfaces/components_CardActions_extras.CardActionsProps.md), [`CardActionsSlots`](components_CardActions_extras.md#cardactionsslots)\>

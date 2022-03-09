@@ -18,12 +18,28 @@
 
 ### Properties
 
+- [confirmation](components_IconButton_extras.IconButtonProps.md#confirmation)
 - [disable](components_IconButton_extras.IconButtonProps.md#disable)
 - [modelValue](components_IconButton_extras.IconButtonProps.md#modelvalue)
 - [tooltip](components_IconButton_extras.IconButtonProps.md#tooltip)
 - [tooltipDirection](components_IconButton_extras.IconButtonProps.md#tooltipdirection)
 
+### Methods
+
+- [onConfirmedClick](components_IconButton_extras.IconButtonProps.md#onconfirmedclick)
+- [onUpdate:modelValue](components_IconButton_extras.IconButtonProps.md#onupdate:modelvalue)
+
 ## Properties
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+IconButtonParentProps.confirmation
+
+___
 
 ### disable
 
@@ -62,3 +78,41 @@ ___
 #### Inherited from
 
 IconButtonParentProps.tooltipDirection
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+IconButtonParentProps.onConfirmedClick
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+IconButtonParentProps.onUpdate:modelValue

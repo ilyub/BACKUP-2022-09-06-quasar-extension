@@ -17,6 +17,7 @@
 ### Properties
 
 - [cols](components_IconPicker_extras.IconPickerProps.md#cols)
+- [confirmation](components_IconPicker_extras.IconPickerProps.md#confirmation)
 - [disable](components_IconPicker_extras.IconPickerProps.md#disable)
 - [modelValue](components_IconPicker_extras.IconPickerProps.md#modelvalue)
 - [placeholder](components_IconPicker_extras.IconPickerProps.md#placeholder)
@@ -24,6 +25,11 @@
 - [spinnerSize](components_IconPicker_extras.IconPickerProps.md#spinnersize)
 - [tooltip](components_IconPicker_extras.IconPickerProps.md#tooltip)
 - [tooltipDirection](components_IconPicker_extras.IconPickerProps.md#tooltipdirection)
+
+### Methods
+
+- [onConfirmedClick](components_IconPicker_extras.IconPickerProps.md#onconfirmedclick)
+- [onUpdate:modelValue](components_IconPicker_extras.IconPickerProps.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -34,6 +40,16 @@
 #### Inherited from
 
 [IconPickerOwnProps](components_IconPicker_extras.IconPickerOwnProps.md).[cols](components_IconPicker_extras.IconPickerOwnProps.md#cols)
+
+___
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[confirmation](components_IconPicker_extras.IconPickerParentProps.md#confirmation)
 
 ___
 
@@ -104,3 +120,41 @@ ___
 #### Inherited from
 
 [IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[tooltipDirection](components_IconPicker_extras.IconPickerParentProps.md#tooltipdirection)
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[onConfirmedClick](components_IconPicker_extras.IconPickerParentProps.md#onconfirmedclick)
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `stringU` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[IconPickerOwnProps](components_IconPicker_extras.IconPickerOwnProps.md).[onUpdate:modelValue](components_IconPicker_extras.IconPickerOwnProps.md#onupdate:modelvalue)

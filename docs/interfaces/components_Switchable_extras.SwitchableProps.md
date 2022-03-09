@@ -8,17 +8,17 @@
 
 ### Properties
 
+- [disable](components_Switchable_extras.SwitchableProps.md#disable)
 - [indent](components_Switchable_extras.SwitchableProps.md#indent)
-- [on](components_Switchable_extras.SwitchableProps.md#on)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+___
 
 ### indent
 
 • `Optional` `Readonly` **indent**: `booleanU`
-
-___
-
-### on
-
-• `Optional` `Readonly` **on**: `booleanU`

@@ -20,6 +20,11 @@
 - [itemTag](components_Droppable_extras.DroppableProps.md#itemtag)
 - [move](components_Droppable_extras.DroppableProps.md#move)
 
+### Methods
+
+- [onDropped](components_Droppable_extras.DroppableProps.md#ondropped)
+- [onUpdate:modelValue](components_Droppable_extras.DroppableProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### itemComponentData
@@ -49,3 +54,48 @@ ___
 #### Inherited from
 
 DroppableParentProps.move
+
+## Methods
+
+### onDropped
+
+▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
+
+Emits "dropped" event.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `object` | Item. |
+| `group` | `string` | Group. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+DroppableParentProps.onDropped
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+DroppableParentProps.onUpdate:modelValue

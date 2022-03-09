@@ -20,7 +20,7 @@ Generic PageTable component.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 #### Returns
 

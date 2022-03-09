@@ -19,6 +19,10 @@
 - [disable](components_Toggle_extras.ToggleProps.md#disable)
 - [modelValue](components_Toggle_extras.ToggleProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_Toggle_extras.ToggleProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### disable
@@ -38,3 +42,25 @@ ___
 #### Inherited from
 
 [ToggleOwnProps](components_Toggle_extras.ToggleOwnProps.md).[modelValue](components_Toggle_extras.ToggleOwnProps.md#modelvalue)
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[ToggleOwnProps](components_Toggle_extras.ToggleOwnProps.md).[onUpdate:modelValue](components_Toggle_extras.ToggleOwnProps.md#onupdate:modelvalue)

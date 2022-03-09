@@ -23,6 +23,10 @@
 - [modelValue](components_Select_extras.SelectOwnProps.md#modelvalue)
 - [options](components_Select_extras.SelectOwnProps.md#options)
 
+### Methods
+
+- [onUpdate:modelValue](components_Select_extras.SelectOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### modelValue
@@ -34,3 +38,21 @@ ___
 ### options
 
 • `Readonly` **options**: [`SelectOptions`](../modules/components_Select_extras.md#selectoptions)<`T`\>
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `number` | Value. |
+
+#### Returns
+
+`void`

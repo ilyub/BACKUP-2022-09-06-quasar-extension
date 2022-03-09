@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 ## Callable
 

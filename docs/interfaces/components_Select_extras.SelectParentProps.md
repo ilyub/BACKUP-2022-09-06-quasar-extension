@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QSelectProps`, ``"modelValue"`` \| ``"options"``\>
+- `Omit`<`QSelectProps`, ``"modelValue"`` \| ``"onUpdate:modelValue"`` \| ``"options"``\>
 
   ↳ **`SelectParentProps`**
 

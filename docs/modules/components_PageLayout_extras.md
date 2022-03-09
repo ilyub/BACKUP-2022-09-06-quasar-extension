@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [ModuleIcons](../interfaces/components_PageLayout_extras.ModuleIcons.md)
 - [PageLayoutProps](../interfaces/components_PageLayout_extras.PageLayoutProps.md)
 - [PageLayoutSettings](../interfaces/components_PageLayout_extras.PageLayoutSettings.md)
 - [PageLayoutSlots](../interfaces/components_PageLayout_extras.PageLayoutSlots.md)
@@ -28,7 +29,7 @@
 
 ### GlobalPageLayout
 
-Ƭ **GlobalPageLayout**: `GlobalComponentConstructor`<[`PageLayoutProps`](../interfaces/components_PageLayout_extras.PageLayoutProps.md), [`PageLayoutSlots`](../interfaces/components_PageLayout_extras.PageLayoutSlots.md)\>
+Ƭ **GlobalPageLayout**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`PageLayoutProps`](../interfaces/components_PageLayout_extras.PageLayoutProps.md), [`PageLayoutSlots`](../interfaces/components_PageLayout_extras.PageLayoutSlots.md)\>
 
 ## Variables
 

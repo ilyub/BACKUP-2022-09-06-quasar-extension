@@ -16,12 +16,28 @@
 
 ### Properties
 
+- [confirmation](components_BaseButton_extras.BaseButtonProps.md#confirmation)
 - [disable](components_BaseButton_extras.BaseButtonProps.md#disable)
 - [modelValue](components_BaseButton_extras.BaseButtonProps.md#modelvalue)
 - [tooltip](components_BaseButton_extras.BaseButtonProps.md#tooltip)
 - [tooltipDirection](components_BaseButton_extras.BaseButtonProps.md#tooltipdirection)
 
+### Methods
+
+- [onConfirmedClick](components_BaseButton_extras.BaseButtonProps.md#onconfirmedclick)
+- [onUpdate:modelValue](components_BaseButton_extras.BaseButtonProps.md#onupdate:modelvalue)
+
 ## Properties
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+[BaseButtonOwnProps](components_BaseButton_extras.BaseButtonOwnProps.md).[confirmation](components_BaseButton_extras.BaseButtonOwnProps.md#confirmation)
+
+___
 
 ### disable
 
@@ -60,3 +76,41 @@ ___
 #### Inherited from
 
 [BaseButtonOwnProps](components_BaseButton_extras.BaseButtonOwnProps.md).[tooltipDirection](components_BaseButton_extras.BaseButtonOwnProps.md#tooltipdirection)
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[BaseButtonOwnProps](components_BaseButton_extras.BaseButtonOwnProps.md).[onConfirmedClick](components_BaseButton_extras.BaseButtonOwnProps.md#onconfirmedclick)
+
+___
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[BaseButtonOwnProps](components_BaseButton_extras.BaseButtonOwnProps.md).[onUpdate:modelValue](components_BaseButton_extras.BaseButtonOwnProps.md#onupdate:modelvalue)

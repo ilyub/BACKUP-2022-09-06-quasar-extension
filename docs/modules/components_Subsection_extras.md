@@ -6,7 +6,7 @@
 
 ### Interfaces
 
-- [SubsectionOwnerProps](../interfaces/components_Subsection_extras.SubsectionOwnerProps.md)
+- [SubsectionOwnProps](../interfaces/components_Subsection_extras.SubsectionOwnProps.md)
 - [SubsectionProps](../interfaces/components_Subsection_extras.SubsectionProps.md)
 
 ### Type aliases
@@ -19,7 +19,7 @@
 
 ### GlobalSubsection
 
-Ƭ **GlobalSubsection**: `GlobalComponentConstructor`<[`SubsectionProps`](../interfaces/components_Subsection_extras.SubsectionProps.md), [`SubsectionSlots`](components_Subsection_extras.md#subsectionslots)\>
+Ƭ **GlobalSubsection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SubsectionProps`](../interfaces/components_Subsection_extras.SubsectionProps.md), [`SubsectionSlots`](components_Subsection_extras.md#subsectionslots)\>
 
 ___
 

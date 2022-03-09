@@ -9,6 +9,7 @@
 - [CardOwnProps](../interfaces/components_Card_extras.CardOwnProps.md)
 - [CardProps](../interfaces/components_Card_extras.CardProps.md)
 - [CardSlots](../interfaces/components_Card_extras.CardSlots.md)
+- [ModuleIcons](../interfaces/components_Card_extras.ModuleIcons.md)
 
 ### Type aliases
 
@@ -29,10 +30,10 @@ ___
 
 ### GlobalCard
 
-Ƭ **GlobalCard**: `GlobalComponentConstructor`<[`CardProps`](../interfaces/components_Card_extras.CardProps.md), [`CardSlots`](../interfaces/components_Card_extras.CardSlots.md)\>
+Ƭ **GlobalCard**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`CardProps`](../interfaces/components_Card_extras.CardProps.md), [`CardSlots`](../interfaces/components_Card_extras.CardSlots.md)\>
 
 ## Variables
 
 ### icons
 
-• `Const` **icons**: `Icons`<``"close"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_Card_extras.ModuleIcons.md)\> = `baseIcons`

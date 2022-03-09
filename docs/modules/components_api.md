@@ -10,17 +10,25 @@
 
 ### Interfaces
 
+- [GlobalComponent](../interfaces/components_api.GlobalComponent.md)
 - [Injectable](../interfaces/components_api.Injectable.md)
 - [PropOptions](../interfaces/components_api.PropOptions.md)
 - [PropOptionsBoolean](../interfaces/components_api.PropOptionsBoolean.md)
 - [PropOptionsDefault](../interfaces/components_api.PropOptionsDefault.md)
 - [PropOptionsRequired](../interfaces/components_api.PropOptionsRequired.md)
+- [ValidateEmit2](../interfaces/components_api.ValidateEmit2.md)
 
 ### Type aliases
 
+- [Capital](components_api.md#capital)
+- [Emits](components_api.md#emits)
 - [ExtendQuasarProps](components_api.md#extendquasarprops)
 - [LooseRequired](components_api.md#looserequired)
+- [NonCapital](components_api.md#noncapital)
 - [SetupProps](components_api.md#setupprops)
+- [ValidateEmit](components_api.md#validateemit)
+- [ValidateEmit1](components_api.md#validateemit1)
+- [ValidateProps](components_api.md#validateprops)
 
 ### Functions
 
@@ -32,9 +40,22 @@
 - [propOptionsDefault](components_api.md#propoptionsdefault)
 - [propOptionsRequired](components_api.md#propoptionsrequired)
 - [propsToPropDefinitions](components_api.md#propstopropdefinitions)
+- [validateEmit](components_api.md#validateemit)
 - [validateProps](components_api.md#validateprops)
 
 ## Type aliases
+
+### Capital
+
+Ƭ **Capital**: ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"H"`` \| ``"I"`` \| ``"J"`` \| ``"K"`` \| ``"L"`` \| ``"M"`` \| ``"N"`` \| ``"O"`` \| ``"P"`` \| ``"Q"`` \| ``"R"`` \| ``"S"`` \| ``"T"`` \| ``"U"`` \| ``"V"`` \| ``"W"`` \| ``"X"`` \| ``"Y"`` \| ``"Z"``
+
+___
+
+### Emits
+
+Ƭ **Emits**: { readonly [K in \`on${Capital}${string}\`]: Function }
+
+___
 
 ### ExtendQuasarProps
 
@@ -60,6 +81,12 @@ ___
 
 ___
 
+### NonCapital
+
+Ƭ **NonCapital**: ``"a"`` \| ``"b"`` \| ``"c"`` \| ``"d"`` \| ``"e"`` \| ``"f"`` \| ``"g"`` \| ``"h"`` \| ``"i"`` \| ``"j"`` \| ``"k"`` \| ``"l"`` \| ``"m"`` \| ``"n"`` \| ``"o"`` \| ``"p"`` \| ``"q"`` \| ``"r"`` \| ``"s"`` \| ``"t"`` \| ``"u"`` \| ``"v"`` \| ``"w"`` \| ``"x"`` \| ``"y"`` \| ``"z"``
+
+___
+
 ### SetupProps
 
 Ƭ **SetupProps**<`T`\>: `Readonly`<[`LooseRequired`](components_api.md#looserequired)<`Readonly`<`ExtractPropTypes`<`T`\>\>\>\>
@@ -69,6 +96,42 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `T` | extends `object` |
+
+___
+
+### ValidateEmit
+
+Ƭ **ValidateEmit**<`T`\>: [`ValidateEmit1`](components_api.md#validateemit1)<`T`\> \| [`ValidateEmit2`](../interfaces/components_api.ValidateEmit2.md)
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+___
+
+### ValidateEmit1
+
+Ƭ **ValidateEmit1**<`T`\>: `ValueOf`<{ [K in keyof T & \`on${Capital}${string}\`]: T[K] extends Callable \| undefined ? Function : never }\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+___
+
+### ValidateProps
+
+Ƭ **ValidateProps**<`T`\>: `Omit`<`T`, \`on${Capital}${string}\`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
 
 ## Functions
 
@@ -269,9 +332,35 @@ Extandable quasar component.
 
 ___
 
+### validateEmit
+
+▸ **validateEmit**<`T`\>(`emit`): [`ValidateEmit`](components_api.md#validateemit)<`T`\>
+
+Validates emit function.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `emit` | [`ValidateEmit`](components_api.md#validateemit)<`T`\> | Emit function. |
+
+#### Returns
+
+[`ValidateEmit`](components_api.md#validateemit)<`T`\>
+
+Emit function.
+
+___
+
 ### validateProps
 
-▸ **validateProps**<`T`\>(`props`): `T`
+▸ **validateProps**<`T`\>(`props`): [`ValidateProps`](components_api.md#validateprops)<`T`\>
 
 Validates props.
 
@@ -285,10 +374,10 @@ Validates props.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `props` | `T` | Props. |
+| `props` | [`ValidateProps`](components_api.md#validateprops)<`T`\> | Props. |
 
 #### Returns
 
-`T`
+[`ValidateProps`](components_api.md#validateprops)<`T`\>
 
 Props.

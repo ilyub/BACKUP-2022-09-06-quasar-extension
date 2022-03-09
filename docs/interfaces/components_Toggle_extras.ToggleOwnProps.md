@@ -17,6 +17,10 @@
 - [disable](components_Toggle_extras.ToggleOwnProps.md#disable)
 - [modelValue](components_Toggle_extras.ToggleOwnProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_Toggle_extras.ToggleOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### disable
@@ -28,3 +32,21 @@ ___
 ### modelValue
 
 • `Readonly` **modelValue**: `boolean`
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `boolean` | Value. |
+
+#### Returns
+
+`void`

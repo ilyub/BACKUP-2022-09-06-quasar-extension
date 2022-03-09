@@ -53,19 +53,19 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 ___
 
 ### GlobalPageTable
 
-Ƭ **GlobalPageTable**<`T`\>: `GlobalComponentConstructor`<[`PageTableProps`](../interfaces/components_PageTable_extras.PageTableProps.md)<`T`\>, [`PageTableSlots`](../interfaces/components_PageTable_extras.PageTableSlots.md)<`T`\>\>
+Ƭ **GlobalPageTable**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`PageTableProps`](../interfaces/components_PageTable_extras.PageTableProps.md)<`T`\>, [`PageTableSlots`](../interfaces/components_PageTable_extras.PageTableSlots.md)<`T`\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 ## Variables
 
@@ -115,7 +115,7 @@ Creates guard for Column\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 #### Returns
 
@@ -135,7 +135,7 @@ Creates guard for Columns\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 #### Returns
 
@@ -155,7 +155,7 @@ Creates guard for Field\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `unknown` |
+| `T` | `object` |
 
 #### Returns
 

@@ -8,7 +8,7 @@
 
 - [`PageSectionParentProps`](../modules/components_PageSection_extras.md#pagesectionparentprops)
 
-- [`PageSectionOwnerProps`](components_PageSection_extras.PageSectionOwnerProps.md)
+- [`PageSectionOwnProps`](components_PageSection_extras.PageSectionOwnProps.md)
 
   ↳ **`PageSectionProps`**
 
@@ -16,10 +16,20 @@
 
 ### Properties
 
+- [disable](components_PageSection_extras.PageSectionProps.md#disable)
 - [indent](components_PageSection_extras.PageSectionProps.md#indent)
-- [on](components_PageSection_extras.PageSectionProps.md#on)
 
 ## Properties
+
+### disable
+
+• `Optional` `Readonly` **disable**: `booleanU`
+
+#### Inherited from
+
+PageSectionParentProps.disable
+
+___
 
 ### indent
 
@@ -28,13 +38,3 @@
 #### Inherited from
 
 PageSectionParentProps.indent
-
-___
-
-### on
-
-• `Optional` `Readonly` **on**: `booleanU`
-
-#### Inherited from
-
-PageSectionParentProps.on

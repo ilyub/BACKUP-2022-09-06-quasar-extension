@@ -31,4 +31,4 @@ ___
 
 ### GlobalCardSection
 
-Ƭ **GlobalCardSection**: `GlobalComponentConstructor`<[`CardSectionProps`](../interfaces/components_CardSection_extras.CardSectionProps.md), [`CardSectionSlots`](components_CardSection_extras.md#cardsectionslots)\>
+Ƭ **GlobalCardSection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`CardSectionProps`](../interfaces/components_CardSection_extras.CardSectionProps.md), [`CardSectionSlots`](components_CardSection_extras.md#cardsectionslots)\>

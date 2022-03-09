@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QKnobProps`, ``"disable"`` \| ``"modelValue"``\>
+- `Omit`<`QKnobProps`, ``"disable"`` \| ``"modelValue"`` \| ``"onUpdate:modelValue"``\>
 
   ↳ **`KnobParentProps`**
 

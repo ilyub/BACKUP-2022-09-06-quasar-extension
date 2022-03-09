@@ -18,6 +18,10 @@
 - [inline](components_Knob_extras.KnobOwnProps.md#inline)
 - [modelValue](components_Knob_extras.KnobOwnProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_Knob_extras.KnobOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### disable
@@ -35,3 +39,21 @@ ___
 ### modelValue
 
 • `Readonly` **modelValue**: `number`
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `number` | Value. |
+
+#### Returns
+
+`void`

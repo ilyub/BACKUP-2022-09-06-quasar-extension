@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<[`IconButtonProps`](components_IconButton_extras.IconButtonProps.md), ``"modelValue"``\>
+- `Omit`<[`IconButtonProps`](components_IconButton_extras.IconButtonProps.md), ``"modelValue"`` \| ``"onUpdate:modelValue"``\>
 
   ↳ **`IconPickerParentProps`**
 
@@ -16,11 +16,26 @@
 
 ### Properties
 
+- [confirmation](components_IconPicker_extras.IconPickerParentProps.md#confirmation)
 - [disable](components_IconPicker_extras.IconPickerParentProps.md#disable)
 - [tooltip](components_IconPicker_extras.IconPickerParentProps.md#tooltip)
 - [tooltipDirection](components_IconPicker_extras.IconPickerParentProps.md#tooltipdirection)
 
+### Methods
+
+- [onConfirmedClick](components_IconPicker_extras.IconPickerParentProps.md#onconfirmedclick)
+
 ## Properties
+
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+Omit.confirmation
+
+___
 
 ### disable
 
@@ -49,3 +64,19 @@ ___
 #### Inherited from
 
 Omit.tooltipDirection
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+Omit.onConfirmedClick

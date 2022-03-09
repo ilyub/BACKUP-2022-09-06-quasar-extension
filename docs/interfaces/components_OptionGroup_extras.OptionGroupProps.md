@@ -26,6 +26,10 @@
 - [modelValue](components_OptionGroup_extras.OptionGroupProps.md#modelvalue)
 - [options](components_OptionGroup_extras.OptionGroupProps.md#options)
 
+### Methods
+
+- [onUpdate:modelValue](components_OptionGroup_extras.OptionGroupProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### inline
@@ -55,3 +59,25 @@ ___
 #### Inherited from
 
 [OptionGroupOwnProps](components_OptionGroup_extras.OptionGroupOwnProps.md).[options](components_OptionGroup_extras.OptionGroupOwnProps.md#options)
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[OptionGroupOwnProps](components_OptionGroup_extras.OptionGroupOwnProps.md).[onUpdate:modelValue](components_OptionGroup_extras.OptionGroupOwnProps.md#onupdate:modelvalue)

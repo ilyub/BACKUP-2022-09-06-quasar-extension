@@ -10,6 +10,8 @@
 - [IconPickerParentProps](../interfaces/components_IconPicker_extras.IconPickerParentProps.md)
 - [IconPickerProps](../interfaces/components_IconPicker_extras.IconPickerProps.md)
 - [IconPickerSettings](../interfaces/components_IconPicker_extras.IconPickerSettings.md)
+- [ModuleIcons](../interfaces/components_IconPicker_extras.ModuleIcons.md)
+- [ModuleWord](../interfaces/components_IconPicker_extras.ModuleWord.md)
 
 ### Type aliases
 
@@ -31,7 +33,7 @@
 
 ### GlobalIconPicker
 
-Ƭ **GlobalIconPicker**: `GlobalComponentConstructor`<[`IconPickerProps`](../interfaces/components_IconPicker_extras.IconPickerProps.md), [`IconPickerSlots`](components_IconPicker_extras.md#iconpickerslots)\>
+Ƭ **GlobalIconPicker**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`IconPickerProps`](../interfaces/components_IconPicker_extras.IconPickerProps.md), [`IconPickerSlots`](components_IconPicker_extras.md#iconpickerslots)\>
 
 ___
 
@@ -49,7 +51,7 @@ ___
 
 ### lang
 
-• `Const` **lang**: `DictionaryAndWords`<``"IconPicker"`` \| ``"Of"``\> = `baseLang`
+• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_IconPicker_extras.ModuleWord.md)\> = `baseLang`
 
 ## Functions
 

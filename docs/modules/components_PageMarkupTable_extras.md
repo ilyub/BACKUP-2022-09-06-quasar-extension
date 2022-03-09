@@ -6,7 +6,7 @@
 
 ### Interfaces
 
-- [PageMarkupTableOwnerProps](../interfaces/components_PageMarkupTable_extras.PageMarkupTableOwnerProps.md)
+- [PageMarkupTableOwnProps](../interfaces/components_PageMarkupTable_extras.PageMarkupTableOwnProps.md)
 - [PageMarkupTableProps](../interfaces/components_PageMarkupTable_extras.PageMarkupTableProps.md)
 
 ### Type aliases
@@ -19,7 +19,7 @@
 
 ### GlobalPageMarkupTable
 
-Ƭ **GlobalPageMarkupTable**: `GlobalComponentConstructor`<[`PageMarkupTableProps`](../interfaces/components_PageMarkupTable_extras.PageMarkupTableProps.md), [`PageMarkupTableSlots`](components_PageMarkupTable_extras.md#pagemarkuptableslots)\>
+Ƭ **GlobalPageMarkupTable**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`PageMarkupTableProps`](../interfaces/components_PageMarkupTable_extras.PageMarkupTableProps.md), [`PageMarkupTableSlots`](components_PageMarkupTable_extras.md#pagemarkuptableslots)\>
 
 ___
 

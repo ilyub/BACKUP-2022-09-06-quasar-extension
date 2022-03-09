@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [ModuleIcons](../interfaces/components_NumericInput_extras.ModuleIcons.md)
 - [NumericInputOwnProps](../interfaces/components_NumericInput_extras.NumericInputOwnProps.md)
 - [NumericInputParentProps](../interfaces/components_NumericInput_extras.NumericInputParentProps.md)
 - [NumericInputProps](../interfaces/components_NumericInput_extras.NumericInputProps.md)
@@ -23,16 +24,16 @@
 
 ### GlobalNumericInput
 
-Ƭ **GlobalNumericInput**: `GlobalComponentConstructor`<[`NumericInputProps`](../interfaces/components_NumericInput_extras.NumericInputProps.md), [`NumericInputSlots`](components_NumericInput_extras.md#numericinputslots)\>
+Ƭ **GlobalNumericInput**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`NumericInputProps`](../interfaces/components_NumericInput_extras.NumericInputProps.md), [`NumericInputSlots`](components_NumericInput_extras.md#numericinputslots)\>
 
 ___
 
 ### NumericInputSlots
 
-Ƭ **NumericInputSlots**: `QInputSlots`
+Ƭ **NumericInputSlots**: `QFieldSlots`
 
 ## Variables
 
 ### icons
 
-• `Const` **icons**: `Icons`<``"chevronLeftCircle"`` \| ``"chevronRightCircle"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_NumericInput_extras.ModuleIcons.md)\> = `baseIcons`

@@ -16,15 +16,32 @@
 
 ### Properties
 
+- [bigStep](components_NumericInput_extras.NumericInputProps.md#bigstep)
 - [max](components_NumericInput_extras.NumericInputProps.md#max)
 - [min](components_NumericInput_extras.NumericInputProps.md#min)
 - [modelValue](components_NumericInput_extras.NumericInputProps.md#modelvalue)
+- [required](components_NumericInput_extras.NumericInputProps.md#required)
+- [smallStep](components_NumericInput_extras.NumericInputProps.md#smallstep)
+
+### Methods
+
+- [onUpdate:modelValue](components_NumericInput_extras.NumericInputProps.md#onupdate:modelvalue)
 
 ## Properties
 
+### bigStep
+
+• `Optional` `Readonly` **bigStep**: `numberU`
+
+#### Inherited from
+
+[NumericInputOwnProps](components_NumericInput_extras.NumericInputOwnProps.md).[bigStep](components_NumericInput_extras.NumericInputOwnProps.md#bigstep)
+
+___
+
 ### max
 
-• `Readonly` **max**: `number`
+• `Optional` `Readonly` **max**: `numberU`
 
 #### Inherited from
 
@@ -49,3 +66,45 @@ ___
 #### Inherited from
 
 [NumericInputOwnProps](components_NumericInput_extras.NumericInputOwnProps.md).[modelValue](components_NumericInput_extras.NumericInputOwnProps.md#modelvalue)
+
+___
+
+### required
+
+• `Optional` `Readonly` **required**: `booleanU`
+
+#### Inherited from
+
+[NumericInputOwnProps](components_NumericInput_extras.NumericInputOwnProps.md).[required](components_NumericInput_extras.NumericInputOwnProps.md#required)
+
+___
+
+### smallStep
+
+• `Optional` `Readonly` **smallStep**: `numberU`
+
+#### Inherited from
+
+[NumericInputOwnProps](components_NumericInput_extras.NumericInputOwnProps.md).[smallStep](components_NumericInput_extras.NumericInputOwnProps.md#smallstep)
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `numberU` | Value. |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[NumericInputOwnProps](components_NumericInput_extras.NumericInputOwnProps.md).[onUpdate:modelValue](components_NumericInput_extras.NumericInputOwnProps.md#onupdate:modelvalue)

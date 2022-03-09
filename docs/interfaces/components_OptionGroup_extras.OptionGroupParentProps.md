@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QOptionGroupProps`, ``"inline"`` \| ``"modelValue"`` \| ``"options"``\>
+- `Omit`<`QOptionGroupProps`, ``"inline"`` \| ``"modelValue"`` \| ``"onUpdate:modelValue"`` \| ``"options"``\>
 
   ↳ **`OptionGroupParentProps`**
 

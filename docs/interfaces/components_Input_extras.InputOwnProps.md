@@ -17,6 +17,10 @@
 - [disable](components_Input_extras.InputOwnProps.md#disable)
 - [modelValue](components_Input_extras.InputOwnProps.md#modelvalue)
 
+### Methods
+
+- [onUpdate:modelValue](components_Input_extras.InputOwnProps.md#onupdate:modelvalue)
+
 ## Properties
 
 ### disable
@@ -28,3 +32,21 @@ ___
 ### modelValue
 
 • `Optional` `Readonly` **modelValue**: `stringU`
+
+## Methods
+
+### onUpdate:modelValue
+
+▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+
+Emits model value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `stringU` | Value. |
+
+#### Returns
+
+`void`

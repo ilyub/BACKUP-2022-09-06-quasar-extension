@@ -11,8 +11,8 @@
 
 ### Functions
 
-- [consoleWarnMock](testUtils.md#consolewarnmock)
 - [findComponentFactory](testUtils.md#findcomponentfactory)
+- [findElementFactory](testUtils.md#findelementfactory)
 - [globalMountOptions](testUtils.md#globalmountoptions)
 - [htmlToEqual](testUtils.md#htmltoequal)
 - [jestReset](testUtils.md#jestreset)
@@ -25,47 +25,11 @@
 
 ## Functions
 
-### consoleWarnMock
-
-▸ **consoleWarnMock**(`prev`): (`value`: `unknown`) => `void`
-
-Creates console.warn mock.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `prev` | (`message`: `string`) => `void` | Orignial console.warn function. |
-
-#### Returns
-
-`fn`
-
-Mock.
-
-▸ (`value`): `void`
-
-Creates console.warn mock.
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
-
-##### Returns
-
-`void`
-
-Mock.
-
-___
-
 ### findComponentFactory
 
 ▸ **findComponentFactory**(`prefix`, `wrapper`): (`ref`: `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\>) => `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
 
-Finds component factory.
+Find component factory.
 
 #### Parameters
 
@@ -78,7 +42,7 @@ Finds component factory.
 
 `fn`
 
-Finds component function.
+Find component function.
 
 ▸ (`ref`): `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
 
@@ -91,6 +55,39 @@ Finds component function.
 ##### Returns
 
 `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+___
+
+### findElementFactory
+
+▸ **findElementFactory**(`prefix`, `wrapper`): (`ref`: `string`) => `DOMWrapper`<`Element`\>
+
+Find HTML element factory.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `prefix` | `string` | Prefix. |
+| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+
+#### Returns
+
+`fn`
+
+Find HTML element function.
+
+▸ (`ref`): `DOMWrapper`<`Element`\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ref` | `string` |
+
+##### Returns
+
+`DOMWrapper`<`Element`\>
 
 ___
 

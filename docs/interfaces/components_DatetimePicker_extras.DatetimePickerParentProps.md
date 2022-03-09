@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QFieldProps`, ``"modelValue"``\>
+- `Omit`<`QFieldProps`, ``"modelValue"`` \| ``"onUpdate:modelValue"``\>
 
   ↳ **`DatetimePickerParentProps`**
 
