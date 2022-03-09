@@ -1,17 +1,37 @@
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
+import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-import type { unknowns, Writable } from "@skylib/functions/es/types/core";
+import type { objects, Writable } from "@skylib/functions/es/types/core";
 
 import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
 import type { Columns, Pagination } from "@/components/PageTable.extras";
 import PageTable from "@/components/PageTable.vue";
 import * as testUtils from "@/testUtils";
+
+const columns: Columns = [
+  {
+    align: "left",
+    field(row): string {
+      assert.object.of(row, { name: is.string }, {});
+
+      return row.name;
+    },
+    label: "Sample label",
+    name: "column"
+  }
+];
+
+const rows = [
+  { key: "key1", name: "Sample row 1" },
+  { key: "key2", name: "Sample row 2" },
+  { key: "key3", name: "Sample row 3" }
+];
 
 beforeAll(functionsTestUtils.installFakeTimer);
 
@@ -56,19 +76,6 @@ test.each([
     expect.hasAssertions();
 
     await functionsTestUtils.run(async () => {
-      const columns: Columns = [
-        {
-          align: "left",
-          field(row): string {
-            assert.object.of(row, { name: is.string }, {});
-
-            return row.name;
-          },
-          label: "Sample label",
-          name: "column1"
-        }
-      ];
-
       const wrapper = vueTestUtils.mount(PageTable, {
         global: testUtils.globalMountOptions(
           o.removeUndefinedKeys({
@@ -81,7 +88,7 @@ test.each([
           externalSorting,
           extraPageOffset,
           pagination,
-          rows: [{ name: "Sample row 1" }, { name: "Sample row 2" }],
+          rows,
           selected
         }),
         slots: o.removeUndefinedKeys({
@@ -89,9 +96,9 @@ test.each([
         })
       });
 
-      const emittedPagination: Writable<unknowns> = [];
+      const emittedPagination: Writable<objects> = [];
 
-      const emittedSelected: Writable<unknowns> = [];
+      const emittedSelected: Writable<objects> = [];
 
       const table = wrapper.findComponent(QTable);
 
@@ -178,3 +185,23 @@ test.each([
     });
   }
 );
+
+test("row click", () => {
+  const wrapper = vueTestUtils.mount(PageTable, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys({
+      columns,
+      rowKey: "key",
+      rows,
+      selectByRowClick: true,
+      selected: []
+    })
+  });
+
+  const table = wrapper.findComponent(QTable);
+
+  const row = a.get(rows, 1);
+
+  table.vm.$emit("rowClick", undefined, row, 1);
+  expect(wrapper.emitted("update:selected")).toStrictEqual([[[row]]]);
+});

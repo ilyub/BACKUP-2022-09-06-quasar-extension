@@ -31,6 +31,8 @@ export default defineComponent({
 
     const noData = ref(false);
 
+    const selectByRowClick = ref(false);
+
     return {
       loading,
       noData,
@@ -66,6 +68,7 @@ export default defineComponent({
         });
       }),
       pagination,
+      selectByRowClick,
       selected: ref<TableItems>([])
     };
   }
@@ -81,7 +84,9 @@ export default defineComponent({
       :columns="pageTableColumns"
       flat
       :loading="loading"
+      row-key="id"
       :rows="pageTableRows"
+      :select-by-row-click="selectByRowClick"
       selection="multiple"
     >
       <template #body-cell="{ row, value }">
@@ -90,6 +95,7 @@ export default defineComponent({
       <template #top>
         <m-toggle v-model="loading" label="Loading" />
         <m-toggle v-model="noData" label="No data" />
+        <m-toggle v-model="selectByRowClick" label="Select by row click" />
       </template>
       <template #steady-bottom>Bottom</template>
     </generic-page-table>

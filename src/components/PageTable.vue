@@ -7,7 +7,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
-import type { unknowns, Writable } from "@skylib/functions/es/types/core";
+import type { objects, Writable } from "@skylib/functions/es/types/core";
 
 import {
   propOptions,
@@ -38,7 +38,11 @@ interface SortMethod {
    * @param rows - Rows.
    * @returns Sorted rows.
    */
-  (rows: unknowns): unknowns;
+  (rows: objects): objects;
+}
+
+interface RowClick {
+  (event: Event, row: unknown, index: number): void;
 }
 
 export default defineComponent({
@@ -49,12 +53,14 @@ export default defineComponent({
     externalSorting: propOptions.boolean(),
     extraPageOffset: propOptions(is.stringU),
     pagination: propOptions.default(isPagination, {}),
-    rows: propOptions.default(is.array, []),
-    selected: propOptions.default(is.array, [])
+    rowKey: propOptions(is.stringU),
+    rows: propOptions.default(is.objects, []),
+    selectByRowClick: propOptions.boolean(),
+    selected: propOptions.default(is.objects, [])
   },
   emits: {
     "update:pagination": (value: Pagination) => isPagination(value),
-    "update:selected": (value: unknowns) => is.array(value)
+    "update:selected": (value: objects) => is.array.of(value, is.object)
   },
   setup(props, { emit }) {
     validateEmit<PageTableOwnProps>(emit);
@@ -77,6 +83,18 @@ export default defineComponent({
             limit: props.pagination.limit + settings.value.growPageBy
           });
       },
+      rowClick: computed<RowClick | undefined>(() =>
+        props.selectByRowClick
+          ? (_event: Event, row: unknown): void => {
+              assert.object(row);
+              assert.not.empty(props.rowKey);
+              emit(
+                "update:selected",
+                a.toggleBy(props.selected, row, props.rowKey)
+              );
+            }
+          : undefined
+      ),
       slotNames: useSlotsNames<PageTableSlots>()(
         "body-selection",
         "bottom",
@@ -89,10 +107,8 @@ export default defineComponent({
       ),
       table,
       tableColumns: computed<Writable<Columns>>(() => a.clone(props.columns)),
-      tableRows: computed<Writable<unknowns>>(() => a.clone(props.rows)),
-      tableSelected: computed<Writable<unknowns>>(() =>
-        a.clone(props.selected)
-      ),
+      tableRows: computed<Writable<objects>>(() => a.clone(props.rows)),
+      tableSelected: computed<Writable<objects>>(() => a.clone(props.selected)),
       updatePagination(pagination: Pagination): void {
         pagination = o.removeUndefinedKeys({
           ...props.pagination,
@@ -129,6 +145,7 @@ export default defineComponent({
     class="sticky-table"
     :columns="tableColumns"
     :pagination="pagination"
+    :row-key="rowKey"
     :rows="tableRows"
     :rows-per-page-options="[0]"
     :selected="tableSelected"
@@ -139,6 +156,7 @@ export default defineComponent({
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
+    @row-click="rowClick"
     @update:pagination="updatePagination"
     @update:selected="$emit('update:selected', $event)"
     @virtual-scroll="onScroll"

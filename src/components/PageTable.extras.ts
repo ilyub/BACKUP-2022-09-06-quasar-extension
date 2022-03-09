@@ -4,8 +4,8 @@ import type { VNode } from "vue";
 import * as is from "@skylib/functions/es/guards";
 import type {
   booleanU,
-  stringU,
-  unknowns
+  objects,
+  stringU
 } from "@skylib/functions/es/types/core";
 import { createValidationObject } from "@skylib/functions/es/types/core";
 
@@ -14,12 +14,12 @@ import { createInjectable } from "./api";
 
 export type Align = "center" | "left" | "right";
 
-export interface BodyCellSlotData<T = unknown> {
+export interface BodyCellSlotData<T = object> {
   readonly row: T;
   readonly value: string;
 }
 
-export interface Column<T = unknown> {
+export interface Column<T = object> {
   readonly align: Align;
   readonly field: Field<T>;
   readonly label: string;
@@ -38,9 +38,9 @@ export interface Column<T = unknown> {
   readonly sortable?: true;
 }
 
-export type Columns<T = unknown> = ReadonlyArray<Column<T>>;
+export type Columns<T = object> = ReadonlyArray<Column<T>>;
 
-export interface Field<T = unknown> {
+export interface Field<T = object> {
   /**
    * Returns formatted field.
    *
@@ -50,23 +50,12 @@ export interface Field<T = unknown> {
 }
 
 // eslint-disable-next-line @skylib/prefer-readonly
-export type GlobalPageTable<T = unknown> = GlobalComponent<
+export type GlobalPageTable<T = object> = GlobalComponent<
   PageTableProps<T>,
   PageTableSlots<T>
 >;
 
-export interface PageTableParentProps
-  extends Omit<
-    QTableProps,
-    | "columns"
-    | "onUpdate:pagination"
-    | "onUpdate:selected"
-    | "pagination"
-    | "rows"
-    | "selected"
-  > {}
-
-export interface PageTableOwnProps<T = unknown> {
+export interface PageTableOwnProps<T = object> {
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
   readonly extraPageOffset?: stringU;
@@ -81,17 +70,31 @@ export interface PageTableOwnProps<T = unknown> {
    *
    * @param value - Value.
    */
-  readonly "onUpdate:selected"?: (value: unknowns) => void;
+  readonly "onUpdate:selected"?: (value: objects) => void;
   readonly pagination?: Pagination | undefined;
+  readonly rowKey?: stringU;
   readonly rows?: readonly T[] | undefined;
+  readonly selectByRowClick?: booleanU;
   readonly selected?: readonly T[] | undefined;
 }
 
-export interface PageTableProps<T = unknown>
+export interface PageTableParentProps
+  extends Omit<
+    QTableProps,
+    | "columns"
+    | "onUpdate:pagination"
+    | "onUpdate:selected"
+    | "pagination"
+    | "rowKey"
+    | "rows"
+    | "selected"
+  > {}
+
+export interface PageTableProps<T = object>
   extends PageTableParentProps,
     PageTableOwnProps<T> {}
 
-export interface PageTableSlots<T = unknown>
+export interface PageTableSlots<T = object>
   extends Omit<QTableSlots, "body-cell"> {
   /**
    * Body cell slot.
@@ -157,7 +160,7 @@ export const {
  *
  * @returns Guard for Column\<T\> type.
  */
-export function isColumnFactory<T = unknown>(): is.Guard<Column<T>> {
+export function isColumnFactory<T = object>(): is.Guard<Column<T>> {
   return is.factory(
     is.object.of,
     {
@@ -177,7 +180,7 @@ export function isColumnFactory<T = unknown>(): is.Guard<Column<T>> {
  *
  * @returns Guard for Columns\<T\> type.
  */
-export function isColumnsFactory<T = unknown>(): is.Guard<Columns<T>> {
+export function isColumnsFactory<T = object>(): is.Guard<Columns<T>> {
   return is.factory(is.array.of, isColumnFactory<T>());
 }
 
@@ -186,6 +189,6 @@ export function isColumnsFactory<T = unknown>(): is.Guard<Columns<T>> {
  *
  * @returns Guard for Field\<T\> type.
  */
-export function isFieldFactory<T = unknown>(): is.Guard<Field<T>> {
+export function isFieldFactory<T = object>(): is.Guard<Field<T>> {
   return is.callable;
 }

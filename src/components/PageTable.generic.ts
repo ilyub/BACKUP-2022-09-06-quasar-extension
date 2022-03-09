@@ -6,7 +6,7 @@ import PageTable from "./PageTable.vue";
  *
  * @returns PageTable component.
  */
-export function genericPageTable<T = unknown>(): GlobalPageTable<T> {
+export function genericPageTable<T = object>(): GlobalPageTable<T> {
   // eslint-disable-next-line no-type-assertion/no-type-assertion
   return PageTable as unknown as GlobalPageTable<T>;
 }
