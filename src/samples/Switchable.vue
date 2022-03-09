@@ -5,7 +5,7 @@ export default defineComponent({
   name: "sample-switchable",
   setup() {
     return {
-      on: ref(true),
+      disable: ref(false),
       sampleKnob: ref(5),
       sampleToggle: ref(false)
     };
@@ -15,10 +15,10 @@ export default defineComponent({
 
 <template>
   <m-subsection>
-    <m-toggle v-model="on" />
+    <m-toggle v-model="disable" />
   </m-subsection>
   <m-subsection>
-    <m-switchable indent :on="on">
+    <m-switchable :disable="disable" indent>
       <m-subsection>
         Sample knob:
         <m-knob v-model="sampleKnob" inline :max="10" :step="1" />

@@ -13,15 +13,15 @@ import {
 export default defineComponent({
   name: "m-switchable",
   props: {
-    indent: propOptions.boolean(),
-    on: propOptions.boolean(true)
+    disable: propOptions.boolean(),
+    indent: propOptions.boolean()
   },
   setup(props) {
     validateProps<SwitchableProps>(props);
 
     const parentDisable = injectDisable();
 
-    provideDisable(() => parentDisable.value || !props.on);
+    provideDisable(() => parentDisable.value || props.disable);
 
     return {
       settings: injectSwitchableSettings(),
@@ -47,7 +47,7 @@ export default defineComponent({
     }"
     :duration="settings.transitionDuration"
   >
-    <div v-show="on">
+    <div v-show="!disable">
       <slot :name="slotNames.default"></slot>
     </div>
   </q-slide-transition>

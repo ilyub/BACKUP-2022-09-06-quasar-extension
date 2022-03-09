@@ -19,19 +19,19 @@ const switchableSettings2: SwitchableSettings = {
 
 test.each([
   {
-    disable: false
+    expected: false
   },
   {
     disable: false,
-    on: true,
+    expected: false,
     switchableSettings: switchableSettings1
   },
   {
     disable: true,
-    on: false,
+    expected: true,
     switchableSettings: switchableSettings2
   }
-])("switchable", ({ disable, on, switchableSettings }) => {
+])("switchable", ({ disable, expected, switchableSettings }) => {
   expect.assertions(1);
 
   vueTestUtils.mount(Switchable, {
@@ -41,12 +41,12 @@ test.each([
       })
     ),
     props: o.removeUndefinedKeys({
-      on
+      disable
     }),
     slots: {
       default: {
         setup() {
-          expect(injectDisable().value).toStrictEqual(disable);
+          expect(injectDisable().value).toStrictEqual(expected);
         },
         template: "<div></div>"
       }

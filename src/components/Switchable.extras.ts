@@ -13,8 +13,8 @@ export type GlobalSwitchable = GlobalComponent<
 >;
 
 export interface SwitchableProps {
+  readonly disable?: booleanU;
   readonly indent?: booleanU;
-  readonly on?: booleanU;
 }
 
 export interface SwitchableSettings {
