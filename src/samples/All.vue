@@ -6,6 +6,7 @@ import Button from "./Button.vue";
 import Card from "./Card.vue";
 import DatetimePicker from "./DatetimePicker.vue";
 import Droppable from "./Droppable.vue";
+import ExpansionItem from "./ExpansionItem.vue";
 import Form from "./Form.vue";
 import FormButton from "./FormButton.vue";
 import Group from "./Group.vue";
@@ -43,6 +44,7 @@ export default defineComponent({
           Card,
           DatetimePicker,
           Droppable,
+          ExpansionItem,
           Form,
           FormButton,
           Group,

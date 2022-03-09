@@ -13,6 +13,8 @@ import CardSection from "./CardSection.vue";
 import type { GlobalDatetimePicker } from "./DatetimePicker.extras";
 import DatetimePicker from "./DatetimePicker.vue";
 import Droppable from "./Droppable.vue";
+import type { GlobalExpansionItem } from "./ExpansionItem.extras";
+import ExpansionItem from "./ExpansionItem.vue";
 import type { GlobalForm } from "./Form.extras";
 import Form from "./Form.vue";
 import type { GlobalFormButton } from "./FormButton.extras";
@@ -74,6 +76,7 @@ declare module "@vue/runtime-core" {
     readonly "m-card-actions": GlobalCardActions;
     readonly "m-card-section": GlobalCardSection;
     readonly "m-datetime-picker": GlobalDatetimePicker;
+    readonly "m-expansion-item": GlobalExpansionItem;
     readonly "m-form": GlobalForm;
     readonly "m-form-button": GlobalFormButton;
     readonly "m-group": GlobalGroup;
@@ -111,6 +114,7 @@ export const components = o.freeze([
   CardSection,
   DatetimePicker,
   Droppable,
+  ExpansionItem,
   Form,
   FormButton,
   Group,

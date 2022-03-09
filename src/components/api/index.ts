@@ -201,7 +201,9 @@ export function validateProps<T>(props: ValidateProps<T>): ValidateProps<T> {
   return props;
 }
 
-export type ValidateEmit<T> = ValueOf<{
+export type ValidateEmit<T> = ValidateEmit1<T> | ValidateEmit2;
+
+export type ValidateEmit1<T> = ValueOf<{
   [K in keyof T & `on${Capital}${string}`]: T[K] extends Callable | undefined
     ? (
         event: K extends `on${Capital}${infer B}`
@@ -213,6 +215,17 @@ export type ValidateEmit<T> = ValueOf<{
       ) => ReturnType<Exclude<T[K], undefined>>
     : never;
 }>;
+
+export interface ValidateEmit2 {
+  /**
+   * Emits event.
+   *
+   * @param event - Event.
+   * @param args - Arguments.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (event: string, ...args: any[]): void;
+}
 
 export type ValidateProps<T> = Omit<T, `on${Capital}${string}`>;
 

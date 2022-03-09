@@ -7,6 +7,7 @@ module.exports = [
   "CardSection",
   "DatetimePicker",
   "Droppable",
+  "ExpansionItem",
   "Form",
   "FormButton",
   "Group",
