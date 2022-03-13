@@ -45,8 +45,6 @@ export default defineComponent({
 
     const dialogShow = ref(false);
 
-    const empty = computed<boolean>(() => is.empty(pickerValue.value));
-
     const minDate = computed<stringU>(() =>
       is.not.empty(props.min)
         ? datetime.create(props.min).format("yyyy/MM/dd")
@@ -103,6 +101,8 @@ export default defineComponent({
         : undefined
     );
 
+    const pickerEmpty = computed<boolean>(() => is.empty(pickerValue.value));
+
     const pickerValue = ref<stringU>(undefined);
 
     const pm = computed<boolean>(() =>
@@ -146,12 +146,7 @@ export default defineComponent({
 
         if (is.not.empty(pickerValue.value)) nextStep.value = true;
       },
-      dialogBeforeShow(): void {
-        nextStep.value = false;
-        pickerValue.value = modelDt()?.toString();
-      },
       dialogShow,
-      empty,
       icons,
       inputModelValue: computed<stringU>(() =>
         modelDt()?.format("E, d MMM yyyy HHH:mm A")
@@ -162,11 +157,25 @@ export default defineComponent({
       lang,
       main: ref<QField | undefined>(undefined),
       nextClick(): void {
-        if (empty.value) {
-          // Select date first
-        } else nextStep.value = true;
+        nextStep.value = true;
       },
       nextStep,
+      pickDate(): void {
+        dialogShow.value = true;
+        nextStep.value = false;
+        pickerValue.value = modelDt()?.toString();
+      },
+      pickSmart(): void {
+        dialogShow.value = true;
+        nextStep.value = is.not.empty(props.modelValue);
+        pickerValue.value = modelDt()?.toString();
+      },
+      pickTime(): void {
+        dialogShow.value = true;
+        nextStep.value = true;
+        pickerValue.value = modelDt()?.toString();
+      },
+      pickerEmpty,
       pickerValue,
       pm,
       pmToggle(): void {
@@ -182,7 +191,11 @@ export default defineComponent({
       save(): void {
         emit("update:modelValue", pickerDt()?.toString());
       },
-      slotNames: useSlotsNames<DatetimePickerSlots>()("control", "prepend"),
+      slotNames: useSlotsNames<DatetimePickerSlots>()(
+        "append",
+        "control",
+        "prepend"
+      ),
       time: computed<string>(() => pickerDt()?.format("HHH:mm A") ?? "\u2014"),
       timeOptions(hours: number, minutes: number | null): boolean {
         if (is.not.empty(minTime.value)) {
@@ -229,11 +242,20 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
+    <template #append>
+      <slot :name="slotNames.append">
+        <q-icon
+          class="cursor-pointer ref-datetime-picker-show-time"
+          :name="icons.pickTime"
+          @click="pickTime"
+        />
+      </slot>
+    </template>
     <template #control>
       <slot :name="slotNames.control">
         <div
           class="cursor-pointer fit items-center ref-datetime-picker-control row"
-          @click="dialogShow = true"
+          @click="pickSmart"
         >
           {{ inputModelValue }}
         </div>
@@ -242,7 +264,6 @@ export default defineComponent({
           anchor="bottom left"
           :offset="[0, 10]"
           self="top left"
-          @before-show="dialogBeforeShow"
         >
           <m-card>
             <template #title>
@@ -266,8 +287,7 @@ export default defineComponent({
                 <div
                   class="q-ml-sm ref-datetime-picker-next"
                   :class="{
-                    [$style.headerClickable]: !nextStep && !empty,
-                    'text-blue-2': !nextStep
+                    [`${$style.headerClickable} text-blue-2`]: !nextStep
                   }"
                   @click="nextClick"
                 >
@@ -280,7 +300,7 @@ export default defineComponent({
             <template #header-actions>
               <m-icon-button
                 class="ref-datetime-picker-pm"
-                :disable="empty"
+                :disable="pickerEmpty"
                 :icon="pm ? icons.am : icons.pm"
                 @click="pmToggle"
               />
@@ -302,7 +322,7 @@ export default defineComponent({
                     v-close-popup
                     class="ref-datetime-picker-time-save"
                     color="primary"
-                    :disable="empty"
+                    :disable="pickerEmpty"
                     :label="lang.Save"
                     @click="save"
                   />
@@ -325,7 +345,7 @@ export default defineComponent({
                     v-close-popup
                     class="ref-datetime-picker-date-save"
                     color="primary"
-                    :disable="empty"
+                    :disable="pickerEmpty"
                     :label="lang.Save"
                     @click="save"
                   />
@@ -339,9 +359,9 @@ export default defineComponent({
     <template #prepend>
       <slot :name="slotNames.prepend">
         <q-icon
-          class="cursor-pointer ref-datetime-picker-icon"
+          class="cursor-pointer ref-datetime-picker-show-date"
           :name="icons.pickDate"
-          @click="dialogShow = true"
+          @click="pickDate"
         />
       </slot>
     </template>

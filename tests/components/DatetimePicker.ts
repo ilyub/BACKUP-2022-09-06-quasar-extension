@@ -4,6 +4,7 @@ import { nextTick } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
 import * as assert from "@skylib/functions/es/assertions";
+import * as is from "@skylib/functions/es/guards";
 import * as reflect from "@skylib/functions/es/reflect";
 
 import DatetimePicker from "@/components/DatetimePicker.vue";
@@ -35,7 +36,7 @@ test.each([undefined, "2001-02-03 10:30"])(
 
     {
       expect(comp(QCard)).not.toExist();
-      await elem("control").trigger("click");
+      await elem("show-date").trigger("click");
       expect(comp(QCard)).toExist();
     }
 
@@ -66,7 +67,7 @@ test.each([undefined, "2001-02-03 10:30"])(
 
     {
       expect(comp(QCard)).not.toExist();
-      await comp("icon").trigger("click");
+      await comp("show-date").trigger("click");
       expect(comp(QCard)).toExist();
     }
 
@@ -84,14 +85,6 @@ test.each([undefined, "2001-02-03 10:30"])(
       expect(timeOptions(14)).toBeTrue();
       expect(timeOptions(15)).toBeTrue();
       await wrapper.setProps({ max: undefined, min: undefined });
-    }
-
-    {
-      expect(comp("date")).toExist();
-      expect(comp("time")).not.toExist();
-      await popupElem("next").trigger("click");
-      expect(comp("date")).toExist();
-      expect(comp("time")).not.toExist();
     }
 
     {
@@ -179,3 +172,32 @@ test.each([undefined, "2001-02-03 10:30"])(
     }
   }
 );
+
+test.each([undefined, "2001-02-03 10:30"])("show", async modelValue => {
+  const wrapper = vueTestUtils.mount(DatetimePicker, {
+    global: testUtils.globalMountOptions(),
+    props: { modelValue }
+  });
+
+  const comp = testUtils.findComponentFactory(".ref-datetime-picker-", wrapper);
+
+  const elem = testUtils.findElementFactory(".ref-datetime-picker-", wrapper);
+
+  {
+    await elem("control").trigger("click");
+    expect(comp("date").exists()).toStrictEqual(is.empty(modelValue));
+    expect(comp("time").exists()).toStrictEqual(is.not.empty(modelValue));
+  }
+
+  {
+    await elem("show-date").trigger("click");
+    expect(comp("date")).toExist();
+    expect(comp("time")).not.toExist();
+  }
+
+  {
+    await elem("show-time").trigger("click");
+    expect(comp("date")).not.toExist();
+    expect(comp("time")).toExist();
+  }
+});

@@ -4,7 +4,7 @@ import {
   mdiChevronDoubleRight,
   mdiChevronLeft,
   mdiChevronRight,
-  mdiClock,
+  mdiClockOutline,
   mdiClose,
   mdiWeatherSunsetDown,
   mdiWeatherSunsetUp
@@ -20,6 +20,6 @@ export const icons: Facade = {
   chevronRight: mdiChevronRight,
   close: mdiClose,
   pickDate: mdiCalendar,
-  pickTime: mdiClock,
+  pickTime: mdiClockOutline,
   pm: mdiWeatherSunsetDown
 };
