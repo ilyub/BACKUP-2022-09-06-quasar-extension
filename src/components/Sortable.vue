@@ -1,6 +1,5 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-// eslint-disable-next-line @skylib/consistent-import
 import VueDraggable from "vuedraggable";
 
 import * as a from "@skylib/functions/es/array";

@@ -4,7 +4,11 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
-import type { objectU, stringU } from "@skylib/functions/es/types/core";
+import type {
+  objects,
+  objectU,
+  stringU
+} from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
@@ -52,7 +56,7 @@ export interface SortableProps {
   readonly itemComponentData?: objectU;
   readonly itemKey: string;
   readonly itemTag?: unknown;
-  readonly modelValue: readonly object[];
+  readonly modelValue: objects;
   readonly move?: Move | undefined;
   /**
    * Emits "dropped" event.
@@ -142,7 +146,7 @@ export const {
  * @returns Elements.
  */
 export function buildElements(
-  items: readonly object[],
+  items: objects,
   group: string,
   key: string
 ): Elems {
