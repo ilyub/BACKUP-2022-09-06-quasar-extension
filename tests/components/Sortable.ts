@@ -1,5 +1,5 @@
 import { nextTick } from "vue";
-import Draggable from "vuedraggable";
+import VueDraggable from "vuedraggable";
 import * as vueTestUtils from "@vue/test-utils";
 
 import * as assert from "@skylib/functions/es/assertions";
@@ -46,9 +46,9 @@ test.each([
     props
   });
 
-  expect(wrapper.findComponent(Draggable).vm.$attrs["animation"]).toStrictEqual(
-    animationDuration
-  );
+  expect(
+    wrapper.findComponent(VueDraggable).vm.$attrs["animation"]
+  ).toStrictEqual(animationDuration);
 });
 
 test("emit: dropped", () => {
@@ -65,7 +65,7 @@ test("emit: dropped", () => {
 
   const elements = buildElements(newItems, group, itemKey);
 
-  wrapper.findComponent(Draggable).vm.$emit("update:modelValue", elements);
+  wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
 
@@ -75,7 +75,7 @@ test("end, start", async () => {
     props
   });
 
-  const draggable = wrapper.findComponent(Draggable);
+  const draggable = wrapper.findComponent(VueDraggable);
 
   {
     draggable.vm.$emit("start");
@@ -118,7 +118,7 @@ test("emit: update:modelValue", () => {
     ...buildElements([newItem], newGroup, itemKey)
   ];
 
-  wrapper.findComponent(Draggable).vm.$emit("update:modelValue", elements);
+  wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
   expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
@@ -152,7 +152,7 @@ test.each([
   });
 
   // eslint-disable-next-line no-type-assertion/no-type-assertion
-  const baseMove = wrapper.findComponent(Draggable).props("move") as unknown;
+  const baseMove = wrapper.findComponent(VueDraggable).props("move") as unknown;
 
   const moveData = {
     dragged: fn.run(() => {
