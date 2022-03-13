@@ -97,6 +97,27 @@ export interface TouchPanMock {
  * @param wrapper - Wrapper.
  * @returns Find component function.
  */
+export function findFactory(
+  prefix: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  wrapper: vueTestUtils.VueWrapper<any>
+): {
+  readonly comp: ReturnType<typeof findComponentFactory>;
+  readonly elem: ReturnType<typeof findElementFactory>;
+} {
+  return {
+    comp: findComponentFactory(prefix, wrapper),
+    elem: findElementFactory(prefix, wrapper)
+  };
+}
+
+/**
+ * Find component factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Find component function.
+ */
 export function findComponentFactory(
   prefix: string,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -179,9 +179,10 @@ test.each([undefined, "2001-02-03 10:30"])("show", async modelValue => {
     props: { modelValue }
   });
 
-  const comp = testUtils.findComponentFactory(".ref-datetime-picker-", wrapper);
-
-  const elem = testUtils.findElementFactory(".ref-datetime-picker-", wrapper);
+  const { comp, elem } = testUtils.findFactory(
+    ".ref-datetime-picker-",
+    wrapper
+  );
 
   {
     await elem("control").trigger("click");
