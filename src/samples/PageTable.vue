@@ -97,7 +97,16 @@ export default defineComponent({
         <m-toggle v-model="noData" label="No data" />
         <m-toggle v-model="selectByRowClick" label="Select by row click" />
       </template>
-      <template #steady-bottom>Bottom</template>
+      <template
+        #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
+      >
+        <q-checkbox
+          :disable="allSelectedDisable"
+          :model-value="allSelected"
+          @update:model-value="allSelectedClick"
+        />
+        {{ selected.length }} selected
+      </template>
     </generic-page-table>
   </m-page-layout>
 </template>

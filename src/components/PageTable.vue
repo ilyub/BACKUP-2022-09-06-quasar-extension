@@ -1,4 +1,5 @@
 <script lang="ts">
+import * as _ from "lodash-es";
 import type { QTable } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
@@ -23,7 +24,8 @@ import type {
   PageTableOwnProps,
   PageTableParentProps,
   PageTableSlots,
-  Pagination
+  Pagination,
+  SteadyBottomSlotData
 } from "./PageTable.extras";
 import {
   injectPageTableSettings,
@@ -66,6 +68,12 @@ export default defineComponent({
     validateEmit<PageTableOwnProps>(emit);
     validateProps<PageTableOwnProps>(props);
 
+    const selected = computed<Writable<objects>>(() => {
+      assert.not.empty(props.rowKey);
+
+      return _.intersectionBy(props.selected, props.rows, props.rowKey);
+    });
+
     const settings = injectPageTableSettings();
 
     const table = ref<QTable | undefined>(undefined);
@@ -90,7 +98,7 @@ export default defineComponent({
               assert.not.empty(props.rowKey);
               emit(
                 "update:selected",
-                a.toggleBy(props.selected, row, props.rowKey)
+                a.toggleBy(selected.value, row, props.rowKey)
               );
             }
           : undefined
@@ -105,10 +113,34 @@ export default defineComponent({
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
       ),
+      steadyBottomSlotData: computed<SteadyBottomSlotData>(() => {
+        return {
+          allSelected: fn.run(() => {
+            switch (selected.value.length) {
+              case 0:
+                return false;
+
+              case props.rows.length:
+                return true;
+
+              default:
+                return undefined;
+            }
+          }),
+          allSelectedClick(): void {
+            emit("update:selected", selected.value.length ? [] : props.rows);
+          },
+          allSelectedDisable: props.rows.length === 0
+        };
+      }),
       table,
-      tableColumns: computed<Writable<Columns>>(() => a.clone(props.columns)),
-      tableRows: computed<Writable<objects>>(() => a.clone(props.rows)),
-      tableSelected: computed<Writable<objects>>(() => a.clone(props.selected)),
+      tableColumns: computed<Writable<Columns>>(() =>
+        o.unfreeze(props.columns)
+      ),
+      tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
+      tableSelected: computed<Writable<objects>>(() =>
+        o.unfreeze(props.selected)
+      ),
       updatePagination(pagination: Pagination): void {
         pagination = o.removeUndefinedKeys({
           ...props.pagination,
@@ -174,7 +206,7 @@ export default defineComponent({
       #bottom="data"
     >
       <slot :name="slotNames.bottom" v-bind="data"></slot>
-      <slot :name="slotNames.steadyBottom"></slot>
+      <slot :name="slotNames.steadyBottom" v-bind="steadyBottomSlotData"></slot>
     </template>
     <template #header-selection="data">
       <slot :name="slotNames.headerSelection" v-bind="data">
@@ -186,7 +218,7 @@ export default defineComponent({
       #no-data="data"
     >
       <slot :name="slotNames.noData" v-bind="data"></slot>
-      <slot :name="slotNames.steadyBottom"></slot>
+      <slot :name="slotNames.steadyBottom" v-bind="steadyBottomSlotData"></slot>
     </template>
   </q-table>
 </template>

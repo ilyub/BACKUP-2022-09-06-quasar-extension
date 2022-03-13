@@ -88,6 +88,7 @@ test.each([
           externalSorting,
           extraPageOffset,
           pagination,
+          rowKey: "key",
           rows,
           selected
         }),
@@ -147,7 +148,6 @@ test.each([
         const event = [{ ...pagination, limit: expectedLimit }];
 
         emittedPagination.push(event);
-        // eslint-disable-next-line vue/custom-event-name-casing
         table.vm.$emit("virtual-scroll", rawEvent);
         expect(wrapper.emitted("update:pagination")).toStrictEqual(
           emittedPagination

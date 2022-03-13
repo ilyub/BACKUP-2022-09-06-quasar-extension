@@ -106,9 +106,19 @@ export interface PageTableSlots<T = object>
   /**
    * Steady bottom slot.
    *
+   * @param scope - Scope.
    * @returns Node.
    */
-  readonly "steady-bottom": () => readonly VNode[];
+  readonly "steady-bottom": (scope: SteadyBottomSlotData) => readonly VNode[];
+}
+
+export interface SteadyBottomSlotData {
+  readonly allSelected: booleanU;
+  /**
+   * Handles allSelected click.
+   */
+  readonly allSelectedClick: () => void;
+  allSelectedDisable: boolean;
 }
 
 export interface PageTableSettings {
