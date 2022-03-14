@@ -205,3 +205,47 @@ test("row click", () => {
   table.vm.$emit("rowClick", undefined, row, 1);
   expect(wrapper.emitted("update:selected")).toStrictEqual([[[row]]]);
 });
+
+test.each([
+  {
+    expectedEmitted: [[rows]],
+    expectedText: "Select",
+    selected: []
+  },
+  {
+    expectedEmitted: [[[]]],
+    expectedText: "Deselect",
+    selected: rows.slice(1, 2)
+  },
+  {
+    expectedEmitted: [[[]]],
+    expectedText: "Deselect",
+    selected: rows
+  }
+])("selected", async ({ expectedEmitted, expectedText, selected }) => {
+  const wrapper = vueTestUtils.mount(PageTable, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys({
+      columns,
+      rowKey: "key",
+      rows,
+      selectByRowClick: true,
+      selected
+    }),
+    slots: {
+      "steady-bottom": `
+        <template #steady-bottom="{ allSelected, allSelectedClick }">
+          <button class="ref-page-table-steady-bottom" @click="allSelectedClick">
+            {{ allSelected === false ? "Select" : "Deselect" }}
+          </button>
+        </template>
+      `
+    }
+  });
+
+  const elem = testUtils.findElementFactory(".ref-page-table-", wrapper);
+
+  expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
+  await elem("steady-bottom").trigger("click");
+  expect(wrapper.emitted("update:selected")).toStrictEqual(expectedEmitted);
+});

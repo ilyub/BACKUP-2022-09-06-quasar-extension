@@ -1,6 +1,10 @@
 import type { QTableProps, QTableSlots } from "quasar";
 import type { VNode } from "vue";
 
+import type { Icons } from "@skylib/facades/es/icons";
+import { icons as baseIcons } from "@skylib/facades/es/icons";
+import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
 import type {
   booleanU,
@@ -12,9 +16,39 @@ import { createValidationObject } from "@skylib/functions/es/types/core";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Facade extends ModuleIcons {}
+    }
+
+    namespace lang {
+      interface Word extends ModuleWord {}
+    }
+  }
+}
+
+export interface ModuleIcons {
+  readonly deselectAll: string;
+  readonly selectAll: string;
+}
+
+export interface ModuleWord {
+  readonly DeselectAll: true;
+  readonly SelectAll: true;
+}
+
 export type Align = "center" | "left" | "right";
 
 export interface BodyCellSlotData<T = object> {
+  readonly allSelected: booleanU;
+  /**
+   * Handles allSelected click.
+   */
+  readonly allSelectedClick: () => void;
+  readonly allSelectedDisable: boolean;
+  readonly allSelectedIcon: string;
+  readonly allSelectedLabel: string;
   readonly row: T;
   readonly value: string;
 }
@@ -118,7 +152,9 @@ export interface SteadyBottomSlotData {
    * Handles allSelected click.
    */
   readonly allSelectedClick: () => void;
-  allSelectedDisable: boolean;
+  readonly allSelectedDisable: boolean;
+  readonly allSelectedIcon: string;
+  readonly allSelectedLabel: string;
 }
 
 export interface PageTableSettings {
@@ -164,6 +200,10 @@ export const {
     growPageBy: 10
   };
 });
+
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
+
+export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
 
 /**
  * Creates guard for Column\<T\> type.

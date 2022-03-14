@@ -9,11 +9,13 @@ export const ru = new Definitions({
   words: {
     Cancel: "Отменить",
     Confirm: "Подтверждение",
+    DeselectAll: "Снять выделение",
     IconPicker: "Выбор иконки",
     Of: "Из",
     Ok: "Ок",
     PickDate: "Выбор даты",
     SampleWord: "Пробное слово",
-    Save: "Сохранить"
+    Save: "Сохранить",
+    SelectAll: "Выделить все"
   }
 });

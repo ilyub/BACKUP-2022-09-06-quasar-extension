@@ -1,6 +1,6 @@
 <script lang="ts">
 import * as _ from "lodash-es";
-import type { QTable } from "quasar";
+import type { QTable, QTableSlots } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -20,6 +20,7 @@ import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
+  BodyCellSlotData,
   Columns,
   PageTableOwnProps,
   PageTableParentProps,
@@ -28,9 +29,11 @@ import type {
   SteadyBottomSlotData
 } from "./PageTable.extras";
 import {
+  icons,
   injectPageTableSettings,
   isColumnsFactory,
-  isPagination
+  isPagination,
+  lang
 } from "./PageTable.extras";
 
 interface SortMethod {
@@ -78,7 +81,46 @@ export default defineComponent({
 
     const table = ref<QTable | undefined>(undefined);
 
+    function allSelectedClick(): void {
+      emit("update:selected", selected.value.length ? [] : props.rows);
+    }
+
+    function steadyBottomSlotData(): SteadyBottomSlotData {
+      const allSelected = fn.run(() => {
+        switch (selected.value.length) {
+          case 0:
+            return false;
+
+          case props.rows.length:
+            return true;
+
+          default:
+            return undefined;
+        }
+      });
+
+      return {
+        allSelected,
+        allSelectedClick,
+        allSelectedDisable: props.rows.length === 0,
+        allSelectedIcon:
+          allSelected === false ? icons.selectAll : icons.deselectAll,
+        allSelectedLabel:
+          allSelected === false ? lang.SelectAll : lang.DeselectAll
+      };
+    }
+
     return {
+      bodyCellSlotData(
+        // eslint-disable-next-line no-warning-comments
+        // fixme: Readonly<Parameters -> ReadonlyParameters
+        data: Readonly<Parameters<QTableSlots["body-cell"]>[0]>
+      ): BodyCellSlotData {
+        return {
+          ...data,
+          ...steadyBottomSlotData()
+        };
+      },
       empty: computed<boolean>(() => props.rows.length === 0),
       height: usePageContentHeight(() => props.extraPageOffset),
       onScroll(details: VirtualScrollDetails): void {
@@ -104,6 +146,7 @@ export default defineComponent({
           : undefined
       ),
       slotNames: useSlotsNames<PageTableSlots>()(
+        "body-cell",
         "body-selection",
         "bottom",
         "header-selection",
@@ -113,26 +156,7 @@ export default defineComponent({
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
       ),
-      steadyBottomSlotData: computed<SteadyBottomSlotData>(() => {
-        return {
-          allSelected: fn.run(() => {
-            switch (selected.value.length) {
-              case 0:
-                return false;
-
-              case props.rows.length:
-                return true;
-
-              default:
-                return undefined;
-            }
-          }),
-          allSelectedClick(): void {
-            emit("update:selected", selected.value.length ? [] : props.rows);
-          },
-          allSelectedDisable: props.rows.length === 0
-        };
-      }),
+      steadyBottomSlotData,
       table,
       tableColumns: computed<Writable<Columns>>(() =>
         o.unfreeze(props.columns)
@@ -196,6 +220,10 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
+    <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
+      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"> </slot>
+    </template>
+
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">
         <q-checkbox v-model="data.selected" :disable="empty" />
@@ -206,7 +234,10 @@ export default defineComponent({
       #bottom="data"
     >
       <slot :name="slotNames.bottom" v-bind="data"></slot>
-      <slot :name="slotNames.steadyBottom" v-bind="steadyBottomSlotData"></slot>
+      <slot
+        :name="slotNames.steadyBottom"
+        v-bind="steadyBottomSlotData()"
+      ></slot>
     </template>
     <template #header-selection="data">
       <slot :name="slotNames.headerSelection" v-bind="data">
@@ -218,7 +249,10 @@ export default defineComponent({
       #no-data="data"
     >
       <slot :name="slotNames.noData" v-bind="data"></slot>
-      <slot :name="slotNames.steadyBottom" v-bind="steadyBottomSlotData"></slot>
+      <slot
+        :name="slotNames.steadyBottom"
+        v-bind="steadyBottomSlotData()"
+      ></slot>
     </template>
   </q-table>
 </template>

@@ -9,11 +9,13 @@ export const en = new Definitions({
   words: {
     Cancel: "Cancel",
     Confirm: "Confirm",
+    DeselectAll: "Deselect all",
     IconPicker: "Icon picker",
     Of: "Of",
     Ok: "Ok",
     PickDate: "Pick date",
     SampleWord: "Sample word",
-    Save: "Save"
+    Save: "Save",
+    SelectAll: "Select all"
   }
 });
