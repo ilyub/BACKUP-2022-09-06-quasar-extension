@@ -13,8 +13,8 @@ import type { FormOwnProps, FormParentProps, FormSlots } from "./Form.extras";
 import { isOnSubmitAsyncU, isOnSubmitU } from "./Form.extras";
 import { injectDisable, provideDisable } from "./Switchable.extras";
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 const TaskTypeVO = createValidationObject<TaskType>({
   createDb: "createDb",
   dbRequest: "dbRequest",

@@ -37,12 +37,6 @@ import {
 } from "./PageTable.extras";
 
 interface SortMethod {
-  /**
-   * Sorts rows.
-   *
-   * @param rows - Rows.
-   * @returns Sorted rows.
-   */
   (rows: objects): objects;
 }
 
@@ -220,17 +214,16 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
-    <template v-if="$slots[slotNames.bodyCell]" #body-cell="data">
-      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"> </slot>
+    <template v-if="slotNames.has('body-cell')" #body-cell="data">
+      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
     </template>
-
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">
-        <q-checkbox v-model="data.selected" :disable="empty" />
+        <q-checkbox v-model="data.selected" />
       </slot>
     </template>
     <template
-      v-if="$slots[slotNames.bottom] || $slots[slotNames.steadyBottom]"
+      v-if="slotNames.hasSome('bottom', 'steady-bottom')"
       #bottom="data"
     >
       <slot :name="slotNames.bottom" v-bind="data"></slot>
@@ -245,7 +238,7 @@ export default defineComponent({
       </slot>
     </template>
     <template
-      v-if="$slots[slotNames.noData] || $slots[slotNames.steadyBottom]"
+      v-if="slotNames.hasSome('no-data', 'steady-bottom')"
       #no-data="data"
     >
       <slot :name="slotNames.noData" v-bind="data"></slot>

@@ -243,8 +243,8 @@ export type Emits = {
   readonly [K in `on${Capital}${string}`]: () => void;
 };
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 export type Capital =
   | "A"
   | "B"
@@ -273,8 +273,8 @@ export type Capital =
   | "Y"
   | "Z";
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 export type NonCapital =
   | "a"
   | "b"

@@ -1,17 +1,37 @@
 import * as _ from "lodash-es";
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 import type { CamelCase } from "type-fest";
 import type { ComputedRef } from "vue";
 import { computed, useSlots } from "vue";
 
+import * as is from "@skylib/functions/es/guards";
+import * as reflect from "@skylib/functions/es/reflect";
 import type { IndexedObject } from "@skylib/functions/es/types/core";
 
-export type SlotsNames<T extends PropertyKey> = {
+export type SlotsNames<T extends PropertyKey> = SlotsNames1<T> & SlotsNames2<T>;
+
+export type SlotsNames1<T extends PropertyKey> = {
   readonly [K in T as CamelCase<K>]: K;
-} & {
-  readonly passThroughSlots: readonly never[];
 };
+
+export interface SlotsNames2<T extends PropertyKey> {
+  /**
+   * Checks if slot exists.
+   *
+   * @param name - Slot name.
+   * @returns _True_ if slot exists, _false_ otherwise.
+   */
+  readonly has: (name: T) => boolean;
+  /**
+   * Checks if some slot exists.
+   *
+   * @param names - Slot names.
+   * @returns _True_ if slot exists, _false_ otherwise.
+   */
+  readonly hasSome: (...names: T[]) => boolean;
+  readonly passThroughSlots: readonly never[];
+}
 
 /**
  * Slot names module.
@@ -25,16 +45,31 @@ export function useSlotsNames<T>() {
     const useKeysSet: Set<PropertyKey> = new Set(useKeys);
 
     return computed<SlotsNames<U>>(() => {
-      const result: IndexedObject = {};
+      const usableSlots: IndexedObject = {};
 
       const passThroughSlots: PropertyKey[] = [];
 
-      for (const name of Object.keys(useSlots()))
-        if (useKeysSet.has(name)) result[_.camelCase(name)] = name;
+      const slots = useSlots();
+
+      for (const name of Object.keys(slots))
+        if (useKeysSet.has(name)) usableSlots[_.camelCase(name)] = name;
         else passThroughSlots.push(name);
 
       // eslint-disable-next-line no-type-assertion/no-type-assertion
-      return { ...result, passThroughSlots } as unknown as SlotsNames<U>;
+      const slots1 = usableSlots as SlotsNames1<U>;
+
+      const slots2: SlotsNames2<U> = {
+        has(name: U): boolean {
+          return is.not.empty(reflect.get(slots, name));
+        },
+        hasSome(...names: U[]): boolean {
+          return names.some(name => is.not.empty(reflect.get(slots, name)));
+        },
+        // eslint-disable-next-line no-type-assertion/no-type-assertion
+        passThroughSlots: passThroughSlots as unknown as readonly never[]
+      };
+
+      return { ...slots1, ...slots2 };
     });
   };
 }

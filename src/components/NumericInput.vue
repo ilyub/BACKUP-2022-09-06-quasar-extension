@@ -21,14 +21,14 @@ import type {
 } from "./NumericInput.extras";
 import { icons } from "./NumericInput.extras";
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 function stepCeil(value: number, step: number, from: number): number {
   return Math.ceil((value - from) / step) * step + from;
 }
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 function stepFloor(value: number, step: number, from: number): number {
   return Math.floor((value - from) / step) * step + from;
 }

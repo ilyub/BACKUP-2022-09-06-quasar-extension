@@ -22,14 +22,14 @@ import type {
 } from "./TimeInput.extras";
 import { icons } from "./TimeInput.extras";
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 function stepCeil(value: number, step: number): number {
   return Math.ceil(value / step) * step;
 }
 
-// eslint-disable-next-line @skylib/disallow-by-regexp
-// temp
+// eslint-disable-next-line no-warning-comments
+// fixme
 function stepFloor(value: number, step: number): number {
   return Math.floor(value / step) * step;
 }
