@@ -47,9 +47,15 @@ ___
 
 ### steady-bottom
 
-▸ `Readonly` **steady-bottom**(): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+▸ `Readonly` **steady-bottom**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
 
 Steady bottom slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`SteadyBottomSlotData`](components_PageTable_extras.SteadyBottomSlotData.md) | Scope. |
 
 #### Returns
 

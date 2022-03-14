@@ -56,7 +56,7 @@ Builds vuedraggable elements.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `items` | readonly `object`[] | Items. |
+| `items` | `objects` | Items. |
 | `group` | `string` | Group. |
 | `key` | `string` | Key. |
 

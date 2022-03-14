@@ -48,7 +48,7 @@ ___
 
 ### modelValue
 
-• `Readonly` **modelValue**: readonly `object`[]
+• `Readonly` **modelValue**: `objects`
 
 ___
 

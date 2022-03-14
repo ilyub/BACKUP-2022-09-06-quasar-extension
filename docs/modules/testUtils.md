@@ -13,6 +13,7 @@
 
 - [findComponentFactory](testUtils.md#findcomponentfactory)
 - [findElementFactory](testUtils.md#findelementfactory)
+- [findFactory](testUtils.md#findfactory)
 - [globalMountOptions](testUtils.md#globalmountoptions)
 - [htmlToEqual](testUtils.md#htmltoequal)
 - [jestReset](testUtils.md#jestreset)
@@ -88,6 +89,32 @@ Find HTML element function.
 ##### Returns
 
 `DOMWrapper`<`Element`\>
+
+___
+
+### findFactory
+
+▸ **findFactory**(`prefix`, `wrapper`): `Object`
+
+Find component factory.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `prefix` | `string` | Prefix. |
+| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+
+#### Returns
+
+`Object`
+
+Find component function.
+
+| Name | Type |
+| :------ | :------ |
+| `comp` | `ReturnType`<typeof [`findComponentFactory`](testUtils.md#findcomponentfactory)\> |
+| `elem` | `ReturnType`<typeof [`findElementFactory`](testUtils.md#findelementfactory)\> |
 
 ___
 

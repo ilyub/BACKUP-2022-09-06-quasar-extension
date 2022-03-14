@@ -9,12 +9,15 @@
 - [BodyCellSlotData](../interfaces/components_PageTable_extras.BodyCellSlotData.md)
 - [Column](../interfaces/components_PageTable_extras.Column.md)
 - [Field](../interfaces/components_PageTable_extras.Field.md)
+- [ModuleIcons](../interfaces/components_PageTable_extras.ModuleIcons.md)
+- [ModuleWord](../interfaces/components_PageTable_extras.ModuleWord.md)
 - [PageTableOwnProps](../interfaces/components_PageTable_extras.PageTableOwnProps.md)
 - [PageTableParentProps](../interfaces/components_PageTable_extras.PageTableParentProps.md)
 - [PageTableProps](../interfaces/components_PageTable_extras.PageTableProps.md)
 - [PageTableSettings](../interfaces/components_PageTable_extras.PageTableSettings.md)
 - [PageTableSlots](../interfaces/components_PageTable_extras.PageTableSlots.md)
 - [Pagination](../interfaces/components_PageTable_extras.Pagination.md)
+- [SteadyBottomSlotData](../interfaces/components_PageTable_extras.SteadyBottomSlotData.md)
 
 ### Type aliases
 
@@ -25,6 +28,8 @@
 ### Variables
 
 - [AlignVO](components_PageTable_extras.md#alignvo)
+- [icons](components_PageTable_extras.md#icons)
+- [lang](components_PageTable_extras.md#lang)
 
 ### Functions
 
@@ -72,6 +77,18 @@ ___
 ### AlignVO
 
 • `Const` **AlignVO**: `ValidationObject`<[`Align`](components_PageTable_extras.md#align)\>
+
+___
+
+### icons
+
+• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_PageTable_extras.ModuleIcons.md)\> = `baseIcons`
+
+___
+
+### lang
+
+• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_PageTable_extras.ModuleWord.md)\> = `baseLang`
 
 ## Functions
 

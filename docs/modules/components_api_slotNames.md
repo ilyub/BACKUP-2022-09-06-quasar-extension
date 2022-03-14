@@ -4,9 +4,14 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [SlotsNames2](../interfaces/components_api_slotNames.SlotsNames2.md)
+
 ### Type aliases
 
 - [SlotsNames](components_api_slotNames.md#slotsnames)
+- [SlotsNames1](components_api_slotNames.md#slotsnames1)
 
 ### Functions
 
@@ -16,7 +21,19 @@
 
 ### SlotsNames
 
-Ƭ **SlotsNames**<`T`\>: { readonly [K in T as CamelCase<K\>]: K } & { `passThroughSlots`: readonly `never`[]  }
+Ƭ **SlotsNames**<`T`\>: [`SlotsNames1`](components_api_slotNames.md#slotsnames1)<`T`\> & [`SlotsNames2`](../interfaces/components_api_slotNames.SlotsNames2.md)<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `PropertyKey` |
+
+___
+
+### SlotsNames1
+
+Ƭ **SlotsNames1**<`T`\>: { readonly [K in T as CamelCase<K\>]: K }
 
 #### Type parameters
 

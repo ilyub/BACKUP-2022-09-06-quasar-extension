@@ -14,10 +14,42 @@
 
 ### Properties
 
+- [allSelected](components_PageTable_extras.BodyCellSlotData.md#allselected)
+- [allSelectedDisable](components_PageTable_extras.BodyCellSlotData.md#allselecteddisable)
+- [allSelectedIcon](components_PageTable_extras.BodyCellSlotData.md#allselectedicon)
+- [allSelectedLabel](components_PageTable_extras.BodyCellSlotData.md#allselectedlabel)
 - [row](components_PageTable_extras.BodyCellSlotData.md#row)
 - [value](components_PageTable_extras.BodyCellSlotData.md#value)
 
+### Methods
+
+- [allSelectedClick](components_PageTable_extras.BodyCellSlotData.md#allselectedclick)
+
 ## Properties
+
+### allSelected
+
+• `Readonly` **allSelected**: `booleanU`
+
+___
+
+### allSelectedDisable
+
+• `Readonly` **allSelectedDisable**: `boolean`
+
+___
+
+### allSelectedIcon
+
+• `Readonly` **allSelectedIcon**: `string`
+
+___
+
+### allSelectedLabel
+
+• `Readonly` **allSelectedLabel**: `string`
+
+___
 
 ### row
 
@@ -28,3 +60,15 @@ ___
 ### value
 
 • `Readonly` **value**: `string`
+
+## Methods
+
+### allSelectedClick
+
+▸ `Readonly` **allSelectedClick**(): `void`
+
+Handles allSelected click.
+
+#### Returns
+
+`void`
