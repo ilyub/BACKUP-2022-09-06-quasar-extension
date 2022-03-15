@@ -43,13 +43,47 @@ export interface PageLayoutSlots {
    * @returns Node.
    */
   readonly default: () => readonly VNode[];
+  /**
+   * Footer slot.
+   *
+   * @returns Node.
+   */
+  readonly footer: () => readonly VNode[];
+  /**
+   * Header slot.
+   *
+   * @returns Node.
+   */
+  readonly header: () => readonly VNode[];
+  /**
+   * Raw footer slot.
+   *
+   * @returns Node.
+   */
+  readonly "raw-footer": () => readonly VNode[];
+  /**
+   * Raw header slot.
+   *
+   * @returns Node.
+   */
+  readonly "raw-header": () => readonly VNode[];
+  /**
+   * Sticky footer slot.
+   *
+   * @returns Node.
+   */
+  readonly "sticky-footer": () => readonly VNode[];
+  /**
+   * Sticky header slot.
+   *
+   * @returns Node.
+   */
+  readonly "sticky-header": () => readonly VNode[];
 }
 
 export interface PageLayoutSettings {
   readonly closeButton: boolean;
-  readonly headerHeight: string;
-  readonly paddingX: string;
-  readonly paddingY: string;
+  readonly height: string;
 }
 
 export const icons: Icons<"close"> = baseIcons;
@@ -61,8 +95,6 @@ export const {
 } = createInjectable<PageLayoutSettings>(() => {
   return {
     closeButton: true,
-    headerHeight: "60px",
-    paddingX: "15px",
-    paddingY: "15px"
+    height: "auto"
   };
 });

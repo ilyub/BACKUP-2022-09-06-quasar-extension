@@ -10,7 +10,6 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as fn from "@skylib/functions/es/function";
 import type { LocaleName } from "@skylib/functions/es/types/locales";
 
-import { providePageOffset } from "./components/api/pageContentHeight";
 import { provideIconPickerSettings } from "./components/IconPicker.extras";
 import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
 import type { OptionGroupOptions } from "./components/OptionGroup.extras";
@@ -68,9 +67,7 @@ export default defineComponent({
     providePageLayoutSettings(() => {
       return {
         closeButton: true,
-        headerHeight: "50px",
-        paddingX: "10px",
-        paddingY: "20px"
+        height: "calc(100vh - 20px)"
       };
     });
 
@@ -79,8 +76,6 @@ export default defineComponent({
         growPageBy: 10
       };
     });
-
-    providePageOffset(() => "20px");
 
     provideSortableSettings(() => {
       return {

@@ -2,12 +2,28 @@
 
 @import "~quasar/src/css/variables.sass";
 
-$button-group-spacing : map.get($space-sm, "x") !default;
-$indent-padding : map.get($space-lg, "x") !default;
-$icon-button-group-spacing : map.get($space-xs, "x") !default;
-$page-section-spacing : map.get($space-lg, "y") !default;
-$section-spacing : map.get($space-md, "y") !default;
-$subsection-spacing : map.get($space-sm, "y") !default;
+$m-button-group : (
+  "spacing" : map.get($space-sm, "x")
+) !default;
+$m-indent : (
+  "padding" : map.get($space-lg, "x")
+) !default;
+$m-icon-button-group : (
+  "spacing" : map.get($space-xs, "x")
+) !default;
+$m-page-layout : (
+  "padding" : map.get($space-lg, "y") map.get($space-lg, "x"),
+  "title-margin" : map.get($space-lg, "y")
+) !default;
+$m-page-section : (
+  "spacing" : map.get($space-lg, "y")
+) !default;
+$m-section : (
+  "spacing" : map.get($space-md, "y")
+) !default;
+$m-subsection : (
+  "spacing" : map.get($space-sm, "y")
+) !default;
 
 .border-collapse {
   border-collapse: collapse;
@@ -70,25 +86,33 @@ $subsection-spacing : map.get($space-sm, "y") !default;
 }
 
 .m-button-group-member + .m-button-group-member {
-  margin-left: $button-group-spacing;
+  margin-left: map.get($m-button-group, "spacing");
 }
 
 .m-icon-button-group-member + .m-icon-button-group-member {
-  margin-left: $icon-button-group-spacing;
+  margin-left: map.get($m-icon-button-group, "spacing");
 }
 
 .m-indent {
-  padding-left: $indent-padding;
+  padding-left: map.get($m-indent, "padding");
+}
+
+.m-page-layout {
+  padding: map.get($m-page-layout, "padding");
+}
+
+.m-page-layout__title {
+  margin-bottom: map.get($m-page-layout, "title-margin");
 }
 
 .m-page-section + .m-page-section {
-  margin-top: $page-section-spacing;
+  margin-top: map.get($m-page-section, "spacing");
 }
 
 .m-section + .m-section {
-  margin-top: $section-spacing;
+  margin-top: map.get($m-section, "spacing");
 }
 
 .m-subsection + .m-subsection {
-  margin-top: $subsection-spacing;
+  margin-top: map.get($m-subsection, "spacing");
 }

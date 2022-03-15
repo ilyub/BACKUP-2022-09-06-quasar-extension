@@ -9,10 +9,8 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import type * as testUtils from "@skylib/functions/es/testUtils";
-import type { stringU } from "@skylib/functions/es/types/core";
 
 import { components } from "../components";
-import { testPageOffset } from "../components/api/pageContentHeight";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
 import { testIconPickerSettings } from "../components/IconPicker.extras";
 import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
@@ -73,7 +71,6 @@ export interface CustomGlobalMountOptions {
   readonly iconPickerSettings?: IconPickerSettings;
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
-  readonly pageOffset?: stringU;
   readonly pageTableSettings?: PageTableSettings;
   readonly sortableSettings?: SortableSettings;
   readonly switchableSettings?: SwitchableSettings;
@@ -173,8 +170,6 @@ export function globalMountOptions(
 
       if ("pageLayoutSettings" in options)
         testPageLayoutSettings(result, options.pageLayoutSettings);
-
-      if ("pageOffset" in options) testPageOffset(result, options.pageOffset);
 
       if ("pageTableSettings" in options)
         testPageTableSettings(result, options.pageTableSettings);
