@@ -23,7 +23,6 @@ module.exports = [
   "NumericInput",
   "OptionGroup",
   "PageLayout",
-  "PageMarkupTable",
   "PageSection",
   "PageTable",
   "Resizer",
