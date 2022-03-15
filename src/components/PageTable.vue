@@ -16,7 +16,6 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { usePageContentHeight } from "./api/pageContentHeight";
 import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
@@ -50,7 +49,6 @@ export default defineComponent({
     ...propsToPropDefinitions<PageTableParentProps>(),
     columns: propOptions.default(isColumnsFactory(), []),
     externalSorting: propOptions.boolean(),
-    extraPageOffset: propOptions(is.stringU),
     pagination: propOptions.default(isPagination, {}),
     rowKey: propOptions(is.stringU),
     rows: propOptions.default(is.objects, []),
@@ -116,7 +114,6 @@ export default defineComponent({
         };
       },
       empty: computed<boolean>(() => props.rows.length === 0),
-      height: usePageContentHeight(() => props.extraPageOffset),
       onScroll(details: VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
@@ -192,7 +189,6 @@ export default defineComponent({
   <q-table
     ref="table"
     binary-state-sort
-    class="sticky-table"
     :columns="tableColumns"
     :pagination="pagination"
     :row-key="rowKey"
@@ -200,9 +196,6 @@ export default defineComponent({
     :rows-per-page-options="[0]"
     :selected="tableSelected"
     :sort-method="sortMethod"
-    :style="{
-      height
-    }"
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"

@@ -39,9 +39,7 @@ test.each([
   {
     expectedHtml: "Sample row 1",
     expectedLimit: 25,
-    expectedStyle: "height: calc(100vh - 10px - 0px);",
     externalSorting: false,
-    pageOffset: "10px",
     pagination: { limit: 15, sortBy: "name" },
     to: 14
   },
@@ -49,10 +47,8 @@ test.each([
     bodyCellSlot: "Sample body cell slot",
     expectedHtml: "Sample body cell slot",
     expectedLimit: 45,
-    expectedStyle: "height: calc(100vh - 20px - 5px);",
     externalSorting: true,
     extraPageOffset: "5px",
-    pageOffset: "20px",
     pageTableSettings: { growPageBy: 20 },
     pagination: { descending: false, limit: 25, sortBy: "name" },
     selected: [],
@@ -64,10 +60,8 @@ test.each([
     bodyCellSlot,
     expectedHtml,
     expectedLimit,
-    expectedStyle,
     externalSorting,
     extraPageOffset,
-    pageOffset,
     pageTableSettings,
     pagination,
     selected,
@@ -78,10 +72,7 @@ test.each([
     await functionsTestUtils.run(async () => {
       const wrapper = vueTestUtils.mount(PageTable, {
         global: testUtils.globalMountOptions(
-          o.removeUndefinedKeys({
-            pageOffset,
-            pageTableSettings
-          })
+          o.removeUndefinedKeys({ pageTableSettings })
         ),
         props: o.removeUndefinedKeys({
           columns,
@@ -106,7 +97,6 @@ test.each([
       {
         await wait(1000);
         expect(table.html()).toInclude(expectedHtml);
-        expect(table.attributes("style")).toStrictEqual(expectedStyle);
       }
 
       {

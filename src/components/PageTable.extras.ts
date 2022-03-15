@@ -92,7 +92,6 @@ export type GlobalPageTable<T = object> = GlobalComponent<
 export interface PageTableOwnProps<T = object> {
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
-  readonly extraPageOffset?: stringU;
   /**
    * Emits "pagination" value.
    *
