@@ -43,8 +43,6 @@ import type { GlobalOptionGroup } from "./OptionGroup.extras";
 import OptionGroup from "./OptionGroup.vue";
 import type { GlobalPageLayout } from "./PageLayout.extras";
 import PageLayout from "./PageLayout.vue";
-import type { GlobalPageMarkupTable } from "./PageMarkupTable.extras";
-import PageMarkupTable from "./PageMarkupTable.vue";
 import type { GlobalPageSection } from "./PageSection.extras";
 import PageSection from "./PageSection.vue";
 import type { GlobalPageTable } from "./PageTable.extras";
@@ -91,7 +89,6 @@ declare module "@vue/runtime-core" {
     readonly "m-numeric-input": GlobalNumericInput;
     readonly "m-option-group": GlobalOptionGroup;
     readonly "m-page-layout": GlobalPageLayout;
-    readonly "m-page-markup-table": GlobalPageMarkupTable;
     readonly "m-page-section": GlobalPageSection;
     readonly "m-page-table": GlobalPageTable;
     readonly "m-resizer": GlobalResizer;
@@ -129,7 +126,6 @@ export const components = o.freeze([
   NumericInput,
   OptionGroup,
   PageLayout,
-  PageMarkupTable,
   PageSection,
   PageTable,
   Resizer,

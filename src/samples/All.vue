@@ -20,7 +20,6 @@ import Menu from "./Menu.vue";
 import NumericInput from "./NumericInput.vue";
 import OptionGroup from "./OptionGroup.vue";
 import PageLayout from "./PageLayout.vue";
-import PageMarkupTable from "./PageMarkupTable.vue";
 import PageSection from "./PageSection.vue";
 import PageTable from "./PageTable.vue";
 import Resizer from "./Resizer.vue";
@@ -58,7 +57,6 @@ export default defineComponent({
           NumericInput,
           OptionGroup,
           PageLayout,
-          PageMarkupTable,
           PageSection,
           PageTable,
           Resizer,
