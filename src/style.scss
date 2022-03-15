@@ -25,17 +25,28 @@ $subsection-spacing : map.get($space-sm, "y") !default;
   width: 1px;
 }
 
+.sticky-footer {
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  background: white;
+}
+
+.sticky-header {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: white;
+}
+
 .sticky-table {
   thead,
   tfoot {
-    tr {
-      background: white;
-    }
-
     th,
     td {
       position: sticky;
       z-index: 1;
+      background: white;
     }
   }
 
