@@ -19,13 +19,21 @@ export const {
  * @returns Page content height.
  */
 export function usePageContentHeight(
-  extraPageOffset: () => stringU
+  extraPageOffset: () => stringU = (): undefined => undefined
 ): ComputedRef<string> {
   const pageOffset = injectPageOffset();
 
-  return computed<string>(() =>
-    is.not.empty(pageOffset.value)
-      ? `calc(100vh - ${pageOffset.value} - ${extraPageOffset() ?? "0px"})`
-      : "auto"
-  );
+  return computed<string>(() => {
+    const po = pageOffset.value;
+
+    if (is.not.empty(po)) {
+      const epo = extraPageOffset();
+
+      return is.not.empty(epo)
+        ? `calc(100vh - ${po} - ${epo})`
+        : `calc(100vh - ${po})`;
+    }
+
+    return "auto";
+  });
 }
