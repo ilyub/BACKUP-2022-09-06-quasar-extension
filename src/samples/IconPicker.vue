@@ -4,12 +4,17 @@ import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
 
 import type { stringU } from "@skylib/functions/es/types/core";
 
+import { useProvide } from "./useProvide";
+
 export default defineComponent({
   name: "sample-icon-picker",
   setup() {
+    const { iconPickerTooltips } = useProvide();
+
     return {
       icon1: ref<stringU>(undefined),
       icon2: ref<stringU>(undefined),
+      iconPickerTooltips,
       mdiImageEdit,
       mdiImageEditOutline
     };
@@ -18,6 +23,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <q-checkbox v-model="iconPickerTooltips" label="Icon tooltips:" left-label />
   <m-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
   <m-icon-picker
     v-model="icon2"

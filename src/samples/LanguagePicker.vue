@@ -1,18 +1,20 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 
-import type { LocaleName } from "@skylib/functions/es/types/locales";
+import { lang } from "@skylib/facades/es/lang";
+
+import { useProvide } from "./useProvide";
 
 export default defineComponent({
   name: "sample-language-picker",
   setup() {
-    return {
-      language: ref<LocaleName>("en-US")
-    };
+    const { language } = useProvide();
+
+    return { lang, language };
   }
 });
 </script>
 
 <template>
-  <m-language-picker :language="language" />
+  <m-language-picker :language="language" /> {{ lang.SampleWord }}
 </template>

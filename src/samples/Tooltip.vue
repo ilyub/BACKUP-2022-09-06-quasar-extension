@@ -8,21 +8,41 @@ import {
   mdiMenu
 } from "@mdi/js";
 
+import { useProvide } from "./useProvide";
+
 export default defineComponent({
   name: "sample-tooltip",
   setup() {
+    const { tooltipDelay, tooltipShow } = useProvide();
+
     return {
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,
       mdiArrowUp,
-      mdiMenu
+      mdiMenu,
+      tooltipDelay,
+      tooltipShow
     };
   }
 });
 </script>
 
 <template>
+  <m-subsection>
+    <m-toggle v-model="tooltipShow" label="Show tooltips:" left-label />
+  </m-subsection>
+  <m-subsection indent>
+    with delay of
+    <m-knob
+      v-model="tooltipDelay"
+      :disable="!tooltipShow"
+      inline
+      :max="3000"
+      :step="100"
+    />
+    ms
+  </m-subsection>
   <m-icon-button :icon="mdiMenu">
     <m-menu>
       <q-list>

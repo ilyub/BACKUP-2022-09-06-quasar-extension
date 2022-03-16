@@ -1,172 +1,140 @@
 <script lang="ts">
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
-import ru from "flag-icon-css/flags/1x1/ru.svg";
-import us from "flag-icon-css/flags/1x1/us.svg";
-import { defineComponent, ref } from "vue";
+import * as _ from "lodash-es";
+import { computed, defineComponent, ref } from "vue";
+import type { DefinedComponent } from "@vue/test-utils/dist/types";
 
-import { lang } from "@skylib/facades/es/lang";
-import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
-import * as fn from "@skylib/functions/es/function";
-import type { LocaleName } from "@skylib/functions/es/types/locales";
+import * as o from "@skylib/functions/es/object";
 
-import { provideIconPickerSettings } from "./components/IconPicker.extras";
-import { provideLanguagePickerSettings } from "./components/LanguagePicker.extras";
 import type { OptionGroupOptions } from "./components/OptionGroup.extras";
-import { providePageLayoutSettings } from "./components/PageLayout.extras";
-import { providePageTableSettings } from "./components/PageTable.extras";
-import { provideSortableSettings } from "./components/Sortable.extras";
-import type { Transition } from "./components/Switchable.extras";
-import { provideSwitchableSettings } from "./components/Switchable.extras";
-import { provideTooltipSettings } from "./components/Tooltip.extras";
-import All from "./samples/All.vue";
+import { genericOptionGroup } from "./components/OptionGroup.generic";
+import Button from "./samples/Button.vue";
+import Card from "./samples/Card.vue";
+import DatetimePicker from "./samples/DatetimePicker.vue";
+import Droppable from "./samples/Droppable.vue";
+import ExpansionItem from "./samples/ExpansionItem.vue";
+import Form from "./samples/Form.vue";
+import FormButton from "./samples/FormButton.vue";
+import Group from "./samples/Group.vue";
+import IconButton from "./samples/IconButton.vue";
+import IconPicker from "./samples/IconPicker.vue";
+import Indent from "./samples/Indent.vue";
+import Input from "./samples/Input.vue";
+import Knob from "./samples/Knob.vue";
+import LanguagePicker from "./samples/LanguagePicker.vue";
+import Menu from "./samples/Menu.vue";
+import NumericInput from "./samples/NumericInput.vue";
+import OptionGroup from "./samples/OptionGroup.vue";
+import PageLayout from "./samples/PageLayout.vue";
+import PageSection from "./samples/PageSection.vue";
+import PageTable from "./samples/PageTable.vue";
+import Resizer from "./samples/Resizer.vue";
+import Section from "./samples/Section.vue";
+import Select from "./samples/Select.vue";
+import Sortable from "./samples/Sortable.vue";
+import Subsection from "./samples/Subsection.vue";
+import Switchable from "./samples/Switchable.vue";
+import TimeInput from "./samples/TimeInput.vue";
+import Toggle from "./samples/Toggle.vue";
+import Tooltip from "./samples/Tooltip.vue";
+import { useProvide } from "./samples/useProvide";
+
+// eslint-disable-next-line @skylib/prefer-readonly
+const components = {
+  Button,
+  Card,
+  DatetimePicker,
+  Droppable,
+  ExpansionItem,
+  Form,
+  FormButton,
+  Group,
+  IconButton,
+  IconPicker,
+  Indent,
+  Input,
+  Knob,
+  LanguagePicker,
+  Menu,
+  NumericInput,
+  OptionGroup,
+  PageLayout,
+  PageSection,
+  PageTable,
+  Resizer,
+  Section,
+  Select,
+  Sortable,
+  Subsection,
+  Switchable,
+  TimeInput,
+  Toggle,
+  Tooltip
+};
 
 export default defineComponent({
   name: "app",
   components: {
-    "all-samples": All
+    "m-option-group-components": genericOptionGroup<keyof typeof components>()
   },
   setup() {
-    const iconTooltips = ref(false);
+    const option = ref<keyof typeof components>("Button");
 
-    const language = ref<LocaleName>("en-US");
+    const { provide } = useProvide();
 
-    const switchableTransition = ref<Transition>("none");
-
-    const tooltipDelay = ref(1000);
-
-    const tooltipShow = ref(true);
-
-    provideIconPickerSettings(() => {
-      return {
-        iconTooltips: iconTooltips.value
-      };
-    });
-
-    provideLanguagePickerSettings(() => {
-      return {
-        changeLanguageAction(value): void {
-          language.value = value;
-          Dictionary.configure({ localeName: value });
-        },
-        items: [
-          {
-            caption: "English (USA)",
-            flag: us,
-            lang: "en-US"
-          },
-          {
-            caption: "Russian",
-            flag: ru,
-            lang: "ru-RU"
-          }
-        ]
-      };
-    });
-
-    providePageLayoutSettings(() => {
-      return {
-        closeButton: true,
-        height: "calc(100vh - 20px)",
-        width: "500px"
-      };
-    });
-
-    providePageTableSettings(() => {
-      return {
-        growPageBy: 10
-      };
-    });
-
-    provideSortableSettings(() => {
-      return {
-        animationDuration: 500
-      };
-    });
-
-    provideSwitchableSettings(() => {
-      return {
-        transition: switchableTransition.value,
-        transitionDuration: 500
-      };
-    });
-
-    provideTooltipSettings(() => {
-      return {
-        delay: tooltipDelay.value,
-        fontSize: undefined,
-        show: tooltipShow.value
-      };
-    });
+    provide();
 
     return {
-      iconTooltips,
-      lang,
-      language,
-      switchableTransition,
-      switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
-        () => [
-          {
-            label: "None",
-            value: "none"
-          },
-          {
-            label: "Slide",
-            value: "slide"
-          }
-        ]
-      ),
-      tooltipDelay,
-      tooltipShow
+      component: computed<DefinedComponent>(() => components[option.value]),
+      option,
+      options: computed<OptionGroupOptions<keyof typeof components>>(() =>
+        o.entries(components).map(([index, component]) => {
+          return {
+            label: _.startCase(component.name).replace(/^Sample /u, ""),
+            value: index
+          };
+        })
+      )
     };
   }
 });
 </script>
 
 <template>
-  <div class="q-ma-xl">
+  <div class="q-pa-lg">
     <div id="progressBar" :class="$style.progressBar"></div>
-    <m-page-section>
-      <m-section>
-        <q-checkbox v-model="iconTooltips" label="Icon tooltips:" left-label />
-      </m-section>
-      <m-section>
-        <m-subsection>
-          <m-toggle v-model="tooltipShow" label="Show tooltips:" left-label />
-        </m-subsection>
-        <m-subsection indent>
-          with delay of
-          <m-knob
-            v-model="tooltipDelay"
-            :disable="!tooltipShow"
-            inline
-            :max="3000"
-            :step="100"
-          />
-          ms
-        </m-subsection>
-      </m-section>
-      <m-section>
-        Language:
-        <m-language-picker :language="language" />
-        {{ lang.SampleWord }}
-      </m-section>
-      <m-section>
-        Transition:
-        <m-option-group
-          v-model="switchableTransition"
-          inline
-          :options="switchableTransitionOptions"
+    <div class="row">
+      <div>
+        <m-option-group-components
+          v-model="option"
+          :class="$style.optionGroup"
+          :options="options"
         />
-      </m-section>
-    </m-page-section>
-    <m-page-section>
-      <all-samples />
-    </m-page-section>
+      </div>
+      <div :class="`${$style.component} flex-grow-1`">
+        <component :is="component" />
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" module>
+@use "sass:map";
+
+.component {
+  max-width: 600px;
+}
+
+.optionGroup {
+  width: 400px;
+}
+
+.optionGroup > div {
+  width: 180px;
+  float: left;
+}
+
 .progressBar {
   display: none;
   position: fixed;
