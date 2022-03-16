@@ -40,7 +40,7 @@ export interface ModuleWord {
 
 export type Align = "center" | "left" | "right";
 
-export interface BodyCellSlotData<T = object> {
+export interface AllSelectedData {
   readonly allSelected: booleanU;
   /**
    * Handles allSelected click.
@@ -49,9 +49,21 @@ export interface BodyCellSlotData<T = object> {
   readonly allSelectedDisable: boolean;
   readonly allSelectedIcon: string;
   readonly allSelectedLabel: string;
+}
+
+export interface BodyCellSlotOwnData extends AllSelectedData {}
+
+export interface BodyCellSlotParentData<T = object>
+  extends Readonly<Parameters<QTableSlots["body-cell"]>[0]> {
   readonly row: T;
   readonly value: string;
 }
+
+export interface BodyCellSlotData<T = object>
+  extends BodyCellSlotParentData<T>,
+    BodyCellSlotOwnData {}
+
+export interface SteadyBottomSlotData extends AllSelectedData {}
 
 export interface Column<T = object> {
   readonly align: Align;
@@ -134,6 +146,7 @@ export interface TableSlots<T = object> extends Omit<QTableSlots, "body-cell"> {
    * @param scope - Scope.
    * @returns Node.
    */
+  // eslint-disable-next-line @skylib/prefer-readonly
   readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
   /**
    * Steady bottom slot.
@@ -142,17 +155,6 @@ export interface TableSlots<T = object> extends Omit<QTableSlots, "body-cell"> {
    * @returns Node.
    */
   readonly "steady-bottom": (scope: SteadyBottomSlotData) => readonly VNode[];
-}
-
-export interface SteadyBottomSlotData {
-  readonly allSelected: booleanU;
-  /**
-   * Handles allSelected click.
-   */
-  readonly allSelectedClick: () => void;
-  readonly allSelectedDisable: boolean;
-  readonly allSelectedIcon: string;
-  readonly allSelectedLabel: string;
 }
 
 export interface TableSettings {

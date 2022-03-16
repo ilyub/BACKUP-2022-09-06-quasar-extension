@@ -1,6 +1,6 @@
 <script lang="ts">
 import * as _ from "lodash-es";
-import type { QTable, QTableSlots } from "quasar";
+import type { QTable } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -19,10 +19,9 @@ import {
 import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
-  BodyCellSlotData,
+  AllSelectedData,
   Columns,
   Pagination,
-  SteadyBottomSlotData,
   TableOwnProps,
   TableParentProps,
   TableSlots
@@ -63,6 +62,35 @@ export default defineComponent({
     validateEmit<TableOwnProps>(emit);
     validateProps<TableOwnProps>(props);
 
+    const allSelected = computed<AllSelectedData["allSelected"]>(() => {
+      switch (selected.value.length) {
+        case 0:
+          return false;
+
+        case props.rows.length:
+          return true;
+
+        default:
+          return undefined;
+      }
+    });
+
+    const allSelectedClick: AllSelectedData["allSelectedClick"] = (): void => {
+      emit("update:selected", selected.value.length ? [] : props.rows);
+    };
+
+    const allSelectedDisable = computed<AllSelectedData["allSelectedDisable"]>(
+      () => props.rows.length === 0
+    );
+
+    const allSelectedIcon = computed<AllSelectedData["allSelectedIcon"]>(() =>
+      allSelected.value === false ? icons.selectAll : icons.deselectAll
+    );
+
+    const allSelectedLabel = computed<AllSelectedData["allSelectedLabel"]>(() =>
+      allSelected.value === false ? lang.SelectAll : lang.DeselectAll
+    );
+
     const selected = computed<Writable<objects>>(() => {
       assert.not.empty(props.rowKey);
 
@@ -73,46 +101,12 @@ export default defineComponent({
 
     const table = ref<QTable | undefined>(undefined);
 
-    function allSelectedClick(): void {
-      emit("update:selected", selected.value.length ? [] : props.rows);
-    }
-
-    function steadyBottomSlotData(): SteadyBottomSlotData {
-      const allSelected = fn.run(() => {
-        switch (selected.value.length) {
-          case 0:
-            return false;
-
-          case props.rows.length:
-            return true;
-
-          default:
-            return undefined;
-        }
-      });
-
-      return {
-        allSelected,
-        allSelectedClick,
-        allSelectedDisable: props.rows.length === 0,
-        allSelectedIcon:
-          allSelected === false ? icons.selectAll : icons.deselectAll,
-        allSelectedLabel:
-          allSelected === false ? lang.SelectAll : lang.DeselectAll
-      };
-    }
-
     return {
-      bodyCellSlotData(
-        // eslint-disable-next-line no-warning-comments
-        // fixme: Readonly<Parameters -> ReadonlyParameters
-        data: Readonly<Parameters<QTableSlots["body-cell"]>[0]>
-      ): BodyCellSlotData {
-        return {
-          ...data,
-          ...steadyBottomSlotData()
-        };
-      },
+      allSelected,
+      allSelectedClick,
+      allSelectedDisable,
+      allSelectedIcon,
+      allSelectedLabel,
       empty: computed<boolean>(() => props.rows.length === 0),
       onScroll(details: VirtualScrollDetails): void {
         if (
@@ -147,7 +141,6 @@ export default defineComponent({
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
       ),
-      steadyBottomSlotData,
       table,
       tableColumns: computed<Writable<Columns>>(() =>
         o.unfreeze(props.columns)
@@ -208,7 +201,17 @@ export default defineComponent({
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
     <template v-if="slotNames.has('body-cell')" #body-cell="data">
-      <slot :name="slotNames.bodyCell" v-bind="bodyCellSlotData(data)"></slot>
+      <slot
+        :name="slotNames.bodyCell"
+        v-bind="{
+          ...data,
+          allSelected,
+          allSelectedClick,
+          allSelectedDisable,
+          allSelectedIcon,
+          allSelectedLabel
+        }"
+      ></slot>
     </template>
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">
@@ -222,7 +225,13 @@ export default defineComponent({
       <slot :name="slotNames.bottom" v-bind="data"></slot>
       <slot
         :name="slotNames.steadyBottom"
-        v-bind="steadyBottomSlotData()"
+        v-bind="{
+          allSelected,
+          allSelectedClick,
+          allSelectedDisable,
+          allSelectedIcon,
+          allSelectedLabel
+        }"
       ></slot>
     </template>
     <template #header-selection="data">
@@ -237,7 +246,13 @@ export default defineComponent({
       <slot :name="slotNames.noData" v-bind="data"></slot>
       <slot
         :name="slotNames.steadyBottom"
-        v-bind="steadyBottomSlotData()"
+        v-bind="{
+          allSelected,
+          allSelectedClick,
+          allSelectedDisable,
+          allSelectedIcon,
+          allSelectedLabel
+        }"
       ></slot>
     </template>
   </q-table>
