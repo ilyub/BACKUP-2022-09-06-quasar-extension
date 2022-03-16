@@ -37,8 +37,6 @@ export default defineComponent({
         "default",
         "header",
         "footer",
-        "raw-footer",
-        "raw-header",
         "sticky-footer",
         "sticky-header"
       )
@@ -51,51 +49,58 @@ export default defineComponent({
   <div
     class="column m-page-layout no-wrap"
     :style="{
-      height: settings.height
+      height: settings.height,
+      width: settings.width
     }"
   >
-    <div
-      v-if="hasTitle"
-      class="items-start m-page-layout__test__title row text-h5"
-    >
-      <div class="m-page-layout__title">{{ title }}</div>
+    <div v-if="hasTitle" class="items-start m-page-layout__title row">
+      <div class="m-page-layout__title-text">{{ title }}</div>
       <template v-if="hasCloseButton">
         <q-space />
         <slot :name="slotNames.actions"></slot>
         <m-icon-button
-          class="m-page-layout__test__close"
+          class="m-page-layout__close"
           :icon="icons.close"
           to="/back"
         />
       </template>
     </div>
-    <slot :name="slotNames.rawHeader">
-      <template v-if="slotNames.has('header')">
-        <div class="q-pb-sm">
-          <slot :name="slotNames.header"></slot>
-        </div>
-        <q-separator />
-      </template>
-    </slot>
+    <div v-if="slotNames.has('header')" class="m-page-layout__header">
+      <slot :name="slotNames.header"></slot>
+    </div>
     <div
       v-if="slotNames.hasSome('default', 'sticky-footer', 'sticky-header')"
-      class="flex-grow-1 overflow-auto"
+      class="flex-grow-1 m-page-layout__sticky"
     >
-      <div v-if="slotNames.has('sticky-header')" class="sticky-header">
+      <div
+        v-if="slotNames.has('sticky-header')"
+        class="m-page-layout__sticky-header sticky-header"
+        :style="{
+          width: settings.width
+        }"
+      >
         <slot :name="slotNames.stickyHeader"></slot>
       </div>
-      <slot :name="slotNames.default"></slot>
-      <div v-if="slotNames.has('sticky-footer')" class="sticky-footer">
+      <div
+        class="m-page-layout__body"
+        :style="{
+          width: settings.width
+        }"
+      >
+        <slot :name="slotNames.default"></slot>
+      </div>
+      <div
+        v-if="slotNames.has('sticky-footer')"
+        class="m-page-layout__sticky-footer sticky-footer"
+        :style="{
+          width: settings.width
+        }"
+      >
         <slot :name="slotNames.stickyFooter"></slot>
       </div>
     </div>
-    <slot :name="slotNames.rawFooter">
-      <template v-if="slotNames.has('footer')">
-        <q-separator />
-        <div class="q-pt-sm">
-          <slot :name="slotNames.footer"></slot>
-        </div>
-      </template>
-    </slot>
+    <div v-if="slotNames.has('footer')" class="m-page-layout__footer">
+      <slot :name="slotNames.footer"></slot>
+    </div>
   </div>
 </template>

@@ -66,10 +66,7 @@ test.each([
       props: o.removeUndefinedKeys({ closeButton, hideCloseButton, title })
     });
 
-    const { comp, elem } = testUtils.findFactory(
-      ".m-page-layout__test__",
-      wrapper
-    );
+    const { comp, elem } = testUtils.findFactory(".m-page-layout__", wrapper);
 
     expect(elem("title").exists()).toStrictEqual(titleExists);
     expect(comp("close").exists()).toStrictEqual(closeExists);

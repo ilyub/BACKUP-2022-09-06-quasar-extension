@@ -67,7 +67,8 @@ export default defineComponent({
     providePageLayoutSettings(() => {
       return {
         closeButton: true,
-        height: "calc(100vh - 20px)"
+        height: "calc(100vh - 20px)",
+        width: "500px"
       };
     });
 
