@@ -21,6 +21,30 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
   display: inline-block;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-hidden-x {
+  overflow-x: hidden;
+}
+
+.overflow-hidden-y {
+  overflow-y: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-auto-x {
+  overflow-x: auto;
+}
+
+.overflow-auto-y {
+  overflow-y: auto;
+}
+
 .sticky-footer {
   position: sticky;
   z-index: 1;
@@ -71,11 +95,6 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
 .m-indent {
   padding-left: $m-indent__padding;
-}
-
-.m-page-layout__sticky {
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .m-page-section + .m-page-section {

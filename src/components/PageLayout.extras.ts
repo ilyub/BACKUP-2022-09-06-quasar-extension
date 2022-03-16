@@ -44,6 +44,12 @@ export interface PageLayoutSlots {
    */
   readonly default: () => readonly VNode[];
   /**
+   * Fit slot.
+   *
+   * @returns Node.
+   */
+  readonly fit: () => readonly VNode[];
+  /**
    * Footer slot.
    *
    * @returns Node.

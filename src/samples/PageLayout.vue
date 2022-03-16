@@ -16,7 +16,7 @@ export default defineComponent({
 
 <template>
   <m-page-layout
-    class="bg-grey-3"
+    :class="$style.pageLayout"
     :close-button="closeButton"
     :hide-close-button="hideCloseButton"
     :title="title ? 'Title' : undefined"
@@ -61,3 +61,9 @@ export default defineComponent({
     </template>
   </m-page-layout>
 </template>
+
+<style lang="scss" module>
+.pageLayout {
+  border: 1px solid red;
+}
+</style>

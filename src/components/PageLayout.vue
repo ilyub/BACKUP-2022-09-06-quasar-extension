@@ -35,8 +35,9 @@ export default defineComponent({
       slotNames: useSlotsNames<PageLayoutSlots>()(
         "actions",
         "default",
-        "header",
+        "fit",
         "footer",
+        "header",
         "sticky-footer",
         "sticky-header"
       )
@@ -70,7 +71,7 @@ export default defineComponent({
     </div>
     <div
       v-if="slotNames.hasSome('default', 'sticky-footer', 'sticky-header')"
-      class="flex-grow-1 m-page-layout__sticky"
+      class="flex-grow-1 m-page-layout__sticky overflow-auto-y overflow-hidden-x"
     >
       <div
         v-if="slotNames.has('sticky-header')"
@@ -82,7 +83,7 @@ export default defineComponent({
         <slot :name="slotNames.stickyHeader"></slot>
       </div>
       <div
-        class="m-page-layout__body"
+        class="m-page-layout__default"
         :style="{
           width: settings.width
         }"
@@ -98,6 +99,12 @@ export default defineComponent({
       >
         <slot :name="slotNames.stickyFooter"></slot>
       </div>
+    </div>
+    <div
+      v-if="slotNames.has('fit')"
+      class="flex-grow-1 m-page-layout__fit overflow-hidden"
+    >
+      <slot :name="slotNames.fit"></slot>
     </div>
     <div v-if="slotNames.has('footer')" class="m-page-layout__footer">
       <slot :name="slotNames.footer"></slot>

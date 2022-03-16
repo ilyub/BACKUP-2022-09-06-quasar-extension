@@ -77,46 +77,44 @@ export default defineComponent({
 
 <template>
   <m-page-layout :class="$style.pageLayout" title="Title">
-    <generic-page-table
-      v-model:pagination="pagination"
-      v-model:selected="selected"
-      :class="$style.pageTable"
-      :columns="pageTableColumns"
-      flat
-      :loading="loading"
-      row-key="id"
-      :rows="pageTableRows"
-      :select-by-row-click="selectByRowClick"
-      selection="multiple"
-    >
-      <template #body-cell="{ row, value }">
-        <q-td>{{ value }} - {{ row.id }}</q-td>
-      </template>
-      <template #top>
-        <m-toggle v-model="loading" label="Loading" />
-        <m-toggle v-model="noData" label="No data" />
-        <m-toggle v-model="selectByRowClick" label="Select by row click" />
-      </template>
-      <template
-        #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
+    <template #fit>
+      <generic-page-table
+        v-model:pagination="pagination"
+        v-model:selected="selected"
+        class="fit"
+        :columns="pageTableColumns"
+        flat
+        :loading="loading"
+        row-key="id"
+        :rows="pageTableRows"
+        :select-by-row-click="selectByRowClick"
+        selection="multiple"
       >
-        <q-checkbox
-          :disable="allSelectedDisable"
-          :model-value="allSelected"
-          @update:model-value="allSelectedClick"
-        />
-        {{ selected.length }} selected
-      </template>
-    </generic-page-table>
+        <template #body-cell="{ row, value }">
+          <q-td>{{ value }} - {{ row.id }}</q-td>
+        </template>
+        <template #top>
+          <m-toggle v-model="loading" label="Loading" />
+          <m-toggle v-model="noData" label="No data" />
+          <m-toggle v-model="selectByRowClick" label="Select by row click" />
+        </template>
+        <template
+          #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
+        >
+          <q-checkbox
+            :disable="allSelectedDisable"
+            :model-value="allSelected"
+            @update:model-value="allSelectedClick"
+          />
+          {{ selected.length }} selected
+        </template>
+      </generic-page-table>
+    </template>
   </m-page-layout>
 </template>
 
 <style lang="scss" module>
 .pageLayout {
   border: 1px solid red;
-}
-
-.pageTable {
-  border: 1px solid blue;
 }
 </style>
