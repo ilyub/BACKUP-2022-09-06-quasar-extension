@@ -9,9 +9,5 @@ export const routes: readonly RouteRecordRaw[] = [
       name: component.name,
       path: `/${component.name}`
     };
-  }),
-  {
-    component: { template: "<div />" },
-    path: "/:catchAll(.*)"
-  }
+  })
 ];

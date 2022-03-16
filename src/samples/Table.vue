@@ -5,8 +5,8 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 
-import type { Columns, Pagination } from "../components/PageTable.extras";
-import { genericPageTable } from "../components/PageTable.generic";
+import type { Columns, Pagination } from "../components/Table.extras";
+import { genericTable } from "../components/Table.generic";
 
 interface TableItem {
   readonly id: number;
@@ -16,9 +16,9 @@ interface TableItem {
 type TableItems = readonly TableItem[];
 
 export default defineComponent({
-  name: "sample-page-table",
+  name: "sample-table",
   components: {
-    "generic-page-table": genericPageTable<TableItem>()
+    "generic-table": genericTable<TableItem>()
   },
   setup() {
     const pagination = ref<Pagination>({
@@ -78,7 +78,7 @@ export default defineComponent({
 <template>
   <m-page-layout :class="$style.pageLayout" title="Title">
     <template #fit>
-      <generic-page-table
+      <generic-table
         v-model:pagination="pagination"
         v-model:selected="selected"
         class="fit"
@@ -108,7 +108,7 @@ export default defineComponent({
           />
           {{ selected.length }} selected
         </template>
-      </generic-page-table>
+      </generic-table>
     </template>
   </m-page-layout>
 </template>

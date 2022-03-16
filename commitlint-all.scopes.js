@@ -3,6 +3,7 @@ module.exports = [
   "MenuItem",
   "NavButton",
   "PageMarkupTable",
+  "PageTable",
   "XBaseButton",
   "XButton",
   "XCard",

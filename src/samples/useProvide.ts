@@ -11,10 +11,10 @@ import type { LocaleName } from "@skylib/functions/es/types/locales";
 import { provideIconPickerSettings } from "../components/IconPicker.extras";
 import { provideLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import { providePageLayoutSettings } from "../components/PageLayout.extras";
-import { providePageTableSettings } from "../components/PageTable.extras";
 import { provideSortableSettings } from "../components/Sortable.extras";
 import type { Transition } from "../components/Switchable.extras";
 import { provideSwitchableSettings } from "../components/Switchable.extras";
+import { provideTableSettings } from "../components/Table.extras";
 import { provideTooltipSettings } from "../components/Tooltip.extras";
 
 interface ProvidePlugin {
@@ -93,7 +93,7 @@ function provide(): void {
     };
   });
 
-  providePageTableSettings(() => {
+  provideTableSettings(() => {
     return {
       growPageBy: 10
     };

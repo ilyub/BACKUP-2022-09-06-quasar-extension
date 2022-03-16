@@ -10,8 +10,8 @@ import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
 
 import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
-import type { Columns, Pagination } from "@/components/PageTable.extras";
-import PageTable from "@/components/PageTable.vue";
+import type { Columns, Pagination } from "@/components/Table.extras";
+import Table from "@/components/Table.vue";
 import * as testUtils from "@/testUtils";
 
 const columns: Columns = [
@@ -70,7 +70,7 @@ test.each([
     expect.hasAssertions();
 
     await functionsTestUtils.run(async () => {
-      const wrapper = vueTestUtils.mount(PageTable, {
+      const wrapper = vueTestUtils.mount(Table, {
         global: testUtils.globalMountOptions(
           o.removeUndefinedKeys({ pageTableSettings })
         ),
@@ -177,7 +177,7 @@ test.each([
 );
 
 test("row click", () => {
-  const wrapper = vueTestUtils.mount(PageTable, {
+  const wrapper = vueTestUtils.mount(Table, {
     global: testUtils.globalMountOptions(),
     props: o.removeUndefinedKeys({
       columns,
@@ -213,7 +213,7 @@ test.each([
     selected: rows
   }
 ])("selected", async ({ expectedEmitted, expectedText, selected }) => {
-  const wrapper = vueTestUtils.mount(PageTable, {
+  const wrapper = vueTestUtils.mount(Table, {
     global: testUtils.globalMountOptions(),
     props: o.removeUndefinedKeys({
       columns,
@@ -225,7 +225,7 @@ test.each([
     slots: {
       "steady-bottom": `
         <template #steady-bottom="{ allSelected, allSelectedClick }">
-          <button class="ref-page-table-steady-bottom" @click="allSelectedClick">
+          <button class="ref-table-steady-bottom" @click="allSelectedClick">
             {{ allSelected === false ? "Select" : "Deselect" }}
           </button>
         </template>
@@ -233,7 +233,7 @@ test.each([
     }
   });
 
-  const elem = testUtils.findElementFactory(".ref-page-table-", wrapper);
+  const elem = testUtils.findElementFactory(".ref-table-", wrapper);
 
   expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
   await elem("steady-bottom").trigger("click");

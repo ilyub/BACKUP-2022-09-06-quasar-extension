@@ -19,13 +19,13 @@ import NumericInput from "./NumericInput.vue";
 import OptionGroup from "./OptionGroup.vue";
 import PageLayout from "./PageLayout.vue";
 import PageSection from "./PageSection.vue";
-import PageTable from "./PageTable.vue";
 import Resizer from "./Resizer.vue";
 import Section from "./Section.vue";
 import Select from "./Select.vue";
 import Sortable from "./Sortable.vue";
 import Subsection from "./Subsection.vue";
 import Switchable from "./Switchable.vue";
+import Table from "./Table.vue";
 import TimeInput from "./TimeInput.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
@@ -50,13 +50,13 @@ export const components = o.freeze([
   OptionGroup,
   PageLayout,
   PageSection,
-  PageTable,
   Resizer,
   Section,
   Select,
   Sortable,
   Subsection,
   Switchable,
+  Table,
   TimeInput,
   Toggle,
   Tooltip

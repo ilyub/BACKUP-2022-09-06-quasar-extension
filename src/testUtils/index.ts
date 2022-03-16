@@ -17,12 +17,12 @@ import type { LanguagePickerSettings } from "../components/LanguagePicker.extras
 import { testLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
 import { testPageLayoutSettings } from "../components/PageLayout.extras";
-import type { PageTableSettings } from "../components/PageTable.extras";
-import { testPageTableSettings } from "../components/PageTable.extras";
 import type { SortableSettings } from "../components/Sortable.extras";
 import { testSortableSettings } from "../components/Sortable.extras";
 import type { SwitchableSettings } from "../components/Switchable.extras";
 import { testSwitchableSettings } from "../components/Switchable.extras";
+import type { TableSettings } from "../components/Table.extras";
+import { testTableSettings } from "../components/Table.extras";
 import type { TooltipSettings } from "../components/Tooltip.extras";
 import { testTooltipSettings } from "../components/Tooltip.extras";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
@@ -71,7 +71,7 @@ export interface CustomGlobalMountOptions {
   readonly iconPickerSettings?: IconPickerSettings;
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
-  readonly pageTableSettings?: PageTableSettings;
+  readonly pageTableSettings?: TableSettings;
   readonly sortableSettings?: SortableSettings;
   readonly switchableSettings?: SwitchableSettings;
   readonly tooltipSettings?: TooltipSettings;
@@ -172,7 +172,7 @@ export function globalMountOptions(
         testPageLayoutSettings(result, options.pageLayoutSettings);
 
       if ("pageTableSettings" in options)
-        testPageTableSettings(result, options.pageTableSettings);
+        testTableSettings(result, options.pageTableSettings);
 
       if ("switchableSettings" in options)
         testSwitchableSettings(result, options.switchableSettings);

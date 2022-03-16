@@ -84,12 +84,12 @@ export interface Field<T = object> {
 }
 
 // eslint-disable-next-line @skylib/prefer-readonly
-export type GlobalPageTable<T = object> = GlobalComponent<
-  PageTableProps<T>,
-  PageTableSlots<T>
+export type GlobalTable<T = object> = GlobalComponent<
+  TableProps<T>,
+  TableSlots<T>
 >;
 
-export interface PageTableOwnProps<T = object> {
+export interface TableOwnProps<T = object> {
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
   /**
@@ -111,7 +111,7 @@ export interface PageTableOwnProps<T = object> {
   readonly selected?: readonly T[] | undefined;
 }
 
-export interface PageTableParentProps
+export interface TableParentProps
   extends Omit<
     QTableProps,
     | "columns"
@@ -123,12 +123,11 @@ export interface PageTableParentProps
     | "selected"
   > {}
 
-export interface PageTableProps<T = object>
-  extends PageTableParentProps,
-    PageTableOwnProps<T> {}
+export interface TableProps<T = object>
+  extends TableParentProps,
+    TableOwnProps<T> {}
 
-export interface PageTableSlots<T = object>
-  extends Omit<QTableSlots, "body-cell"> {
+export interface TableSlots<T = object> extends Omit<QTableSlots, "body-cell"> {
   /**
    * Body cell slot.
    *
@@ -156,7 +155,7 @@ export interface SteadyBottomSlotData {
   readonly allSelectedLabel: string;
 }
 
-export interface PageTableSettings {
+export interface TableSettings {
   readonly growPageBy: number;
 }
 
@@ -191,10 +190,10 @@ export const isPagination: is.Guard<Pagination> = is.factory(
 );
 
 export const {
-  inject: injectPageTableSettings,
-  provide: providePageTableSettings,
-  test: testPageTableSettings
-} = createInjectable<PageTableSettings>(() => {
+  inject: injectTableSettings,
+  provide: provideTableSettings,
+  test: testTableSettings
+} = createInjectable<TableSettings>(() => {
   return {
     growPageBy: 10
   };

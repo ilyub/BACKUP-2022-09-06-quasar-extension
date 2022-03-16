@@ -21,19 +21,19 @@ import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
   BodyCellSlotData,
   Columns,
-  PageTableOwnProps,
-  PageTableParentProps,
-  PageTableSlots,
   Pagination,
-  SteadyBottomSlotData
-} from "./PageTable.extras";
+  SteadyBottomSlotData,
+  TableOwnProps,
+  TableParentProps,
+  TableSlots
+} from "./Table.extras";
 import {
   icons,
-  injectPageTableSettings,
+  injectTableSettings,
   isColumnsFactory,
   isPagination,
   lang
-} from "./PageTable.extras";
+} from "./Table.extras";
 
 interface SortMethod {
   (rows: objects): objects;
@@ -44,9 +44,9 @@ interface RowClick {
 }
 
 export default defineComponent({
-  name: "m-page-table",
+  name: "m-table",
   props: {
-    ...propsToPropDefinitions<PageTableParentProps>(),
+    ...propsToPropDefinitions<TableParentProps>(),
     columns: propOptions.default(isColumnsFactory(), []),
     externalSorting: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
@@ -60,8 +60,8 @@ export default defineComponent({
     "update:selected": (value: objects) => is.array.of(value, is.object)
   },
   setup(props, { emit }) {
-    validateEmit<PageTableOwnProps>(emit);
-    validateProps<PageTableOwnProps>(props);
+    validateEmit<TableOwnProps>(emit);
+    validateProps<TableOwnProps>(props);
 
     const selected = computed<Writable<objects>>(() => {
       assert.not.empty(props.rowKey);
@@ -69,7 +69,7 @@ export default defineComponent({
       return _.intersectionBy(props.selected, props.rows, props.rowKey);
     });
 
-    const settings = injectPageTableSettings();
+    const settings = injectTableSettings();
 
     const table = ref<QTable | undefined>(undefined);
 
@@ -136,7 +136,7 @@ export default defineComponent({
             }
           : undefined
       ),
-      slotNames: useSlotsNames<PageTableSlots>()(
+      slotNames: useSlotsNames<TableSlots>()(
         "body-cell",
         "body-selection",
         "bottom",

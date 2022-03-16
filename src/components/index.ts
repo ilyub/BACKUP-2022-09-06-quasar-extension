@@ -45,8 +45,6 @@ import type { GlobalPageLayout } from "./PageLayout.extras";
 import PageLayout from "./PageLayout.vue";
 import type { GlobalPageSection } from "./PageSection.extras";
 import PageSection from "./PageSection.vue";
-import type { GlobalPageTable } from "./PageTable.extras";
-import PageTable from "./PageTable.vue";
 import type { GlobalResizer } from "./Resizer.extras";
 import Resizer from "./Resizer.vue";
 import type { GlobalSection } from "./Section.extras";
@@ -59,6 +57,8 @@ import type { GlobalSubsection } from "./Subsection.extras";
 import Subsection from "./Subsection.vue";
 import type { GlobalSwitchable } from "./Switchable.extras";
 import Switchable from "./Switchable.vue";
+import type { GlobalTable } from "./Table.extras";
+import Table from "./Table.vue";
 import type { GlobalTimeInput } from "./TimeInput.extras";
 import TimeInput from "./TimeInput.vue";
 import type { GlobalToggle } from "./Toggle.extras";
@@ -90,13 +90,13 @@ declare module "@vue/runtime-core" {
     readonly "m-option-group": GlobalOptionGroup;
     readonly "m-page-layout": GlobalPageLayout;
     readonly "m-page-section": GlobalPageSection;
-    readonly "m-page-table": GlobalPageTable;
     readonly "m-resizer": GlobalResizer;
     readonly "m-section": GlobalSection;
     readonly "m-select": GlobalSelect;
     readonly "m-sortable": GlobalSortable;
     readonly "m-subsection": GlobalSubsection;
     readonly "m-switchable": GlobalSwitchable;
+    readonly "m-table": GlobalTable;
     readonly "m-time-input": GlobalTimeInput;
     readonly "m-toggle": GlobalToggle;
     readonly "m-tooltip": GlobalTooltip;
@@ -127,13 +127,13 @@ export const components = o.freeze([
   OptionGroup,
   PageLayout,
   PageSection,
-  PageTable,
   Resizer,
   Section,
   Select,
   Sortable,
   Subsection,
   Switchable,
+  Table,
   TimeInput,
   Tooltip,
   Toggle
