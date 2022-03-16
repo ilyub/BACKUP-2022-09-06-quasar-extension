@@ -17,7 +17,7 @@ import { provideSwitchableSettings } from "../components/Switchable.extras";
 import { provideTableSettings } from "../components/Table.extras";
 import { provideTooltipSettings } from "../components/Tooltip.extras";
 
-interface ProvidePlugin {
+export interface ProvidePlugin {
   readonly iconPickerTooltips: Ref<boolean>;
   readonly language: Ref<LocaleName>;
   /**
@@ -44,6 +44,12 @@ export function useProvide(): ProvidePlugin {
     tooltipShow
   };
 }
+
+/*
+|*******************************************************************************
+|* Private
+|*******************************************************************************
+|*/
 
 const iconPickerTooltips = ref(false);
 
