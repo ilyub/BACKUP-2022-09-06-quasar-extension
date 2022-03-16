@@ -61,52 +61,32 @@ test.each([
       rootElement
     }),
     slots: {
-      section1: '<div class="slot">slot-1</div>',
-      section2: '<div class="slot">slot-2</div>',
-      section3: '<div class="slot">slot-3</div>',
-      section4: '<div class="slot">slot-4</div>'
+      section1: '<div class="ref-group-slot">slot-1</div>',
+      section2: '<div class="ref-group-slot">slot-2</div>',
+      section3: '<div class="ref-group-slot">slot-3</div>',
+      section4: '<div class="ref-group-slot">slot-4</div>'
     }
   });
 
-  const notFound = wrapper.find(".ref-group-not-found");
-
-  const slots = wrapper.findAll(".slot");
+  const { elem, elems } = testUtils.findFactory(".ref-group-", wrapper);
 
   {
-    const expected = ["slot-1", "slot-2", "slot-3", "slot-4"];
+    const expected = ["slot-1", "slot-2", "slot-3"];
 
-    expect(notFound).textToEqual("No results found");
-    expect(slots.map(slot => slot.text())).toStrictEqual(expected);
+    expect(elems("slot").map(slot => slot.text())).toStrictEqual(expected);
   }
 
   {
-    const expected = [true, true, true, false];
-
-    expect(notFound).not.toBeVisible();
-    expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
-  }
-
-  {
-    const expected = [true, true, false, false];
-
-    await wrapper.setProps({ searchString: "bbb" });
-    expect(notFound).not.toBeVisible();
-    expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
-  }
-
-  {
-    const expected = [false, true, true, false];
+    const expected = ["slot-2", "slot-3"];
 
     await wrapper.setProps({ searchString: "ccc" });
-    expect(notFound).not.toBeVisible();
-    expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
+    expect(elem("not-found")).not.toExist();
+    expect(elems("slot").map(slot => slot.text())).toStrictEqual(expected);
   }
 
   {
-    const expected = [false, false, false, false];
-
-    await wrapper.setProps({ searchString: "eee" });
-    expect(notFound).toBeVisible();
-    expect(slots.map(slot => slot.isVisible())).toStrictEqual(expected);
+    await wrapper.setProps({ searchString: "fff" });
+    expect(elem("not-found")).toExist();
+    expect(elems("slot").map(slot => slot.text())).toStrictEqual([]);
   }
 });

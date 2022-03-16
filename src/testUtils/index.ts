@@ -101,10 +101,12 @@ export function findFactory(
 ): {
   readonly comp: ReturnType<typeof findComponentFactory>;
   readonly elem: ReturnType<typeof findElementFactory>;
+  readonly elems: ReturnType<typeof findElementsFactory>;
 } {
   return {
     comp: findComponentFactory(prefix, wrapper),
-    elem: findElementFactory(prefix, wrapper)
+    elem: findElementFactory(prefix, wrapper),
+    elems: findElementsFactory(prefix, wrapper)
   };
 }
 
@@ -140,6 +142,22 @@ export function findElementFactory(
 ) {
   return (ref: string): vueTestUtils.DOMWrapper<Element> =>
     wrapper.find(`${prefix}${ref}`);
+}
+
+/**
+ * Find HTML element factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Find HTML element function.
+ */
+export function findElementsFactory(
+  prefix: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  wrapper: vueTestUtils.VueWrapper<any>
+) {
+  return (ref: string): Array<vueTestUtils.DOMWrapper<Element>> =>
+    wrapper.findAll(`${prefix}${ref}`);
 }
 
 /**

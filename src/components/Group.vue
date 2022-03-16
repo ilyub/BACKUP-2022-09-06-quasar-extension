@@ -69,22 +69,19 @@ export default defineComponent({
 </script>
 
 <template>
-  <component
-    v-bind="$attrs"
-    :is="rootComponent"
-    v-for="item in filteredItems"
-    v-show="item.show"
-    :key="item.id"
-  >
-    <slot :name="item.id"></slot>
-  </component>
-  <component
-    v-bind="$attrs"
-    :is="rootComponent"
-    v-if="notFoundLabelExists"
-    v-show="notFoundLabelShow"
-    class="ref-group-not-found text-grey-7"
-  >
-    {{ notFoundLabel }}
-  </component>
+  <keep-alive v-for="item in filteredItems" :key="item.id">
+    <component v-bind="$attrs" :is="rootComponent" v-if="item.show">
+      <slot :name="item.id"></slot>
+    </component>
+  </keep-alive>
+  <keep-alive>
+    <component
+      v-bind="$attrs"
+      :is="rootComponent"
+      v-if="notFoundLabelShow && notFoundLabelExists"
+      class="ref-group-not-found text-grey-7"
+    >
+      {{ notFoundLabel }}
+    </component>
+  </keep-alive>
 </template>

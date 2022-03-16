@@ -21,7 +21,7 @@ export default defineComponent({
     }"
   >
     <m-resizer
-      v-show="resizerShow"
+      v-if="resizerShow"
       v-model="resizerWidth"
       :max="300"
       :min="100"

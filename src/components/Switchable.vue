@@ -47,7 +47,7 @@ export default defineComponent({
     }"
     :duration="settings.transitionDuration"
   >
-    <div v-show="!disable">
+    <div v-if="!disable">
       <slot :name="slotNames.default"></slot>
     </div>
   </q-slide-transition>
