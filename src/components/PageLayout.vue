@@ -50,8 +50,7 @@ export default defineComponent({
   <div
     class="column m-page-layout no-wrap"
     :style="{
-      height: settings.height,
-      width: settings.width
+      height: settings.height
     }"
   >
     <div v-if="hasTitle" class="items-start m-page-layout__title row">
@@ -76,26 +75,15 @@ export default defineComponent({
       <div
         v-if="slotNames.has('sticky-header')"
         class="m-page-layout__sticky-header sticky-header"
-        :style="{
-          width: settings.width
-        }"
       >
         <slot :name="slotNames.stickyHeader"></slot>
       </div>
-      <div
-        class="m-page-layout__default"
-        :style="{
-          width: settings.width
-        }"
-      >
+      <div class="m-page-layout__default">
         <slot :name="slotNames.default"></slot>
       </div>
       <div
         v-if="slotNames.has('sticky-footer')"
         class="m-page-layout__sticky-footer sticky-footer"
-        :style="{
-          width: settings.width
-        }"
       >
         <slot :name="slotNames.stickyFooter"></slot>
       </div>

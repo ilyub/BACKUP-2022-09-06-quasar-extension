@@ -78,7 +78,6 @@ export interface PageLayoutSlots {
 export interface PageLayoutSettings {
   readonly closeButton: boolean;
   readonly height: string;
-  readonly width: string;
 }
 
 export const icons: Icons<"close"> = baseIcons;
@@ -90,7 +89,6 @@ export const {
 } = createInjectable<PageLayoutSettings>(() => {
   return {
     closeButton: true,
-    height: "auto",
-    width: "auto"
+    height: "auto"
   };
 });

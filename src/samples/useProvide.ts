@@ -89,8 +89,7 @@ function provide(): void {
   providePageLayoutSettings(() => {
     return {
       closeButton: true,
-      height: "calc(100vh - 100px)",
-      width: "500px"
+      height: "calc(100vh - 100px)"
     };
   });
 
