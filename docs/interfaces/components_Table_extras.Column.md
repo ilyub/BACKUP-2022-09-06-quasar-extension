@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/PageTable.extras](../modules/components_PageTable_extras.md) / Column
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / Column
 
 # Interface: Column<T\>
 
-[components/PageTable.extras](../modules/components_PageTable_extras.md).Column
+[components/Table.extras](../modules/components_Table_extras.md).Column
 
 ## Type parameters
 
@@ -14,28 +14,28 @@
 
 ### Properties
 
-- [align](components_PageTable_extras.Column.md#align)
-- [field](components_PageTable_extras.Column.md#field)
-- [label](components_PageTable_extras.Column.md#label)
-- [name](components_PageTable_extras.Column.md#name)
-- [sortOrder](components_PageTable_extras.Column.md#sortorder)
-- [sortable](components_PageTable_extras.Column.md#sortable)
+- [align](components_Table_extras.Column.md#align)
+- [field](components_Table_extras.Column.md#field)
+- [label](components_Table_extras.Column.md#label)
+- [name](components_Table_extras.Column.md#name)
+- [sortOrder](components_Table_extras.Column.md#sortorder)
+- [sortable](components_Table_extras.Column.md#sortable)
 
 ### Methods
 
-- [sort](components_PageTable_extras.Column.md#sort)
+- [sort](components_Table_extras.Column.md#sort)
 
 ## Properties
 
 ### align
 
-• `Readonly` **align**: [`Align`](../modules/components_PageTable_extras.md#align)
+• `Readonly` **align**: [`Align`](../modules/components_Table_extras.md#align)
 
 ___
 
 ### field
 
-• `Readonly` **field**: [`Field`](components_PageTable_extras.Field.md)<`T`\>
+• `Readonly` **field**: [`Field`](components_Table_extras.Field.md)<`T`\>
 
 ___
 

@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/PageTable.extras](../modules/components_PageTable_extras.md) / PageTableSlots
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / TableSlots
 
-# Interface: PageTableSlots<T\>
+# Interface: TableSlots<T\>
 
-[components/PageTable.extras](../modules/components_PageTable_extras.md).PageTableSlots
+[components/Table.extras](../modules/components_Table_extras.md).TableSlots
 
 ## Type parameters
 
@@ -14,14 +14,14 @@
 
 - `Omit`<`QTableSlots`, ``"body-cell"``\>
 
-  ↳ **`PageTableSlots`**
+  ↳ **`TableSlots`**
 
 ## Table of contents
 
 ### Methods
 
-- [body-cell](components_PageTable_extras.PageTableSlots.md#body-cell)
-- [steady-bottom](components_PageTable_extras.PageTableSlots.md#steady-bottom)
+- [body-cell](components_Table_extras.TableSlots.md#body-cell)
+- [steady-bottom](components_Table_extras.TableSlots.md#steady-bottom)
 
 ## Methods
 
@@ -35,7 +35,7 @@ Body cell slot.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `scope` | [`BodyCellSlotData`](components_PageTable_extras.BodyCellSlotData.md)<`T`\> | Scope. |
+| `scope` | [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)<`T`\> | Scope. |
 
 #### Returns
 
@@ -55,7 +55,7 @@ Steady bottom slot.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `scope` | [`SteadyBottomSlotData`](components_PageTable_extras.SteadyBottomSlotData.md) | Scope. |
+| `scope` | [`SteadyBottomSlotData`](components_Table_extras.SteadyBottomSlotData.md) | Scope. |
 
 #### Returns
 

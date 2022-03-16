@@ -11,7 +11,6 @@
 - [iconPickerSettings](testUtils.CustomGlobalMountOptions.md#iconpickersettings)
 - [languagePickerSettings](testUtils.CustomGlobalMountOptions.md#languagepickersettings)
 - [pageLayoutSettings](testUtils.CustomGlobalMountOptions.md#pagelayoutsettings)
-- [pageOffset](testUtils.CustomGlobalMountOptions.md#pageoffset)
 - [pageTableSettings](testUtils.CustomGlobalMountOptions.md#pagetablesettings)
 - [sortableSettings](testUtils.CustomGlobalMountOptions.md#sortablesettings)
 - [switchableSettings](testUtils.CustomGlobalMountOptions.md#switchablesettings)
@@ -37,15 +36,9 @@ ___
 
 ___
 
-### pageOffset
-
-• `Optional` `Readonly` **pageOffset**: `stringU`
-
-___
-
 ### pageTableSettings
 
-• `Optional` `Readonly` **pageTableSettings**: [`PageTableSettings`](components_PageTable_extras.PageTableSettings.md)
+• `Optional` `Readonly` **pageTableSettings**: [`TableSettings`](components_Table_extras.TableSettings.md)
 
 ___
 
