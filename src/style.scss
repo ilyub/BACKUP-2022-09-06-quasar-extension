@@ -2,28 +2,12 @@
 
 @import "~quasar/src/css/variables.sass";
 
-$m-button-group : (
-  "spacing" : map.get($space-sm, "x")
-) !default;
-$m-indent : (
-  "padding" : map.get($space-lg, "x")
-) !default;
-$m-icon-button-group : (
-  "spacing" : map.get($space-xs, "x")
-) !default;
-$m-page-layout : (
-  "padding" : map.get($space-lg, "y") map.get($space-lg, "x"),
-  "title-margin" : map.get($space-lg, "y")
-) !default;
-$m-page-section : (
-  "spacing" : map.get($space-lg, "y")
-) !default;
-$m-section : (
-  "spacing" : map.get($space-md, "y")
-) !default;
-$m-subsection : (
-  "spacing" : map.get($space-sm, "y")
-) !default;
+$m-button-group__spacing : map.get($space-sm, "x") !default;
+$m-icon-button-group__spacing : map.get($space-xs, "x") !default;
+$m-indent__padding : map.get($space-lg, "x") !default;
+$m-page-section__spacing : map.get($space-lg, "y") !default;
+$m-section__spacing : map.get($space-md, "y") !default;
+$m-subsection__spacing : map.get($space-sm, "y") !default;
 
 .border-collapse {
   border-collapse: collapse;
@@ -35,10 +19,6 @@ $m-subsection : (
 
 .inline-block {
   display: inline-block;
-}
-
-.shrink-table-column {
-  width: 1px;
 }
 
 .sticky-footer {
@@ -56,63 +36,56 @@ $m-subsection : (
 }
 
 .sticky-table {
-  thead,
+  thead {
+    th,
+    td {
+      position: sticky;
+      z-index: 1;
+      top: 0;
+      background: white;
+    }
+  }
+
   tfoot {
     th,
     td {
       position: sticky;
       z-index: 1;
+      bottom: 0;
       background: white;
     }
   }
-
-  thead {
-    th,
-    td {
-      top: 0;
-    }
-  }
-
-  tfoot {
-    th,
-    td {
-      bottom: 0;
-    }
-  }
 }
 
-.m-date-no-header .q-time__header {
+.m-datetime-picker__time .q-time__header {
   display: none;
 }
 
-.m-button-group-member + .m-button-group-member {
-  margin-left: map.get($m-button-group, "spacing");
+.m-button-group + .m-button-group {
+  margin-left: $m-button-group__spacing;
 }
 
-.m-icon-button-group-member + .m-icon-button-group-member {
-  margin-left: map.get($m-icon-button-group, "spacing");
+.m-icon-button-group + .m-icon-button-group {
+  margin-left: $m-icon-button-group__spacing;
 }
 
 .m-indent {
-  padding-left: map.get($m-indent, "padding");
+  padding-left: $m-indent__padding;
 }
 
-.m-page-layout {
-  padding: map.get($m-page-layout, "padding");
-}
-
-.m-page-layout__title {
-  margin-bottom: map.get($m-page-layout, "title-margin");
+.m-page-layout__sticky {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .m-page-section + .m-page-section {
-  margin-top: map.get($m-page-section, "spacing");
+  margin-top: $m-page-section__spacing;
 }
 
 .m-section + .m-section {
-  margin-top: map.get($m-section, "spacing");
+  margin-top: $m-section__spacing;
 }
 
 .m-subsection + .m-subsection {
-  margin-top: map.get($m-subsection, "spacing");
+  margin-top: $m-subsection__spacing;
 }

@@ -32,7 +32,8 @@ test.each([
     closeExists: false,
     pageLayoutSettings: typedef<PageLayoutSettings>({
       closeButton: false,
-      height: "auto"
+      height: "auto",
+      width: "auto"
     }),
     title: "Sample title",
     titleExists: true
@@ -42,7 +43,8 @@ test.each([
     closeExists: true,
     pageLayoutSettings: typedef<PageLayoutSettings>({
       closeButton: false,
-      height: "auto"
+      height: "auto",
+      width: "auto"
     }),
     title: "Sample title",
     titleExists: true

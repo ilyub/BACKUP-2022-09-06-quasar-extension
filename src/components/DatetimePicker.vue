@@ -308,7 +308,7 @@ export default defineComponent({
             <m-card-section>
               <q-time
                 v-if="nextStep"
-                class="m-date-no-header ref-datetime-picker-time"
+                class="m-datetime-picker__time ref-datetime-picker-time"
                 flat
                 mask="YYYY-MM-DD HH:mm"
                 :model-value="pickerValue"
