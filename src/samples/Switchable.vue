@@ -18,6 +18,8 @@ export default defineComponent({
       sampleKnob: ref(5),
       sampleToggle: ref(false),
       switchableTransition,
+      // eslint-disable-next-line no-warning-comments
+      // fixme: Use typedef
       switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
         () => [
           {

@@ -15,6 +15,8 @@ export default defineComponent({
   },
   setup() {
     return {
+      // eslint-disable-next-line no-warning-comments
+      // fixme: Use typedef
       selectOptions: fn.run<SelectOptions<Value>>(() => [
         { label: "Select option", value: undefined },
         { label: "Option 1", value: 1 },

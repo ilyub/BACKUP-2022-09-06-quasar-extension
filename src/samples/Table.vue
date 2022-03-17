@@ -36,6 +36,8 @@ export default defineComponent({
     return {
       loading,
       noData,
+      // eslint-disable-next-line no-warning-comments
+      // fixme: Use typedef
       pageTableColumns: fn.run<Columns<TableItem>>(() => [
         {
           align: "left",
