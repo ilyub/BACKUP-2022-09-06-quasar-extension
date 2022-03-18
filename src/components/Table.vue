@@ -1,4 +1,6 @@
 <script lang="ts">
+// eslint-disable-next-line no-warning-comments
+// fixme: https://github.com/quasarframework/quasar/issues/12845
 import * as _ from "lodash-es";
 import type { QTable } from "quasar";
 import { computed, defineComponent, ref } from "vue";
@@ -8,7 +10,11 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
-import type { objects, Writable } from "@skylib/functions/es/types/core";
+import type {
+  numberU,
+  objects,
+  Writable
+} from "@skylib/functions/es/types/core";
 
 import {
   propOptions,
@@ -20,6 +26,7 @@ import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import type {
   AllSelectedData,
+  Column,
   Columns,
   Pagination,
   TableOwnProps,
@@ -107,6 +114,45 @@ export default defineComponent({
       allSelectedDisable,
       allSelectedIcon,
       allSelectedLabel,
+      columnCssMaxWidth(column: Column): string {
+        return is.not.empty(column.maxWidth) ? `${column.maxWidth}px` : "none";
+      },
+      columnCssMinWidth(column: Column): string {
+        return is.not.empty(column.minWidth) ? `${column.minWidth}px` : "0";
+      },
+      columnCssWidth(column: Column): string {
+        return is.not.empty(column.width) ? `${column.width}px` : "auto";
+      },
+      // eslint-disable-next-line no-warning-comments
+      // fixme: Use generic table version
+      columnMaxWidth(column: Column): numberU {
+        return column.maxWidth;
+      },
+      // eslint-disable-next-line no-warning-comments
+      // fixme: Use generic table version
+      columnMinWidth(column: Column): number {
+        return column.minWidth ?? 0;
+      },
+      columnResizable(column: Column): boolean {
+        return is.not.empty(column.width);
+      },
+      columnShowSortingIcon(column: Column): boolean {
+        return column.name === props.pagination.sortBy;
+      },
+      columnSortingIcon: computed<string>(() =>
+        props.pagination.descending ?? false
+          ? icons.descending
+          : icons.ascending
+      ),
+      columnUpdateWidth(column: Column, newWidth: number): void {
+        assert.not.empty(column.updateWidth);
+        column.updateWidth(newWidth);
+      },
+      columnWidth(column: Column): number {
+        assert.not.empty(column.width);
+
+        return column.width;
+      },
       empty: computed<boolean>(() => props.rows.length === 0),
       onScroll(details: VirtualScrollDetails): void {
         if (
@@ -134,6 +180,7 @@ export default defineComponent({
         "body-cell",
         "body-selection",
         "bottom",
+        "header-cell",
         "header-selection",
         "no-data",
         "steady-bottom"
@@ -142,9 +189,17 @@ export default defineComponent({
         props.externalSorting ? fn.identity : undefined
       ),
       table,
-      tableColumns: computed<Writable<Columns>>(() =>
-        o.unfreeze(props.columns)
-      ),
+      tableColumns: computed<Writable<Columns>>(() => [
+        ...props.columns,
+        {
+          align: "left",
+          field(): string {
+            return "";
+          },
+          label: "",
+          name: "final-cell"
+        }
+      ]),
       tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
       tableSelected: computed<Writable<objects>>(() =>
         o.unfreeze(props.selected)
@@ -182,12 +237,14 @@ export default defineComponent({
   <q-table
     ref="table"
     binary-state-sort
+    class="m-table"
     :columns="tableColumns"
     :pagination="pagination"
     :row-key="rowKey"
     :rows="tableRows"
     :rows-per-page-options="[0]"
     :selected="tableSelected"
+    separator="cell"
     :sort-method="sortMethod"
     virtual-scroll
     :virtual-scroll-item-size="48"
@@ -200,7 +257,7 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
-    <template v-if="slotNames.has('body-cell')" #body-cell="data">
+    <template #body-cell="data">
       <slot
         :name="slotNames.bodyCell"
         v-bind="{
@@ -211,7 +268,24 @@ export default defineComponent({
           allSelectedIcon,
           allSelectedLabel
         }"
-      ></slot>
+      >
+        <q-td
+          v-if="data.col.name === 'final-cell'"
+          class="m-table__final-cell"
+        />
+        <q-td v-else class="m-table__body-cell">
+          <div
+            class="m-table__body-cell__wrapper"
+            :style="{
+              maxWidth: columnCssMaxWidth(data.col),
+              minWidth: columnCssMinWidth(data.col),
+              width: columnCssWidth(data.col)
+            }"
+          >
+            {{ data.value }}
+          </div>
+        </q-td>
+      </slot>
     </template>
     <template #body-selection="data">
       <slot :name="slotNames.bodySelection" v-bind="data">
@@ -233,6 +307,48 @@ export default defineComponent({
           allSelectedLabel
         }"
       ></slot>
+    </template>
+    <template #header-cell="data">
+      <slot :name="slotNames.headerCell" v-bind="data">
+        <q-th
+          v-if="data.col.name === 'final-cell'"
+          class="m-table__final-cell"
+        />
+        <q-th v-else class="m-table__header-cell">
+          <div
+            class="m-table__header-cell__wrapper"
+            :style="{
+              maxWidth: columnCssMaxWidth(data.col),
+              minWidth: columnCssMinWidth(data.col),
+              width: columnCssWidth(data.col)
+            }"
+            @click="data.sort(data.col.name)"
+          >
+            <div
+              v-if="columnShowSortingIcon(data.col)"
+              class="m-table__header-cell__wrapper__left"
+            >
+              <q-icon :name="columnSortingIcon" />
+            </div>
+            <div class="m-table__header-cell__wrapper__label">
+              {{ data.col.label }}
+            </div>
+            <div
+              v-if="columnShowSortingIcon(data.col)"
+              class="m-table__header-cell__wrapper__right"
+            >
+              <q-icon :name="columnSortingIcon" />
+            </div>
+          </div>
+          <m-resizer
+            v-if="columnResizable(data.col)"
+            :max="columnMaxWidth(data.col)"
+            :min="columnMinWidth(data.col)"
+            :model-value="columnWidth(data.col)"
+            @update:model-value="columnUpdateWidth(data.col, $event)"
+          />
+        </q-th>
+      </slot>
     </template>
     <template #header-selection="data">
       <slot :name="slotNames.headerSelection" v-bind="data">

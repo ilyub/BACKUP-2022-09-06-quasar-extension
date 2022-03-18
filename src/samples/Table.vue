@@ -3,7 +3,6 @@ import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
-import * as fn from "@skylib/functions/es/function";
 
 import type { Columns, Pagination } from "../components/Table.extras";
 import { genericTable } from "../components/Table.generic";
@@ -33,23 +32,45 @@ export default defineComponent({
 
     const selectByRowClick = ref(false);
 
+    const width1 = ref(200);
+
+    const width2 = ref(200);
+
     return {
       loading,
       noData,
-      // eslint-disable-next-line no-warning-comments
-      // fixme: Use typedef
-      pageTableColumns: fn.run<Columns<TableItem>>(() => [
+      pageTableColumns: computed<Columns<TableItem>>(() => [
         {
           align: "left",
           field(row): string {
-            return `${row.name}!`;
+            return `${row.name}!1!1234567890`;
           },
-          label: "Name",
-          name: "name",
+          label: "Name 1",
+          maxWidth: 300,
+          minWidth: 30,
+          name: "name1",
           sort(_value1, _value2, row1, row2): number {
             return row1.id - row2.id;
           },
-          sortable: true
+          sortable: true,
+          updateWidth(newWidth): void {
+            width1.value = newWidth;
+          },
+          width: width1.value
+        },
+        {
+          align: "left",
+          field(row): string {
+            return `${row.name}!2!1234567890`;
+          },
+          label: "Name 2",
+          maxWidth: 300,
+          minWidth: 30,
+          name: "name2",
+          updateWidth(newWidth): void {
+            width2.value = newWidth;
+          },
+          width: width2.value
         }
       ]),
       pageTableRows: computed<TableItems>(() => {
@@ -92,9 +113,6 @@ export default defineComponent({
         :select-by-row-click="selectByRowClick"
         selection="multiple"
       >
-        <template #body-cell="{ row, value }">
-          <q-td>{{ value }} - {{ row.id }}</q-td>
-        </template>
         <template #top>
           <m-toggle v-model="loading" label="Loading" />
           <m-toggle v-model="noData" label="No data" />
@@ -117,6 +135,6 @@ export default defineComponent({
 
 <style lang="scss" module>
 .pageLayout {
-  border: 1px solid red;
+  border: 1px solid $grey-5;
 }
 </style>

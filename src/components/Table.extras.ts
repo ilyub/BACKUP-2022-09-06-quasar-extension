@@ -29,6 +29,8 @@ declare global {
 }
 
 export interface ModuleIcons {
+  readonly ascending: string;
+  readonly descending: string;
   readonly deselectAll: string;
   readonly selectAll: string;
 }
@@ -69,6 +71,8 @@ export interface Column<T = object> {
   readonly align: Align;
   readonly field: Field<T>;
   readonly label: string;
+  readonly maxWidth?: number;
+  readonly minWidth?: number;
   readonly name: string;
   /**
    * Sorting function.
@@ -82,6 +86,13 @@ export interface Column<T = object> {
   readonly sort?: (value1: string, value2: string, row1: T, row2: T) => number;
   readonly sortOrder?: "ad" | "da";
   readonly sortable?: true;
+  /**
+   * Updates column width.
+   *
+   * @param width - New width.
+   */
+  readonly updateWidth?: (width: number) => void;
+  readonly width?: number;
 }
 
 export type Columns<T = object> = ReadonlyArray<Column<T>>;

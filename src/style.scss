@@ -108,3 +108,42 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 .m-subsection + .m-subsection {
   margin-top: $m-subsection__spacing;
 }
+
+.m-table {
+  .m-table__body-cell {
+    position: relative;
+    padding: 0;
+
+    .m-table__body-cell__wrapper {
+      padding: 0 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .m-table__final-cell {
+    width: 100%;
+  }
+
+  .m-table__header-cell {
+    position: relative;
+    padding: 0;
+
+    .m-table__header-cell__wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      .m-table__header-cell__wrapper__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .m-table__header-cell__wrapper__left {
+      opacity: 0;
+    }
+  }
+}
