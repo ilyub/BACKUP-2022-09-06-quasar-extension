@@ -15,7 +15,7 @@ import {
   buildElements,
   injectSortableSettings,
   isElems,
-  isItemAttrsU,
+  isItemClassFnU,
   isMoveData,
   isMoveU
 } from "./Sortable.extras";
@@ -28,7 +28,8 @@ export default defineComponent({
   },
   props: {
     group: propOptions.required(is.string),
-    itemAttrs: propOptions(isItemAttrsU),
+    itemClass: propOptions(is.stringU),
+    itemClassFn: propOptions(isItemClassFnU),
     itemKey: propOptions.required(is.string),
     itemTag: propOptions.default(is.unknown, "div"),
     modelValue: propOptions.required(is.objects),
@@ -37,6 +38,7 @@ export default defineComponent({
   emits: {
     "dropped": (item: object, group: string) =>
       is.object(item) && is.string(group),
+    "itemClick": (item: object) => is.object(item),
     "update:modelValue": (value: objects) => is.objects(value)
   },
   setup(props, { emit }) {
@@ -79,13 +81,6 @@ export default defineComponent({
       ),
       end(): void {
         active.value = false;
-      },
-      itemAttrsNormalized(item: object): object {
-        if (is.empty(props.itemAttrs)) return {};
-
-        return is.callable(props.itemAttrs)
-          ? props.itemAttrs(item)
-          : props.itemAttrs;
       },
       itemSlotData(data: unknown): object {
         assert.object(data);
@@ -145,9 +140,10 @@ export default defineComponent({
     <template #item="{ element }">
       <component
         :is="itemTag"
+        :class="`${itemClass} ${itemClassFn?.(element.item)}`"
         :data-group="element.group"
         :data-id="element.id"
-        v-bind="itemAttrsNormalized(element.item)"
+        @click="$emit('itemClick', element.item)"
       >
         <slot :item="itemSlotData(element.item)" :name="slotNames.item"></slot>
       </component>
