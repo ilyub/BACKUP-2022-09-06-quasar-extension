@@ -15,6 +15,7 @@ import {
   buildElements,
   injectSortableSettings,
   isElems,
+  isItemAttrsU,
   isMoveData,
   isMoveU
 } from "./Sortable.extras";
@@ -27,7 +28,7 @@ export default defineComponent({
   },
   props: {
     group: propOptions.required(is.string),
-    itemComponentData: propOptions(is.objectU),
+    itemAttrs: propOptions(isItemAttrsU),
     itemKey: propOptions.required(is.string),
     itemTag: propOptions.default(is.unknown, "div"),
     modelValue: propOptions.required(is.objects),
@@ -78,6 +79,13 @@ export default defineComponent({
       ),
       end(): void {
         active.value = false;
+      },
+      itemAttrsNormalized(item: object): object {
+        if (is.empty(props.itemAttrs)) return {};
+
+        return is.callable(props.itemAttrs)
+          ? props.itemAttrs(item)
+          : props.itemAttrs;
       },
       itemSlotData(data: unknown): object {
         assert.object(data);
@@ -139,7 +147,7 @@ export default defineComponent({
         :is="itemTag"
         :data-group="element.group"
         :data-id="element.id"
-        v-bind="itemComponentData"
+        v-bind="itemAttrsNormalized(element.item)"
       >
         <slot :item="itemSlotData(element.item)" :name="slotNames.item"></slot>
       </component>

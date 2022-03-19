@@ -4,11 +4,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
-import type {
-  objects,
-  objectU,
-  stringU
-} from "@skylib/functions/es/types/core";
+import type { objects, stringU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
@@ -22,10 +18,13 @@ export interface Elem {
 
 export type Elems = readonly Elem[];
 
-export type GlobalSortable = GlobalComponent<SortableProps, SortableSlots>;
+export type GlobalSortable<T extends object = object> = GlobalComponent<
+  SortableProps<T>,
+  SortableSlots<T>
+>;
 
-export interface ItemSlotData {
-  readonly item: object;
+export interface ItemSlotData<T extends object = object> {
+  readonly item: T;
 }
 
 export interface Move {
@@ -51,12 +50,30 @@ export interface MoveData {
   readonly related: HTMLElement;
 }
 
-export interface SortableProps {
+export interface ItemAttrsFn<T extends object = object> {
+  /**
+   * Returns component data.
+   *
+   * @param item - Item.
+   * @returns Data.
+   */
+  (item: T): object;
+}
+
+export type ItemAttrs<T extends object = object> = ItemAttrsFn<T> | object;
+
+export const isItemAttrsFn: is.Guard<(item: object) => object> = is.callable;
+
+export const isItemAttrs = is.or.factory(isItemAttrsFn, is.object);
+
+export const isItemAttrsU = is.or.factory(isItemAttrs, is.undefined);
+
+export interface SortableProps<T extends object = object> {
   readonly group: string;
-  readonly itemComponentData?: objectU;
+  readonly itemAttrs?: ItemAttrs<T> | undefined;
   readonly itemKey: string;
   readonly itemTag?: unknown;
-  readonly modelValue: objects;
+  readonly modelValue: readonly T[];
   readonly move?: Move | undefined;
   /**
    * Emits "dropped" event.
@@ -70,10 +87,10 @@ export interface SortableProps {
    *
    * @param value - Value.
    */
-  readonly "onUpdate:modelValue"?: (value: boolean) => void;
+  readonly "onUpdate:modelValue"?: (value: readonly T[]) => void;
 }
 
-export interface SortableSlots {
+export interface SortableSlots<T extends object = object> {
   /**
    * Footer slot.
    *
@@ -92,7 +109,7 @@ export interface SortableSlots {
    * @param data - Data.
    * @returns Node.
    */
-  readonly item: (data: ItemSlotData) => readonly VNode[];
+  readonly item: (data: ItemSlotData<T>) => readonly VNode[];
 }
 
 export interface SortableSettings {

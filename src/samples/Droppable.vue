@@ -33,7 +33,7 @@ export default defineComponent({
     v-model="sortable1"
     :class="$style.sortable"
     group="sortable"
-    :item-component-data="{
+    :item-attrs="{
       class: `${$style.sortableItem} q-mr-sm`
     }"
     item-key="id"
@@ -47,7 +47,7 @@ export default defineComponent({
     v-model="sortable2"
     :class="`${$style.sortable} q-mt-md`"
     group="sortable"
-    :item-component-data="{
+    :item-attrs="{
       class: `${$style.sortableItem} q-mr-sm`
     }"
     item-key="id"
