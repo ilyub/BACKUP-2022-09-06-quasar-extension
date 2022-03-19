@@ -15,7 +15,6 @@ import {
   buildElements,
   injectSortableSettings,
   isElems,
-  isItemClassFnU,
   isMoveData,
   isMoveU
 } from "./Sortable.extras";
@@ -29,7 +28,6 @@ export default defineComponent({
   props: {
     group: propOptions.required(is.string),
     itemClass: propOptions(is.stringU),
-    itemClassFn: propOptions(isItemClassFnU),
     itemKey: propOptions.required(is.string),
     itemTag: propOptions.default(is.unknown, "div"),
     modelValue: propOptions.required(is.objects),
@@ -140,7 +138,7 @@ export default defineComponent({
     <template #item="{ element }">
       <component
         :is="itemTag"
-        :class="`${itemClass} ${itemClassFn?.(element.item)}`"
+        :class="itemClass"
         :data-group="element.group"
         :data-id="element.id"
         @click="$emit('itemClick', element.item)"

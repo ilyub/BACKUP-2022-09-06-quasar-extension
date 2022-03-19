@@ -77,27 +77,13 @@ export interface ItemClickEvent<T extends object = object> {
   (item: T): void;
 }
 
-export interface ItemClassFn<T extends object = object> {
-  /**
-   * Class.
-   *
-   * @param item - Item.
-   */
-  (item: T): void;
-}
-
 export const isItemClickEvent: is.Guard<ItemClickEvent> = is.callable;
 
 export const isItemClickEventU = is.or.factory(isItemClickEvent, is.undefined);
 
-export const isItemClassFn: is.Guard<ItemClassFn> = is.callable;
-
-export const isItemClassFnU = is.or.factory(isItemClickEvent, is.undefined);
-
 export interface SortableProps<T extends object = object> {
   readonly group: string;
   readonly itemClass?: stringU;
-  readonly itemClassFn?: ItemClassFn<T> | undefined;
   readonly itemKey: string;
   readonly itemTag?: unknown;
   readonly modelValue: readonly T[];
