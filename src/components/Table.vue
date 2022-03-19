@@ -1,9 +1,8 @@
 <script lang="ts">
 // eslint-disable-next-line no-warning-comments
-// fixme: https://github.com/quasarframework/quasar/issues/12845
+// fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
 import * as _ from "lodash-es";
 import type { QTable } from "quasar";
-import { QTh } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -118,7 +117,6 @@ export default defineComponent({
     const table = ref<QTable | undefined>(undefined);
 
     return {
-      QTh,
       allSelected,
       allSelectedClick,
       allSelectedDisable,
@@ -164,17 +162,8 @@ export default defineComponent({
         return column.width;
       },
       empty: computed<boolean>(() => props.rows.length === 0),
-      itemAttrs(item: Column): object {
-        return {
-          class: {
-            "cursor-pointer": item.sortable,
-            "m-table__header-cell": true
-          },
-          onClick(): void {
-            assert.not.empty(table.value);
-            table.value.sort(item.name);
-          }
-        };
+      itemClassFn(item: Column): string {
+        return item.sortable ? "cursor-pointer" : "";
       },
       onScroll(details: VirtualScrollDetails): void {
         if (
@@ -226,6 +215,12 @@ export default defineComponent({
           })
           .sort((x, y) => x.order - y.order)
       ),
+      tableColumnsItemClick(column: Column): void {
+        if (column.sortable) {
+          assert.not.empty(table.value);
+          table.value.sort(column.name);
+        }
+      },
       tableColumnsUpdate(columns: Columns): void {
         emit(
           "update:columnOrder",
@@ -294,11 +289,13 @@ export default defineComponent({
         <m-sortable-column
           group="table"
           handle=".m-table__header__wrapper__label"
-          :item-attrs="itemAttrs"
+          item-class="m-table__header-cell"
+          :item-class-fn="itemClassFn"
           item-key="name"
-          :item-tag="QTh"
+          item-tag="th"
           :model-value="tableColumns"
           tag="tr"
+          @item-click="tableColumnsItemClick"
           @update:model-value="tableColumnsUpdate"
         >
           <template #header>
@@ -329,11 +326,6 @@ export default defineComponent({
                 minWidth: columnCssMinWidth(column),
                 width: columnCssWidth(column)
               }"
-              @click="
-                () => {
-                  if (column.sortable) data.sort(column.name);
-                }
-              "
             >
               <div class="m-table__header__wrapper__left">
                 <q-icon
