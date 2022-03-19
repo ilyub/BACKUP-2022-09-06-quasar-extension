@@ -53,21 +53,27 @@ export interface AllSelectedData {
   readonly allSelectedLabel: string;
 }
 
-export interface BodyCellSlotOwnData extends AllSelectedData {}
-
-export interface BodyCellSlotParentData<T = object>
-  extends Readonly<Parameters<QTableSlots["body-cell"]>[0]> {
+export interface BodyCellSlotData<T extends object = object>
+  extends AllSelectedData {
+  readonly column: Column<T>;
   readonly row: T;
-  readonly value: string;
 }
 
-export interface BodyCellSlotData<T = object>
-  extends BodyCellSlotParentData<T>,
-    BodyCellSlotOwnData {}
+export interface BodySelectionSlotData<T extends object = object>
+  extends AllSelectedData {
+  readonly row: T;
+}
+
+export interface HeaderCellSlotData<T extends object = object>
+  extends AllSelectedData {
+  readonly column: Column<T>;
+}
+
+export interface HeaderSelectionSlotData extends AllSelectedData {}
 
 export interface SteadyBottomSlotData extends AllSelectedData {}
 
-export interface Column<T = object> {
+export interface Column<T extends object = object> {
   readonly align: Align;
   readonly field: Field<T>;
   readonly label: string;
@@ -95,9 +101,11 @@ export interface Column<T = object> {
   readonly width?: number;
 }
 
-export type Columns<T = object> = ReadonlyArray<Column<T>>;
+export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
 
-export interface Field<T = object> {
+export const isColumnOrder = is.factory(is.map, is.string, is.number);
+
+export interface Field<T extends object = object> {
   /**
    * Returns formatted field.
    *
@@ -107,14 +115,24 @@ export interface Field<T = object> {
 }
 
 // eslint-disable-next-line @skylib/prefer-readonly
-export type GlobalTable<T = object> = GlobalComponent<
+export type GlobalTable<T extends object = object> = GlobalComponent<
   TableProps<T>,
   TableSlots<T>
 >;
 
-export interface TableOwnProps<T = object> {
+export type ColumnOrder = ReadonlyMap<string, number>;
+
+export interface TableOwnProps<T extends object = object> {
+  readonly columnOrder?: ColumnOrder;
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
+  readonly multiselect?: boolean;
+  /**
+   * Emits column order.
+   *
+   * @param value - Column order.
+   */
+  readonly "onUpdate:columnOrder"?: (value: ColumnOrder) => void;
   /**
    * Emits "pagination" value.
    *
@@ -130,6 +148,7 @@ export interface TableOwnProps<T = object> {
   readonly pagination?: Pagination | undefined;
   readonly rowKey?: stringU;
   readonly rows?: readonly T[] | undefined;
+  readonly selectByCheckbox?: booleanU;
   readonly selectByRowClick?: booleanU;
   readonly selected?: readonly T[] | undefined;
 }
@@ -144,21 +163,50 @@ export interface TableParentProps
     | "rowKey"
     | "rows"
     | "selected"
+    | "selection"
   > {}
 
-export interface TableProps<T = object>
+export interface TableProps<T extends object = object>
   extends TableParentProps,
     TableOwnProps<T> {}
 
-export interface TableSlots<T = object> extends Omit<QTableSlots, "body-cell"> {
+export interface TableSlots<T extends object = object>
+  extends Omit<
+    QTableSlots,
+    "body-cell" | "body-selection" | "header-cell" | "header-selection"
+  > {
   /**
    * Body cell slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  // eslint-disable-next-line @skylib/prefer-readonly
   readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
+  /**
+   * Body selection slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "body-selection": (
+    scope: BodySelectionSlotData<T>
+  ) => readonly VNode[];
+  /**
+   * Header cell slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "header-cell": (scope: HeaderCellSlotData<T>) => readonly VNode[];
+  /**
+   * Header selection slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "header-selection": (
+    scope: HeaderSelectionSlotData
+  ) => readonly VNode[];
   /**
    * Steady bottom slot.
    *
@@ -221,7 +269,9 @@ export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
  *
  * @returns Guard for Column\<T\> type.
  */
-export function isColumnFactory<T = object>(): is.Guard<Column<T>> {
+export function isColumnFactory<T extends object = object>(): is.Guard<
+  Column<T>
+> {
   return is.factory(
     is.object.of,
     {
@@ -241,7 +291,9 @@ export function isColumnFactory<T = object>(): is.Guard<Column<T>> {
  *
  * @returns Guard for Columns\<T\> type.
  */
-export function isColumnsFactory<T = object>(): is.Guard<Columns<T>> {
+export function isColumnsFactory<T extends object = object>(): is.Guard<
+  Columns<T>
+> {
   return is.factory(is.array.of, isColumnFactory<T>());
 }
 
@@ -250,6 +302,8 @@ export function isColumnsFactory<T = object>(): is.Guard<Columns<T>> {
  *
  * @returns Guard for Field\<T\> type.
  */
-export function isFieldFactory<T = object>(): is.Guard<Field<T>> {
+export function isFieldFactory<T extends object = object>(): is.Guard<
+  Field<T>
+> {
   return is.callable;
 }

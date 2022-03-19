@@ -112,7 +112,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 .m-table {
   .m-table__body-cell {
     position: relative;
-    padding: 0;
+    padding: 7px 0;
 
     .m-table__body-cell__wrapper {
       padding: 0 16px;
@@ -121,29 +121,45 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
     }
   }
 
+  .m-table__select-by-row-click {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .m-table__selection-cell {
+    width: 1px;
+    padding: 0px 16px;
+  }
+
   .m-table__final-cell {
     width: 100%;
   }
 
   .m-table__header-cell {
     position: relative;
-    padding: 0;
+    padding: 7px 0;
 
-    .m-table__header-cell__wrapper {
+    .m-table__header__wrapper {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      height: 100%;
 
-      .m-table__header-cell__wrapper__label {
+      .m-table__header__wrapper__label {
         overflow: hidden;
         text-overflow: ellipsis;
       }
     }
 
-    .m-table__header-cell__wrapper__left {
+    .m-table__header__wrapper__left {
+      min-width: 16px;
       opacity: 0;
+    }
+
+    .m-table__header__wrapper__right {
+      min-width: 16px;
+      text-align: left;
     }
   }
 }

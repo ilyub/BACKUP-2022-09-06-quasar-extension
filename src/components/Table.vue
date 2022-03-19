@@ -3,6 +3,7 @@
 // fixme: https://github.com/quasarframework/quasar/issues/12845
 import * as _ from "lodash-es";
 import type { QTable } from "quasar";
+import { QTh } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -24,9 +25,11 @@ import {
 } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
+import { genericSortable } from "./Sortable.generic";
 import type {
   AllSelectedData,
   Column,
+  ColumnOrder,
   Columns,
   Pagination,
   TableOwnProps,
@@ -36,6 +39,7 @@ import type {
 import {
   icons,
   injectTableSettings,
+  isColumnOrder,
   isColumnsFactory,
   isPagination,
   lang
@@ -45,23 +49,28 @@ interface SortMethod {
   (rows: objects): objects;
 }
 
-interface RowClick {
-  (event: Event, row: unknown, index: number): void;
-}
-
 export default defineComponent({
   name: "m-table",
+  components: {
+    "m-sortable-column": genericSortable<Column>()
+  },
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
+    columnOrder: propOptions.default(isColumnOrder, new Map()),
     columns: propOptions.default(isColumnsFactory(), []),
     externalSorting: propOptions.boolean(),
+    multiselect: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
     rowKey: propOptions(is.stringU),
     rows: propOptions.default(is.objects, []),
+    selectByCheckbox: propOptions.boolean(),
     selectByRowClick: propOptions.boolean(),
     selected: propOptions.default(is.objects, [])
   },
   emits: {
+    "update:columnOrder"(value: ColumnOrder) {
+      return isColumnOrder(value);
+    },
     "update:pagination": (value: Pagination) => isPagination(value),
     "update:selected": (value: objects) => is.array.of(value, is.object)
   },
@@ -109,6 +118,7 @@ export default defineComponent({
     const table = ref<QTable | undefined>(undefined);
 
     return {
+      QTh,
       allSelected,
       allSelectedClick,
       allSelectedDisable,
@@ -154,6 +164,18 @@ export default defineComponent({
         return column.width;
       },
       empty: computed<boolean>(() => props.rows.length === 0),
+      itemAttrs(item: Column): object {
+        return {
+          class: {
+            "cursor-pointer": item.sortable,
+            "m-table__header-cell": true
+          },
+          onClick(): void {
+            assert.not.empty(table.value);
+            table.value.sort(item.name);
+          }
+        };
+      },
       onScroll(details: VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
@@ -164,22 +186,27 @@ export default defineComponent({
             limit: props.pagination.limit + settings.value.growPageBy
           });
       },
-      rowClick: computed<RowClick | undefined>(() =>
-        props.selectByRowClick
-          ? (_event: Event, row: unknown): void => {
-              assert.object(row);
-              assert.not.empty(props.rowKey);
-              emit(
-                "update:selected",
-                a.toggleBy(selected.value, row, props.rowKey)
-              );
-            }
-          : undefined
-      ),
+      rowClick(row: object): void {
+        if (props.selectByRowClick) {
+          assert.not.empty(props.rowKey);
+          emit(
+            "update:selected",
+            a.toggleBy(selected.value, row, props.rowKey)
+          );
+        }
+      },
+      selection: computed<"multiple" | "none" | "single">(() => {
+        if (props.selectByCheckbox || props.selectByRowClick)
+          return props.multiselect ? "multiple" : "single";
+
+        return "none";
+      }),
       slotNames: useSlotsNames<TableSlots>()(
+        "body",
         "body-cell",
         "body-selection",
         "bottom",
+        "header",
         "header-cell",
         "header-selection",
         "no-data",
@@ -189,17 +216,22 @@ export default defineComponent({
         props.externalSorting ? fn.identity : undefined
       ),
       table,
-      tableColumns: computed<Writable<Columns>>(() => [
-        ...props.columns,
-        {
-          align: "left",
-          field(): string {
-            return "";
-          },
-          label: "",
-          name: "final-cell"
-        }
-      ]),
+      tableColumns: computed<Writable<Columns>>(() =>
+        props.columns
+          .map((column, index) => {
+            return {
+              ...column,
+              order: props.columnOrder.get(column.name) ?? 1000 + index
+            };
+          })
+          .sort((x, y) => x.order - y.order)
+      ),
+      tableColumnsUpdate(columns: Columns): void {
+        emit(
+          "update:columnOrder",
+          new Map(columns.map((column, index) => [column.name, index]))
+        );
+      },
       tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
       tableSelected: computed<Writable<objects>>(() =>
         o.unfreeze(props.selected)
@@ -244,12 +276,12 @@ export default defineComponent({
     :rows="tableRows"
     :rows-per-page-options="[0]"
     :selected="tableSelected"
+    :selection="selection"
     separator="cell"
     :sort-method="sortMethod"
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
-    @row-click="rowClick"
     @update:pagination="updatePagination"
     @update:selected="$emit('update:selected', $event)"
     @virtual-scroll="onScroll"
@@ -257,40 +289,149 @@ export default defineComponent({
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
-    <template #body-cell="data">
-      <slot
-        :name="slotNames.bodyCell"
-        v-bind="{
-          ...data,
-          allSelected,
-          allSelectedClick,
-          allSelectedDisable,
-          allSelectedIcon,
-          allSelectedLabel
-        }"
-      >
-        <q-td
-          v-if="data.col.name === 'final-cell'"
-          class="m-table__final-cell"
-        />
-        <q-td v-else class="m-table__body-cell">
-          <div
-            class="m-table__body-cell__wrapper"
-            :style="{
-              maxWidth: columnCssMaxWidth(data.col),
-              minWidth: columnCssMinWidth(data.col),
-              width: columnCssWidth(data.col)
-            }"
-          >
-            {{ data.value }}
-          </div>
-        </q-td>
+    <template #header="data">
+      <slot :name="slotNames.header" v-bind="data">
+        <m-sortable-column
+          group="table"
+          handle=".m-table__header__wrapper__label"
+          :item-attrs="itemAttrs"
+          item-key="name"
+          :item-tag="QTh"
+          :model-value="tableColumns"
+          tag="tr"
+          @update:model-value="tableColumnsUpdate"
+        >
+          <template #header>
+            <q-th v-if="selectByCheckbox" class="m-table__selection-cell">
+              <slot
+                :name="slotNames.headerSelection"
+                v-bind="{
+                  allSelected,
+                  allSelectedClick,
+                  allSelectedDisable,
+                  allSelectedIcon,
+                  allSelectedLabel
+                }"
+              >
+                <q-checkbox
+                  v-if="multiselect"
+                  v-model="data.selected"
+                  :disable="empty"
+                />
+              </slot>
+            </q-th>
+          </template>
+          <template #item="{ item: column }">
+            <div
+              class="m-table__header__wrapper"
+              :style="{
+                maxWidth: columnCssMaxWidth(column),
+                minWidth: columnCssMinWidth(column),
+                width: columnCssWidth(column)
+              }"
+              @click="
+                () => {
+                  if (column.sortable) data.sort(column.name);
+                }
+              "
+            >
+              <div class="m-table__header__wrapper__left">
+                <q-icon
+                  v-if="columnShowSortingIcon(column)"
+                  :name="columnSortingIcon"
+                />
+              </div>
+              <div class="m-table__header__wrapper__label">
+                <slot
+                  :name="slotNames.bodyCell"
+                  v-bind="{
+                    allSelected,
+                    allSelectedClick,
+                    allSelectedDisable,
+                    allSelectedIcon,
+                    allSelectedLabel,
+                    column
+                  }"
+                >
+                  {{ column.label }}
+                </slot>
+              </div>
+              <div class="m-table__header__wrapper__right">
+                <q-icon
+                  v-if="columnShowSortingIcon(column)"
+                  :name="columnSortingIcon"
+                />
+              </div>
+            </div>
+            <m-resizer
+              v-if="columnResizable(column)"
+              :max="columnMaxWidth(column)"
+              :min="columnMinWidth(column)"
+              :model-value="columnWidth(column)"
+              @update:model-value="columnUpdateWidth(column, $event)"
+            />
+          </template>
+          <template #footer>
+            <q-th class="m-table__final-cell" />
+          </template>
+        </m-sortable-column>
       </slot>
     </template>
-    <template #body-selection="data">
-      <slot :name="slotNames.bodySelection" v-bind="data">
-        <q-checkbox v-model="data.selected" />
-      </slot>
+    <template #body="data">
+      <slot :name="slotNames.body" v-bind="data">
+        <q-tr
+          :class="{
+            'm-table__select-by-row-click': selectByRowClick,
+            'selected': data.selected
+          }"
+          @click="rowClick(data.row)"
+        >
+          <q-td v-if="selectByCheckbox" class="m-table__selection-cell">
+            <slot
+              :name="slotNames.bodySelection"
+              v-bind="{
+                allSelected,
+                allSelectedClick,
+                allSelectedDisable,
+                allSelectedIcon,
+                allSelectedLabel,
+                row: data.row
+              }"
+            >
+              <q-checkbox v-model="data.selected" />
+            </slot>
+          </q-td>
+          <q-td
+            v-for="column in tableColumns"
+            :key="column.name"
+            class="m-table__body-cell"
+          >
+            <div
+              class="m-table__body-cell__wrapper"
+              :style="{
+                maxWidth: columnCssMaxWidth(column),
+                minWidth: columnCssMinWidth(column),
+                width: columnCssWidth(column)
+              }"
+            >
+              <slot
+                :name="slotNames.bodyCell"
+                v-bind="{
+                  allSelected,
+                  allSelectedClick,
+                  allSelectedDisable,
+                  allSelectedIcon,
+                  allSelectedLabel,
+                  row: data.row,
+                  column
+                }"
+              >
+                {{ column.field(data.row) }}
+              </slot>
+            </div>
+          </q-td>
+          <q-td class="m-table__final-cell" /> </q-tr
+      ></slot>
     </template>
     <template
       v-if="slotNames.hasSome('bottom', 'steady-bottom')"
@@ -307,53 +448,6 @@ export default defineComponent({
           allSelectedLabel
         }"
       ></slot>
-    </template>
-    <template #header-cell="data">
-      <slot :name="slotNames.headerCell" v-bind="data">
-        <q-th
-          v-if="data.col.name === 'final-cell'"
-          class="m-table__final-cell"
-        />
-        <q-th v-else class="m-table__header-cell">
-          <div
-            class="m-table__header-cell__wrapper"
-            :style="{
-              maxWidth: columnCssMaxWidth(data.col),
-              minWidth: columnCssMinWidth(data.col),
-              width: columnCssWidth(data.col)
-            }"
-            @click="data.sort(data.col.name)"
-          >
-            <div
-              v-if="columnShowSortingIcon(data.col)"
-              class="m-table__header-cell__wrapper__left"
-            >
-              <q-icon :name="columnSortingIcon" />
-            </div>
-            <div class="m-table__header-cell__wrapper__label">
-              {{ data.col.label }}
-            </div>
-            <div
-              v-if="columnShowSortingIcon(data.col)"
-              class="m-table__header-cell__wrapper__right"
-            >
-              <q-icon :name="columnSortingIcon" />
-            </div>
-          </div>
-          <m-resizer
-            v-if="columnResizable(data.col)"
-            :max="columnMaxWidth(data.col)"
-            :min="columnMinWidth(data.col)"
-            :model-value="columnWidth(data.col)"
-            @update:model-value="columnUpdateWidth(data.col, $event)"
-          />
-        </q-th>
-      </slot>
-    </template>
-    <template #header-selection="data">
-      <slot :name="slotNames.headerSelection" v-bind="data">
-        <q-checkbox v-model="data.selected" :disable="empty" />
-      </slot>
     </template>
     <template
       v-if="slotNames.hasSome('no-data', 'steady-bottom')"

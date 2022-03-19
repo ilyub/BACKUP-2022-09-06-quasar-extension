@@ -20,24 +20,32 @@ export default defineComponent({
     "generic-table": genericTable<TableItem>()
   },
   setup() {
+    const columnOrder = ref(new Map<string, number>());
+
+    const loading = ref(false);
+
+    const noData = ref(false);
+
     const pagination = ref<Pagination>({
       descending: false,
       limit: 10,
       sortBy: "name"
     });
 
-    const loading = ref(false);
-
-    const noData = ref(false);
+    const selectByCheckbox = ref(false);
 
     const selectByRowClick = ref(false);
+
+    const multiselect = ref(false);
 
     const width1 = ref(200);
 
     const width2 = ref(200);
 
     return {
+      columnOrder,
       loading,
+      multiselect,
       noData,
       pageTableColumns: computed<Columns<TableItem>>(() => [
         {
@@ -91,6 +99,7 @@ export default defineComponent({
         });
       }),
       pagination,
+      selectByCheckbox,
       selectByRowClick,
       selected: ref<TableItems>([])
     };
@@ -102,31 +111,39 @@ export default defineComponent({
   <m-page-layout :class="$style.pageLayout" title="Title">
     <template #fit>
       <generic-table
+        v-model:columnOrder="columnOrder"
         v-model:pagination="pagination"
         v-model:selected="selected"
         class="fit"
         :columns="pageTableColumns"
         flat
         :loading="loading"
+        :multiselect="multiselect"
         row-key="id"
         :rows="pageTableRows"
+        :select-by-checkbox="selectByCheckbox"
         :select-by-row-click="selectByRowClick"
-        selection="multiple"
       >
         <template #top>
           <m-toggle v-model="loading" label="Loading" />
+          <m-toggle v-model="multiselect" label="Multi-select" />
           <m-toggle v-model="noData" label="No data" />
+          <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
           <m-toggle v-model="selectByRowClick" label="Select by row click" />
         </template>
         <template
           #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
         >
-          <q-checkbox
-            :disable="allSelectedDisable"
-            :model-value="allSelected"
-            @update:model-value="allSelectedClick"
-          />
-          {{ selected.length }} selected
+          <template v-if="multiselect">
+            <q-checkbox
+              :disable="allSelectedDisable"
+              :model-value="allSelected"
+              @update:model-value="allSelectedClick"
+            />
+            {{ selected.length }} selected
+          </template>
+          <q-space />
+          {{ pageTableRows.length }} of 1000
         </template>
       </generic-table>
     </template>
