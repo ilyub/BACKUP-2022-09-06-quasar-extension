@@ -8,6 +8,7 @@ import type { numberU } from "@skylib/functions/es/types/core";
 import { propOptions, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
+import { injectResizerSettings } from "./Resizer.extras";
 
 interface Offset {
   readonly x: number;
@@ -68,6 +69,7 @@ export default defineComponent({
           document.documentElement.style.cursor =
             limitedValue === value ? "ew-resize" : "not-allowed";
       },
+      settings: injectResizerSettings(),
       slotNames: useSlotsNames<ResizerSlots>()("default")
     };
 
@@ -83,7 +85,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-touch-pan.horizontal.mouse="handlePan" :class="$style.root">
+  <div
+    v-if="!settings.disable"
+    v-touch-pan.horizontal.mouse="handlePan"
+    :class="$style.root"
+  >
     <slot :name="slotNames.default"></slot>
   </div>
 </template>

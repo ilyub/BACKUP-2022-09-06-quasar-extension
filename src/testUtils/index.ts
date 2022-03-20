@@ -17,6 +17,8 @@ import type { LanguagePickerSettings } from "../components/LanguagePicker.extras
 import { testLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import type { PageLayoutSettings } from "../components/PageLayout.extras";
 import { testPageLayoutSettings } from "../components/PageLayout.extras";
+import type { ResizerSettings } from "../components/Resizer.extras";
+import { testResizerSettings } from "../components/Resizer.extras";
 import type { SortableSettings } from "../components/Sortable.extras";
 import { testSortableSettings } from "../components/Sortable.extras";
 import type { SwitchableSettings } from "../components/Switchable.extras";
@@ -72,6 +74,7 @@ export interface CustomGlobalMountOptions {
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
   readonly pageTableSettings?: TableSettings;
+  readonly resizerSettings?: ResizerSettings;
   readonly sortableSettings?: SortableSettings;
   readonly switchableSettings?: SwitchableSettings;
   readonly tooltipSettings?: TooltipSettings;
@@ -191,6 +194,9 @@ export function globalMountOptions(
 
       if ("pageTableSettings" in options)
         testTableSettings(result, options.pageTableSettings);
+
+      if ("resizerSettings" in options)
+        testResizerSettings(result, options.resizerSettings);
 
       if ("switchableSettings" in options)
         testSwitchableSettings(result, options.switchableSettings);
