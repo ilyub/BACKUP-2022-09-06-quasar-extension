@@ -102,6 +102,9 @@ export interface SortableProps<T extends object = object> {
    * @param value - Value.
    */
   readonly "onUpdate:modelValue"?: ((value: readonly T[]) => void) | undefined;
+  readonly pull?: boolean;
+  readonly put?: boolean;
+  readonly sort?: boolean;
 }
 
 export interface SortableSlots<T extends object = object> {
@@ -128,6 +131,8 @@ export interface SortableSlots<T extends object = object> {
 
 export interface SortableSettings {
   readonly animationDuration: number;
+  readonly disableDropping: boolean;
+  readonly disableSorting: boolean;
 }
 
 export const isElem: is.Guard<Elem> = is.factory(
@@ -164,7 +169,9 @@ export const {
   test: testSortableSettings
 } = createInjectable<SortableSettings>(() => {
   return {
-    animationDuration: 500
+    animationDuration: 500,
+    disableDropping: false,
+    disableSorting: false
   };
 });
 

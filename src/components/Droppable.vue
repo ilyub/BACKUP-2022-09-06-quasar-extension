@@ -28,6 +28,7 @@ export default defineComponent({
     group="droppable"
     item-key="id"
     :model-value="[]"
+    put
   >
     <template v-if="$slots[slotNames.default]" #header>
       <slot :name="slotNames.default"></slot>

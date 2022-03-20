@@ -107,7 +107,9 @@ function provide(): void {
 
   provideSortableSettings(() => {
     return {
-      animationDuration: 500
+      animationDuration: 500,
+      disableDropping: false,
+      disableSorting: false
     };
   });
 

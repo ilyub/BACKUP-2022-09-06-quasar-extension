@@ -31,7 +31,10 @@ export default defineComponent({
     itemKey: propOptions.required(is.string),
     itemTag: propOptions.default(is.unknown, "div"),
     modelValue: propOptions.required(is.objects),
-    move: propOptions(isMoveU)
+    move: propOptions(isMoveU),
+    pull: propOptions.boolean(),
+    put: propOptions.boolean(),
+    sort: propOptions.boolean()
   },
   emits: {
     "dropped": (item: object, group: string) =>
@@ -44,6 +47,20 @@ export default defineComponent({
     validateProps<SortableProps>(props);
 
     const { active } = useDisableTooltips();
+
+    const settings = injectSortableSettings();
+
+    const draggablePull = computed<boolean>(
+      () => props.pull && !settings.value.disableDropping
+    );
+
+    const draggablePut = computed<boolean>(
+      () => props.put && !settings.value.disableDropping
+    );
+
+    const draggableSort = computed<boolean>(
+      () => props.sort && !settings.value.disableSorting
+    );
 
     return {
       baseMove(data: unknown): boolean {
@@ -74,6 +91,13 @@ export default defineComponent({
             )
           : true;
       },
+      draggableDisabled: computed<boolean>(
+        () =>
+          !draggablePull.value && !draggablePut.value && !draggableSort.value
+      ),
+      draggablePull,
+      draggablePut,
+      draggableSort,
       elements: computed<Writable<Elems>>(() =>
         a.clone(buildElements(props.modelValue, props.group, props.itemKey))
       ),
@@ -85,7 +109,7 @@ export default defineComponent({
 
         return data;
       },
-      settings: injectSortableSettings(),
+      settings,
       slotNames: useSlotsNames<SortableSlots>()("footer", "header", "item"),
       start(): void {
         active.value = true;
@@ -117,14 +141,16 @@ export default defineComponent({
   <vue-draggable
     :animation="settings.animationDuration"
     :data-group="group"
+    :disabled="draggableDisabled"
     :group="{
       name: group,
-      pull: 'clone',
-      put: true
+      pull: draggablePull ? 'clone' : false,
+      put: draggablePut
     }"
     item-key="elementId"
     :model-value="elements"
     :move="baseMove"
+    :sort="draggableSort"
     @end="end"
     @start="start"
     @update:model-value="updateModel"

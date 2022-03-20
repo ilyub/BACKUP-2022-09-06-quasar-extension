@@ -3,10 +3,26 @@ import { defineComponent, ref } from "vue";
 
 import * as reflect from "@skylib/functions/es/reflect";
 
+import { provideSortableSettings } from "../components/Sortable.extras";
+
 export default defineComponent({
   name: "sample-sortable",
   setup() {
+    const disableDropping = ref(false);
+
+    const disableSorting = ref(false);
+
+    provideSortableSettings(() => {
+      return {
+        animationDuration: 500,
+        disableDropping: disableDropping.value,
+        disableSorting: disableSorting.value
+      };
+    });
+
     return {
+      disableDropping,
+      disableSorting,
       sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },
@@ -23,12 +39,19 @@ export default defineComponent({
 
 <template>
   <m-section>
+    <m-toggle v-model="disableDropping" label="Disable dropping" left-label />
+    <m-toggle v-model="disableSorting" label="Disable sorting" left-label />
+  </m-section>
+  <m-section>
     <m-sortable
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
       :item-class="`${$style.sortableItem} q-mr-sm`"
       item-key="id"
+      pull
+      put
+      sort
     >
       <template #item="{ item }">
         {{ sortableName(item) }}
@@ -43,6 +66,9 @@ export default defineComponent({
       group="sortable"
       :item-class="`${$style.sortableItem} q-mr-sm`"
       item-key="id"
+      pull
+      put
+      sort
     >
       <template #item="{ item }">
         {{ sortableName(item) }}

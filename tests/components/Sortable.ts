@@ -34,7 +34,11 @@ test.each([
   },
   {
     animationDuration: 1000,
-    sortableSettings: { animationDuration: 1000 }
+    sortableSettings: {
+      animationDuration: 1000,
+      disableDropping: false,
+      disableSorting: false
+    }
   }
 ])("animationDuration", ({ animationDuration, sortableSettings }) => {
   const wrapper = vueTestUtils.mount(Sortable, {

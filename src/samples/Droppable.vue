@@ -5,12 +5,28 @@ import { defineComponent, ref } from "vue";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 
+import { provideSortableSettings } from "../components/Sortable.extras";
+
 export default defineComponent({
   name: "sample-droppable",
   setup() {
     const $q = useQuasar();
 
+    const disableDropping = ref(false);
+
+    const disableSorting = ref(false);
+
+    provideSortableSettings(() => {
+      return {
+        animationDuration: 500,
+        disableDropping: disableDropping.value,
+        disableSorting: disableSorting.value
+      };
+    });
+
     return {
+      disableDropping,
+      disableSorting,
       dropped(item: unknown, group: unknown): void {
         $q.notify(json.encode({ group, item }));
       },
@@ -29,34 +45,48 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-sortable
-    v-model="sortable1"
-    :class="$style.sortable"
-    group="sortable"
-    :item-class="`${$style.sortableItem} q-mr-sm`"
-    item-key="id"
-  >
-    <template #item="{ item }">
-      {{ sortableName(item) }}
-      <m-tooltip>Sample tooltip</m-tooltip>
-    </template>
-  </m-sortable>
-  <m-sortable
-    v-model="sortable2"
-    :class="`${$style.sortable} q-mt-md`"
-    group="sortable"
-    :item-class="`${$style.sortableItem} q-mr-sm`"
-    item-key="id"
-  >
-    <template #item="{ item }">
-      {{ sortableName(item) }}
-      <m-tooltip>Sample tooltip</m-tooltip>
-    </template>
-  </m-sortable>
-  <!-- eslint-disable-next-line vue/v-on-function-call -->
-  <m-droppable :class="`${$style.droppable} q-mt-md`" @dropped="dropped">
-    D
-  </m-droppable>
+  <m-section>
+    <m-toggle v-model="disableDropping" label="Disable dropping" left-label />
+    <m-toggle v-model="disableSorting" label="Disable sorting" left-label />
+  </m-section>
+  <m-section>
+    <m-sortable
+      v-model="sortable1"
+      :class="$style.sortable"
+      group="sortable"
+      :item-class="`${$style.sortableItem} q-mr-sm`"
+      item-key="id"
+      pull
+      put
+      sort
+    >
+      <template #item="{ item }">
+        {{ sortableName(item) }}
+        <m-tooltip>Sample tooltip</m-tooltip>
+      </template>
+    </m-sortable>
+  </m-section>
+  <m-section>
+    <m-sortable
+      v-model="sortable2"
+      :class="$style.sortable"
+      group="sortable"
+      :item-class="`${$style.sortableItem} q-mr-sm`"
+      item-key="id"
+      pull
+      put
+      sort
+    >
+      <template #item="{ item }">
+        {{ sortableName(item) }}
+        <m-tooltip>Sample tooltip</m-tooltip>
+      </template>
+    </m-sortable>
+  </m-section>
+  <m-section>
+    <!-- eslint-disable-next-line vue/v-on-function-call -->
+    <m-droppable :class="$style.droppable" @dropped="dropped">D</m-droppable>
+  </m-section>
 </template>
 
 <style lang="scss" module>
