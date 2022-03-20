@@ -20,7 +20,9 @@ export default defineComponent({
     "generic-table": genericTable<TableItem>()
   },
   setup() {
-    const columnOrder = ref(new Map<string, number>());
+    const columnOrder = ref<ReadonlyMap<string, number>>(new Map());
+
+    const hiddenColumns = ref<ReadonlySet<string>>(new Set());
 
     const loading = ref(false);
 
@@ -44,6 +46,7 @@ export default defineComponent({
 
     return {
       columnOrder,
+      hiddenColumns,
       loading,
       multiselect,
       noData,
@@ -112,6 +115,7 @@ export default defineComponent({
     <template #fit>
       <generic-table
         v-model:columnOrder="columnOrder"
+        v-model:hiddenColumns="hiddenColumns"
         v-model:pagination="pagination"
         v-model:selected="selected"
         class="fit"
@@ -143,7 +147,7 @@ export default defineComponent({
             {{ selected.length }} selected
           </template>
           <q-space />
-          {{ pageTableRows.length }} of 1000
+          {{ pageTableRows.length }} out of 1000
         </template>
       </generic-table>
     </template>

@@ -11,6 +11,7 @@ export const ru = new Definitions({
     Confirm: "Подтверждение",
     DeselectAll: "Снять выделение",
     IconPicker: "Выбор иконки",
+    ManageColumns: "Управлять колонками",
     Of: "Из",
     Ok: "Ок",
     PickDate: "Выбор даты",

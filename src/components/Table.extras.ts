@@ -32,11 +32,13 @@ export interface ModuleIcons {
   readonly ascending: string;
   readonly descending: string;
   readonly deselectAll: string;
+  readonly manageColumns: string;
   readonly selectAll: string;
 }
 
 export interface ModuleWord {
   readonly DeselectAll: true;
+  readonly ManageColumns: true;
   readonly SelectAll: true;
 }
 
@@ -105,6 +107,8 @@ export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
 
 export const isColumnOrder = is.factory(is.map, is.string, is.number);
 
+export const isHiddenColumns = is.factory(is.set, is.string);
+
 export interface Field<T extends object = object> {
   /**
    * Returns formatted field.
@@ -122,10 +126,13 @@ export type GlobalTable<T extends object = object> = GlobalComponent<
 
 export type ColumnOrder = ReadonlyMap<string, number>;
 
+export type HiddenColumns = ReadonlySet<string>;
+
 export interface TableOwnProps<T extends object = object> {
   readonly columnOrder?: ColumnOrder;
   readonly columns?: Columns<T> | undefined;
   readonly externalSorting?: booleanU;
+  readonly hiddenColumns?: HiddenColumns;
   readonly multiselect?: boolean;
   /**
    * Emits column order.
@@ -133,6 +140,12 @@ export interface TableOwnProps<T extends object = object> {
    * @param value - Column order.
    */
   readonly "onUpdate:columnOrder"?: (value: ColumnOrder) => void;
+  /**
+   * Emits hidden columns.
+   *
+   * @param value - Hidden columns.
+   */
+  readonly "onUpdate:hiddenColumns"?: (value: HiddenColumns) => void;
   /**
    * Emits "pagination" value.
    *

@@ -11,6 +11,7 @@ export const en = new Definitions({
     Confirm: "Confirm",
     DeselectAll: "Deselect all",
     IconPicker: "Icon picker",
+    ManageColumns: "Manage columns",
     Of: "Of",
     Ok: "Ok",
     PickDate: "Pick date",

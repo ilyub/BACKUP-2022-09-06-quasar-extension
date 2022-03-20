@@ -10,6 +10,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
+import * as set from "@skylib/functions/es/set";
 import type {
   numberU,
   objects,
@@ -30,6 +31,7 @@ import type {
   Column,
   ColumnOrder,
   Columns,
+  HiddenColumns,
   Pagination,
   TableOwnProps,
   TableParentProps,
@@ -40,6 +42,7 @@ import {
   injectTableSettings,
   isColumnOrder,
   isColumnsFactory,
+  isHiddenColumns,
   isPagination,
   lang
 } from "./Table.extras";
@@ -53,11 +56,13 @@ export default defineComponent({
   components: {
     "m-sortable-column": genericSortable<Column>()
   },
+  inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
     columnOrder: propOptions.default(isColumnOrder, new Map()),
     columns: propOptions.default(isColumnsFactory(), []),
     externalSorting: propOptions.boolean(),
+    hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     multiselect: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
     rowKey: propOptions(is.stringU),
@@ -69,6 +74,9 @@ export default defineComponent({
   emits: {
     "update:columnOrder"(value: ColumnOrder) {
       return isColumnOrder(value);
+    },
+    "update:hiddenColumns"(value: HiddenColumns) {
+      return isHiddenColumns(value);
     },
     "update:pagination": (value: Pagination) => isPagination(value),
     "update:selected": (value: objects) => is.array.of(value, is.object)
@@ -162,9 +170,19 @@ export default defineComponent({
         return column.width;
       },
       empty: computed<boolean>(() => props.rows.length === 0),
-      itemClassFn(item: Column): string {
-        return item.sortable ? "cursor-pointer" : "";
-      },
+      icons,
+      lang,
+      manageColumns: ref(false),
+      manageColumnsRows: computed<Writable<Columns>>(() =>
+        props.columns
+          .map((column, index) => {
+            return {
+              ...column,
+              order: props.columnOrder.get(column.name) ?? 1000 + index
+            };
+          })
+          .sort((x, y) => x.order - y.order)
+      ),
       onScroll(details: VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
@@ -207,6 +225,7 @@ export default defineComponent({
       table,
       tableColumns: computed<Writable<Columns>>(() =>
         props.columns
+          .filter(column => !props.hiddenColumns.has(column.name))
           .map((column, index) => {
             return {
               ...column,
@@ -221,16 +240,24 @@ export default defineComponent({
           table.value.sort(column.name);
         }
       },
-      tableColumnsUpdate(columns: Columns): void {
+      tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
+      tableSelected: computed<Writable<objects>>(() =>
+        o.unfreeze(props.selected)
+      ),
+      updateColumnOrder(columns: Columns): void {
         emit(
           "update:columnOrder",
           new Map(columns.map((column, index) => [column.name, index]))
         );
       },
-      tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
-      tableSelected: computed<Writable<objects>>(() =>
-        o.unfreeze(props.selected)
-      ),
+      updateHiddenColumns(column: Column, show: boolean): void {
+        emit(
+          "update:hiddenColumns",
+          show
+            ? set.delete(props.hiddenColumns, column.name)
+            : set.add(props.hiddenColumns, column.name)
+        );
+      },
       updatePagination(pagination: Pagination): void {
         pagination = o.removeUndefinedKeys({
           ...props.pagination,
@@ -250,7 +277,9 @@ export default defineComponent({
 
         const sortBy2 = props.pagination.sortBy;
 
-        if (descending1 !== descending2 || sortBy1 !== sortBy2) {
+        if (descending1 === descending2 && sortBy1 === sortBy2) {
+          // Do nothing
+        } else {
           assert.not.empty(table.value);
           table.value.scrollTo(0, "start");
         }
@@ -262,6 +291,7 @@ export default defineComponent({
 
 <template>
   <q-table
+    v-bind="$attrs"
     ref="table"
     binary-state-sort
     class="m-table"
@@ -286,39 +316,43 @@ export default defineComponent({
     </template>
     <template #header="data">
       <slot :name="slotNames.header" v-bind="data">
-        <m-sortable-column
-          group="table"
-          handle=".m-table__header__wrapper__label"
-          item-class="m-table__header-cell"
-          :item-class-fn="itemClassFn"
-          item-key="name"
-          item-tag="th"
-          :model-value="tableColumns"
-          tag="tr"
-          @item-click="tableColumnsItemClick"
-          @update:model-value="tableColumnsUpdate"
-        >
-          <template #header>
-            <q-th v-if="selectByCheckbox" class="m-table__selection-cell">
-              <slot
-                :name="slotNames.headerSelection"
-                v-bind="{
-                  allSelected,
-                  allSelectedClick,
-                  allSelectedDisable,
-                  allSelectedIcon,
-                  allSelectedLabel
-                }"
-              >
-                <q-checkbox
-                  v-if="multiselect"
-                  v-model="data.selected"
-                  :disable="empty"
-                />
-              </slot>
-            </q-th>
-          </template>
-          <template #item="{ item: column }">
+        <q-tr>
+          <m-menu auto-close context-menu>
+            <q-list>
+              <m-list-item
+                :caption="lang.ManageColumns"
+                :icon="icons.manageColumns"
+                @click="manageColumns = true"
+              />
+            </q-list>
+          </m-menu>
+          <th v-if="selectByCheckbox" class="m-table__selection-cell">
+            <slot
+              :name="slotNames.headerSelection"
+              v-bind="{
+                allSelected,
+                allSelectedClick,
+                allSelectedDisable,
+                allSelectedIcon,
+                allSelectedLabel
+              }"
+            >
+              <q-checkbox
+                v-if="multiselect"
+                v-model="data.selected"
+                :disable="empty"
+              />
+            </slot>
+          </th>
+          <th
+            v-for="column in tableColumns"
+            :key="column.name"
+            class="m-table__header-cell"
+            :class="{
+              'cursor-pointer': column.sortable
+            }"
+            @click="tableColumnsItemClick(column)"
+          >
             <div
               class="m-table__header__wrapper"
               :style="{
@@ -362,11 +396,9 @@ export default defineComponent({
               :model-value="columnWidth(column)"
               @update:model-value="columnUpdateWidth(column, $event)"
             />
-          </template>
-          <template #footer>
-            <q-th class="m-table__final-cell" />
-          </template>
-        </m-sortable-column>
+          </th>
+          <th class="m-table__final-cell"></th>
+        </q-tr>
       </slot>
     </template>
     <template #body="data">
@@ -422,8 +454,9 @@ export default defineComponent({
               </slot>
             </div>
           </q-td>
-          <q-td class="m-table__final-cell" /> </q-tr
-      ></slot>
+          <q-td class="m-table__final-cell" />
+        </q-tr>
+      </slot>
     </template>
     <template
       v-if="slotNames.hasSome('bottom', 'steady-bottom')"
@@ -458,4 +491,49 @@ export default defineComponent({
       ></slot>
     </template>
   </q-table>
+  <q-dialog v-model="manageColumns">
+    <m-card :title="lang.ManageColumns">
+      <m-card-section>
+        <q-markup-table
+          :class="$style.manageColumnsTable"
+          flat
+          separator="horizontal"
+        >
+          <m-sortable-column
+            group="table"
+            item-key="name"
+            item-tag="q-tr"
+            :model-value="manageColumnsRows"
+            tag="tbody"
+            @update:model-value="updateColumnOrder"
+          >
+            <template #item="{ item: column }">
+              <q-tr>
+                <q-td :class="$style.manageColumnsLabel">
+                  {{ column.label }}
+                </q-td>
+                <q-td class="text-right">
+                  <q-checkbox
+                    :model-value="!hiddenColumns.has(column.name)"
+                    @update:model-value="updateHiddenColumns(column, $event)"
+                  />
+                </q-td>
+              </q-tr>
+            </template>
+          </m-sortable-column>
+        </q-markup-table>
+      </m-card-section>
+      <m-card-actions />
+    </m-card>
+  </q-dialog>
 </template>
+
+<style lang="scss" module>
+.manageColumnsTable {
+  overflow: hidden;
+}
+
+.manageColumnsLabel {
+  min-width: 300px;
+}
+</style>
