@@ -25,7 +25,10 @@ const items = [
 const props = {
   group,
   itemKey,
-  modelValue: items
+  modelValue: items,
+  pull: true,
+  put: true,
+  sort: true
 };
 
 test.each([
@@ -193,4 +196,25 @@ test.each([
     source.id,
     source.group
   );
+});
+
+test("itemClick", async () => {
+  const wrapper = vueTestUtils.mount(Sortable, {
+    global: testUtils.globalMountOptions({}),
+    props: {
+      group,
+      itemClass: "m-sortable__sample-item",
+      itemKey,
+      modelValue: items
+    }
+  });
+
+  const elem = testUtils.findElementFactory(".m-sortable__", wrapper);
+
+  const expected = [[items[0]], [items[1]], [items[2]]];
+
+  await elem("sample-item:nth-child(1)").trigger("click");
+  await elem("sample-item:nth-child(2)").trigger("click");
+  await elem("sample-item:nth-child(3)").trigger("click");
+  expect(wrapper.emitted("itemClick")).toStrictEqual(expected);
 });
