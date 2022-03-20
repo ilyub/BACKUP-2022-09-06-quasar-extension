@@ -53,6 +53,7 @@ module.exports = [
   "public",
   "quasar",
   "routes",
+  "samples",
   "style",
   "testUtils",
   "typings",
