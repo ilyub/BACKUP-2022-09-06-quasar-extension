@@ -345,7 +345,7 @@ export default defineComponent({
               </div>
               <div class="m-table__header__wrapper__label">
                 <slot
-                  :name="slotNames.bodyCell"
+                  :name="slotNames.headerCell"
                   v-bind="{
                     allSelected,
                     allSelectedClick,
