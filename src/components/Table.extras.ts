@@ -132,6 +132,7 @@ export interface TableOwnProps<T extends object = object> {
   readonly columns?: Columns<T> | undefined;
   readonly columnsOrder?: ColumnsOrder;
   readonly externalSorting?: booleanU;
+  readonly headerSeparator?: booleanU;
   readonly hiddenColumns?: HiddenColumns;
   readonly multiselect?: boolean;
   /**

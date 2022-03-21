@@ -139,6 +139,10 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
     position: relative;
     padding: 7px 0;
 
+    &.m-table__header-cell-separator {
+      border-right: 1px solid $table-border-color;
+    }
+
     .m-table__header__wrapper {
       display: flex;
       flex-wrap: nowrap;

@@ -62,6 +62,7 @@ export default defineComponent({
     columns: propOptions.default(isColumnsFactory(), []),
     columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
+    headerSeparator: propOptions.boolean(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     multiselect: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
@@ -288,7 +289,6 @@ export default defineComponent({
     :rows-per-page-options="[0]"
     :selected="tableSelected"
     :selection="selection"
-    separator="cell"
     :sort-method="sortMethod"
     virtual-scroll
     :virtual-scroll-item-size="48"
@@ -335,7 +335,8 @@ export default defineComponent({
             :key="column.name"
             class="m-table__header-cell"
             :class="{
-              'cursor-pointer': column.sortable
+              'cursor-pointer': column.sortable,
+              'm-table__header-cell-separator': headerSeparator
             }"
             @click="tableColumnsItemClick(column)"
           >

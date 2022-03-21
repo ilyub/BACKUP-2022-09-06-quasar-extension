@@ -3,6 +3,7 @@ import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
+import * as fn from "@skylib/functions/es/function";
 import * as o from "@skylib/functions/es/object";
 
 import type { Column, Columns, Pagination } from "../components/Table.extras";
@@ -23,6 +24,8 @@ export default defineComponent({
   setup() {
     const columnsOrder = ref<ReadonlyMap<string, number>>(new Map());
 
+    const headerSeparator = ref(false);
+
     const hiddenColumns = ref<ReadonlySet<string>>(new Set());
 
     const loading = ref(false);
@@ -41,6 +44,10 @@ export default defineComponent({
 
     const selectByRowClick = ref(false);
 
+    const separator = ref(false);
+
+    const shortData = ref(false);
+
     const multiselect = ref(false);
 
     const width1 = ref(200);
@@ -49,6 +56,7 @@ export default defineComponent({
 
     return {
       columnsOrder,
+      headerSeparator,
       hiddenColumns,
       loading,
       multiselect,
@@ -90,12 +98,15 @@ export default defineComponent({
       pageTableRows: computed<TableItems>(() => {
         if (noData.value) return [];
 
-        assert.not.empty(pagination.value.limit);
+        const ids = fn.run(() => {
+          if (shortData.value) return a.fromRange(1, 5);
 
-        const ids =
-          pagination.value.descending ?? false
+          assert.not.empty(pagination.value.limit);
+
+          return pagination.value.descending ?? false
             ? a.fromRange(1001 - pagination.value.limit, 1000)
             : a.fromRange(1, pagination.value.limit);
+        });
 
         return ids.map(id => {
           return {
@@ -108,7 +119,9 @@ export default defineComponent({
       resizable,
       selectByCheckbox,
       selectByRowClick,
-      selected: ref<TableItems>([])
+      selected: ref<TableItems>([]),
+      separator,
+      shortData
     };
   }
 });
@@ -125,20 +138,25 @@ export default defineComponent({
         class="fit"
         :columns="pageTableColumns"
         flat
+        :header-separator="headerSeparator"
         :loading="loading"
         :multiselect="multiselect"
         row-key="id"
         :rows="pageTableRows"
         :select-by-checkbox="selectByCheckbox"
         :select-by-row-click="selectByRowClick"
+        :separator="separator ? 'cell' : 'horizontal'"
       >
         <template #top>
+          <m-toggle v-model="headerSeparator" label="Header separator" />
           <m-toggle v-model="loading" label="Loading" />
           <m-toggle v-model="multiselect" label="Multi-select" />
           <m-toggle v-model="noData" label="No data" />
           <m-toggle v-model="resizable" label="Resizable" />
           <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
           <m-toggle v-model="selectByRowClick" label="Select by row click" />
+          <m-toggle v-model="separator" label="Separator" />
+          <m-toggle v-model="shortData" label="Short data" />
         </template>
         <template
           #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
