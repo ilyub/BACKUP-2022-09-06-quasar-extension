@@ -148,7 +148,7 @@ export default defineComponent({
         :separator="separator ? 'cell' : 'horizontal'"
       >
         <template #top>
-          <div class="m-button-group">
+          <m-buttons-group>
             <m-toggle v-model="headerSeparator" label="Header separator" />
             <m-toggle v-model="loading" label="Loading" />
             <m-toggle v-model="multiselect" label="Multi-select" />
@@ -158,7 +158,7 @@ export default defineComponent({
             <m-toggle v-model="selectByRowClick" label="Select by row click" />
             <m-toggle v-model="separator" label="Separator" />
             <m-toggle v-model="shortData" label="Short data" />
-          </div>
+          </m-buttons-group>
         </template>
         <template
           #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"

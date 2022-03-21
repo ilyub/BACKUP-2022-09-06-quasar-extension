@@ -2,8 +2,8 @@
 
 @import "~quasar/src/css/variables.sass";
 
-$m-button-group__spacing : map.get($space-sm, "x") !default;
-$m-icon-button-group__spacing : map.get($space-xs, "x") !default;
+$m-buttons-group__spacing : map.get($space-sm, "x") !default;
+$m-icon-buttons-group__spacing : map.get($space-xs, "x") !default;
 $m-indent__padding : map.get($space-lg, "x") !default;
 $m-page-section__spacing : map.get($space-lg, "y") !default;
 $m-section__spacing : map.get($space-md, "y") !default;
@@ -81,16 +81,16 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
   }
 }
 
-.m-button-group > * {
-  margin-right: $m-button-group__spacing;
+.m-buttons-group > * {
+  margin-right: $m-buttons-group__spacing;
 }
 
 .m-datetime-picker__time .q-time__header {
   display: none;
 }
 
-.m-icon-button-group > * {
-  margin-right: $m-icon-button-group__spacing;
+.m-icon-buttons-group > * {
+  margin-right: $m-icon-buttons-group__spacing;
 }
 
 .m-indent {

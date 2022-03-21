@@ -4,6 +4,8 @@ import type { GlobalBaseButton } from "./BaseButton.extras";
 import BaseButton from "./BaseButton.vue";
 import type { GlobalButton } from "./Button.extras";
 import Button from "./Button.vue";
+import type { GlobalButtonsGroup } from "./ButtonsGroup.extras";
+import ButtonsGroup from "./ButtonsGroup.vue";
 import type { GlobalCard } from "./Card.extras";
 import Card from "./Card.vue";
 import type { GlobalCardActions } from "./CardActions.extras";
@@ -23,6 +25,8 @@ import type { GlobalGroup } from "./Group.extras";
 import Group from "./Group.vue";
 import type { GlobalIconButton } from "./IconButton.extras";
 import IconButton from "./IconButton.vue";
+import type { GlobalIconButtonsGroup } from "./IconButtonsGroup.extras";
+import IconButtonsGroup from "./IconButtonsGroup.vue";
 import type { GlobalIconPicker } from "./IconPicker.extras";
 import IconPicker from "./IconPicker.vue";
 import type { GlobalIndent } from "./Indent.extras";
@@ -70,6 +74,7 @@ declare module "@vue/runtime-core" {
   export interface GlobalComponents {
     readonly "m-base-button": GlobalBaseButton;
     readonly "m-button": GlobalButton;
+    readonly "m-buttons-group": GlobalButtonsGroup;
     readonly "m-card": GlobalCard;
     readonly "m-card-actions": GlobalCardActions;
     readonly "m-card-section": GlobalCardSection;
@@ -79,6 +84,7 @@ declare module "@vue/runtime-core" {
     readonly "m-form-button": GlobalFormButton;
     readonly "m-group": GlobalGroup;
     readonly "m-icon-button": GlobalIconButton;
+    readonly "m-icon-buttons-group": GlobalIconButtonsGroup;
     readonly "m-icon-picker": GlobalIconPicker;
     readonly "m-indent": GlobalIndent;
     readonly "m-input": GlobalInput;
@@ -106,6 +112,7 @@ declare module "@vue/runtime-core" {
 export const components = o.freeze([
   BaseButton,
   Button,
+  ButtonsGroup,
   Card,
   CardActions,
   CardSection,
@@ -116,13 +123,14 @@ export const components = o.freeze([
   FormButton,
   Group,
   IconButton,
+  IconButtonsGroup,
   IconPicker,
   Indent,
   Input,
   Knob,
   LanguagePicker,
-  Menu,
   ListItem,
+  Menu,
   NumericInput,
   OptionGroup,
   PageLayout,
