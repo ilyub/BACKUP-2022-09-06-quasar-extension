@@ -148,15 +148,17 @@ export default defineComponent({
         :separator="separator ? 'cell' : 'horizontal'"
       >
         <template #top>
-          <m-toggle v-model="headerSeparator" label="Header separator" />
-          <m-toggle v-model="loading" label="Loading" />
-          <m-toggle v-model="multiselect" label="Multi-select" />
-          <m-toggle v-model="noData" label="No data" />
-          <m-toggle v-model="resizable" label="Resizable" />
-          <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
-          <m-toggle v-model="selectByRowClick" label="Select by row click" />
-          <m-toggle v-model="separator" label="Separator" />
-          <m-toggle v-model="shortData" label="Short data" />
+          <div class="m-button-group">
+            <m-toggle v-model="headerSeparator" label="Header separator" />
+            <m-toggle v-model="loading" label="Loading" />
+            <m-toggle v-model="multiselect" label="Multi-select" />
+            <m-toggle v-model="noData" label="No data" />
+            <m-toggle v-model="resizable" label="Resizable" />
+            <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
+            <m-toggle v-model="selectByRowClick" label="Select by row click" />
+            <m-toggle v-model="separator" label="Separator" />
+            <m-toggle v-model="shortData" label="Short data" />
+          </div>
         </template>
         <template
           #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"

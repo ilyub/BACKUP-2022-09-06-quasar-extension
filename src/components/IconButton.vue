@@ -23,7 +23,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-base-button class="m-icon-button-group" flat round>
+  <m-base-button class="m-icon-button" flat round>
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>

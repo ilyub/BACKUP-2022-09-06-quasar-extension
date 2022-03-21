@@ -81,16 +81,16 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
   }
 }
 
+.m-button-group > * {
+  margin-right: $m-button-group__spacing;
+}
+
 .m-datetime-picker__time .q-time__header {
   display: none;
 }
 
-.m-button-group + .m-button-group {
-  margin-left: $m-button-group__spacing;
-}
-
-.m-icon-button-group + .m-icon-button-group {
-  margin-left: $m-icon-button-group__spacing;
+.m-icon-button-group > * {
+  margin-right: $m-icon-button-group__spacing;
 }
 
 .m-indent {

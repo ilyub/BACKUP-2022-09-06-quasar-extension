@@ -8,5 +8,5 @@ test("formButton", () => {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("m-button-group");
+  expect(wrapper).toHaveClass("m-form-button");
 });
