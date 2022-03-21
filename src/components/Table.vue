@@ -405,7 +405,10 @@ export default defineComponent({
             :key="column.name"
             class="m-table__body-cell"
           >
-            <div class="m-table__body-cell__wrapper" :style="columnStyle">
+            <div
+              class="m-table__body-cell__wrapper"
+              :style="columnStyle(column)"
+            >
               <slot
                 :name="slotNames.bodyCell"
                 v-bind="{
