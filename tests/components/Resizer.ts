@@ -56,3 +56,29 @@ test.each([
     expect(wrapper.emitted("update:modelValue")).toStrictEqual(emitted);
   }
 });
+
+test.each([
+  {
+    exists: true,
+    modelValue: 100,
+    resizerSettings: { disable: false }
+  },
+  {
+    exists: false,
+    resizerSettings: { disable: false }
+  },
+  {
+    exists: false,
+    modelValue: 100,
+    resizerSettings: { disable: true }
+  }
+])("settings", ({ exists, modelValue, resizerSettings }) => {
+  const wrapper = vueTestUtils.mount(Resizer, {
+    global: testUtils.globalMountOptions({ resizerSettings }),
+    props: { modelValue }
+  });
+
+  const elem = testUtils.findElementFactory(".m-resizer__", wrapper);
+
+  expect(elem("root").exists()).toStrictEqual(exists);
+});

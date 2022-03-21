@@ -1,4 +1,6 @@
 <script lang="ts">
+// eslint-disable-next-line no-warning-comments
+// fixme: Get rid of m-resizer__root
 import { computed, defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
@@ -92,14 +94,14 @@ export default defineComponent({
   <div
     v-if="show"
     v-touch-pan.horizontal.mouse="handlePan"
-    :class="$style.root"
+    class="m-resizer m-resizer__root"
   >
     <slot :name="slotNames.default"></slot>
   </div>
 </template>
 
-<style lang="scss" module>
-.root {
+<style lang="scss">
+.m-resizer {
   position: absolute;
   z-index: 1000;
   top: 0;
