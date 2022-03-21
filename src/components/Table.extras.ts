@@ -129,9 +129,11 @@ export type ColumnsOrder = ReadonlyMap<string, number>;
 export type HiddenColumns = ReadonlySet<string>;
 
 export interface TableOwnProps<T extends object = object> {
+  readonly binaryStateSort?: booleanU;
   readonly columns?: Columns<T> | undefined;
   readonly columnsOrder?: ColumnsOrder;
   readonly externalSorting?: booleanU;
+  readonly flat?: booleanU;
   readonly headerSeparator?: booleanU;
   readonly hiddenColumns?: HiddenColumns;
   readonly multiselect?: boolean;
@@ -165,12 +167,15 @@ export interface TableOwnProps<T extends object = object> {
   readonly selectByCheckbox?: booleanU;
   readonly selectByRowClick?: booleanU;
   readonly selected?: readonly T[] | undefined;
+  readonly square?: booleanU;
 }
 
 export interface TableParentProps
   extends Omit<
     QTableProps,
+    | "binaryStateSort"
     | "columns"
+    | "flat"
     | "onUpdate:pagination"
     | "onUpdate:selected"
     | "pagination"
@@ -178,6 +183,7 @@ export interface TableParentProps
     | "rows"
     | "selected"
     | "selection"
+    | "square"
   > {}
 
 export interface TableProps<T extends object = object>
@@ -231,7 +237,10 @@ export interface TableSlots<T extends object = object>
 }
 
 export interface TableSettings {
+  readonly binaryStateSort: boolean;
+  readonly flat: boolean;
   readonly growPageBy: number;
+  readonly square: boolean;
 }
 
 export interface Pagination {
@@ -270,7 +279,10 @@ export const {
   test: testTableSettings
 } = createInjectable<TableSettings>(() => {
   return {
-    growPageBy: 10
+    binaryStateSort: false,
+    flat: false,
+    growPageBy: 10,
+    square: false
   };
 });
 

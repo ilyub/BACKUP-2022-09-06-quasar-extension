@@ -101,7 +101,10 @@ function provide(): void {
 
   provideTableSettings(() => {
     return {
-      growPageBy: 10
+      binaryStateSort: false,
+      flat: false,
+      growPageBy: 10,
+      square: false
     };
   });
 

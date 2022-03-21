@@ -59,9 +59,11 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
+    binaryStateSort: propOptions.booleanU(),
     columns: propOptions.default(isColumnsFactory(), []),
     columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
+    flat: propOptions.booleanU(),
     headerSeparator: propOptions.boolean(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     multiselect: propOptions.boolean(),
@@ -70,7 +72,8 @@ export default defineComponent({
     rows: propOptions.default(is.objects, []),
     selectByCheckbox: propOptions.boolean(),
     selectByRowClick: propOptions.boolean(),
-    selected: propOptions.default(is.objects, [])
+    selected: propOptions.default(is.objects, []),
+    square: propOptions.booleanU()
   },
   emits: {
     "update:columnsOrder"(value: ColumnsOrder) {
@@ -196,6 +199,7 @@ export default defineComponent({
 
         return "none";
       }),
+      settings,
       slotNames: useSlotsNames<TableSlots>()(
         "body",
         "body-cell",
@@ -280,9 +284,10 @@ export default defineComponent({
   <q-table
     v-bind="$attrs"
     ref="main"
-    binary-state-sort
+    :binary-state-sort="binaryStateSort ?? settings.binaryStateSort"
     class="m-table"
     :columns="tableColumns"
+    :flat="flat ?? settings.flat"
     :pagination="pagination"
     :row-key="rowKey"
     :rows="tableRows"
@@ -290,6 +295,7 @@ export default defineComponent({
     :selected="tableSelected"
     :selection="selection"
     :sort-method="sortMethod"
+    :square="square ?? settings.square"
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"

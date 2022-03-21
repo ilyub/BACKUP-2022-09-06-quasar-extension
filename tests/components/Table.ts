@@ -52,7 +52,10 @@ test.each([
     expectedHtml: "Sample row 1",
     expectedLimit: 25,
     externalSorting: false,
-    pagination: { limit: 15, sortBy: "name" },
+    pagination: {
+      limit: 15,
+      sortBy: "name"
+    },
     to: 14
   },
   {
@@ -61,8 +64,17 @@ test.each([
     expectedLimit: 45,
     externalSorting: true,
     extraPageOffset: "5px",
-    pageTableSettings: { growPageBy: 20 },
-    pagination: { descending: false, limit: 25, sortBy: "name" },
+    pageTableSettings: {
+      binaryStateSort: false,
+      flat: false,
+      growPageBy: 20,
+      square: false
+    },
+    pagination: {
+      descending: false,
+      limit: 25,
+      sortBy: "name"
+    },
     selected: [],
     to: 24
   }
