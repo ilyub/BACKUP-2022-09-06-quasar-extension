@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
@@ -37,8 +37,8 @@ export default defineComponent({
   name: "m-resizer",
   props: {
     max: propOptions(is.numberU),
-    min: propOptions.required(is.number),
-    modelValue: propOptions.required(is.number)
+    min: propOptions.default(is.number, 0),
+    modelValue: propOptions(is.numberU)
   },
   emits: {
     "update:modelValue": (value: number) => is.number(value)
@@ -48,6 +48,8 @@ export default defineComponent({
     validateProps<ResizerProps>(props);
 
     let initialValue: numberU;
+
+    const settings = injectResizerSettings();
 
     return {
       handlePan(event: unknown): void {
@@ -69,7 +71,9 @@ export default defineComponent({
           document.documentElement.style.cursor =
             limitedValue === value ? "ew-resize" : "not-allowed";
       },
-      settings: injectResizerSettings(),
+      show: computed<boolean>(
+        () => is.not.empty(props.modelValue) && !settings.value.disable
+      ),
       slotNames: useSlotsNames<ResizerSlots>()("default")
     };
 
@@ -86,7 +90,7 @@ export default defineComponent({
 
 <template>
   <div
-    v-if="!settings.disable"
+    v-if="show"
     v-touch-pan.horizontal.mouse="handlePan"
     :class="$style.root"
   >

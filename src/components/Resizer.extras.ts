@@ -9,8 +9,8 @@ export type GlobalResizer = GlobalComponent<ResizerProps, ResizerSlots>;
 
 export interface ResizerProps {
   readonly max?: numberU;
-  readonly min: number;
-  readonly modelValue: number;
+  readonly min?: numberU;
+  readonly modelValue?: numberU;
   /**
    * Emits model value.
    *
