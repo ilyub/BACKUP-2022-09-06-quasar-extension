@@ -30,6 +30,8 @@ export default defineComponent({
 
     const loading = ref(false);
 
+    const manageColumns = ref(false);
+
     const noData = ref(false);
 
     const pagination = ref<Pagination>({
@@ -59,6 +61,7 @@ export default defineComponent({
       headerSeparator,
       hiddenColumns,
       loading,
+      manageColumns,
       multiselect,
       noData,
       pageTableColumns: computed<Columns<TableItem>>(() => [
@@ -140,6 +143,7 @@ export default defineComponent({
         flat
         :header-separator="headerSeparator"
         :loading="loading"
+        :manage-columns="manageColumns"
         :multiselect="multiselect"
         row-key="id"
         :rows="pageTableRows"
@@ -151,6 +155,7 @@ export default defineComponent({
           <m-buttons-group>
             <m-toggle v-model="headerSeparator" label="Header separator" />
             <m-toggle v-model="loading" label="Loading" />
+            <m-toggle v-model="manageColumns" label="Manage columns" />
             <m-toggle v-model="multiselect" label="Multi-select" />
             <m-toggle v-model="noData" label="No data" />
             <m-toggle v-model="resizable" label="Resizable" />

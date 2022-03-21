@@ -136,6 +136,7 @@ export interface TableOwnProps<T extends object = object> {
   readonly flat?: booleanU;
   readonly headerSeparator?: booleanU;
   readonly hiddenColumns?: HiddenColumns;
+  readonly manageColumns?: boolean;
   readonly multiselect?: boolean;
   /**
    * Emits column order.

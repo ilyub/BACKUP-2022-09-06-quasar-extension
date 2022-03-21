@@ -66,6 +66,7 @@ export default defineComponent({
     flat: propOptions.booleanU(),
     headerSeparator: propOptions.boolean(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
+    manageColumns: propOptions.boolean(),
     multiselect: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
     rowKey: propOptions(is.stringU),
@@ -163,7 +164,6 @@ export default defineComponent({
       icons,
       lang,
       main,
-      manageColumns: ref(false),
       manageColumnsRows: computed<Writable<Columns>>(() =>
         props.columns
           .map((column, index) => {
@@ -174,6 +174,7 @@ export default defineComponent({
           })
           .sort((x, y) => x.order - y.order)
       ),
+      manageColumnsShow: ref(false),
       onScroll(details: VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
@@ -309,12 +310,12 @@ export default defineComponent({
     <template #header="data">
       <slot :name="slotNames.header" v-bind="data">
         <q-tr>
-          <m-menu auto-close context-menu>
+          <m-menu v-if="manageColumns" auto-close context-menu>
             <q-list>
               <m-list-item
                 :caption="lang.ManageColumns"
                 :icon="icons.manageColumns"
-                @click="manageColumns = true"
+                @click="manageColumnsShow = true"
               />
             </q-list>
           </m-menu>
@@ -472,7 +473,7 @@ export default defineComponent({
       ></slot>
     </template>
   </q-table>
-  <q-dialog ref="dialog" v-model="manageColumns">
+  <q-dialog ref="dialog" v-model="manageColumnsShow">
     <m-card class="m-table__dialog" :title="lang.ManageColumns">
       <m-card-section>
         <q-markup-table
@@ -482,10 +483,11 @@ export default defineComponent({
         >
           <m-sortable-column
             class="m-table__dialog__sortable"
-            group="table"
+            group="m-table__column-management"
             item-key="name"
             item-tag="q-tr"
             :model-value="manageColumnsRows"
+            sort
             tag="tbody"
             @update:model-value="updateColumnsOrder"
           >
