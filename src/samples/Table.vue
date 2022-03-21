@@ -3,8 +3,9 @@ import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
+import * as o from "@skylib/functions/es/object";
 
-import type { Columns, Pagination } from "../components/Table.extras";
+import type { Column, Columns, Pagination } from "../components/Table.extras";
 import { genericTable } from "../components/Table.generic";
 
 interface TableItem {
@@ -34,6 +35,8 @@ export default defineComponent({
       sortBy: "name"
     });
 
+    const resizable = ref(false);
+
     const selectByCheckbox = ref(false);
 
     const selectByRowClick = ref(false);
@@ -51,7 +54,7 @@ export default defineComponent({
       multiselect,
       noData,
       pageTableColumns: computed<Columns<TableItem>>(() => [
-        {
+        o.removeUndefinedKeys<Column<TableItem>>({
           align: "left",
           field(row): string {
             return `${row.name}!1!1234567890`;
@@ -67,9 +70,9 @@ export default defineComponent({
           updateWidth(newWidth): void {
             width1.value = newWidth;
           },
-          width: width1.value
-        },
-        {
+          width: resizable.value ? width1.value : undefined
+        }),
+        o.removeUndefinedKeys<Column<TableItem>>({
           align: "left",
           field(row): string {
             return `${row.name}!2!1234567890`;
@@ -81,8 +84,8 @@ export default defineComponent({
           updateWidth(newWidth): void {
             width2.value = newWidth;
           },
-          width: width2.value
-        }
+          width: resizable.value ? width2.value : undefined
+        })
       ]),
       pageTableRows: computed<TableItems>(() => {
         if (noData.value) return [];
@@ -102,6 +105,7 @@ export default defineComponent({
         });
       }),
       pagination,
+      resizable,
       selectByCheckbox,
       selectByRowClick,
       selected: ref<TableItems>([])
@@ -132,6 +136,7 @@ export default defineComponent({
           <m-toggle v-model="loading" label="Loading" />
           <m-toggle v-model="multiselect" label="Multi-select" />
           <m-toggle v-model="noData" label="No data" />
+          <m-toggle v-model="resizable" label="Resizable" />
           <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
           <m-toggle v-model="selectByRowClick" label="Select by row click" />
         </template>

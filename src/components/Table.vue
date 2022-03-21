@@ -153,6 +153,9 @@ export default defineComponent({
       },
       dialog,
       empty: computed<boolean>(() => props.rows.length === 0),
+      finalCell: computed<boolean>(() =>
+        props.columns.some(column => is.not.empty(column.width))
+      ),
       icons,
       lang,
       main,
@@ -372,7 +375,7 @@ export default defineComponent({
               @update:model-value="column.updateWidth?.($event)"
             />
           </th>
-          <th class="m-table__final-cell"></th>
+          <th v-if="finalCell" class="m-table__final-cell"></th>
         </q-tr>
       </slot>
     </template>
@@ -425,7 +428,7 @@ export default defineComponent({
               </slot>
             </div>
           </q-td>
-          <q-td class="m-table__final-cell" />
+          <q-td v-if="finalCell" class="m-table__final-cell" />
         </q-tr>
       </slot>
     </template>
