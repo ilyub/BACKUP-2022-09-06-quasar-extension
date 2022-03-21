@@ -241,6 +241,7 @@ export interface TableSettings {
   readonly binaryStateSort: boolean;
   readonly flat: boolean;
   readonly growPageBy: number;
+  readonly headerSeparator: boolean;
   readonly square: boolean;
 }
 
@@ -283,6 +284,7 @@ export const {
     binaryStateSort: false,
     flat: false,
     growPageBy: 10,
+    headerSeparator: false,
     square: false
   };
 });

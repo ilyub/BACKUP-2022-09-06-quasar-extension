@@ -68,6 +68,7 @@ test.each([
       binaryStateSort: false,
       flat: false,
       growPageBy: 20,
+      headerSeparator: false,
       square: false
     },
     pagination: {

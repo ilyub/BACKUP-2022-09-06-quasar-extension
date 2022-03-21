@@ -64,7 +64,7 @@ export default defineComponent({
     columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
     flat: propOptions.booleanU(),
-    headerSeparator: propOptions.boolean(),
+    headerSeparator: propOptions.booleanU(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     manageColumns: propOptions.boolean(),
     multiselect: propOptions.boolean(),
@@ -343,7 +343,8 @@ export default defineComponent({
             class="m-table__header-cell"
             :class="{
               'cursor-pointer': column.sortable,
-              'm-table__header-cell-separator': headerSeparator
+              'm-table__header-cell-separator':
+                headerSeparator ?? settings.headerSeparator
             }"
             @click="tableColumnsItemClick(column)"
           >

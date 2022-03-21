@@ -104,6 +104,7 @@ function provide(): void {
       binaryStateSort: false,
       flat: false,
       growPageBy: 10,
+      headerSeparator: false,
       square: false
     };
   });
