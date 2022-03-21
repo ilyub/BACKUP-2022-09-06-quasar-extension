@@ -2,9 +2,11 @@ import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
 import * as assert from "@skylib/functions/es/assertions";
+import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
 import * as o from "@skylib/functions/es/object";
+import * as reflect from "@skylib/functions/es/reflect";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
 
@@ -22,11 +24,6 @@ import * as testUtils from "@/testUtils";
 // fixme: Use @skylib/functions
 function typedef<T>(source: T): T {
   return source;
-}
-
-interface Row {
-  readonly id: string;
-  readonly name: string;
 }
 
 const columns: Columns = [
@@ -242,11 +239,11 @@ test("rowClick", async () => {
     const wrapper = vueTestUtils.mount(Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
-        columns: typedef<Columns<Row>>([
+        columns: typedef<Columns>([
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label",
             name: "column"
@@ -290,11 +287,11 @@ test.each([
     const wrapper = vueTestUtils.mount(Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
-        columns: typedef<Columns<Row>>([
+        columns: typedef<Columns>([
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label",
             name: "column"
@@ -336,10 +333,10 @@ test.each([
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
         columns: [
-          o.removeUndefinedKeys<Column<Row>>({
+          o.removeUndefinedKeys<Column>({
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label",
             maxWidth,
@@ -379,12 +376,12 @@ test.each([
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+      props: o.removeUndefinedKeys<TableOwnProps>({
         columns: [
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label 1",
             name: "column1"
@@ -392,7 +389,7 @@ test.each([
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label 2",
             name: "column2"
@@ -446,12 +443,12 @@ test.each([
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+      props: o.removeUndefinedKeys<TableOwnProps>({
         columns: [
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label 1",
             name: "column1"
@@ -459,7 +456,7 @@ test.each([
           {
             align: "left",
             field(row): string {
-              return row.name;
+              return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label 2",
             name: "column2"
@@ -508,12 +505,12 @@ test.each([
     const wrapper = testUtils.extendWrapper(
       vueTestUtils.mount(Table, {
         global: testUtils.globalMountOptions(),
-        props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+        props: o.removeUndefinedKeys<TableOwnProps>({
           columns: [
             {
               align: "left",
               field(row): string {
-                return row.name;
+                return cast.string(reflect.get(row, "name"));
               },
               label: "Sample label",
               name: "column",
