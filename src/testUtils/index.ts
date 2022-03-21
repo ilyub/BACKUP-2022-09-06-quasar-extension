@@ -5,9 +5,11 @@ import type * as vueTestUtils from "@vue/test-utils";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
+import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
+import * as reflect from "@skylib/functions/es/reflect";
 import type * as testUtils from "@skylib/functions/es/testUtils";
 
 import { components } from "../components";
@@ -90,6 +92,33 @@ export interface TouchPanMock {
   readonly triggerTouchPan: (...args: unknown[]) => void;
 }
 
+export interface WrapperExtension {
+  /**
+   * Clears emitted events.
+   */
+  readonly clearEmitted: () => void;
+}
+
+export type ExtendedWrapper<T extends vueTestUtils.VueWrapper> = T &
+  WrapperExtension;
+
+/**
+ * Extends wrapper.
+ *
+ * @param wrapper - Wrapper.
+ * @returns Extended wrapper.
+ */
+export function extendWrapper<T extends vueTestUtils.VueWrapper>(
+  wrapper: T
+): ExtendedWrapper<T> {
+  reflect.set(wrapper, "clearEmitted", (): void => {
+    for (const events of Object.values(wrapper.emitted())) events.length = 0;
+  });
+
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
+  return wrapper as ExtendedWrapper<T>;
+}
+
 /**
  * Find component factory.
  *
@@ -103,14 +132,32 @@ export function findFactory(
   wrapper: vueTestUtils.VueWrapper<any>
 ): {
   readonly comp: ReturnType<typeof findComponentFactory>;
+  readonly compByRef: ReturnType<typeof findComponentByRefFactory>;
   readonly elem: ReturnType<typeof findElementFactory>;
   readonly elems: ReturnType<typeof findElementsFactory>;
 } {
   return {
     comp: findComponentFactory(prefix, wrapper),
+    compByRef: findComponentByRefFactory(wrapper),
     elem: findElementFactory(prefix, wrapper),
     elems: findElementsFactory(prefix, wrapper)
   };
+}
+
+/**
+ * Find component factory.
+ *
+ * @param wrapper - Wrapper.
+ * @returns Find component function.
+ */
+export function findComponentByRefFactory(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  wrapper: vueTestUtils.VueWrapper<any>
+) {
+  return (ref: string): vueTestUtils.VueWrapper =>
+    wrapper.findComponent<ComponentPublicInstance>({
+      ref
+    });
 }
 
 /**
@@ -125,10 +172,23 @@ export function findComponentFactory(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   wrapper: vueTestUtils.VueWrapper<any>
 ) {
-  return (ref: ComponentConstructor | string): vueTestUtils.VueWrapper =>
-    wrapper.findComponent<ComponentPublicInstance>(
+  return (
+    ref: ComponentConstructor | string,
+    index = 0
+  ): vueTestUtils.VueWrapper => {
+    if (index) {
+      assert.string(ref);
+
+      return a.get(
+        wrapper.findAllComponents<ComponentPublicInstance>(`${prefix}${ref}`),
+        index
+      );
+    }
+
+    return wrapper.findComponent<ComponentPublicInstance>(
       is.string(ref) ? `${prefix}${ref}` : ref
     );
+  };
 }
 
 /**
