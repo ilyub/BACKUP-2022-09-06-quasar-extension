@@ -105,7 +105,7 @@ export interface Column<T extends object = object> {
 
 export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
 
-export const isColumnOrder = is.factory(is.map, is.string, is.number);
+export const isColumnsOrder = is.factory(is.map, is.string, is.number);
 
 export const isHiddenColumns = is.factory(is.set, is.string);
 
@@ -124,13 +124,13 @@ export type GlobalTable<T extends object = object> = GlobalComponent<
   TableSlots<T>
 >;
 
-export type ColumnOrder = ReadonlyMap<string, number>;
+export type ColumnsOrder = ReadonlyMap<string, number>;
 
 export type HiddenColumns = ReadonlySet<string>;
 
 export interface TableOwnProps<T extends object = object> {
-  readonly columnOrder?: ColumnOrder;
   readonly columns?: Columns<T> | undefined;
+  readonly columnsOrder?: ColumnsOrder;
   readonly externalSorting?: booleanU;
   readonly hiddenColumns?: HiddenColumns;
   readonly multiselect?: boolean;
@@ -139,7 +139,7 @@ export interface TableOwnProps<T extends object = object> {
    *
    * @param value - Column order.
    */
-  readonly "onUpdate:columnOrder"?: (value: ColumnOrder) => void;
+  readonly "onUpdate:columnsOrder"?: (value: ColumnsOrder) => void;
   /**
    * Emits hidden columns.
    *

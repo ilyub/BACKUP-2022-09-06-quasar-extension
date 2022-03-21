@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-warning-comments
 // fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
 import * as _ from "lodash-es";
-import type { QTable } from "quasar";
+import type { QDialog, QTable } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
 import * as a from "@skylib/functions/es/array";
@@ -12,8 +12,8 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import * as set from "@skylib/functions/es/set";
 import type {
-  numberU,
   objects,
+  ReadonlyIndexedObject,
   Writable
 } from "@skylib/functions/es/types/core";
 
@@ -29,8 +29,8 @@ import { genericSortable } from "./Sortable.generic";
 import type {
   AllSelectedData,
   Column,
-  ColumnOrder,
   Columns,
+  ColumnsOrder,
   HiddenColumns,
   Pagination,
   TableOwnProps,
@@ -40,8 +40,8 @@ import type {
 import {
   icons,
   injectTableSettings,
-  isColumnOrder,
   isColumnsFactory,
+  isColumnsOrder,
   isHiddenColumns,
   isPagination,
   lang
@@ -59,8 +59,8 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
-    columnOrder: propOptions.default(isColumnOrder, new Map()),
     columns: propOptions.default(isColumnsFactory(), []),
+    columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     multiselect: propOptions.boolean(),
@@ -72,8 +72,8 @@ export default defineComponent({
     selected: propOptions.default(is.objects, [])
   },
   emits: {
-    "update:columnOrder"(value: ColumnOrder) {
-      return isColumnOrder(value);
+    "update:columnsOrder"(value: ColumnsOrder) {
+      return isColumnsOrder(value);
     },
     "update:hiddenColumns"(value: HiddenColumns) {
       return isHiddenColumns(value);
@@ -122,7 +122,9 @@ export default defineComponent({
 
     const settings = injectTableSettings();
 
-    const table = ref<QTable | undefined>(undefined);
+    const main = ref<QTable | undefined>(undefined);
+
+    const dialog = ref<QDialog | undefined>(undefined);
 
     return {
       allSelected,
@@ -130,55 +132,37 @@ export default defineComponent({
       allSelectedDisable,
       allSelectedIcon,
       allSelectedLabel,
-      columnCssMaxWidth(column: Column): string {
-        return is.not.empty(column.maxWidth) ? `${column.maxWidth}px` : "none";
-      },
-      columnCssMinWidth(column: Column): string {
-        return is.not.empty(column.minWidth) ? `${column.minWidth}px` : "0";
-      },
-      columnCssWidth(column: Column): string {
-        return is.not.empty(column.width) ? `${column.width}px` : "auto";
-      },
-      // eslint-disable-next-line no-warning-comments
-      // fixme: Use generic table version
-      columnMaxWidth(column: Column): numberU {
-        return column.maxWidth;
-      },
-      // eslint-disable-next-line no-warning-comments
-      // fixme: Use generic table version
-      columnMinWidth(column: Column): number {
-        return column.minWidth ?? 0;
-      },
-      columnResizable(column: Column): boolean {
-        return is.not.empty(column.width);
-      },
-      columnShowSortingIcon(column: Column): boolean {
-        return column.name === props.pagination.sortBy;
-      },
       columnSortingIcon: computed<string>(() =>
         props.pagination.descending ?? false
           ? icons.descending
           : icons.ascending
       ),
-      columnUpdateWidth(column: Column, newWidth: number): void {
-        assert.not.empty(column.updateWidth);
-        column.updateWidth(newWidth);
+      columnSortingIconShow(column: Column): boolean {
+        return column.name === props.pagination.sortBy;
       },
-      columnWidth(column: Column): number {
-        assert.not.empty(column.width);
-
-        return column.width;
+      columnStyle(column: Column): ReadonlyIndexedObject<string> {
+        return o.removeUndefinedKeys({
+          maxWidth: is.not.empty(column.maxWidth)
+            ? `${column.maxWidth}px`
+            : undefined,
+          minWidth: is.not.empty(column.minWidth)
+            ? `${column.minWidth}px`
+            : undefined,
+          width: is.not.empty(column.width) ? `${column.width}px` : undefined
+        });
       },
+      dialog,
       empty: computed<boolean>(() => props.rows.length === 0),
       icons,
       lang,
+      main,
       manageColumns: ref(false),
       manageColumnsRows: computed<Writable<Columns>>(() =>
         props.columns
           .map((column, index) => {
             return {
               ...column,
-              order: props.columnOrder.get(column.name) ?? 1000 + index
+              order: props.columnsOrder.get(column.name) ?? 1000 + index
             };
           })
           .sort((x, y) => x.order - y.order)
@@ -222,31 +206,30 @@ export default defineComponent({
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
       ),
-      table,
       tableColumns: computed<Writable<Columns>>(() =>
         props.columns
           .filter(column => !props.hiddenColumns.has(column.name))
           .map((column, index) => {
             return {
               ...column,
-              order: props.columnOrder.get(column.name) ?? 1000 + index
+              order: props.columnsOrder.get(column.name) ?? 1000 + index
             };
           })
           .sort((x, y) => x.order - y.order)
       ),
       tableColumnsItemClick(column: Column): void {
         if (column.sortable) {
-          assert.not.empty(table.value);
-          table.value.sort(column.name);
+          assert.not.empty(main.value);
+          main.value.sort(column.name);
         }
       },
       tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
       tableSelected: computed<Writable<objects>>(() =>
         o.unfreeze(props.selected)
       ),
-      updateColumnOrder(columns: Columns): void {
+      updateColumnsOrder(columns: Columns): void {
         emit(
-          "update:columnOrder",
+          "update:columnsOrder",
           new Map(columns.map((column, index) => [column.name, index]))
         );
       },
@@ -280,8 +263,8 @@ export default defineComponent({
         if (descending1 === descending2 && sortBy1 === sortBy2) {
           // Do nothing
         } else {
-          assert.not.empty(table.value);
-          table.value.scrollTo(0, "start");
+          assert.not.empty(main.value);
+          main.value.scrollTo(0, "start");
         }
       }
     };
@@ -292,7 +275,7 @@ export default defineComponent({
 <template>
   <q-table
     v-bind="$attrs"
-    ref="table"
+    ref="main"
     binary-state-sort
     class="m-table"
     :columns="tableColumns"
@@ -353,17 +336,10 @@ export default defineComponent({
             }"
             @click="tableColumnsItemClick(column)"
           >
-            <div
-              class="m-table__header__wrapper"
-              :style="{
-                maxWidth: columnCssMaxWidth(column),
-                minWidth: columnCssMinWidth(column),
-                width: columnCssWidth(column)
-              }"
-            >
+            <div class="m-table__header__wrapper" :style="columnStyle(column)">
               <div class="m-table__header__wrapper__left">
                 <q-icon
-                  v-if="columnShowSortingIcon(column)"
+                  v-if="columnSortingIconShow(column)"
                   :name="columnSortingIcon"
                 />
               </div>
@@ -384,17 +360,16 @@ export default defineComponent({
               </div>
               <div class="m-table__header__wrapper__right">
                 <q-icon
-                  v-if="columnShowSortingIcon(column)"
+                  v-if="columnSortingIconShow(column)"
                   :name="columnSortingIcon"
                 />
               </div>
             </div>
             <m-resizer
-              v-if="columnResizable(column)"
-              :max="columnMaxWidth(column)"
-              :min="columnMinWidth(column)"
-              :model-value="columnWidth(column)"
-              @update:model-value="columnUpdateWidth(column, $event)"
+              :max="column.maxWidth"
+              :min="column.minWidth"
+              :model-value="column.width"
+              @update:model-value="column.updateWidth?.($event)"
             />
           </th>
           <th class="m-table__final-cell"></th>
@@ -430,14 +405,7 @@ export default defineComponent({
             :key="column.name"
             class="m-table__body-cell"
           >
-            <div
-              class="m-table__body-cell__wrapper"
-              :style="{
-                maxWidth: columnCssMaxWidth(column),
-                minWidth: columnCssMinWidth(column),
-                width: columnCssWidth(column)
-              }"
-            >
+            <div class="m-table__body-cell__wrapper" :style="columnStyle">
               <slot
                 :name="slotNames.bodyCell"
                 v-bind="{
@@ -491,8 +459,8 @@ export default defineComponent({
       ></slot>
     </template>
   </q-table>
-  <q-dialog v-model="manageColumns">
-    <m-card :title="lang.ManageColumns">
+  <q-dialog ref="dialog" v-model="manageColumns">
+    <m-card class="m-table__dialog" :title="lang.ManageColumns">
       <m-card-section>
         <q-markup-table
           :class="$style.manageColumnsTable"
@@ -500,12 +468,13 @@ export default defineComponent({
           separator="horizontal"
         >
           <m-sortable-column
+            class="m-table__dialog__sortable"
             group="table"
             item-key="name"
             item-tag="q-tr"
             :model-value="manageColumnsRows"
             tag="tbody"
-            @update:model-value="updateColumnOrder"
+            @update:model-value="updateColumnsOrder"
           >
             <template #item="{ item: column }">
               <q-tr>
@@ -514,6 +483,7 @@ export default defineComponent({
                 </q-td>
                 <q-td class="text-right">
                   <q-checkbox
+                    class="m-table__dialog__hidden-column"
                     :model-value="!hiddenColumns.has(column.name)"
                     @update:model-value="updateHiddenColumns(column, $event)"
                   />

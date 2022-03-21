@@ -1,7 +1,6 @@
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
@@ -10,9 +9,25 @@ import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
 
 import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
-import type { Columns, Pagination } from "@/components/Table.extras";
+import type {
+  Column,
+  Columns,
+  Pagination,
+  TableOwnProps
+} from "@/components/Table.extras";
 import Table from "@/components/Table.vue";
 import * as testUtils from "@/testUtils";
+
+// eslint-disable-next-line no-warning-comments
+// fixme: Use @skylib/functions
+function typedef<T>(source: T): T {
+  return source;
+}
+
+interface Row {
+  readonly id: string;
+  readonly name: string;
+}
 
 const columns: Columns = [
   {
@@ -28,9 +43,9 @@ const columns: Columns = [
 ];
 
 const rows = [
-  { key: "key1", name: "Sample row 1" },
-  { key: "key2", name: "Sample row 2" },
-  { key: "key3", name: "Sample row 3" }
+  { id: "key1", name: "Sample row 1" },
+  { id: "key2", name: "Sample row 2" },
+  { id: "key3", name: "Sample row 3" }
 ];
 
 beforeAll(functionsTestUtils.installFakeTimer);
@@ -79,7 +94,7 @@ test.each([
           externalSorting,
           extraPageOffset,
           pagination,
-          rowKey: "key",
+          rowKey: "id",
           rows,
           selected
         }),
@@ -95,7 +110,7 @@ test.each([
       const table = wrapper.findComponent(QTable);
 
       {
-        await wait(1000);
+        await wait(100);
         expect(table.html()).toInclude(expectedHtml);
       }
 
@@ -104,7 +119,7 @@ test.each([
 
         emittedSelected.push([event]);
         table.vm.$emit("update:selected", event);
-        await wait(1000);
+        await wait(100);
         expect(wrapper.emitted("update:selected")).toStrictEqual(
           emittedSelected
         );
@@ -176,26 +191,6 @@ test.each([
   }
 );
 
-test("row click", () => {
-  const wrapper = vueTestUtils.mount(Table, {
-    global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys({
-      columns,
-      rowKey: "key",
-      rows,
-      selectByRowClick: true,
-      selected: []
-    })
-  });
-
-  const table = wrapper.findComponent(QTable);
-
-  const row = a.get(rows, 1);
-
-  table.vm.$emit("rowClick", undefined, row, 1);
-  expect(wrapper.emitted("update:selected")).toStrictEqual([[[row]]]);
-});
-
 test.each([
   {
     expectedEmitted: [[rows]],
@@ -217,7 +212,7 @@ test.each([
     global: testUtils.globalMountOptions(),
     props: o.removeUndefinedKeys({
       columns,
-      rowKey: "key",
+      rowKey: "id",
       rows,
       selectByRowClick: true,
       selected
@@ -238,4 +233,320 @@ test.each([
   expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
   await elem("steady-bottom").trigger("click");
   expect(wrapper.emitted("update:selected")).toStrictEqual(expectedEmitted);
+});
+
+test("rowClick", async () => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys({
+        columns: typedef<Columns<Row>>([
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label",
+            name: "column"
+          }
+        ]),
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ],
+        selectByRowClick: true
+      })
+    });
+
+    const comp = testUtils.findComponentFactory(".m-table__", wrapper);
+
+    await wait(100);
+    await comp("select-by-row-click").trigger("click");
+    expect(wrapper.emitted("update:selected")).toStrictEqual([[[rows[0]]]]);
+  });
+});
+
+test.each([
+  {
+    expectedSelection: "none"
+  },
+  {
+    expectedSelection: "single",
+    multiselect: false,
+    selectByCheckbox: true
+  },
+  {
+    expectedSelection: "multiple",
+    multiselect: true,
+    selectByRowClick: true
+  }
+])(
+  "selection",
+  ({ expectedSelection, multiselect, selectByCheckbox, selectByRowClick }) => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys({
+        columns: typedef<Columns<Row>>([
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label",
+            name: "column"
+          }
+        ]),
+        multiselect,
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ],
+        selectByCheckbox,
+        selectByRowClick
+      })
+    });
+
+    const compByRef = testUtils.findComponentByRefFactory(wrapper);
+
+    const main = compByRef("main");
+
+    expect(main.props("selection")).toStrictEqual(expectedSelection);
+  }
+);
+
+test.each([
+  {},
+  {
+    expectedStyle: "max-width: 300px; min-width: 100px; width: 200px;",
+    maxWidth: 300,
+    minWidth: 100,
+    width: 200
+  }
+])("selection", async ({ expectedStyle, maxWidth, minWidth, width }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys({
+        columns: [
+          o.removeUndefinedKeys<Column<Row>>({
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label",
+            maxWidth,
+            minWidth,
+            name: "column",
+            width
+          })
+        ],
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ]
+      })
+    });
+
+    const elem = testUtils.findElementFactory(".m-table__", wrapper);
+
+    await wait(100);
+    expect(elem("header__wrapper").attributes("style")).toBe(expectedStyle);
+  });
+});
+
+test.each([
+  {
+    expected: [[new Set()]],
+    index: 0
+  },
+  {
+    expected: [[new Set(["column1", "column2"])]],
+    index: 1
+  }
+])("hiddenColumns", async ({ expected, index }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+        columns: [
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label 1",
+            name: "column1"
+          },
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label 2",
+            name: "column2"
+          }
+        ],
+        hiddenColumns: new Set(["column1"]),
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ]
+      })
+    });
+
+    const { comp, compByRef } = testUtils.findFactory(".m-table__", wrapper);
+
+    compByRef("dialog").vm.$emit("update:modelValue", true);
+    await wait(100);
+    await comp("dialog__hidden-column", index).trigger("click");
+    expect(wrapper.emitted("update:hiddenColumns")).toStrictEqual(expected);
+  });
+});
+
+test.each([
+  {
+    expected: [
+      [
+        new Map([
+          ["column1", 0],
+          ["column2", 1]
+        ])
+      ]
+    ],
+    modelValue: [{ name: "column1" }, { name: "column2" }]
+  },
+  {
+    expected: [
+      [
+        new Map([
+          ["column2", 0],
+          ["column1", 1]
+        ])
+      ]
+    ],
+    modelValue: [{ name: "column2" }, { name: "column1" }]
+  }
+])("columnsOrder", async ({ expected, modelValue }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+        columns: [
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label 1",
+            name: "column1"
+          },
+          {
+            align: "left",
+            field(row): string {
+              return row.name;
+            },
+            label: "Sample label 2",
+            name: "column2"
+          }
+        ],
+        columnsOrder: new Map([["column2", 0]]),
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ]
+      })
+    });
+
+    const { comp, compByRef } = testUtils.findFactory(".m-table__", wrapper);
+
+    compByRef("dialog").vm.$emit("update:modelValue", true);
+    await wait(100);
+    comp("dialog__sortable").vm.$emit("update:modelValue", modelValue);
+    expect(wrapper.emitted("update:columnsOrder")).toStrictEqual(expected);
+  });
+});
+
+test.each([
+  {
+    pagination: {
+      descending: false,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: "column"
+    }
+  },
+  {
+    pagination: {
+      descending: true,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: "column"
+    }
+  }
+])("columnSorting", async ({ pagination }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = testUtils.extendWrapper(
+      vueTestUtils.mount(Table, {
+        global: testUtils.globalMountOptions(),
+        props: o.removeUndefinedKeys<TableOwnProps<Row>>({
+          columns: [
+            {
+              align: "left",
+              field(row): string {
+                return row.name;
+              },
+              label: "Sample label",
+              name: "column",
+              sortable: true
+            }
+          ],
+          pagination,
+          rowKey: "id",
+          rows: [
+            { id: "key1", name: "Sample row 1" },
+            { id: "key2", name: "Sample row 2" },
+            { id: "key3", name: "Sample row 3" }
+          ]
+        })
+      })
+    );
+
+    const elem = testUtils.findElementFactory(".m-table__", wrapper);
+
+    {
+      const expected = [[pagination]];
+
+      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+      wrapper.clearEmitted();
+    }
+
+    {
+      const expected = [
+        [{ ...pagination, descending: !pagination.descending }]
+      ];
+
+      await elem("header-cell").trigger("click");
+      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+    }
+  });
 });
