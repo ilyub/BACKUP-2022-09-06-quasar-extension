@@ -74,7 +74,7 @@ export default defineComponent({
       >
         <slot :name="slotNames.stickyHeader"></slot>
       </div>
-      <div class="m-page-layout__default">
+      <div class="m-page-layout__body">
         <slot :name="slotNames.default"></slot>
       </div>
       <div
