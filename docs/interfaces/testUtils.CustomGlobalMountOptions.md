@@ -12,6 +12,7 @@
 - [languagePickerSettings](testUtils.CustomGlobalMountOptions.md#languagepickersettings)
 - [pageLayoutSettings](testUtils.CustomGlobalMountOptions.md#pagelayoutsettings)
 - [pageTableSettings](testUtils.CustomGlobalMountOptions.md#pagetablesettings)
+- [resizerSettings](testUtils.CustomGlobalMountOptions.md#resizersettings)
 - [sortableSettings](testUtils.CustomGlobalMountOptions.md#sortablesettings)
 - [switchableSettings](testUtils.CustomGlobalMountOptions.md#switchablesettings)
 - [tooltipSettings](testUtils.CustomGlobalMountOptions.md#tooltipsettings)
@@ -39,6 +40,12 @@ ___
 ### pageTableSettings
 
 • `Optional` `Readonly` **pageTableSettings**: [`TableSettings`](components_Table_extras.TableSettings.md)
+
+___
+
+### resizerSettings
+
+• `Optional` `Readonly` **resizerSettings**: [`ResizerSettings`](components_Resizer_extras.ResizerSettings.md)
 
 ___
 

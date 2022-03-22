@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 ## Hierarchy
 
@@ -20,20 +20,47 @@
 
 ### Properties
 
+- [binaryStateSortOff](components_Table_extras.TableOwnProps.md#binarystatesortoff)
+- [binaryStateSortOn](components_Table_extras.TableOwnProps.md#binarystatesorton)
 - [columns](components_Table_extras.TableOwnProps.md#columns)
+- [columnsOrder](components_Table_extras.TableOwnProps.md#columnsorder)
 - [externalSorting](components_Table_extras.TableOwnProps.md#externalsorting)
+- [flatOff](components_Table_extras.TableOwnProps.md#flatoff)
+- [flatOn](components_Table_extras.TableOwnProps.md#flaton)
+- [headerSeparatorOff](components_Table_extras.TableOwnProps.md#headerseparatoroff)
+- [headerSeparatorOn](components_Table_extras.TableOwnProps.md#headerseparatoron)
+- [hiddenColumns](components_Table_extras.TableOwnProps.md#hiddencolumns)
+- [manageColumns](components_Table_extras.TableOwnProps.md#managecolumns)
+- [multiselect](components_Table_extras.TableOwnProps.md#multiselect)
 - [pagination](components_Table_extras.TableOwnProps.md#pagination)
 - [rowKey](components_Table_extras.TableOwnProps.md#rowkey)
 - [rows](components_Table_extras.TableOwnProps.md#rows)
+- [selectByCheckbox](components_Table_extras.TableOwnProps.md#selectbycheckbox)
 - [selectByRowClick](components_Table_extras.TableOwnProps.md#selectbyrowclick)
 - [selected](components_Table_extras.TableOwnProps.md#selected)
+- [squareOff](components_Table_extras.TableOwnProps.md#squareoff)
+- [squareOn](components_Table_extras.TableOwnProps.md#squareon)
 
 ### Methods
 
+- [onUpdate:columnsOrder](components_Table_extras.TableOwnProps.md#onupdate:columnsorder)
+- [onUpdate:hiddenColumns](components_Table_extras.TableOwnProps.md#onupdate:hiddencolumns)
 - [onUpdate:pagination](components_Table_extras.TableOwnProps.md#onupdate:pagination)
 - [onUpdate:selected](components_Table_extras.TableOwnProps.md#onupdate:selected)
 
 ## Properties
+
+### binaryStateSortOff
+
+• `Optional` `Readonly` **binaryStateSortOff**: `booleanU`
+
+___
+
+### binaryStateSortOn
+
+• `Optional` `Readonly` **binaryStateSortOn**: `booleanU`
+
+___
 
 ### columns
 
@@ -41,9 +68,57 @@
 
 ___
 
+### columnsOrder
+
+• `Optional` `Readonly` **columnsOrder**: [`ColumnsOrder`](../modules/components_Table_extras.md#columnsorder)
+
+___
+
 ### externalSorting
 
 • `Optional` `Readonly` **externalSorting**: `booleanU`
+
+___
+
+### flatOff
+
+• `Optional` `Readonly` **flatOff**: `booleanU`
+
+___
+
+### flatOn
+
+• `Optional` `Readonly` **flatOn**: `booleanU`
+
+___
+
+### headerSeparatorOff
+
+• `Optional` `Readonly` **headerSeparatorOff**: `booleanU`
+
+___
+
+### headerSeparatorOn
+
+• `Optional` `Readonly` **headerSeparatorOn**: `booleanU`
+
+___
+
+### hiddenColumns
+
+• `Optional` `Readonly` **hiddenColumns**: [`HiddenColumns`](../modules/components_Table_extras.md#hiddencolumns)
+
+___
+
+### manageColumns
+
+• `Optional` `Readonly` **manageColumns**: `boolean`
+
+___
+
+### multiselect
+
+• `Optional` `Readonly` **multiselect**: `boolean`
 
 ___
 
@@ -65,6 +140,12 @@ ___
 
 ___
 
+### selectByCheckbox
+
+• `Optional` `Readonly` **selectByCheckbox**: `booleanU`
+
+___
+
 ### selectByRowClick
 
 • `Optional` `Readonly` **selectByRowClick**: `booleanU`
@@ -75,7 +156,55 @@ ___
 
 • `Optional` `Readonly` **selected**: readonly `T`[]
 
+___
+
+### squareOff
+
+• `Optional` `Readonly` **squareOff**: `booleanU`
+
+___
+
+### squareOn
+
+• `Optional` `Readonly` **squareOn**: `booleanU`
+
 ## Methods
+
+### onUpdate:columnsOrder
+
+▸ `Optional` `Readonly` **onUpdate:columnsOrder**(`value`): `void`
+
+Emits column order.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`ColumnsOrder`](../modules/components_Table_extras.md#columnsorder) | Column order. |
+
+#### Returns
+
+`void`
+
+___
+
+### onUpdate:hiddenColumns
+
+▸ `Optional` `Readonly` **onUpdate:hiddenColumns**(`value`): `void`
+
+Emits hidden columns.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`HiddenColumns`](../modules/components_Table_extras.md#hiddencolumns) | Hidden columns. |
+
+#### Returns
+
+`void`
+
+___
 
 ### onUpdate:pagination
 

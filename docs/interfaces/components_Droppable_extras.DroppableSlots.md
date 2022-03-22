@@ -81,7 +81,7 @@ Item slot.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | [`ItemSlotData`](components_Sortable_extras.ItemSlotData.md) | Data. |
+| `data` | [`ItemSlotData`](components_Sortable_extras.ItemSlotData.md)<`T`\> | Data. |
 
 #### Returns
 

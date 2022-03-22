@@ -7,6 +7,8 @@
 ### Interfaces
 
 - [Elem](../interfaces/components_Sortable_extras.Elem.md)
+- [ItemAttrsFn](../interfaces/components_Sortable_extras.ItemAttrsFn.md)
+- [ItemClickEvent](../interfaces/components_Sortable_extras.ItemClickEvent.md)
 - [ItemSlotData](../interfaces/components_Sortable_extras.ItemSlotData.md)
 - [Move](../interfaces/components_Sortable_extras.Move.md)
 - [MoveData](../interfaces/components_Sortable_extras.MoveData.md)
@@ -18,6 +20,7 @@
 
 - [Elems](components_Sortable_extras.md#elems)
 - [GlobalSortable](components_Sortable_extras.md#globalsortable)
+- [ItemAttrs](components_Sortable_extras.md#itemattrs)
 
 ### Functions
 
@@ -26,6 +29,11 @@
 - [isElem](components_Sortable_extras.md#iselem)
 - [isElems](components_Sortable_extras.md#iselems)
 - [isHtmlElement](components_Sortable_extras.md#ishtmlelement)
+- [isItemAttrs](components_Sortable_extras.md#isitemattrs)
+- [isItemAttrsFn](components_Sortable_extras.md#isitemattrsfn)
+- [isItemAttrsU](components_Sortable_extras.md#isitemattrsu)
+- [isItemClickEvent](components_Sortable_extras.md#isitemclickevent)
+- [isItemClickEventU](components_Sortable_extras.md#isitemclickeventu)
 - [isMove](components_Sortable_extras.md#ismove)
 - [isMoveData](components_Sortable_extras.md#ismovedata)
 - [isMoveU](components_Sortable_extras.md#ismoveu)
@@ -42,7 +50,25 @@ ___
 
 ### GlobalSortable
 
-Ƭ **GlobalSortable**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md), [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)\>
+Ƭ **GlobalSortable**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md)<`T`\>, [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)<`T`\>\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` = `object` |
+
+___
+
+### ItemAttrs
+
+Ƭ **ItemAttrs**<`T`\>: [`ItemAttrsFn`](../interfaces/components_Sortable_extras.ItemAttrsFn.md)<`T`\> \| `object`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` = `object` |
 
 ## Functions
 
@@ -127,6 +153,86 @@ ___
 #### Returns
 
 value is HTMLElement
+
+___
+
+### isItemAttrs
+
+▸ **isItemAttrs**(`value`): value is object \| Function
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is object \| Function
+
+___
+
+### isItemAttrsFn
+
+▸ **isItemAttrsFn**(`value`): value is Function
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is Function
+
+___
+
+### isItemAttrsU
+
+▸ **isItemAttrsU**(`value`): value is undefined \| object \| Function
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is undefined \| object \| Function
+
+___
+
+### isItemClickEvent
+
+▸ **isItemClickEvent**(`value`): value is ItemClickEvent<object\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is ItemClickEvent<object\>
+
+___
+
+### isItemClickEventU
+
+▸ **isItemClickEventU**(`value`): value is undefined \| ItemClickEvent<object\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is undefined \| ItemClickEvent<object\>
 
 ___
 

@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / BodyCellSlotData
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / HeaderCellSlotData
 
-# Interface: BodyCellSlotData<T\>
+# Interface: HeaderCellSlotData<T\>
 
-[components/Table.extras](../modules/components_Table_extras.md).BodyCellSlotData
+[components/Table.extras](../modules/components_Table_extras.md).HeaderCellSlotData
 
 ## Type parameters
 
@@ -14,22 +14,21 @@
 
 - [`AllSelectedData`](components_Table_extras.AllSelectedData.md)
 
-  ↳ **`BodyCellSlotData`**
+  ↳ **`HeaderCellSlotData`**
 
 ## Table of contents
 
 ### Properties
 
-- [allSelected](components_Table_extras.BodyCellSlotData.md#allselected)
-- [allSelectedDisable](components_Table_extras.BodyCellSlotData.md#allselecteddisable)
-- [allSelectedIcon](components_Table_extras.BodyCellSlotData.md#allselectedicon)
-- [allSelectedLabel](components_Table_extras.BodyCellSlotData.md#allselectedlabel)
-- [column](components_Table_extras.BodyCellSlotData.md#column)
-- [row](components_Table_extras.BodyCellSlotData.md#row)
+- [allSelected](components_Table_extras.HeaderCellSlotData.md#allselected)
+- [allSelectedDisable](components_Table_extras.HeaderCellSlotData.md#allselecteddisable)
+- [allSelectedIcon](components_Table_extras.HeaderCellSlotData.md#allselectedicon)
+- [allSelectedLabel](components_Table_extras.HeaderCellSlotData.md#allselectedlabel)
+- [column](components_Table_extras.HeaderCellSlotData.md#column)
 
 ### Methods
 
-- [allSelectedClick](components_Table_extras.BodyCellSlotData.md#allselectedclick)
+- [allSelectedClick](components_Table_extras.HeaderCellSlotData.md#allselectedclick)
 
 ## Properties
 
@@ -76,12 +75,6 @@ ___
 ### column
 
 • `Readonly` **column**: [`Column`](components_Table_extras.Column.md)<`T`\>
-
-___
-
-### row
-
-• `Readonly` **row**: `T`
 
 ## Methods
 

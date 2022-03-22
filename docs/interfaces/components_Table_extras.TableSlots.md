@@ -8,11 +8,11 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 ## Hierarchy
 
-- `Omit`<`QTableSlots`, ``"body-cell"``\>
+- `Omit`<`QTableSlots`, ``"body-cell"`` \| ``"body-selection"`` \| ``"header-cell"`` \| ``"header-selection"``\>
 
   ↳ **`TableSlots`**
 
@@ -21,6 +21,9 @@
 ### Methods
 
 - [body-cell](components_Table_extras.TableSlots.md#body-cell)
+- [body-selection](components_Table_extras.TableSlots.md#body-selection)
+- [header-cell](components_Table_extras.TableSlots.md#header-cell)
+- [header-selection](components_Table_extras.TableSlots.md#header-selection)
 - [steady-bottom](components_Table_extras.TableSlots.md#steady-bottom)
 
 ## Methods
@@ -36,6 +39,66 @@ Body cell slot.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scope` | [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### body-selection
+
+▸ `Readonly` **body-selection**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Body selection slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`BodySelectionSlotData`](components_Table_extras.BodySelectionSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### header-cell
+
+▸ `Readonly` **header-cell**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Header cell slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`HeaderCellSlotData`](components_Table_extras.HeaderCellSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### header-selection
+
+▸ `Readonly` **header-selection**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Header selection slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`HeaderSelectionSlotData`](components_Table_extras.HeaderSelectionSlotData.md) | Scope. |
 
 #### Returns
 

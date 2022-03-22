@@ -8,7 +8,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 ## Table of contents
 
@@ -17,13 +17,17 @@
 - [align](components_Table_extras.Column.md#align)
 - [field](components_Table_extras.Column.md#field)
 - [label](components_Table_extras.Column.md#label)
+- [maxWidth](components_Table_extras.Column.md#maxwidth)
+- [minWidth](components_Table_extras.Column.md#minwidth)
 - [name](components_Table_extras.Column.md#name)
 - [sortOrder](components_Table_extras.Column.md#sortorder)
 - [sortable](components_Table_extras.Column.md#sortable)
+- [width](components_Table_extras.Column.md#width)
 
 ### Methods
 
 - [sort](components_Table_extras.Column.md#sort)
+- [updateWidth](components_Table_extras.Column.md#updatewidth)
 
 ## Properties
 
@@ -45,6 +49,18 @@ ___
 
 ___
 
+### maxWidth
+
+• `Optional` `Readonly` **maxWidth**: `number`
+
+___
+
+### minWidth
+
+• `Optional` `Readonly` **minWidth**: `number`
+
+___
+
 ### name
 
 • `Readonly` **name**: `string`
@@ -60,6 +76,12 @@ ___
 ### sortable
 
 • `Optional` `Readonly` **sortable**: ``true``
+
+___
+
+### width
+
+• `Optional` `Readonly` **width**: `number`
 
 ## Methods
 
@@ -83,3 +105,21 @@ Sorting function.
 `number`
 
 Comparison result.
+
+___
+
+### updateWidth
+
+▸ `Optional` `Readonly` **updateWidth**(`width`): `void`
+
+Updates column width.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `width` | `number` | New width. |
+
+#### Returns
+
+`void`

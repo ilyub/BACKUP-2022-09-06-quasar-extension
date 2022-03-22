@@ -1,8 +1,14 @@
 [Quasar extension](../index.md) / [Exports](../modules.md) / [components/Sortable.extras](../modules/components_Sortable_extras.md) / ItemSlotData
 
-# Interface: ItemSlotData
+# Interface: ItemSlotData<T\>
 
 [components/Sortable.extras](../modules/components_Sortable_extras.md).ItemSlotData
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` = `object` |
 
 ## Table of contents
 
@@ -14,4 +20,4 @@
 
 ### item
 
-• `Readonly` **item**: `object`
+• `Readonly` **item**: `T`

@@ -1,24 +1,31 @@
 [Quasar extension](../index.md) / [Exports](../modules.md) / [components/Sortable.extras](../modules/components_Sortable_extras.md) / SortableProps
 
-# Interface: SortableProps
+# Interface: SortableProps<T\>
 
 [components/Sortable.extras](../modules/components_Sortable_extras.md).SortableProps
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` = `object` |
 
 ## Table of contents
 
 ### Properties
 
 - [group](components_Sortable_extras.SortableProps.md#group)
-- [itemComponentData](components_Sortable_extras.SortableProps.md#itemcomponentdata)
+- [itemClass](components_Sortable_extras.SortableProps.md#itemclass)
 - [itemKey](components_Sortable_extras.SortableProps.md#itemkey)
 - [itemTag](components_Sortable_extras.SortableProps.md#itemtag)
 - [modelValue](components_Sortable_extras.SortableProps.md#modelvalue)
 - [move](components_Sortable_extras.SortableProps.md#move)
-
-### Methods
-
 - [onDropped](components_Sortable_extras.SortableProps.md#ondropped)
+- [onItemClick](components_Sortable_extras.SortableProps.md#onitemclick)
 - [onUpdate:modelValue](components_Sortable_extras.SortableProps.md#onupdate:modelvalue)
+- [pull](components_Sortable_extras.SortableProps.md#pull)
+- [put](components_Sortable_extras.SortableProps.md#put)
+- [sort](components_Sortable_extras.SortableProps.md#sort)
 
 ## Properties
 
@@ -28,9 +35,9 @@
 
 ___
 
-### itemComponentData
+### itemClass
 
-• `Optional` `Readonly` **itemComponentData**: `objectU`
+• `Optional` `Readonly` **itemClass**: `stringU`
 
 ___
 
@@ -48,7 +55,7 @@ ___
 
 ### modelValue
 
-• `Readonly` **modelValue**: `objects`
+• `Readonly` **modelValue**: readonly `T`[]
 
 ___
 
@@ -56,39 +63,71 @@ ___
 
 • `Optional` `Readonly` **move**: [`Move`](components_Sortable_extras.Move.md)
 
-## Methods
+___
 
 ### onDropped
 
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
+• `Optional` `Readonly` **onDropped**: (`item`: `object`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
 
 Emits "dropped" event.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `item` | `object` | Item. |
 | `group` | `string` | Group. |
 
-#### Returns
+##### Returns
 
 `void`
 
 ___
 
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: [`ItemClickEvent`](components_Sortable_extras.ItemClickEvent.md)<`T`\>
+
+___
+
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `T`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
+| `value` | readonly `T`[] | Value. |
 
-#### Returns
+##### Returns
 
 `void`
+
+___
+
+### pull
+
+• `Optional` `Readonly` **pull**: `boolean`
+
+___
+
+### put
+
+• `Optional` `Readonly` **put**: `boolean`
+
+___
+
+### sort
+
+• `Optional` `Readonly` **sort**: `boolean`

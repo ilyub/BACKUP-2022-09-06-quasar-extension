@@ -20,7 +20,7 @@ Generic Table component.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` |
 
 #### Returns
 

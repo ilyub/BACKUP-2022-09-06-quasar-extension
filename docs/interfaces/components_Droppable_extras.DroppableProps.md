@@ -16,24 +16,25 @@
 
 ### Properties
 
-- [itemComponentData](components_Droppable_extras.DroppableProps.md#itemcomponentdata)
+- [itemClass](components_Droppable_extras.DroppableProps.md#itemclass)
 - [itemTag](components_Droppable_extras.DroppableProps.md#itemtag)
 - [move](components_Droppable_extras.DroppableProps.md#move)
-
-### Methods
-
 - [onDropped](components_Droppable_extras.DroppableProps.md#ondropped)
+- [onItemClick](components_Droppable_extras.DroppableProps.md#onitemclick)
 - [onUpdate:modelValue](components_Droppable_extras.DroppableProps.md#onupdate:modelvalue)
+- [pull](components_Droppable_extras.DroppableProps.md#pull)
+- [put](components_Droppable_extras.DroppableProps.md#put)
+- [sort](components_Droppable_extras.DroppableProps.md#sort)
 
 ## Properties
 
-### itemComponentData
+### itemClass
 
-• `Optional` `Readonly` **itemComponentData**: `objectU`
+• `Optional` `Readonly` **itemClass**: `stringU`
 
 #### Inherited from
 
-DroppableParentProps.itemComponentData
+DroppableParentProps.itemClass
 
 ___
 
@@ -55,22 +56,26 @@ ___
 
 DroppableParentProps.move
 
-## Methods
+___
 
 ### onDropped
 
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
+• `Optional` `Readonly` **onDropped**: (`item`: `object`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
 
 Emits "dropped" event.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `item` | `object` | Item. |
 | `group` | `string` | Group. |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -80,22 +85,66 @@ DroppableParentProps.onDropped
 
 ___
 
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: [`ItemClickEvent`](components_Sortable_extras.ItemClickEvent.md)<`object`\>
+
+#### Inherited from
+
+DroppableParentProps.onItemClick
+
+___
+
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `object`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
+| `value` | readonly `object`[] | Value. |
 
-#### Returns
+##### Returns
 
 `void`
 
 #### Inherited from
 
 DroppableParentProps.onUpdate:modelValue
+
+___
+
+### pull
+
+• `Optional` `Readonly` **pull**: `boolean`
+
+#### Inherited from
+
+DroppableParentProps.pull
+
+___
+
+### put
+
+• `Optional` `Readonly` **put**: `boolean`
+
+#### Inherited from
+
+DroppableParentProps.put
+
+___
+
+### sort
+
+• `Optional` `Readonly` **sort**: `boolean`
+
+#### Inherited from
+
+DroppableParentProps.sort

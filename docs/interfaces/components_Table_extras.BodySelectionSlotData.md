@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / BodyCellSlotData
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / BodySelectionSlotData
 
-# Interface: BodyCellSlotData<T\>
+# Interface: BodySelectionSlotData<T\>
 
-[components/Table.extras](../modules/components_Table_extras.md).BodyCellSlotData
+[components/Table.extras](../modules/components_Table_extras.md).BodySelectionSlotData
 
 ## Type parameters
 
@@ -14,22 +14,21 @@
 
 - [`AllSelectedData`](components_Table_extras.AllSelectedData.md)
 
-  ↳ **`BodyCellSlotData`**
+  ↳ **`BodySelectionSlotData`**
 
 ## Table of contents
 
 ### Properties
 
-- [allSelected](components_Table_extras.BodyCellSlotData.md#allselected)
-- [allSelectedDisable](components_Table_extras.BodyCellSlotData.md#allselecteddisable)
-- [allSelectedIcon](components_Table_extras.BodyCellSlotData.md#allselectedicon)
-- [allSelectedLabel](components_Table_extras.BodyCellSlotData.md#allselectedlabel)
-- [column](components_Table_extras.BodyCellSlotData.md#column)
-- [row](components_Table_extras.BodyCellSlotData.md#row)
+- [allSelected](components_Table_extras.BodySelectionSlotData.md#allselected)
+- [allSelectedDisable](components_Table_extras.BodySelectionSlotData.md#allselecteddisable)
+- [allSelectedIcon](components_Table_extras.BodySelectionSlotData.md#allselectedicon)
+- [allSelectedLabel](components_Table_extras.BodySelectionSlotData.md#allselectedlabel)
+- [row](components_Table_extras.BodySelectionSlotData.md#row)
 
 ### Methods
 
-- [allSelectedClick](components_Table_extras.BodyCellSlotData.md#allselectedclick)
+- [allSelectedClick](components_Table_extras.BodySelectionSlotData.md#allselectedclick)
 
 ## Properties
 
@@ -70,12 +69,6 @@ ___
 #### Inherited from
 
 [AllSelectedData](components_Table_extras.AllSelectedData.md).[allSelectedLabel](components_Table_extras.AllSelectedData.md#allselectedlabel)
-
-___
-
-### column
-
-• `Readonly` **column**: [`Column`](components_Table_extras.Column.md)<`T`\>
 
 ___
 

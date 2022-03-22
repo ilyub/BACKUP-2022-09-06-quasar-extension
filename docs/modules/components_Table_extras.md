@@ -8,10 +8,11 @@
 
 - [AllSelectedData](../interfaces/components_Table_extras.AllSelectedData.md)
 - [BodyCellSlotData](../interfaces/components_Table_extras.BodyCellSlotData.md)
-- [BodyCellSlotOwnData](../interfaces/components_Table_extras.BodyCellSlotOwnData.md)
-- [BodyCellSlotParentData](../interfaces/components_Table_extras.BodyCellSlotParentData.md)
+- [BodySelectionSlotData](../interfaces/components_Table_extras.BodySelectionSlotData.md)
 - [Column](../interfaces/components_Table_extras.Column.md)
 - [Field](../interfaces/components_Table_extras.Field.md)
+- [HeaderCellSlotData](../interfaces/components_Table_extras.HeaderCellSlotData.md)
+- [HeaderSelectionSlotData](../interfaces/components_Table_extras.HeaderSelectionSlotData.md)
 - [ModuleIcons](../interfaces/components_Table_extras.ModuleIcons.md)
 - [ModuleWord](../interfaces/components_Table_extras.ModuleWord.md)
 - [Pagination](../interfaces/components_Table_extras.Pagination.md)
@@ -26,7 +27,9 @@
 
 - [Align](components_Table_extras.md#align)
 - [Columns](components_Table_extras.md#columns)
+- [ColumnsOrder](components_Table_extras.md#columnsorder)
 - [GlobalTable](components_Table_extras.md#globaltable)
+- [HiddenColumns](components_Table_extras.md#hiddencolumns)
 
 ### Variables
 
@@ -40,7 +43,9 @@
 - [isAlign](components_Table_extras.md#isalign)
 - [isColumnFactory](components_Table_extras.md#iscolumnfactory)
 - [isColumnsFactory](components_Table_extras.md#iscolumnsfactory)
+- [isColumnsOrder](components_Table_extras.md#iscolumnsorder)
 - [isFieldFactory](components_Table_extras.md#isfieldfactory)
+- [isHiddenColumns](components_Table_extras.md#ishiddencolumns)
 - [isPagination](components_Table_extras.md#ispagination)
 - [provideTableSettings](components_Table_extras.md#providetablesettings)
 - [testTableSettings](components_Table_extras.md#testtablesettings)
@@ -61,7 +66,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
+
+___
+
+### ColumnsOrder
+
+Ƭ **ColumnsOrder**: `ReadonlyMap`<`string`, `number`\>
 
 ___
 
@@ -73,7 +84,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
+
+___
+
+### HiddenColumns
+
+Ƭ **HiddenColumns**: `ReadonlySet`<`string`\>
 
 ## Variables
 
@@ -135,7 +152,7 @@ Creates guard for Column\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 #### Returns
 
@@ -155,13 +172,29 @@ Creates guard for Columns\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 #### Returns
 
 `is.Guard`<[`Columns`](components_Table_extras.md#columns)<`T`\>\>
 
 Guard for Columns\<T\> type.
+
+___
+
+### isColumnsOrder
+
+▸ **isColumnsOrder**(`value`): value is ReadonlyMap<string, number\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is ReadonlyMap<string, number\>
 
 ___
 
@@ -175,13 +208,29 @@ Creates guard for Field\<T\> type.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `object` |
+| `T` | extends `object` = `object` |
 
 #### Returns
 
 `is.Guard`<[`Field`](../interfaces/components_Table_extras.Field.md)<`T`\>\>
 
 Guard for Field\<T\> type.
+
+___
+
+### isHiddenColumns
+
+▸ **isHiddenColumns**(`value`): value is ReadonlySet<string\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is ReadonlySet<string\>
 
 ___
 

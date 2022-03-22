@@ -8,9 +8,16 @@
 
 - [CustomGlobalMountOptions](../interfaces/testUtils.CustomGlobalMountOptions.md)
 - [TouchPanMock](../interfaces/testUtils.TouchPanMock.md)
+- [WrapperExtension](../interfaces/testUtils.WrapperExtension.md)
+
+### Type aliases
+
+- [ExtendedWrapper](testUtils.md#extendedwrapper)
 
 ### Functions
 
+- [extendWrapper](testUtils.md#extendwrapper)
+- [findComponentByRefFactory](testUtils.md#findcomponentbyreffactory)
 - [findComponentFactory](testUtils.md#findcomponentfactory)
 - [findElementFactory](testUtils.md#findelementfactory)
 - [findElementsFactory](testUtils.md#findelementsfactory)
@@ -25,11 +32,81 @@
 - [toHaveClass](testUtils.md#tohaveclass)
 - [touchPanMock](testUtils.md#touchpanmock)
 
+## Type aliases
+
+### ExtendedWrapper
+
+Ƭ **ExtendedWrapper**<`T`\>: `T` & [`WrapperExtension`](../interfaces/testUtils.WrapperExtension.md)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `vueTestUtils.VueWrapper` |
+
 ## Functions
+
+### extendWrapper
+
+▸ **extendWrapper**<`T`\>(`wrapper`): [`ExtendedWrapper`](testUtils.md#extendedwrapper)<`T`\>
+
+Extends wrapper.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>, `T`\> |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `wrapper` | `T` | Wrapper. |
+
+#### Returns
+
+[`ExtendedWrapper`](testUtils.md#extendedwrapper)<`T`\>
+
+Extended wrapper.
+
+___
+
+### findComponentByRefFactory
+
+▸ **findComponentByRefFactory**(`wrapper`): (`ref`: `string`) => `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+Find component factory.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+
+#### Returns
+
+`fn`
+
+Find component function.
+
+▸ (`ref`): `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `ref` | `string` |
+
+##### Returns
+
+`VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+
+___
 
 ### findComponentFactory
 
-▸ **findComponentFactory**(`prefix`, `wrapper`): (`ref`: `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\>) => `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+▸ **findComponentFactory**(`prefix`, `wrapper`): (`ref`: `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\>, `index`: `number`) => `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
 
 Find component factory.
 
@@ -46,13 +123,14 @@ Find component factory.
 
 Find component function.
 
-▸ (`ref`): `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
+▸ (`ref`, `index?`): `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>\>
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `ref` | `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\> |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `ref` | `string` \| `ComponentConstructor`<`any`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\> | `undefined` |
+| `index` | `number` | `0` |
 
 ##### Returns
 
@@ -148,6 +226,7 @@ Find component function.
 | Name | Type |
 | :------ | :------ |
 | `comp` | `ReturnType`<typeof [`findComponentFactory`](testUtils.md#findcomponentfactory)\> |
+| `compByRef` | `ReturnType`<typeof [`findComponentByRefFactory`](testUtils.md#findcomponentbyreffactory)\> |
 | `elem` | `ReturnType`<typeof [`findElementFactory`](testUtils.md#findelementfactory)\> |
 | `elems` | `ReturnType`<typeof [`findElementsFactory`](testUtils.md#findelementsfactory)\> |
 

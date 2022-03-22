@@ -9,6 +9,7 @@
 ### Properties
 
 - [DeselectAll](components_Table_extras.ModuleWord.md#deselectall)
+- [ManageColumns](components_Table_extras.ModuleWord.md#managecolumns)
 - [SelectAll](components_Table_extras.ModuleWord.md#selectall)
 
 ## Properties
@@ -16,6 +17,12 @@
 ### DeselectAll
 
 • `Readonly` **DeselectAll**: ``true``
+
+___
+
+### ManageColumns
+
+• `Readonly` **ManageColumns**: ``true``
 
 ___
 

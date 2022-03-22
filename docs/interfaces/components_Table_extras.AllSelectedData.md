@@ -8,7 +8,13 @@
 
 - **`AllSelectedData`**
 
-  ↳ [`BodyCellSlotOwnData`](components_Table_extras.BodyCellSlotOwnData.md)
+  ↳ [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)
+
+  ↳ [`BodySelectionSlotData`](components_Table_extras.BodySelectionSlotData.md)
+
+  ↳ [`HeaderCellSlotData`](components_Table_extras.HeaderCellSlotData.md)
+
+  ↳ [`HeaderSelectionSlotData`](components_Table_extras.HeaderSelectionSlotData.md)
 
   ↳ [`SteadyBottomSlotData`](components_Table_extras.SteadyBottomSlotData.md)
 

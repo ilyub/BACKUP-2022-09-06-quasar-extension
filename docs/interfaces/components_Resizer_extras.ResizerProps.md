@@ -26,13 +26,13 @@ ___
 
 ### min
 
-• `Readonly` **min**: `number`
+• `Optional` `Readonly` **min**: `numberU`
 
 ___
 
 ### modelValue
 
-• `Readonly` **modelValue**: `number`
+• `Optional` `Readonly` **modelValue**: `numberU`
 
 ## Methods
 

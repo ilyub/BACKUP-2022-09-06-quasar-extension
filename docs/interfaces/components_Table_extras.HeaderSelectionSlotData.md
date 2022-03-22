@@ -1,29 +1,27 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / BodyCellSlotOwnData
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/Table.extras](../modules/components_Table_extras.md) / HeaderSelectionSlotData
 
-# Interface: BodyCellSlotOwnData
+# Interface: HeaderSelectionSlotData
 
-[components/Table.extras](../modules/components_Table_extras.md).BodyCellSlotOwnData
+[components/Table.extras](../modules/components_Table_extras.md).HeaderSelectionSlotData
 
 ## Hierarchy
 
 - [`AllSelectedData`](components_Table_extras.AllSelectedData.md)
 
-  ↳ **`BodyCellSlotOwnData`**
-
-  ↳↳ [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)
+  ↳ **`HeaderSelectionSlotData`**
 
 ## Table of contents
 
 ### Properties
 
-- [allSelected](components_Table_extras.BodyCellSlotOwnData.md#allselected)
-- [allSelectedDisable](components_Table_extras.BodyCellSlotOwnData.md#allselecteddisable)
-- [allSelectedIcon](components_Table_extras.BodyCellSlotOwnData.md#allselectedicon)
-- [allSelectedLabel](components_Table_extras.BodyCellSlotOwnData.md#allselectedlabel)
+- [allSelected](components_Table_extras.HeaderSelectionSlotData.md#allselected)
+- [allSelectedDisable](components_Table_extras.HeaderSelectionSlotData.md#allselecteddisable)
+- [allSelectedIcon](components_Table_extras.HeaderSelectionSlotData.md#allselectedicon)
+- [allSelectedLabel](components_Table_extras.HeaderSelectionSlotData.md#allselectedlabel)
 
 ### Methods
 
-- [allSelectedClick](components_Table_extras.BodyCellSlotOwnData.md#allselectedclick)
+- [allSelectedClick](components_Table_extras.HeaderSelectionSlotData.md#allselectedclick)
 
 ## Properties
 

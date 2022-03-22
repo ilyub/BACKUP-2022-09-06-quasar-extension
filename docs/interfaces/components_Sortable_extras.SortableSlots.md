@@ -1,8 +1,14 @@
 [Quasar extension](../index.md) / [Exports](../modules.md) / [components/Sortable.extras](../modules/components_Sortable_extras.md) / SortableSlots
 
-# Interface: SortableSlots
+# Interface: SortableSlots<T\>
 
 [components/Sortable.extras](../modules/components_Sortable_extras.md).SortableSlots
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` = `object` |
 
 ## Hierarchy
 
@@ -58,7 +64,7 @@ Item slot.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | [`ItemSlotData`](components_Sortable_extras.ItemSlotData.md) | Data. |
+| `data` | [`ItemSlotData`](components_Sortable_extras.ItemSlotData.md)<`T`\> | Data. |
 
 #### Returns
 

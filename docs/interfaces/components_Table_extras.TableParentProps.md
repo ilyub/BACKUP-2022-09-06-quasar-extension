@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QTableProps`, ``"columns"`` \| ``"onUpdate:pagination"`` \| ``"onUpdate:selected"`` \| ``"pagination"`` \| ``"rowKey"`` \| ``"rows"`` \| ``"selected"``\>
+- `Omit`<`QTableProps`, ``"binaryStateSort"`` \| ``"columns"`` \| ``"flat"`` \| ``"onUpdate:pagination"`` \| ``"onUpdate:selected"`` \| ``"pagination"`` \| ``"rowKey"`` \| ``"rows"`` \| ``"selected"`` \| ``"selection"`` \| ``"square"``\>
 
   ↳ **`TableParentProps`**
 
