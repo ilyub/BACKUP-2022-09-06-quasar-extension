@@ -519,6 +519,7 @@ test.each([
       vueTestUtils.mount(Table, {
         global: testUtils.globalMountOptions(),
         props: o.removeUndefinedKeys<TableOwnProps>({
+          binaryStateSortOn: true,
           columns: [
             {
               align: "left",
