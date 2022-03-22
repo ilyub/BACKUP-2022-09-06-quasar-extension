@@ -65,19 +65,19 @@ test.each([
     expectedLimit: 45,
     externalSorting: true,
     extraPageOffset: "5px",
-    pageTableSettings: {
-      binaryStateSort: false,
-      flat: false,
-      growPageBy: 20,
-      headerSeparator: false,
-      square: false
-    },
     pagination: {
       descending: false,
       limit: 25,
       sortBy: "name"
     },
     selected: [],
+    tableSettings: {
+      binaryStateSort: false,
+      flat: false,
+      growPageBy: 20,
+      headerSeparator: false,
+      square: false
+    },
     to: 24
   }
 ])(
@@ -88,9 +88,9 @@ test.each([
     expectedLimit,
     externalSorting,
     extraPageOffset,
-    pageTableSettings,
     pagination,
     selected,
+    tableSettings,
     to
   }) => {
     expect.hasAssertions();
@@ -98,7 +98,7 @@ test.each([
     await functionsTestUtils.run(async () => {
       const wrapper = vueTestUtils.mount(Table, {
         global: testUtils.globalMountOptions(
-          o.removeUndefinedKeys({ pageTableSettings })
+          o.removeUndefinedKeys({ tableSettings })
         ),
         props: o.removeUndefinedKeys({
           columns,
@@ -559,7 +559,7 @@ test.each([
 
 test.each([
   {
-    pageTableSettings: typedef<TableSettings>({
+    tableSettings: typedef<TableSettings>({
       binaryStateSort: false,
       flat: false,
       growPageBy: 20,
@@ -568,7 +568,7 @@ test.each([
     })
   },
   {
-    pageTableSettings: typedef<TableSettings>({
+    tableSettings: typedef<TableSettings>({
       binaryStateSort: true,
       flat: true,
       growPageBy: 20,
@@ -576,9 +576,9 @@ test.each([
       square: true
     })
   }
-])("settings", ({ pageTableSettings }) => {
+])("settings", ({ tableSettings }) => {
   const wrapper = vueTestUtils.mount(Table, {
-    global: testUtils.globalMountOptions({ pageTableSettings }),
+    global: testUtils.globalMountOptions({ tableSettings }),
     props: o.removeUndefinedKeys<TableOwnProps>({
       columns: [
         {

@@ -74,10 +74,10 @@ export interface CustomGlobalMountOptions {
   readonly iconPickerSettings?: IconPickerSettings;
   readonly languagePickerSettings?: LanguagePickerSettings;
   readonly pageLayoutSettings?: PageLayoutSettings;
-  readonly pageTableSettings?: TableSettings;
   readonly resizerSettings?: ResizerSettings;
   readonly sortableSettings?: SortableSettings;
   readonly switchableSettings?: SwitchableSettings;
+  readonly tableSettings?: TableSettings;
   readonly tooltipSettings?: TooltipSettings;
 }
 
@@ -235,8 +235,8 @@ export function globalMountOptions(
       if ("pageLayoutSettings" in options)
         testPageLayoutSettings(result, options.pageLayoutSettings);
 
-      if ("pageTableSettings" in options)
-        testTableSettings(result, options.pageTableSettings);
+      if ("tableSettings" in options)
+        testTableSettings(result, options.tableSettings);
 
       if ("resizerSettings" in options)
         testResizerSettings(result, options.resizerSettings);
