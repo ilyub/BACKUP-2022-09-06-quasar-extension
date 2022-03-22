@@ -232,6 +232,8 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
   .m-table__final-cell {
     width: 100%;
+    min-width: 5px;
+    padding: 0;
   }
 }
 
