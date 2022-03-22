@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-expansion-item :class="$style.item">
+  <q-expansion-item class="m-expansion-item" :class="$style.item">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>

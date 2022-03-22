@@ -224,6 +224,7 @@ export default defineComponent({
   <q-tooltip
     v-if="settings.show && !disabled"
     :anchor="anchor"
+    class="m-tooltip"
     :delay="settings.delay"
     :offset="offset"
     :self="self"

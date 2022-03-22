@@ -140,6 +140,7 @@ export default defineComponent({
 <template>
   <vue-draggable
     :animation="settings.animationDuration"
+    class="m-sortable"
     :data-group="group"
     :disabled="draggableDisabled"
     :group="{

@@ -35,6 +35,7 @@ export default defineComponent({
 
 <template>
   <q-card
+    class="m-card"
     :style="{
       minWidth
     }"

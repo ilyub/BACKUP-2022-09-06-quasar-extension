@@ -34,6 +34,7 @@ export default defineComponent({
 <template>
   <div
     v-if="settings.transition === 'none'"
+    class="m-switchable"
     :class="{
       'm-indent': indent
     }"
@@ -42,6 +43,7 @@ export default defineComponent({
   </div>
   <q-slide-transition
     v-else-if="settings.transition === 'slide'"
+    class="m-switchable"
     :class="{
       'm-indent': indent
     }"

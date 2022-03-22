@@ -49,6 +49,7 @@ export default defineComponent({
 
 <template>
   <q-option-group
+    class="m-option-group"
     :class="{
       'inline-block': inline
     }"

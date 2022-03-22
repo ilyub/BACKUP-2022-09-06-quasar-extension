@@ -42,7 +42,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-item :clickable="clickable">
+  <q-item class="m-list-iteml" :clickable="clickable">
     <q-item-section v-if="hasIcon || $slots[slotNames.icon]" side>
       <slot :name="slotNames.icon">
         <q-icon :name="icon" />

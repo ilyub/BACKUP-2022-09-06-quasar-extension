@@ -51,7 +51,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-icon-button>
+  <m-icon-button class="m-language-picker">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>

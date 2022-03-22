@@ -52,6 +52,7 @@ export default defineComponent({
 <template>
   <q-input
     ref="input"
+    class="m-input"
     dense
     :disable="disable || globalDisable"
     :model-value="modelValue"

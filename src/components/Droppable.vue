@@ -24,6 +24,7 @@ export default defineComponent({
 
 <template>
   <m-sortable
+    class="m-droppable"
     :ghost-class="$style.droppableGhostClass"
     group="droppable"
     item-key="id"

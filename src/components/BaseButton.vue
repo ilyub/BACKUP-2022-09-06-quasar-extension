@@ -66,7 +66,11 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-btn :disable="disable || globalDisable" @click="click">
+  <q-btn
+    class="m-base-button"
+    :disable="disable || globalDisable"
+    @click="click"
+  >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>

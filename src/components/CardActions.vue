@@ -25,7 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-card-actions class="q-pt-none">
+  <q-card-actions class="m-card-actions q-pt-none">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>

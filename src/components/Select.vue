@@ -61,6 +61,7 @@ export default defineComponent({
 
 <template>
   <q-select
+    class="m-select"
     dense
     :model-value="selectModelValue"
     :options="selectOptions"

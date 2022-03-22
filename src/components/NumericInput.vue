@@ -111,6 +111,7 @@ export default defineComponent({
 
 <template>
   <q-field
+    class="m-numeric-input"
     dense
     :model-value="inputValue"
     @update:model-value="inputUpdateValue"

@@ -188,6 +188,7 @@ export default defineComponent({
 
 <template>
   <m-icon-button
+    class="m-icon-picker"
     :class="{
       'text-grey-5': notSelected
     }"

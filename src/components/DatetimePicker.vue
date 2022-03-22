@@ -235,6 +235,7 @@ export default defineComponent({
 <template>
   <q-field
     ref="main"
+    class="m-datetime-picker"
     dense
     :model-value="inputModelValue"
     @update:model-value="inputUpdateModelValue"

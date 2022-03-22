@@ -119,6 +119,7 @@ export default defineComponent({
 
 <template>
   <q-field
+    class="time-input"
     dense
     :model-value="inputValue"
     @update:model-value="inputUpdateValue"

@@ -40,6 +40,7 @@ export default defineComponent({
 
 <template>
   <q-knob
+    class="m-knob"
     :class="{
       [$style.inline]: inline
     }"

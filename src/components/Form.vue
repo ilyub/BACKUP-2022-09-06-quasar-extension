@@ -68,7 +68,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-form @submit="submit">
+  <q-form class="m-form" @submit="submit">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
