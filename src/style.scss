@@ -128,7 +128,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
   .m-table__selection-cell {
     width: 1px;
-    padding: 0px 16px;
+    padding: 0 16px;
   }
 
   .m-table__final-cell {
