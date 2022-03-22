@@ -35,8 +35,6 @@ export default defineComponent({
 
     const hiddenColumns = ref<HiddenColumns>(new Set());
 
-    const loading = ref(false);
-
     const manageColumns = ref(false);
 
     const noData = ref(false);
@@ -47,13 +45,11 @@ export default defineComponent({
       sortBy: "name"
     });
 
-    const resizable = ref(false);
+    const resizableColumns = ref(false);
 
     const selectByCheckbox = ref(false);
 
     const selectByRowClick = ref(false);
-
-    const separator = ref(false);
 
     const shortData = ref(false);
 
@@ -67,7 +63,6 @@ export default defineComponent({
       columnWidths,
       columnsOrder,
       hiddenColumns,
-      loading,
       manageColumns,
       multiselect,
       noData,
@@ -85,7 +80,7 @@ export default defineComponent({
             return row1.id - row2.id;
           },
           sortable: true,
-          width: resizable.value ? width1.value : undefined
+          width: width1.value
         }),
         o.removeUndefinedKeys<Column<TableItem>>({
           align: "left",
@@ -96,7 +91,7 @@ export default defineComponent({
           maxWidth: 300,
           minWidth: 30,
           name: "name2",
-          width: resizable.value ? width2.value : undefined
+          width: width2.value
         })
       ]),
       pageTableRows: computed<TableItems>(() => {
@@ -120,11 +115,10 @@ export default defineComponent({
         });
       }),
       pagination,
-      resizable,
+      resizableColumns,
       selectByCheckbox,
       selectByRowClick,
       selected: ref<TableItems>([]),
-      separator,
       shortData
     };
   }
@@ -142,25 +136,22 @@ export default defineComponent({
         v-model:selected="selected"
         class="fit"
         :columns="pageTableColumns"
-        :loading="loading"
         :manage-columns="manageColumns"
         :multiselect="multiselect"
+        :resizable-columns="resizableColumns"
         row-key="id"
         :rows="pageTableRows"
         :select-by-checkbox="selectByCheckbox"
         :select-by-row-click="selectByRowClick"
-        :separator="separator ? 'cell' : 'horizontal'"
       >
         <template #top>
           <m-buttons-group>
-            <m-toggle v-model="loading" label="Loading" />
             <m-toggle v-model="manageColumns" label="Manage columns" />
             <m-toggle v-model="multiselect" label="Multi-select" />
             <m-toggle v-model="noData" label="No data" />
-            <m-toggle v-model="resizable" label="Resizable" />
+            <m-toggle v-model="resizableColumns" label="Resizable columns" />
             <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
             <m-toggle v-model="selectByRowClick" label="Select by row click" />
-            <m-toggle v-model="separator" label="Separator" />
             <m-toggle v-model="shortData" label="Short data" />
           </m-buttons-group>
         </template>

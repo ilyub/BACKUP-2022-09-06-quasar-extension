@@ -182,6 +182,7 @@ export interface TableOwnProps<T extends object = object> {
    */
   readonly "onUpdate:selected"?: (value: objects) => void;
   readonly pagination?: Pagination | undefined;
+  readonly resizableColumns?: booleanU;
   readonly rowKey?: stringU;
   readonly rows?: readonly T[] | undefined;
   readonly selectByCheckbox?: booleanU;

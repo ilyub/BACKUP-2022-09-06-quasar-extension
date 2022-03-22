@@ -77,6 +77,7 @@ export default defineComponent({
     manageColumns: propOptions.boolean(),
     multiselect: propOptions.boolean(),
     pagination: propOptions.default(isPagination, {}),
+    resizableColumns: propOptions.boolean(),
     rowKey: propOptions(is.stringU),
     rows: propOptions.default(is.objects, []),
     selectByCheckbox: propOptions.boolean(),
@@ -206,7 +207,7 @@ export default defineComponent({
             limit: props.pagination.limit + settings.value.growPageBy
           });
       },
-      resizerUpdate(column: Column, width: number): void {
+      resizerUpdateValue(column: Column, width: number): void {
         emit(
           "update:columnWidths",
           map.set(props.columnWidths, column.name, width)
@@ -416,10 +417,11 @@ export default defineComponent({
               </div>
             </div>
             <m-resizer
+              v-if="resizableColumns"
               :max="column.maxWidth"
               :min="column.minWidth"
               :model-value="resizerValue(column)"
-              @update:model-value="resizerUpdate(column, $event)"
+              @update:model-value="resizerUpdateValue(column, $event)"
             />
           </th>
           <th v-if="finalCell" class="m-table__final-cell"></th>
