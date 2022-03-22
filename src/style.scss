@@ -204,6 +204,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
       .m-table__header-cell__label {
         overflow: hidden;
+        white-space: normal;
         text-overflow: ellipsis;
       }
 

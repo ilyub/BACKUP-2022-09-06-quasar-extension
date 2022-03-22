@@ -72,7 +72,7 @@ export default defineComponent({
           field(row): string {
             return `${row.name}!1!1234567890`;
           },
-          label: "Name 1",
+          label: "Column name 1",
           maxWidth: 300,
           minWidth: 30,
           name: "name1",
@@ -87,7 +87,7 @@ export default defineComponent({
           field(row): string {
             return `${row.name}!2!1234567890`;
           },
-          label: "Name 2",
+          label: "Column name 2",
           maxWidth: 300,
           minWidth: 30,
           name: "name2",
