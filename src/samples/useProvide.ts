@@ -101,11 +101,11 @@ function provide(): void {
 
   provideTableSettings(() => {
     return {
-      binaryStateSort: false,
+      binaryStateSort: true,
       flat: false,
       growPageBy: 10,
-      headerSeparator: false,
-      square: false
+      headerSeparator: true,
+      square: true
     };
   });
 

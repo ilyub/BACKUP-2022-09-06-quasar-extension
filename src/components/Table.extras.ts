@@ -129,12 +129,15 @@ export type ColumnsOrder = ReadonlyMap<string, number>;
 export type HiddenColumns = ReadonlySet<string>;
 
 export interface TableOwnProps<T extends object = object> {
-  readonly binaryStateSort?: booleanU;
+  readonly binaryStateSortOff?: booleanU;
+  readonly binaryStateSortOn?: booleanU;
   readonly columns?: Columns<T> | undefined;
   readonly columnsOrder?: ColumnsOrder;
   readonly externalSorting?: booleanU;
-  readonly flat?: booleanU;
-  readonly headerSeparator?: booleanU;
+  readonly flatOff?: booleanU;
+  readonly flatOn?: booleanU;
+  readonly headerSeparatorOff?: booleanU;
+  readonly headerSeparatorOn?: booleanU;
   readonly hiddenColumns?: HiddenColumns;
   readonly manageColumns?: boolean;
   readonly multiselect?: boolean;
@@ -168,7 +171,8 @@ export interface TableOwnProps<T extends object = object> {
   readonly selectByCheckbox?: booleanU;
   readonly selectByRowClick?: booleanU;
   readonly selected?: readonly T[] | undefined;
-  readonly square?: booleanU;
+  readonly squareOff?: booleanU;
+  readonly squareOn?: booleanU;
 }
 
 export interface TableParentProps

@@ -55,8 +55,6 @@ export interface PropOptions<T> {
 
 export interface PropOptionsBoolean extends PropOptionsDefault<boolean> {}
 
-export interface PropOptionsBooleanU extends PropOptions<boolean> {}
-
 export interface PropOptionsDefault<T> extends PropOptions<T> {
   readonly default: T;
 }
@@ -140,17 +138,6 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
 export function propOptions<T>(validator: is.Guard<T>): PropOptions<T> {
   return { validator };
 }
-
-/**
- * Creates Vue property.
- *
- * @returns Vue property.
- */
-export function propOptionsBooleanU(): PropOptionsBooleanU {
-  return { type: Boolean };
-}
-
-propOptions.booleanU = propOptionsBooleanU;
 
 /**
  * Creates Vue property.

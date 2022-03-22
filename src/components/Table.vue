@@ -59,12 +59,15 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
-    binaryStateSort: propOptions.booleanU(),
+    binaryStateSortOff: propOptions.boolean(),
+    binaryStateSortOn: propOptions.boolean(),
     columns: propOptions.default(isColumnsFactory(), []),
     columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
-    flat: propOptions.booleanU(),
-    headerSeparator: propOptions.booleanU(),
+    flatOff: propOptions.boolean(),
+    flatOn: propOptions.boolean(),
+    headerSeparatorOff: propOptions.boolean(),
+    headerSeparatorOn: propOptions.boolean(),
     hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
     manageColumns: propOptions.boolean(),
     multiselect: propOptions.boolean(),
@@ -74,7 +77,8 @@ export default defineComponent({
     selectByCheckbox: propOptions.boolean(),
     selectByRowClick: propOptions.boolean(),
     selected: propOptions.default(is.objects, []),
-    square: propOptions.booleanU()
+    squareOff: propOptions.boolean(),
+    squareOn: propOptions.boolean()
   },
   emits: {
     "update:columnsOrder"(value: ColumnsOrder) {
@@ -137,6 +141,11 @@ export default defineComponent({
       allSelectedDisable,
       allSelectedIcon,
       allSelectedLabel,
+      binaryStateSort: computed<boolean>(() =>
+        settings.value.binaryStateSort
+          ? !props.binaryStateSortOff
+          : props.binaryStateSortOn
+      ),
       columnSortingIcon: computed<string>(() =>
         props.pagination.descending ?? false
           ? icons.descending
@@ -160,6 +169,14 @@ export default defineComponent({
       empty: computed<boolean>(() => props.rows.length === 0),
       finalCell: computed<boolean>(() =>
         props.columns.some(column => is.not.empty(column.width))
+      ),
+      flat: computed<boolean>(() =>
+        settings.value.flat ? !props.flatOff : props.flatOn
+      ),
+      headerSeparator: computed<boolean>(() =>
+        settings.value.headerSeparator
+          ? !props.headerSeparatorOff
+          : props.headerSeparatorOn
       ),
       icons,
       lang,
@@ -200,7 +217,6 @@ export default defineComponent({
 
         return "none";
       }),
-      settings,
       slotNames: useSlotsNames<TableSlots>()(
         "body",
         "body-cell",
@@ -214,6 +230,9 @@ export default defineComponent({
       ),
       sortMethod: computed<SortMethod | undefined>(() =>
         props.externalSorting ? fn.identity : undefined
+      ),
+      square: computed<boolean>(() =>
+        settings.value.square ? !props.squareOff : props.squareOn
       ),
       tableColumns: computed<Writable<Columns>>(() =>
         props.columns
@@ -285,10 +304,10 @@ export default defineComponent({
   <q-table
     v-bind="$attrs"
     ref="main"
-    :binary-state-sort="binaryStateSort ?? settings.binaryStateSort"
+    :binary-state-sort="binaryStateSort"
     class="m-table"
     :columns="tableColumns"
-    :flat="flat ?? settings.flat"
+    :flat="flat"
     :pagination="pagination"
     :row-key="rowKey"
     :rows="tableRows"
@@ -296,7 +315,7 @@ export default defineComponent({
     :selected="tableSelected"
     :selection="selection"
     :sort-method="sortMethod"
-    :square="square ?? settings.square"
+    :square="square"
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
@@ -343,8 +362,7 @@ export default defineComponent({
             class="m-table__header-cell"
             :class="{
               'cursor-pointer': column.sortable,
-              'm-table__header-cell-separator':
-                headerSeparator ?? settings.headerSeparator
+              'm-table__header-cell-separator': headerSeparator
             }"
             @click="tableColumnsItemClick(column)"
           >

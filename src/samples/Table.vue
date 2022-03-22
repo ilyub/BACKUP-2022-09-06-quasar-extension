@@ -140,7 +140,6 @@ export default defineComponent({
         v-model:selected="selected"
         class="fit"
         :columns="pageTableColumns"
-        flat
         :header-separator="headerSeparator"
         :loading="loading"
         :manage-columns="manageColumns"
