@@ -50,7 +50,6 @@ export default defineComponent({
       :item-class="`${$style.sortableItem} q-mr-sm`"
       item-key="id"
       pull
-      put
       sort
     >
       <template #item="{ item }">
@@ -66,7 +65,6 @@ export default defineComponent({
       group="sortable"
       :item-class="`${$style.sortableItem} q-mr-sm`"
       item-key="id"
-      pull
       put
       sort
     >
