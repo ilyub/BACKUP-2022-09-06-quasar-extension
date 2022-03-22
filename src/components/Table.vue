@@ -422,6 +422,7 @@ export default defineComponent({
             </div>
             <m-resizer
               v-if="resizableColumns"
+              class="m-table__header-cell__resizer"
               :max="column.maxWidth"
               :min="column.minWidth"
               :model-value="resizerValue(column)"

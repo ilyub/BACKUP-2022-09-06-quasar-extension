@@ -601,3 +601,56 @@ test.each([
 
   expect(wrapper).toBeDefined();
 });
+
+test("columnWidths", () => {
+  const wrapper = vueTestUtils.mount(Table, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys<TableOwnProps>({
+      columnWidths: new Map([["column1", 150]]),
+      columns: [
+        {
+          align: "left",
+          field(row): string {
+            return cast.string(reflect.get(row, "name"));
+          },
+          label: "Sample label 1",
+          name: "column1",
+          width: 100
+        },
+        {
+          align: "left",
+          field(row): string {
+            return cast.string(reflect.get(row, "name"));
+          },
+          label: "Sample label 2",
+          name: "column2",
+          width: 100
+        },
+        {
+          align: "left",
+          field(row): string {
+            return cast.string(reflect.get(row, "name"));
+          },
+          label: "Sample label 3",
+          name: "column3"
+        }
+      ],
+      resizableColumns: true,
+      rowKey: "id",
+      rows: [
+        { id: "key1", name: "Sample row 1" },
+        { id: "key2", name: "Sample row 2" },
+        { id: "key3", name: "Sample row 3" }
+      ]
+    })
+  });
+
+  expect(wrapper).toBeDefined();
+
+  const comp = testUtils.findComponentFactory(".m-table__", wrapper);
+
+  const expected = [[new Map([["column1", 200]])]];
+
+  comp("header-cell__resizer").vm.$emit("update:modelValue", 200);
+  expect(wrapper.emitted("update:columnWidths")).toStrictEqual(expected);
+});
