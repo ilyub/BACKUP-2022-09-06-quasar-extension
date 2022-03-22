@@ -273,10 +273,10 @@ test("rowClick", async () => {
       })
     });
 
-    const comp = testUtils.findComponentFactory(".m-table__", wrapper);
+    const elem = testUtils.findElementFactory(".m-table__", wrapper);
 
     await wait(100);
-    await comp("select-by-row-click").trigger("click");
+    await elem("select-by-row-click").trigger("click");
     expect(wrapper.emitted("update:selected")).toStrictEqual([[[rows[0]]]]);
   });
 });
@@ -371,7 +371,9 @@ test.each([
     const elem = testUtils.findElementFactory(".m-table__", wrapper);
 
     await wait(100);
-    expect(elem("header__wrapper").attributes("style")).toBe(expectedStyle);
+    expect(elem("header-cell__wrapper").attributes("style")).toBe(
+      expectedStyle
+    );
   });
 });
 

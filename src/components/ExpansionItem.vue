@@ -24,15 +24,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-expansion-item class="m-expansion-item" :class="$style.item">
+  <q-expansion-item class="m-expansion-item">
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
       <slot :name="slotName" v-bind="data ?? {}"></slot>
     </template>
   </q-expansion-item>
 </template>
-
-<style lang="scss" module>
-.item :global(.q-expansion-item__container > .q-item .q-item__section--side) {
-  min-width: 0;
-}
-</style>

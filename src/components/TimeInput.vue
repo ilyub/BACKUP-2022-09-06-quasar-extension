@@ -156,7 +156,7 @@ export default defineComponent({
         <q-icon
           class="q-field__focusable-action ref-time-input-hours-down"
           :class="{
-            [$style.disable]: downDisable
+            'm-time-input__disable': downDisable
           }"
           :name="icons.chevronDoubleLeft"
           @click="downClick(60)"
@@ -164,7 +164,7 @@ export default defineComponent({
         <q-icon
           class="q-field__focusable-action ref-time-input-minutes-down"
           :class="{
-            [$style.disable]: downDisable
+            'm-time-input__disable': downDisable
           }"
           :name="icons.chevronLeft"
           @click="downClick(15)"
@@ -173,14 +173,3 @@ export default defineComponent({
     </template>
   </q-field>
 </template>
-
-<style lang="scss" module>
-.disable {
-  &,
-  &:focus,
-  &:hover {
-    opacity: 0.3;
-    cursor: default;
-  }
-}
-</style>

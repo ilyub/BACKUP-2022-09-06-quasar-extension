@@ -379,18 +379,21 @@ export default defineComponent({
             class="m-table__header-cell"
             :class="{
               'cursor-pointer': column.sortable,
-              'm-table__header-cell-separator': headerSeparator
+              'm-table__header-cell__separator': headerSeparator
             }"
             @click="tableColumnsItemClick(column)"
           >
-            <div class="m-table__header__wrapper" :style="columnStyle(column)">
-              <div class="m-table__header__wrapper__left">
+            <div
+              class="m-table__header-cell__wrapper"
+              :style="columnStyle(column)"
+            >
+              <div class="m-table__header-cell__left">
                 <q-icon
                   v-if="columnSortingIconShow(column)"
                   :name="columnSortingIcon"
                 />
               </div>
-              <div class="m-table__header__wrapper__label">
+              <div class="m-table__header-cell__label">
                 <slot
                   :name="slotNames.headerCell"
                   v-bind="{
@@ -405,7 +408,7 @@ export default defineComponent({
                   {{ column.label }}
                 </slot>
               </div>
-              <div class="m-table__header__wrapper__right">
+              <div class="m-table__header-cell__right">
                 <q-icon
                   v-if="columnSortingIconShow(column)"
                   :name="columnSortingIcon"
@@ -536,7 +539,7 @@ export default defineComponent({
     <m-card class="m-table__dialog" :title="lang.ManageColumns">
       <m-card-section>
         <q-markup-table
-          :class="$style.manageColumnsTable"
+          class="m-table__dialog__table"
           flat
           separator="horizontal"
         >
@@ -552,7 +555,7 @@ export default defineComponent({
           >
             <template #item="{ item: column }">
               <tr>
-                <td :class="$style.manageColumnsLabel">
+                <td class="m-table__dialog__label">
                   {{ column.label }}
                 </td>
                 <td class="text-right">
@@ -571,13 +574,3 @@ export default defineComponent({
     </m-card>
   </q-dialog>
 </template>
-
-<style lang="scss" module>
-.manageColumnsTable {
-  overflow: hidden;
-}
-
-.manageColumnsLabel {
-  min-width: 300px;
-}
-</style>

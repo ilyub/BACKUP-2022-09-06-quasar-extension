@@ -99,15 +99,3 @@ export default defineComponent({
     <slot :name="slotNames.default"></slot>
   </div>
 </template>
-
-<style lang="scss">
-.m-resizer {
-  position: absolute;
-  z-index: 1000;
-  top: 0;
-  right: 0;
-  width: 5px;
-  height: 100%;
-  cursor: ew-resize;
-}
-</style>

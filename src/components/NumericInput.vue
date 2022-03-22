@@ -124,7 +124,7 @@ export default defineComponent({
         <q-icon
           class="q-field__focusable-action ref-numeric-input-up"
           :class="{
-            [$style.disable]: upDisable
+            'm-numeric-input__disable': upDisable
           }"
           :name="icons.chevronRight"
           @click="upClick(smallStep)"
@@ -133,7 +133,7 @@ export default defineComponent({
           v-if="bigStep > 1"
           class="q-field__focusable-action ref-numeric-input-big-up"
           :class="{
-            [$style.disable]: upDisable
+            'm-numeric-input__disable': upDisable
           }"
           :name="icons.chevronDoubleRight"
           @click="upClick(bigStep)"
@@ -156,7 +156,7 @@ export default defineComponent({
           v-if="bigStep > 1"
           class="q-field__focusable-action ref-numeric-input-big-down"
           :class="{
-            [$style.disable]: downDisable
+            'm-numeric-input__disable': downDisable
           }"
           :name="icons.chevronDoubleLeft"
           @click="downClick(bigStep)"
@@ -164,7 +164,7 @@ export default defineComponent({
         <q-icon
           class="q-field__focusable-action ref-numeric-input-down"
           :class="{
-            [$style.disable]: downDisable
+            'm-numeric-input__disable': downDisable
           }"
           :name="icons.chevronLeft"
           @click="downClick(smallStep)"
@@ -173,14 +173,3 @@ export default defineComponent({
     </template>
   </q-field>
 </template>
-
-<style lang="scss" module>
-.disable {
-  &,
-  &:focus,
-  &:hover {
-    opacity: 0.3;
-    cursor: default;
-  }
-}
-</style>

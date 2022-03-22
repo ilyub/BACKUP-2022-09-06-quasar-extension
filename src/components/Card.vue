@@ -53,7 +53,7 @@ export default defineComponent({
       >
         <slot :name="slotNames.title">{{ title }}</slot>
         <q-space v-if="!transparentHeader" />
-        <div :class="{ [$style.headerActions]: transparentHeader }">
+        <div :class="{ 'm-card__header-actions': transparentHeader }">
           <slot :name="slotNames.headerActions"></slot>
           <m-icon-button v-close-popup :icon="icons.close" />
         </div>
@@ -62,15 +62,3 @@ export default defineComponent({
     </template>
   </q-card>
 </template>
-
-<style lang="scss" module>
-@use "sass:map";
-
-@import "~quasar/src/css/variables.sass";
-
-.headerActions {
-  position: absolute;
-  top: map.get($space-sm, "y");
-  right: map.get($space-sm, "x");
-}
-</style>

@@ -272,27 +272,27 @@ export default defineComponent({
                 <div
                   class="ref-datetime-picker-prev"
                   :class="{
-                    [`${$style.headerClickable} text-blue-2`]: nextStep
+                    'm-datetime-picker__header-clickable text-blue-2': nextStep
                   }"
                   @click="prevClick"
                 >
                   <div
-                    :class="`${$style.headerText} q-mb-xs text-body2 text-weight-thin`"
+                    class="m-datetime-picker__header-text q-mb-xs text-body2 text-weight-thin"
                   >
                     {{ year }}
                   </div>
-                  <div :class="`${$style.headerText} text-subtitle1`">
+                  <div class="m-datetime-picker__header-text text-subtitle1">
                     {{ date }}
                   </div>
                 </div>
                 <div
                   class="q-ml-sm ref-datetime-picker-next"
                   :class="{
-                    [`${$style.headerClickable} text-blue-2`]: !nextStep
+                    'm-datetime-picker__header-clickable text-blue-2': !nextStep
                   }"
                   @click="nextClick"
                 >
-                  <div :class="`${$style.headerText} text-subtitle1`">
+                  <div class="m-datetime-picker__header-text text-subtitle1">
                     {{ time }}
                   </div>
                 </div>
@@ -317,7 +317,7 @@ export default defineComponent({
                 @update:model-value="timeValueUpdate"
               >
                 <div
-                  :class="`${$style.footerActions} items-center justify-end row`"
+                  class="items-center justify-end m-datetime-picker__footer-actions row"
                 >
                   <m-form-button
                     v-close-popup
@@ -340,7 +340,7 @@ export default defineComponent({
                 @update:model-value="dateValueUpdate"
               >
                 <div
-                  :class="`${$style.footerActions} items-center justify-end row`"
+                  class="items-center justify-end m-datetime-picker__footer-actions row"
                 >
                   <m-form-button
                     v-close-popup
@@ -368,22 +368,3 @@ export default defineComponent({
     </template>
   </q-field>
 </template>
-
-<style lang="scss" module>
-.footerActions {
-  margin-right: -10px;
-}
-
-.headerClickable {
-  cursor: pointer;
-
-  &:hover {
-    color: white;
-  }
-}
-
-.headerText {
-  line-height: 1em;
-  user-select: none;
-}
-</style>
