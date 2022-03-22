@@ -9,9 +9,11 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
+import * as map from "@skylib/functions/es/map";
 import * as o from "@skylib/functions/es/object";
 import * as set from "@skylib/functions/es/set";
 import type {
+  numberU,
   objects,
   ReadonlyIndexedObject,
   Writable
@@ -31,6 +33,7 @@ import type {
   Column,
   Columns,
   ColumnsOrder,
+  ColumnWidths,
   HiddenColumns,
   Pagination,
   TableOwnProps,
@@ -42,6 +45,7 @@ import {
   injectTableSettings,
   isColumnsFactory,
   isColumnsOrder,
+  isColumnWidths,
   isHiddenColumns,
   isPagination,
   lang
@@ -61,6 +65,7 @@ export default defineComponent({
     ...propsToPropDefinitions<TableParentProps>(),
     binaryStateSortOff: propOptions.boolean(),
     binaryStateSortOn: propOptions.boolean(),
+    columnWidths: propOptions.default(isColumnWidths, new Map()),
     columns: propOptions.default(isColumnsFactory(), []),
     columnsOrder: propOptions.default(isColumnsOrder, new Map()),
     externalSorting: propOptions.boolean(),
@@ -81,12 +86,9 @@ export default defineComponent({
     squareOn: propOptions.boolean()
   },
   emits: {
-    "update:columnsOrder"(value: ColumnsOrder) {
-      return isColumnsOrder(value);
-    },
-    "update:hiddenColumns"(value: HiddenColumns) {
-      return isHiddenColumns(value);
-    },
+    "update:columnWidths": (value: ColumnWidths) => isColumnWidths(value),
+    "update:columnsOrder": (value: ColumnsOrder) => isColumnsOrder(value),
+    "update:hiddenColumns": (value: HiddenColumns) => isHiddenColumns(value),
     "update:pagination": (value: Pagination) => isPagination(value),
     "update:selected": (value: objects) => is.array.of(value, is.object)
   },
@@ -162,7 +164,9 @@ export default defineComponent({
           minWidth: is.not.empty(column.minWidth)
             ? `${column.minWidth}px`
             : undefined,
-          width: is.not.empty(column.width) ? `${column.width}px` : undefined
+          width: is.not.empty(column.width)
+            ? `${props.columnWidths.get(column.name) ?? column.width}px`
+            : undefined
         });
       },
       dialog,
@@ -201,6 +205,17 @@ export default defineComponent({
             ...props.pagination,
             limit: props.pagination.limit + settings.value.growPageBy
           });
+      },
+      resizerUpdate(column: Column, width: number): void {
+        emit(
+          "update:columnWidths",
+          map.set(props.columnWidths, column.name, width)
+        );
+      },
+      resizerValue(column: Column): numberU {
+        return is.not.empty(column.width)
+          ? props.columnWidths.get(column.name) ?? column.width
+          : undefined;
       },
       rowClick(row: object): void {
         if (props.selectByRowClick) {
@@ -400,8 +415,8 @@ export default defineComponent({
             <m-resizer
               :max="column.maxWidth"
               :min="column.minWidth"
-              :model-value="column.width"
-              @update:model-value="column.updateWidth?.($event)"
+              :model-value="resizerValue(column)"
+              @update:model-value="resizerUpdate(column, $event)"
             />
           </th>
           <th v-if="finalCell" class="m-table__final-cell"></th>

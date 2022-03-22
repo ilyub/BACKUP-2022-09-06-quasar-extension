@@ -6,7 +6,14 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as o from "@skylib/functions/es/object";
 
-import type { Column, Columns, Pagination } from "../components/Table.extras";
+import type {
+  Column,
+  Columns,
+  ColumnsOrder,
+  ColumnWidths,
+  HiddenColumns,
+  Pagination
+} from "../components/Table.extras";
 import { genericTable } from "../components/Table.generic";
 
 interface TableItem {
@@ -22,9 +29,11 @@ export default defineComponent({
     "generic-table": genericTable<TableItem>()
   },
   setup() {
-    const columnsOrder = ref<ReadonlyMap<string, number>>(new Map());
+    const columnsOrder = ref<ColumnsOrder>(new Map());
 
-    const hiddenColumns = ref<ReadonlySet<string>>(new Set());
+    const columnWidths = ref<ColumnWidths>(new Map());
+
+    const hiddenColumns = ref<HiddenColumns>(new Set());
 
     const loading = ref(false);
 
@@ -55,6 +64,7 @@ export default defineComponent({
     const width2 = ref(200);
 
     return {
+      columnWidths,
       columnsOrder,
       hiddenColumns,
       loading,
@@ -75,9 +85,6 @@ export default defineComponent({
             return row1.id - row2.id;
           },
           sortable: true,
-          updateWidth(newWidth): void {
-            width1.value = newWidth;
-          },
           width: resizable.value ? width1.value : undefined
         }),
         o.removeUndefinedKeys<Column<TableItem>>({
@@ -89,9 +96,6 @@ export default defineComponent({
           maxWidth: 300,
           minWidth: 30,
           name: "name2",
-          updateWidth(newWidth): void {
-            width2.value = newWidth;
-          },
           width: resizable.value ? width2.value : undefined
         })
       ]),
@@ -131,6 +135,7 @@ export default defineComponent({
   <m-page-layout :class="$style.pageLayout" title="Title">
     <template #fit>
       <generic-table
+        v-model:columnWidths="columnWidths"
         v-model:columnsOrder="columnsOrder"
         v-model:hiddenColumns="hiddenColumns"
         v-model:pagination="pagination"

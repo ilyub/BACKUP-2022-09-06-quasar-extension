@@ -105,18 +105,14 @@ export interface Column<T extends object = object> {
   readonly sort?: (value1: string, value2: string, row1: T, row2: T) => number;
   readonly sortOrder?: "ad" | "da";
   readonly sortable?: true;
-  /**
-   * Updates column width.
-   *
-   * @param width - New width.
-   */
-  readonly updateWidth?: (width: number) => void;
   readonly width?: number;
 }
 
 export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
 
 export const isColumnsOrder = is.factory(is.map, is.string, is.number);
+
+export const isColumnWidths = is.factory(is.map, is.string, is.number);
 
 export const isHiddenColumns = is.factory(is.set, is.string);
 
@@ -137,11 +133,14 @@ export type GlobalTable<T extends object = object> = GlobalComponent<
 
 export type ColumnsOrder = ReadonlyMap<string, number>;
 
+export type ColumnWidths = ReadonlyMap<string, number>;
+
 export type HiddenColumns = ReadonlySet<string>;
 
 export interface TableOwnProps<T extends object = object> {
   readonly binaryStateSortOff?: booleanU;
   readonly binaryStateSortOn?: booleanU;
+  readonly columnWidths?: ColumnWidths;
   readonly columns?: Columns<T> | undefined;
   readonly columnsOrder?: ColumnsOrder;
   readonly externalSorting?: booleanU;
@@ -152,6 +151,12 @@ export interface TableOwnProps<T extends object = object> {
   readonly hiddenColumns?: HiddenColumns;
   readonly manageColumns?: boolean;
   readonly multiselect?: boolean;
+  /**
+   * Emits column order.
+   *
+   * @param value - Column order.
+   */
+  readonly "onUpdate:columnWidths"?: (value: ColumnWidths) => void;
   /**
    * Emits column order.
    *
