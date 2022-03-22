@@ -190,6 +190,7 @@ export interface TableOwnProps<T extends object = object> {
   readonly selected?: readonly T[] | undefined;
   readonly squareOff?: booleanU;
   readonly squareOn?: booleanU;
+  readonly sticky?: boolean;
 }
 
 export interface TableParentProps

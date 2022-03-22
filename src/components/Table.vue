@@ -84,7 +84,8 @@ export default defineComponent({
     selectByRowClick: propOptions.boolean(),
     selected: propOptions.default(is.objects, []),
     squareOff: propOptions.boolean(),
-    squareOn: propOptions.boolean()
+    squareOn: propOptions.boolean(),
+    sticky: propOptions.boolean()
   },
   emits: {
     "update:columnWidths": (value: ColumnWidths) => isColumnWidths(value),
@@ -324,6 +325,9 @@ export default defineComponent({
     ref="main"
     :binary-state-sort="binaryStateSort"
     class="m-table"
+    :class="{
+      'm-table__sticky': sticky
+    }"
     :columns="tableColumns"
     :flat="flat"
     :pagination="pagination"

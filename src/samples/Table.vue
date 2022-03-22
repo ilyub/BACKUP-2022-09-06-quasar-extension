@@ -37,6 +37,8 @@ export default defineComponent({
 
     const manageColumns = ref(false);
 
+    const multiselect = ref(false);
+
     const noData = ref(false);
 
     const pagination = ref<Pagination>({
@@ -53,7 +55,7 @@ export default defineComponent({
 
     const shortData = ref(false);
 
-    const multiselect = ref(false);
+    const sticky = ref(false);
 
     const width1 = ref(200);
 
@@ -119,7 +121,8 @@ export default defineComponent({
       selectByCheckbox,
       selectByRowClick,
       selected: ref<TableItems>([]),
-      shortData
+      shortData,
+      sticky
     };
   }
 });
@@ -143,6 +146,7 @@ export default defineComponent({
         :rows="pageTableRows"
         :select-by-checkbox="selectByCheckbox"
         :select-by-row-click="selectByRowClick"
+        :sticky="sticky"
       >
         <template #top>
           <m-buttons-group>
@@ -153,6 +157,7 @@ export default defineComponent({
             <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
             <m-toggle v-model="selectByRowClick" label="Select by row click" />
             <m-toggle v-model="shortData" label="Short data" />
+            <m-toggle v-model="sticky" label="Sticky" />
           </m-buttons-group>
         </template>
         <template
