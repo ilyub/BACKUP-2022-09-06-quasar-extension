@@ -9,7 +9,6 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
-import * as reflect from "@skylib/functions/es/reflect";
 import type * as testUtils from "@skylib/functions/es/testUtils";
 
 import { components } from "../components";
@@ -92,31 +91,16 @@ export interface TouchPanMock {
   readonly triggerTouchPan: (...args: unknown[]) => void;
 }
 
-export interface WrapperExtension {
-  /**
-   * Clears emitted events.
-   */
-  readonly clearEmitted: () => void;
-}
-
-export type ExtendedWrapper<T extends vueTestUtils.VueWrapper> = T &
-  WrapperExtension;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type VueWrapper = vueTestUtils.VueWrapper<any>;
 
 /**
- * Extends wrapper.
+ * Clears emitted events.
  *
  * @param wrapper - Wrapper.
- * @returns Extended wrapper.
  */
-export function extendWrapper<T extends vueTestUtils.VueWrapper>(
-  wrapper: T
-): ExtendedWrapper<T> {
-  reflect.set(wrapper, "clearEmitted", (): void => {
-    for (const events of Object.values(wrapper.emitted())) events.length = 0;
-  });
-
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  return wrapper as ExtendedWrapper<T>;
+export function clearEmitted(wrapper: VueWrapper): void {
+  for (const events of Object.values(wrapper.emitted())) events.length = 0;
 }
 
 /**
@@ -128,8 +112,7 @@ export function extendWrapper<T extends vueTestUtils.VueWrapper>(
  */
 export function findFactory(
   prefix: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  wrapper: vueTestUtils.VueWrapper<any>
+  wrapper: VueWrapper
 ): {
   readonly comp: ReturnType<typeof findComponentFactory>;
   readonly compByRef: ReturnType<typeof findComponentByRefFactory>;

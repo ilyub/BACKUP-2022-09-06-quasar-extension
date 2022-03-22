@@ -513,32 +513,30 @@ test.each([
     }
   }
 ])("columnSorting", async ({ pagination }) => {
-  const wrapper = testUtils.extendWrapper(
-    vueTestUtils.mount(Table, {
-      global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableOwnProps>({
-        binaryStateSortOn: true,
-        columns: [
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label",
-            name: "column",
-            sortable: true
-          }
-        ],
-        pagination,
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ]
-      })
+  const wrapper = vueTestUtils.mount(Table, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys<TableOwnProps>({
+      binaryStateSortOn: true,
+      columns: [
+        {
+          align: "left",
+          field(row): string {
+            return cast.string(reflect.get(row, "name"));
+          },
+          label: "Sample label",
+          name: "column",
+          sortable: true
+        }
+      ],
+      pagination,
+      rowKey: "id",
+      rows: [
+        { id: "key1", name: "Sample row 1" },
+        { id: "key2", name: "Sample row 2" },
+        { id: "key3", name: "Sample row 3" }
+      ]
     })
-  );
+  });
 
   const elem = testUtils.findElementFactory(".m-table__", wrapper);
 
@@ -546,7 +544,7 @@ test.each([
     const expected = [[pagination]];
 
     expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-    wrapper.clearEmitted();
+    testUtils.clearEmitted(wrapper);
   }
 
   {
