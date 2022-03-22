@@ -23,8 +23,8 @@ test.each([
     titleExists: true
   },
   {
+    closeButtonOff: true,
     closeExists: false,
-    hideCloseButton: true,
     title: "Sample title",
     titleExists: true
   },
@@ -38,7 +38,7 @@ test.each([
     titleExists: true
   },
   {
-    closeButton: true,
+    closeButtonOn: true,
     closeExists: true,
     pageLayoutSettings: typedef<PageLayoutSettings>({
       closeButton: false,
@@ -50,9 +50,9 @@ test.each([
 ])(
   "title",
   ({
-    closeButton,
+    closeButtonOff,
+    closeButtonOn,
     closeExists,
-    hideCloseButton,
     pageLayoutSettings,
     title,
     titleExists
@@ -61,7 +61,7 @@ test.each([
       global: testUtils.globalMountOptions(
         o.removeUndefinedKeys({ pageLayoutSettings })
       ),
-      props: o.removeUndefinedKeys({ closeButton, hideCloseButton, title })
+      props: o.removeUndefinedKeys({ closeButtonOff, closeButtonOn, title })
     });
 
     const { comp, elem } = testUtils.findFactory(".m-page-layout__", wrapper);

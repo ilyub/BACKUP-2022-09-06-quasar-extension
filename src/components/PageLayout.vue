@@ -11,8 +11,8 @@ import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 export default defineComponent({
   name: "m-page-layout",
   props: {
-    closeButton: propOptions.boolean(),
-    hideCloseButton: propOptions.boolean(),
+    closeButtonOff: propOptions.boolean(),
+    closeButtonOn: propOptions.boolean(),
     title: propOptions(is.stringU)
   },
   setup(props, { emit }) {
@@ -22,13 +22,9 @@ export default defineComponent({
     const settings = injectPageLayoutSettings();
 
     return {
-      hasCloseButton: computed<boolean>(() => {
-        if (props.closeButton) return true;
-
-        if (props.hideCloseButton) return false;
-
-        return settings.value.closeButton;
-      }),
+      closeButton: computed<boolean>(() =>
+        settings.value.closeButton ? !props.closeButtonOff : props.closeButtonOn
+      ),
       hasTitle: computed<boolean>(() => is.not.empty(props.title)),
       icons,
       settings,
@@ -55,7 +51,7 @@ export default defineComponent({
   >
     <div v-if="hasTitle" class="items-start m-page-layout__title row">
       <div class="m-page-layout__title-text">{{ title }}</div>
-      <template v-if="hasCloseButton">
+      <template v-if="closeButton">
         <q-space />
         <slot :name="slotNames.actions"></slot>
         <m-icon-button

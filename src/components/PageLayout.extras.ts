@@ -25,8 +25,8 @@ export type GlobalPageLayout = GlobalComponent<
 >;
 
 export interface PageLayoutProps {
-  readonly closeButton?: booleanU;
-  readonly hideCloseButton?: booleanU;
+  readonly closeButtonOff?: booleanU;
+  readonly closeButtonOn?: booleanU;
   readonly title?: stringU;
 }
 

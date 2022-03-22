@@ -5,8 +5,8 @@ export default defineComponent({
   name: "sample-page-layout",
   setup() {
     return {
-      closeButton: ref(false),
-      hideCloseButton: ref(false),
+      closeButtonOff: ref(false),
+      closeButtonOn: ref(false),
       scrollbar: ref(false),
       title: ref(false)
     };
@@ -17,8 +17,8 @@ export default defineComponent({
 <template>
   <m-page-layout
     :class="$style.pageLayout"
-    :close-button="closeButton"
-    :hide-close-button="hideCloseButton"
+    :close-button-off="closeButtonOff"
+    :close-button-on="closeButtonOn"
     :title="title ? 'Title' : undefined"
   >
     <template #header>
@@ -32,10 +32,10 @@ export default defineComponent({
             <m-toggle v-model="title" label="Title" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="closeButton" label="Close button" />
+            <m-toggle v-model="closeButtonOn" label="Close button" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="hideCloseButton" label="Hide close button" />
+            <m-toggle v-model="closeButtonOff" label="Hide close button" />
           </m-subsection>
           <m-subsection>
             <m-toggle v-model="scrollbar" label="Scrollbar" />
