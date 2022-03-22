@@ -220,6 +220,8 @@ export default defineComponent({
       slotNames: useSlotsNames<TableSlots>()(
         "body",
         "body-cell",
+        "body-cell-context",
+        "body-context",
         "body-selection",
         "bottom",
         "header",
@@ -328,7 +330,7 @@ export default defineComponent({
     </template>
     <template #header="data">
       <slot :name="slotNames.header" v-bind="data">
-        <q-tr>
+        <tr>
           <m-menu v-if="manageColumns" auto-close context-menu>
             <q-list>
               <m-list-item
@@ -403,19 +405,30 @@ export default defineComponent({
             />
           </th>
           <th v-if="finalCell" class="m-table__final-cell"></th>
-        </q-tr>
+        </tr>
       </slot>
     </template>
     <template #body="data">
       <slot :name="slotNames.body" v-bind="data">
-        <q-tr
+        <tr
           :class="{
             'm-table__select-by-row-click': selectByRowClick,
             'selected': data.selected
           }"
           @click="rowClick(data.row)"
         >
-          <q-td v-if="selectByCheckbox" class="m-table__selection-cell">
+          <slot
+            :name="slotNames.bodyContext"
+            v-bind="{
+              allSelected,
+              allSelectedClick,
+              allSelectedDisable,
+              allSelectedIcon,
+              allSelectedLabel,
+              row: data.row
+            }"
+          ></slot>
+          <td v-if="selectByCheckbox" class="m-table__selection-cell">
             <slot
               :name="slotNames.bodySelection"
               v-bind="{
@@ -429,12 +442,24 @@ export default defineComponent({
             >
               <q-checkbox v-model="data.selected" />
             </slot>
-          </q-td>
-          <q-td
+          </td>
+          <td
             v-for="column in tableColumns"
             :key="column.name"
             class="m-table__body-cell"
           >
+            <slot
+              :name="slotNames.bodyCellContext"
+              v-bind="{
+                allSelected,
+                allSelectedClick,
+                allSelectedDisable,
+                allSelectedIcon,
+                allSelectedLabel,
+                column,
+                row: data.row
+              }"
+            ></slot>
             <div
               class="m-table__body-cell__wrapper"
               :style="columnStyle(column)"
@@ -454,9 +479,9 @@ export default defineComponent({
                 {{ column.field(data.row) }}
               </slot>
             </div>
-          </q-td>
-          <q-td v-if="finalCell" class="m-table__final-cell" />
-        </q-tr>
+          </td>
+          <td v-if="finalCell" class="m-table__final-cell"></td>
+        </tr>
       </slot>
     </template>
     <template
@@ -504,25 +529,25 @@ export default defineComponent({
             class="m-table__dialog__sortable"
             group="m-table__column-management"
             item-key="name"
-            item-tag="q-tr"
+            item-tag="tr"
             :model-value="manageColumnsRows"
             sort
             tag="tbody"
             @update:model-value="updateColumnsOrder"
           >
             <template #item="{ item: column }">
-              <q-tr>
-                <q-td :class="$style.manageColumnsLabel">
+              <tr>
+                <td :class="$style.manageColumnsLabel">
                   {{ column.label }}
-                </q-td>
-                <q-td class="text-right">
+                </td>
+                <td class="text-right">
                   <q-checkbox
                     class="m-table__dialog__hidden-column"
                     :model-value="!hiddenColumns.has(column.name)"
                     @update:model-value="updateHiddenColumns(column, $event)"
                   />
-                </q-td>
-              </q-tr>
+                </td>
+              </tr>
             </template>
           </m-sortable-column>
         </q-markup-table>

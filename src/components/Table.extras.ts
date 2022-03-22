@@ -61,6 +61,17 @@ export interface BodyCellSlotData<T extends object = object>
   readonly row: T;
 }
 
+export interface BodyCellContextSlotData<T extends object = object>
+  extends AllSelectedData {
+  readonly column: Column<T>;
+  readonly row: T;
+}
+
+export interface BodyContextSlotData<T extends object = object>
+  extends AllSelectedData {
+  readonly row: T;
+}
+
 export interface BodySelectionSlotData<T extends object = object>
   extends AllSelectedData {
   readonly row: T;
@@ -198,7 +209,11 @@ export interface TableProps<T extends object = object>
 export interface TableSlots<T extends object = object>
   extends Omit<
     QTableSlots,
-    "body-cell" | "body-selection" | "header-cell" | "header-selection"
+    | "body-cell"
+    | "body-selection"
+    | "header-cell"
+    | "header-selection"
+    | `body-cell-${string}`
   > {
   /**
    * Body cell slot.
@@ -207,6 +222,22 @@ export interface TableSlots<T extends object = object>
    * @returns Node.
    */
   readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
+  /**
+   * Body context menu slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "body-cell-context": (
+    scope: BodyCellContextSlotData<T>
+  ) => readonly VNode[];
+  /**
+   * Body context menu slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "body-context": (scope: BodyContextSlotData<T>) => readonly VNode[];
   /**
    * Body selection slot.
    *

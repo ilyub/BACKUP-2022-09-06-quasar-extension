@@ -24,8 +24,6 @@ export default defineComponent({
   setup() {
     const columnsOrder = ref<ReadonlyMap<string, number>>(new Map());
 
-    const headerSeparator = ref(false);
-
     const hiddenColumns = ref<ReadonlySet<string>>(new Set());
 
     const loading = ref(false);
@@ -58,7 +56,6 @@ export default defineComponent({
 
     return {
       columnsOrder,
-      headerSeparator,
       hiddenColumns,
       loading,
       manageColumns,
@@ -140,7 +137,6 @@ export default defineComponent({
         v-model:selected="selected"
         class="fit"
         :columns="pageTableColumns"
-        :header-separator="headerSeparator"
         :loading="loading"
         :manage-columns="manageColumns"
         :multiselect="multiselect"
@@ -152,7 +148,6 @@ export default defineComponent({
       >
         <template #top>
           <m-buttons-group>
-            <m-toggle v-model="headerSeparator" label="Header separator" />
             <m-toggle v-model="loading" label="Loading" />
             <m-toggle v-model="manageColumns" label="Manage columns" />
             <m-toggle v-model="multiselect" label="Multi-select" />
@@ -177,6 +172,26 @@ export default defineComponent({
           </template>
           <q-space />
           {{ pageTableRows.length }} out of 1000
+        </template>
+        <template #body-context="{ row }">
+          <m-menu auto-close context-menu>
+            <q-list>
+              <m-list-item
+                :caption="row.name"
+                @click="$q.notify('Click row')"
+              />
+            </q-list>
+          </m-menu>
+        </template>
+        <template #body-cell-context="{ column }">
+          <m-menu auto-close context-menu>
+            <q-list>
+              <m-list-item
+                :caption="column.label"
+                @click="$q.notify('Click cell')"
+              />
+            </q-list>
+          </m-menu>
         </template>
       </generic-table>
     </template>
