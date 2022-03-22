@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QTableSlots`, ``"body-cell"`` \| ``"body-selection"`` \| ``"header-cell"`` \| ``"header-selection"``\>
+- `Omit`<`QTableSlots`, ``"body-cell"`` \| ``"body-selection"`` \| ``"header-cell"`` \| ``"header-selection"`` \| \`body-cell-${string}\`\>
 
   ↳ **`TableSlots`**
 
@@ -21,6 +21,8 @@
 ### Methods
 
 - [body-cell](components_Table_extras.TableSlots.md#body-cell)
+- [body-cell-context](components_Table_extras.TableSlots.md#body-cell-context)
+- [body-context](components_Table_extras.TableSlots.md#body-context)
 - [body-selection](components_Table_extras.TableSlots.md#body-selection)
 - [header-cell](components_Table_extras.TableSlots.md#header-cell)
 - [header-selection](components_Table_extras.TableSlots.md#header-selection)
@@ -39,6 +41,46 @@ Body cell slot.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scope` | [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### body-cell-context
+
+▸ `Readonly` **body-cell-context**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Body context menu slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`BodyCellContextSlotData`](components_Table_extras.BodyCellContextSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### body-context
+
+▸ `Readonly` **body-context**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Body context menu slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`BodyContextSlotData`](components_Table_extras.BodyContextSlotData.md)<`T`\> | Scope. |
 
 #### Returns
 

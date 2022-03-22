@@ -8,15 +8,14 @@
 
 - [CustomGlobalMountOptions](../interfaces/testUtils.CustomGlobalMountOptions.md)
 - [TouchPanMock](../interfaces/testUtils.TouchPanMock.md)
-- [WrapperExtension](../interfaces/testUtils.WrapperExtension.md)
 
 ### Type aliases
 
-- [ExtendedWrapper](testUtils.md#extendedwrapper)
+- [VueWrapper](testUtils.md#vuewrapper)
 
 ### Functions
 
-- [extendWrapper](testUtils.md#extendwrapper)
+- [clearEmitted](testUtils.md#clearemitted)
 - [findComponentByRefFactory](testUtils.md#findcomponentbyreffactory)
 - [findComponentFactory](testUtils.md#findcomponentfactory)
 - [findElementFactory](testUtils.md#findelementfactory)
@@ -34,41 +33,27 @@
 
 ## Type aliases
 
-### ExtendedWrapper
+### VueWrapper
 
-Ƭ **ExtendedWrapper**<`T`\>: `T` & [`WrapperExtension`](../interfaces/testUtils.WrapperExtension.md)
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `vueTestUtils.VueWrapper` |
+Ƭ **VueWrapper**: `vueTestUtils.VueWrapper`<`any`\>
 
 ## Functions
 
-### extendWrapper
+### clearEmitted
 
-▸ **extendWrapper**<`T`\>(`wrapper`): [`ExtendedWrapper`](testUtils.md#extendedwrapper)<`T`\>
+▸ **clearEmitted**(`wrapper`): `void`
 
-Extends wrapper.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `VueWrapper`<`ComponentPublicInstance`<{}, {}, {}, {}, {}, {}, {}, {}, ``false``, `ComponentOptionsBase`<`any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, `any`, {}\>\>, `T`\> |
+Clears emitted events.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `wrapper` | `T` | Wrapper. |
+| `wrapper` | [`VueWrapper`](testUtils.md#vuewrapper) | Wrapper. |
 
 #### Returns
 
-[`ExtendedWrapper`](testUtils.md#extendedwrapper)<`T`\>
-
-Extended wrapper.
+`void`
 
 ___
 
@@ -215,7 +200,7 @@ Find component factory.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `prefix` | `string` | Prefix. |
-| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+| `wrapper` | [`VueWrapper`](testUtils.md#vuewrapper) | Wrapper. |
 
 #### Returns
 

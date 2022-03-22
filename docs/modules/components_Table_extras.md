@@ -7,7 +7,9 @@
 ### Interfaces
 
 - [AllSelectedData](../interfaces/components_Table_extras.AllSelectedData.md)
+- [BodyCellContextSlotData](../interfaces/components_Table_extras.BodyCellContextSlotData.md)
 - [BodyCellSlotData](../interfaces/components_Table_extras.BodyCellSlotData.md)
+- [BodyContextSlotData](../interfaces/components_Table_extras.BodyContextSlotData.md)
 - [BodySelectionSlotData](../interfaces/components_Table_extras.BodySelectionSlotData.md)
 - [Column](../interfaces/components_Table_extras.Column.md)
 - [Field](../interfaces/components_Table_extras.Field.md)
@@ -26,6 +28,7 @@
 ### Type aliases
 
 - [Align](components_Table_extras.md#align)
+- [ColumnWidths](components_Table_extras.md#columnwidths)
 - [Columns](components_Table_extras.md#columns)
 - [ColumnsOrder](components_Table_extras.md#columnsorder)
 - [GlobalTable](components_Table_extras.md#globaltable)
@@ -42,6 +45,7 @@
 - [injectTableSettings](components_Table_extras.md#injecttablesettings)
 - [isAlign](components_Table_extras.md#isalign)
 - [isColumnFactory](components_Table_extras.md#iscolumnfactory)
+- [isColumnWidths](components_Table_extras.md#iscolumnwidths)
 - [isColumnsFactory](components_Table_extras.md#iscolumnsfactory)
 - [isColumnsOrder](components_Table_extras.md#iscolumnsorder)
 - [isFieldFactory](components_Table_extras.md#isfieldfactory)
@@ -55,6 +59,12 @@
 ### Align
 
 Ƭ **Align**: ``"center"`` \| ``"left"`` \| ``"right"``
+
+___
+
+### ColumnWidths
+
+Ƭ **ColumnWidths**: `ReadonlyMap`<`string`, `number`\>
 
 ___
 
@@ -159,6 +169,22 @@ Creates guard for Column\<T\> type.
 `is.Guard`<[`Column`](../interfaces/components_Table_extras.Column.md)<`T`\>\>
 
 Guard for Column\<T\> type.
+
+___
+
+### isColumnWidths
+
+▸ **isColumnWidths**(`value`): value is ReadonlyMap<string, number\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is ReadonlyMap<string, number\>
 
 ___
 

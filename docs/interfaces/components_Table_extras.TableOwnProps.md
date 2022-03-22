@@ -22,6 +22,7 @@
 
 - [binaryStateSortOff](components_Table_extras.TableOwnProps.md#binarystatesortoff)
 - [binaryStateSortOn](components_Table_extras.TableOwnProps.md#binarystatesorton)
+- [columnWidths](components_Table_extras.TableOwnProps.md#columnwidths)
 - [columns](components_Table_extras.TableOwnProps.md#columns)
 - [columnsOrder](components_Table_extras.TableOwnProps.md#columnsorder)
 - [externalSorting](components_Table_extras.TableOwnProps.md#externalsorting)
@@ -33,6 +34,7 @@
 - [manageColumns](components_Table_extras.TableOwnProps.md#managecolumns)
 - [multiselect](components_Table_extras.TableOwnProps.md#multiselect)
 - [pagination](components_Table_extras.TableOwnProps.md#pagination)
+- [resizableColumns](components_Table_extras.TableOwnProps.md#resizablecolumns)
 - [rowKey](components_Table_extras.TableOwnProps.md#rowkey)
 - [rows](components_Table_extras.TableOwnProps.md#rows)
 - [selectByCheckbox](components_Table_extras.TableOwnProps.md#selectbycheckbox)
@@ -40,9 +42,11 @@
 - [selected](components_Table_extras.TableOwnProps.md#selected)
 - [squareOff](components_Table_extras.TableOwnProps.md#squareoff)
 - [squareOn](components_Table_extras.TableOwnProps.md#squareon)
+- [sticky](components_Table_extras.TableOwnProps.md#sticky)
 
 ### Methods
 
+- [onUpdate:columnWidths](components_Table_extras.TableOwnProps.md#onupdate:columnwidths)
 - [onUpdate:columnsOrder](components_Table_extras.TableOwnProps.md#onupdate:columnsorder)
 - [onUpdate:hiddenColumns](components_Table_extras.TableOwnProps.md#onupdate:hiddencolumns)
 - [onUpdate:pagination](components_Table_extras.TableOwnProps.md#onupdate:pagination)
@@ -59,6 +63,12 @@ ___
 ### binaryStateSortOn
 
 • `Optional` `Readonly` **binaryStateSortOn**: `booleanU`
+
+___
+
+### columnWidths
+
+• `Optional` `Readonly` **columnWidths**: [`ColumnWidths`](../modules/components_Table_extras.md#columnwidths)
 
 ___
 
@@ -128,6 +138,12 @@ ___
 
 ___
 
+### resizableColumns
+
+• `Optional` `Readonly` **resizableColumns**: `booleanU`
+
+___
+
 ### rowKey
 
 • `Optional` `Readonly` **rowKey**: `stringU`
@@ -168,7 +184,31 @@ ___
 
 • `Optional` `Readonly` **squareOn**: `booleanU`
 
+___
+
+### sticky
+
+• `Optional` `Readonly` **sticky**: `boolean`
+
 ## Methods
+
+### onUpdate:columnWidths
+
+▸ `Optional` `Readonly` **onUpdate:columnWidths**(`value`): `void`
+
+Emits column order.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`ColumnWidths`](../modules/components_Table_extras.md#columnwidths) | Column order. |
+
+#### Returns
+
+`void`
+
+___
 
 ### onUpdate:columnsOrder
 

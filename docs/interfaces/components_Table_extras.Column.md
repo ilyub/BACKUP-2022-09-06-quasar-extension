@@ -27,7 +27,6 @@
 ### Methods
 
 - [sort](components_Table_extras.Column.md#sort)
-- [updateWidth](components_Table_extras.Column.md#updatewidth)
 
 ## Properties
 
@@ -105,21 +104,3 @@ Sorting function.
 `number`
 
 Comparison result.
-
-___
-
-### updateWidth
-
-▸ `Optional` `Readonly` **updateWidth**(`width`): `void`
-
-Updates column width.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `width` | `number` | New width. |
-
-#### Returns
-
-`void`

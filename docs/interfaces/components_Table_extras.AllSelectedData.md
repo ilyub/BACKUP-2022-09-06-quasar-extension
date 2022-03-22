@@ -10,6 +10,10 @@
 
   ↳ [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)
 
+  ↳ [`BodyCellContextSlotData`](components_Table_extras.BodyCellContextSlotData.md)
+
+  ↳ [`BodyContextSlotData`](components_Table_extras.BodyContextSlotData.md)
+
   ↳ [`BodySelectionSlotData`](components_Table_extras.BodySelectionSlotData.md)
 
   ↳ [`HeaderCellSlotData`](components_Table_extras.HeaderCellSlotData.md)

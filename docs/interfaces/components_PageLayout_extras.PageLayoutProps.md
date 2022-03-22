@@ -8,21 +8,21 @@
 
 ### Properties
 
-- [closeButton](components_PageLayout_extras.PageLayoutProps.md#closebutton)
-- [hideCloseButton](components_PageLayout_extras.PageLayoutProps.md#hideclosebutton)
+- [closeButtonOff](components_PageLayout_extras.PageLayoutProps.md#closebuttonoff)
+- [closeButtonOn](components_PageLayout_extras.PageLayoutProps.md#closebuttonon)
 - [title](components_PageLayout_extras.PageLayoutProps.md#title)
 
 ## Properties
 
-### closeButton
+### closeButtonOff
 
-• `Optional` `Readonly` **closeButton**: `booleanU`
+• `Optional` `Readonly` **closeButtonOff**: `booleanU`
 
 ___
 
-### hideCloseButton
+### closeButtonOn
 
-• `Optional` `Readonly` **hideCloseButton**: `booleanU`
+• `Optional` `Readonly` **closeButtonOn**: `booleanU`
 
 ___
 
