@@ -15,7 +15,8 @@ import type {
   Column,
   Columns,
   Pagination,
-  TableOwnProps
+  TableOwnProps,
+  TableSettings
 } from "@/components/Table.extras";
 import Table from "@/components/Table.vue";
 import * as testUtils from "@/testUtils";
@@ -512,52 +513,91 @@ test.each([
     }
   }
 ])("columnSorting", async ({ pagination }) => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const wrapper = testUtils.extendWrapper(
-      vueTestUtils.mount(Table, {
-        global: testUtils.globalMountOptions(),
-        props: o.removeUndefinedKeys<TableOwnProps>({
-          binaryStateSortOn: true,
-          columns: [
-            {
-              align: "left",
-              field(row): string {
-                return cast.string(reflect.get(row, "name"));
-              },
-              label: "Sample label",
-              name: "column",
-              sortable: true
-            }
-          ],
-          pagination,
-          rowKey: "id",
-          rows: [
-            { id: "key1", name: "Sample row 1" },
-            { id: "key2", name: "Sample row 2" },
-            { id: "key3", name: "Sample row 3" }
-          ]
-        })
+  const wrapper = testUtils.extendWrapper(
+    vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys<TableOwnProps>({
+        binaryStateSortOn: true,
+        columns: [
+          {
+            align: "left",
+            field(row): string {
+              return cast.string(reflect.get(row, "name"));
+            },
+            label: "Sample label",
+            name: "column",
+            sortable: true
+          }
+        ],
+        pagination,
+        rowKey: "id",
+        rows: [
+          { id: "key1", name: "Sample row 1" },
+          { id: "key2", name: "Sample row 2" },
+          { id: "key3", name: "Sample row 3" }
+        ]
       })
-    );
+    })
+  );
 
-    const elem = testUtils.findElementFactory(".m-table__", wrapper);
+  const elem = testUtils.findElementFactory(".m-table__", wrapper);
 
-    {
-      const expected = [[pagination]];
+  {
+    const expected = [[pagination]];
 
-      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-      wrapper.clearEmitted();
-    }
+    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+    wrapper.clearEmitted();
+  }
 
-    {
-      const expected = [
-        [{ ...pagination, descending: !pagination.descending }]
-      ];
+  {
+    const expected = [[{ ...pagination, descending: !pagination.descending }]];
 
-      await elem("header-cell").trigger("click");
-      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-    }
+    await elem("header-cell").trigger("click");
+    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+  }
+});
+
+test.each([
+  {
+    pageTableSettings: typedef<TableSettings>({
+      binaryStateSort: false,
+      flat: false,
+      growPageBy: 20,
+      headerSeparator: false,
+      square: false
+    })
+  },
+  {
+    pageTableSettings: typedef<TableSettings>({
+      binaryStateSort: true,
+      flat: true,
+      growPageBy: 20,
+      headerSeparator: true,
+      square: true
+    })
+  }
+])("settings", ({ pageTableSettings }) => {
+  const wrapper = vueTestUtils.mount(Table, {
+    global: testUtils.globalMountOptions({ pageTableSettings }),
+    props: o.removeUndefinedKeys<TableOwnProps>({
+      columns: [
+        {
+          align: "left",
+          field(row): string {
+            return cast.string(reflect.get(row, "name"));
+          },
+          label: "Sample label",
+          name: "column"
+        }
+      ],
+      rowKey: "id",
+      rows: [
+        { id: "key1", name: "Sample row 1" },
+        { id: "key2", name: "Sample row 2" },
+        { id: "key3", name: "Sample row 3" }
+      ]
+    })
   });
+
+  expect(wrapper).toBeDefined();
 });
