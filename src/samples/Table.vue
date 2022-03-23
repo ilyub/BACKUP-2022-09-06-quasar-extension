@@ -161,13 +161,17 @@ export default defineComponent({
           </m-buttons-group>
         </template>
         <template
-          #steady-bottom="{ allSelected, allSelectedClick, allSelectedDisable }"
+          #steady-bottom="{
+            allSelected,
+            toggleSelection,
+            toggleSelectionDisable
+          }"
         >
           <template v-if="multiselect">
             <q-checkbox
-              :disable="allSelectedDisable"
+              :disable="toggleSelectionDisable"
               :model-value="allSelected"
-              @update:model-value="allSelectedClick"
+              @update:model-value="toggleSelection"
             />
             {{ selected.length }} selected
           </template>

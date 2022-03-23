@@ -16,6 +16,7 @@ import type {
   Columns,
   Pagination,
   TableOwnProps,
+  TableProps,
   TableSettings
 } from "@/components/Table.extras";
 import Table from "@/components/Table.vue";
@@ -27,20 +28,7 @@ function typedef<T>(source: T): T {
   return source;
 }
 
-const columns: Columns = [
-  {
-    align: "left",
-    field(row): string {
-      assert.object.of(row, { name: is.string }, {});
-
-      return row.name;
-    },
-    label: "Sample label",
-    name: "column"
-  }
-];
-
-const rows = [
+const testRows = [
   { id: "key1", name: "Sample row 1" },
   { id: "key2", name: "Sample row 2" },
   { id: "key3", name: "Sample row 3" }
@@ -64,7 +52,6 @@ test.each([
     expectedHtml: "Sample body cell slot",
     expectedLimit: 45,
     externalSorting: true,
-    extraPageOffset: "5px",
     pagination: {
       descending: false,
       limit: 25,
@@ -87,7 +74,6 @@ test.each([
     expectedHtml,
     expectedLimit,
     externalSorting,
-    extraPageOffset,
     pagination,
     selected,
     tableSettings,
@@ -100,13 +86,23 @@ test.each([
         global: testUtils.globalMountOptions(
           o.removeUndefinedKeys({ tableSettings })
         ),
-        props: o.removeUndefinedKeys({
-          columns,
+        props: o.removeUndefinedKeys<TableProps>({
+          columns: [
+            {
+              align: "left",
+              field(row): string {
+                assert.object.of(row, { name: is.string }, {});
+
+                return row.name;
+              },
+              label: "Sample label",
+              name: "column"
+            }
+          ],
           externalSorting,
-          extraPageOffset,
           pagination,
           rowKey: "id",
-          rows,
+          rows: testRows,
           selected
         }),
         slots: o.removeUndefinedKeys({
@@ -204,47 +200,90 @@ test.each([
 
 test.each([
   {
-    expectedEmitted: [[rows]],
-    expectedText: "Select",
+    expectedEmitted: [[[]]],
+    expectedText: "Undefined",
+    method: "selectAll",
+    rows: [],
+    selected: []
+  },
+  {
+    expectedEmitted: [[testRows]],
+    expectedText: "False",
+    method: "selectAll",
+    rows: testRows,
+    selected: []
+  },
+  {
+    expectedEmitted: [[testRows]],
+    expectedText: "False",
+    method: "toggleSelection",
+    rows: testRows,
     selected: []
   },
   {
     expectedEmitted: [[[]]],
-    expectedText: "Deselect",
-    selected: rows.slice(1, 2)
+    expectedText: "Undefined",
+    method: "toggleSelection",
+    rows: testRows,
+    selected: testRows.slice(1, 2)
   },
   {
     expectedEmitted: [[[]]],
-    expectedText: "Deselect",
-    selected: rows
+    expectedText: "True",
+    method: "toggleSelection",
+    rows: testRows,
+    selected: testRows
+  },
+  {
+    expectedEmitted: [[[]]],
+    expectedText: "True",
+    method: "deselectAll",
+    rows: testRows,
+    selected: testRows
   }
-])("selected", async ({ expectedEmitted, expectedText, selected }) => {
-  const wrapper = vueTestUtils.mount(Table, {
-    global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys({
-      columns,
-      rowKey: "id",
-      rows,
-      selectByRowClick: true,
-      selected
-    }),
-    slots: {
-      "steady-bottom": `
-        <template #steady-bottom="{ allSelected, allSelectedClick }">
-          <button class="ref-table-steady-bottom" @click="allSelectedClick">
-            {{ allSelected === false ? "Select" : "Deselect" }}
-          </button>
-        </template>
-      `
-    }
-  });
+])(
+  "selected",
+  async ({ expectedEmitted, expectedText, method, rows, selected }) => {
+    const wrapper = vueTestUtils.mount(Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys<TableProps>({
+        columns: [
+          {
+            align: "left",
+            field(row): string {
+              assert.object.of(row, { name: is.string }, {});
 
-  const elem = testUtils.findElementFactory(".ref-table-", wrapper);
+              return row.name;
+            },
+            label: "Sample label",
+            name: "column"
+          }
+        ],
+        rowKey: "id",
+        rows,
+        selectByRowClick: true,
+        selected
+      }),
+      slots: {
+        "steady-bottom": `
+          <template #steady-bottom="{ allSelected, ${method} }">
+            <button class="ref-table-steady-bottom" @click="${method}">
+              <template v-if="allSelected === true">True</template>
+              <template v-if="allSelected === false">False</template>
+              <template v-if="allSelected === undefined">Undefined</template>
+            </button>
+          </template>
+        `
+      }
+    });
 
-  expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
-  await elem("steady-bottom").trigger("click");
-  expect(wrapper.emitted("update:selected")).toStrictEqual(expectedEmitted);
-});
+    const elem = testUtils.findElementFactory(".ref-table-", wrapper);
+
+    expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
+    await elem("steady-bottom").trigger("click");
+    expect(wrapper.emitted("update:selected")).toStrictEqual(expectedEmitted);
+  }
+);
 
 test("rowClick", async () => {
   expect.hasAssertions();
@@ -277,7 +316,7 @@ test("rowClick", async () => {
 
     await wait(100);
     await elem("select-by-row-click").trigger("click");
-    expect(wrapper.emitted("update:selected")).toStrictEqual([[[rows[0]]]]);
+    expect(wrapper.emitted("update:selected")).toStrictEqual([[[testRows[0]]]]);
   });
 });
 

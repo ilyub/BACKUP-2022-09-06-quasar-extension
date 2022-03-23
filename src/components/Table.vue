@@ -13,6 +13,7 @@ import * as map from "@skylib/functions/es/map";
 import * as o from "@skylib/functions/es/object";
 import * as set from "@skylib/functions/es/set";
 import type {
+  booleanU,
   numberU,
   objects,
   ReadonlyIndexedObject,
@@ -29,7 +30,6 @@ import { useSlotsNames } from "./api/slotNames";
 import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 import { genericSortable } from "./Sortable.generic";
 import type {
-  AllSelectedData,
   Column,
   Columns,
   ColumnsOrder,
@@ -98,34 +98,21 @@ export default defineComponent({
     validateEmit<TableOwnProps>(emit);
     validateProps<TableOwnProps>(props);
 
-    const allSelected = computed<AllSelectedData["allSelected"]>(() => {
-      switch (selected.value.length) {
-        case 0:
-          return false;
+    const allSelected = computed<booleanU>(() => {
+      if (props.rows.length)
+        switch (selected.value.length) {
+          case 0:
+            return false;
 
-        case props.rows.length:
-          return true;
+          case props.rows.length:
+            return true;
 
-        default:
-          return undefined;
-      }
+          default:
+            return undefined;
+        }
+
+      return undefined;
     });
-
-    const allSelectedClick: AllSelectedData["allSelectedClick"] = (): void => {
-      emit("update:selected", selected.value.length ? [] : props.rows);
-    };
-
-    const allSelectedDisable = computed<AllSelectedData["allSelectedDisable"]>(
-      () => props.rows.length === 0
-    );
-
-    const allSelectedIcon = computed<AllSelectedData["allSelectedIcon"]>(() =>
-      allSelected.value === false ? icons.selectAll : icons.deselectAll
-    );
-
-    const allSelectedLabel = computed<AllSelectedData["allSelectedLabel"]>(() =>
-      allSelected.value === false ? lang.SelectAll : lang.DeselectAll
-    );
 
     const selected = computed<Writable<objects>>(() => {
       assert.not.empty(props.rowKey);
@@ -141,10 +128,6 @@ export default defineComponent({
 
     return {
       allSelected,
-      allSelectedClick,
-      allSelectedDisable,
-      allSelectedIcon,
-      allSelectedLabel,
       binaryStateSort: computed<boolean>(() =>
         settings.value.binaryStateSort
           ? !props.binaryStateSortOff
@@ -171,6 +154,14 @@ export default defineComponent({
             : undefined
         });
       },
+      deselectAll(): void {
+        emit("update:selected", []);
+      },
+      deselectAllDisable: computed<boolean>(
+        () => props.rows.length === 0 || allSelected.value === false
+      ),
+      deselectAllIcon: computed<string>(() => icons.deselectAll),
+      deselectAllLabel: computed<string>(() => lang.DeselectAll),
       dialog,
       empty: computed<boolean>(() => props.rows.length === 0),
       finalCell: computed<boolean>(() =>
@@ -228,6 +219,14 @@ export default defineComponent({
           );
         }
       },
+      selectAll(): void {
+        emit("update:selected", props.rows);
+      },
+      selectAllDisable: computed<boolean>(
+        () => props.rows.length === 0 || allSelected.value === true
+      ),
+      selectAllIcon: computed<string>(() => icons.selectAll),
+      selectAllLabel: computed<string>(() => lang.SelectAll),
       selection: computed<"multiple" | "none" | "single">(() => {
         if (props.selectByCheckbox || props.selectByRowClick)
           return props.multiselect ? "multiple" : "single";
@@ -273,6 +272,16 @@ export default defineComponent({
       tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
       tableSelected: computed<Writable<objects>>(() =>
         o.unfreeze(props.selected)
+      ),
+      toggleSelection(): void {
+        emit("update:selected", allSelected.value === false ? props.rows : []);
+      },
+      toggleSelectionDisable: computed<boolean>(() => props.rows.length === 0),
+      toggleSelectionIcon: computed<string>(() =>
+        allSelected.value === false ? icons.selectAll : icons.deselectAll
+      ),
+      toggleSelectionLabel: computed<string>(() =>
+        allSelected.value === false ? lang.SelectAll : lang.DeselectAll
       ),
       updateColumnsOrder(columns: Columns): void {
         emit(
@@ -365,10 +374,18 @@ export default defineComponent({
               :name="slotNames.headerSelection"
               v-bind="{
                 allSelected,
-                allSelectedClick,
-                allSelectedDisable,
-                allSelectedIcon,
-                allSelectedLabel
+                deselectAll,
+                deselectAllDisable,
+                deselectAllIcon,
+                deselectAllLabel,
+                selectAll,
+                selectAllDisable,
+                selectAllIcon,
+                selectAllLabel,
+                toggleSelection,
+                toggleSelectionDisable,
+                toggleSelectionIcon,
+                toggleSelectionLabel
               }"
             >
               <q-checkbox
@@ -403,10 +420,18 @@ export default defineComponent({
                   :name="slotNames.headerCell"
                   v-bind="{
                     allSelected,
-                    allSelectedClick,
-                    allSelectedDisable,
-                    allSelectedIcon,
-                    allSelectedLabel,
+                    deselectAll,
+                    deselectAllDisable,
+                    deselectAllIcon,
+                    deselectAllLabel,
+                    selectAll,
+                    selectAllDisable,
+                    selectAllIcon,
+                    selectAllLabel,
+                    toggleSelection,
+                    toggleSelectionDisable,
+                    toggleSelectionIcon,
+                    toggleSelectionLabel,
                     column
                   }"
                 >
@@ -446,10 +471,18 @@ export default defineComponent({
             :name="slotNames.bodyContext"
             v-bind="{
               allSelected,
-              allSelectedClick,
-              allSelectedDisable,
-              allSelectedIcon,
-              allSelectedLabel,
+              deselectAll,
+              deselectAllDisable,
+              deselectAllIcon,
+              deselectAllLabel,
+              selectAll,
+              selectAllDisable,
+              selectAllIcon,
+              selectAllLabel,
+              toggleSelection,
+              toggleSelectionDisable,
+              toggleSelectionIcon,
+              toggleSelectionLabel,
               row: data.row
             }"
           ></slot>
@@ -458,10 +491,18 @@ export default defineComponent({
               :name="slotNames.bodySelection"
               v-bind="{
                 allSelected,
-                allSelectedClick,
-                allSelectedDisable,
-                allSelectedIcon,
-                allSelectedLabel,
+                deselectAll,
+                deselectAllDisable,
+                deselectAllIcon,
+                deselectAllLabel,
+                selectAll,
+                selectAllDisable,
+                selectAllIcon,
+                selectAllLabel,
+                toggleSelection,
+                toggleSelectionDisable,
+                toggleSelectionIcon,
+                toggleSelectionLabel,
                 row: data.row
               }"
             >
@@ -477,10 +518,18 @@ export default defineComponent({
               :name="slotNames.bodyCellContext"
               v-bind="{
                 allSelected,
-                allSelectedClick,
-                allSelectedDisable,
-                allSelectedIcon,
-                allSelectedLabel,
+                deselectAll,
+                deselectAllDisable,
+                deselectAllIcon,
+                deselectAllLabel,
+                selectAll,
+                selectAllDisable,
+                selectAllIcon,
+                selectAllLabel,
+                toggleSelection,
+                toggleSelectionDisable,
+                toggleSelectionIcon,
+                toggleSelectionLabel,
                 column,
                 row: data.row
               }"
@@ -493,10 +542,18 @@ export default defineComponent({
                 :name="slotNames.bodyCell"
                 v-bind="{
                   allSelected,
-                  allSelectedClick,
-                  allSelectedDisable,
-                  allSelectedIcon,
-                  allSelectedLabel,
+                  deselectAll,
+                  deselectAllDisable,
+                  deselectAllIcon,
+                  deselectAllLabel,
+                  selectAll,
+                  selectAllDisable,
+                  selectAllIcon,
+                  selectAllLabel,
+                  toggleSelection,
+                  toggleSelectionDisable,
+                  toggleSelectionIcon,
+                  toggleSelectionLabel,
                   row: data.row,
                   column
                 }"
@@ -518,10 +575,18 @@ export default defineComponent({
         :name="slotNames.steadyBottom"
         v-bind="{
           allSelected,
-          allSelectedClick,
-          allSelectedDisable,
-          allSelectedIcon,
-          allSelectedLabel
+          deselectAll,
+          deselectAllDisable,
+          deselectAllIcon,
+          deselectAllLabel,
+          selectAll,
+          selectAllDisable,
+          selectAllIcon,
+          selectAllLabel,
+          toggleSelection,
+          toggleSelectionDisable,
+          toggleSelectionIcon,
+          toggleSelectionLabel
         }"
       ></slot>
     </template>
@@ -534,10 +599,18 @@ export default defineComponent({
         :name="slotNames.steadyBottom"
         v-bind="{
           allSelected,
-          allSelectedClick,
-          allSelectedDisable,
-          allSelectedIcon,
-          allSelectedLabel
+          deselectAll,
+          deselectAllDisable,
+          deselectAllIcon,
+          deselectAllLabel,
+          selectAll,
+          selectAllDisable,
+          selectAllIcon,
+          selectAllLabel,
+          toggleSelection,
+          toggleSelectionDisable,
+          toggleSelectionIcon,
+          toggleSelectionLabel
         }"
       ></slot>
     </template>

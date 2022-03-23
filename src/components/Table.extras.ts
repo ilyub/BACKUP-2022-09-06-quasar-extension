@@ -44,47 +44,61 @@ export interface ModuleWord {
 
 export type Align = "center" | "left" | "right";
 
-export interface AllSelectedData {
+export interface MultiSelectData {
   readonly allSelected: booleanU;
   /**
-   * Handles allSelected click.
+   * Handles click.
    */
-  readonly allSelectedClick: () => void;
-  readonly allSelectedDisable: boolean;
-  readonly allSelectedIcon: string;
-  readonly allSelectedLabel: string;
+  readonly deselectAll: () => void;
+  readonly deselectAllDisable: boolean;
+  readonly deselectAllIcon: string;
+  readonly deselectAllLabel: string;
+  /**
+   * Handles click.
+   */
+  readonly selectAll: () => void;
+  readonly selectAllDisable: boolean;
+  readonly selectAllIcon: string;
+  readonly selectAllLabel: string;
+  /**
+   * Handles click.
+   */
+  readonly toggleSelection: () => void;
+  readonly toggleSelectionDisable: boolean;
+  readonly toggleSelectionIcon: string;
+  readonly toggleSelectionLabel: string;
 }
 
 export interface BodyCellSlotData<T extends object = object>
-  extends AllSelectedData {
+  extends MultiSelectData {
   readonly column: Column<T>;
   readonly row: T;
 }
 
 export interface BodyCellContextSlotData<T extends object = object>
-  extends AllSelectedData {
+  extends MultiSelectData {
   readonly column: Column<T>;
   readonly row: T;
 }
 
 export interface BodyContextSlotData<T extends object = object>
-  extends AllSelectedData {
+  extends MultiSelectData {
   readonly row: T;
 }
 
 export interface BodySelectionSlotData<T extends object = object>
-  extends AllSelectedData {
+  extends MultiSelectData {
   readonly row: T;
 }
 
 export interface HeaderCellSlotData<T extends object = object>
-  extends AllSelectedData {
+  extends MultiSelectData {
   readonly column: Column<T>;
 }
 
-export interface HeaderSelectionSlotData extends AllSelectedData {}
+export interface HeaderSelectionSlotData extends MultiSelectData {}
 
-export interface SteadyBottomSlotData extends AllSelectedData {}
+export interface SteadyBottomSlotData extends MultiSelectData {}
 
 export interface Column<T extends object = object> {
   readonly align: Align;
