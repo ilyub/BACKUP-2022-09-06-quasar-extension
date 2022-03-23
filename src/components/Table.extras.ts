@@ -1,11 +1,13 @@
 import type { QTableProps, QTableSlots } from "quasar";
-import type { VNode } from "vue";
+import type { ComputedRef, Ref, VNode } from "vue";
+import { computed, ref } from "vue";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
+import * as json from "@skylib/functions/es/json";
 import type {
   booleanU,
   objects,
@@ -391,4 +393,78 @@ export function isFieldFactory<T extends object = object>(): is.Guard<
   Field<T>
 > {
   return is.callable;
+}
+
+export interface TableState {
+  readonly columnWidths: ColumnWidths;
+  readonly columnsOrder: ColumnsOrder;
+  readonly descending: boolean;
+  readonly hiddenColumns: HiddenColumns;
+  readonly sortBy: string;
+}
+
+export const isTableState: is.Guard<TableState> = is.factory(
+  is.object.of,
+  {
+    columnWidths: isColumnWidths,
+    columnsOrder: isColumnsOrder,
+    descending: is.boolean,
+    hiddenColumns: isHiddenColumns,
+    sortBy: is.string
+  },
+  {}
+);
+
+export const isTableStateU = is.or.factory(isTableState, is.undefined);
+
+/**
+ * Table state module.
+ *
+ * @param initialState - Initial state.
+ * @param sortBy - Sort by.
+ * @param descending - Descending.
+ * @returns Table state module.
+ */
+export function useTableState(
+  initialState: ComputedRef<TableState>,
+  sortBy: ComputedRef<stringU>,
+  descending: ComputedRef<booleanU>
+): {
+  columnWidths: Ref<ColumnWidths>;
+  columnsOrder: Ref<ColumnsOrder>;
+  hiddenColumns: Ref<HiddenColumns>;
+  initialState: ComputedRef<TableState>;
+  modified: ComputedRef<boolean>;
+  state: ComputedRef<TableState>;
+} {
+  const columnWidths = ref<ColumnWidths>(initialState.value.columnWidths);
+
+  const columnsOrder = ref<ColumnsOrder>(initialState.value.columnsOrder);
+
+  const hiddenColumns = ref<HiddenColumns>(initialState.value.hiddenColumns);
+
+  // eslint-disable-next-line no-warning-comments
+  // fixme: Use json.eq
+  const modified = computed<boolean>(
+    () => json.encode(initialState.value) !== json.encode(state.value)
+  );
+
+  const state = computed<TableState>(() => {
+    return {
+      columnWidths: columnWidths.value,
+      columnsOrder: columnsOrder.value,
+      descending: descending.value ?? initialState.value.descending,
+      hiddenColumns: hiddenColumns.value,
+      sortBy: sortBy.value ?? initialState.value.sortBy
+    };
+  });
+
+  return {
+    columnWidths,
+    columnsOrder,
+    hiddenColumns,
+    initialState,
+    modified,
+    state
+  };
 }
