@@ -4,12 +4,13 @@ import type { VNode } from "vue";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
+import type { ConfirmedClickProps } from "./api/confirmedClickModule";
 
 export type GlobalListItem = GlobalComponent<ListItemProps, ListItemSlots>;
 
 export type ListItemParentProps = QItemProps;
 
-export interface ListItemOwnProps {
+export interface ListItemOwnProps extends ConfirmedClickProps {
   readonly caption?: stringU;
   readonly icon?: stringU;
 }

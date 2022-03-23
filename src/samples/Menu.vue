@@ -20,9 +20,15 @@ export default defineComponent({
     <m-menu auto-close>
       <q-list>
         <m-list-item
-          caption="Settings"
+          caption="Click"
           :icon="settingsIicon"
-          @click="$q.notify('Clicked')"
+          @click="$q.notify('Click')"
+        />
+        <m-list-item
+          caption="Confirmed click"
+          confirmation="Do you want to confirm menu click?"
+          :icon="settingsIicon"
+          @confirmed-click="$q.notify('Confirmed click')"
         />
         <m-list-item caption="Language">
           <template #icon>

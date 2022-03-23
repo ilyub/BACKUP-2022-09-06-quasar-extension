@@ -32,19 +32,6 @@ test("prop: confirmation", () => {
   expect(wrapper.emitted("confirmedClick")).toStrictEqual([[]]);
 });
 
-test.each([true, false])("prop: modelValue", async modelValue => {
-  const wrapper = vueTestUtils.mount(BaseButton, {
-    global: testUtils.globalMountOptions(),
-    props: {
-      modelValue
-    }
-  });
-
-  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
-  await wrapper.trigger("click");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[!modelValue]]);
-});
-
 test("prop: tooltip", async () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions()

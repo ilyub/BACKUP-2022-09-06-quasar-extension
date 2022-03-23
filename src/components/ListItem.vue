@@ -1,11 +1,16 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[ListItem] */
 
-import { computed, defineComponent, useAttrs } from "vue";
+import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
 import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import {
+  confirmedClickEmits,
+  confirmedClickProps,
+  useConfirmedClick
+} from "./api/confirmedClickModule";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   ListItemOwnProps,
@@ -17,13 +22,15 @@ export default defineComponent({
   name: "m-list-item",
   props: {
     ...propsToPropDefinitions<ListItemParentProps>(),
+    ...confirmedClickProps,
     caption: propOptions(is.stringU),
     icon: propOptions(is.stringU)
   },
-  setup(props) {
+  emits: confirmedClickEmits,
+  setup(props, { emit }) {
     validateProps<ListItemOwnProps>(props);
 
-    const attrs = useAttrs();
+    const { confirmedClick } = useConfirmedClick(props, emit);
 
     const slotNames = useSlotsNames<ListItemSlots>()(
       "caption",
@@ -32,7 +39,7 @@ export default defineComponent({
     );
 
     return {
-      clickable: computed<boolean>(() => is.not.empty(attrs["onClick"])),
+      confirmedClick,
       hasCaption: computed<boolean>(() => is.not.empty(props.caption)),
       hasIcon: computed<boolean>(() => is.not.empty(props.icon)),
       slotNames
@@ -42,7 +49,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-item class="m-list-iteml" :clickable="clickable">
+  <q-item class="m-list-iteml" clickable @click="confirmedClick">
     <q-item-section v-if="hasIcon || $slots[slotNames.icon]" side>
       <slot :name="slotNames.icon">
         <q-icon :name="icon" />
