@@ -6,7 +6,6 @@
 
 ### Interfaces
 
-- [AllSelectedData](../interfaces/components_Table_extras.AllSelectedData.md)
 - [BodyCellContextSlotData](../interfaces/components_Table_extras.BodyCellContextSlotData.md)
 - [BodyCellSlotData](../interfaces/components_Table_extras.BodyCellSlotData.md)
 - [BodyContextSlotData](../interfaces/components_Table_extras.BodyContextSlotData.md)
@@ -17,6 +16,7 @@
 - [HeaderSelectionSlotData](../interfaces/components_Table_extras.HeaderSelectionSlotData.md)
 - [ModuleIcons](../interfaces/components_Table_extras.ModuleIcons.md)
 - [ModuleWord](../interfaces/components_Table_extras.ModuleWord.md)
+- [MultiSelectData](../interfaces/components_Table_extras.MultiSelectData.md)
 - [Pagination](../interfaces/components_Table_extras.Pagination.md)
 - [SteadyBottomSlotData](../interfaces/components_Table_extras.SteadyBottomSlotData.md)
 - [TableOwnProps](../interfaces/components_Table_extras.TableOwnProps.md)
