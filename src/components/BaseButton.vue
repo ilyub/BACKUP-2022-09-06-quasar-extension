@@ -6,7 +6,7 @@ import { computed, defineComponent, ref } from "vue";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import {
   confirmedClickEmits,
   confirmedClickProps,
@@ -27,11 +27,11 @@ export default defineComponent({
   props: {
     ...propsToPropDefinitions<BaseButtonParentProps>(),
     ...confirmedClickProps,
-    asyncClick: propOptions<AsyncClick>(),
-    disable: propOptions.boolean(),
-    loading: propOptions.boolean(),
-    tooltip: propOptions<string>(),
-    tooltipDirection: propOptions<Direction>()
+    asyncClick: prop<AsyncClick>(),
+    disable: prop.boolean(),
+    loading: prop.boolean(),
+    tooltip: prop<string>(),
+    tooltipDirection: prop<Direction>()
   },
   emits: confirmedClickEmits,
   setup(props, { emit }) {

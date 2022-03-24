@@ -12,7 +12,7 @@ import Section from "../Section.vue";
 import Subsection from "../Subsection.vue";
 
 import type { SetupProps } from ".";
-import { propOptions } from ".";
+import { prop } from ".";
 
 export type RootElementProp = "div" | "page-section" | "section" | "subsection";
 
@@ -35,7 +35,7 @@ export const isRootElementPropU = is.or.factory(
 );
 
 export const rootElementPropsOptions = {
-  rootElement: propOptions<RootElementProp>()
+  rootElement: prop<RootElementProp>()
 } as const;
 
 /**

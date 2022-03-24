@@ -1,7 +1,5 @@
 import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 
-import * as is from "@skylib/functions/es/guards";
-
 import type { GlobalComponent } from "./api";
 
 // eslint-disable-next-line @skylib/prefer-readonly
@@ -43,14 +41,3 @@ export interface OptionGroupProps<T = unknown>
     OptionGroupOwnProps<T> {}
 
 export type OptionGroupSlots = QOptionGroupSlots;
-
-export const isOptionGroupOption: is.Guard<OptionGroupOption> = is.factory(
-  is.object.of,
-  { label: is.string, value: is.unknown },
-  { disable: is.boolean }
-);
-
-export const isOptionGroupOptions = is.factory(
-  is.array.of,
-  isOptionGroupOption
-);

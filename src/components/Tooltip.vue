@@ -3,7 +3,7 @@
 
 import { computed, defineComponent } from "vue";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   Direction,
@@ -51,7 +51,7 @@ export default defineComponent({
   name: "m-tooltip",
   props: {
     ...propsToPropDefinitions<TooltipParentProps>(),
-    direction: propOptions<Direction>()
+    direction: prop<Direction>()
   },
   setup(props) {
     validateProps<TooltipOwnProps>(props);

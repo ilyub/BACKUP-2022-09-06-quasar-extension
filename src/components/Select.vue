@@ -7,7 +7,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { Writable } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -20,14 +20,14 @@ import type {
   SelectOwnProps,
   SelectParentProps
 } from "./Select.extras";
-import { isSelectOption, isSelectOptions } from "./Select.extras";
+import { isSelectOption } from "./Select.extras";
 
 export default defineComponent({
   name: "m-select",
   props: {
     ...propsToPropDefinitions<SelectParentProps>(),
-    modelValue: propOptions.required(is.unknown),
-    options: propOptions.required(isSelectOptions)
+    modelValue: prop(),
+    options: prop.required<SelectOptions>()
   },
   emits: {
     "update:modelValue": (value: unknown) => is.unknown(value)

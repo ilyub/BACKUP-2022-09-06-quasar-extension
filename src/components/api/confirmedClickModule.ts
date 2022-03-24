@@ -6,7 +6,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { ValidateEmit, ValidateProps } from ".";
-import { propOptions } from ".";
+import { prop } from ".";
 
 declare global {
   namespace facades {
@@ -40,7 +40,7 @@ export const confirmedClickEmits = {
 // eslint-disable-next-line no-warning-comments
 // fixme: Create type from ConfirmedClickProps
 export const confirmedClickProps = {
-  confirmation: propOptions<string>()
+  confirmation: prop<string>()
 } as const;
 
 /**

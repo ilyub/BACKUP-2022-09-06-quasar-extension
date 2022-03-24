@@ -5,7 +5,7 @@ import type { TaskType } from "@skylib/facades/es/handlePromise";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as assert from "@skylib/functions/es/assertions";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   FormOwnProps,
@@ -20,9 +20,9 @@ export default defineComponent({
   name: "m-form",
   props: {
     ...propsToPropDefinitions<FormParentProps>(),
-    asyncTaskType: propOptions<TaskType>(),
-    onSubmit: propOptions<OnSubmit>(),
-    onSubmitAsync: propOptions<OnSubmitAsync>()
+    asyncTaskType: prop<TaskType>(),
+    onSubmit: prop<OnSubmit>(),
+    onSubmitAsync: prop<OnSubmitAsync>()
   },
   setup(props) {
     validateProps<FormOwnProps>(props);

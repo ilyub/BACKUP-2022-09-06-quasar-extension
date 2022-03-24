@@ -8,7 +8,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -22,8 +22,8 @@ export default defineComponent({
   name: "m-input",
   props: {
     ...propsToPropDefinitions<InputParentProps>(),
-    disable: propOptions.boolean(),
-    modelValue: propOptions.required(is.stringU)
+    disable: prop.boolean(),
+    modelValue: prop<string>()
   },
   emits: {
     "update:modelValue": (value: stringU) => is.stringU(value)

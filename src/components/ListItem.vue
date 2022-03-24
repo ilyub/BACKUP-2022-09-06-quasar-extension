@@ -5,7 +5,7 @@ import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import {
   confirmedClickEmits,
   confirmedClickProps,
@@ -23,8 +23,8 @@ export default defineComponent({
   props: {
     ...propsToPropDefinitions<ListItemParentProps>(),
     ...confirmedClickProps,
-    caption: propOptions<string>(),
-    icon: propOptions<string>()
+    caption: prop<string>(),
+    icon: prop<string>()
   },
   emits: confirmedClickEmits,
   setup(props, { emit }) {

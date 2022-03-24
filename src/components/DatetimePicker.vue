@@ -10,7 +10,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -32,9 +32,9 @@ export default defineComponent({
   name: "m-datetime-picker",
   props: {
     ...propsToPropDefinitions<DatetimePickerParentProps>(),
-    max: propOptions<string>(),
-    min: propOptions<string>(),
-    modelValue: propOptions<string>()
+    max: prop<string>(),
+    min: prop<string>(),
+    modelValue: prop<string>()
   },
   emits: {
     "update:modelValue": (value: stringU) => is.stringU(value)

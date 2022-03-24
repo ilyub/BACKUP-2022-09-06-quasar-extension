@@ -3,7 +3,7 @@
 
 import { defineComponent } from "vue";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { CardOwnProps, CardParentProps, CardSlots } from "./Card.extras";
 import { icons } from "./Card.extras";
@@ -12,9 +12,9 @@ export default defineComponent({
   name: "m-card",
   props: {
     ...propsToPropDefinitions<CardParentProps>(),
-    minWidth: propOptions<string>(),
-    title: propOptions<string>(),
-    transparentHeader: propOptions.boolean()
+    minWidth: prop<string>(),
+    title: prop<string>(),
+    transparentHeader: prop.boolean()
   },
   setup(props) {
     validateProps<CardOwnProps>(props);

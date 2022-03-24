@@ -1,6 +1,5 @@
 import type { VNode } from "vue";
 
-import * as is from "@skylib/functions/es/guards";
 import type { ReadonlyRecord, stringU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
@@ -36,11 +35,3 @@ export type GroupSlots<T extends string = string> = ReadonlyRecord<
   T,
   () => readonly VNode[]
 >;
-
-export const isGroupItem: is.Guard<GroupItem> = is.factory(
-  is.object.of,
-  { id: is.string, show: is.boolean, title: is.string },
-  {}
-);
-
-export const isGroupItems = is.factory(is.array.of, isGroupItem);

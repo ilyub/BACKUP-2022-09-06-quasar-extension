@@ -1,6 +1,5 @@
 import type { QBtnProps, QBtnSlots } from "quasar";
 
-import * as is from "@skylib/functions/es/guards";
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
@@ -33,7 +32,3 @@ export type GlobalBaseButton = GlobalComponent<
   BaseButtonProps,
   BaseButtonSlots
 >;
-
-export const isAsyncClick: is.Guard<AsyncClick> = is.callable;
-
-export const isAsyncClickU = is.or.factory(isAsyncClick, is.undefined);

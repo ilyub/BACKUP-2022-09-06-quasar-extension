@@ -6,7 +6,7 @@ import { defineComponent } from "vue";
 import * as is from "@skylib/functions/es/guards";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -19,9 +19,9 @@ export default defineComponent({
   name: "m-knob",
   props: {
     ...propsToPropDefinitions<KnobParentProps>(),
-    disable: propOptions.boolean(),
-    inline: propOptions.boolean(),
-    modelValue: propOptions.required(is.number)
+    disable: prop.boolean(),
+    inline: prop.boolean(),
+    modelValue: prop.required<number>()
   },
   emits: {
     "update:modelValue": (value: number) => is.number(value)

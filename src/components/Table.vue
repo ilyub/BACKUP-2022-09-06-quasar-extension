@@ -21,7 +21,7 @@ import type {
 } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -43,7 +43,6 @@ import type {
 import {
   icons,
   injectTableSettings,
-  isColumnsFactory,
   isColumnsOrder,
   isColumnWidths,
   isHiddenColumns,
@@ -55,12 +54,6 @@ interface SortMethod {
   (rows: objects): objects;
 }
 
-const defaultColumnWidths: ColumnWidths = new Map();
-
-const defaultColumnsOrder: ColumnsOrder = new Map();
-
-const defaultHiddenColumns: HiddenColumns = new Set();
-
 export default defineComponent({
   name: "m-table",
   components: {
@@ -69,29 +62,29 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),
-    binaryStateSortOff: propOptions.boolean(),
-    binaryStateSortOn: propOptions.boolean(),
-    columnWidths: propOptions.default(defaultColumnWidths, isColumnWidths),
-    columns: propOptions.default([], isColumnsFactory()),
-    columnsOrder: propOptions.default(defaultColumnsOrder, isColumnsOrder),
-    externalSorting: propOptions.boolean(),
-    flatOff: propOptions.boolean(),
-    flatOn: propOptions.boolean(),
-    headerSeparatorOff: propOptions.boolean(),
-    headerSeparatorOn: propOptions.boolean(),
-    hiddenColumns: propOptions.default(defaultHiddenColumns, isHiddenColumns),
-    manageColumns: propOptions.boolean(),
-    multiselect: propOptions.boolean(),
-    pagination: propOptions.default({}, isPagination),
-    resizableColumns: propOptions.boolean(),
-    rowKey: propOptions<string>(),
-    rows: propOptions.default([], is.objects),
-    selectByCheckbox: propOptions.boolean(),
-    selectByRowClick: propOptions.boolean(),
-    selected: propOptions.default([], is.objects),
-    squareOff: propOptions.boolean(),
-    squareOn: propOptions.boolean(),
-    sticky: propOptions.boolean()
+    binaryStateSortOff: prop.boolean(),
+    binaryStateSortOn: prop.boolean(),
+    columnWidths: prop.default<ColumnWidths>(new Map()),
+    columns: prop.default<Columns>([]),
+    columnsOrder: prop.default<ColumnsOrder>(new Map()),
+    externalSorting: prop.boolean(),
+    flatOff: prop.boolean(),
+    flatOn: prop.boolean(),
+    headerSeparatorOff: prop.boolean(),
+    headerSeparatorOn: prop.boolean(),
+    hiddenColumns: prop.default<HiddenColumns>(new Set()),
+    manageColumns: prop.boolean(),
+    multiselect: prop.boolean(),
+    pagination: prop.default<Pagination>({}),
+    resizableColumns: prop.boolean(),
+    rowKey: prop<string>(),
+    rows: prop.default<objects>([]),
+    selectByCheckbox: prop.boolean(),
+    selectByRowClick: prop.boolean(),
+    selected: prop.default<objects>([]),
+    squareOff: prop.boolean(),
+    squareOn: prop.boolean(),
+    sticky: prop.boolean()
   },
   emits: {
     "update:columnWidths": (value: ColumnWidths) => isColumnWidths(value),

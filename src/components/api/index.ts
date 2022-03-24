@@ -132,13 +132,10 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
 /**
  * Creates Vue property.
  *
- * @param validator - Validator.
  * @returns Vue property.
  */
-export function propOptions<T>(
-  validator?: is.Guard<T | undefined>
-): PropOptions<T | undefined> {
-  return validator ? { validator } : {};
+export function prop<T>(): PropOptions<T | undefined> {
+  return {};
 }
 
 /**
@@ -151,37 +148,30 @@ export function propOptionsBoolean(defVal = false): PropOptionsBoolean {
   return { default: defVal, type: Boolean };
 }
 
-propOptions.boolean = propOptionsBoolean;
+prop.boolean = propOptionsBoolean;
 
 /**
  * Creates Vue property.
  *
  * @param defVal - Default value.
- * @param validator - Validator.
  * @returns Vue property.
  */
-export function propOptionsDefault<T>(
-  defVal: T,
-  validator?: is.Guard<T>
-): PropOptionsDefault<T> {
-  return validator ? { default: defVal, validator } : { default: defVal };
+export function propOptionsDefault<T>(defVal: T): PropOptionsDefault<T> {
+  return { default: defVal };
 }
 
-propOptions.default = propOptionsDefault;
+prop.default = propOptionsDefault;
 
 /**
  * Creates Vue property.
  *
- * @param validator - Validator.
  * @returns Vue property.
  */
-export function propOptionsRequired<T>(
-  validator?: is.Guard<T>
-): PropOptionsRequired<T> {
-  return validator ? { required: true, validator } : { required: true };
+export function propOptionsRequired<T>(): PropOptionsRequired<T> {
+  return { required: true };
 }
 
-propOptions.required = propOptionsRequired;
+prop.required = propOptionsRequired;
 
 /**
  * Validates emit function.

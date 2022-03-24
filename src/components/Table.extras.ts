@@ -373,50 +373,6 @@ export const icons: Icons<keyof ModuleIcons> = baseIcons;
 
 export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
 
-/**
- * Creates guard for Column\<T\> type.
- *
- * @returns Guard for Column\<T\> type.
- */
-export function isColumnFactory<T extends object = object>(): is.Guard<
-  Column<T>
-> {
-  return is.factory(
-    is.object.of,
-    {
-      align: isAlign,
-      field: isFieldFactory<T>(),
-      label: is.string,
-      name: is.string
-    },
-    {
-      sortable: is.true
-    }
-  );
-}
-
-/**
- * Creates guard for Columns\<T\> type.
- *
- * @returns Guard for Columns\<T\> type.
- */
-export function isColumnsFactory<T extends object = object>(): is.Guard<
-  Columns<T>
-> {
-  return is.factory(is.array.of, isColumnFactory<T>());
-}
-
-/**
- * Creates guard for Field\<T\> type.
- *
- * @returns Guard for Field\<T\> type.
- */
-export function isFieldFactory<T extends object = object>(): is.Guard<
-  Field<T>
-> {
-  return is.callable;
-}
-
 export interface TableState {
   readonly columnWidths: ColumnWidths;
   readonly columnsOrder: ColumnsOrder;

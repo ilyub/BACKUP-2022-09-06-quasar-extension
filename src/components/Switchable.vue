@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { propOptions, validateProps } from "./api";
+import { prop, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 import {
@@ -13,8 +13,8 @@ import {
 export default defineComponent({
   name: "m-switchable",
   props: {
-    disable: propOptions.boolean(),
-    indent: propOptions.boolean()
+    disable: prop.boolean(),
+    indent: prop.boolean()
   },
   setup(props) {
     validateProps<SwitchableProps>(props);

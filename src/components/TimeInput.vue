@@ -9,7 +9,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -39,7 +39,7 @@ export default defineComponent({
   directives: { maska },
   props: {
     ...propsToPropDefinitions<TimeInputParentProps>(),
-    modelValue: propOptions<number>()
+    modelValue: prop<number>()
   },
   emits: {
     "update:modelValue": (value: numberU) => is.numberU(value)

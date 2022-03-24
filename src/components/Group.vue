@@ -7,7 +7,7 @@ import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { rootElementPropsOptions, useRootElement } from "./api/rootElement";
 import type {
   GroupItem,
@@ -15,7 +15,6 @@ import type {
   GroupOwnProps,
   GroupParentProps
 } from "./Group.extras";
-import { isGroupItems } from "./Group.extras";
 
 export default defineComponent({
   name: "m-group",
@@ -23,9 +22,9 @@ export default defineComponent({
   props: {
     ...propsToPropDefinitions<GroupParentProps>(),
     ...rootElementPropsOptions,
-    items: propOptions.required(isGroupItems),
-    notFoundLabel: propOptions<string>(),
-    searchString: propOptions<string>()
+    items: prop.required<GroupItems>(),
+    notFoundLabel: prop<string>(),
+    searchString: prop<string>()
   },
   setup(props) {
     validateProps<GroupOwnProps>(props);

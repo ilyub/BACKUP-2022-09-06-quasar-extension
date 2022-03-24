@@ -6,7 +6,7 @@ import { defineComponent } from "vue";
 import * as is from "@skylib/functions/es/guards";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -23,8 +23,8 @@ export default defineComponent({
   name: "m-toggle",
   props: {
     ...propsToPropDefinitions<ToggleParentProps>(),
-    disable: propOptions.boolean(),
-    modelValue: propOptions.required(is.boolean)
+    disable: prop.boolean(),
+    modelValue: prop.boolean()
   },
   emits: {
     "update:modelValue": (value: boolean) => is.boolean(value)

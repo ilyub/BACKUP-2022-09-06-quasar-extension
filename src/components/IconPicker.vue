@@ -12,7 +12,7 @@ import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -50,11 +50,11 @@ export default defineComponent({
   name: "m-icon-picker",
   props: {
     ...propsToPropDefinitions<IconPickerParentProps>(),
-    cols: propOptions.default(7, is.number),
-    modelValue: propOptions<string>(),
-    placeholder: propOptions.required(is.string),
-    rows: propOptions.default(5, is.number),
-    spinnerSize: propOptions.default("70px", is.string)
+    cols: prop.default(7),
+    modelValue: prop<string>(),
+    placeholder: prop.required<string>(),
+    rows: prop.default(5),
+    spinnerSize: prop.default("70px")
   },
   emits: {
     "update:modelValue": (value: stringU) => is.stringU(value)

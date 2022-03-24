@@ -8,7 +8,7 @@ import * as is from "@skylib/functions/es/guards";
 import type { Writable } from "@skylib/functions/es/types/core";
 
 import {
-  propOptions,
+  prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
@@ -20,15 +20,14 @@ import type {
   OptionGroupParentProps,
   OptionGroupSlots
 } from "./OptionGroup.extras";
-import { isOptionGroupOptions } from "./OptionGroup.extras";
 
 export default defineComponent({
   name: "m-option-group",
   props: {
     ...propsToPropDefinitions<OptionGroupParentProps>(),
-    inline: propOptions.boolean(),
-    modelValue: propOptions.required(is.unknown),
-    options: propOptions.required(isOptionGroupOptions)
+    inline: prop.boolean(),
+    modelValue: prop(),
+    options: prop.required<OptionGroupOptions>()
   },
   emits: {
     "update:modelValue": (value: unknown) => is.unknown(value)

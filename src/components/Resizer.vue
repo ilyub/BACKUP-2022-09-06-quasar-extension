@@ -7,7 +7,7 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { numberU } from "@skylib/functions/es/types/core";
 
-import { propOptions, validateEmit, validateProps } from "./api";
+import { prop, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
 import { injectResizerSettings } from "./Resizer.extras";
@@ -38,9 +38,9 @@ const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
 export default defineComponent({
   name: "m-resizer",
   props: {
-    max: propOptions<number>(),
-    min: propOptions.default(0),
-    modelValue: propOptions<number>()
+    max: prop<number>(),
+    min: prop.default(0),
+    modelValue: prop<number>()
   },
   emits: {
     "update:modelValue": (value: number) => is.number(value)

@@ -8,7 +8,7 @@ import * as is from "@skylib/functions/es/guards";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
 
-import { propOptions, validateEmit, validateProps } from "./api";
+import { prop, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   Elems,
@@ -30,15 +30,15 @@ export default defineComponent({
     "vue-draggable": VueDraggable
   },
   props: {
-    group: propOptions.required<string>(),
-    itemClass: propOptions<string>(),
-    itemKey: propOptions.required<string>(),
-    itemTag: propOptions.default<unknown>("div"),
-    modelValue: propOptions.required<objects>(),
-    move: propOptions<Move>(),
-    pull: propOptions.boolean(),
-    put: propOptions.boolean(),
-    sort: propOptions.boolean()
+    group: prop.required<string>(),
+    itemClass: prop<string>(),
+    itemKey: prop.required<string>(),
+    itemTag: prop.default<unknown>("div"),
+    modelValue: prop.required<objects>(),
+    move: prop<Move>(),
+    pull: prop.boolean(),
+    put: prop.boolean(),
+    sort: prop.boolean()
   },
   emits: {
     "dropped": (item: object, group: string) =>

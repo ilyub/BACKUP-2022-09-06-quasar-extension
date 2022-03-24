@@ -1,7 +1,6 @@
 import type { QFormProps, QFormSlots } from "quasar";
 
 import type { TaskType } from "@skylib/facades/es/handlePromise";
-import * as is from "@skylib/functions/es/guards";
 
 import type { GlobalComponent } from "./api";
 
@@ -36,12 +35,3 @@ export interface OnSubmitAsync {
    */
   (evt: Event | SubmitEvent): Promise<void>;
 }
-
-export const isOnSubmit: is.Guard<OnSubmit> = is.callable;
-
-export const isOnSubmitU: is.Guard<OnSubmit | undefined> = is.callableU;
-
-export const isOnSubmitAsync: is.Guard<OnSubmitAsync> = is.callable;
-
-export const isOnSubmitAsyncU: is.Guard<OnSubmitAsync | undefined> =
-  is.callableU;

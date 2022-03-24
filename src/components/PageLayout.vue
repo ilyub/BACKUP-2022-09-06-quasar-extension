@@ -3,7 +3,7 @@ import { computed, defineComponent } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, validateEmit, validateProps } from "./api";
+import { prop, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { PageLayoutProps, PageLayoutSlots } from "./PageLayout.extras";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
@@ -11,9 +11,9 @@ import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
 export default defineComponent({
   name: "m-page-layout",
   props: {
-    closeButtonOff: propOptions.boolean(),
-    closeButtonOn: propOptions.boolean(),
-    title: propOptions<string>()
+    closeButtonOff: prop.boolean(),
+    closeButtonOn: prop.boolean(),
+    title: prop<string>()
   },
   setup(props, { emit }) {
     validateEmit<PageLayoutProps>(emit);

@@ -2,9 +2,8 @@
 import { computed, defineComponent } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
 
-import { propOptions, propsToPropDefinitions, validateProps } from "./api";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type {
   LanguagePickerItem,
@@ -18,7 +17,7 @@ export default defineComponent({
   name: "m-language-picker",
   props: {
     ...propsToPropDefinitions<LanguagePickerParentProps>(),
-    language: propOptions.required(is.unknown)
+    language: prop()
   },
   setup(props) {
     validateProps<LanguagePickerOwnProps>(props);
