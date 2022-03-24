@@ -16,6 +16,12 @@ declare global {
   }
 }
 
+export interface ModuleWord {
+  readonly Cancel: true;
+  readonly Confirm: true;
+  readonly Ok: true;
+}
+
 export interface ConfirmedClickModule {
   /**
    * Click event handler.
@@ -77,11 +83,5 @@ export function useConfirmedClick(
 |* Private
 |*******************************************************************************
 |*/
-
-interface ModuleWord {
-  readonly Cancel: true;
-  readonly Confirm: true;
-  readonly Ok: true;
-}
 
 export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;

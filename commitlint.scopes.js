@@ -51,6 +51,7 @@ module.exports = [
   "components.extras.Table",
   "components.extras.VirtualScroll",
   "components.index",
+  "confirmedClickModule",
   "plugin",
   "public",
   "quasar",
