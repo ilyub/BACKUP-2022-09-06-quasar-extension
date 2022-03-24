@@ -98,6 +98,10 @@ export interface HeaderCellSlotData<T extends object = object>
   readonly column: Column<T>;
 }
 
+export interface HeaderMenuAppendSlotData extends MultiSelectData {}
+
+export interface HeaderMenuPrependSlotData extends MultiSelectData {}
+
 export interface HeaderSelectionSlotData extends MultiSelectData {}
 
 export interface SteadyBottomSlotData extends MultiSelectData {}
@@ -277,6 +281,24 @@ export interface TableSlots<T extends object = object>
    * @returns Node.
    */
   readonly "header-cell": (scope: HeaderCellSlotData<T>) => readonly VNode[];
+  /**
+   * Header menu append slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "header-menu-append": (
+    scope: HeaderMenuAppendSlotData
+  ) => readonly VNode[];
+  /**
+   * Header menu prepend slot.
+   *
+   * @param scope - Scope.
+   * @returns Node.
+   */
+  readonly "header-menu-prepend": (
+    scope: HeaderMenuPrependSlotData
+  ) => readonly VNode[];
   /**
    * Header selection slot.
    *

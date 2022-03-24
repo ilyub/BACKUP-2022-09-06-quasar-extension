@@ -242,6 +242,8 @@ export default defineComponent({
         "bottom",
         "header",
         "header-cell",
+        "header-menu-append",
+        "header-menu-prepend",
         "header-selection",
         "no-data",
         "steady-bottom"
@@ -362,11 +364,47 @@ export default defineComponent({
         <tr>
           <m-menu v-if="manageColumns" auto-close context-menu>
             <q-list>
+              <slot
+                :name="slotNames.headerMenuPrepend"
+                v-bind="{
+                  allSelected,
+                  deselectAll,
+                  deselectAllDisable,
+                  deselectAllIcon,
+                  deselectAllLabel,
+                  selectAll,
+                  selectAllDisable,
+                  selectAllIcon,
+                  selectAllLabel,
+                  toggleSelection,
+                  toggleSelectionDisable,
+                  toggleSelectionIcon,
+                  toggleSelectionLabel
+                }"
+              ></slot>
               <m-list-item
                 :caption="lang.ManageColumns"
                 :icon="icons.manageColumns"
                 @click="manageColumnsShow = true"
               />
+              <slot
+                :name="slotNames.headerMenuAppend"
+                v-bind="{
+                  allSelected,
+                  deselectAll,
+                  deselectAllDisable,
+                  deselectAllIcon,
+                  deselectAllLabel,
+                  selectAll,
+                  selectAllDisable,
+                  selectAllIcon,
+                  selectAllLabel,
+                  toggleSelection,
+                  toggleSelectionDisable,
+                  toggleSelectionIcon,
+                  toggleSelectionLabel
+                }"
+              ></slot>
             </q-list>
           </m-menu>
           <th v-if="selectByCheckbox" class="m-table__selection-cell">
