@@ -17,11 +17,6 @@
 - [GroupItems](components_Group_extras.md#groupitems)
 - [GroupSlots](components_Group_extras.md#groupslots)
 
-### Functions
-
-- [isGroupItem](components_Group_extras.md#isgroupitem)
-- [isGroupItems](components_Group_extras.md#isgroupitems)
-
 ## Type aliases
 
 ### GlobalGroup
@@ -57,35 +52,3 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `T` | extends `string` = `string` |
-
-## Functions
-
-### isGroupItem
-
-▸ **isGroupItem**(`value`): value is GroupItem<string\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
-
-#### Returns
-
-value is GroupItem<string\>
-
-___
-
-### isGroupItems
-
-▸ **isGroupItems**(`value`): value is readonly GroupItem<string\>[]
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
-
-#### Returns
-
-value is readonly GroupItem<string\>[]

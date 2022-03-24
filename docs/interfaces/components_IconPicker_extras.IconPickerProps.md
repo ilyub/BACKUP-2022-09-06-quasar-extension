@@ -16,6 +16,7 @@
 
 ### Properties
 
+- [asyncClick](components_IconPicker_extras.IconPickerProps.md#asyncclick)
 - [cols](components_IconPicker_extras.IconPickerProps.md#cols)
 - [confirmation](components_IconPicker_extras.IconPickerProps.md#confirmation)
 - [disable](components_IconPicker_extras.IconPickerProps.md#disable)
@@ -32,6 +33,16 @@
 - [onUpdate:modelValue](components_IconPicker_extras.IconPickerProps.md#onupdate:modelvalue)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+#### Inherited from
+
+[IconPickerParentProps](components_IconPicker_extras.IconPickerParentProps.md).[asyncClick](components_IconPicker_extras.IconPickerParentProps.md#asyncclick)
+
+___
 
 ### cols
 

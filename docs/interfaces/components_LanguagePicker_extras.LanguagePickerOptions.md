@@ -14,19 +14,28 @@
 
 ### Properties
 
+- [asyncClick](components_LanguagePicker_extras.LanguagePickerOptions.md#asyncclick)
 - [confirmation](components_LanguagePicker_extras.LanguagePickerOptions.md#confirmation)
 - [disable](components_LanguagePicker_extras.LanguagePickerOptions.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerOptions.md#language)
-- [modelValue](components_LanguagePicker_extras.LanguagePickerOptions.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerOptions.md#tooltipdirection)
 
 ### Methods
 
 - [onConfirmedClick](components_LanguagePicker_extras.LanguagePickerOptions.md#onconfirmedclick)
-- [onUpdate:modelValue](components_LanguagePicker_extras.LanguagePickerOptions.md#onupdate:modelvalue)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+#### Inherited from
+
+[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[asyncClick](components_IconButton_extras.IconButtonProps.md#asyncclick)
+
+___
 
 ### confirmation
 
@@ -51,16 +60,6 @@ ___
 ### language
 
 • `Readonly` **language**: [`PropOptionsRequired`](components_api.PropOptionsRequired.md)<`unknown`\>
-
-___
-
-### modelValue
-
-• `Optional` `Readonly` **modelValue**: `booleanU`
-
-#### Inherited from
-
-[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[modelValue](components_IconButton_extras.IconButtonProps.md#modelvalue)
 
 ___
 
@@ -97,25 +96,3 @@ Emits confirmed click event.
 #### Inherited from
 
 [IconButtonProps](components_IconButton_extras.IconButtonProps.md).[onConfirmedClick](components_IconButton_extras.IconButtonProps.md#onconfirmedclick)
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[IconButtonProps](components_IconButton_extras.IconButtonProps.md).[onUpdate:modelValue](components_IconButton_extras.IconButtonProps.md#onupdate:modelvalue)

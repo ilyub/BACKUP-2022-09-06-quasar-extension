@@ -13,6 +13,8 @@
 - [Column](../interfaces/components_Table_extras.Column.md)
 - [Field](../interfaces/components_Table_extras.Field.md)
 - [HeaderCellSlotData](../interfaces/components_Table_extras.HeaderCellSlotData.md)
+- [HeaderMenuAppendSlotData](../interfaces/components_Table_extras.HeaderMenuAppendSlotData.md)
+- [HeaderMenuPrependSlotData](../interfaces/components_Table_extras.HeaderMenuPrependSlotData.md)
 - [HeaderSelectionSlotData](../interfaces/components_Table_extras.HeaderSelectionSlotData.md)
 - [ModuleIcons](../interfaces/components_Table_extras.ModuleIcons.md)
 - [ModuleWord](../interfaces/components_Table_extras.ModuleWord.md)
@@ -24,6 +26,7 @@
 - [TableProps](../interfaces/components_Table_extras.TableProps.md)
 - [TableSettings](../interfaces/components_Table_extras.TableSettings.md)
 - [TableSlots](../interfaces/components_Table_extras.TableSlots.md)
+- [TableState](../interfaces/components_Table_extras.TableState.md)
 
 ### Type aliases
 
@@ -44,15 +47,15 @@
 
 - [injectTableSettings](components_Table_extras.md#injecttablesettings)
 - [isAlign](components_Table_extras.md#isalign)
-- [isColumnFactory](components_Table_extras.md#iscolumnfactory)
 - [isColumnWidths](components_Table_extras.md#iscolumnwidths)
-- [isColumnsFactory](components_Table_extras.md#iscolumnsfactory)
 - [isColumnsOrder](components_Table_extras.md#iscolumnsorder)
-- [isFieldFactory](components_Table_extras.md#isfieldfactory)
 - [isHiddenColumns](components_Table_extras.md#ishiddencolumns)
 - [isPagination](components_Table_extras.md#ispagination)
+- [isTableState](components_Table_extras.md#istablestate)
+- [isTableStateU](components_Table_extras.md#istablestateu)
 - [provideTableSettings](components_Table_extras.md#providetablesettings)
 - [testTableSettings](components_Table_extras.md#testtablesettings)
+- [useTableState](components_Table_extras.md#usetablestate)
 
 ## Type aliases
 
@@ -152,26 +155,6 @@ value is Align
 
 ___
 
-### isColumnFactory
-
-▸ **isColumnFactory**<`T`\>(): `is.Guard`<[`Column`](../interfaces/components_Table_extras.Column.md)<`T`\>\>
-
-Creates guard for Column\<T\> type.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` = `object` |
-
-#### Returns
-
-`is.Guard`<[`Column`](../interfaces/components_Table_extras.Column.md)<`T`\>\>
-
-Guard for Column\<T\> type.
-
-___
-
 ### isColumnWidths
 
 ▸ **isColumnWidths**(`value`): value is ReadonlyMap<string, number\>
@@ -188,26 +171,6 @@ value is ReadonlyMap<string, number\>
 
 ___
 
-### isColumnsFactory
-
-▸ **isColumnsFactory**<`T`\>(): `is.Guard`<[`Columns`](components_Table_extras.md#columns)<`T`\>\>
-
-Creates guard for Columns\<T\> type.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` = `object` |
-
-#### Returns
-
-`is.Guard`<[`Columns`](components_Table_extras.md#columns)<`T`\>\>
-
-Guard for Columns\<T\> type.
-
-___
-
 ### isColumnsOrder
 
 ▸ **isColumnsOrder**(`value`): value is ReadonlyMap<string, number\>
@@ -221,26 +184,6 @@ ___
 #### Returns
 
 value is ReadonlyMap<string, number\>
-
-___
-
-### isFieldFactory
-
-▸ **isFieldFactory**<`T`\>(): `is.Guard`<[`Field`](../interfaces/components_Table_extras.Field.md)<`T`\>\>
-
-Creates guard for Field\<T\> type.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` = `object` |
-
-#### Returns
-
-`is.Guard`<[`Field`](../interfaces/components_Table_extras.Field.md)<`T`\>\>
-
-Guard for Field\<T\> type.
 
 ___
 
@@ -273,6 +216,38 @@ ___
 #### Returns
 
 value is Pagination
+
+___
+
+### isTableState
+
+▸ **isTableState**(`value`): value is TableState
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is TableState
+
+___
+
+### isTableStateU
+
+▸ **isTableStateU**(`value`): value is undefined \| TableState
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `unknown` |
+
+#### Returns
+
+value is undefined \| TableState
 
 ___
 
@@ -310,3 +285,34 @@ Provide settings.
 #### Returns
 
 `void`
+
+___
+
+### useTableState
+
+▸ **useTableState**(`initialState`, `sortBy`, `descending`): `Object`
+
+Table state module.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialState` | `ComputedRef`<[`TableState`](../interfaces/components_Table_extras.TableState.md)\> | Initial state. |
+| `sortBy` | `ComputedRef`<`stringU`\> | Sort by. |
+| `descending` | `ComputedRef`<`booleanU`\> | Descending. |
+
+#### Returns
+
+`Object`
+
+Table state module.
+
+| Name | Type |
+| :------ | :------ |
+| `columnWidths` | `Ref`<[`ColumnWidths`](components_Table_extras.md#columnwidths)\> |
+| `columnsOrder` | `Ref`<[`ColumnsOrder`](components_Table_extras.md#columnsorder)\> |
+| `hiddenColumns` | `Ref`<[`HiddenColumns`](components_Table_extras.md#hiddencolumns)\> |
+| `initialState` | `ComputedRef`<[`TableState`](../interfaces/components_Table_extras.TableState.md)\> |
+| `modified` | `ComputedRef`<`boolean`\> |
+| `state` | `ComputedRef`<[`TableState`](../interfaces/components_Table_extras.TableState.md)\> |

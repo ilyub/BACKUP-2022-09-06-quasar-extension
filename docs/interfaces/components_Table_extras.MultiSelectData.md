@@ -18,6 +18,10 @@
 
   ↳ [`HeaderCellSlotData`](components_Table_extras.HeaderCellSlotData.md)
 
+  ↳ [`HeaderMenuAppendSlotData`](components_Table_extras.HeaderMenuAppendSlotData.md)
+
+  ↳ [`HeaderMenuPrependSlotData`](components_Table_extras.HeaderMenuPrependSlotData.md)
+
   ↳ [`HeaderSelectionSlotData`](components_Table_extras.HeaderSelectionSlotData.md)
 
   ↳ [`SteadyBottomSlotData`](components_Table_extras.SteadyBottomSlotData.md)

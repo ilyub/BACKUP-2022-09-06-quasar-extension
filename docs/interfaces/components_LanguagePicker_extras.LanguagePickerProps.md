@@ -16,19 +16,28 @@
 
 ### Properties
 
+- [asyncClick](components_LanguagePicker_extras.LanguagePickerProps.md#asyncclick)
 - [confirmation](components_LanguagePicker_extras.LanguagePickerProps.md#confirmation)
 - [disable](components_LanguagePicker_extras.LanguagePickerProps.md#disable)
 - [language](components_LanguagePicker_extras.LanguagePickerProps.md#language)
-- [modelValue](components_LanguagePicker_extras.LanguagePickerProps.md#modelvalue)
 - [tooltip](components_LanguagePicker_extras.LanguagePickerProps.md#tooltip)
 - [tooltipDirection](components_LanguagePicker_extras.LanguagePickerProps.md#tooltipdirection)
 
 ### Methods
 
 - [onConfirmedClick](components_LanguagePicker_extras.LanguagePickerProps.md#onconfirmedclick)
-- [onUpdate:modelValue](components_LanguagePicker_extras.LanguagePickerProps.md#onupdate:modelvalue)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+#### Inherited from
+
+LanguagePickerParentProps.asyncClick
+
+___
 
 ### confirmation
 
@@ -57,16 +66,6 @@ ___
 #### Inherited from
 
 [LanguagePickerOwnProps](components_LanguagePicker_extras.LanguagePickerOwnProps.md).[language](components_LanguagePicker_extras.LanguagePickerOwnProps.md#language)
-
-___
-
-### modelValue
-
-• `Optional` `Readonly` **modelValue**: `booleanU`
-
-#### Inherited from
-
-LanguagePickerParentProps.modelValue
 
 ___
 
@@ -103,25 +102,3 @@ Emits confirmed click event.
 #### Inherited from
 
 LanguagePickerParentProps.onConfirmedClick
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-LanguagePickerParentProps.onUpdate:modelValue

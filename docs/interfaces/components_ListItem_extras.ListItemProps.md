@@ -17,7 +17,12 @@
 ### Properties
 
 - [caption](components_ListItem_extras.ListItemProps.md#caption)
+- [confirmation](components_ListItem_extras.ListItemProps.md#confirmation)
 - [icon](components_ListItem_extras.ListItemProps.md#icon)
+
+### Methods
+
+- [onConfirmedClick](components_ListItem_extras.ListItemProps.md#onconfirmedclick)
 
 ## Properties
 
@@ -31,6 +36,16 @@
 
 ___
 
+### confirmation
+
+• `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+[ListItemOwnProps](components_ListItem_extras.ListItemOwnProps.md).[confirmation](components_ListItem_extras.ListItemOwnProps.md#confirmation)
+
+___
+
 ### icon
 
 • `Optional` `Readonly` **icon**: `stringU`
@@ -38,3 +53,19 @@ ___
 #### Inherited from
 
 [ListItemOwnProps](components_ListItem_extras.ListItemOwnProps.md).[icon](components_ListItem_extras.ListItemOwnProps.md#icon)
+
+## Methods
+
+### onConfirmedClick
+
+▸ `Optional` `Readonly` **onConfirmedClick**(): `void`
+
+Emits confirmed click event.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[ListItemOwnProps](components_ListItem_extras.ListItemOwnProps.md).[onConfirmedClick](components_ListItem_extras.ListItemOwnProps.md#onconfirmedclick)

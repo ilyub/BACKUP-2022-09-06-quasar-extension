@@ -16,6 +16,7 @@
 
 ### Properties
 
+- [asyncClick](components_IconPicker_extras.IconPickerParentProps.md#asyncclick)
 - [confirmation](components_IconPicker_extras.IconPickerParentProps.md#confirmation)
 - [disable](components_IconPicker_extras.IconPickerParentProps.md#disable)
 - [tooltip](components_IconPicker_extras.IconPickerParentProps.md#tooltip)
@@ -26,6 +27,16 @@
 - [onConfirmedClick](components_IconPicker_extras.IconPickerParentProps.md#onconfirmedclick)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+#### Inherited from
+
+Omit.asyncClick
+
+___
 
 ### confirmation
 

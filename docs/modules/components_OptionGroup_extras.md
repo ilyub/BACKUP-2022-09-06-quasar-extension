@@ -17,11 +17,6 @@
 - [OptionGroupOptions](components_OptionGroup_extras.md#optiongroupoptions)
 - [OptionGroupSlots](components_OptionGroup_extras.md#optiongroupslots)
 
-### Functions
-
-- [isOptionGroupOption](components_OptionGroup_extras.md#isoptiongroupoption)
-- [isOptionGroupOptions](components_OptionGroup_extras.md#isoptiongroupoptions)
-
 ## Type aliases
 
 ### GlobalOptionGroup
@@ -51,35 +46,3 @@ ___
 ### OptionGroupSlots
 
 Ƭ **OptionGroupSlots**: `QOptionGroupSlots`
-
-## Functions
-
-### isOptionGroupOption
-
-▸ **isOptionGroupOption**(`value`): value is OptionGroupOption<unknown\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
-
-#### Returns
-
-value is OptionGroupOption<unknown\>
-
-___
-
-### isOptionGroupOptions
-
-▸ **isOptionGroupOptions**(`value`): value is readonly OptionGroupOption<unknown\>[]
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
-
-#### Returns
-
-value is readonly OptionGroupOption<unknown\>[]

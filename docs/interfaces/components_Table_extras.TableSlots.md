@@ -25,6 +25,8 @@
 - [body-context](components_Table_extras.TableSlots.md#body-context)
 - [body-selection](components_Table_extras.TableSlots.md#body-selection)
 - [header-cell](components_Table_extras.TableSlots.md#header-cell)
+- [header-menu-append](components_Table_extras.TableSlots.md#header-menu-append)
+- [header-menu-prepend](components_Table_extras.TableSlots.md#header-menu-prepend)
 - [header-selection](components_Table_extras.TableSlots.md#header-selection)
 - [steady-bottom](components_Table_extras.TableSlots.md#steady-bottom)
 
@@ -121,6 +123,46 @@ Header cell slot.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scope` | [`HeaderCellSlotData`](components_Table_extras.HeaderCellSlotData.md)<`T`\> | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### header-menu-append
+
+▸ `Readonly` **header-menu-append**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Header menu append slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`HeaderMenuAppendSlotData`](components_Table_extras.HeaderMenuAppendSlotData.md) | Scope. |
+
+#### Returns
+
+readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Node.
+
+___
+
+### header-menu-prepend
+
+▸ `Readonly` **header-menu-prepend**(`scope`): readonly `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
+
+Header menu prepend slot.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scope` | [`HeaderMenuPrependSlotData`](components_Table_extras.HeaderMenuPrependSlotData.md) | Scope. |
 
 #### Returns
 

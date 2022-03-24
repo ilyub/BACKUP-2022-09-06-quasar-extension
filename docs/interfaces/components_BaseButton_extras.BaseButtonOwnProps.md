@@ -6,42 +6,47 @@
 
 ## Hierarchy
 
-- **`BaseButtonOwnProps`**
+- [`ConfirmedClickProps`](components_api_confirmedClickModule.ConfirmedClickProps.md)
 
-  ↳ [`BaseButtonProps`](components_BaseButton_extras.BaseButtonProps.md)
+  ↳ **`BaseButtonOwnProps`**
+
+  ↳↳ [`BaseButtonProps`](components_BaseButton_extras.BaseButtonProps.md)
 
 ## Table of contents
 
 ### Properties
 
+- [asyncClick](components_BaseButton_extras.BaseButtonOwnProps.md#asyncclick)
 - [confirmation](components_BaseButton_extras.BaseButtonOwnProps.md#confirmation)
 - [disable](components_BaseButton_extras.BaseButtonOwnProps.md#disable)
-- [modelValue](components_BaseButton_extras.BaseButtonOwnProps.md#modelvalue)
 - [tooltip](components_BaseButton_extras.BaseButtonOwnProps.md#tooltip)
 - [tooltipDirection](components_BaseButton_extras.BaseButtonOwnProps.md#tooltipdirection)
 
 ### Methods
 
 - [onConfirmedClick](components_BaseButton_extras.BaseButtonOwnProps.md#onconfirmedclick)
-- [onUpdate:modelValue](components_BaseButton_extras.BaseButtonOwnProps.md#onupdate:modelvalue)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+___
 
 ### confirmation
 
 • `Optional` `Readonly` **confirmation**: `stringU`
+
+#### Inherited from
+
+[ConfirmedClickProps](components_api_confirmedClickModule.ConfirmedClickProps.md).[confirmation](components_api_confirmedClickModule.ConfirmedClickProps.md#confirmation)
 
 ___
 
 ### disable
 
 • `Optional` `Readonly` **disable**: `booleanU`
-
-___
-
-### modelValue
-
-• `Optional` `Readonly` **modelValue**: `booleanU`
 
 ___
 
@@ -67,20 +72,6 @@ Emits confirmed click event.
 
 `void`
 
-___
+#### Inherited from
 
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
-
-#### Returns
-
-`void`
+[ConfirmedClickProps](components_api_confirmedClickModule.ConfirmedClickProps.md).[onConfirmedClick](components_api_confirmedClickModule.ConfirmedClickProps.md#onconfirmedclick)

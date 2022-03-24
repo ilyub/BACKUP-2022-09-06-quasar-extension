@@ -6,7 +6,7 @@
 
 ### Namespaces
 
-- [propOptions](components_api.propOptions.md)
+- [prop](components_api.prop.md)
 
 ### Interfaces
 
@@ -35,7 +35,7 @@
 - [classRef](components_api.md#classref)
 - [createInjectable](components_api.md#createinjectable)
 - [injectRequire](components_api.md#injectrequire)
-- [propOptions](components_api.md#propoptions)
+- [prop](components_api.md#prop)
 - [propOptionsBoolean](components_api.md#propoptionsboolean)
 - [propOptionsDefault](components_api.md#propoptionsdefault)
 - [propOptionsRequired](components_api.md#propoptionsrequired)
@@ -213,9 +213,9 @@ Value.
 
 ___
 
-### propOptions
+### prop
 
-▸ **propOptions**<`T`\>(`validator`): [`PropOptions`](../interfaces/components_api.PropOptions.md)<`T`\>
+▸ **prop**<`T`\>(): [`PropOptions`](../interfaces/components_api.PropOptions.md)<`T` \| `undefined`\>
 
 Creates Vue property.
 
@@ -225,15 +225,9 @@ Creates Vue property.
 | :------ |
 | `T` |
 
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `validator` | `Guard`<`T`\> | Validator. |
-
 #### Returns
 
-[`PropOptions`](../interfaces/components_api.PropOptions.md)<`T`\>
+[`PropOptions`](../interfaces/components_api.PropOptions.md)<`T` \| `undefined`\>
 
 Vue property.
 
@@ -261,7 +255,7 @@ ___
 
 ### propOptionsDefault
 
-▸ **propOptionsDefault**<`T`\>(`validator`, `defVal`): [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`T`\>
+▸ **propOptionsDefault**<`T`\>(`defVal`): [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`T`\>
 
 Creates Vue property.
 
@@ -275,7 +269,6 @@ Creates Vue property.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `validator` | `Guard`<`T`\> | Validator. |
 | `defVal` | `T` | Default value. |
 
 #### Returns
@@ -288,7 +281,7 @@ ___
 
 ### propOptionsRequired
 
-▸ **propOptionsRequired**<`T`\>(`validator`): [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`T`\>
+▸ **propOptionsRequired**<`T`\>(): [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`T`\>
 
 Creates Vue property.
 
@@ -297,12 +290,6 @@ Creates Vue property.
 | Name |
 | :------ |
 | `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `validator` | `Guard`<`T`\> | Validator. |
 
 #### Returns
 

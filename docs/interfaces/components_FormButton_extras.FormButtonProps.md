@@ -16,18 +16,27 @@
 
 ### Properties
 
+- [asyncClick](components_FormButton_extras.FormButtonProps.md#asyncclick)
 - [confirmation](components_FormButton_extras.FormButtonProps.md#confirmation)
 - [disable](components_FormButton_extras.FormButtonProps.md#disable)
-- [modelValue](components_FormButton_extras.FormButtonProps.md#modelvalue)
 - [tooltip](components_FormButton_extras.FormButtonProps.md#tooltip)
 - [tooltipDirection](components_FormButton_extras.FormButtonProps.md#tooltipdirection)
 
 ### Methods
 
 - [onConfirmedClick](components_FormButton_extras.FormButtonProps.md#onconfirmedclick)
-- [onUpdate:modelValue](components_FormButton_extras.FormButtonProps.md#onupdate:modelvalue)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_BaseButton_extras.AsyncClick.md)
+
+#### Inherited from
+
+FormButtonParentProps.asyncClick
+
+___
 
 ### confirmation
 
@@ -46,16 +55,6 @@ ___
 #### Inherited from
 
 FormButtonParentProps.disable
-
-___
-
-### modelValue
-
-• `Optional` `Readonly` **modelValue**: `booleanU`
-
-#### Inherited from
-
-FormButtonParentProps.modelValue
 
 ___
 
@@ -92,25 +91,3 @@ Emits confirmed click event.
 #### Inherited from
 
 FormButtonParentProps.onConfirmedClick
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `boolean` | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-FormButtonParentProps.onUpdate:modelValue

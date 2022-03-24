@@ -57,6 +57,7 @@
 - [components/Toggle.extras](modules/components_Toggle_extras.md)
 - [components/Tooltip.extras](modules/components_Tooltip_extras.md)
 - [components/api](modules/components_api.md)
+- [components/api/confirmedClickModule](modules/components_api_confirmedClickModule.md)
 - [components/api/rootElement](modules/components_api_rootElement.md)
 - [components/api/slotNames](modules/components_api_slotNames.md)
 - [components/extras/QVirtualScroll](modules/components_extras_QVirtualScroll.md)
