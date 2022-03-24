@@ -35,7 +35,7 @@ export const isRootElementPropU = is.or.factory(
 );
 
 export const rootElementPropsOptions = {
-  rootElement: propOptions(isRootElementPropU)
+  rootElement: propOptions<RootElementProp>()
 } as const;
 
 /**

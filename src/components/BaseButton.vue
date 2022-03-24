@@ -14,24 +14,24 @@ import {
 } from "./api/confirmedClickModule";
 import { useSlotsNames } from "./api/slotNames";
 import type {
+  AsyncClick,
   BaseButtonOwnProps,
   BaseButtonParentProps,
   BaseButtonSlots
 } from "./BaseButton.extras";
-import { isAsyncClickU } from "./BaseButton.extras";
 import { injectDisable } from "./Switchable.extras";
-import { isDirectionU } from "./Tooltip.extras";
+import type { Direction } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-base-button",
   props: {
     ...propsToPropDefinitions<BaseButtonParentProps>(),
     ...confirmedClickProps,
-    asyncClick: propOptions(isAsyncClickU),
+    asyncClick: propOptions<AsyncClick>(),
     disable: propOptions.boolean(),
     loading: propOptions.boolean(),
-    tooltip: propOptions(is.stringU),
-    tooltipDirection: propOptions(isDirectionU)
+    tooltip: propOptions<string>(),
+    tooltipDirection: propOptions<Direction>()
   },
   emits: confirmedClickEmits,
   setup(props, { emit }) {

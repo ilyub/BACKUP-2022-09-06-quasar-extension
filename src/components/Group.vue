@@ -24,8 +24,8 @@ export default defineComponent({
     ...propsToPropDefinitions<GroupParentProps>(),
     ...rootElementPropsOptions,
     items: propOptions.required(isGroupItems),
-    notFoundLabel: propOptions(is.stringU),
-    searchString: propOptions(is.stringU)
+    notFoundLabel: propOptions<string>(),
+    searchString: propOptions<string>()
   },
   setup(props) {
     validateProps<GroupOwnProps>(props);

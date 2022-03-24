@@ -23,8 +23,8 @@ export default defineComponent({
   props: {
     ...propsToPropDefinitions<ListItemParentProps>(),
     ...confirmedClickProps,
-    caption: propOptions(is.stringU),
-    icon: propOptions(is.stringU)
+    caption: propOptions<string>(),
+    icon: propOptions<string>()
   },
   emits: confirmedClickEmits,
   setup(props, { emit }) {

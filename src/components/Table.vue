@@ -55,6 +55,12 @@ interface SortMethod {
   (rows: objects): objects;
 }
 
+const defaultColumnWidths: ColumnWidths = new Map();
+
+const defaultColumnsOrder: ColumnsOrder = new Map();
+
+const defaultHiddenColumns: HiddenColumns = new Set();
+
 export default defineComponent({
   name: "m-table",
   components: {
@@ -65,24 +71,24 @@ export default defineComponent({
     ...propsToPropDefinitions<TableParentProps>(),
     binaryStateSortOff: propOptions.boolean(),
     binaryStateSortOn: propOptions.boolean(),
-    columnWidths: propOptions.default(isColumnWidths, new Map()),
-    columns: propOptions.default(isColumnsFactory(), []),
-    columnsOrder: propOptions.default(isColumnsOrder, new Map()),
+    columnWidths: propOptions.default(defaultColumnWidths, isColumnWidths),
+    columns: propOptions.default([], isColumnsFactory()),
+    columnsOrder: propOptions.default(defaultColumnsOrder, isColumnsOrder),
     externalSorting: propOptions.boolean(),
     flatOff: propOptions.boolean(),
     flatOn: propOptions.boolean(),
     headerSeparatorOff: propOptions.boolean(),
     headerSeparatorOn: propOptions.boolean(),
-    hiddenColumns: propOptions.default(isHiddenColumns, new Set()),
+    hiddenColumns: propOptions.default(defaultHiddenColumns, isHiddenColumns),
     manageColumns: propOptions.boolean(),
     multiselect: propOptions.boolean(),
-    pagination: propOptions.default(isPagination, {}),
+    pagination: propOptions.default({}, isPagination),
     resizableColumns: propOptions.boolean(),
-    rowKey: propOptions(is.stringU),
-    rows: propOptions.default(is.objects, []),
+    rowKey: propOptions<string>(),
+    rows: propOptions.default([], is.objects),
     selectByCheckbox: propOptions.boolean(),
     selectByRowClick: propOptions.boolean(),
-    selected: propOptions.default(is.objects, []),
+    selected: propOptions.default([], is.objects),
     squareOff: propOptions.boolean(),
     squareOn: propOptions.boolean(),
     sticky: propOptions.boolean()

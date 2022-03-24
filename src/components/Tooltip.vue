@@ -11,11 +11,7 @@ import type {
   TooltipParentProps,
   TooltipSlots
 } from "./Tooltip.extras";
-import {
-  disabled,
-  injectTooltipSettings,
-  isDirectionU
-} from "./Tooltip.extras";
+import { disabled, injectTooltipSettings } from "./Tooltip.extras";
 
 type Anchor =
   | "bottom end"
@@ -55,7 +51,7 @@ export default defineComponent({
   name: "m-tooltip",
   props: {
     ...propsToPropDefinitions<TooltipParentProps>(),
-    direction: propOptions(isDirectionU)
+    direction: propOptions<Direction>()
   },
   setup(props) {
     validateProps<TooltipOwnProps>(props);

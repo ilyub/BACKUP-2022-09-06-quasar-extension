@@ -135,8 +135,10 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
  * @param validator - Validator.
  * @returns Vue property.
  */
-export function propOptions<T>(validator: is.Guard<T>): PropOptions<T> {
-  return { validator };
+export function propOptions<T>(
+  validator?: is.Guard<T | undefined>
+): PropOptions<T | undefined> {
+  return validator ? { validator } : {};
 }
 
 /**
@@ -154,15 +156,15 @@ propOptions.boolean = propOptionsBoolean;
 /**
  * Creates Vue property.
  *
- * @param validator - Validator.
  * @param defVal - Default value.
+ * @param validator - Validator.
  * @returns Vue property.
  */
 export function propOptionsDefault<T>(
-  validator: is.Guard<T>,
-  defVal: T
+  defVal: T,
+  validator?: is.Guard<T>
 ): PropOptionsDefault<T> {
-  return { default: defVal, validator };
+  return validator ? { default: defVal, validator } : { default: defVal };
 }
 
 propOptions.default = propOptionsDefault;
@@ -174,9 +176,9 @@ propOptions.default = propOptionsDefault;
  * @returns Vue property.
  */
 export function propOptionsRequired<T>(
-  validator: is.Guard<T>
+  validator?: is.Guard<T>
 ): PropOptionsRequired<T> {
-  return { required: true, validator };
+  return validator ? { required: true, validator } : { required: true };
 }
 
 propOptions.required = propOptionsRequired;

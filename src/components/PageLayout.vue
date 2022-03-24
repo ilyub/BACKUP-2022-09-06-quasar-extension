@@ -13,7 +13,7 @@ export default defineComponent({
   props: {
     closeButtonOff: propOptions.boolean(),
     closeButtonOn: propOptions.boolean(),
-    title: propOptions(is.stringU)
+    title: propOptions<string>()
   },
   setup(props, { emit }) {
     validateEmit<PageLayoutProps>(emit);

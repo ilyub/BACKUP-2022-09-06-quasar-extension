@@ -39,7 +39,7 @@ export default defineComponent({
   directives: { maska },
   props: {
     ...propsToPropDefinitions<TimeInputParentProps>(),
-    modelValue: propOptions(is.numberU)
+    modelValue: propOptions<number>()
   },
   emits: {
     "update:modelValue": (value: numberU) => is.numberU(value)

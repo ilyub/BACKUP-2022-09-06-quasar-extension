@@ -50,11 +50,11 @@ export default defineComponent({
   name: "m-icon-picker",
   props: {
     ...propsToPropDefinitions<IconPickerParentProps>(),
-    cols: propOptions.default(is.number, 7),
-    modelValue: propOptions(is.stringU),
+    cols: propOptions.default(7, is.number),
+    modelValue: propOptions<string>(),
     placeholder: propOptions.required(is.string),
-    rows: propOptions.default(is.number, 5),
-    spinnerSize: propOptions.default(is.string, "70px")
+    rows: propOptions.default(5, is.number),
+    spinnerSize: propOptions.default("70px", is.string)
   },
   emits: {
     "update:modelValue": (value: stringU) => is.stringU(value)

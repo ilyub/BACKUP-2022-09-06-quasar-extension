@@ -38,12 +38,12 @@ export default defineComponent({
   directives: { maska },
   props: {
     ...propsToPropDefinitions<NumericInputParentProps>(),
-    bigStep: propOptions.default(is.number, 1),
-    max: propOptions.default(is.number, Number.MAX_VALUE),
-    min: propOptions.default(is.number, 0),
-    modelValue: propOptions(is.numberU),
+    bigStep: propOptions.default(1),
+    max: propOptions.default(Number.MAX_VALUE),
+    min: propOptions.default(0),
+    modelValue: propOptions<number>(),
     required: propOptions.boolean(),
-    smallStep: propOptions.default(is.number, 1)
+    smallStep: propOptions.default(1)
   },
   emits: {
     "update:modelValue": (value: numberU) => is.numberU(value)

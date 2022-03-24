@@ -40,7 +40,7 @@ export const confirmedClickEmits = {
 // eslint-disable-next-line no-warning-comments
 // fixme: Create type from ConfirmedClickProps
 export const confirmedClickProps = {
-  confirmation: propOptions(is.stringU)
+  confirmation: propOptions<string>()
 } as const;
 
 /**

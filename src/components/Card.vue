@@ -3,8 +3,6 @@
 
 import { defineComponent } from "vue";
 
-import * as is from "@skylib/functions/es/guards";
-
 import { propOptions, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
 import type { CardOwnProps, CardParentProps, CardSlots } from "./Card.extras";
@@ -14,8 +12,8 @@ export default defineComponent({
   name: "m-card",
   props: {
     ...propsToPropDefinitions<CardParentProps>(),
-    minWidth: propOptions(is.stringU),
-    title: propOptions(is.stringU),
+    minWidth: propOptions<string>(),
+    title: propOptions<string>(),
     transparentHeader: propOptions.boolean()
   },
   setup(props) {

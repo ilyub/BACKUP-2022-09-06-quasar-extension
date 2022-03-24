@@ -4,36 +4,25 @@ import { defineComponent, ref } from "vue";
 import type { TaskType } from "@skylib/facades/es/handlePromise";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
-import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import { propOptions, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
-import type { FormOwnProps, FormParentProps, FormSlots } from "./Form.extras";
-import { isOnSubmitAsyncU, isOnSubmitU } from "./Form.extras";
+import type {
+  FormOwnProps,
+  FormParentProps,
+  FormSlots,
+  OnSubmit,
+  OnSubmitAsync
+} from "./Form.extras";
 import { injectDisable, provideDisable } from "./Switchable.extras";
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-const TaskTypeVO = createValidationObject<TaskType>({
-  createDb: "createDb",
-  dbRequest: "dbRequest",
-  destroyDb: "destroyDb",
-  httpRequest: "httpRequest",
-  navigation: "navigation"
-});
-
-const isTaskType = is.factory(is.enumeration, TaskTypeVO);
-
-const isTaskTypeU = is.or.factory(isTaskType, is.undefined);
 
 export default defineComponent({
   name: "m-form",
   props: {
     ...propsToPropDefinitions<FormParentProps>(),
-    asyncTaskType: propOptions(isTaskTypeU),
-    onSubmit: propOptions(isOnSubmitU),
-    onSubmitAsync: propOptions(isOnSubmitAsyncU)
+    asyncTaskType: propOptions<TaskType>(),
+    onSubmit: propOptions<OnSubmit>(),
+    onSubmitAsync: propOptions<OnSubmitAsync>()
   },
   setup(props) {
     validateProps<FormOwnProps>(props);

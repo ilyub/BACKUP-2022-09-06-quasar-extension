@@ -10,13 +10,17 @@ import type { objects, Writable } from "@skylib/functions/es/types/core";
 
 import { propOptions, validateEmit, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
-import type { Elems, SortableProps, SortableSlots } from "./Sortable.extras";
+import type {
+  Elems,
+  Move,
+  SortableProps,
+  SortableSlots
+} from "./Sortable.extras";
 import {
   buildElements,
   injectSortableSettings,
   isElems,
-  isMoveData,
-  isMoveU
+  isMoveData
 } from "./Sortable.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
 
@@ -26,12 +30,12 @@ export default defineComponent({
     "vue-draggable": VueDraggable
   },
   props: {
-    group: propOptions.required(is.string),
-    itemClass: propOptions(is.stringU),
-    itemKey: propOptions.required(is.string),
-    itemTag: propOptions.default(is.unknown, "div"),
-    modelValue: propOptions.required(is.objects),
-    move: propOptions(isMoveU),
+    group: propOptions.required<string>(),
+    itemClass: propOptions<string>(),
+    itemKey: propOptions.required<string>(),
+    itemTag: propOptions.default<unknown>("div"),
+    modelValue: propOptions.required<objects>(),
+    move: propOptions<Move>(),
     pull: propOptions.boolean(),
     put: propOptions.boolean(),
     sort: propOptions.boolean()

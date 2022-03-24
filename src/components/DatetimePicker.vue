@@ -32,9 +32,9 @@ export default defineComponent({
   name: "m-datetime-picker",
   props: {
     ...propsToPropDefinitions<DatetimePickerParentProps>(),
-    max: propOptions(is.stringU),
-    min: propOptions(is.stringU),
-    modelValue: propOptions(is.stringU)
+    max: propOptions<string>(),
+    min: propOptions<string>(),
+    modelValue: propOptions<string>()
   },
   emits: {
     "update:modelValue": (value: stringU) => is.stringU(value)
