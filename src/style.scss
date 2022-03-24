@@ -183,7 +183,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
   .m-table__header-cell {
     position: relative;
-    padding: 7px 0;
+    padding: 3px 0;
 
     &.m-table__header-cell__separator {
       border-right: 1px solid $table-border-color;
@@ -216,7 +216,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 
   .m-table__body-cell {
     position: relative;
-    padding: 7px 0;
+    padding: 3px 0;
 
     .m-table__body-cell__wrapper {
       padding: 0 16px;

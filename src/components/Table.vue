@@ -362,7 +362,15 @@ export default defineComponent({
     <template #header="data">
       <slot :name="slotNames.header" v-bind="data">
         <tr>
-          <m-menu v-if="manageColumns" auto-close context-menu>
+          <m-menu
+            v-if="
+              manageColumns ||
+              slotNames.has('header-menu-append') ||
+              slotNames.has('header-menu-prepend')
+            "
+            auto-close
+            context-menu
+          >
             <q-list>
               <slot
                 :name="slotNames.headerMenuPrepend"
