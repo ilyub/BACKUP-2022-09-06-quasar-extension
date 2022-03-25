@@ -1,7 +1,9 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Card] */
 
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+
+import * as is from "@skylib/functions/es/guards";
 
 import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { useSlotsNames } from "./api/slotNames";
@@ -20,6 +22,7 @@ export default defineComponent({
     validateProps<CardOwnProps>(props);
 
     return {
+      hasTitle: computed<boolean>(() => is.not.empty(props.title)),
       icons,
       slotNames: useSlotsNames<CardSlots>()(
         "default",
@@ -43,15 +46,16 @@ export default defineComponent({
     </template>
     <template #default>
       <m-card-section
+        v-if="hasTitle || slotNames.has('title')"
+        class="m-card__header"
         :class="
           transparentHeader
-            ? 'items-center q-pb-none row text-h6'
-            : 'bg-primary items-center q-pr-sm row text-h6 text-white'
+            ? 'm-card__header__transparent'
+            : 'm-card__header__default'
         "
       >
         <slot :name="slotNames.title">{{ title }}</slot>
-        <q-space v-if="!transparentHeader" />
-        <div :class="{ 'm-card__header-actions': transparentHeader }">
+        <div class="m-card__header__actions">
           <slot :name="slotNames.headerActions"></slot>
           <m-icon-button v-close-popup :icon="icons.close" />
         </div>

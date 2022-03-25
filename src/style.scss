@@ -64,10 +64,30 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
 }
 
 .m-card {
-  .m-card__header-actions {
-    position: absolute;
-    top: map.get($space-sm, "y");
-    right: map.get($space-sm, "x");
+  .m-card__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: map.get($space-md, "y") map.get($space-md, "x");
+    font-size: map.get($h6, "size");
+    font-weight: map.get($h6, "weight");
+    letter-spacing: map.get($h6, "letter-spacing");
+    line-height: map.get($h6, "line-height");
+
+    &.m-card__header__default {
+      background: $primary;
+      color: white;
+    }
+
+    &.m-card__header__transparent {
+      padding-bottom: 0;
+    }
+
+    .m-card__header__actions {
+      position: absolute;
+      top: map.get($space-sm, "y");
+      right: map.get($space-sm, "x");
+    }
   }
 }
 
