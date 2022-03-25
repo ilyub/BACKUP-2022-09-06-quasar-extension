@@ -17,6 +17,7 @@ export const en = new Definitions({
     PickDate: "Pick date",
     SampleWord: "Sample word",
     Save: "Save",
+    Select: "Select",
     SelectAll: "Select all"
   }
 });

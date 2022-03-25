@@ -17,6 +17,7 @@ export const ru = new Definitions({
     PickDate: "Выбор даты",
     SampleWord: "Пробное слово",
     Save: "Сохранить",
+    Select: "Выбрать",
     SelectAll: "Выделить все"
   }
 });

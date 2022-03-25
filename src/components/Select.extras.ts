@@ -1,8 +1,23 @@
 import type { QSelectProps, QSelectSlots } from "quasar";
 
+import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
+import type { stringU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends ModuleWord {}
+    }
+  }
+}
+
+export interface ModuleWord {
+  readonly Select: true;
+}
 
 // eslint-disable-next-line @skylib/prefer-readonly
 export type GlobalSelect<T = unknown> = GlobalComponent<
@@ -25,7 +40,8 @@ export interface SelectParentProps
   > {}
 
 export interface SelectOwnProps<T = unknown> {
-  readonly modelValue: T;
+  readonly initialLabel?: stringU;
+  readonly modelValue?: T | undefined;
   /**
    * Emits model value.
    *
@@ -48,3 +64,5 @@ export const isSelectOption: is.Guard<SelectOption> = is.factory(
 );
 
 export const isSelectOptions = is.factory(is.array.of, isSelectOption);
+
+export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
