@@ -20,6 +20,7 @@
 
 ### Properties
 
+- [initialLabel](components_Select_extras.SelectOwnProps.md#initiallabel)
 - [modelValue](components_Select_extras.SelectOwnProps.md#modelvalue)
 - [options](components_Select_extras.SelectOwnProps.md#options)
 
@@ -29,9 +30,15 @@
 
 ## Properties
 
+### initialLabel
+
+• `Optional` `Readonly` **initialLabel**: `stringU`
+
+___
+
 ### modelValue
 
-• `Readonly` **modelValue**: `T`
+• `Optional` `Readonly` **modelValue**: `T`
 
 ___
 
@@ -51,7 +58,7 @@ Emits model value.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `number` | Value. |
+| `value` | `T` | Value. |
 
 #### Returns
 

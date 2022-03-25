@@ -6,6 +6,7 @@
 
 ### Interfaces
 
+- [ModuleWord](../interfaces/components_Select_extras.ModuleWord.md)
 - [SelectOption](../interfaces/components_Select_extras.SelectOption.md)
 - [SelectOwnProps](../interfaces/components_Select_extras.SelectOwnProps.md)
 - [SelectParentProps](../interfaces/components_Select_extras.SelectParentProps.md)
@@ -16,6 +17,10 @@
 - [GlobalSelect](components_Select_extras.md#globalselect)
 - [SelectOptions](components_Select_extras.md#selectoptions)
 - [SelectSlots](components_Select_extras.md#selectslots)
+
+### Variables
+
+- [lang](components_Select_extras.md#lang)
 
 ### Functions
 
@@ -51,6 +56,12 @@ ___
 ### SelectSlots
 
 Ƭ **SelectSlots**: `QSelectSlots`
+
+## Variables
+
+### lang
+
+• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_Select_extras.ModuleWord.md)\> = `baseLang`
 
 ## Functions
 

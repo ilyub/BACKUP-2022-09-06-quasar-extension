@@ -22,6 +22,7 @@
 
 ### Properties
 
+- [initialLabel](components_Select_extras.SelectProps.md#initiallabel)
 - [modelValue](components_Select_extras.SelectProps.md#modelvalue)
 - [options](components_Select_extras.SelectProps.md#options)
 
@@ -31,9 +32,19 @@
 
 ## Properties
 
+### initialLabel
+
+• `Optional` `Readonly` **initialLabel**: `stringU`
+
+#### Inherited from
+
+[SelectOwnProps](components_Select_extras.SelectOwnProps.md).[initialLabel](components_Select_extras.SelectOwnProps.md#initiallabel)
+
+___
+
 ### modelValue
 
-• `Readonly` **modelValue**: `T`
+• `Optional` `Readonly` **modelValue**: `T`
 
 #### Inherited from
 
@@ -61,7 +72,7 @@ Emits model value.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `number` | Value. |
+| `value` | `T` | Value. |
 
 #### Returns
 
