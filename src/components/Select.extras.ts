@@ -31,7 +31,7 @@ export interface SelectOwnProps<T = unknown> {
    *
    * @param value - Value.
    */
-  readonly "onUpdate:modelValue"?: (value: number) => void;
+  readonly "onUpdate:modelValue"?: (value: T) => void;
   readonly options: SelectOptions<T>;
 }
 
