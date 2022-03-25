@@ -266,7 +266,7 @@ export default defineComponent({
           :offset="[0, 10]"
           self="top left"
         >
-          <m-card>
+          <m-card class="m-datetime-picker__dialog">
             <template #title>
               <div class="items-end row">
                 <div

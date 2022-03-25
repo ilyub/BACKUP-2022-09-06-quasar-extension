@@ -71,7 +71,7 @@ $m-subsection__spacing : map.get($space-sm, "y") !default;
   }
 }
 
-.m-datetime-picker {
+.m-datetime-picker__dialog {
   .q-time__header {
     display: none;
   }
