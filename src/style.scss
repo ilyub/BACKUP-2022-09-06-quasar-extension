@@ -1,13 +1,12 @@
 @use "sass:map";
-
 @import "~quasar/src/css/variables.sass";
 
-$m-buttons-group__spacing : map.get($space-sm, "x") !default;
-$m-icon-buttons-group__spacing : map.get($space-xs, "x") !default;
-$m-indent__padding : map.get($space-lg, "x") !default;
-$m-page-section__spacing : map.get($space-lg, "y") !default;
-$m-section__spacing : map.get($space-md, "y") !default;
-$m-subsection__spacing : map.get($space-sm, "y") !default;
+$m-buttons-group__spacing: map.get($space-sm, "x") !default;
+$m-icon-buttons-group__spacing: map.get($space-xs, "x") !default;
+$m-indent__padding: map.get($space-lg, "x") !default;
+$m-page-section__spacing: map.get($space-lg, "y") !default;
+$m-section__spacing: map.get($space-md, "y") !default;
+$m-subsection__spacing: map.get($space-sm, "y") !default;
 
 .border-collapse {
   border-collapse: collapse;
