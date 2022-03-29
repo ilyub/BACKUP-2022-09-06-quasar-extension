@@ -3,6 +3,9 @@ const config = require("@skylib/config/src/jest-preset");
 module.exports = {
   collectCoverageFrom: [
     ...config.collectCoverageFrom,
+    // eslint-disable-next-line no-warning-comments
+    // fixme: Wait for @skylib/config update
+    "!src/**/*.{js,jsx}",
     "!src/App.vue",
     "!src/boot/**",
     "!src/router/**",
