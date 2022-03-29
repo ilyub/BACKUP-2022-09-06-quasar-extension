@@ -41,10 +41,7 @@ export default boot(({ app }) => {
   {
     Dictionary.configure({ localeName: "en-US" });
 
-    configurableTestDelay.configure({
-      enabled: true,
-      timeout: 1000
-    });
+    configurableTestDelay.configure({ enabled: true, timeout: 1000 });
 
     progressBar.configure({
       activeClass: "progress-bar-active",
@@ -72,19 +69,13 @@ export default boot(({ app }) => {
     app.config.errorHandler = function (err, _vm, info): void {
       // eslint-disable-next-line no-console
       console.error(err, info);
-      Notify.create({
-        color: "negative",
-        message: cast.string(err)
-      });
+      Notify.create({ color: "negative", message: cast.string(err) });
     };
 
     app.config.warnHandler = function (err, _vm, info): void {
       // eslint-disable-next-line no-console
       console.warn(err, info);
-      Notify.create({
-        color: "negative",
-        message: cast.string(err)
-      });
+      Notify.create({ color: "negative", message: cast.string(err) });
     };
 
     app.use(plugin);

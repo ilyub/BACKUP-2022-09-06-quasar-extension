@@ -22,14 +22,8 @@ export default defineComponent({
       // fixme: Use typedef
       switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
         () => [
-          {
-            label: "None",
-            value: "none"
-          },
-          {
-            label: "Slide",
-            value: "slide"
-          }
+          { label: "None", value: "none" },
+          { label: "Slide", value: "slide" }
         ]
       )
     };

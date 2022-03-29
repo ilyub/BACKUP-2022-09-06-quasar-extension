@@ -12,10 +12,7 @@ import {
 
 export default defineComponent({
   name: "m-switchable",
-  props: {
-    disable: prop.boolean(),
-    indent: prop.boolean()
-  },
+  props: { disable: prop.boolean(), indent: prop.boolean() },
   setup(props) {
     validateProps<SwitchableProps>(props);
 

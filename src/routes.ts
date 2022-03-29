@@ -4,10 +4,7 @@ import { components } from "./samples";
 import Index from "./samples/Index.vue";
 
 export const routes: readonly RouteRecordRaw[] = [
-  {
-    component: Index,
-    path: "/"
-  },
+  { component: Index, path: "/" },
   ...components.map(component => {
     return {
       component,

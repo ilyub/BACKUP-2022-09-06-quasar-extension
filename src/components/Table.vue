@@ -56,9 +56,7 @@ interface SortMethod {
 
 export default defineComponent({
   name: "m-table",
-  components: {
-    "m-sortable-column": genericSortable<Column>()
-  },
+  components: { "m-sortable-column": genericSortable<Column>() },
   inheritAttrs: false,
   props: {
     ...propsToPropDefinitions<TableParentProps>(),

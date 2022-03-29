@@ -6,9 +6,7 @@ import type { numberU } from "@skylib/functions/es/types/core";
 export default defineComponent({
   name: "sample-numeric-input",
   setup() {
-    return {
-      value: ref<numberU>(undefined)
-    };
+    return { value: ref<numberU>(undefined) };
   }
 });
 </script>

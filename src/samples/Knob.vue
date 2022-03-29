@@ -4,9 +4,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "sample-knob",
   setup() {
-    return {
-      value: ref(100)
-    };
+    return { value: ref(100) };
   }
 });
 </script>

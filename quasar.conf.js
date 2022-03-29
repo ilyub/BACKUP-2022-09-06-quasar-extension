@@ -12,10 +12,7 @@ module.exports = configure(ctx => {
           minimize: ctx.prod,
           removeAvailableModules: true,
           removeEmptyChunks: true,
-          splitChunks: {
-            maxSize: 200_000,
-            minSize: 50_000
-          }
+          splitChunks: { maxSize: 200_000, minSize: 50_000 }
         };
       },
       gzip: false,
@@ -30,9 +27,7 @@ module.exports = configure(ctx => {
       transpileDependencies: [],
       vueRouterMode: "history"
     },
-    capacitor: {
-      hideSplashscreen: true
-    },
+    capacitor: { hideSplashscreen: true },
     cordova: {},
     css: ["app.scss"],
     devServer: {
@@ -42,9 +37,7 @@ module.exports = configure(ctx => {
       port: 9300
     },
     electron: {
-      builder: {
-        appId: "quasar-extension"
-      },
+      builder: { appId: "quasar-extension" },
       bundler: "packager",
       chainWebpack() {
         //
@@ -114,10 +107,7 @@ module.exports = configure(ctx => {
     },
     supportTS: {
       tsCheckerConfig: {
-        eslint: {
-          enabled: true,
-          files: "./src/**/*.{js,jsx,ts,tsx,vue}"
-        }
+        eslint: { enabled: true, files: "./src/**/*.{js,jsx,ts,tsx,vue}" }
       }
     }
   };

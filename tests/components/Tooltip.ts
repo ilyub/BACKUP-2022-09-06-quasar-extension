@@ -33,9 +33,7 @@ test.each<TestOption>([
         show: true
       }
     }),
-    props: {
-      direction: options.direction
-    }
+    props: { direction: options.direction }
   });
 
   const tooltip = wrapper.findComponent(QTooltip);

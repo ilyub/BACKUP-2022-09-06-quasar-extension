@@ -14,9 +14,7 @@ functionsTestUtils.installFakeTimer();
 test("prop: confirmation", () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions(),
-    props: {
-      confirmation: "Sample confirmation"
-    }
+    props: { confirmation: "Sample confirmation" }
   });
 
   wrapper.vm.$q.dialog = (): DialogChainObject => {
@@ -49,9 +47,7 @@ test("prop: tooltip", async () => {
 test("slot: default", () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
     global: testUtils.globalMountOptions(),
-    slots: {
-      default: '<div class="sample-class">sample-contents</div>"'
-    }
+    slots: { default: '<div class="sample-class">sample-contents</div>"' }
   });
 
   expect(wrapper.find(".sample-class")).textToEqual("sample-contents");

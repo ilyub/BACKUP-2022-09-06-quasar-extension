@@ -17,18 +17,10 @@ const rootElement4: RootElementProp = "subsection";
 
 test.each([
   {},
-  {
-    rootElement: rootElement1
-  },
-  {
-    rootElement: rootElement2
-  },
-  {
-    rootElement: rootElement3
-  },
-  {
-    rootElement: rootElement4
-  }
+  { rootElement: rootElement1 },
+  { rootElement: rootElement2 },
+  { rootElement: rootElement3 },
+  { rootElement: rootElement4 }
 ])("group", async ({ rootElement }) => {
   const items: GroupItems = [
     {

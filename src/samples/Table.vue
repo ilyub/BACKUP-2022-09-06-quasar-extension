@@ -25,9 +25,7 @@ type TableItems = readonly TableItem[];
 
 export default defineComponent({
   name: "sample-table",
-  components: {
-    "generic-table": genericTable<TableItem>()
-  },
+  components: { "generic-table": genericTable<TableItem>() },
   setup() {
     const columnsOrder = ref<ColumnsOrder>(new Map());
 
@@ -110,10 +108,7 @@ export default defineComponent({
         });
 
         return ids.map(id => {
-          return {
-            id,
-            name: `Item ${id}`
-          };
+          return { id, name: `Item ${id}` };
         });
       }),
       pagination,

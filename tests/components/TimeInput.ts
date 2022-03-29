@@ -68,9 +68,7 @@ test.each([
   async ({ hoursDown, hoursUp, minutesDown, minutesUp, modelValue }) => {
     const wrapper = vueTestUtils.mount(TimeInput, {
       global: testUtils.globalMountOptions(),
-      props: {
-        modelValue
-      }
+      props: { modelValue }
     });
 
     const comp = testUtils.findComponentFactory(".ref-time-input-", wrapper);

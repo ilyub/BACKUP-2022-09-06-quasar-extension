@@ -16,9 +16,7 @@ export default defineComponent({
     validateEmit<ExpansionItemOwnProps>(emit);
     validateProps<ExpansionItemOwnProps>(props);
 
-    return {
-      slotNames: useSlotsNames<ExpansionItemSlots>()()
-    };
+    return { slotNames: useSlotsNames<ExpansionItemSlots>()() };
   }
 });
 </script>

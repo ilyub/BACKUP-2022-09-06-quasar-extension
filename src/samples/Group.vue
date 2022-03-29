@@ -10,9 +10,7 @@ type Section = "section1" | "section2" | "section3" | "section4";
 
 export default defineComponent({
   name: "sample-group",
-  components: {
-    "generic-group": genericGroup<Section>()
-  },
+  components: { "generic-group": genericGroup<Section>() },
   setup() {
     const showSection1 = ref(true);
 

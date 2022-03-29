@@ -5,9 +5,7 @@ import { mdiClose } from "@mdi/js";
 export default defineComponent({
   name: "sample-expansion-item",
   setup() {
-    return {
-      icon: mdiClose
-    };
+    return { icon: mdiClose };
   }
 });
 </script>

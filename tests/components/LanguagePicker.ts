@@ -6,14 +6,8 @@ import LanguagePicker from "@/components/LanguagePicker.vue";
 import * as testUtils from "@/testUtils";
 
 test.each([
-  {
-    expected: "en-US",
-    menuItemIndex: 0
-  },
-  {
-    expected: "ru-RU",
-    menuItemIndex: 1
-  }
+  { expected: "en-US", menuItemIndex: 0 },
+  { expected: "ru-RU", menuItemIndex: 1 }
 ])("languagePicker", async ({ expected, menuItemIndex }) => {
   const changeLanguageAction = jest.fn();
 
@@ -35,9 +29,7 @@ test.each([
         ]
       }
     }),
-    props: {
-      language: "en-US"
-    }
+    props: { language: "en-US" }
   });
 
   const button = wrapper.findComponent(IconButton);

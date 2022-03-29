@@ -10,9 +10,7 @@ test("createInjectable", () => {
     components: {
       child: {
         setup() {
-          return {
-            value: injectable.inject()
-          };
+          return { value: injectable.inject() };
         },
         template: "<div>{{value }}</div>"
       }

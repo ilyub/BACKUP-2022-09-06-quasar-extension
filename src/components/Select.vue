@@ -30,9 +30,7 @@ export default defineComponent({
     modelValue: prop(),
     options: prop.required<SelectOptions>()
   },
-  emits: {
-    "update:modelValue": (value: unknown) => is.unknown(value)
-  },
+  emits: { "update:modelValue": (value: unknown) => is.unknown(value) },
   setup(props, { emit }) {
     validateEmit<SelectOwnProps>(emit);
     validateProps<SelectOwnProps>(props);

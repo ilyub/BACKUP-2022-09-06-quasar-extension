@@ -19,7 +19,6 @@ export interface ModuleWord {
   readonly Select: true;
 }
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type GlobalSelect<T = unknown> = GlobalComponent<
   SelectProps<T>,
   SelectSlots

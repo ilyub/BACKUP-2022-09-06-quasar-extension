@@ -15,9 +15,7 @@ export default defineComponent({
   setup(props) {
     validateProps<FormButtonOwnProps>(props);
 
-    return {
-      slotNames: useSlotsNames<FormButtonSlots>()()
-    };
+    return { slotNames: useSlotsNames<FormButtonSlots>()() };
   }
 });
 </script>

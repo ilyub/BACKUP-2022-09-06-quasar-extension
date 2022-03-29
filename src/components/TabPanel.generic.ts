@@ -18,7 +18,6 @@ export interface TabPanelProps<T extends NumStrU = NumStrU>
 
 export type TabPanelSlots = QTabPanelSlots;
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type GlobalTabPanel<T extends NumStrU = NumStrU> = GlobalComponent<
   TabPanelProps<T>,
   TabPanelSlots

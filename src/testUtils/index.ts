@@ -138,9 +138,7 @@ export function findComponentByRefFactory(
   wrapper: vueTestUtils.VueWrapper<any>
 ) {
   return (ref: string): vueTestUtils.VueWrapper =>
-    wrapper.findComponent<ComponentPublicInstance>({
-      ref
-    });
+    wrapper.findComponent<ComponentPublicInstance>({ ref });
 }
 
 /**
@@ -384,10 +382,7 @@ export function toExist(got: unknown): testUtils.ExpectReturnType {
         message: (): string => "Expected Vue wrapper not to exist",
         pass: true
       }
-    : {
-        message: (): string => "Expected Vue wrapper to exist",
-        pass: false
-      };
+    : { message: (): string => "Expected Vue wrapper to exist", pass: false };
 }
 
 /**

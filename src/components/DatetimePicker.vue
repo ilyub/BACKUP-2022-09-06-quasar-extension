@@ -36,9 +36,7 @@ export default defineComponent({
     min: prop<string>(),
     modelValue: prop<string>()
   },
-  emits: {
-    "update:modelValue": (value: stringU) => is.stringU(value)
-  },
+  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
   setup(props, { emit }) {
     validateEmit<DatetimePickerOwnProps>(emit);
     validateProps<DatetimePickerOwnProps>(props);
@@ -66,10 +64,7 @@ export default defineComponent({
       ) {
         const dt = datetime.create(props.min);
 
-        return {
-          hours: dt.hours(),
-          minutes: dt.minutes()
-        };
+        return { hours: dt.hours(), minutes: dt.minutes() };
       }
 
       return undefined;
@@ -84,10 +79,7 @@ export default defineComponent({
       ) {
         const dt = datetime.create(props.max);
 
-        return {
-          hours: dt.hours(),
-          minutes: dt.minutes()
-        };
+        return { hours: dt.hours(), minutes: dt.minutes() };
       }
 
       return undefined;

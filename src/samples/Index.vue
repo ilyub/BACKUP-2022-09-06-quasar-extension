@@ -1,9 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "sample-index"
-});
+export default defineComponent({ name: "sample-index" });
 </script>
 
 <template>

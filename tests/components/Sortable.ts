@@ -32,9 +32,7 @@ const props = {
 };
 
 test.each([
-  {
-    animationDuration: 500
-  },
+  { animationDuration: 500 },
   {
     animationDuration: 1000,
     sortableSettings: {
@@ -46,9 +44,7 @@ test.each([
 ])("animationDuration", ({ animationDuration, sortableSettings }) => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions(
-      o.removeUndefinedKeys({
-        sortableSettings
-      })
+      o.removeUndefinedKeys({ sortableSettings })
     ),
     props
   });
@@ -132,23 +128,12 @@ test("emit: update:modelValue", () => {
 
 test.each([
   {
-    dest: {
-      group: "dest-group",
-      id: "dest-id"
-    },
-    source: {
-      group: "source-group",
-      id: "source-id"
-    }
+    dest: { group: "dest-group", id: "dest-id" },
+    source: { group: "source-group", id: "source-id" }
   },
   {
-    dest: {
-      group: "dest-group"
-    },
-    source: {
-      group: "source-group",
-      id: "source-id"
-    }
+    dest: { group: "dest-group" },
+    source: { group: "source-group", id: "source-id" }
   }
 ])("prop: move", async ({ dest, source }) => {
   const move = jest.fn();
@@ -158,7 +143,6 @@ test.each([
     props
   });
 
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
   const baseMove = wrapper.findComponent(VueDraggable).props("move") as unknown;
 
   const moveData = {

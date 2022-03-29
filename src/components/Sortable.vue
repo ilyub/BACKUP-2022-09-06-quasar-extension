@@ -26,9 +26,7 @@ import { useDisableTooltips } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-sortable",
-  components: {
-    "vue-draggable": VueDraggable
-  },
+  components: { "vue-draggable": VueDraggable },
   props: {
     group: prop.required<string>(),
     itemClass: prop<string>(),

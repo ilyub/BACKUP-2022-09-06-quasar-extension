@@ -1,9 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "sample-indent"
-});
+export default defineComponent({ name: "sample-indent" });
 </script>
 
 <template>

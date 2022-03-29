@@ -19,8 +19,5 @@ module.exports = {
   preset: "@skylib/config/src",
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
   testEnvironment: "@skylib/config/src/jest-env-jsdom",
-  transform: {
-    ...config.transform,
-    [/\.vue$/u.source]: "@vue/vue3-jest"
-  }
+  transform: { ...config.transform, [/\.vue$/u.source]: "@vue/vue3-jest" }
 };

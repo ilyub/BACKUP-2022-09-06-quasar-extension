@@ -7,9 +7,7 @@ import type { IndentSlots } from "./Indent.extras";
 export default defineComponent({
   name: "m-indent",
   setup() {
-    return {
-      slotNames: useSlotsNames<IndentSlots>()("default")
-    };
+    return { slotNames: useSlotsNames<IndentSlots>()("default") };
   }
 });
 </script>

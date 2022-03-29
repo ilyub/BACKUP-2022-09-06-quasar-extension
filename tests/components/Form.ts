@@ -18,9 +18,7 @@ test("form, onSubmit", () => {
 
   const wrapper = vueTestUtils.mount(Form, {
     global: testUtils.globalMountOptions(),
-    props: {
-      onSubmit
-    }
+    props: { onSubmit }
   });
 
   const form = wrapper.findComponent(QForm);
@@ -43,10 +41,7 @@ test.each<TaskType | undefined>([undefined, "httpRequest"])(
 
       const wrapper = vueTestUtils.mount(Form, {
         global: testUtils.globalMountOptions(),
-        props: {
-          asyncTaskType,
-          onSubmitAsync
-        }
+        props: { asyncTaskType, onSubmitAsync }
       });
 
       const form = wrapper.findComponent(QForm);
@@ -79,9 +74,7 @@ test("form: provideDisable", async () => {
 
     const wrapper = vueTestUtils.mount(Form, {
       global: testUtils.globalMountOptions(),
-      props: {
-        onSubmitAsync
-      },
+      props: { onSubmitAsync },
       slots: {
         default: {
           setup() {

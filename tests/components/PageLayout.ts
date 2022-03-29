@@ -13,10 +13,7 @@ function typedef<T>(source: T): T {
 }
 
 test.each([
-  {
-    closeExists: false,
-    titleExists: false
-  },
+  { closeExists: false, titleExists: false },
   {
     closeExists: true,
     title: "Sample title",
@@ -61,7 +58,11 @@ test.each([
       global: testUtils.globalMountOptions(
         o.removeUndefinedKeys({ pageLayoutSettings })
       ),
-      props: o.removeUndefinedKeys({ closeButtonOff, closeButtonOn, title })
+      props: o.removeUndefinedKeys({
+        closeButtonOff,
+        closeButtonOn,
+        title
+      })
     });
 
     const { comp, elem } = testUtils.findFactory(".m-page-layout__", wrapper);

@@ -15,9 +15,7 @@ export default defineComponent({
   setup(props) {
     validateProps<DroppableOwnProps>(props);
 
-    return {
-      slotNames: useSlotsNames<DroppableSlots>()("default")
-    };
+    return { slotNames: useSlotsNames<DroppableSlots>()("default") };
   }
 });
 </script>

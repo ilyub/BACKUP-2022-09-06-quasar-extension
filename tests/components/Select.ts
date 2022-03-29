@@ -5,23 +5,28 @@ import type { SelectOptions } from "@/components/Select.extras";
 import Select from "@/components/Select.vue";
 
 test.each([
-  { disable: true, label: "Option 1", value: undefined },
+  {
+    disable: true,
+    label: "Option 1",
+    value: undefined
+  },
   { label: "Option 2", value: 1 },
   { label: "Option 3", value: "a" }
 ])("select", option => {
   // eslint-disable-next-line no-warning-comments
   // fixme: Use typedef
   const options: SelectOptions = [
-    { disable: true, label: "Option 1", value: undefined },
+    {
+      disable: true,
+      label: "Option 1",
+      value: undefined
+    },
     { label: "Option 2", value: 1 },
     { label: "Option 3", value: "a" }
   ];
 
   const wrapper = testUtils.mount(Select, {
-    props: {
-      modelValue: undefined,
-      options
-    }
+    props: { modelValue: undefined, options }
   });
 
   const expected = [[option.value]];
@@ -31,13 +36,8 @@ test.each([
 });
 
 test.each([
-  {
-    expected: "Select"
-  },
-  {
-    expected: "Custom label",
-    initialLabel: "Custom label"
-  }
+  { expected: "Select" },
+  { expected: "Custom label", initialLabel: "Custom label" }
 ])("initial label", ({ expected, initialLabel }) => {
   // eslint-disable-next-line no-warning-comments
   // fixme: Use typedef

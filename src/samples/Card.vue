@@ -1,9 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "sample-card"
-});
+export default defineComponent({ name: "sample-card" });
 </script>
 
 <template>

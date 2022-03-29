@@ -6,16 +6,17 @@ import OptionGroup from "@/components/OptionGroup.vue";
 
 test.each([undefined, 1, "a"])("optionGroup", value => {
   const options: OptionGroupOptions = [
-    { disable: true, label: "Option 1", value: undefined },
+    {
+      disable: true,
+      label: "Option 1",
+      value: undefined
+    },
     { label: "Option 2", value: 1 },
     { label: "Option 3", value: "a" }
   ];
 
   const wrapper = testUtils.mount(OptionGroup, {
-    props: {
-      modelValue: undefined,
-      options
-    }
+    props: { modelValue: undefined, options }
   });
 
   const expected = [[value]];

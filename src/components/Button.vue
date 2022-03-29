@@ -15,9 +15,7 @@ export default defineComponent({
   setup(props) {
     validateProps<ButtonOwnProps>(props);
 
-    return {
-      slotNames: useSlotsNames<ButtonSlots>()()
-    };
+    return { slotNames: useSlotsNames<ButtonSlots>()() };
   }
 });
 </script>

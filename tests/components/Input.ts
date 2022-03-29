@@ -5,20 +5,12 @@ import Input from "@/components/Input.vue";
 import * as testUtils from "@/testUtils";
 
 test.each([
-  {
-    expectedValue: undefined,
-    value: ""
-  },
-  {
-    expectedValue: "sample-value",
-    value: "sample-value"
-  }
+  { expectedValue: undefined, value: "" },
+  { expectedValue: "sample-value", value: "sample-value" }
 ])("input", ({ expectedValue, value }) => {
   const wrapper = vueTestUtils.mount(Input, {
     global: testUtils.globalMountOptions(),
-    props: {
-      modelValue: undefined
-    }
+    props: { modelValue: undefined }
   });
 
   const input = wrapper.findComponent(QInput);

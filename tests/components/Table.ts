@@ -41,10 +41,7 @@ test.each([
     expectedHtml: "Sample row 1",
     expectedLimit: 25,
     externalSorting: false,
-    pagination: {
-      limit: 15,
-      sortBy: "name"
-    },
+    pagination: { limit: 15, sortBy: "name" },
     to: 14
   },
   {
@@ -105,9 +102,7 @@ test.each([
           rows: testRows,
           selected
         }),
-        slots: o.removeUndefinedKeys({
-          "body-cell": bodyCellSlot
-        })
+        slots: o.removeUndefinedKeys({ "body-cell": bodyCellSlot })
       });
 
       const emittedPagination: Writable<objects> = [];
@@ -169,12 +164,7 @@ test.each([
       {
         const rawEvent: Pagination = { descending: true };
 
-        const event = [
-          {
-            descending: true,
-            limit: pagination.limit
-          }
-        ];
+        const event = [{ descending: true, limit: pagination.limit }];
 
         emittedPagination.push(event);
         table.vm.$emit("update:pagination", rawEvent);
@@ -321,9 +311,7 @@ test("rowClick", async () => {
 });
 
 test.each([
-  {
-    expectedSelection: "none"
-  },
+  { expectedSelection: "none" },
   {
     expectedSelection: "single",
     multiselect: false,
@@ -417,14 +405,8 @@ test.each([
 });
 
 test.each([
-  {
-    expected: [[new Set()]],
-    index: 0
-  },
-  {
-    expected: [[new Set(["column1", "column2"])]],
-    index: 1
-  }
+  { expected: [[new Set()]], index: 0 },
+  { expected: [[new Set(["column1", "column2"])]], index: 1 }
 ])("hiddenColumns", async ({ expected, index }) => {
   expect.hasAssertions();
 

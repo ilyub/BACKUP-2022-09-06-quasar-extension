@@ -37,7 +37,5 @@ export const {
   provide: provideResizerSettings,
   test: testResizerSettings
 } = createInjectable<ResizerSettings>(() => {
-  return {
-    disable: false
-  };
+  return { disable: false };
 });

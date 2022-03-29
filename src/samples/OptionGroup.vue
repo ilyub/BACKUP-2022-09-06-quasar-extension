@@ -10,9 +10,7 @@ type Value = "a" | "b" | 1 | undefined;
 
 export default defineComponent({
   name: "sample-option-group",
-  components: {
-    "generic-option-group": genericOptionGroup<Value>()
-  },
+  components: { "generic-option-group": genericOptionGroup<Value>() },
   setup() {
     return {
       // eslint-disable-next-line no-warning-comments
@@ -21,7 +19,11 @@ export default defineComponent({
         { label: "Select option", value: undefined },
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },
-        { disable: true, label: "Option 3", value: "b" }
+        {
+          disable: true,
+          label: "Option 3",
+          value: "b"
+        }
       ]),
       value: ref<Value>("a")
     };

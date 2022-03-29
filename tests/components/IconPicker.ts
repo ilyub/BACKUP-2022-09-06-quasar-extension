@@ -22,19 +22,13 @@ import * as testUtils from "@/testUtils";
 beforeAll(functionsTestUtils.installFakeTimer);
 
 beforeEach(() => {
-  configurableTestDelay.configure({
-    enabled: true,
-    timeout: 1000
-  });
+  configurableTestDelay.configure({ enabled: true, timeout: 1000 });
 });
 
 // eslint-disable-next-line jest/prefer-expect-assertions
 test.each(
   [true, false, undefined].map((value, index) => {
-    return {
-      first: index === 0,
-      iconTooltipsSetting: value
-    };
+    return { first: index === 0, iconTooltipsSetting: value };
   })
 )("iconPicker", async ({ first, iconTooltipsSetting }) => {
   await functionsTestUtils.run(async () => {
@@ -43,16 +37,10 @@ test.each(
     const wrapper = vueTestUtils.mount(IconPicker, {
       global: testUtils.globalMountOptions(
         is.not.empty(iconTooltipsSetting)
-          ? {
-              iconPickerSettings: {
-                iconTooltips
-              }
-            }
+          ? { iconPickerSettings: { iconTooltips } }
           : {}
       ),
-      props: {
-        placeholder: ""
-      }
+      props: { placeholder: "" }
     });
 
     const button = wrapper.findComponent(IconButton);

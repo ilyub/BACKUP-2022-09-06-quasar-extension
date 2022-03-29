@@ -26,9 +26,7 @@ export default defineComponent({
     disable: prop.boolean(),
     modelValue: prop.boolean()
   },
-  emits: {
-    "update:modelValue": (value: boolean) => is.boolean(value)
-  },
+  emits: { "update:modelValue": (value: boolean) => is.boolean(value) },
   setup(props, { emit }) {
     validateEmit<ToggleOwnProps>(emit);
     validateProps<ToggleOwnProps>(props);

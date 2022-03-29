@@ -17,9 +17,7 @@ export default defineComponent({
   setup(props) {
     validateProps<CardActionsOwnProps>(props);
 
-    return {
-      slotNames: useSlotsNames<CardActionsSlots>()()
-    };
+    return { slotNames: useSlotsNames<CardActionsSlots>()() };
   }
 });
 </script>

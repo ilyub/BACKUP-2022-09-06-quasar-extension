@@ -145,7 +145,6 @@ export interface Field<T extends object = object> {
   (row: T): string;
 }
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type GlobalTable<T extends object = object> = GlobalComponent<
   TableProps<T>,
   TableSlots<T>

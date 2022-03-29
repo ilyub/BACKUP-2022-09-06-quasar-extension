@@ -31,7 +31,11 @@ const isOffset: is.Guard<Offset> = is.factory(
 
 const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
   is.object.of,
-  { isFinal: is.boolean, isFirst: is.boolean, offset: isOffset },
+  {
+    isFinal: is.boolean,
+    isFirst: is.boolean,
+    offset: isOffset
+  },
   {}
 );
 
@@ -42,9 +46,7 @@ export default defineComponent({
     min: prop.default(0),
     modelValue: prop<number>()
   },
-  emits: {
-    "update:modelValue": (value: number) => is.number(value)
-  },
+  emits: { "update:modelValue": (value: number) => is.number(value) },
   setup(props, { emit }) {
     validateEmit<ResizerProps>(emit);
     validateProps<ResizerProps>(props);

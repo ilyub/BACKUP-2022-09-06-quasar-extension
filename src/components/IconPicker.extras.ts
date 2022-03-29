@@ -68,9 +68,7 @@ export const {
   provide: provideIconPickerSettings,
   test: testIconPickerSettings
 } = createInjectable<IconPickerSettings>(() => {
-  return {
-    iconTooltips: false
-  };
+  return { iconTooltips: false };
 });
 
 export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;

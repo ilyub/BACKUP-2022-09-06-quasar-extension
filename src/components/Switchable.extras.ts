@@ -51,8 +51,5 @@ export const {
   provide: provideSwitchableSettings,
   test: testSwitchableSettings
 } = createInjectable<SwitchableSettings>(() => {
-  return {
-    transition: "none",
-    transitionDuration: 200
-  };
+  return { transition: "none", transitionDuration: 200 };
 });

@@ -10,9 +10,7 @@ import { useProvide } from "./samples/useProvide";
 
 export default defineComponent({
   name: "app",
-  components: {
-    "router-view": RouterView
-  },
+  components: { "router-view": RouterView },
   setup() {
     const { provide } = useProvide();
 

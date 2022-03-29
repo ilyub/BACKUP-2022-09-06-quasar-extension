@@ -41,9 +41,7 @@ export default defineComponent({
     ...propsToPropDefinitions<TimeInputParentProps>(),
     modelValue: prop<number>()
   },
-  emits: {
-    "update:modelValue": (value: numberU) => is.numberU(value)
-  },
+  emits: { "update:modelValue": (value: numberU) => is.numberU(value) },
   setup(props, { emit }) {
     validateEmit<TimeInputOwnProps>(emit);
     validateProps<TimeInputOwnProps>(props);
@@ -65,12 +63,7 @@ export default defineComponent({
         assert.object.of(e.target, { value: is.string }, {});
         emitValue(e.target.value);
       },
-      inputMask: {
-        mask: "#*!:F#",
-        tokens: {
-          F: { pattern: /[0-5]/u }
-        }
-      },
+      inputMask: { mask: "#*!:F#", tokens: { F: { pattern: /[0-5]/u } } },
       inputUpdateValue(value: NumStrE): void {
         if (is.string(value) && value) {
           const parts = value.split(":").map(part => cast.number(part));

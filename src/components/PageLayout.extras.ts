@@ -87,8 +87,5 @@ export const {
   provide: providePageLayoutSettings,
   test: testPageLayoutSettings
 } = createInjectable<PageLayoutSettings>(() => {
-  return {
-    closeButton: true,
-    height: "auto"
-  };
+  return { closeButton: true, height: "auto" };
 });

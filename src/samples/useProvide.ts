@@ -66,9 +66,7 @@ const tooltipShow = ref(true);
  */
 function provide(): void {
   provideIconPickerSettings(() => {
-    return {
-      iconTooltips: iconPickerTooltips.value
-    };
+    return { iconTooltips: iconPickerTooltips.value };
   });
 
   provideLanguagePickerSettings(() => {
@@ -93,10 +91,7 @@ function provide(): void {
   });
 
   providePageLayoutSettings(() => {
-    return {
-      closeButton: true,
-      height: "calc(100vh - 48px)"
-    };
+    return { closeButton: true, height: "calc(100vh - 48px)" };
   });
 
   provideTableSettings(() => {
@@ -118,10 +113,7 @@ function provide(): void {
   });
 
   provideSwitchableSettings(() => {
-    return {
-      transition: switchableTransition.value,
-      transitionDuration: 500
-    };
+    return { transition: switchableTransition.value, transitionDuration: 500 };
   });
 
   provideTooltipSettings(() => {

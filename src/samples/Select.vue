@@ -10,9 +10,7 @@ type Value = "a" | "b" | 1;
 
 export default defineComponent({
   name: "sample-select",
-  components: {
-    "m-select-generic": genericSelect<Value>()
-  },
+  components: { "m-select-generic": genericSelect<Value>() },
   setup() {
     return {
       // eslint-disable-next-line no-warning-comments
@@ -20,7 +18,11 @@ export default defineComponent({
       selectOptions: fn.run<SelectOptions<Value>>(() => [
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },
-        { disable: true, label: "Option 3", value: "b" }
+        {
+          disable: true,
+          label: "Option 3",
+          value: "b"
+        }
       ]),
       selectValue1: ref<Value>("a"),
       selectValue2: ref<Value | undefined>(),

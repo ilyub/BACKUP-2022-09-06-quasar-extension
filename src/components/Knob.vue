@@ -23,9 +23,7 @@ export default defineComponent({
     inline: prop.boolean(),
     modelValue: prop.required<number>()
   },
-  emits: {
-    "update:modelValue": (value: number) => is.number(value)
-  },
+  emits: { "update:modelValue": (value: number) => is.number(value) },
   setup(props, { emit }) {
     validateEmit<KnobOwnProps>(emit);
     validateProps<KnobOwnProps>(props);

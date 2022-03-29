@@ -9,15 +9,10 @@ export default defineComponent({
     const disable = ref(false);
 
     provideResizerSettings(() => {
-      return {
-        disable: disable.value
-      };
+      return { disable: disable.value };
     });
 
-    return {
-      disable,
-      width: ref(200)
-    };
+    return { disable, width: ref(200) };
   }
 });
 </script>

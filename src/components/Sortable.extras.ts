@@ -156,10 +156,7 @@ export const isMoveU = is.or.factory(isMove, is.undefined);
 
 export const isMoveData: is.Guard<MoveData> = is.factory(
   is.object.of,
-  {
-    dragged: isHtmlElement,
-    related: isHtmlElement
-  },
+  { dragged: isHtmlElement, related: isHtmlElement },
   {}
 );
 

@@ -4,9 +4,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "sample-toggle",
   setup() {
-    return {
-      value: ref(false)
-    };
+    return { value: ref(false) };
   }
 });
 </script>

@@ -2,7 +2,6 @@ import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 
 import type { GlobalComponent } from "./api";
 
-// eslint-disable-next-line @skylib/prefer-readonly
 export type GlobalOptionGroup<T = unknown> = GlobalComponent<
   OptionGroupProps<T>,
   OptionGroupSlots

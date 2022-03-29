@@ -45,9 +45,7 @@ export default defineComponent({
     required: prop.boolean(),
     smallStep: prop.default(1)
   },
-  emits: {
-    "update:modelValue": (value: numberU) => is.numberU(value)
-  },
+  emits: { "update:modelValue": (value: numberU) => is.numberU(value) },
   setup(props, { emit }) {
     validateEmit<NumericInputOwnProps>(emit);
     validateProps<NumericInputOwnProps>(props);

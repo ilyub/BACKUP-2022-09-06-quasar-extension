@@ -56,9 +56,7 @@ export default defineComponent({
     rows: prop.default(5),
     spinnerSize: prop.default("70px")
   },
-  emits: {
-    "update:modelValue": (value: stringU) => is.stringU(value)
-  },
+  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
   setup(props, { emit }) {
     validateEmit<IconPickerOwnProps>(emit);
     validateProps<IconPickerOwnProps>(props);
@@ -83,10 +81,7 @@ export default defineComponent({
             .keys(mdi.value)
             .filter(id => id.startsWith("mdi"))
             .map(id => {
-              return {
-                description: _.kebabCase(id),
-                id
-              };
+              return { description: _.kebabCase(id), id };
             })
         : []
     );

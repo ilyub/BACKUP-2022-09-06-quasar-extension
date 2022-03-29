@@ -25,9 +25,7 @@ export default defineComponent({
     disable: prop.boolean(),
     modelValue: prop<string>()
   },
-  emits: {
-    "update:modelValue": (value: stringU) => is.stringU(value)
-  },
+  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
   setup(props, { emit }) {
     validateEmit<InputOwnProps>(emit);
     validateProps<InputOwnProps>(props);
