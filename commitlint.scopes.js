@@ -51,6 +51,7 @@ module.exports = [
   "components.extras.Table",
   "components.extras.VirtualScroll",
   "components.index",
+  "configs",
   "confirmedClickModule",
   "plugin",
   "public",
