@@ -61,6 +61,7 @@
 - [components/api/rootElement](modules/components_api_rootElement.md)
 - [components/api/slotNames](modules/components_api_slotNames.md)
 - [components/extras/QVirtualScroll](modules/components_extras_QVirtualScroll.md)
+- [configs/eslintrc.options](modules/configs_eslintrc_options.md)
 - [facade-implementations/reactiveStorage/vueStorage](modules/facade_implementations_reactiveStorage_vueStorage.md)
 - [plugin](modules/plugin.md)
 - [router](modules/router.md)
