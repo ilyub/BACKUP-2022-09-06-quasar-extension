@@ -25,7 +25,7 @@
 
 ### passThroughSlots
 
-• `Readonly` **passThroughSlots**: readonly `never`[]
+• `Readonly` **passThroughSlots**: `nevers`
 
 ## Methods
 
@@ -33,7 +33,7 @@
 
 ▸ `Readonly` **has**(`name`): `boolean`
 
-Checks if slot exists.
+Checks that slot exists.
 
 #### Parameters
 
@@ -53,7 +53,7 @@ ___
 
 ▸ `Readonly` **hasSome**(...`names`): `boolean`
 
-Checks if some slot exists.
+Checks that some slot exists.
 
 #### Parameters
 

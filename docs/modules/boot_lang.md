@@ -16,4 +16,4 @@
 
 ### definitions
 
-• `Const` **definitions**: `ReadonlyRecord`<`LocaleName`, `Definitions`\>
+• `Const` **definitions**: `TypedObject`<`LocaleName`, `Definitions`\>

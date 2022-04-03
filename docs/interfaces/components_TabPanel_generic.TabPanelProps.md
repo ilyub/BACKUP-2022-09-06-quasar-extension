@@ -22,9 +22,35 @@
 
 ### Properties
 
+- [dark](components_TabPanel_generic.TabPanelProps.md#dark)
+- [disable](components_TabPanel_generic.TabPanelProps.md#disable)
 - [name](components_TabPanel_generic.TabPanelProps.md#name)
 
 ## Properties
+
+### dark
+
+• `Optional` `Readonly` **dark**: `boolean`
+
+Notify the component that the background is a dark color
+
+#### Inherited from
+
+[TabPanelParentProps](components_TabPanel_generic.TabPanelParentProps.md).[dark](components_TabPanel_generic.TabPanelParentProps.md#dark)
+
+___
+
+### disable
+
+• `Optional` `Readonly` **disable**: `boolean`
+
+Put component in disabled mode
+
+#### Inherited from
+
+[TabPanelParentProps](components_TabPanel_generic.TabPanelParentProps.md).[disable](components_TabPanel_generic.TabPanelParentProps.md#disable)
+
+___
 
 ### name
 

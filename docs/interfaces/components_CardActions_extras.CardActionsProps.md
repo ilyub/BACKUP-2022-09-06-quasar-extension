@@ -11,3 +11,35 @@
 - [`CardActionsOwnProps`](components_CardActions_extras.CardActionsOwnProps.md)
 
   ↳ **`CardActionsProps`**
+
+## Table of contents
+
+### Properties
+
+- [align](components_CardActions_extras.CardActionsProps.md#align)
+- [vertical](components_CardActions_extras.CardActionsProps.md#vertical)
+
+## Properties
+
+### align
+
+• `Optional` **align**: ``"left"`` \| ``"right"`` \| ``"stretch"`` \| ``"center"`` \| ``"around"`` \| ``"between"`` \| ``"evenly"``
+
+Specify how to align the actions
+Default value: left (for horizontal mode) / stretch (for vertical mode)
+
+#### Inherited from
+
+CardActionsParentProps.align
+
+___
+
+### vertical
+
+• `Optional` **vertical**: `boolean`
+
+Display actions one below the other
+
+#### Inherited from
+
+CardActionsParentProps.vertical

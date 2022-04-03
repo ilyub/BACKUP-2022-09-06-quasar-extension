@@ -144,7 +144,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `Record`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`TooltipSettings`](../interfaces/components_Tooltip_extras.TooltipSettings.md) | Settings. |
 
 #### Returns

@@ -11,3 +11,34 @@
   ↳ **`TabPanelParentProps`**
 
   ↳↳ [`TabPanelProps`](components_TabPanel_generic.TabPanelProps.md)
+
+## Table of contents
+
+### Properties
+
+- [dark](components_TabPanel_generic.TabPanelParentProps.md#dark)
+- [disable](components_TabPanel_generic.TabPanelParentProps.md#disable)
+
+## Properties
+
+### dark
+
+• `Optional` `Readonly` **dark**: `boolean`
+
+Notify the component that the background is a dark color
+
+#### Inherited from
+
+Readonly.dark
+
+___
+
+### disable
+
+• `Optional` `Readonly` **disable**: `boolean`
+
+Put component in disabled mode
+
+#### Inherited from
+
+Readonly.disable

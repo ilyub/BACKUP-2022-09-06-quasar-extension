@@ -69,5 +69,6 @@
 - [samples](modules/samples.md)
 - [samples/useProvide](modules/samples_useProvide.md)
 - [testUtils](modules/testUtils.md)
+- [typings/env](modules/typings_env.md)
 - [typings/svg](modules/typings_svg.md)
 - [typings/vue](modules/typings_vue.md)

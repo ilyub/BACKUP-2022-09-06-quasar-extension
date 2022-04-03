@@ -312,7 +312,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `Record`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`SortableSettings`](../interfaces/components_Sortable_extras.SortableSettings.md) | Settings. |
 
 #### Returns
