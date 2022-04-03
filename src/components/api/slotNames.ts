@@ -6,8 +6,13 @@ import type { ComputedRef } from "vue";
 import { computed, useSlots } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
+import * as o from "@skylib/functions/es/object";
 import * as reflect from "@skylib/functions/es/reflect";
-import type { IndexedObject } from "@skylib/functions/es/types/core";
+import type {
+  IndexedObject,
+  nevers,
+  Writable
+} from "@skylib/functions/es/types/core";
 
 export type SlotsNames<T extends PropertyKey> = SlotsNames1<T> & SlotsNames2<T>;
 
@@ -30,7 +35,7 @@ export interface SlotsNames2<T extends PropertyKey> {
    * @returns _True_ if slot exists, _false_ otherwise.
    */
   readonly hasSome: (...names: T[]) => boolean;
-  readonly passThroughSlots: readonly never[];
+  readonly passThroughSlots: nevers;
 }
 
 /**
@@ -45,13 +50,13 @@ export function useSlotsNames<T>() {
     const useKeysSet: Set<PropertyKey> = new Set(useKeys);
 
     return computed<SlotsNames<U>>(() => {
-      const usableSlots: IndexedObject = {};
+      const usableSlots: Writable<IndexedObject> = {};
 
       const passThroughSlots: PropertyKey[] = [];
 
       const slots = useSlots();
 
-      for (const name of Object.keys(slots))
+      for (const name of o.keys(slots))
         if (useKeysSet.has(name)) usableSlots[_.camelCase(name)] = name;
         else passThroughSlots.push(name);
 
@@ -66,7 +71,7 @@ export function useSlotsNames<T>() {
           return names.some(name => is.not.empty(reflect.get(slots, name)));
         },
         // eslint-disable-next-line no-type-assertion/no-type-assertion
-        passThroughSlots: passThroughSlots as unknown as readonly never[]
+        passThroughSlots: passThroughSlots as unknown as nevers
       };
 
       return { ...slots1, ...slots2 };

@@ -9,7 +9,9 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
+import * as o from "@skylib/functions/es/object";
 import type * as testUtils from "@skylib/functions/es/testUtils";
+import type { TypedObject, Writable } from "@skylib/functions/es/types/core";
 
 import { components } from "../components";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
@@ -100,7 +102,7 @@ export type VueWrapper = vueTestUtils.VueWrapper<any>;
  * @param wrapper - Wrapper.
  */
 export function clearEmitted(wrapper: VueWrapper): void {
-  for (const events of Object.values(wrapper.emitted())) events.length = 0;
+  for (const events of o.values(wrapper.emitted())) events.length = 0;
 }
 
 /**
@@ -215,14 +217,14 @@ export function globalMountOptions(
 ): GlobalMountOptions {
   return {
     components: fn.run(() => {
-      const result: Record<string, Component | object> = {};
+      const result: Writable<TypedObject<string, Component | object>> = {};
 
       for (const component of components) result[component.name] = component;
 
       return result;
     }),
     provide: fn.run(() => {
-      const result: Record<symbol, unknown> = {};
+      const result: Writable<TypedObject<symbol, unknown>> = {};
 
       if ("iconPickerSettings" in options)
         testIconPickerSettings(result, options.iconPickerSettings);
@@ -264,9 +266,7 @@ export function htmlToEqual(
   got: unknown,
   expected: string
 ): testUtils.ExpectReturnType {
-  const isHtml: is.Guard<() => string> = is.callable;
-
-  assert.object.of(got, { html: isHtml }, {});
+  assert.byGuard(got, isWrapper);
 
   return got.html() === expected
     ? {
@@ -328,9 +328,7 @@ export function textToEqual(
   got: unknown,
   expected: string
 ): testUtils.ExpectReturnType {
-  const isText: is.Guard<() => string> = is.callable;
-
-  assert.object.of(got, { text: isText }, {});
+  assert.byGuard(got, isWrapper);
 
   return got.text() === expected
     ? {
@@ -351,9 +349,7 @@ export function textToEqual(
  * @returns Result object.
  */
 export function toBeVisible(got: unknown): testUtils.ExpectReturnType {
-  const isIsVisible: is.Guard<() => boolean> = is.callable;
-
-  assert.object.of(got, { isVisible: isIsVisible }, {});
+  assert.byGuard(got, isWrapper);
 
   return got.isVisible()
     ? {
@@ -373,9 +369,7 @@ export function toBeVisible(got: unknown): testUtils.ExpectReturnType {
  * @returns Result object.
  */
 export function toExist(got: unknown): testUtils.ExpectReturnType {
-  const isExists: is.Guard<() => boolean> = is.callable;
-
-  assert.object.of(got, { exists: isExists }, {});
+  assert.byGuard(got, isWrapper);
 
   return got.exists()
     ? {
@@ -396,9 +390,7 @@ export function toHaveClass(
   got: unknown,
   expected: string
 ): testUtils.ExpectReturnType {
-  const isClasses: is.Guard<() => string[]> = is.callable;
-
-  assert.object.of(got, { classes: isClasses }, {});
+  assert.byGuard(got, isWrapper);
 
   return got.classes().includes(expected)
     ? {
@@ -433,4 +425,22 @@ export function touchPanMock(): TouchPanMock {
   };
 
   return { touchPan, triggerTouchPan };
+}
+
+/*
+|*******************************************************************************
+|* Private
+|*******************************************************************************
+|*/
+
+/**
+ * Checks that value is a wrapper.
+ *
+ * @param value - Value.
+ * @returns _True_ if value is a wrapper, _false_ otherwise.
+ */
+function isWrapper(
+  value: unknown
+): value is vueTestUtils.DOMWrapper<Node> | vueTestUtils.VueWrapper {
+  return is.indexedObject(value) && is.callable(value["exists"]);
 }

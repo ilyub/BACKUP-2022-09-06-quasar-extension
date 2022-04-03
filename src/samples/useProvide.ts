@@ -6,7 +6,7 @@ import type { Ref } from "vue";
 import { ref } from "vue";
 
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
-import type { LocaleName } from "@skylib/functions/es/types/locales";
+import type { LocaleName } from "@skylib/functions/es/types/configurable";
 
 import { provideIconPickerSettings } from "../components/IconPicker.extras";
 import { provideLanguagePickerSettings } from "../components/LanguagePicker.extras";

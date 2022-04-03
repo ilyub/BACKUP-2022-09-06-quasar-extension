@@ -23,14 +23,12 @@ interface ResizerEvent {
   readonly offset: Offset;
 }
 
-const isOffset: is.Guard<Offset> = is.factory(
-  is.object.of,
+const isOffset = is.object.of.factory<Offset>(
   { x: is.number, y: is.number },
   {}
 );
 
-const isResizerEvent: is.Guard<ResizerEvent> = is.factory(
-  is.object.of,
+const isResizerEvent = is.object.of.factory<ResizerEvent>(
   {
     isFinal: is.boolean,
     isFirst: is.boolean,

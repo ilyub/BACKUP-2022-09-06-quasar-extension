@@ -9,10 +9,10 @@ module.exports = {
   es: true,
   extends: [
     require("@skylib/functions/src/configs/eslintrc.options")(
-      "@skylib/functions/dist/"
+      "@skylib/functions/es/"
     ),
     require("@skylib/framework/src/configs/eslintrc.options")(
-      "@skylib/framework/dist/"
+      "@skylib/framework/es/"
     ),
     require("./src/configs/eslintrc.options")("@/")
   ],

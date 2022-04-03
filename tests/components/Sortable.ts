@@ -149,7 +149,7 @@ test.each([
     dragged: fn.run(() => {
       const result = document.createElement("div");
 
-      for (const [key, value] of Object.entries(source))
+      for (const [key, value] of o.entries(source))
         result.setAttribute(`data-${key}`, value);
 
       return result;
@@ -157,7 +157,7 @@ test.each([
     related: fn.run(() => {
       const result = document.createElement("div");
 
-      for (const [key, value] of Object.entries(dest))
+      for (const [key, value] of o.entries(dest))
         result.setAttribute(`data-${key}`, value);
 
       return result;

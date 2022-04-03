@@ -7,13 +7,13 @@ import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { DictionaryAndWords } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
+import { createValidationObject } from "@skylib/functions/es/helpers";
 import * as json from "@skylib/functions/es/json";
 import type {
   booleanU,
   objects,
   stringU
 } from "@skylib/functions/es/types/core";
-import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
@@ -130,11 +130,11 @@ export interface Column<T extends object = object> {
 
 export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
 
-export const isColumnsOrder = is.factory(is.map, is.string, is.number);
+export const isColumnsOrder = is.factory(is.map.of, is.string, is.number);
 
-export const isColumnWidths = is.factory(is.map, is.string, is.number);
+export const isColumnWidths = is.factory(is.map.of, is.string, is.number);
 
-export const isHiddenColumns = is.factory(is.set, is.string);
+export const isHiddenColumns = is.factory(is.set.of, is.string);
 
 export interface Field<T extends object = object> {
   /**
@@ -341,8 +341,7 @@ export const AlignVO = createValidationObject<Align>({
 
 export const isAlign = is.factory(is.enumeration, AlignVO);
 
-export const isPagination: is.Guard<Pagination> = is.factory(
-  is.object.of,
+export const isPagination = is.object.of.factory<Pagination>(
   {},
   {
     descending: is.boolean,
@@ -380,8 +379,7 @@ export interface TableState {
   readonly sortBy: string;
 }
 
-export const isTableState: is.Guard<TableState> = is.factory(
-  is.object.of,
+export const isTableState = is.object.of.factory<TableState>(
   {
     columnWidths: isColumnWidths,
     columnsOrder: isColumnsOrder,

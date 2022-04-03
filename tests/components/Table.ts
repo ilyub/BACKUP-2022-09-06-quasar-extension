@@ -9,6 +9,7 @@ import * as o from "@skylib/functions/es/object";
 import * as reflect from "@skylib/functions/es/reflect";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
+import type { OptionalPropertiesToOptionalUndefined } from "@skylib/functions/es/types/object";
 
 import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
 import type {
@@ -374,9 +375,9 @@ test.each([
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
         columns: [
-          o.removeUndefinedKeys<Column>({
+          o.removeUndefinedKeys<OptionalPropertiesToOptionalUndefined<Column>>({
             align: "left",
-            field(row): string {
+            field(row: object): string {
               return cast.string(reflect.get(row, "name"));
             },
             label: "Sample label",

@@ -4,7 +4,7 @@ import * as vueTestUtils from "@vue/test-utils";
 
 import { wait } from "@skylib/functions/es/helpers";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-import type { Callable } from "@skylib/functions/es/types/core";
+import type { Callable } from "@skylib/functions/es/types/function";
 
 import BaseButton from "@/components/BaseButton.vue";
 import * as testUtils from "@/testUtils";

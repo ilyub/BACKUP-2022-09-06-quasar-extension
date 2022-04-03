@@ -2,7 +2,7 @@ import type { ComputedRef } from "vue";
 import { computed } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
-import { createValidationObject } from "@skylib/functions/es/types/core";
+import { createValidationObject } from "@skylib/functions/es/helpers";
 
 // eslint-disable-next-line import/no-relative-parent-imports
 import PageSection from "../PageSection.vue";

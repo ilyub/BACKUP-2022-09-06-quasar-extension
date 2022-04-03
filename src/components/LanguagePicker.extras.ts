@@ -1,4 +1,4 @@
-import type { LocaleName } from "@skylib/functions/es/types/locales";
+import type { LocaleName } from "@skylib/functions/es/types/configurable";
 
 import type { GlobalComponent, PropOptionsRequired } from "./api";
 import { createInjectable } from "./api";

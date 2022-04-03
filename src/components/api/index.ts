@@ -13,7 +13,9 @@ import { computed, inject, provide, ref } from "vue";
 
 import * as assert from "@skylib/functions/es/assertions";
 import type * as is from "@skylib/functions/es/guards";
-import type { Callable, Join2 } from "@skylib/functions/es/types/core";
+import type { TypedObject, Writable } from "@skylib/functions/es/types/core";
+import type { Callable } from "@skylib/functions/es/types/function";
+import type { Join2 } from "@skylib/functions/es/types/object";
 
 export interface Injectable<T> {
   /**
@@ -34,7 +36,10 @@ export interface Injectable<T> {
    * @param mutableProvide - Provide option.
    * @param settings - Settings.
    */
-  readonly test: (mutableProvide: Record<symbol, unknown>, settings: T) => void;
+  readonly test: (
+    mutableProvide: TypedObject<symbol, unknown>,
+    settings: T
+  ) => void;
 }
 
 export type ExtendQuasarProps<T extends object> = Join2<
@@ -96,7 +101,10 @@ export function createInjectable<T>(createDefault?: () => T): Injectable<T> {
     provide(settings: () => T): void {
       provide(settingsId, computed<T>(settings));
     },
-    test(mutableProvide: Record<symbol, unknown>, settings: T): void {
+    test(
+      mutableProvide: Writable<TypedObject<symbol, unknown>>,
+      settings: T
+    ): void {
       // eslint-disable-next-line no-type-assertion/no-type-assertion
       mutableProvide[settingsId as symbol] = computed<T>(() => settings);
     }

@@ -14,9 +14,9 @@ import * as o from "@skylib/functions/es/object";
 import * as set from "@skylib/functions/es/set";
 import type {
   booleanU,
+  IndexedObject,
   numberU,
   objects,
-  ReadonlyIndexedObject,
   Writable
 } from "@skylib/functions/es/types/core";
 
@@ -138,7 +138,7 @@ export default defineComponent({
       columnSortingIconShow(column: Column): boolean {
         return column.name === props.pagination.sortBy;
       },
-      columnStyle(column: Column): ReadonlyIndexedObject<string> {
+      columnStyle(column: Column): IndexedObject<string> {
         return o.removeUndefinedKeys({
           maxWidth: is.not.empty(column.maxWidth)
             ? `${column.maxWidth}px`

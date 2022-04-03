@@ -1,6 +1,6 @@
 import type { VNode } from "vue";
 
-import type { ReadonlyRecord, stringU } from "@skylib/functions/es/types/core";
+import type { stringU, TypedObject } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 import type { RootElementProps } from "./api/rootElement";
@@ -31,7 +31,7 @@ export interface GroupProps<T extends string = string>
   extends GroupParentProps,
     GroupOwnProps<T> {}
 
-export type GroupSlots<T extends string = string> = ReadonlyRecord<
+export type GroupSlots<T extends string = string> = TypedObject<
   T,
   () => readonly VNode[]
 >;

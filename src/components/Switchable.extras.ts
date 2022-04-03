@@ -1,8 +1,8 @@
 import type { VNode } from "vue";
 
 import * as is from "@skylib/functions/es/guards";
+import { createValidationObject } from "@skylib/functions/es/helpers";
 import type { booleanU } from "@skylib/functions/es/types/core";
-import { createValidationObject } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";

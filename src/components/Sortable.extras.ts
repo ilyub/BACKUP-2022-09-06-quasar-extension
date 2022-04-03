@@ -135,8 +135,7 @@ export interface SortableSettings {
   readonly disableSorting: boolean;
 }
 
-export const isElem: is.Guard<Elem> = is.factory(
-  is.object.of,
+export const isElem = is.object.of.factory<Elem>(
   {
     elementId: is.string,
     group: is.string,
@@ -154,8 +153,7 @@ export const isMove: is.Guard<Move> = is.callable;
 
 export const isMoveU = is.or.factory(isMove, is.undefined);
 
-export const isMoveData: is.Guard<MoveData> = is.factory(
-  is.object.of,
+export const isMoveData = is.object.of.factory<MoveData>(
   { dragged: isHtmlElement, related: isHtmlElement },
   {}
 );

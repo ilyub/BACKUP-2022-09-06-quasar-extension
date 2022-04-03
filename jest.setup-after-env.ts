@@ -8,13 +8,11 @@ import * as testUtils from "./src/testUtils";
 
 icons.setImplementation(iconsImplementation);
 functionsTestUtils.jestSetup();
-functionsTestUtils.jestSetup.dom();
 frameworkTestUtils.jestSetup();
 frameworkTestUtils.jestSetup.dictionary("en-US", definitions);
 frameworkTestUtils.jestSetup.dom();
 testUtils.jestSetup();
 beforeEach(functionsTestUtils.jestReset);
-beforeEach(functionsTestUtils.jestReset.dom);
 beforeEach(frameworkTestUtils.jestReset);
 beforeEach(() => {
   frameworkTestUtils.jestReset.dictionary("en-US", definitions);

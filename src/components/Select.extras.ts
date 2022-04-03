@@ -56,8 +56,7 @@ export interface SelectProps<T = unknown>
 
 export type SelectSlots = QSelectSlots;
 
-export const isSelectOption: is.Guard<SelectOption> = is.factory(
-  is.object.of,
+export const isSelectOption = is.object.of.factory<SelectOption>(
   { label: is.string, value: is.unknown },
   { disable: is.boolean }
 );
