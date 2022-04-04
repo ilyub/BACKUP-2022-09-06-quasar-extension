@@ -6,6 +6,7 @@ import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
+import * as o from "@skylib/functions/es/object";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
 
 import {
@@ -60,8 +61,8 @@ export default defineComponent({
       downDisable: computed<boolean>(() => is.empty(props.modelValue)),
       icons,
       inputChange(e: Event, emitValue: (value: unknown) => void): void {
-        assert.object.of(e.target, { value: is.string }, {});
-        emitValue(e.target.value);
+        assert.not.empty(e.target);
+        emitValue(o.get(e.target, "value", is.string));
       },
       inputMask: { mask: "#*!:F#", tokens: { F: { pattern: /[0-5]/u } } },
       inputUpdateValue(value: NumStrE): void {

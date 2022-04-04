@@ -1,7 +1,6 @@
 import { QTable } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
 
-import * as assert from "@skylib/functions/es/assertions";
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import { wait } from "@skylib/functions/es/helpers";
@@ -9,7 +8,7 @@ import * as o from "@skylib/functions/es/object";
 import * as reflect from "@skylib/functions/es/reflect";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { objects, Writable } from "@skylib/functions/es/types/core";
-import type { OptionalPropertiesToOptionalUndefined } from "@skylib/functions/es/types/object";
+import type { OptionalUndefinedStyle } from "@skylib/functions/es/types/object";
 
 import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
 import type {
@@ -89,9 +88,7 @@ test.each([
             {
               align: "left",
               field(row): string {
-                assert.object.of(row, { name: is.string }, {});
-
-                return row.name;
+                return o.get(row, "name", is.string);
               },
               label: "Sample label",
               name: "column"
@@ -242,9 +239,7 @@ test.each([
           {
             align: "left",
             field(row): string {
-              assert.object.of(row, { name: is.string }, {});
-
-              return row.name;
+              return o.get(row, "name", is.string);
             },
             label: "Sample label",
             name: "column"
@@ -375,7 +370,7 @@ test.each([
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
         columns: [
-          o.removeUndefinedKeys<OptionalPropertiesToOptionalUndefined<Column>>({
+          o.removeUndefinedKeys<OptionalUndefinedStyle<Column>>({
             align: "left",
             field(row: object): string {
               return cast.string(reflect.get(row, "name"));
@@ -415,7 +410,7 @@ test.each([
     const wrapper = vueTestUtils.mount(Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys<TableOwnProps>({
-        columns: [
+        columns: typedef<Columns>([
           {
             align: "left",
             field(row): string {
@@ -432,7 +427,7 @@ test.each([
             label: "Sample label 2",
             name: "column2"
           }
-        ],
+        ]),
         hiddenColumns: new Set(["column1"]),
         rowKey: "id",
         rows: [

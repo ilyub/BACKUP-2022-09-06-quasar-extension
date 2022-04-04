@@ -1,6 +1,7 @@
 module.exports = {
   extends: [require.resolve("@skylib/config/src/eslintrc")],
   rules: {
+    "eslint-comments/require-description": "off",
     "jest/prefer-lowercase-title": "off",
     "tsdoc/syntax": "off",
     // eslint-disable-next-line no-warning-comments

@@ -9,9 +9,8 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import * as reflect from "@skylib/functions/es/reflect";
 import type {
-  IndexedObject,
   nevers,
-  Writable
+  WritableIndexedObject
 } from "@skylib/functions/es/types/core";
 
 export type SlotsNames<T extends PropertyKey> = SlotsNames1<T> & SlotsNames2<T>;
@@ -50,7 +49,7 @@ export function useSlotsNames<T>() {
     const useKeysSet: Set<PropertyKey> = new Set(useKeys);
 
     return computed<SlotsNames<U>>(() => {
-      const usableSlots: Writable<IndexedObject> = {};
+      const usableSlots: WritableIndexedObject = {};
 
       const passThroughSlots: PropertyKey[] = [];
 

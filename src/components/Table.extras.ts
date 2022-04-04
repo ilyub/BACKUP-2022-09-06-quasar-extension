@@ -341,7 +341,7 @@ export const AlignVO = createValidationObject<Align>({
 
 export const isAlign = is.factory(is.enumeration, AlignVO);
 
-export const isPagination = is.object.of.factory<Pagination>(
+export const isPagination = is.object.factory<Pagination>(
   {},
   {
     descending: is.boolean,
@@ -379,7 +379,7 @@ export interface TableState {
   readonly sortBy: string;
 }
 
-export const isTableState = is.object.of.factory<TableState>(
+export const isTableState = is.object.factory<TableState>(
   {
     columnWidths: isColumnWidths,
     columnsOrder: isColumnsOrder,

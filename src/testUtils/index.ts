@@ -11,7 +11,7 @@ import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type * as testUtils from "@skylib/functions/es/testUtils";
-import type { TypedObject, Writable } from "@skylib/functions/es/types/core";
+import type { WritableRecord } from "@skylib/functions/es/types/core";
 
 import { components } from "../components";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
@@ -217,14 +217,14 @@ export function globalMountOptions(
 ): GlobalMountOptions {
   return {
     components: fn.run(() => {
-      const result: Writable<TypedObject<string, Component | object>> = {};
+      const result: WritableRecord<string, Component | object> = {};
 
       for (const component of components) result[component.name] = component;
 
       return result;
     }),
     provide: fn.run(() => {
-      const result: Writable<TypedObject<symbol, unknown>> = {};
+      const result: WritableRecord<symbol, unknown> = {};
 
       if ("iconPickerSettings" in options)
         testIconPickerSettings(result, options.iconPickerSettings);
