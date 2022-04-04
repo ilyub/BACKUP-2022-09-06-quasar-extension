@@ -97,7 +97,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`IconPickerSettings`](../interfaces/components_IconPicker_extras.IconPickerSettings.md) | Settings. |
 
 #### Returns

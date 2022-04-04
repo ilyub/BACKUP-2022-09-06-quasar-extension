@@ -45,7 +45,7 @@ ___
 
 ### GroupSlots
 
-Ƭ **GroupSlots**<`T`\>: `TypedObject`<`T`, () => readonly `VNode`[]\>
+Ƭ **GroupSlots**<`T`\>: `Rec`<`T`, () => readonly `VNode`[]\>
 
 #### Type parameters
 

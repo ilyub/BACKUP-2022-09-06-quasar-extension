@@ -62,7 +62,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | `T` | Settings. |
 
 #### Returns

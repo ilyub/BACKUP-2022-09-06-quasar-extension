@@ -279,7 +279,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`TableSettings`](../interfaces/components_Table_extras.TableSettings.md) | Settings. |
 
 #### Returns

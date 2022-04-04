@@ -139,7 +139,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | `boolean` | Settings. |
 
 #### Returns
@@ -158,7 +158,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`SwitchableSettings`](../interfaces/components_Switchable_extras.SwitchableSettings.md) | Settings. |
 
 #### Returns

@@ -70,7 +70,7 @@ Provide settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `TypedObject`<`symbol`, `unknown`\> | Provide option. |
+| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
 | `settings` | [`ResizerSettings`](../interfaces/components_Resizer_extras.ResizerSettings.md) | Settings. |
 
 #### Returns

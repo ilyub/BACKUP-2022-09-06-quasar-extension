@@ -16,4 +16,4 @@
 
 ### definitions
 
-• `Const` **definitions**: `TypedObject`<`LocaleName`, `Definitions`\>
+• `Const` **definitions**: `Rec`<`LocaleName`, `Definitions`\>
