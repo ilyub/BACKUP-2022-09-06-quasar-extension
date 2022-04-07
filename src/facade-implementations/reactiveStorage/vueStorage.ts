@@ -4,10 +4,20 @@ import { computed, reactive, watch } from "vue";
 import type {
   Facade,
   Handler,
+  Observer,
   Reducer
 } from "@skylib/facades/es/reactiveStorage";
-import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
+
+declare global {
+  namespace facades {
+    namespace reactiveStorage {
+      interface Observer {
+        readonly watchStopHandle: WatchStopHandle;
+      }
+    }
+  }
+}
 
 export const implementation = fn.run<Facade>(() => {
   function vueStorage<T extends object>(obj: T): T {
@@ -15,21 +25,23 @@ export const implementation = fn.run<Facade>(() => {
     return reactive(obj) as T;
   }
 
-  vueStorage.unwatch = (_obj: object, observer: unknown): void => {
-    assert.callable<WatchStopHandle>(observer);
-    observer();
+  vueStorage.unwatch = (_obj: object, observer: Observer): void => {
+    observer.watchStopHandle();
   };
 
   vueStorage.watch = <T extends object>(
     obj: T,
     handler: Handler<T>,
     reducer?: Reducer<T>
-  ): unknown => {
+  ): Observer => {
     const reduced = reducer ? computed<unknown>(() => reducer(obj)) : obj;
 
-    return watch(reduced, () => {
-      handler(obj);
-    });
+    return {
+      _type: "ReactiveStorageObserver",
+      watchStopHandle: watch(reduced, () => {
+        handler(obj);
+      })
+    };
   };
 
   return vueStorage;

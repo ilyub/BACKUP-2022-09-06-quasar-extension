@@ -9,16 +9,16 @@ import type { GlobalComponent } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade extends ModuleIcons {}
+      interface Icon extends ModuleIcons {}
     }
   }
 }
 
 export interface ModuleIcons {
-  readonly chevronDoubleLeft: string;
-  readonly chevronDoubleRight: string;
-  readonly chevronLeft: string;
-  readonly chevronRight: string;
+  readonly chevronDoubleLeft: true;
+  readonly chevronDoubleRight: true;
+  readonly chevronLeft: true;
+  readonly chevronRight: true;
 }
 
 export type GlobalNumericInput = GlobalComponent<

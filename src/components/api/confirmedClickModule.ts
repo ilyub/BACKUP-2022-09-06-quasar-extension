@@ -1,6 +1,6 @@
 import { useQuasar } from "quasar";
 
-import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
@@ -84,4 +84,4 @@ export function useConfirmedClick(
 |*******************************************************************************
 |*/
 
-export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
+export const lang: Lang<keyof ModuleWord, never> = baseLang;

@@ -2,7 +2,7 @@ import { QForm } from "quasar";
 import { nextTick, watch } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
 
-import type { TaskType } from "@skylib/facades/es/handlePromise";
+import type { Type } from "@skylib/facades/es/handlePromise";
 import { wait } from "@skylib/functions/es/helpers";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { unknowns } from "@skylib/functions/es/types/core";
@@ -31,7 +31,7 @@ test("form, onSubmit", () => {
   }
 });
 
-test.each<TaskType | undefined>([undefined, "httpRequest"])(
+test.each<Type | undefined>([undefined, "httpRequest"])(
   "form: onSubmitAsync",
   async asyncTaskType => {
     expect.hasAssertions();

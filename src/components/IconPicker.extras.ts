@@ -1,6 +1,6 @@
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
 
@@ -11,7 +11,7 @@ import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade extends ModuleIcons {}
+      interface Icon extends ModuleIcons {}
     }
 
     namespace lang {
@@ -21,9 +21,9 @@ declare global {
 }
 
 export interface ModuleIcons {
-  readonly chevronLeft: string;
-  readonly chevronRight: string;
-  readonly close: string;
+  readonly chevronLeft: true;
+  readonly chevronRight: true;
+  readonly close: true;
 }
 
 export interface ModuleWord {
@@ -73,4 +73,4 @@ export const {
 
 export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
 
-export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
+export const lang: Lang<keyof ModuleWord, never> = baseLang;

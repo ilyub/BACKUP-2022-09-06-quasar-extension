@@ -4,7 +4,7 @@ import { computed, ref } from "vue";
 
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/helpers";
@@ -21,7 +21,7 @@ import { createInjectable } from "./api";
 declare global {
   namespace facades {
     namespace icons {
-      interface Facade extends ModuleIcons {}
+      interface Icon extends ModuleIcons {}
     }
 
     namespace lang {
@@ -31,11 +31,11 @@ declare global {
 }
 
 export interface ModuleIcons {
-  readonly ascending: string;
-  readonly descending: string;
-  readonly deselectAll: string;
-  readonly manageColumns: string;
-  readonly selectAll: string;
+  readonly ascending: true;
+  readonly descending: true;
+  readonly deselectAll: true;
+  readonly manageColumns: true;
+  readonly selectAll: true;
 }
 
 export interface ModuleWord {
@@ -369,7 +369,7 @@ export const {
 
 export const icons: Icons<keyof ModuleIcons> = baseIcons;
 
-export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
 
 export interface TableState {
   readonly columnWidths: ColumnWidths;

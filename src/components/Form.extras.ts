@@ -1,11 +1,11 @@
 import type { QFormProps, QFormSlots } from "quasar";
 
-import type { TaskType } from "@skylib/facades/es/handlePromise";
+import type { Type } from "@skylib/facades/es/handlePromise";
 
 import type { GlobalComponent } from "./api";
 
 export interface FormOwnProps {
-  readonly asyncTaskType?: TaskType | undefined;
+  readonly asyncTaskType?: Type | undefined;
   readonly onSubmit?: OnSubmit | undefined;
   readonly onSubmitAsync?: OnSubmitAsync | undefined;
 }

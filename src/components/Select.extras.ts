@@ -1,6 +1,6 @@
 import type { QSelectProps, QSelectSlots } from "quasar";
 
-import type { DictionaryAndWords } from "@skylib/facades/es/lang";
+import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
@@ -63,4 +63,4 @@ export const isSelectOption = is.object.factory<SelectOption>(
 
 export const isSelectOptions = is.factory(is.array.of, isSelectOption);
 
-export const lang: DictionaryAndWords<keyof ModuleWord> = baseLang;
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
