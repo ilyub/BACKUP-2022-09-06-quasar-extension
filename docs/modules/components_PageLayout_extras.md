@@ -35,7 +35,7 @@
 
 ### icons
 
-• `Const` **icons**: `Icons`<``"close"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_PageLayout_extras.ModuleIcons.md)\> = `baseIcons`
 
 ## Functions
 

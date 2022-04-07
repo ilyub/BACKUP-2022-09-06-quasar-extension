@@ -14,4 +14,4 @@
 
 ### close
 
-• `Readonly` **close**: `string`
+• `Readonly` **close**: ``true``

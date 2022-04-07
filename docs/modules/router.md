@@ -4,12 +4,22 @@
 
 ## Table of contents
 
-### Properties
+### Functions
 
 - [default](router.md#default)
 
-## Properties
+## Functions
 
 ### default
 
-• **default**: `RouteCallback`<`any`\>
+▸ **default**(`params`): `Router` \| `Promise`<`Router`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+
+#### Returns
+
+`Router` \| `Promise`<`Router`\>

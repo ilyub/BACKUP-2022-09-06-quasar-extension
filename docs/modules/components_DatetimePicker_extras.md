@@ -38,10 +38,10 @@ ___
 
 ### icons
 
-• `Const` **icons**: `Icons`<``"am"`` \| ``"close"`` \| ``"pickDate"`` \| ``"pickTime"`` \| ``"pm"``\> = `baseIcons`
+• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)\> = `baseIcons`
 
 ___
 
 ### lang
 
-• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md)\> = `baseLang`
+• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md), `never`\> = `baseLang`

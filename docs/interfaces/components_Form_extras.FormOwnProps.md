@@ -22,7 +22,7 @@
 
 ### asyncTaskType
 
-• `Optional` `Readonly` **asyncTaskType**: `TaskType`
+• `Optional` `Readonly` **asyncTaskType**: `Type`
 
 ___
 

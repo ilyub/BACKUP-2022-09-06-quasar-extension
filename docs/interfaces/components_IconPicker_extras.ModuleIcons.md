@@ -16,16 +16,16 @@
 
 ### chevronLeft
 
-• `Readonly` **chevronLeft**: `string`
+• `Readonly` **chevronLeft**: ``true``
 
 ___
 
 ### chevronRight
 
-• `Readonly` **chevronRight**: `string`
+• `Readonly` **chevronRight**: ``true``
 
 ___
 
 ### close
 
-• `Readonly` **close**: `string`
+• `Readonly` **close**: ``true``

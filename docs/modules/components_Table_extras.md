@@ -121,7 +121,7 @@ ___
 
 ### lang
 
-• `Const` **lang**: `DictionaryAndWords`<keyof [`ModuleWord`](../interfaces/components_Table_extras.ModuleWord.md)\> = `baseLang`
+• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_Table_extras.ModuleWord.md), `never`\> = `baseLang`
 
 ## Functions
 

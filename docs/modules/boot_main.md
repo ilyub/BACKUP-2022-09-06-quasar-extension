@@ -4,12 +4,22 @@
 
 ## Table of contents
 
-### Properties
+### Functions
 
 - [default](boot_main.md#default)
 
-## Properties
+## Functions
 
 ### default
 
-• **default**: `BootCallback`<`any`\>
+▸ **default**(`params`): `void` \| `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `BootFileParams`<`any`\> |
+
+#### Returns
+
+`void` \| `Promise`<`void`\>

@@ -17,22 +17,22 @@
 
 ### chevronDoubleLeft
 
-• `Readonly` **chevronDoubleLeft**: `string`
+• `Readonly` **chevronDoubleLeft**: ``true``
 
 ___
 
 ### chevronDoubleRight
 
-• `Readonly` **chevronDoubleRight**: `string`
+• `Readonly` **chevronDoubleRight**: ``true``
 
 ___
 
 ### chevronLeft
 
-• `Readonly` **chevronLeft**: `string`
+• `Readonly` **chevronLeft**: ``true``
 
 ___
 
 ### chevronRight
 
-• `Readonly` **chevronRight**: `string`
+• `Readonly` **chevronRight**: ``true``

@@ -18,28 +18,28 @@
 
 ### am
 
-• `Readonly` **am**: `string`
+• `Readonly` **am**: ``true``
 
 ___
 
 ### close
 
-• `Readonly` **close**: `string`
+• `Readonly` **close**: ``true``
 
 ___
 
 ### pickDate
 
-• `Readonly` **pickDate**: `string`
+• `Readonly` **pickDate**: ``true``
 
 ___
 
 ### pickTime
 
-• `Readonly` **pickTime**: `string`
+• `Readonly` **pickTime**: ``true``
 
 ___
 
 ### pm
 
-• `Readonly` **pm**: `string`
+• `Readonly` **pm**: ``true``

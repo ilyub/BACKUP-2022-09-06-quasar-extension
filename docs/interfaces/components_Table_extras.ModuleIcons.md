@@ -18,28 +18,28 @@
 
 ### ascending
 
-• `Readonly` **ascending**: `string`
+• `Readonly` **ascending**: ``true``
 
 ___
 
 ### descending
 
-• `Readonly` **descending**: `string`
+• `Readonly` **descending**: ``true``
 
 ___
 
 ### deselectAll
 
-• `Readonly` **deselectAll**: `string`
+• `Readonly` **deselectAll**: ``true``
 
 ___
 
 ### manageColumns
 
-• `Readonly` **manageColumns**: `string`
+• `Readonly` **manageColumns**: ``true``
 
 ___
 
 ### selectAll
 
-• `Readonly` **selectAll**: `string`
+• `Readonly` **selectAll**: ``true``
