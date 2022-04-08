@@ -5,6 +5,11 @@ import type { NumStrU } from "@skylib/functions/es/types/core";
 
 import type { GlobalComponent } from "./api";
 
+export type GlobalTabs<T extends NumStrU = NumStrU> = GlobalComponent<
+  TabsProps<T>,
+  TabsSlots
+>;
+
 export interface TabsOwnProps<T extends NumStrU = NumStrU> {
   modelValue?: T;
   /**
@@ -23,11 +28,6 @@ export interface TabsProps<T extends NumStrU = NumStrU>
     TabsParentProps {}
 
 export type TabsSlots = QTabsSlots;
-
-export type GlobalTabs<T extends NumStrU = NumStrU> = GlobalComponent<
-  TabsProps<T>,
-  TabsSlots
->;
 
 /**
  * Generic Tabs component.

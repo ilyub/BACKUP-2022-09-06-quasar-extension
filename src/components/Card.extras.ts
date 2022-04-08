@@ -15,17 +15,15 @@ declare global {
   }
 }
 
-export interface ModuleIcons {
-  readonly close: true;
-}
-
-export type CardParentProps = QCardProps;
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
 
 export interface CardOwnProps {
   readonly minWidth?: stringU;
   readonly title?: stringU;
   readonly transparentHeader?: booleanU;
 }
+
+export type CardParentProps = QCardProps;
 
 export interface CardProps extends CardParentProps, CardOwnProps {}
 
@@ -52,4 +50,6 @@ export interface CardSlots {
 
 export type GlobalCard = GlobalComponent<CardProps, CardSlots>;
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export interface ModuleIcons {
+  readonly close: true;
+}

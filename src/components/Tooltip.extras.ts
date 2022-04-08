@@ -9,42 +9,6 @@ import type { stringU } from "@skylib/functions/es/types/core";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
-export type Direction =
-  | "down-left"
-  | "down-right"
-  | "down"
-  | "left-down"
-  | "left-up"
-  | "left"
-  | "right-down"
-  | "right-up"
-  | "right"
-  | "up-left"
-  | "up-right"
-  | "up";
-
-export interface DisableTooltips {
-  readonly active: Ref<boolean>;
-}
-
-export type GlobalTooltip = GlobalComponent<TooltipProps, TooltipSlots>;
-
-export type TooltipParentProps = QTooltipProps;
-
-export interface TooltipOwnProps {
-  readonly direction?: Direction | undefined;
-}
-
-export interface TooltipProps extends TooltipParentProps, TooltipOwnProps {}
-
-export interface TooltipSettings {
-  readonly delay: number;
-  readonly fontSize: stringU;
-  readonly show: boolean;
-}
-
-export type TooltipSlots = QTooltipSlots;
-
 export const DirectionVO = createValidationObject<Direction>({
   "down": "down",
   "down-left": "down-left",
@@ -66,6 +30,54 @@ export const isDirection = is.factory(is.enumeration, DirectionVO);
 
 export const isDirectionU = is.or.factory(isDirection, is.undefined);
 
+export const {
+  inject: injectTooltipSettings,
+  provide: provideTooltipSettings,
+  test: testTooltipSettings
+} = createInjectable<TooltipSettings>(() => {
+  return {
+    delay: 0,
+    fontSize: undefined,
+    show: true
+  };
+});
+
+export type Direction =
+  | "down-left"
+  | "down-right"
+  | "down"
+  | "left-down"
+  | "left-up"
+  | "left"
+  | "right-down"
+  | "right-up"
+  | "right"
+  | "up-left"
+  | "up-right"
+  | "up";
+
+export interface DisableTooltips {
+  readonly active: Ref<boolean>;
+}
+
+export type GlobalTooltip = GlobalComponent<TooltipProps, TooltipSlots>;
+
+export interface TooltipOwnProps {
+  readonly direction?: Direction | undefined;
+}
+
+export type TooltipParentProps = QTooltipProps;
+
+export interface TooltipProps extends TooltipParentProps, TooltipOwnProps {}
+
+export interface TooltipSettings {
+  readonly delay: number;
+  readonly fontSize: stringU;
+  readonly show: boolean;
+}
+
+export type TooltipSlots = QTooltipSlots;
+
 /**
  * Returns DisableTooltips mixin.
  *
@@ -85,23 +97,5 @@ export function useDisableTooltips(): DisableTooltips {
 
   return { active };
 }
-
-export const {
-  inject: injectTooltipSettings,
-  provide: provideTooltipSettings,
-  test: testTooltipSettings
-} = createInjectable<TooltipSettings>(() => {
-  return {
-    delay: 0,
-    fontSize: undefined,
-    show: true
-  };
-});
-
-/*
-|*******************************************************************************
-|* Private
-|*******************************************************************************
-|*/
 
 const counter = ref(0);

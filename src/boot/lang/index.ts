@@ -20,11 +20,11 @@ declare global {
   }
 }
 
-export interface ModuleWord {
-  readonly SampleWord: true;
-}
-
 export const definitions: Rec<LocaleName, Definitions> = {
   "en-US": en,
   "ru-RU": ru
 };
+
+export interface ModuleWord {
+  readonly SampleWord: true;
+}

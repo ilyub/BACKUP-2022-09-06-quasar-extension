@@ -5,6 +5,14 @@ import type { numberU } from "@skylib/functions/es/types/core";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
+export const {
+  inject: injectResizerSettings,
+  provide: provideResizerSettings,
+  test: testResizerSettings
+} = createInjectable<ResizerSettings>(() => {
+  return { disable: false };
+});
+
 export type GlobalResizer = GlobalComponent<ResizerProps, ResizerSlots>;
 
 export interface ResizerProps {
@@ -19,6 +27,10 @@ export interface ResizerProps {
   readonly "onUpdate:modelValue"?: (value: number) => void;
 }
 
+export interface ResizerSettings {
+  readonly disable: boolean;
+}
+
 export interface ResizerSlots {
   /**
    * Default slot.
@@ -27,15 +39,3 @@ export interface ResizerSlots {
    */
   readonly default: () => readonly VNode[];
 }
-
-export interface ResizerSettings {
-  readonly disable: boolean;
-}
-
-export const {
-  inject: injectResizerSettings,
-  provide: provideResizerSettings,
-  test: testResizerSettings
-} = createInjectable<ResizerSettings>(() => {
-  return { disable: false };
-});

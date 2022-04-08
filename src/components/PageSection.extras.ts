@@ -6,9 +6,9 @@ export type GlobalPageSection = GlobalComponent<
   PageSectionSlots
 >;
 
-export type PageSectionParentProps = SwitchableProps;
-
 export interface PageSectionOwnProps {}
+
+export type PageSectionParentProps = SwitchableProps;
 
 export interface PageSectionProps
   extends PageSectionParentProps,

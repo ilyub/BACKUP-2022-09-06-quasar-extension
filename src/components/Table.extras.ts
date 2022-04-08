@@ -30,6 +30,142 @@ declare global {
   }
 }
 
+export const isColumnsOrder = is.factory(is.map.of, is.string, is.number);
+
+export const isColumnWidths = is.factory(is.map.of, is.string, is.number);
+
+export const isHiddenColumns = is.factory(is.set.of, is.string);
+
+export const AlignVO = createValidationObject<Align>({
+  center: "center",
+  left: "left",
+  right: "right"
+});
+
+export const isAlign = is.factory(is.enumeration, AlignVO);
+
+export const isPagination = is.object.factory<Pagination>(
+  {},
+  {
+    descending: is.boolean,
+    limit: is.number,
+    page: is.number,
+    rowsNumber: is.number,
+    rowsPerPage: is.number,
+    sortBy: is.string
+  }
+);
+
+export const {
+  inject: injectTableSettings,
+  provide: provideTableSettings,
+  test: testTableSettings
+} = createInjectable<TableSettings>(() => {
+  return {
+    binaryStateSort: false,
+    flat: false,
+    growPageBy: 10,
+    headerSeparator: false,
+    square: false
+  };
+});
+
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
+
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
+
+export const isTableState = is.object.factory<TableState>(
+  {
+    columnWidths: isColumnWidths,
+    columnsOrder: isColumnsOrder,
+    descending: is.boolean,
+    hiddenColumns: isHiddenColumns,
+    sortBy: is.string
+  },
+  {}
+);
+
+export const isTableStateU = is.or.factory(isTableState, is.undefined);
+
+export type Align = "center" | "left" | "right";
+
+export interface BodyCellContextSlotData<T extends object = object>
+  extends MultiSelectData {
+  readonly column: Column<T>;
+  readonly row: T;
+}
+
+export interface BodyCellSlotData<T extends object = object>
+  extends MultiSelectData {
+  readonly column: Column<T>;
+  readonly row: T;
+}
+
+export interface BodyContextSlotData<T extends object = object>
+  extends MultiSelectData {
+  readonly row: T;
+}
+
+export interface BodySelectionSlotData<T extends object = object>
+  extends MultiSelectData {
+  readonly row: T;
+}
+
+export interface Column<T extends object = object> {
+  readonly align: Align;
+  readonly field: Field<T>;
+  readonly label: string;
+  readonly maxWidth?: number;
+  readonly minWidth?: number;
+  readonly name: string;
+  /**
+   * Sorting function.
+   *
+   * @param value1 - Value 1.
+   * @param value2 - Value 2.
+   * @param row1 - Row 1.
+   * @param row2 - Row 2.
+   * @returns Comparison result.
+   */
+  readonly sort?: (value1: string, value2: string, row1: T, row2: T) => number;
+  readonly sortOrder?: "ad" | "da";
+  readonly sortable?: true;
+  readonly width?: number;
+}
+
+export type ColumnWidths = ReadonlyMap<string, number>;
+
+export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
+
+export type ColumnsOrder = ReadonlyMap<string, number>;
+
+export interface Field<T extends object = object> {
+  /**
+   * Returns formatted field.
+   *
+   * @param row - Row.
+   */
+  (row: T): string;
+}
+
+export type GlobalTable<T extends object = object> = GlobalComponent<
+  TableProps<T>,
+  TableSlots<T>
+>;
+
+export interface HeaderCellSlotData<T extends object = object>
+  extends MultiSelectData {
+  readonly column: Column<T>;
+}
+
+export interface HeaderMenuAppendSlotData extends MultiSelectData {}
+
+export interface HeaderMenuPrependSlotData extends MultiSelectData {}
+
+export interface HeaderSelectionSlotData extends MultiSelectData {}
+
+export type HiddenColumns = ReadonlySet<string>;
+
 export interface ModuleIcons {
   readonly ascending: true;
   readonly descending: true;
@@ -43,8 +179,6 @@ export interface ModuleWord {
   readonly ManageColumns: true;
   readonly SelectAll: true;
 }
-
-export type Align = "center" | "left" | "right";
 
 export interface MultiSelectData {
   readonly allSelected: booleanU;
@@ -71,90 +205,16 @@ export interface MultiSelectData {
   readonly toggleSelectionLabel: string;
 }
 
-export interface BodyCellSlotData<T extends object = object>
-  extends MultiSelectData {
-  readonly column: Column<T>;
-  readonly row: T;
+export interface Pagination {
+  readonly descending?: boolean;
+  readonly limit?: number;
+  readonly page?: number;
+  readonly rowsNumber?: number;
+  readonly rowsPerPage?: number;
+  readonly sortBy?: string;
 }
-
-export interface BodyCellContextSlotData<T extends object = object>
-  extends MultiSelectData {
-  readonly column: Column<T>;
-  readonly row: T;
-}
-
-export interface BodyContextSlotData<T extends object = object>
-  extends MultiSelectData {
-  readonly row: T;
-}
-
-export interface BodySelectionSlotData<T extends object = object>
-  extends MultiSelectData {
-  readonly row: T;
-}
-
-export interface HeaderCellSlotData<T extends object = object>
-  extends MultiSelectData {
-  readonly column: Column<T>;
-}
-
-export interface HeaderMenuAppendSlotData extends MultiSelectData {}
-
-export interface HeaderMenuPrependSlotData extends MultiSelectData {}
-
-export interface HeaderSelectionSlotData extends MultiSelectData {}
 
 export interface SteadyBottomSlotData extends MultiSelectData {}
-
-export interface Column<T extends object = object> {
-  readonly align: Align;
-  readonly field: Field<T>;
-  readonly label: string;
-  readonly maxWidth?: number;
-  readonly minWidth?: number;
-  readonly name: string;
-  /**
-   * Sorting function.
-   *
-   * @param value1 - Value 1.
-   * @param value2 - Value 2.
-   * @param row1 - Row 1.
-   * @param row2 - Row 2.
-   * @returns Comparison result.
-   */
-  readonly sort?: (value1: string, value2: string, row1: T, row2: T) => number;
-  readonly sortOrder?: "ad" | "da";
-  readonly sortable?: true;
-  readonly width?: number;
-}
-
-export type Columns<T extends object = object> = ReadonlyArray<Column<T>>;
-
-export const isColumnsOrder = is.factory(is.map.of, is.string, is.number);
-
-export const isColumnWidths = is.factory(is.map.of, is.string, is.number);
-
-export const isHiddenColumns = is.factory(is.set.of, is.string);
-
-export interface Field<T extends object = object> {
-  /**
-   * Returns formatted field.
-   *
-   * @param row - Row.
-   */
-  (row: T): string;
-}
-
-export type GlobalTable<T extends object = object> = GlobalComponent<
-  TableProps<T>,
-  TableSlots<T>
->;
-
-export type ColumnsOrder = ReadonlyMap<string, number>;
-
-export type ColumnWidths = ReadonlyMap<string, number>;
-
-export type HiddenColumns = ReadonlySet<string>;
 
 export interface TableOwnProps<T extends object = object> {
   readonly binaryStateSortOff?: booleanU;
@@ -231,6 +291,14 @@ export interface TableParentProps
 export interface TableProps<T extends object = object>
   extends TableParentProps,
     TableOwnProps<T> {}
+
+export interface TableSettings {
+  readonly binaryStateSort: boolean;
+  readonly flat: boolean;
+  readonly growPageBy: number;
+  readonly headerSeparator: boolean;
+  readonly square: boolean;
+}
 
 export interface TableSlots<T extends object = object>
   extends Omit<
@@ -316,61 +384,6 @@ export interface TableSlots<T extends object = object>
   readonly "steady-bottom": (scope: SteadyBottomSlotData) => readonly VNode[];
 }
 
-export interface TableSettings {
-  readonly binaryStateSort: boolean;
-  readonly flat: boolean;
-  readonly growPageBy: number;
-  readonly headerSeparator: boolean;
-  readonly square: boolean;
-}
-
-export interface Pagination {
-  readonly descending?: boolean;
-  readonly limit?: number;
-  readonly page?: number;
-  readonly rowsNumber?: number;
-  readonly rowsPerPage?: number;
-  readonly sortBy?: string;
-}
-
-export const AlignVO = createValidationObject<Align>({
-  center: "center",
-  left: "left",
-  right: "right"
-});
-
-export const isAlign = is.factory(is.enumeration, AlignVO);
-
-export const isPagination = is.object.factory<Pagination>(
-  {},
-  {
-    descending: is.boolean,
-    limit: is.number,
-    page: is.number,
-    rowsNumber: is.number,
-    rowsPerPage: is.number,
-    sortBy: is.string
-  }
-);
-
-export const {
-  inject: injectTableSettings,
-  provide: provideTableSettings,
-  test: testTableSettings
-} = createInjectable<TableSettings>(() => {
-  return {
-    binaryStateSort: false,
-    flat: false,
-    growPageBy: 10,
-    headerSeparator: false,
-    square: false
-  };
-});
-
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
-
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
-
 export interface TableState {
   readonly columnWidths: ColumnWidths;
   readonly columnsOrder: ColumnsOrder;
@@ -378,19 +391,6 @@ export interface TableState {
   readonly hiddenColumns: HiddenColumns;
   readonly sortBy: string;
 }
-
-export const isTableState = is.object.factory<TableState>(
-  {
-    columnWidths: isColumnWidths,
-    columnsOrder: isColumnsOrder,
-    descending: is.boolean,
-    hiddenColumns: isHiddenColumns,
-    sortBy: is.string
-  },
-  {}
-);
-
-export const isTableStateU = is.or.factory(isTableState, is.undefined);
 
 /**
  * Table state module.

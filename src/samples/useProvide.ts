@@ -45,12 +45,6 @@ export function useProvide(): ProvidePlugin {
   };
 }
 
-/*
-|*******************************************************************************
-|* Private
-|*******************************************************************************
-|*/
-
 const iconPickerTooltips = ref(false);
 
 const language = ref<LocaleName>("en-US");

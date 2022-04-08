@@ -20,24 +20,22 @@ declare global {
   }
 }
 
-export interface ModuleIcons {
-  readonly chevronLeft: true;
-  readonly chevronRight: true;
-  readonly close: true;
-}
+export const {
+  inject: injectIconPickerSettings,
+  provide: provideIconPickerSettings,
+  test: testIconPickerSettings
+} = createInjectable<IconPickerSettings>(() => {
+  return { iconTooltips: false };
+});
 
-export interface ModuleWord {
-  readonly IconPicker: true;
-  readonly Of: true;
-}
+export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
+
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
 
 export type GlobalIconPicker = GlobalComponent<
   IconPickerProps,
   IconPickerSlots
 >;
-
-export interface IconPickerParentProps
-  extends Omit<IconButtonProps, "modelValue" | "onUpdate:modelValue"> {}
 
 export interface IconPickerOwnProps {
   readonly cols?: numberU;
@@ -53,6 +51,9 @@ export interface IconPickerOwnProps {
   readonly spinnerSize?: stringU;
 }
 
+export interface IconPickerParentProps
+  extends Omit<IconButtonProps, "modelValue" | "onUpdate:modelValue"> {}
+
 export interface IconPickerProps
   extends IconPickerParentProps,
     IconPickerOwnProps {}
@@ -63,14 +64,13 @@ export interface IconPickerSettings {
 
 export type IconPickerSlots = IconButtonSlots;
 
-export const {
-  inject: injectIconPickerSettings,
-  provide: provideIconPickerSettings,
-  test: testIconPickerSettings
-} = createInjectable<IconPickerSettings>(() => {
-  return { iconTooltips: false };
-});
+export interface ModuleIcons {
+  readonly chevronLeft: true;
+  readonly chevronRight: true;
+  readonly close: true;
+}
 
-export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
-
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export interface ModuleWord {
+  readonly IconPicker: true;
+  readonly Of: true;
+}

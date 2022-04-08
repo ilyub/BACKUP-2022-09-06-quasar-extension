@@ -6,9 +6,6 @@ import type { GlobalComponent } from "./api";
 
 export type GlobalKnob = GlobalComponent<KnobOwnProps, KnobSlots>;
 
-export interface KnobParentProps
-  extends Omit<QKnobProps, "disable" | "modelValue" | "onUpdate:modelValue"> {}
-
 export interface KnobOwnProps {
   readonly disable?: booleanU;
   readonly inline?: booleanU;
@@ -20,6 +17,9 @@ export interface KnobOwnProps {
    */
   readonly "onUpdate:modelValue"?: (value: number) => void;
 }
+
+export interface KnobParentProps
+  extends Omit<QKnobProps, "disable" | "modelValue" | "onUpdate:modelValue"> {}
 
 export interface KnobProps extends KnobParentProps, KnobOwnProps {}
 

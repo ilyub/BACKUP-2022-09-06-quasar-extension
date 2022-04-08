@@ -4,12 +4,6 @@ import type { GlobalComponent } from "./api";
 
 export type GlobalToggle = GlobalComponent<ToggleProps, ToggleSlots>;
 
-export interface ToggleParentProps
-  extends Omit<
-    QToggleProps,
-    "disable" | "modelValue" | "onUpdate:modelValue"
-  > {}
-
 export interface ToggleOwnProps {
   readonly disable?: boolean;
   readonly modelValue: boolean;
@@ -20,6 +14,12 @@ export interface ToggleOwnProps {
    */
   readonly "onUpdate:modelValue"?: (value: boolean) => void;
 }
+
+export interface ToggleParentProps
+  extends Omit<
+    QToggleProps,
+    "disable" | "modelValue" | "onUpdate:modelValue"
+  > {}
 
 export interface ToggleProps extends ToggleParentProps, ToggleOwnProps {}
 

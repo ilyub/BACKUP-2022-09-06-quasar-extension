@@ -17,12 +17,6 @@ export type OptionGroupOptions<T = unknown> = ReadonlyArray<
   OptionGroupOption<T>
 >;
 
-export interface OptionGroupParentProps
-  extends Omit<
-    QOptionGroupProps,
-    "inline" | "modelValue" | "onUpdate:modelValue" | "options"
-  > {}
-
 export interface OptionGroupOwnProps<T = unknown> {
   readonly inline?: boolean;
   readonly modelValue: T;
@@ -34,6 +28,12 @@ export interface OptionGroupOwnProps<T = unknown> {
   readonly "onUpdate:modelValue"?: (value: T) => void;
   readonly options: OptionGroupOptions<T>;
 }
+
+export interface OptionGroupParentProps
+  extends Omit<
+    QOptionGroupProps,
+    "inline" | "modelValue" | "onUpdate:modelValue" | "options"
+  > {}
 
 export interface OptionGroupProps<T = unknown>
   extends OptionGroupParentProps,

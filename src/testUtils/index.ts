@@ -108,30 +108,6 @@ export function clearEmitted(wrapper: VueWrapper): void {
 /**
  * Find component factory.
  *
- * @param prefix - Prefix.
- * @param wrapper - Wrapper.
- * @returns Find component function.
- */
-export function findFactory(
-  prefix: string,
-  wrapper: VueWrapper
-): {
-  readonly comp: ReturnType<typeof findComponentFactory>;
-  readonly compByRef: ReturnType<typeof findComponentByRefFactory>;
-  readonly elem: ReturnType<typeof findElementFactory>;
-  readonly elems: ReturnType<typeof findElementsFactory>;
-} {
-  return {
-    comp: findComponentFactory(prefix, wrapper),
-    compByRef: findComponentByRefFactory(wrapper),
-    elem: findElementFactory(prefix, wrapper),
-    elems: findElementsFactory(prefix, wrapper)
-  };
-}
-
-/**
- * Find component factory.
- *
  * @param wrapper - Wrapper.
  * @returns Find component function.
  */
@@ -204,6 +180,30 @@ export function findElementsFactory(
 ) {
   return (ref: string): Array<vueTestUtils.DOMWrapper<Element>> =>
     wrapper.findAll(`${prefix}${ref}`);
+}
+
+/**
+ * Find component factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Find component function.
+ */
+export function findFactory(
+  prefix: string,
+  wrapper: VueWrapper
+): {
+  readonly comp: ReturnType<typeof findComponentFactory>;
+  readonly compByRef: ReturnType<typeof findComponentByRefFactory>;
+  readonly elem: ReturnType<typeof findElementFactory>;
+  readonly elems: ReturnType<typeof findElementsFactory>;
+} {
+  return {
+    comp: findComponentFactory(prefix, wrapper),
+    compByRef: findComponentByRefFactory(wrapper),
+    elem: findElementFactory(prefix, wrapper),
+    elems: findElementsFactory(prefix, wrapper)
+  };
 }
 
 /**
@@ -292,14 +292,6 @@ export function jestReset(): void {
  */
 export function jestSetup(): void {
   {
-    interface ExpectExtendMap {
-      readonly htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual">;
-      readonly textToEqual: testUtils.ExpectFromMatcher<"textToEqual">;
-      readonly toBeVisible: testUtils.ExpectFromMatcher<"toExist">;
-      readonly toExist: testUtils.ExpectFromMatcher<"toExist">;
-      readonly toHaveClass: testUtils.ExpectFromMatcher<"toHaveClass">;
-    }
-
     const expectExtend: ExpectExtendMap = {
       htmlToEqual,
       textToEqual,
@@ -310,6 +302,14 @@ export function jestSetup(): void {
 
     // eslint-disable-next-line no-type-assertion/no-type-assertion
     expect.extend(expectExtend as ExpectExtendMap & jest.ExpectExtendMap);
+
+    interface ExpectExtendMap {
+      readonly htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual">;
+      readonly textToEqual: testUtils.ExpectFromMatcher<"textToEqual">;
+      readonly toBeVisible: testUtils.ExpectFromMatcher<"toExist">;
+      readonly toExist: testUtils.ExpectFromMatcher<"toExist">;
+      readonly toHaveClass: testUtils.ExpectFromMatcher<"toHaveClass">;
+    }
   }
 
   window.scrollTo = jest.fn();
@@ -411,11 +411,6 @@ export function toHaveClass(
  * @returns Mock.
  */
 export function touchPanMock(): TouchPanMock {
-  function triggerTouchPan(...args: unknown[]): void {
-    assert.callable(touchPanValue);
-    touchPanValue(...args);
-  }
-
   let touchPanValue: unknown;
 
   const touchPan: Directive = {
@@ -425,13 +420,12 @@ export function touchPanMock(): TouchPanMock {
   };
 
   return { touchPan, triggerTouchPan };
-}
 
-/*
-|*******************************************************************************
-|* Private
-|*******************************************************************************
-|*/
+  function triggerTouchPan(...args: unknown[]): void {
+    assert.callable(touchPanValue);
+    touchPanValue(...args);
+  }
+}
 
 /**
  * Checks that value is a wrapper.

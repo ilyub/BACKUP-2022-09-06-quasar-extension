@@ -15,19 +15,34 @@ declare global {
   }
 }
 
-export interface ModuleIcons {
-  readonly close: true;
-}
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
+
+export const {
+  inject: injectPageLayoutSettings,
+  provide: providePageLayoutSettings,
+  test: testPageLayoutSettings
+} = createInjectable<PageLayoutSettings>(() => {
+  return { closeButton: true, height: "auto" };
+});
 
 export type GlobalPageLayout = GlobalComponent<
   PageLayoutProps,
   PageLayoutSlots
 >;
 
+export interface ModuleIcons {
+  readonly close: true;
+}
+
 export interface PageLayoutProps {
   readonly closeButtonOff?: booleanU;
   readonly closeButtonOn?: booleanU;
   readonly title?: stringU;
+}
+
+export interface PageLayoutSettings {
+  readonly closeButton: boolean;
+  readonly height: string;
 }
 
 export interface PageLayoutSlots {
@@ -74,18 +89,3 @@ export interface PageLayoutSlots {
    */
   readonly "sticky-header": () => readonly VNode[];
 }
-
-export interface PageLayoutSettings {
-  readonly closeButton: boolean;
-  readonly height: string;
-}
-
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
-
-export const {
-  inject: injectPageLayoutSettings,
-  provide: providePageLayoutSettings,
-  test: testPageLayoutSettings
-} = createInjectable<PageLayoutSettings>(() => {
-  return { closeButton: true, height: "auto" };
-});

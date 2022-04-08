@@ -24,21 +24,9 @@ declare global {
   }
 }
 
-export interface ModuleIcons {
-  readonly am: true;
-  readonly close: true;
-  readonly pickDate: true;
-  readonly pickTime: true;
-  readonly pm: true;
-}
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
 
-export interface ModuleWord {
-  readonly PickDate: true;
-  readonly Save: true;
-}
-
-export interface DatetimePickerParentProps
-  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
 
 export interface DatetimePickerOwnProps {
   readonly max?: stringU;
@@ -52,6 +40,9 @@ export interface DatetimePickerOwnProps {
   readonly "onUpdate:modelValue"?: (value: stringU) => void;
 }
 
+export interface DatetimePickerParentProps
+  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
+
 export interface DatetimePickerProps
   extends DatetimePickerParentProps,
     DatetimePickerOwnProps {}
@@ -63,6 +54,15 @@ export type GlobalDatetimePicker = GlobalComponent<
   DatetimePickerSlots
 >;
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export interface ModuleIcons {
+  readonly am: true;
+  readonly close: true;
+  readonly pickDate: true;
+  readonly pickTime: true;
+  readonly pm: true;
+}
 
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export interface ModuleWord {
+  readonly PickDate: true;
+  readonly Save: true;
+}

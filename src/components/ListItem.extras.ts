@@ -8,12 +8,12 @@ import type { ConfirmedClickProps } from "./api/confirmedClickModule";
 
 export type GlobalListItem = GlobalComponent<ListItemProps, ListItemSlots>;
 
-export type ListItemParentProps = QItemProps;
-
 export interface ListItemOwnProps extends ConfirmedClickProps {
   readonly caption?: stringU;
   readonly icon?: stringU;
 }
+
+export type ListItemParentProps = QItemProps;
 
 export interface ListItemProps extends ListItemParentProps, ListItemOwnProps {}
 

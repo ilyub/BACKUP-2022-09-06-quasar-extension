@@ -16,11 +16,19 @@ declare global {
   }
 }
 
-export interface ModuleWord {
-  readonly Cancel: true;
-  readonly Confirm: true;
-  readonly Ok: true;
-}
+// eslint-disable-next-line no-warning-comments
+// fixme: Create type from ConfirmedClickProps
+export const confirmedClickEmits = {
+  confirmedClick: (): boolean => true
+} as const;
+
+// eslint-disable-next-line no-warning-comments
+// fixme: Create type from ConfirmedClickProps
+export const confirmedClickProps = {
+  confirmation: prop<string>()
+} as const;
+
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
 
 export interface ConfirmedClickModule {
   /**
@@ -37,17 +45,11 @@ export interface ConfirmedClickProps {
   readonly onConfirmedClick?: () => void;
 }
 
-// eslint-disable-next-line no-warning-comments
-// fixme: Create type from ConfirmedClickProps
-export const confirmedClickEmits = {
-  confirmedClick: (): boolean => true
-} as const;
-
-// eslint-disable-next-line no-warning-comments
-// fixme: Create type from ConfirmedClickProps
-export const confirmedClickProps = {
-  confirmation: prop<string>()
-} as const;
+export interface ModuleWord {
+  readonly Cancel: true;
+  readonly Confirm: true;
+  readonly Ok: true;
+}
 
 /**
  * Confirmed click module.
@@ -77,11 +79,3 @@ export function useConfirmedClick(
     }
   };
 }
-
-/*
-|*******************************************************************************
-|* Private
-|*******************************************************************************
-|*/
-
-export const lang: Lang<keyof ModuleWord, never> = baseLang;

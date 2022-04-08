@@ -14,20 +14,19 @@ declare global {
   }
 }
 
-export interface ModuleIcons {
-  readonly chevronDoubleLeft: true;
-  readonly chevronDoubleRight: true;
-  readonly chevronLeft: true;
-  readonly chevronRight: true;
-}
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
 
 export type GlobalNumericInput = GlobalComponent<
   NumericInputProps,
   NumericInputSlots
 >;
 
-export interface NumericInputParentProps
-  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
+export interface ModuleIcons {
+  readonly chevronDoubleLeft: true;
+  readonly chevronDoubleRight: true;
+  readonly chevronLeft: true;
+  readonly chevronRight: true;
+}
 
 export interface NumericInputOwnProps {
   readonly bigStep?: numberU;
@@ -44,10 +43,11 @@ export interface NumericInputOwnProps {
   readonly smallStep?: numberU;
 }
 
+export interface NumericInputParentProps
+  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
+
 export interface NumericInputProps
   extends NumericInputParentProps,
     NumericInputOwnProps {}
 
 export type NumericInputSlots = QFieldSlots;
-
-export const icons: Icons<keyof ModuleIcons> = baseIcons;

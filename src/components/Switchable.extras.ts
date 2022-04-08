@@ -7,6 +7,27 @@ import type { booleanU } from "@skylib/functions/es/types/core";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
+export const TransitionVO = createValidationObject<Transition>({
+  none: "none",
+  slide: "slide"
+});
+
+export const isTransition = is.factory(is.enumeration, TransitionVO);
+
+export const {
+  inject: injectDisable,
+  provide: provideDisable,
+  test: testDisable
+} = createInjectable<boolean>(() => false);
+
+export const {
+  inject: injectSwitchableSettings,
+  provide: provideSwitchableSettings,
+  test: testSwitchableSettings
+} = createInjectable<SwitchableSettings>(() => {
+  return { transition: "none", transitionDuration: 200 };
+});
+
 export type GlobalSwitchable = GlobalComponent<
   SwitchableProps,
   SwitchableSlots
@@ -32,24 +53,3 @@ export interface SwitchableSlots {
 }
 
 export type Transition = "none" | "slide";
-
-export const TransitionVO = createValidationObject<Transition>({
-  none: "none",
-  slide: "slide"
-});
-
-export const isTransition = is.factory(is.enumeration, TransitionVO);
-
-export const {
-  inject: injectDisable,
-  provide: provideDisable,
-  test: testDisable
-} = createInjectable<boolean>(() => false);
-
-export const {
-  inject: injectSwitchableSettings,
-  provide: provideSwitchableSettings,
-  test: testSwitchableSettings
-} = createInjectable<SwitchableSettings>(() => {
-  return { transition: "none", transitionDuration: 200 };
-});

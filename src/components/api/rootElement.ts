@@ -14,12 +14,6 @@ import Subsection from "../Subsection.vue";
 import type { SetupProps } from ".";
 import { prop } from ".";
 
-export type RootElementProp = "div" | "page-section" | "section" | "subsection";
-
-export interface RootElementProps {
-  readonly rootElement?: RootElementProp | undefined;
-}
-
 export const RootElementPropVO = createValidationObject<RootElementProp>({
   "div": "div",
   "page-section": "page-section",
@@ -37,6 +31,12 @@ export const isRootElementPropU = is.or.factory(
 export const rootElementPropsOptions = {
   rootElement: prop<RootElementProp>()
 } as const;
+
+export type RootElementProp = "div" | "page-section" | "section" | "subsection";
+
+export interface RootElementProps {
+  readonly rootElement?: RootElementProp | undefined;
+}
 
 /**
  * Root element module.

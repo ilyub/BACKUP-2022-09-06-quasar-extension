@@ -6,9 +6,9 @@ export type GlobalIconButton = GlobalComponent<
   IconButtonSlots
 >;
 
-export type IconButtonParentProps = BaseButtonProps;
-
 export interface IconButtonOwnProps {}
+
+export type IconButtonParentProps = BaseButtonProps;
 
 export interface IconButtonProps
   extends IconButtonParentProps,

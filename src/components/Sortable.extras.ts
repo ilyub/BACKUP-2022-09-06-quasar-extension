@@ -9,131 +9,15 @@ import type { objects, stringU } from "@skylib/functions/es/types/core";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 
-export interface Elem {
-  readonly elementId: string;
-  readonly group: string;
-  readonly id: string;
-  readonly item: object;
-}
-
-export type Elems = readonly Elem[];
-
-export type GlobalSortable<T extends object = object> = GlobalComponent<
-  SortableProps<T>,
-  SortableSlots<T>
->;
-
-export interface ItemSlotData<T extends object = object> {
-  readonly item: T;
-}
-
-export interface Move {
-  /**
-   * Determines whether dragged item can be dropped.
-   *
-   * @param destId - Dest ID.
-   * @param destGroup - Dest group.
-   * @param sourceId - Source ID.
-   * @param sourceGroup - Source group.
-   * @returns _True_ if dragged item can be dropped, _false_ otherwise.
-   */
-  (
-    destId: stringU,
-    destGroup: string,
-    sourceId: string,
-    sourceGroup: string
-  ): boolean;
-}
-
-export interface MoveData {
-  readonly dragged: HTMLElement;
-  readonly related: HTMLElement;
-}
-
-export interface ItemAttrsFn<T extends object = object> {
-  /**
-   * Returns component data.
-   *
-   * @param item - Item.
-   * @returns Data.
-   */
-  (item: T): object;
-}
-
-export type ItemAttrs<T extends object = object> = ItemAttrsFn<T> | object;
-
 export const isItemAttrsFn: is.Guard<(item: object) => object> = is.callable;
 
 export const isItemAttrs = is.or.factory(isItemAttrsFn, is.object);
 
 export const isItemAttrsU = is.or.factory(isItemAttrs, is.undefined);
 
-export interface ItemClickEvent<T extends object = object> {
-  /**
-   * Click event.
-   *
-   * @param item - Item.
-   */
-  (item: T): void;
-}
-
 export const isItemClickEvent: is.Guard<ItemClickEvent> = is.callable;
 
 export const isItemClickEventU = is.or.factory(isItemClickEvent, is.undefined);
-
-export interface SortableProps<T extends object = object> {
-  readonly group: string;
-  readonly itemClass?: stringU;
-  readonly itemKey: string;
-  readonly itemTag?: unknown;
-  readonly modelValue: readonly T[];
-  readonly move?: Move | undefined;
-  /**
-   * Emits "dropped" event.
-   *
-   * @param item - Item.
-   * @param group - Group.
-   */
-  readonly onDropped?: ((item: object, group: string) => void) | undefined;
-  readonly onItemClick?: ItemClickEvent<T> | undefined;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: ((value: readonly T[]) => void) | undefined;
-  readonly pull?: boolean;
-  readonly put?: boolean;
-  readonly sort?: boolean;
-}
-
-export interface SortableSlots<T extends object = object> {
-  /**
-   * Footer slot.
-   *
-   * @returns Node.
-   */
-  readonly footer: () => readonly VNode[];
-  /**
-   *Header slot.
-   *
-   * @returns Node.
-   */
-  readonly header: () => readonly VNode[];
-  /**
-   * Item slot.
-   *
-   * @param data - Data.
-   * @returns Node.
-   */
-  readonly item: (data: ItemSlotData<T>) => readonly VNode[];
-}
-
-export interface SortableSettings {
-  readonly animationDuration: number;
-  readonly disableDropping: boolean;
-  readonly disableSorting: boolean;
-}
 
 export const isElem = is.object.factory<Elem>(
   {
@@ -169,6 +53,122 @@ export const {
     disableSorting: false
   };
 });
+
+export interface Elem {
+  readonly elementId: string;
+  readonly group: string;
+  readonly id: string;
+  readonly item: object;
+}
+
+export type Elems = readonly Elem[];
+
+export type GlobalSortable<T extends object = object> = GlobalComponent<
+  SortableProps<T>,
+  SortableSlots<T>
+>;
+
+export type ItemAttrs<T extends object = object> = ItemAttrsFn<T> | object;
+
+export interface ItemAttrsFn<T extends object = object> {
+  /**
+   * Returns component data.
+   *
+   * @param item - Item.
+   * @returns Data.
+   */
+  (item: T): object;
+}
+
+export interface ItemClickEvent<T extends object = object> {
+  /**
+   * Click event.
+   *
+   * @param item - Item.
+   */
+  (item: T): void;
+}
+
+export interface ItemSlotData<T extends object = object> {
+  readonly item: T;
+}
+
+export interface Move {
+  /**
+   * Determines whether dragged item can be dropped.
+   *
+   * @param destId - Dest ID.
+   * @param destGroup - Dest group.
+   * @param sourceId - Source ID.
+   * @param sourceGroup - Source group.
+   * @returns _True_ if dragged item can be dropped, _false_ otherwise.
+   */
+  (
+    destId: stringU,
+    destGroup: string,
+    sourceId: string,
+    sourceGroup: string
+  ): boolean;
+}
+
+export interface MoveData {
+  readonly dragged: HTMLElement;
+  readonly related: HTMLElement;
+}
+
+export interface SortableProps<T extends object = object> {
+  readonly group: string;
+  readonly itemClass?: stringU;
+  readonly itemKey: string;
+  readonly itemTag?: unknown;
+  readonly modelValue: readonly T[];
+  readonly move?: Move | undefined;
+  /**
+   * Emits "dropped" event.
+   *
+   * @param item - Item.
+   * @param group - Group.
+   */
+  readonly onDropped?: ((item: object, group: string) => void) | undefined;
+  readonly onItemClick?: ItemClickEvent<T> | undefined;
+  /**
+   * Emits model value.
+   *
+   * @param value - Value.
+   */
+  readonly "onUpdate:modelValue"?: ((value: readonly T[]) => void) | undefined;
+  readonly pull?: boolean;
+  readonly put?: boolean;
+  readonly sort?: boolean;
+}
+
+export interface SortableSettings {
+  readonly animationDuration: number;
+  readonly disableDropping: boolean;
+  readonly disableSorting: boolean;
+}
+
+export interface SortableSlots<T extends object = object> {
+  /**
+   * Footer slot.
+   *
+   * @returns Node.
+   */
+  readonly footer: () => readonly VNode[];
+  /**
+   *Header slot.
+   *
+   * @returns Node.
+   */
+  readonly header: () => readonly VNode[];
+  /**
+   * Item slot.
+   *
+   * @param data - Data.
+   * @returns Node.
+   */
+  readonly item: (data: ItemSlotData<T>) => readonly VNode[];
+}
 
 /**
  * Builds vuedraggable elements.

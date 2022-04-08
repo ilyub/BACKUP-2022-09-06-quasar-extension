@@ -15,14 +15,23 @@ declare global {
   }
 }
 
-export interface ModuleWord {
-  readonly Select: true;
-}
+export const isSelectOption = is.object.factory<SelectOption>(
+  { label: is.string, value: is.unknown },
+  { disable: is.boolean }
+);
+
+export const isSelectOptions = is.factory(is.array.of, isSelectOption);
+
+export const lang: Lang<keyof ModuleWord, never> = baseLang;
 
 export type GlobalSelect<T = unknown> = GlobalComponent<
   SelectProps<T>,
   SelectSlots
 >;
+
+export interface ModuleWord {
+  readonly Select: true;
+}
 
 export interface SelectOption<T = unknown> {
   readonly disable?: boolean;
@@ -31,12 +40,6 @@ export interface SelectOption<T = unknown> {
 }
 
 export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
-
-export interface SelectParentProps
-  extends Omit<
-    QSelectProps,
-    "modelValue" | "onUpdate:modelValue" | "options"
-  > {}
 
 export interface SelectOwnProps<T = unknown> {
   readonly initialLabel?: stringU;
@@ -50,17 +53,14 @@ export interface SelectOwnProps<T = unknown> {
   readonly options: SelectOptions<T>;
 }
 
+export interface SelectParentProps
+  extends Omit<
+    QSelectProps,
+    "modelValue" | "onUpdate:modelValue" | "options"
+  > {}
+
 export interface SelectProps<T = unknown>
   extends SelectParentProps,
     SelectOwnProps<T> {}
 
 export type SelectSlots = QSelectSlots;
-
-export const isSelectOption = is.object.factory<SelectOption>(
-  { label: is.string, value: is.unknown },
-  { disable: is.boolean }
-);
-
-export const isSelectOptions = is.factory(is.array.of, isSelectOption);
-
-export const lang: Lang<keyof ModuleWord, never> = baseLang;

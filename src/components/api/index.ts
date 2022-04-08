@@ -17,6 +17,55 @@ import type { Rec, WritableRecord } from "@skylib/functions/es/types/core";
 import type { Callable } from "@skylib/functions/es/types/function";
 import type { Join2 } from "@skylib/functions/es/types/object";
 
+// eslint-disable-next-line no-warning-comments
+// fixme
+export type Capital =
+  | "A"
+  | "B"
+  | "C"
+  | "D"
+  | "E"
+  | "F"
+  | "G"
+  | "H"
+  | "I"
+  | "J"
+  | "K"
+  | "L"
+  | "M"
+  | "N"
+  | "O"
+  | "P"
+  | "Q"
+  | "R"
+  | "S"
+  | "T"
+  | "U"
+  | "V"
+  | "W"
+  | "X"
+  | "Y"
+  | "Z";
+
+export type Emits = {
+  readonly [K in `on${Capital}${string}`]: () => void;
+};
+
+export type ExtendQuasarProps<T extends object> = Join2<
+  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
+  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
+>;
+
+export interface GlobalComponent<P, S> {
+  /**
+   * Component constructor.
+   */
+  new (): {
+    $props: Emits & P & PublicProps;
+    $slots: S;
+  };
+}
+
 export interface Injectable<T> {
   /**
    * Injects settings.
@@ -39,14 +88,39 @@ export interface Injectable<T> {
   readonly test: (mutableProvide: Rec<symbol, unknown>, settings: T) => void;
 }
 
-export type ExtendQuasarProps<T extends object> = Join2<
-  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
-  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
->;
-
 export type LooseRequired<T> = {
   [P in string & keyof T]: T[P];
 };
+
+// eslint-disable-next-line no-warning-comments
+// fixme
+export type NonCapital =
+  | "a"
+  | "b"
+  | "c"
+  | "d"
+  | "e"
+  | "f"
+  | "g"
+  | "h"
+  | "i"
+  | "j"
+  | "k"
+  | "l"
+  | "m"
+  | "n"
+  | "o"
+  | "p"
+  | "q"
+  | "r"
+  | "s"
+  | "t"
+  | "u"
+  | "v"
+  | "w"
+  | "x"
+  | "y"
+  | "z";
 
 export interface PropOptions<T> {
   readonly default?: T;
@@ -68,6 +142,34 @@ export interface PropOptionsRequired<T> extends PropOptions<T> {
 export type SetupProps<T extends object> = Readonly<
   LooseRequired<Readonly<ExtractPropTypes<T>>>
 >;
+
+export type ValidateEmit<T> = ValidateEmit1<T> | ValidateEmit2;
+
+export type ValidateEmit1<T> = ValueOf<{
+  [K in keyof T & `on${Capital}${string}`]: T[K] extends Callable | undefined
+    ? (
+        event: K extends `on${Capital}${infer B}`
+          ? K extends `on${infer A}${B}`
+            ? `${Uncapitalize<A>}${B}`
+            : never
+          : never,
+        ...args: Parameters<Exclude<T[K], undefined>>
+      ) => ReturnType<Exclude<T[K], undefined>>
+    : never;
+}>;
+
+export interface ValidateEmit2 {
+  /**
+   * Emits event.
+   *
+   * @param event - Event.
+   * @param args - Arguments.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (event: string, ...args: any[]): void;
+}
+
+export type ValidateProps<T> = Omit<T, `on${Capital}${string}`>;
 
 /**
  * Returns Vue reference compatible with non-public class methods.
@@ -106,18 +208,6 @@ export function createInjectable<T>(createDefault?: () => T): Injectable<T> {
 }
 
 /**
- * Creates extandable quasar component.
- *
- * @returns Extandable quasar component.
- */
-export function propsToPropDefinitions<
-  T extends object
->(): ExtendQuasarProps<T> {
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  return {} as ExtendQuasarProps<T>;
-}
-
-/**
  * Injects required value.
  *
  * @param key - Key.
@@ -150,8 +240,6 @@ export function propOptionsBoolean(defVal = false): PropOptionsBoolean {
   return { default: defVal, type: Boolean };
 }
 
-prop.boolean = propOptionsBoolean;
-
 /**
  * Creates Vue property.
  *
@@ -162,8 +250,6 @@ export function propOptionsDefault<T>(defVal: T): PropOptionsDefault<T> {
   return { default: defVal };
 }
 
-prop.default = propOptionsDefault;
-
 /**
  * Creates Vue property.
  *
@@ -173,7 +259,17 @@ export function propOptionsRequired<T>(): PropOptionsRequired<T> {
   return { required: true };
 }
 
-prop.required = propOptionsRequired;
+/**
+ * Creates extandable quasar component.
+ *
+ * @returns Extandable quasar component.
+ */
+export function propsToPropDefinitions<
+  T extends object
+>(): ExtendQuasarProps<T> {
+  // eslint-disable-next-line no-type-assertion/no-type-assertion
+  return {} as ExtendQuasarProps<T>;
+}
 
 /**
  * Validates emit function.
@@ -195,104 +291,6 @@ export function validateProps<T>(props: ValidateProps<T>): ValidateProps<T> {
   return props;
 }
 
-export type ValidateEmit<T> = ValidateEmit1<T> | ValidateEmit2;
-
-export type ValidateEmit1<T> = ValueOf<{
-  [K in keyof T & `on${Capital}${string}`]: T[K] extends Callable | undefined
-    ? (
-        event: K extends `on${Capital}${infer B}`
-          ? K extends `on${infer A}${B}`
-            ? `${Uncapitalize<A>}${B}`
-            : never
-          : never,
-        ...args: Parameters<Exclude<T[K], undefined>>
-      ) => ReturnType<Exclude<T[K], undefined>>
-    : never;
-}>;
-
-export interface ValidateEmit2 {
-  /**
-   * Emits event.
-   *
-   * @param event - Event.
-   * @param args - Arguments.
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (event: string, ...args: any[]): void;
-}
-
-export type ValidateProps<T> = Omit<T, `on${Capital}${string}`>;
-
-export interface GlobalComponent<P, S> {
-  /**
-   * Component constructor.
-   */
-  new (): {
-    $props: Emits & P & PublicProps;
-    $slots: S;
-  };
-}
-
-export type Emits = {
-  readonly [K in `on${Capital}${string}`]: () => void;
-};
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-export type Capital =
-  | "A"
-  | "B"
-  | "C"
-  | "D"
-  | "E"
-  | "F"
-  | "G"
-  | "H"
-  | "I"
-  | "J"
-  | "K"
-  | "L"
-  | "M"
-  | "N"
-  | "O"
-  | "P"
-  | "Q"
-  | "R"
-  | "S"
-  | "T"
-  | "U"
-  | "V"
-  | "W"
-  | "X"
-  | "Y"
-  | "Z";
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-export type NonCapital =
-  | "a"
-  | "b"
-  | "c"
-  | "d"
-  | "e"
-  | "f"
-  | "g"
-  | "h"
-  | "i"
-  | "j"
-  | "k"
-  | "l"
-  | "m"
-  | "n"
-  | "o"
-  | "p"
-  | "q"
-  | "r"
-  | "s"
-  | "t"
-  | "u"
-  | "v"
-  | "w"
-  | "x"
-  | "y"
-  | "z";
+prop.boolean = propOptionsBoolean;
+prop.default = propOptionsDefault;
+prop.required = propOptionsRequired;

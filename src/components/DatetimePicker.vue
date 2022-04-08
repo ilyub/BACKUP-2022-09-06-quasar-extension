@@ -103,19 +103,6 @@ export default defineComponent({
         : false
     );
 
-    function modelDt(): DateTime | undefined {
-      return is.not.empty(props.modelValue) &&
-        datetime.validate(props.modelValue)
-        ? datetime.create(props.modelValue)
-        : undefined;
-    }
-
-    function pickerDt(): DateTime | undefined {
-      return is.not.empty(pickerValue.value)
-        ? datetime.create(pickerValue.value)
-        : undefined;
-    }
-
     return {
       date: computed<string>(() => pickerDt()?.format("E, d MMM") ?? "\u2014"),
       dateOptions(date: string): boolean {
@@ -220,6 +207,19 @@ export default defineComponent({
       },
       year: computed<string>(() => pickerDt()?.format("yyyy") ?? "\u2013")
     };
+
+    function modelDt(): DateTime | undefined {
+      return is.not.empty(props.modelValue) &&
+        datetime.validate(props.modelValue)
+        ? datetime.create(props.modelValue)
+        : undefined;
+    }
+
+    function pickerDt(): DateTime | undefined {
+      return is.not.empty(pickerValue.value)
+        ? datetime.create(pickerValue.value)
+        : undefined;
+    }
   }
 });
 </script>

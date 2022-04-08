@@ -14,7 +14,16 @@ declare global {
   }
 }
 
+export const icons: Icons<keyof ModuleIcons> = baseIcons;
+
 export type GlobalTimeInput = GlobalComponent<TimeInputProps, TimeInputSlots>;
+
+export interface ModuleIcons {
+  readonly chevronDoubleLeft: true;
+  readonly chevronDoubleRight: true;
+  readonly chevronLeft: true;
+  readonly chevronRight: true;
+}
 
 export interface TimeInputOwnProps {
   readonly modelValue?: numberU;
@@ -34,12 +43,3 @@ export interface TimeInputProps
     TimeInputOwnProps {}
 
 export type TimeInputSlots = QFieldSlots;
-
-export interface ModuleIcons {
-  readonly chevronDoubleLeft: true;
-  readonly chevronDoubleRight: true;
-  readonly chevronLeft: true;
-  readonly chevronRight: true;
-}
-
-export const icons: Icons<keyof ModuleIcons> = baseIcons;

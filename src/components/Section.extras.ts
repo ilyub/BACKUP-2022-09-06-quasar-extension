@@ -3,9 +3,9 @@ import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 
 export type GlobalSection = GlobalComponent<SectionProps, SectionSlots>;
 
-export type SectionParentProps = SwitchableProps;
-
 export interface SectionOwnProps {}
+
+export type SectionParentProps = SwitchableProps;
 
 export interface SectionProps extends SectionParentProps, SectionOwnProps {}
 

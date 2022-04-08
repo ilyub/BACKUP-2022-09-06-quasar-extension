@@ -6,9 +6,9 @@ export type GlobalSubsection = GlobalComponent<
   SubsectionSlots
 >;
 
-export type SubsectionParentProps = SwitchableProps;
-
 export interface SubsectionOwnProps {}
+
+export type SubsectionParentProps = SwitchableProps;
 
 export interface SubsectionProps
   extends SubsectionParentProps,
