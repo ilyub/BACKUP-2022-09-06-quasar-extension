@@ -38,7 +38,7 @@ export default defineComponent({
   <q-card
     class="m-card"
     :style="{
-      minWidth
+      minWidth: minWidth
     }"
   >
     <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">

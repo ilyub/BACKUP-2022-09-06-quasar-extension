@@ -370,22 +370,20 @@ export default defineComponent({
           >
             <q-list>
               <slot
+                :all-selected="allSelected"
+                :deselect-all="deselectAll"
+                :deselect-all-disable="deselectAllDisable"
+                :deselect-all-icon="deselectAllIcon"
+                :deselect-all-label="deselectAllLabel"
                 :name="slotNames.headerMenuPrepend"
-                v-bind="{
-                  allSelected,
-                  deselectAll,
-                  deselectAllDisable,
-                  deselectAllIcon,
-                  deselectAllLabel,
-                  selectAll,
-                  selectAllDisable,
-                  selectAllIcon,
-                  selectAllLabel,
-                  toggleSelection,
-                  toggleSelectionDisable,
-                  toggleSelectionIcon,
-                  toggleSelectionLabel
-                }"
+                :select-all="selectAll"
+                :select-all-disable="selectAllDisable"
+                :select-all-icon="selectAllIcon"
+                :select-all-label="selectAllLabel"
+                :toggle-selection="toggleSelection"
+                :toggle-selection-disable="toggleSelectionDisable"
+                :toggle-selection-icon="toggleSelectionIcon"
+                :toggle-selection-label="toggleSelectionLabel"
               ></slot>
               <m-list-item
                 :caption="lang.ManageColumns"
@@ -393,43 +391,39 @@ export default defineComponent({
                 @click="manageColumnsShow = true"
               />
               <slot
+                :all-selected="allSelected"
+                :deselect-all="deselectAll"
+                :deselect-all-disable="deselectAllDisable"
+                :deselect-all-icon="deselectAllIcon"
+                :deselect-all-label="deselectAllLabel"
                 :name="slotNames.headerMenuAppend"
-                v-bind="{
-                  allSelected,
-                  deselectAll,
-                  deselectAllDisable,
-                  deselectAllIcon,
-                  deselectAllLabel,
-                  selectAll,
-                  selectAllDisable,
-                  selectAllIcon,
-                  selectAllLabel,
-                  toggleSelection,
-                  toggleSelectionDisable,
-                  toggleSelectionIcon,
-                  toggleSelectionLabel
-                }"
+                :select-all="selectAll"
+                :select-all-disable="selectAllDisable"
+                :select-all-icon="selectAllIcon"
+                :select-all-label="selectAllLabel"
+                :toggle-selection="toggleSelection"
+                :toggle-selection-disable="toggleSelectionDisable"
+                :toggle-selection-icon="toggleSelectionIcon"
+                :toggle-selection-label="toggleSelectionLabel"
               ></slot>
             </q-list>
           </m-menu>
           <th v-if="selectByCheckbox" class="m-table__selection-cell">
             <slot
+              :all-selected="allSelected"
+              :deselect-all="deselectAll"
+              :deselect-all-disable="deselectAllDisable"
+              :deselect-all-icon="deselectAllIcon"
+              :deselect-all-label="deselectAllLabel"
               :name="slotNames.headerSelection"
-              v-bind="{
-                allSelected,
-                deselectAll,
-                deselectAllDisable,
-                deselectAllIcon,
-                deselectAllLabel,
-                selectAll,
-                selectAllDisable,
-                selectAllIcon,
-                selectAllLabel,
-                toggleSelection,
-                toggleSelectionDisable,
-                toggleSelectionIcon,
-                toggleSelectionLabel
-              }"
+              :select-all="selectAll"
+              :select-all-disable="selectAllDisable"
+              :select-all-icon="selectAllIcon"
+              :select-all-label="selectAllLabel"
+              :toggle-selection="toggleSelection"
+              :toggle-selection-disable="toggleSelectionDisable"
+              :toggle-selection-icon="toggleSelectionIcon"
+              :toggle-selection-label="toggleSelectionLabel"
             >
               <q-checkbox
                 v-if="multiselect"
@@ -460,23 +454,21 @@ export default defineComponent({
               </div>
               <div class="m-table__header-cell__label">
                 <slot
+                  :all-selected="allSelected"
+                  :column="column"
+                  :deselect-all="deselectAll"
+                  :deselect-all-disable="deselectAllDisable"
+                  :deselect-all-icon="deselectAllIcon"
+                  :deselect-all-label="deselectAllLabel"
                   :name="slotNames.headerCell"
-                  v-bind="{
-                    allSelected,
-                    deselectAll,
-                    deselectAllDisable,
-                    deselectAllIcon,
-                    deselectAllLabel,
-                    selectAll,
-                    selectAllDisable,
-                    selectAllIcon,
-                    selectAllLabel,
-                    toggleSelection,
-                    toggleSelectionDisable,
-                    toggleSelectionIcon,
-                    toggleSelectionLabel,
-                    column
-                  }"
+                  :select-all="selectAll"
+                  :select-all-disable="selectAllDisable"
+                  :select-all-icon="selectAllIcon"
+                  :select-all-label="selectAllLabel"
+                  :toggle-selection="toggleSelection"
+                  :toggle-selection-disable="toggleSelectionDisable"
+                  :toggle-selection-icon="toggleSelectionIcon"
+                  :toggle-selection-label="toggleSelectionLabel"
                 >
                   {{ column.label }}
                 </slot>
@@ -511,43 +503,39 @@ export default defineComponent({
           @click="rowClick(data.row)"
         >
           <slot
+            :all-selected="allSelected"
+            :deselect-all="deselectAll"
+            :deselect-all-disable="deselectAllDisable"
+            :deselect-all-icon="deselectAllIcon"
+            :deselect-all-label="deselectAllLabel"
             :name="slotNames.bodyContext"
-            v-bind="{
-              allSelected,
-              deselectAll,
-              deselectAllDisable,
-              deselectAllIcon,
-              deselectAllLabel,
-              selectAll,
-              selectAllDisable,
-              selectAllIcon,
-              selectAllLabel,
-              toggleSelection,
-              toggleSelectionDisable,
-              toggleSelectionIcon,
-              toggleSelectionLabel,
-              row: data.row
-            }"
+            :row="data.row"
+            :select-all="selectAll"
+            :select-all-disable="selectAllDisable"
+            :select-all-icon="selectAllIcon"
+            :select-all-label="selectAllLabel"
+            :toggle-selection="toggleSelection"
+            :toggle-selection-disable="toggleSelectionDisable"
+            :toggle-selection-icon="toggleSelectionIcon"
+            :toggle-selection-label="toggleSelectionLabel"
           ></slot>
           <td v-if="selectByCheckbox" class="m-table__selection-cell">
             <slot
+              :all-selected="allSelected"
+              :deselect-all="deselectAll"
+              :deselect-all-disable="deselectAllDisable"
+              :deselect-all-icon="deselectAllIcon"
+              :deselect-all-label="deselectAllLabel"
               :name="slotNames.bodySelection"
-              v-bind="{
-                allSelected,
-                deselectAll,
-                deselectAllDisable,
-                deselectAllIcon,
-                deselectAllLabel,
-                selectAll,
-                selectAllDisable,
-                selectAllIcon,
-                selectAllLabel,
-                toggleSelection,
-                toggleSelectionDisable,
-                toggleSelectionIcon,
-                toggleSelectionLabel,
-                row: data.row
-              }"
+              :row="data.row"
+              :select-all="selectAll"
+              :select-all-disable="selectAllDisable"
+              :select-all-icon="selectAllIcon"
+              :select-all-label="selectAllLabel"
+              :toggle-selection="toggleSelection"
+              :toggle-selection-disable="toggleSelectionDisable"
+              :toggle-selection-icon="toggleSelectionIcon"
+              :toggle-selection-label="toggleSelectionLabel"
             >
               <q-checkbox v-model="data.selected" />
             </slot>
@@ -558,48 +546,44 @@ export default defineComponent({
             class="m-table__body-cell"
           >
             <slot
+              :all-selected="allSelected"
+              :column="column"
+              :deselect-all="deselectAll"
+              :deselect-all-disable="deselectAllDisable"
+              :deselect-all-icon="deselectAllIcon"
+              :deselect-all-label="deselectAllLabel"
               :name="slotNames.bodyCellContext"
-              v-bind="{
-                allSelected,
-                deselectAll,
-                deselectAllDisable,
-                deselectAllIcon,
-                deselectAllLabel,
-                selectAll,
-                selectAllDisable,
-                selectAllIcon,
-                selectAllLabel,
-                toggleSelection,
-                toggleSelectionDisable,
-                toggleSelectionIcon,
-                toggleSelectionLabel,
-                column,
-                row: data.row
-              }"
+              :row="data.row"
+              :select-all="selectAll"
+              :select-all-disable="selectAllDisable"
+              :select-all-icon="selectAllIcon"
+              :select-all-label="selectAllLabel"
+              :toggle-selection="toggleSelection"
+              :toggle-selection-disable="toggleSelectionDisable"
+              :toggle-selection-icon="toggleSelectionIcon"
+              :toggle-selection-label="toggleSelectionLabel"
             ></slot>
             <div
               class="m-table__body-cell__wrapper"
               :style="columnStyle(column)"
             >
               <slot
+                :all-selected="allSelected"
+                :column="column"
+                :deselect-all="deselectAll"
+                :deselect-all-disable="deselectAllDisable"
+                :deselect-all-icon="deselectAllIcon"
+                :deselect-all-label="deselectAllLabel"
                 :name="slotNames.bodyCell"
-                v-bind="{
-                  allSelected,
-                  deselectAll,
-                  deselectAllDisable,
-                  deselectAllIcon,
-                  deselectAllLabel,
-                  selectAll,
-                  selectAllDisable,
-                  selectAllIcon,
-                  selectAllLabel,
-                  toggleSelection,
-                  toggleSelectionDisable,
-                  toggleSelectionIcon,
-                  toggleSelectionLabel,
-                  row: data.row,
-                  column
-                }"
+                :row="data.row"
+                :select-all="selectAll"
+                :select-all-disable="selectAllDisable"
+                :select-all-icon="selectAllIcon"
+                :select-all-label="selectAllLabel"
+                :toggle-selection="toggleSelection"
+                :toggle-selection-disable="toggleSelectionDisable"
+                :toggle-selection-icon="toggleSelectionIcon"
+                :toggle-selection-label="toggleSelectionLabel"
               >
                 {{ column.field(data.row) }}
               </slot>
@@ -615,22 +599,20 @@ export default defineComponent({
     >
       <slot :name="slotNames.bottom" v-bind="data"></slot>
       <slot
+        :all-selected="allSelected"
+        :deselect-all="deselectAll"
+        :deselect-all-disable="deselectAllDisable"
+        :deselect-all-icon="deselectAllIcon"
+        :deselect-all-label="deselectAllLabel"
         :name="slotNames.steadyBottom"
-        v-bind="{
-          allSelected,
-          deselectAll,
-          deselectAllDisable,
-          deselectAllIcon,
-          deselectAllLabel,
-          selectAll,
-          selectAllDisable,
-          selectAllIcon,
-          selectAllLabel,
-          toggleSelection,
-          toggleSelectionDisable,
-          toggleSelectionIcon,
-          toggleSelectionLabel
-        }"
+        :select-all="selectAll"
+        :select-all-disable="selectAllDisable"
+        :select-all-icon="selectAllIcon"
+        :select-all-label="selectAllLabel"
+        :toggle-selection="toggleSelection"
+        :toggle-selection-disable="toggleSelectionDisable"
+        :toggle-selection-icon="toggleSelectionIcon"
+        :toggle-selection-label="toggleSelectionLabel"
       ></slot>
     </template>
     <template
@@ -639,22 +621,20 @@ export default defineComponent({
     >
       <slot :name="slotNames.noData" v-bind="data"></slot>
       <slot
+        :all-selected="allSelected"
+        :deselect-all="deselectAll"
+        :deselect-all-disable="deselectAllDisable"
+        :deselect-all-icon="deselectAllIcon"
+        :deselect-all-label="deselectAllLabel"
         :name="slotNames.steadyBottom"
-        v-bind="{
-          allSelected,
-          deselectAll,
-          deselectAllDisable,
-          deselectAllIcon,
-          deselectAllLabel,
-          selectAll,
-          selectAllDisable,
-          selectAllIcon,
-          selectAllLabel,
-          toggleSelection,
-          toggleSelectionDisable,
-          toggleSelectionIcon,
-          toggleSelectionLabel
-        }"
+        :select-all="selectAll"
+        :select-all-disable="selectAllDisable"
+        :select-all-icon="selectAllIcon"
+        :select-all-label="selectAllLabel"
+        :toggle-selection="toggleSelection"
+        :toggle-selection-disable="toggleSelectionDisable"
+        :toggle-selection-icon="toggleSelectionIcon"
+        :toggle-selection-label="toggleSelectionLabel"
       ></slot>
     </template>
   </q-table>
