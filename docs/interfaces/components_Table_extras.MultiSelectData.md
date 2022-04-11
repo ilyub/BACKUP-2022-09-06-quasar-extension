@@ -8,9 +8,9 @@
 
 - **`MultiSelectData`**
 
-  ↳ [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)
-
   ↳ [`BodyCellContextSlotData`](components_Table_extras.BodyCellContextSlotData.md)
+
+  ↳ [`BodyCellSlotData`](components_Table_extras.BodyCellSlotData.md)
 
   ↳ [`BodyContextSlotData`](components_Table_extras.BodyContextSlotData.md)
 

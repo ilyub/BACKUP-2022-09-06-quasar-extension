@@ -40,8 +40,8 @@
 - [propOptionsDefault](components_api.md#propoptionsdefault)
 - [propOptionsRequired](components_api.md#propoptionsrequired)
 - [propsToPropDefinitions](components_api.md#propstopropdefinitions)
-- [validateEmit](components_api.md#validateemit)
-- [validateProps](components_api.md#validateprops)
+- [validateEmit](components_api.md#validateemit-1)
+- [validateProps](components_api.md#validateprops-1)
 
 ## Type aliases
 

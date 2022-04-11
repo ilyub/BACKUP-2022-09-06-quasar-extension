@@ -601,7 +601,7 @@ ___
 
 ### type
 
-• `Optional` **type**: ``"number"`` \| ``"date"`` \| ``"time"`` \| ``"text"`` \| ``"password"`` \| ``"textarea"`` \| ``"email"`` \| ``"search"`` \| ``"tel"`` \| ``"file"`` \| ``"url"``
+• `Optional` **type**: ``"number"`` \| ``"date"`` \| ``"time"`` \| ``"email"`` \| ``"text"`` \| ``"password"`` \| ``"textarea"`` \| ``"search"`` \| ``"tel"`` \| ``"file"`` \| ``"url"``
 
 Input type
 Default value: text
