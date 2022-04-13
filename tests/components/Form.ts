@@ -1,12 +1,10 @@
-import { QForm } from "quasar";
-import { nextTick, watch } from "vue";
-import * as vueTestUtils from "@vue/test-utils";
-
 import type { Type } from "@skylib/facades/es/handlePromise";
 import { wait } from "@skylib/functions/es/helpers";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { unknowns } from "@skylib/functions/es/types/core";
-
+import * as vueTestUtils from "@vue/test-utils";
+import { QForm } from "quasar";
+import { nextTick, watch } from "vue";
 import Form from "@/components/Form.vue";
 import { injectDisable } from "@/components/Switchable.extras";
 import * as testUtils from "@/testUtils";

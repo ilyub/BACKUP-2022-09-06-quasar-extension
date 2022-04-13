@@ -1,8 +1,6 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import * as reflect from "@skylib/functions/es/reflect";
-
+import { defineComponent, ref } from "vue";
 import { provideSortableSettings } from "../components/Sortable.extras";
 
 export default defineComponent({

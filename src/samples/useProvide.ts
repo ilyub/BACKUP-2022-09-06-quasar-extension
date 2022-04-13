@@ -1,13 +1,11 @@
-import "typeface-roboto-multilang/cyrillic.css";
-import "typeface-roboto-multilang/latin-ext.css";
-import ru from "flag-icon-css/flags/1x1/ru.svg";
-import us from "flag-icon-css/flags/1x1/us.svg";
-import type { Ref } from "vue";
-import { ref } from "vue";
-
 import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import type { LocaleName } from "@skylib/functions/es/types/configurable";
-
+import ru from "flag-icon-css/flags/1x1/ru.svg";
+import us from "flag-icon-css/flags/1x1/us.svg";
+import "typeface-roboto-multilang/cyrillic.css";
+import "typeface-roboto-multilang/latin-ext.css";
+import type { Ref } from "vue";
+import { ref } from "vue";
 import { provideIconPickerSettings } from "../components/IconPicker.extras";
 import { provideLanguagePickerSettings } from "../components/LanguagePicker.extras";
 import { providePageLayoutSettings } from "../components/PageLayout.extras";

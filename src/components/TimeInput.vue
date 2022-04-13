@@ -1,14 +1,18 @@
 <script lang="ts">
-import { maska } from "maska";
-import { computed, defineComponent } from "vue";
-
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
-
+import { maska } from "maska";
+import { computed, defineComponent } from "vue";
+import type {
+  TimeInputOwnProps,
+  TimeInputParentProps,
+  TimeInputSlots
+} from "./TimeInput.extras";
+import { icons } from "./TimeInput.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -16,24 +20,6 @@ import {
   validateProps
 } from "./api";
 import { useSlotsNames } from "./api/slotNames";
-import type {
-  TimeInputOwnProps,
-  TimeInputParentProps,
-  TimeInputSlots
-} from "./TimeInput.extras";
-import { icons } from "./TimeInput.extras";
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepCeil(value: number, step: number): number {
-  return Math.ceil(value / step) * step;
-}
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepFloor(value: number, step: number): number {
-  return Math.floor(value / step) * step;
-}
 
 export default defineComponent({
   name: "m-time-input",
@@ -109,6 +95,18 @@ export default defineComponent({
     };
   }
 });
+
+// eslint-disable-next-line no-warning-comments
+// fixme
+function stepCeil(value: number, step: number): number {
+  return Math.ceil(value / step) * step;
+}
+
+// eslint-disable-next-line no-warning-comments
+// fixme
+function stepFloor(value: number, step: number): number {
+  return Math.floor(value / step) * step;
+}
 </script>
 
 <template>

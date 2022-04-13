@@ -2,12 +2,11 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Menu] */
 
 import { defineComponent } from "vue";
-
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type { ButtonSlots } from "./Button.extras";
 import type { MenuOwnProps, MenuParentProps } from "./Menu.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-menu",

@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import { createInjectable } from "@/components/api";
 import * as testUtils from "@/testUtils";
 

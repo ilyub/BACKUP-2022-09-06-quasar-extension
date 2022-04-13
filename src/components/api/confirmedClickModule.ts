@@ -1,10 +1,8 @@
-import { useQuasar } from "quasar";
-
 import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import { useQuasar } from "quasar";
 import type { ValidateEmit, ValidateProps } from ".";
 import { prop } from ".";
 

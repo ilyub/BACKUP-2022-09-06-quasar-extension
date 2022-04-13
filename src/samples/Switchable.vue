@@ -1,11 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import * as fn from "@skylib/functions/es/function";
-
+import { defineComponent, ref } from "vue";
 import type { OptionGroupOptions } from "../components/OptionGroup.extras";
 import type { Transition } from "../components/Switchable.extras";
-
 import { useProvide } from "./useProvide";
 
 export default defineComponent({

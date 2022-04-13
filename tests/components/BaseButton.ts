@@ -1,15 +1,36 @@
-import type { DialogChainObject } from "quasar";
-import { QBtn, QTooltip } from "quasar";
-import * as vueTestUtils from "@vue/test-utils";
-
 import { wait } from "@skylib/functions/es/helpers";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
 import type { Callable } from "@skylib/functions/es/types/function";
-
+import * as vueTestUtils from "@vue/test-utils";
+import { QBtn, QTooltip } from "quasar";
+import type { DialogChainObject } from "quasar";
 import BaseButton from "@/components/BaseButton.vue";
 import * as testUtils from "@/testUtils";
 
 functionsTestUtils.installFakeTimer();
+
+test("async сlick", async () => {
+  expect.assertions(2);
+
+  await functionsTestUtils.run(async () => {
+    const callback = jest.fn();
+
+    const wrapper = vueTestUtils.mount(BaseButton, {
+      global: testUtils.globalMountOptions(),
+      props: {
+        async asyncClick() {
+          await wait(500);
+          callback();
+        }
+      }
+    });
+
+    await wrapper.trigger("click");
+    expect(callback).not.toHaveBeenCalled();
+    await wait(1000);
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+});
 
 test("prop: confirmation", () => {
   const wrapper = vueTestUtils.mount(BaseButton, {
@@ -51,27 +72,4 @@ test("slot: default", () => {
   });
 
   expect(wrapper.find(".sample-class")).textToEqual("sample-contents");
-});
-
-test("async сlick", async () => {
-  expect.assertions(2);
-
-  await functionsTestUtils.run(async () => {
-    const callback = jest.fn();
-
-    const wrapper = vueTestUtils.mount(BaseButton, {
-      global: testUtils.globalMountOptions(),
-      props: {
-        async asyncClick() {
-          await wait(500);
-          callback();
-        }
-      }
-    });
-
-    await wrapper.trigger("click");
-    expect(callback).not.toHaveBeenCalled();
-    await wait(1000);
-    expect(callback).toHaveBeenCalledTimes(1);
-  });
 });

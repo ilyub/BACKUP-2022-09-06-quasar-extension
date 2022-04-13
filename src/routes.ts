@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from "vue-router";
-
 import { components } from "./samples";
 import Index from "./samples/Index.vue";
 

@@ -1,14 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
-import { prop, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 import {
   injectDisable,
   injectSwitchableSettings,
   provideDisable
 } from "./Switchable.extras";
+import { prop, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-switchable",

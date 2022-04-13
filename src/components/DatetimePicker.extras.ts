@@ -1,11 +1,9 @@
-import type { QFieldProps, QFieldSlots } from "quasar";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import type { QFieldProps, QFieldSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 
 declare global {

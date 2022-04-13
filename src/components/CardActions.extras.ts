@@ -1,5 +1,4 @@
 import type { QCardActionsProps, QCardActionsSlots } from "quasar";
-
 import type { GlobalComponent } from "./api";
 
 export interface CardActionsOwnProps {}

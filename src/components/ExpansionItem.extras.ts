@@ -1,5 +1,4 @@
 import type { QExpansionItemProps, QExpansionItemSlots } from "quasar";
-
 import type { GlobalComponent } from "./api";
 
 export interface ExpansionItemOwnProps {}

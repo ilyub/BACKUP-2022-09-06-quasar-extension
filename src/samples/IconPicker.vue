@@ -1,9 +1,7 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
 import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
-
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import { defineComponent, ref } from "vue";
 import { useProvide } from "./useProvide";
 
 export default defineComponent({

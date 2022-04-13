@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import IconButtonsGroup from "@/components/IconButtonsGroup.vue";
 import * as testUtils from "@/testUtils";
 

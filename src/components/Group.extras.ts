@@ -1,7 +1,5 @@
-import type { VNode } from "vue";
-
 import type { Rec, stringU } from "@skylib/functions/es/types/core";
-
+import type { VNode } from "vue";
 import type { GlobalComponent } from "./api";
 import type { RootElementProps } from "./api/rootElement";
 

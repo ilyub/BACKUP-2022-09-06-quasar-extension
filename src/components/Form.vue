@@ -1,12 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import type { Type } from "@skylib/facades/es/handlePromise";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as assert from "@skylib/functions/es/assertions";
-
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { defineComponent, ref } from "vue";
 import type {
   FormOwnProps,
   FormParentProps,
@@ -15,6 +11,8 @@ import type {
   OnSubmitAsync
 } from "./Form.extras";
 import { injectDisable, provideDisable } from "./Switchable.extras";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-form",

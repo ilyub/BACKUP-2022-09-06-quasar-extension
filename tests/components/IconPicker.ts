@@ -2,19 +2,17 @@
 
 /* eslint-disable jest/no-conditional-in-test */
 
-import { QBtn, QCard, QDialog } from "quasar";
-import type { ComponentPublicInstance } from "vue";
-import { nextTick } from "vue";
 import * as mdi from "@mdi/js-dynamic";
-import * as vueTestUtils from "@vue/test-utils";
-
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-
+import * as vueTestUtils from "@vue/test-utils";
+import { QBtn, QCard, QDialog } from "quasar";
+import { nextTick } from "vue";
+import type { ComponentPublicInstance } from "vue";
 import IconButton from "@/components/IconButton.vue";
 import IconPicker from "@/components/IconPicker.vue";
 import * as testUtils from "@/testUtils";

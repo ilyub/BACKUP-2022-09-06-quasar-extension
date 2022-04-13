@@ -1,7 +1,5 @@
-import * as vueTestUtils from "@vue/test-utils";
-
 import * as o from "@skylib/functions/es/object";
-
+import * as vueTestUtils from "@vue/test-utils";
 import type { PageLayoutSettings } from "@/components/PageLayout.extras";
 import PageLayout from "@/components/PageLayout.vue";
 import * as testUtils from "@/testUtils";

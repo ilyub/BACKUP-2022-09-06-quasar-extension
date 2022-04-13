@@ -1,10 +1,8 @@
-import * as vueTestUtils from "@vue/test-utils";
-
 import * as o from "@skylib/functions/es/object";
-
-import type { RootElementProp } from "@/components/api/rootElement";
+import * as vueTestUtils from "@vue/test-utils";
 import type { GroupItems } from "@/components/Group.extras";
 import Group from "@/components/Group.vue";
+import type { RootElementProp } from "@/components/api/rootElement";
 import * as testUtils from "@/testUtils";
 
 const rootElement1: RootElementProp = "div";

@@ -1,7 +1,6 @@
 import { icons } from "@skylib/facades/es/icons";
 import * as frameworkTestUtils from "@skylib/framework/es/testUtils";
 import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-
 import { icons as iconsImplementation } from "./src/boot/icons";
 import { definitions } from "./src/boot/lang";
 import * as testUtils from "./src/testUtils";

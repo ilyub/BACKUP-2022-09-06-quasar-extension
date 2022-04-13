@@ -1,10 +1,9 @@
 <script lang="ts">
+import * as _ from "lodash-es";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
-import * as _ from "lodash-es";
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
-
 import { components } from "./samples";
 import { useProvide } from "./samples/useProvide";
 

@@ -1,7 +1,6 @@
 import type { VNode } from "vue";
-
-import type { GlobalComponent } from "./api";
 import type { SortableProps, SortableSlots } from "./Sortable.extras";
+import type { GlobalComponent } from "./api";
 
 export interface DroppableOwnProps {}
 

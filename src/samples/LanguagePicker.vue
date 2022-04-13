@@ -1,8 +1,6 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-
 import { lang } from "@skylib/facades/es/lang";
-
+import { defineComponent } from "vue";
 import { useProvide } from "./useProvide";
 
 export default defineComponent({

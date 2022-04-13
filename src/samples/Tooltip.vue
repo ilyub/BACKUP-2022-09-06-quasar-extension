@@ -1,5 +1,4 @@
 <script lang="ts">
-import { defineComponent } from "vue";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -7,7 +6,7 @@ import {
   mdiArrowUp,
   mdiMenu
 } from "@mdi/js";
-
+import { defineComponent } from "vue";
 import { useProvide } from "./useProvide";
 
 export default defineComponent({

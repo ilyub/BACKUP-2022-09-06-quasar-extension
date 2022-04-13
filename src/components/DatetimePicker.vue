@@ -1,14 +1,18 @@
 <script lang="ts">
-import type { QField } from "quasar";
-import { computed, defineComponent, ref } from "vue";
-
 import { compare } from "@skylib/facades/es/compare";
 import type { DateTime } from "@skylib/facades/es/datetime";
 import { datetime } from "@skylib/facades/es/datetime";
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import type { QField } from "quasar";
+import { computed, defineComponent, ref } from "vue";
+import type {
+  DatetimePickerOwnProps,
+  DatetimePickerParentProps,
+  DatetimePickerSlots
+} from "./DatetimePicker.extras";
+import { icons, lang } from "./DatetimePicker.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -16,17 +20,6 @@ import {
   validateProps
 } from "./api";
 import { useSlotsNames } from "./api/slotNames";
-import type {
-  DatetimePickerOwnProps,
-  DatetimePickerParentProps,
-  DatetimePickerSlots
-} from "./DatetimePicker.extras";
-import { icons, lang } from "./DatetimePicker.extras";
-
-interface Time {
-  readonly hours: number;
-  readonly minutes: number;
-}
 
 export default defineComponent({
   name: "m-datetime-picker",
@@ -222,6 +215,11 @@ export default defineComponent({
     }
   }
 });
+
+interface Time {
+  readonly hours: number;
+  readonly minutes: number;
+}
 </script>
 
 <template>

@@ -1,6 +1,5 @@
-import { QInput } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
-
+import { QInput } from "quasar";
 import Input from "@/components/Input.vue";
 import * as testUtils from "@/testUtils";
 

@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent } from "vue";
 import { mdiCheck } from "@mdi/js";
-
 import { wait } from "@skylib/functions/es/helpers";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-button",

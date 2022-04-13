@@ -1,10 +1,6 @@
 <script lang="ts">
 // eslint-disable-next-line no-warning-comments
 // fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
-import * as _ from "lodash-es";
-import type { QDialog, QTable } from "quasar";
-import { computed, defineComponent, ref } from "vue";
-
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
@@ -19,15 +15,9 @@ import type {
   objects,
   Writable
 } from "@skylib/functions/es/types/core";
-
-import {
-  prop,
-  propsToPropDefinitions,
-  validateEmit,
-  validateProps
-} from "./api";
-import { useSlotsNames } from "./api/slotNames";
-import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
+import * as _ from "lodash-es";
+import type { QDialog, QTable } from "quasar";
+import { computed, defineComponent, ref } from "vue";
 import { genericSortable } from "./Sortable.generic";
 import type {
   Column,
@@ -49,10 +39,14 @@ import {
   isPagination,
   lang
 } from "./Table.extras";
-
-interface SortMethod {
-  (rows: objects): objects;
-}
+import {
+  prop,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
+import { useSlotsNames } from "./api/slotNames";
+import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
 
 export default defineComponent({
   name: "m-table",
@@ -325,6 +319,10 @@ export default defineComponent({
     };
   }
 });
+
+interface SortMethod {
+  (rows: objects): objects;
+}
 </script>
 
 <template>

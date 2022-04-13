@@ -1,6 +1,3 @@
-import type { WatchStopHandle } from "vue";
-import { computed, reactive, watch } from "vue";
-
 import type {
   Facade,
   Handler,
@@ -9,6 +6,8 @@ import type {
 } from "@skylib/facades/es/reactiveStorage";
 import * as fn from "@skylib/functions/es/function";
 import * as o from "@skylib/functions/es/object";
+import { computed, reactive, watch } from "vue";
+import type { WatchStopHandle } from "vue";
 
 declare global {
   namespace facades {

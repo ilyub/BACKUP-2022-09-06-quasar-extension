@@ -2,14 +2,13 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[CardSection] */
 
 import { defineComponent } from "vue";
-
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type {
   CardSectionOwnProps,
   CardSectionParentProps,
   CardSectionSlots
 } from "./CardSection.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-card-section",

@@ -1,13 +1,11 @@
+import * as a from "@skylib/functions/es/array";
+import * as fn from "@skylib/functions/es/function";
 import { route } from "quasar/wrappers";
 import {
   createRouter,
   createWebHashHistory,
   createWebHistory
 } from "vue-router";
-
-import * as a from "@skylib/functions/es/array";
-import * as fn from "@skylib/functions/es/function";
-
 import { routes } from "../routes";
 
 export default route(() => {

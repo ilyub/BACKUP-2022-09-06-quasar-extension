@@ -1,6 +1,5 @@
-import { watch } from "vue";
 import * as vueTestUtils from "@vue/test-utils";
-
+import { watch } from "vue";
 import type {
   SwitchableSettings,
   Transition

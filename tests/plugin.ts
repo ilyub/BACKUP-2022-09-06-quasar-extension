@@ -1,7 +1,5 @@
-import type { App } from "vue";
-
 import * as assert from "@skylib/functions/es/assertions";
-
+import type { App } from "vue";
 import { plugin } from "@/plugin";
 
 test("plugin", () => {

@@ -3,10 +3,9 @@ import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { Lang } from "@skylib/facades/es/lang";
 import { lang as baseLang } from "@skylib/facades/es/lang";
 import type { numberU, stringU } from "@skylib/functions/es/types/core";
-
+import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
-import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 
 declare global {
   namespace facades {

@@ -1,6 +1,5 @@
-import { QKnob } from "quasar";
 import * as testUtils from "@vue/test-utils";
-
+import { QKnob } from "quasar";
 import Knob from "@/components/Knob.vue";
 
 test("knob", () => {

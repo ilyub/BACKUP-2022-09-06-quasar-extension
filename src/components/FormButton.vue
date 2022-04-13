@@ -1,13 +1,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type {
   FormButtonOwnProps,
   FormButtonParentProps,
   FormButtonSlots
 } from "./FormButton.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-form-button",

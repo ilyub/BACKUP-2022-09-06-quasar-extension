@@ -1,5 +1,4 @@
 import * as o from "@skylib/functions/es/object";
-
 import type { GlobalBaseButton } from "./BaseButton.extras";
 import BaseButton from "./BaseButton.vue";
 import type { GlobalButton } from "./Button.extras";
@@ -70,6 +69,44 @@ import Toggle from "./Toggle.vue";
 import type { GlobalTooltip } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
 
+export const components = o.freeze([
+  BaseButton,
+  Button,
+  ButtonsGroup,
+  Card,
+  CardActions,
+  CardSection,
+  DatetimePicker,
+  Droppable,
+  ExpansionItem,
+  Form,
+  FormButton,
+  Group,
+  IconButton,
+  IconButtonsGroup,
+  IconPicker,
+  Indent,
+  Input,
+  Knob,
+  LanguagePicker,
+  ListItem,
+  Menu,
+  NumericInput,
+  OptionGroup,
+  PageLayout,
+  PageSection,
+  Resizer,
+  Section,
+  Select,
+  Sortable,
+  Subsection,
+  Switchable,
+  Table,
+  TimeInput,
+  Tooltip,
+  Toggle
+]);
+
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
     readonly "m-base-button": GlobalBaseButton;
@@ -108,41 +145,3 @@ declare module "@vue/runtime-core" {
     readonly "m-tooltip": GlobalTooltip;
   }
 }
-
-export const components = o.freeze([
-  BaseButton,
-  Button,
-  ButtonsGroup,
-  Card,
-  CardActions,
-  CardSection,
-  DatetimePicker,
-  Droppable,
-  ExpansionItem,
-  Form,
-  FormButton,
-  Group,
-  IconButton,
-  IconButtonsGroup,
-  IconPicker,
-  Indent,
-  Input,
-  Knob,
-  LanguagePicker,
-  ListItem,
-  Menu,
-  NumericInput,
-  OptionGroup,
-  PageLayout,
-  PageSection,
-  Resizer,
-  Section,
-  Select,
-  Sortable,
-  Subsection,
-  Switchable,
-  Table,
-  TimeInput,
-  Tooltip,
-  Toggle
-]);

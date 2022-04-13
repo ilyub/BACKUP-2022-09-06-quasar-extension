@@ -1,9 +1,4 @@
-import type { ComponentConstructor } from "quasar";
-import type { Component, ComponentPublicInstance, Directive } from "vue";
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
-import type * as vueTestUtils from "@vue/test-utils";
-import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
-
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
@@ -12,7 +7,10 @@ import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type * as testUtils from "@skylib/functions/es/testUtils";
 import type { WritableRecord } from "@skylib/functions/es/types/core";
-
+import type * as vueTestUtils from "@vue/test-utils";
+import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
+import type { ComponentConstructor } from "quasar";
+import type { Component, ComponentPublicInstance, Directive } from "vue";
 import { components } from "../components";
 import type { IconPickerSettings } from "../components/IconPicker.extras";
 import { testIconPickerSettings } from "../components/IconPicker.extras";

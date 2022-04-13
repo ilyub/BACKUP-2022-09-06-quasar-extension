@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import NumericInput from "@/components/NumericInput.vue";
 import * as testUtils from "@/testUtils";
 

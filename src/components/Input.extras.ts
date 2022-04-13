@@ -1,7 +1,5 @@
-import type { QInputProps, QInputSlots } from "quasar";
-
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
-
+import type { QInputProps, QInputSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 
 export type GlobalInput = GlobalComponent<InputProps, InputSlots>;

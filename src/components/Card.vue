@@ -1,14 +1,12 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Card] */
 
-import { computed, defineComponent } from "vue";
-
 import * as is from "@skylib/functions/es/guards";
-
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { computed, defineComponent } from "vue";
 import type { CardOwnProps, CardParentProps, CardSlots } from "./Card.extras";
 import { icons } from "./Card.extras";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-card",

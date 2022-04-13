@@ -1,11 +1,9 @@
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-
 import * as a from "@skylib/functions/es/array";
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as o from "@skylib/functions/es/object";
-
+import { computed, defineComponent, ref } from "vue";
 import type {
   Column,
   Columns,
@@ -15,13 +13,6 @@ import type {
   Pagination
 } from "../components/Table.extras";
 import { genericTable } from "../components/Table.generic";
-
-interface TableItem {
-  readonly id: number;
-  readonly name: string;
-}
-
-type TableItems = readonly TableItem[];
 
 export default defineComponent({
   name: "sample-table",
@@ -121,6 +112,13 @@ export default defineComponent({
     };
   }
 });
+
+interface TableItem {
+  readonly id: number;
+  readonly name: string;
+}
+
+type TableItems = readonly TableItem[];
 </script>
 
 <template>

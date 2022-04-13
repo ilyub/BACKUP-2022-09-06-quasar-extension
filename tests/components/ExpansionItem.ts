@@ -1,6 +1,5 @@
-import { QExpansionItem } from "quasar";
 import * as testUtils from "@vue/test-utils";
-
+import { QExpansionItem } from "quasar";
 import ExpansionItem from "@/components/ExpansionItem.vue";
 
 test("knob", () => {

@@ -1,10 +1,8 @@
-import type { QCardProps } from "quasar";
-import type { VNode } from "vue";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
-
+import type { QCardProps } from "quasar";
+import type { VNode } from "vue";
 import type { GlobalComponent } from "./api";
 
 declare global {

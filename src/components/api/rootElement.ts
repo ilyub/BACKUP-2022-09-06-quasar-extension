@@ -1,16 +1,13 @@
-import type { ComputedRef } from "vue";
-import { computed } from "vue";
-
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/helpers";
-
+import type { ComputedRef } from "vue";
+import { computed } from "vue";
 // eslint-disable-next-line import/no-relative-parent-imports
 import PageSection from "../PageSection.vue";
 // eslint-disable-next-line import/no-relative-parent-imports
 import Section from "../Section.vue";
 // eslint-disable-next-line import/no-relative-parent-imports
 import Subsection from "../Subsection.vue";
-
 import type { SetupProps } from ".";
 import { prop } from ".";
 

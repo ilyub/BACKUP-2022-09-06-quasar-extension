@@ -1,5 +1,5 @@
-import type { GlobalComponent } from "./api";
 import type { BaseButtonProps, BaseButtonSlots } from "./BaseButton.extras";
+import type { GlobalComponent } from "./api";
 
 export interface ButtonOwnProps {}
 

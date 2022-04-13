@@ -1,7 +1,3 @@
-import type { QTableProps, QTableSlots } from "quasar";
-import type { ComputedRef, Ref, VNode } from "vue";
-import { computed, ref } from "vue";
-
 import type { Icons } from "@skylib/facades/es/icons";
 import { icons as baseIcons } from "@skylib/facades/es/icons";
 import type { Lang } from "@skylib/facades/es/lang";
@@ -14,7 +10,9 @@ import type {
   objects,
   stringU
 } from "@skylib/functions/es/types/core";
-
+import type { QTableProps, QTableSlots } from "quasar";
+import { computed, ref } from "vue";
+import type { ComputedRef, Ref, VNode } from "vue";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 

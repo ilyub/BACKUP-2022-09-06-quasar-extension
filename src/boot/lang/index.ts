@@ -1,7 +1,6 @@
 import type { Definitions } from "@skylib/framework/es/facade-implementations/lang/dictionary";
 import type { LocaleName } from "@skylib/functions/es/types/configurable";
 import type { Rec } from "@skylib/functions/es/types/core";
-
 import { en } from "./en";
 import { ru } from "./ru";
 

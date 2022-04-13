@@ -1,13 +1,17 @@
 <script lang="ts">
-import { maska } from "maska";
-import { computed, defineComponent } from "vue";
-
 import * as assert from "@skylib/functions/es/assertions";
 import * as cast from "@skylib/functions/es/converters";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
-
+import { maska } from "maska";
+import { computed, defineComponent } from "vue";
+import type {
+  NumericInputOwnProps,
+  NumericInputParentProps,
+  NumericInputSlots
+} from "./NumericInput.extras";
+import { icons } from "./NumericInput.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -15,24 +19,6 @@ import {
   validateProps
 } from "./api";
 import { useSlotsNames } from "./api/slotNames";
-import type {
-  NumericInputOwnProps,
-  NumericInputParentProps,
-  NumericInputSlots
-} from "./NumericInput.extras";
-import { icons } from "./NumericInput.extras";
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepCeil(value: number, step: number, from: number): number {
-  return Math.ceil((value - from) / step) * step + from;
-}
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepFloor(value: number, step: number, from: number): number {
-  return Math.floor((value - from) / step) * step + from;
-}
 
 export default defineComponent({
   name: "m-numeric-input",
@@ -106,6 +92,18 @@ export default defineComponent({
     };
   }
 });
+
+// eslint-disable-next-line no-warning-comments
+// fixme
+function stepCeil(value: number, step: number, from: number): number {
+  return Math.ceil((value - from) / step) * step + from;
+}
+
+// eslint-disable-next-line no-warning-comments
+// fixme
+function stepFloor(value: number, step: number, from: number): number {
+  return Math.floor((value - from) / step) * step + from;
+}
 </script>
 
 <template>

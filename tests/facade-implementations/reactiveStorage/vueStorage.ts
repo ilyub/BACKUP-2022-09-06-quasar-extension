@@ -1,6 +1,5 @@
-import { nextTick } from "vue";
-
 import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
+import { nextTick } from "vue";
 
 test("reactiveStorage", async () => {
   const callback = jest.fn();

@@ -1,3 +1,9 @@
+import * as assert from "@skylib/functions/es/assertions";
+import type * as is from "@skylib/functions/es/guards";
+import * as o from "@skylib/functions/es/object";
+import type { Rec, WritableRecord } from "@skylib/functions/es/types/core";
+import type { Callable } from "@skylib/functions/es/types/function";
+import type { Join2 } from "@skylib/functions/es/types/object";
 import type { PublicProps } from "quasar";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
@@ -11,11 +17,44 @@ import type {
 } from "vue";
 import { computed, inject, provide, ref } from "vue";
 
-import * as assert from "@skylib/functions/es/assertions";
-import type * as is from "@skylib/functions/es/guards";
-import type { Rec, WritableRecord } from "@skylib/functions/es/types/core";
-import type { Callable } from "@skylib/functions/es/types/function";
-import type { Join2 } from "@skylib/functions/es/types/object";
+/**
+ * Creates Vue property.
+ *
+ * @returns Vue property.
+ */
+export const prop = o.extend(
+  <T>(): PropOptions<T | undefined> => {
+    return {};
+  },
+  {
+    /**
+     * Creates Vue property.
+     *
+     * @param defVal - Default value.
+     * @returns Vue property.
+     */
+    boolean(defVal = false): PropOptionsBoolean {
+      return { default: defVal, type: Boolean };
+    },
+    /**
+     * Creates Vue property.
+     *
+     * @param defVal - Default value.
+     * @returns Vue property.
+     */
+    default<T>(defVal: T): PropOptionsDefault<T> {
+      return { default: defVal };
+    },
+    /**
+     * Creates Vue property.
+     *
+     * @returns Vue property.
+     */
+    required<T>(): PropOptionsRequired<T> {
+      return { required: true };
+    }
+  }
+);
 
 // eslint-disable-next-line no-warning-comments
 // fixme
@@ -222,44 +261,6 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
 }
 
 /**
- * Creates Vue property.
- *
- * @returns Vue property.
- */
-export function prop<T>(): PropOptions<T | undefined> {
-  return {};
-}
-
-/**
- * Creates Vue property.
- *
- * @param defVal - Default value.
- * @returns Vue property.
- */
-export function propOptionsBoolean(defVal = false): PropOptionsBoolean {
-  return { default: defVal, type: Boolean };
-}
-
-/**
- * Creates Vue property.
- *
- * @param defVal - Default value.
- * @returns Vue property.
- */
-export function propOptionsDefault<T>(defVal: T): PropOptionsDefault<T> {
-  return { default: defVal };
-}
-
-/**
- * Creates Vue property.
- *
- * @returns Vue property.
- */
-export function propOptionsRequired<T>(): PropOptionsRequired<T> {
-  return { required: true };
-}
-
-/**
  * Creates extandable quasar component.
  *
  * @returns Extandable quasar component.
@@ -290,7 +291,3 @@ export function validateEmit<T>(emit: ValidateEmit<T>): ValidateEmit<T> {
 export function validateProps<T>(props: ValidateProps<T>): ValidateProps<T> {
   return props;
 }
-
-prop.boolean = propOptionsBoolean;
-prop.default = propOptionsDefault;
-prop.required = propOptionsRequired;

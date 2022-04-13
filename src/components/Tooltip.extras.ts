@@ -1,11 +1,9 @@
-import type { QTooltipProps, QTooltipSlots } from "quasar";
-import type { Ref } from "vue";
-import { computed, onUnmounted, ref, watch } from "vue";
-
 import * as is from "@skylib/functions/es/guards";
 import { createValidationObject } from "@skylib/functions/es/helpers";
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import type { QTooltipProps, QTooltipSlots } from "quasar";
+import type { Ref } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 

@@ -1,6 +1,5 @@
-import { QTooltip } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
-
+import { QTooltip } from "quasar";
 import type { Direction } from "@/components/Tooltip.extras";
 import Tooltip from "@/components/Tooltip.vue";
 import * as testUtils from "@/testUtils";

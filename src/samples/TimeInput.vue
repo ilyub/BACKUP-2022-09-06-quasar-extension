@@ -1,7 +1,6 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import type { numberU } from "@skylib/functions/es/types/core";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-time-input",

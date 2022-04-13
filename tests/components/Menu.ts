@@ -1,7 +1,6 @@
+import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
 import { nextTick } from "vue";
-import * as vueTestUtils from "@vue/test-utils";
-
 import Menu from "@/components/Menu.vue";
 import { disabled } from "@/components/Tooltip.extras";
 import * as testUtils from "@/testUtils";

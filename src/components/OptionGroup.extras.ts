@@ -1,5 +1,4 @@
 import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
-
 import type { GlobalComponent } from "./api";
 
 export type GlobalOptionGroup<T = unknown> = GlobalComponent<

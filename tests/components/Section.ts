@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import Section from "@/components/Section.vue";
 import * as testUtils from "@/testUtils";
 

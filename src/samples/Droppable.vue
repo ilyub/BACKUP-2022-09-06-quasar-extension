@@ -1,10 +1,8 @@
 <script lang="ts">
-import { useQuasar } from "quasar";
-import { defineComponent, ref } from "vue";
-
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
-
+import { useQuasar } from "quasar";
+import { defineComponent, ref } from "vue";
 import { provideSortableSettings } from "../components/Sortable.extras";
 
 export default defineComponent({

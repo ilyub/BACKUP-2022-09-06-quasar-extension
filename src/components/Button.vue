@@ -1,13 +1,12 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type {
   ButtonOwnProps,
   ButtonParentProps,
   ButtonSlots
 } from "./Button.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-button",

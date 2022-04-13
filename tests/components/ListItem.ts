@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import ListItem from "@/components/ListItem.vue";
 import * as testUtils from "@/testUtils";
 

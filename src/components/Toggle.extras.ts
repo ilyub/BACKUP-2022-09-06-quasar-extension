@@ -1,5 +1,4 @@
 import type { QToggleProps, QToggleSlots } from "quasar";
-
 import type { GlobalComponent } from "./api";
 
 export type GlobalToggle = GlobalComponent<ToggleProps, ToggleSlots>;

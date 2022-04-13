@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import TimeInput from "@/components/TimeInput.vue";
 import * as testUtils from "@/testUtils";
 

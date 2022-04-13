@@ -1,6 +1,5 @@
-import { QToggle } from "quasar";
 import * as testUtils from "@vue/test-utils";
-
+import { QToggle } from "quasar";
 import Toggle from "@/components/Toggle.vue";
 
 test("toggle", () => {

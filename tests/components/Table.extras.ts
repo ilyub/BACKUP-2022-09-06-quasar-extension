@@ -1,7 +1,5 @@
-import { computed } from "vue";
-
 import type { booleanU, stringU } from "@skylib/functions/es/types/core";
-
+import { computed } from "vue";
 import type { TableState } from "@/components/Table.extras";
 import { useTableState } from "@/components/Table.extras";
 

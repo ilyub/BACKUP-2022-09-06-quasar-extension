@@ -1,18 +1,9 @@
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
-
-import {
-  prop,
-  propsToPropDefinitions,
-  validateEmit,
-  validateProps
-} from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { computed, defineComponent } from "vue";
 import type { ButtonSlots } from "./Button.extras";
 import type {
   SelectOption,
@@ -21,6 +12,13 @@ import type {
   SelectParentProps
 } from "./Select.extras";
 import { isSelectOption, lang } from "./Select.extras";
+import {
+  prop,
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps
+} from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-select",

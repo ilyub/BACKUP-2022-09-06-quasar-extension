@@ -1,5 +1,5 @@
-import type { GlobalComponent } from "./api";
 import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
+import type { GlobalComponent } from "./api";
 
 export type GlobalSubsection = GlobalComponent<
   SubsectionProps,

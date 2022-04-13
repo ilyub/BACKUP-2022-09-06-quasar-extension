@@ -1,12 +1,10 @@
-import { nextTick } from "vue";
-import VueDraggable from "vuedraggable";
-import * as vueTestUtils from "@vue/test-utils";
-
 import * as assert from "@skylib/functions/es/assertions";
 import * as fn from "@skylib/functions/es/function";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
-
+import * as vueTestUtils from "@vue/test-utils";
+import { nextTick } from "vue";
+import VueDraggable from "vuedraggable";
 import { buildElements } from "@/components/Sortable.extras";
 import Sortable from "@/components/Sortable.vue";
 import { disabled } from "@/components/Tooltip.extras";
@@ -72,6 +70,28 @@ test("emit: dropped", () => {
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
 
+test("emit: update:modelValue", () => {
+  const wrapper = vueTestUtils.mount(Sortable, {
+    global: testUtils.globalMountOptions({}),
+    props
+  });
+
+  const newGroup = "another-group";
+
+  const newItem = { id: "id4", name: "Name 4" };
+
+  const newItems = [...items, newItem];
+
+  const elements = [
+    ...buildElements(items, group, itemKey),
+    ...buildElements([newItem], newGroup, itemKey)
+  ];
+
+  wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
+  expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
+});
+
 test("end, start", async () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions(),
@@ -104,26 +124,25 @@ test("end, start", async () => {
   }
 });
 
-test("emit: update:modelValue", () => {
+test("itemClick", async () => {
   const wrapper = vueTestUtils.mount(Sortable, {
     global: testUtils.globalMountOptions({}),
-    props
+    props: {
+      group,
+      itemClass: "m-sortable__sample-item",
+      itemKey,
+      modelValue: items
+    }
   });
 
-  const newGroup = "another-group";
+  const elem = testUtils.findElementFactory(".m-sortable__", wrapper);
 
-  const newItem = { id: "id4", name: "Name 4" };
+  const expected = [[items[0]], [items[1]], [items[2]]];
 
-  const newItems = [...items, newItem];
-
-  const elements = [
-    ...buildElements(items, group, itemKey),
-    ...buildElements([newItem], newGroup, itemKey)
-  ];
-
-  wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
-  expect(wrapper.emitted("dropped")).toStrictEqual([[newItem, newGroup]]);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
+  await elem("sample-item:nth-child(1)").trigger("click");
+  await elem("sample-item:nth-child(2)").trigger("click");
+  await elem("sample-item:nth-child(3)").trigger("click");
+  expect(wrapper.emitted("itemClick")).toStrictEqual(expected);
 });
 
 test.each([
@@ -180,25 +199,4 @@ test.each([
     source.id,
     source.group
   );
-});
-
-test("itemClick", async () => {
-  const wrapper = vueTestUtils.mount(Sortable, {
-    global: testUtils.globalMountOptions({}),
-    props: {
-      group,
-      itemClass: "m-sortable__sample-item",
-      itemKey,
-      modelValue: items
-    }
-  });
-
-  const elem = testUtils.findElementFactory(".m-sortable__", wrapper);
-
-  const expected = [[items[0]], [items[1]], [items[2]]];
-
-  await elem("sample-item:nth-child(1)").trigger("click");
-  await elem("sample-item:nth-child(2)").trigger("click");
-  await elem("sample-item:nth-child(3)").trigger("click");
-  expect(wrapper.emitted("itemClick")).toStrictEqual(expected);
 });

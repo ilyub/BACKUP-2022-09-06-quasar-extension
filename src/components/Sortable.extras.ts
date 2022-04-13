@@ -1,11 +1,9 @@
-import type { VNode } from "vue";
-
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as json from "@skylib/functions/es/json";
 import * as reflect from "@skylib/functions/es/reflect";
 import type { objects, stringU } from "@skylib/functions/es/types/core";
-
+import type { VNode } from "vue";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
 

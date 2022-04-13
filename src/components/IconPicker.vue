@@ -1,7 +1,4 @@
 <script lang="ts">
-import * as _ from "lodash-es";
-import { computed, defineComponent, ref, watch } from "vue";
-
 import { handlePromise } from "@skylib/facades/es/handlePromise";
 import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
 import { inlineSearch } from "@skylib/facades/es/inlineSearch";
@@ -10,39 +7,19 @@ import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as o from "@skylib/functions/es/object";
 import type { stringU, Writable } from "@skylib/functions/es/types/core";
-
+import * as _ from "lodash-es";
+import { computed, defineComponent, ref, watch } from "vue";
+import type {
+  IconPickerOwnProps,
+  IconPickerParentProps
+} from "./IconPicker.extras";
+import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import {
   prop,
   propsToPropDefinitions,
   validateEmit,
   validateProps
 } from "./api";
-import type {
-  IconPickerOwnProps,
-  IconPickerParentProps
-} from "./IconPicker.extras";
-import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
-
-interface Button {
-  readonly icon?: string;
-  readonly padding: boolean;
-  readonly selected: boolean;
-  readonly tooltip?: stringU;
-}
-
-type Buttons = readonly Button[];
-
-type Frame = readonly Buttons[];
-
-interface Item {
-  readonly description: string;
-  readonly id: keyof Mdi;
-}
-
-type Items = readonly Item[];
-
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-type Mdi = typeof import("@mdi/js-dynamic");
 
 const mdi = ref<Mdi | undefined>(undefined);
 
@@ -179,6 +156,27 @@ export default defineComponent({
     };
   }
 });
+
+interface Button {
+  readonly icon?: string;
+  readonly padding: boolean;
+  readonly selected: boolean;
+  readonly tooltip?: stringU;
+}
+
+type Buttons = readonly Button[];
+
+type Frame = readonly Buttons[];
+
+interface Item {
+  readonly description: string;
+  readonly id: keyof Mdi;
+}
+
+type Items = readonly Item[];
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+type Mdi = typeof import("@mdi/js-dynamic");
 </script>
 
 <template>

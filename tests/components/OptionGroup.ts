@@ -1,6 +1,5 @@
-import { QOptionGroup } from "quasar";
 import * as testUtils from "@vue/test-utils";
-
+import { QOptionGroup } from "quasar";
 import type { OptionGroupOptions } from "@/components/OptionGroup.extras";
 import OptionGroup from "@/components/OptionGroup.vue";
 

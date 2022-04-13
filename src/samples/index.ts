@@ -1,5 +1,4 @@
 import * as o from "@skylib/functions/es/object";
-
 import Button from "./Button.vue";
 import Card from "./Card.vue";
 import DatetimePicker from "./DatetimePicker.vue";

@@ -1,12 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import * as fn from "@skylib/functions/es/function";
-
+import { defineComponent, ref } from "vue";
 import type { OptionGroupOptions } from "../components/OptionGroup.extras";
 import { genericOptionGroup } from "../components/OptionGroup.generic";
-
-type Value = "a" | "b" | 1 | undefined;
 
 export default defineComponent({
   name: "sample-option-group",
@@ -29,6 +25,8 @@ export default defineComponent({
     };
   }
 });
+
+type Value = "a" | "b" | 1 | undefined;
 </script>
 
 <template>

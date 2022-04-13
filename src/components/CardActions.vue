@@ -2,14 +2,13 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[CardActions] */
 
 import { defineComponent } from "vue";
-
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type {
   CardActionsOwnProps,
   CardActionsParentProps,
   CardActionsSlots
 } from "./CardActions.extras";
+import { propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-card-actions",

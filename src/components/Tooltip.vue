@@ -2,9 +2,6 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Tooltip] */
 
 import { computed, defineComponent } from "vue";
-
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 import type {
   Direction,
   TooltipOwnProps,
@@ -12,40 +9,8 @@ import type {
   TooltipSlots
 } from "./Tooltip.extras";
 import { disabled, injectTooltipSettings } from "./Tooltip.extras";
-
-type Anchor =
-  | "bottom end"
-  | "bottom left"
-  | "bottom middle"
-  | "bottom right"
-  | "bottom start"
-  | "center end"
-  | "center left"
-  | "center middle"
-  | "center right"
-  | "center start"
-  | "top end"
-  | "top left"
-  | "top middle"
-  | "top right"
-  | "top start";
-
-type Self =
-  | "bottom end"
-  | "bottom left"
-  | "bottom middle"
-  | "bottom right"
-  | "bottom start"
-  | "center end"
-  | "center left"
-  | "center middle"
-  | "center right"
-  | "center start"
-  | "top end"
-  | "top left"
-  | "top middle"
-  | "top right"
-  | "top start";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
+import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-tooltip",
@@ -214,6 +179,40 @@ export default defineComponent({
     };
   }
 });
+
+type Anchor =
+  | "bottom end"
+  | "bottom left"
+  | "bottom middle"
+  | "bottom right"
+  | "bottom start"
+  | "center end"
+  | "center left"
+  | "center middle"
+  | "center right"
+  | "center start"
+  | "top end"
+  | "top left"
+  | "top middle"
+  | "top right"
+  | "top start";
+
+type Self =
+  | "bottom end"
+  | "bottom left"
+  | "bottom middle"
+  | "bottom right"
+  | "bottom start"
+  | "center end"
+  | "center left"
+  | "center middle"
+  | "center right"
+  | "center start"
+  | "top end"
+  | "top left"
+  | "top middle"
+  | "top right"
+  | "top start";
 </script>
 
 <template>

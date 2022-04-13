@@ -1,12 +1,10 @@
-import { QCard, QDialog } from "quasar";
-import type { ComponentPublicInstance } from "vue";
-import { nextTick } from "vue";
-import * as vueTestUtils from "@vue/test-utils";
-
 import * as assert from "@skylib/functions/es/assertions";
 import * as is from "@skylib/functions/es/guards";
 import * as reflect from "@skylib/functions/es/reflect";
-
+import * as vueTestUtils from "@vue/test-utils";
+import { QCard, QDialog } from "quasar";
+import type { ComponentPublicInstance } from "vue";
+import { nextTick } from "vue";
 import DatetimePicker from "@/components/DatetimePicker.vue";
 import * as testUtils from "@/testUtils";
 

@@ -1,5 +1,4 @@
 import * as vueTestUtils from "@vue/test-utils";
-
 import Resizer from "@/components/Resizer.vue";
 import * as testUtils from "@/testUtils";
 

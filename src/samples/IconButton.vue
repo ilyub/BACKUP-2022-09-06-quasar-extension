@@ -1,7 +1,7 @@
 <script lang="ts">
+import { mdiAccount, mdiPen } from "@mdi/js";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import { defineComponent } from "vue";
-import { mdiAccount, mdiPen } from "@mdi/js";
 
 export default defineComponent({
   name: "sample-icon-button",

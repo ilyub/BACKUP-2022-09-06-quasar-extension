@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import { datetime } from "@skylib/facades/es/datetime";
 import type { stringU } from "@skylib/functions/es/types/core";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-datetime-picker",

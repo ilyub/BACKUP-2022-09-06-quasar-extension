@@ -1,12 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-
 import * as fn from "@skylib/functions/es/function";
-
+import { defineComponent, ref } from "vue";
 import type { SelectOptions } from "../components/Select.extras";
 import { genericSelect } from "../components/Select.generic";
-
-type Value = "a" | "b" | 1;
 
 export default defineComponent({
   name: "sample-select",
@@ -30,6 +26,8 @@ export default defineComponent({
     };
   }
 });
+
+type Value = "a" | "b" | 1;
 </script>
 
 <template>

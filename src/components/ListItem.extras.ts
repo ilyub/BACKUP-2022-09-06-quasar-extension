@@ -1,8 +1,6 @@
+import type { stringU } from "@skylib/functions/es/types/core";
 import type { QItemProps } from "quasar";
 import type { VNode } from "vue";
-
-import type { stringU } from "@skylib/functions/es/types/core";
-
 import type { GlobalComponent } from "./api";
 import type { ConfirmedClickProps } from "./api/confirmedClickModule";
 

@@ -1,7 +1,5 @@
-import type { QFormProps, QFormSlots } from "quasar";
-
 import type { Type } from "@skylib/facades/es/handlePromise";
-
+import type { QFormProps, QFormSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 
 export interface FormOwnProps {

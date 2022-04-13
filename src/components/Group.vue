@@ -1,20 +1,18 @@
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-
 import { compare } from "@skylib/facades/es/compare";
 import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
 import { inlineSearch } from "@skylib/facades/es/inlineSearch";
 import * as a from "@skylib/functions/es/array";
 import * as is from "@skylib/functions/es/guards";
-
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { rootElementPropsOptions, useRootElement } from "./api/rootElement";
+import { computed, defineComponent } from "vue";
 import type {
   GroupItem,
   GroupItems,
   GroupOwnProps,
   GroupParentProps
 } from "./Group.extras";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
+import { rootElementPropsOptions, useRootElement } from "./api/rootElement";
 
 export default defineComponent({
   name: "m-group",

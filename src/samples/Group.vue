@@ -1,12 +1,8 @@
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-
 import type { stringU } from "@skylib/functions/es/types/core";
-
+import { computed, defineComponent, ref } from "vue";
 import type { GroupItems } from "../components/Group.extras";
 import { genericGroup } from "../components/Group.generic";
-
-type Section = "section1" | "section2" | "section3" | "section4";
 
 export default defineComponent({
   name: "sample-group",
@@ -51,6 +47,8 @@ export default defineComponent({
     };
   }
 });
+
+type Section = "section1" | "section2" | "section3" | "section4";
 </script>
 
 <template>

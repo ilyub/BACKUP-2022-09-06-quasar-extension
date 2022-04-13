@@ -1,5 +1,4 @@
 import type { Plugin as VuePlugin } from "vue";
-
 import { components } from "./components";
 
 export const plugin: VuePlugin = {

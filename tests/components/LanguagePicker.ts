@@ -1,6 +1,5 @@
-import { QList } from "quasar";
 import * as vueTestUtils from "@vue/test-utils";
-
+import { QList } from "quasar";
 import IconButton from "@/components/IconButton.vue";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 import * as testUtils from "@/testUtils";

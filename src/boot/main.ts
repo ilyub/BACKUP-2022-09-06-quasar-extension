@@ -1,6 +1,3 @@
-import { Notify } from "quasar";
-import { boot } from "quasar/wrappers";
-
 import { compare } from "@skylib/facades/es/compare";
 import { datetime } from "@skylib/facades/es/datetime";
 import { handlePromise } from "@skylib/facades/es/handlePromise";
@@ -18,10 +15,10 @@ import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dic
 import * as progressBar from "@skylib/framework/es/facade-implementations/progressReporter/progressBar";
 import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
 import * as cast from "@skylib/functions/es/converters";
-
+import { Notify } from "quasar";
+import { boot } from "quasar/wrappers";
 import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
 import { plugin } from "../plugin";
-
 import { icons as iconsImplementation } from "./icons";
 import { definitions } from "./lang";
 

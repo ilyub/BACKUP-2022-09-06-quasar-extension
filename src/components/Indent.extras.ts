@@ -1,5 +1,4 @@
 import type { VNode } from "vue";
-
 import type { GlobalComponent } from "./api";
 
 export type GlobalIndent = GlobalComponent<IndentProps, IndentSlots>;
