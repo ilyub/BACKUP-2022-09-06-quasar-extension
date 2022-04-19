@@ -1,4 +1,4 @@
-import type { numberU } from "@skylib/functions/es/types/core";
+import type { numberU } from "@skylib/functions";
 import type { VNode } from "vue";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";

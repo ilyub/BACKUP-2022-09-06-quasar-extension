@@ -1,7 +1,6 @@
 import * as vueTestUtils from "@vue/test-utils";
 import { QList } from "quasar";
-import IconButton from "@/components/IconButton.vue";
-import LanguagePicker from "@/components/LanguagePicker.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test.each([
@@ -10,7 +9,7 @@ test.each([
 ])("languagePicker", async ({ expected, menuItemIndex }) => {
   const changeLanguageAction = jest.fn();
 
-  const wrapper = vueTestUtils.mount(LanguagePicker, {
+  const wrapper = vueTestUtils.mount(components.LanguagePicker, {
     global: testUtils.globalMountOptions({
       languagePickerSettings: {
         changeLanguageAction,
@@ -31,7 +30,7 @@ test.each([
     props: { language: "en-US" }
   });
 
-  const button = wrapper.findComponent(IconButton);
+  const button = wrapper.findComponent(components.IconButton);
 
   {
     expect(list()).not.toExist();

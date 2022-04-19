@@ -1,6 +1,5 @@
-import type { Definitions } from "@skylib/framework/es/facade-implementations/lang/dictionary";
-import type { LocaleName } from "@skylib/functions/es/types/configurable";
-import type { Rec } from "@skylib/functions/es/types/core";
+import type { implementations } from "@skylib/framework";
+import type { LocaleName, Rec } from "@skylib/functions";
 import { en } from "./en";
 import { ru } from "./ru";
 
@@ -19,10 +18,10 @@ declare global {
   }
 }
 
-export const definitions: Rec<LocaleName, Definitions> = {
-  "en-US": en,
-  "ru-RU": ru
-};
+export const definitions: Rec<
+  LocaleName,
+  implementations.lang.dictionary.Definitions
+> = { "en-US": en, "ru-RU": ru };
 
 export interface ModuleWord {
   readonly SampleWord: true;

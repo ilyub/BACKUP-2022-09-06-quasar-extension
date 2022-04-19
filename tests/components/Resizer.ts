@@ -1,5 +1,5 @@
 import * as vueTestUtils from "@vue/test-utils";
-import Resizer from "@/components/Resizer.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test.each([
@@ -58,7 +58,7 @@ test.each([
 ])("resizer", ({ cursor, max, min, offset, value }) => {
   const { touchPan, triggerTouchPan } = testUtils.touchPanMock();
 
-  const wrapper = vueTestUtils.mount(Resizer, {
+  const wrapper = vueTestUtils.mount(components.Resizer, {
     directives: { touchPan },
     props: {
       max,
@@ -111,7 +111,7 @@ test.each([
     resizerSettings: { disable: true }
   }
 ])("settings", ({ exists, modelValue, resizerSettings }) => {
-  const wrapper = vueTestUtils.mount(Resizer, {
+  const wrapper = vueTestUtils.mount(components.Resizer, {
     global: testUtils.globalMountOptions({ resizerSettings }),
     props: { modelValue }
   });

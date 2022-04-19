@@ -1,9 +1,11 @@
 import * as testUtils from "@vue/test-utils";
 import { QToggle } from "quasar";
-import Toggle from "@/components/Toggle.vue";
+import { components } from "@";
 
 test("toggle", () => {
-  const wrapper = testUtils.mount(Toggle, { props: { modelValue: false } });
+  const wrapper = testUtils.mount(components.Toggle, {
+    props: { modelValue: false }
+  });
 
   const toggle = wrapper.findComponent(QToggle);
 

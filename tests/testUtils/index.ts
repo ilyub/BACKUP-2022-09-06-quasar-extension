@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import { createInjectable } from "@/components/api";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("createInjectable", () => {
-  const injectable = createInjectable<string>();
+  const injectable = components.api.createInjectable<string>();
 
   const wrapper = vueTestUtils.mount({
     components: {

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { lang } from "@skylib/facades/es/lang";
+import { lang } from "@skylib/facades";
 import { defineComponent } from "vue";
 import { useProvide } from "./useProvide";
 

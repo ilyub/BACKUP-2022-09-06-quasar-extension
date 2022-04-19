@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { stringU } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

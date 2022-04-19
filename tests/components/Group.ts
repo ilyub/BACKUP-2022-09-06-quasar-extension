@@ -1,17 +1,15 @@
-import * as o from "@skylib/functions/es/object";
+import { o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
-import type { GroupItems } from "@/components/Group.extras";
-import Group from "@/components/Group.vue";
-import type { RootElementProp } from "@/components/api/rootElement";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
-const rootElement1: RootElementProp = "div";
+const rootElement1: components.RootElementProp = "div";
 
-const rootElement2: RootElementProp = "page-section";
+const rootElement2: components.RootElementProp = "page-section";
 
-const rootElement3: RootElementProp = "section";
+const rootElement3: components.RootElementProp = "section";
 
-const rootElement4: RootElementProp = "subsection";
+const rootElement4: components.RootElementProp = "subsection";
 
 test.each([
   {},
@@ -20,7 +18,7 @@ test.each([
   { rootElement: rootElement3 },
   { rootElement: rootElement4 }
 ])("group", async ({ rootElement }) => {
-  const items: GroupItems = [
+  const items: components.GroupItems = [
     {
       id: "section2",
       show: true,
@@ -43,7 +41,7 @@ test.each([
     }
   ];
 
-  const wrapper = vueTestUtils.mount(Group, {
+  const wrapper = vueTestUtils.mount(components.Group, {
     global: testUtils.globalMountOptions(),
     props: o.removeUndefinedKeys({
       items,

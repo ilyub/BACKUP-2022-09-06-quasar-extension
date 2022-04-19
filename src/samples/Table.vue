@@ -1,28 +1,17 @@
 <script lang="ts">
-import * as a from "@skylib/functions/es/array";
-import * as assert from "@skylib/functions/es/assertions";
-import * as fn from "@skylib/functions/es/function";
-import * as o from "@skylib/functions/es/object";
+import { a, assert, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import type {
-  Column,
-  Columns,
-  ColumnsOrder,
-  ColumnWidths,
-  HiddenColumns,
-  Pagination
-} from "../components/Table.extras";
-import { genericTable } from "../components/Table.generic";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-table",
-  components: { "generic-table": genericTable<TableItem>() },
+  components: { "generic-table": components.genericTable<TableItem>() },
   setup() {
-    const columnsOrder = ref<ColumnsOrder>(new Map());
+    const columnsOrder = ref<components.ColumnsOrder>(new Map());
 
-    const columnWidths = ref<ColumnWidths>(new Map());
+    const columnWidths = ref<components.ColumnWidths>(new Map());
 
-    const hiddenColumns = ref<HiddenColumns>(new Set());
+    const hiddenColumns = ref<components.HiddenColumns>(new Set());
 
     const manageColumns = ref(false);
 
@@ -30,7 +19,7 @@ export default defineComponent({
 
     const noData = ref(false);
 
-    const pagination = ref<Pagination>({
+    const pagination = ref<components.Pagination>({
       descending: false,
       limit: 10,
       sortBy: "name"
@@ -57,8 +46,8 @@ export default defineComponent({
       manageColumns,
       multiselect,
       noData,
-      pageTableColumns: computed<Columns<TableItem>>(() => [
-        o.removeUndefinedKeys<Column<TableItem>>({
+      pageTableColumns: computed<components.Columns<TableItem>>(() => [
+        o.removeUndefinedKeys<components.Column<TableItem>>({
           align: "left",
           field(row): string {
             return `${row.name}!1!1234567890`;
@@ -73,7 +62,7 @@ export default defineComponent({
           sortable: true,
           width: width1.value
         }),
-        o.removeUndefinedKeys<Column<TableItem>>({
+        o.removeUndefinedKeys<components.Column<TableItem>>({
           align: "left",
           field(row): string {
             return `${row.name}!2!1234567890`;

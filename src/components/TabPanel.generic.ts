@@ -1,4 +1,4 @@
-import type { NumStrU } from "@skylib/functions/es/types/core";
+import type { NumStrU } from "@skylib/functions";
 import type { QTabPanelProps, QTabPanelSlots } from "quasar";
 import { QTabPanel } from "quasar";
 import type { GlobalComponent } from "./api";

@@ -1,12 +1,11 @@
 import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
 import { nextTick } from "vue";
-import Menu from "@/components/Menu.vue";
-import { disabled } from "@/components/Tooltip.extras";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("menu", async () => {
-  const wrapper = vueTestUtils.mount(Menu, {
+  const wrapper = vueTestUtils.mount(components.Menu, {
     global: testUtils.globalMountOptions()
   });
 
@@ -15,21 +14,21 @@ test("menu", async () => {
   {
     menu.vm.$emit("update:modelValue", true);
     await nextTick();
-    expect(disabled.value).toBeTrue();
+    expect(components.disabled.value).toBeTrue();
   }
 
   {
     menu.vm.$emit("update:modelValue", false);
     await nextTick();
-    expect(disabled.value).toBeFalse();
+    expect(components.disabled.value).toBeFalse();
   }
 
   {
     menu.vm.$emit("update:modelValue", true);
     await nextTick();
-    expect(disabled.value).toBeTrue();
+    expect(components.disabled.value).toBeTrue();
   }
 
   wrapper.unmount();
-  expect(disabled.value).toBeFalse();
+  expect(components.disabled.value).toBeFalse();
 });

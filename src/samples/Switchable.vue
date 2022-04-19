@@ -1,8 +1,7 @@
 <script lang="ts">
-import * as fn from "@skylib/functions/es/function";
+import { fn } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { OptionGroupOptions } from "../components/OptionGroup.extras";
-import type { Transition } from "../components/Switchable.extras";
+import type { components } from "..";
 import { useProvide } from "./useProvide";
 
 export default defineComponent({
@@ -17,12 +16,12 @@ export default defineComponent({
       switchableTransition,
       // eslint-disable-next-line no-warning-comments
       // fixme: Use typedef
-      switchableTransitionOptions: fn.run<OptionGroupOptions<Transition>>(
-        () => [
-          { label: "None", value: "none" },
-          { label: "Slide", value: "slide" }
-        ]
-      )
+      switchableTransitionOptions: fn.run<
+        components.OptionGroupOptions<components.Transition>
+      >(() => [
+        { label: "None", value: "none" },
+        { label: "Slide", value: "slide" }
+      ])
     };
   }
 });

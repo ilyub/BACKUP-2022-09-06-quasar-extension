@@ -1,4 +1,4 @@
-import * as o from "@skylib/functions/es/object";
+import { o } from "@skylib/functions";
 import Button from "./Button.vue";
 import Card from "./Card.vue";
 import DatetimePicker from "./DatetimePicker.vue";
@@ -28,6 +28,10 @@ import Table from "./Table.vue";
 import TimeInput from "./TimeInput.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
+
+export { useProvide } from "./useProvide";
+
+export { default as Index } from "./Index.vue";
 
 export const components = o.freeze([
   Button,

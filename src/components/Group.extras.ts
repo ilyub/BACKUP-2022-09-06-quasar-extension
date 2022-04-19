@@ -1,7 +1,10 @@
-import type { Rec, stringU } from "@skylib/functions/es/types/core";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
-import type { RootElementProps } from "./api/rootElement";
+import type { Rec, stringU } from "@skylib/functions";
+import type { VNode, ComputedRef } from "vue";
+import { computed } from "vue";
+import PageSection from "./PageSection.vue";
+import Section from "./Section.vue";
+import Subsection from "./Subsection.vue";
+import type { GlobalComponent, SetupProps } from "./api";
 
 export type GlobalGroup<T extends string = string> = GlobalComponent<
   GroupProps<T>,
@@ -33,3 +36,35 @@ export type GroupSlots<T extends string = string> = Rec<
   T,
   () => readonly VNode[]
 >;
+
+export type RootElementProp = "div" | "page-section" | "section" | "subsection";
+
+export interface RootElementProps {
+  readonly rootElement?: RootElementProp | undefined;
+}
+
+/**
+ * Root element module.
+ *
+ * @param props - Vue props.
+ * @returns Root component.
+ */
+export function useRootElement(
+  props: SetupProps<RootElementProps>
+): ComputedRef<unknown> {
+  return computed<unknown>(() => {
+    switch (props.rootElement ?? "div") {
+      case "div":
+        return "div";
+
+      case "page-section":
+        return PageSection;
+
+      case "section":
+        return Section;
+
+      case "subsection":
+        return Subsection;
+    }
+  });
+}

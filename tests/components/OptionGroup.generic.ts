@@ -1,5 +1,5 @@
-import { genericOptionGroup } from "@/components/OptionGroup.generic";
+import { components } from "@";
 
 test("genericOptionGroup", () => {
-  expect(genericOptionGroup()).toBeDefined();
+  expect(components.genericOptionGroup()).toBeDefined();
 });

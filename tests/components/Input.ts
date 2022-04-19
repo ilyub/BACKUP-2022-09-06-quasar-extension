@@ -1,13 +1,13 @@
 import * as vueTestUtils from "@vue/test-utils";
 import { QInput } from "quasar";
-import Input from "@/components/Input.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test.each([
   { expectedValue: undefined, value: "" },
   { expectedValue: "sample-value", value: "sample-value" }
 ])("input", ({ expectedValue, value }) => {
-  const wrapper = vueTestUtils.mount(Input, {
+  const wrapper = vueTestUtils.mount(components.Input, {
     global: testUtils.globalMountOptions(),
     props: { modelValue: undefined }
   });

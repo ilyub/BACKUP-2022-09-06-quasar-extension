@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import { components } from "./samples";
-import Index from "./samples/Index.vue";
+import { components, Index } from "./samples";
 
 export const routes: readonly RouteRecordRaw[] = [
   { component: Index, path: "/" },

@@ -1,17 +1,16 @@
 <script lang="ts">
-import * as fn from "@skylib/functions/es/function";
+import { fn } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { SelectOptions } from "../components/Select.extras";
-import { genericSelect } from "../components/Select.generic";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-select",
-  components: { "m-select-generic": genericSelect<Value>() },
+  components: { "m-select-generic": components.genericSelect<Value>() },
   setup() {
     return {
       // eslint-disable-next-line no-warning-comments
       // fixme: Use typedef
-      selectOptions: fn.run<SelectOptions<Value>>(() => [
+      selectOptions: fn.run<components.SelectOptions<Value>>(() => [
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },
         {

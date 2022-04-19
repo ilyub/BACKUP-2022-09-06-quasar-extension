@@ -1,6 +1,6 @@
 <script lang="ts">
 import { mdiCheck } from "@mdi/js";
-import { wait } from "@skylib/functions/es/helpers";
+import { wait } from "@skylib/functions";
 import { defineComponent } from "vue";
 
 export default defineComponent({

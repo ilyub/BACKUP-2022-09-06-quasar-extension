@@ -1,12 +1,11 @@
 <script lang="ts">
-import type { stringU } from "@skylib/functions/es/types/core";
+import type { stringU } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import type { GroupItems } from "../components/Group.extras";
-import { genericGroup } from "../components/Group.generic";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-group",
-  components: { "generic-group": genericGroup<Section>() },
+  components: { "generic-group": components.genericGroup<Section>() },
   setup() {
     const showSection1 = ref(true);
 
@@ -17,7 +16,7 @@ export default defineComponent({
     const showSection4 = ref(true);
 
     return {
-      groupItems: computed<GroupItems<Section>>(() => [
+      groupItems: computed<components.GroupItems<Section>>(() => [
         {
           id: "section2",
           show: showSection2.value,

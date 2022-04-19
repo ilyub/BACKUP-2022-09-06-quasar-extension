@@ -1,10 +1,10 @@
-import { wait } from "@skylib/functions/es/helpers";
-import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-import type { Callable } from "@skylib/functions/es/types/function";
+import { wait } from "@skylib/functions";
+import type { Callable } from "@skylib/functions";
+import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QTooltip } from "quasar";
 import type { DialogChainObject } from "quasar";
-import BaseButton from "@/components/BaseButton.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 functionsTestUtils.installFakeTimer();
@@ -15,7 +15,7 @@ test("async сlick", async () => {
   await functionsTestUtils.run(async () => {
     const callback = jest.fn();
 
-    const wrapper = vueTestUtils.mount(BaseButton, {
+    const wrapper = vueTestUtils.mount(components.BaseButton, {
       global: testUtils.globalMountOptions(),
       props: {
         async asyncClick() {
@@ -33,7 +33,7 @@ test("async сlick", async () => {
 });
 
 test("prop: confirmation", () => {
-  const wrapper = vueTestUtils.mount(BaseButton, {
+  const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
     props: { confirmation: "Sample confirmation" }
   });
@@ -56,7 +56,7 @@ test("prop: confirmation", () => {
 });
 
 test("prop: tooltip", async () => {
-  const wrapper = vueTestUtils.mount(BaseButton, {
+  const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions()
   });
 
@@ -66,7 +66,7 @@ test("prop: tooltip", async () => {
 });
 
 test("slot: default", () => {
-  const wrapper = vueTestUtils.mount(BaseButton, {
+  const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
     slots: { default: '<div class="sample-class">sample-contents</div>"' }
   });

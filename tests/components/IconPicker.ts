@@ -3,24 +3,24 @@
 /* eslint-disable jest/no-conditional-in-test */
 
 import * as mdi from "@mdi/js-dynamic";
-import { handlePromise } from "@skylib/facades/es/handlePromise";
-import * as configurableTestDelay from "@skylib/framework/es/facade-implementations/testDelay/configurableTestDelay";
-import * as a from "@skylib/functions/es/array";
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
-import * as functionsTestUtils from "@skylib/functions/es/testUtils";
+import { handlePromise } from "@skylib/facades";
+import { implementations } from "@skylib/framework";
+import { a, is, o } from "@skylib/functions";
+import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QCard, QDialog } from "quasar";
 import { nextTick } from "vue";
 import type { ComponentPublicInstance } from "vue";
-import IconButton from "@/components/IconButton.vue";
-import IconPicker from "@/components/IconPicker.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 beforeAll(functionsTestUtils.installFakeTimer);
 
 beforeEach(() => {
-  configurableTestDelay.configure({ enabled: true, timeout: 1000 });
+  implementations.testDelay.configurableTestDelay.configure({
+    enabled: true,
+    timeout: 1000
+  });
 });
 
 // eslint-disable-next-line jest/prefer-expect-assertions
@@ -32,7 +32,7 @@ test.each(
   await functionsTestUtils.run(async () => {
     const iconTooltips = iconTooltipsSetting ?? false;
 
-    const wrapper = vueTestUtils.mount(IconPicker, {
+    const wrapper = vueTestUtils.mount(components.IconPicker, {
       global: testUtils.globalMountOptions(
         is.not.empty(iconTooltipsSetting)
           ? { iconPickerSettings: { iconTooltips } }
@@ -41,7 +41,7 @@ test.each(
       props: { placeholder: "" }
     });
 
-    const button = wrapper.findComponent(IconButton);
+    const button = wrapper.findComponent(components.IconButton);
 
     const dialog = wrapper.findComponent(QDialog);
 

@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { provideResizerSettings } from "../components/Resizer.extras";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-resizer",
   setup() {
     const disable = ref(false);
 
-    provideResizerSettings(() => {
+    components.provideResizerSettings(() => {
       return { disable: disable.value };
     });
 

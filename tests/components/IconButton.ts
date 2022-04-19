@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import IconButton from "@/components/IconButton.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("iconButton", () => {
-  const wrapper = vueTestUtils.mount(IconButton, {
+  const wrapper = vueTestUtils.mount(components.IconButton, {
     global: testUtils.globalMountOptions()
   });
 

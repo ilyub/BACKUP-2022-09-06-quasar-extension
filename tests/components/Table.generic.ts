@@ -1,5 +1,5 @@
-import { genericTable } from "@/components/Table.generic";
+import { components } from "@";
 
 test("genericTable", () => {
-  expect(genericTable()).toBeDefined();
+  expect(components.genericTable()).toBeDefined();
 });

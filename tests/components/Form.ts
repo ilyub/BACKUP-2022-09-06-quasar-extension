@@ -1,12 +1,11 @@
-import type { Type } from "@skylib/facades/es/handlePromise";
-import { wait } from "@skylib/functions/es/helpers";
-import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-import type { unknowns } from "@skylib/functions/es/types/core";
+import type { handlePromise } from "@skylib/facades";
+import type { unknowns } from "@skylib/functions";
+import { wait } from "@skylib/functions";
+import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QForm } from "quasar";
 import { nextTick, watch } from "vue";
-import Form from "@/components/Form.vue";
-import { injectDisable } from "@/components/Switchable.extras";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 beforeAll(functionsTestUtils.installFakeTimer);
@@ -14,7 +13,7 @@ beforeAll(functionsTestUtils.installFakeTimer);
 test("form, onSubmit", () => {
   const onSubmit = jest.fn();
 
-  const wrapper = vueTestUtils.mount(Form, {
+  const wrapper = vueTestUtils.mount(components.Form, {
     global: testUtils.globalMountOptions(),
     props: { onSubmit }
   });
@@ -29,7 +28,7 @@ test("form, onSubmit", () => {
   }
 });
 
-test.each<Type | undefined>([undefined, "httpRequest"])(
+test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
   "form: onSubmitAsync",
   async asyncTaskType => {
     expect.hasAssertions();
@@ -37,7 +36,7 @@ test.each<Type | undefined>([undefined, "httpRequest"])(
     await functionsTestUtils.run(async () => {
       const callback = jest.fn();
 
-      const wrapper = vueTestUtils.mount(Form, {
+      const wrapper = vueTestUtils.mount(components.Form, {
         global: testUtils.globalMountOptions(),
         props: { asyncTaskType, onSubmitAsync }
       });
@@ -70,13 +69,13 @@ test("form: provideDisable", async () => {
   await functionsTestUtils.run(async () => {
     const callback = jest.fn();
 
-    const wrapper = vueTestUtils.mount(Form, {
+    const wrapper = vueTestUtils.mount(components.Form, {
       global: testUtils.globalMountOptions(),
       props: { onSubmitAsync },
       slots: {
         default: {
           setup() {
-            watch(injectDisable(), value => {
+            watch(components.injectDisable(), value => {
               callback(value);
             });
           },

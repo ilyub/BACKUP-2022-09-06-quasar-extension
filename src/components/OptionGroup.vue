@@ -1,9 +1,8 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[OptionGroup] */
 
-import * as a from "@skylib/functions/es/array";
-import * as is from "@skylib/functions/es/guards";
-import type { Writable } from "@skylib/functions/es/types/core";
+import { a, is } from "@skylib/functions";
+import type { Writable } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type {
   OptionGroupOptions,
@@ -15,9 +14,9 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-option-group",

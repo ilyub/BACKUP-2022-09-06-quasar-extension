@@ -1,4 +1,4 @@
-import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
+import { reactiveStorage } from "@skylib/facades";
 import { nextTick } from "vue";
 
 test("reactiveStorage", async () => {

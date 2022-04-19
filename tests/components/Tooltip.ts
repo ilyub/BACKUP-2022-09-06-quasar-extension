@@ -1,12 +1,11 @@
 import * as vueTestUtils from "@vue/test-utils";
 import { QTooltip } from "quasar";
-import type { Direction } from "@/components/Tooltip.extras";
-import Tooltip from "@/components/Tooltip.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 interface TestOption {
   readonly delay: number;
-  readonly direction: Direction;
+  readonly direction: components.Direction;
 }
 
 test.each<TestOption>([
@@ -24,7 +23,7 @@ test.each<TestOption>([
   { delay: 0, direction: "up-right" },
   { delay: 1000, direction: "down" }
 ])("delay", options => {
-  const wrapper = vueTestUtils.mount(Tooltip, {
+  const wrapper = vueTestUtils.mount(components.Tooltip, {
     global: testUtils.globalMountOptions({
       tooltipSettings: {
         delay: options.delay,
@@ -41,7 +40,7 @@ test.each<TestOption>([
 });
 
 test("delay", () => {
-  const wrapper = vueTestUtils.mount(Tooltip, {
+  const wrapper = vueTestUtils.mount(components.Tooltip, {
     global: testUtils.globalMountOptions({
       tooltipSettings: {
         delay: 1000,

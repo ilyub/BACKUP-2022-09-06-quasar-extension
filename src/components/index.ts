@@ -1,4 +1,4 @@
-import * as o from "@skylib/functions/es/object";
+import { o } from "@skylib/functions";
 import type { GlobalBaseButton } from "./BaseButton.extras";
 import BaseButton from "./BaseButton.vue";
 import type { GlobalButton } from "./Button.extras";
@@ -69,6 +69,170 @@ import Toggle from "./Toggle.vue";
 import type { GlobalTooltip } from "./Tooltip.extras";
 import Tooltip from "./Tooltip.vue";
 
+export type {
+  Column,
+  Columns,
+  Pagination,
+  TableOwnProps,
+  TableProps
+} from "./Table.extras";
+
+export type { RootElementProp } from "./Group.extras";
+
+export type { ColumnsOrder, ColumnWidths, HiddenColumns } from "./Table.extras";
+
+export type { TableState } from "./Table.extras";
+
+export type { Direction } from "./Tooltip.extras";
+
+export { genericTabPanels } from "./TabPanels.generic";
+
+export { genericTabPanel } from "./TabPanel.generic";
+
+export { genericTabs } from "./Tabs.generic";
+
+export { useTableState } from "./Table.extras";
+
+export { buildElements } from "./Sortable.extras";
+
+export { disabled } from "./Tooltip.extras";
+
+export type { GroupItems } from "./Group.extras";
+
+export { injectDisable } from "./Switchable.extras";
+
+export type { OptionGroupOptions } from "./OptionGroup.extras";
+
+export type { SelectOptions } from "./Select.extras";
+
+export { provideResizerSettings } from "./Resizer.extras";
+
+export { provideIconPickerSettings } from "./IconPicker.extras";
+
+export { provideLanguagePickerSettings } from "./LanguagePicker.extras";
+
+export { providePageLayoutSettings } from "./PageLayout.extras";
+
+export { provideSortableSettings } from "./Sortable.extras";
+
+export type { Transition } from "./Switchable.extras";
+
+export { provideSwitchableSettings } from "./Switchable.extras";
+
+export { provideTableSettings } from "./Table.extras";
+
+export { provideTooltipSettings } from "./Tooltip.extras";
+
+export { genericTable } from "./Table.generic";
+
+export { genericOptionGroup } from "./OptionGroup.generic";
+
+export { genericTab } from "./Tab.generic";
+
+export { genericSelect } from "./Select.generic";
+
+export { genericGroup } from "./Group.generic";
+
+export { default as BaseButton } from "./BaseButton.vue";
+
+export { default as Button } from "./Button.vue";
+
+export { default as ButtonsGroup } from "./ButtonsGroup.vue";
+
+export { default as CardActions } from "./CardActions.vue";
+
+export { default as CardSection } from "./CardSection.vue";
+
+export { default as DatetimePicker } from "./DatetimePicker.vue";
+
+export { default as Droppable } from "./Droppable.vue";
+
+export { default as ExpansionItem } from "./ExpansionItem.vue";
+
+export { default as Form } from "./Form.vue";
+
+export { default as FormButton } from "./FormButton.vue";
+
+export { default as Group } from "./Group.vue";
+
+export { default as IconButton } from "./IconButton.vue";
+
+export { default as IconButtonsGroup } from "./IconButtonsGroup.vue";
+
+export { default as IconPicker } from "./IconPicker.vue";
+
+export { default as Indent } from "./Indent.vue";
+
+export { default as Input } from "./Input.vue";
+
+export { default as Knob } from "./Knob.vue";
+
+export { default as LanguagePicker } from "./LanguagePicker.vue";
+
+export { default as ListItem } from "./ListItem.vue";
+
+export { default as Menu } from "./Menu.vue";
+
+export { default as NumericInput } from "./NumericInput.vue";
+
+export { default as OptionGroup } from "./OptionGroup.vue";
+
+export { default as PageLayout } from "./PageLayout.vue";
+
+export { default as PageSection } from "./PageSection.vue";
+
+export { default as Resizer } from "./Resizer.vue";
+
+export { default as Section } from "./Section.vue";
+
+export { default as Select } from "./Select.vue";
+
+export { default as Sortable } from "./Sortable.vue";
+
+export { default as Table } from "./Table.vue";
+
+export { default as TimeInput } from "./TimeInput.vue";
+
+export { default as Tooltip } from "./Tooltip.vue";
+
+export { default as Toggle } from "./Toggle.vue";
+
+export { default as Switchable } from "./Switchable.vue";
+
+export { default as Subsection } from "./Subsection.vue";
+
+export type { IconPickerSettings } from "./IconPicker.extras";
+
+export { testIconPickerSettings } from "./IconPicker.extras";
+
+export type { LanguagePickerSettings } from "./LanguagePicker.extras";
+
+export { testLanguagePickerSettings } from "./LanguagePicker.extras";
+
+export type { PageLayoutSettings } from "./PageLayout.extras";
+
+export { testPageLayoutSettings } from "./PageLayout.extras";
+
+export type { ResizerSettings } from "./Resizer.extras";
+
+export { testResizerSettings } from "./Resizer.extras";
+
+export type { SortableSettings } from "./Sortable.extras";
+
+export { testSortableSettings } from "./Sortable.extras";
+
+export type { SwitchableSettings } from "./Switchable.extras";
+
+export { testSwitchableSettings } from "./Switchable.extras";
+
+export type { TableSettings } from "./Table.extras";
+
+export { testTableSettings } from "./Table.extras";
+
+export type { TooltipSettings } from "./Tooltip.extras";
+
+export { testTooltipSettings } from "./Tooltip.extras";
+
 export const components = o.freeze([
   BaseButton,
   Button,
@@ -106,6 +270,10 @@ export const components = o.freeze([
   Tooltip,
   Toggle
 ]);
+
+export * as api from "./api";
+
+export * as extras from "./extras";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {

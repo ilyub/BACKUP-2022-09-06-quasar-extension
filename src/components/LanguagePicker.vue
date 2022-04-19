@@ -1,5 +1,5 @@
 <script lang="ts">
-import * as assert from "@skylib/functions/es/assertions";
+import { assert } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type {
   LanguagePickerItem,
@@ -8,8 +8,12 @@ import type {
   LanguagePickerSlots
 } from "./LanguagePicker.extras";
 import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import {
+  prop,
+  propsToPropDefinitions,
+  validateProps,
+  useSlotsNames
+} from "./api";
 
 export default defineComponent({
   name: "m-language-picker",

@@ -1,6 +1,5 @@
-import type { Icons } from "@skylib/facades/es/icons";
-import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { booleanU, numberU } from "@skylib/functions/es/types/core";
+import { icons as baseIcons } from "@skylib/facades";
+import type { booleanU, numberU } from "@skylib/functions";
 import type { QFieldProps, QFieldSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 
@@ -12,7 +11,7 @@ declare global {
   }
 }
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
 
 export type GlobalNumericInput = GlobalComponent<
   NumericInputProps,

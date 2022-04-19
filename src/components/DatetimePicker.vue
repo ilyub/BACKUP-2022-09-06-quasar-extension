@@ -1,10 +1,7 @@
 <script lang="ts">
-import { compare } from "@skylib/facades/es/compare";
-import type { DateTime } from "@skylib/facades/es/datetime";
-import { datetime } from "@skylib/facades/es/datetime";
-import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
-import type { stringU } from "@skylib/functions/es/types/core";
+import { compare, datetime } from "@skylib/facades";
+import { assert, is } from "@skylib/functions";
+import type { stringU } from "@skylib/functions";
 import type { QField } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 import type {
@@ -17,9 +14,9 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-datetime-picker",
@@ -201,14 +198,14 @@ export default defineComponent({
       year: computed<string>(() => pickerDt()?.format("yyyy") ?? "\u2013")
     };
 
-    function modelDt(): DateTime | undefined {
+    function modelDt(): datetime.DateTime | undefined {
       return is.not.empty(props.modelValue) &&
         datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
         : undefined;
     }
 
-    function pickerDt(): DateTime | undefined {
+    function pickerDt(): datetime.DateTime | undefined {
       return is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value)
         : undefined;

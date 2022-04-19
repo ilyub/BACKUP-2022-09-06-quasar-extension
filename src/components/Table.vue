@@ -1,21 +1,15 @@
 <script lang="ts">
 // eslint-disable-next-line no-warning-comments
 // fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
-import * as a from "@skylib/functions/es/array";
-import * as assert from "@skylib/functions/es/assertions";
-import * as fn from "@skylib/functions/es/function";
-import * as is from "@skylib/functions/es/guards";
-import * as map from "@skylib/functions/es/map";
-import * as o from "@skylib/functions/es/object";
-import * as set from "@skylib/functions/es/set";
+import { a, assert, fn, is, map, o, set } from "@skylib/functions";
 import type {
   booleanU,
   IndexedObject,
   numberU,
   objects,
   Writable
-} from "@skylib/functions/es/types/core";
-import * as _ from "lodash-es";
+} from "@skylib/functions";
+import * as _ from "@skylib/lodash-commonjs-es";
 import type { QDialog, QTable } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 import { genericSortable } from "./Sortable.generic";
@@ -43,10 +37,10 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
-import type { VirtualScrollDetails } from "./extras/QVirtualScroll";
+import type { QVirtualScroll } from "./extras";
 
 export default defineComponent({
   name: "m-table",
@@ -180,7 +174,7 @@ export default defineComponent({
           .sort((x, y) => x.order - y.order)
       ),
       manageColumnsShow: ref(false),
-      onScroll(details: VirtualScrollDetails): void {
+      onScroll(details: QVirtualScroll.VirtualScrollDetails): void {
         if (
           is.not.empty(props.pagination.limit) &&
           details.to === props.pagination.limit - 1

@@ -1,7 +1,6 @@
-import type { booleanU, stringU } from "@skylib/functions/es/types/core";
+import type { booleanU, stringU } from "@skylib/functions";
 import { computed } from "vue";
-import type { TableState } from "@/components/Table.extras";
-import { useTableState } from "@/components/Table.extras";
+import { components } from "@";
 
 test.each([
   {
@@ -30,8 +29,8 @@ test.each([
   "genericTable",
   ({ descending, expectedModified, expectedState, sortBy }) => {
     const { columnWidths, columnsOrder, hiddenColumns, modified, state } =
-      useTableState(
-        computed<TableState>(() => {
+      components.useTableState(
+        computed<components.TableState>(() => {
           return {
             columnWidths: new Map(),
             columnsOrder: new Map(),

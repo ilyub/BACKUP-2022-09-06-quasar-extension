@@ -1,5 +1,5 @@
-import { genericSelect } from "@/components/Select.generic";
+import { components } from "@";
 
 test("genericSelect", () => {
-  expect(genericSelect()).toBeDefined();
+  expect(components.genericSelect()).toBeDefined();
 });

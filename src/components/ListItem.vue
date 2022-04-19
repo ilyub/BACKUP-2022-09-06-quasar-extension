@@ -1,20 +1,22 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[ListItem] */
 
-import * as is from "@skylib/functions/es/guards";
+import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type {
   ListItemOwnProps,
   ListItemParentProps,
   ListItemSlots
 } from "./ListItem.extras";
-import { prop, propsToPropDefinitions, validateProps } from "./api";
 import {
+  prop,
+  propsToPropDefinitions,
+  validateProps,
   confirmedClickEmits,
   confirmedClickProps,
-  useConfirmedClick
-} from "./api/confirmedClickModule";
-import { useSlotsNames } from "./api/slotNames";
+  useConfirmedClick,
+  useSlotsNames
+} from "./api";
 
 export default defineComponent({
   name: "m-list-item",

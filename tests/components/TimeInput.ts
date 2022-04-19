@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import TimeInput from "@/components/TimeInput.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("timeInput: change", async () => {
-  const wrapper = vueTestUtils.mount(TimeInput, {
+  const wrapper = vueTestUtils.mount(components.TimeInput, {
     global: testUtils.globalMountOptions()
   });
 
@@ -65,7 +65,7 @@ test.each([
 ])(
   "timeInput: down/up",
   async ({ hoursDown, hoursUp, minutesDown, minutesUp, modelValue }) => {
-    const wrapper = vueTestUtils.mount(TimeInput, {
+    const wrapper = vueTestUtils.mount(components.TimeInput, {
       global: testUtils.globalMountOptions(),
       props: { modelValue }
     });

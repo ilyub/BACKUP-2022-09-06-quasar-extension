@@ -1,10 +1,9 @@
-import type { Lang } from "@skylib/facades/es/lang";
-import { lang as baseLang } from "@skylib/facades/es/lang";
-import * as is from "@skylib/functions/es/guards";
-import type { stringU } from "@skylib/functions/es/types/core";
+import { lang as baseLang } from "@skylib/facades";
+import { is } from "@skylib/functions";
+import type { stringU } from "@skylib/functions";
 import { useQuasar } from "quasar";
-import type { ValidateEmit, ValidateProps } from ".";
-import { prop } from ".";
+import type { ValidateEmit, ValidateProps } from "./core";
+import { prop } from "./core";
 
 declare global {
   namespace facades {
@@ -26,7 +25,7 @@ export const confirmedClickProps = {
   confirmation: prop<string>()
 } as const;
 
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
 
 export interface ConfirmedClickModule {
   /**

@@ -5,8 +5,7 @@ import type {
   PageSectionParentProps,
   PageSectionSlots
 } from "./PageSection.extras";
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-page-section",

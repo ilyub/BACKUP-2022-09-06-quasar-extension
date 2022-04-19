@@ -1,6 +1,5 @@
-import type { Icons } from "@skylib/facades/es/icons";
-import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { booleanU, stringU } from "@skylib/functions/es/types/core";
+import { icons as baseIcons } from "@skylib/facades";
+import type { booleanU, stringU } from "@skylib/functions";
 import type { QCardProps } from "quasar";
 import type { VNode } from "vue";
 import type { GlobalComponent } from "./api";
@@ -13,7 +12,7 @@ declare global {
   }
 }
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
 
 export interface CardOwnProps {
   readonly minWidth?: stringU;

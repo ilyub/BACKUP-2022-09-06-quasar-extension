@@ -1,13 +1,8 @@
-import * as assert from "@skylib/functions/es/assertions";
-import * as fn from "@skylib/functions/es/function";
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
+import { assert, fn, is, o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { nextTick } from "vue";
 import VueDraggable from "vuedraggable";
-import { buildElements } from "@/components/Sortable.extras";
-import Sortable from "@/components/Sortable.vue";
-import { disabled } from "@/components/Tooltip.extras";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 const group = "sample-group";
@@ -40,7 +35,7 @@ test.each([
     }
   }
 ])("animationDuration", ({ animationDuration, sortableSettings }) => {
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions(
       o.removeUndefinedKeys({ sortableSettings })
     ),
@@ -53,7 +48,7 @@ test.each([
 });
 
 test("emit: dropped", () => {
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions(),
     props
   });
@@ -64,14 +59,14 @@ test("emit: dropped", () => {
     { id: "id3", name: "Name 3" }
   ];
 
-  const elements = buildElements(newItems, group, itemKey);
+  const elements = components.buildElements(newItems, group, itemKey);
 
   wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[newItems]]);
 });
 
 test("emit: update:modelValue", () => {
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions({}),
     props
   });
@@ -83,8 +78,8 @@ test("emit: update:modelValue", () => {
   const newItems = [...items, newItem];
 
   const elements = [
-    ...buildElements(items, group, itemKey),
-    ...buildElements([newItem], newGroup, itemKey)
+    ...components.buildElements(items, group, itemKey),
+    ...components.buildElements([newItem], newGroup, itemKey)
   ];
 
   wrapper.findComponent(VueDraggable).vm.$emit("update:modelValue", elements);
@@ -93,7 +88,7 @@ test("emit: update:modelValue", () => {
 });
 
 test("end, start", async () => {
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions(),
     props
   });
@@ -103,29 +98,29 @@ test("end, start", async () => {
   {
     draggable.vm.$emit("start");
     await nextTick();
-    expect(disabled.value).toBeTrue();
+    expect(components.disabled.value).toBeTrue();
   }
 
   {
     draggable.vm.$emit("end");
     await nextTick();
-    expect(disabled.value).toBeFalse();
+    expect(components.disabled.value).toBeFalse();
   }
 
   {
     draggable.vm.$emit("start");
     await nextTick();
-    expect(disabled.value).toBeTrue();
+    expect(components.disabled.value).toBeTrue();
   }
 
   {
     wrapper.unmount();
-    expect(disabled.value).toBeFalse();
+    expect(components.disabled.value).toBeFalse();
   }
 });
 
 test("itemClick", async () => {
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions({}),
     props: {
       group,
@@ -157,7 +152,7 @@ test.each([
 ])("prop: move", async ({ dest, source }) => {
   const move = jest.fn();
 
-  const wrapper = vueTestUtils.mount(Sortable, {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions(),
     props
   });

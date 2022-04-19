@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import FormButton from "@/components/FormButton.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("formButton", () => {
-  const wrapper = vueTestUtils.mount(FormButton, {
+  const wrapper = vueTestUtils.mount(components.FormButton, {
     global: testUtils.globalMountOptions()
   });
 

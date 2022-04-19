@@ -1,13 +1,8 @@
 <script lang="ts">
-import { handlePromise } from "@skylib/facades/es/handlePromise";
-import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
-import { inlineSearch } from "@skylib/facades/es/inlineSearch";
-import { testDelay } from "@skylib/facades/es/testDelay";
-import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
-import type { stringU, Writable } from "@skylib/functions/es/types/core";
-import * as _ from "lodash-es";
+import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
+import { assert, is, o } from "@skylib/functions";
+import type { stringU, Writable } from "@skylib/functions";
+import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type {
   IconPickerOwnProps,
@@ -46,7 +41,7 @@ export default defineComponent({
 
     const from = computed<number>(() => page.value * pageSize.value + 1);
 
-    const searchIndex = computed<InlineSearchEngine<Item>>(() =>
+    const searchIndex = computed<inlineSearch.Engine<Item>>(() =>
       inlineSearch.create("id", ["description"], items.value)
     );
 

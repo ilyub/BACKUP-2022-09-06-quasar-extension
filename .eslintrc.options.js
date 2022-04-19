@@ -4,17 +4,20 @@ module.exports = {
       localName: "mdi",
       sourcePattern: "@mdi/js-dynamic",
       type: "wildcard"
+    },
+    {
+      autoImportSource: "@/testUtils",
+      sourcePattern: "@skylib/quasar/src/testUtils",
+      type: "wildcard"
     }
   ],
-  es: true,
   extends: [
-    require("@skylib/functions/src/configs/eslintrc.options")(
-      "@skylib/functions/es/"
-    ),
-    require("@skylib/framework/src/configs/eslintrc.options")(
-      "@skylib/framework/es/"
-    ),
-    require("./src/configs/eslintrc.options")("@/")
+    require("@skylib/functions/configs/eslintrc.options"),
+    require("@skylib/framework/configs/eslintrc.options"),
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
+    // fixme
+    // eslint-disable-next-line import/no-internal-modules -- Wait for @skylib/config update
+    require("./configs/eslintrc.options")
   ],
   extraChoreLocations: [
     "src/App.vue",

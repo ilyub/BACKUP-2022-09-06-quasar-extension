@@ -14,9 +14,9 @@ import {
   mdiWeatherSunsetDown,
   mdiWeatherSunsetUp
 } from "@mdi/js";
-import type { Facade } from "@skylib/facades/es/icons";
+import type { icons as iconsFacade } from "@skylib/facades";
 
-export const icons: Facade = {
+export const icons: iconsFacade.Facade = {
   am: mdiWeatherSunsetUp,
   ascending: mdiArrowUpThin,
   chevronDoubleLeft: mdiChevronDoubleLeft,

@@ -1,15 +1,6 @@
-import type { Icons } from "@skylib/facades/es/icons";
-import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { Lang } from "@skylib/facades/es/lang";
-import { lang as baseLang } from "@skylib/facades/es/lang";
-import * as is from "@skylib/functions/es/guards";
-import { createValidationObject } from "@skylib/functions/es/helpers";
-import * as json from "@skylib/functions/es/json";
-import type {
-  booleanU,
-  objects,
-  stringU
-} from "@skylib/functions/es/types/core";
+import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
+import { is, createValidationObject, json } from "@skylib/functions";
+import type { booleanU, objects, stringU } from "@skylib/functions";
 import type { QTableProps, QTableSlots } from "quasar";
 import { computed, ref } from "vue";
 import type { ComputedRef, Ref, VNode } from "vue";
@@ -68,9 +59,9 @@ export const {
   };
 });
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
 
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
 
 export const isTableState = is.object.factory<TableState>(
   {

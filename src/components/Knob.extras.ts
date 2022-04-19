@@ -1,4 +1,4 @@
-import type { booleanU } from "@skylib/functions/es/types/core";
+import type { booleanU } from "@skylib/functions";
 import type { QKnobProps, QKnobSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 

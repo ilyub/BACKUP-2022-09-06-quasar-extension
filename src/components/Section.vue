@@ -5,8 +5,7 @@ import type {
   SectionParentProps,
   SectionSlots
 } from "./Section.extras";
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-section",

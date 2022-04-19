@@ -1,8 +1,5 @@
-import type { Icons } from "@skylib/facades/es/icons";
-import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { Lang } from "@skylib/facades/es/lang";
-import { lang as baseLang } from "@skylib/facades/es/lang";
-import type { stringU } from "@skylib/functions/es/types/core";
+import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
+import type { stringU } from "@skylib/functions";
 import type { QFieldProps, QFieldSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 
@@ -22,9 +19,9 @@ declare global {
   }
 }
 
-export const icons: Icons<keyof ModuleIcons> = baseIcons;
+export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
 
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
 
 export interface DatetimePickerOwnProps {
   readonly max?: stringU;

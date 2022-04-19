@@ -1,9 +1,6 @@
 <script lang="ts">
-import * as assert from "@skylib/functions/es/assertions";
-import * as cast from "@skylib/functions/es/converters";
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
-import type { numberU, NumStrE } from "@skylib/functions/es/types/core";
+import { assert, cast, is, o } from "@skylib/functions";
+import type { numberU, NumStrE } from "@skylib/functions";
 import { maska } from "maska";
 import { computed, defineComponent } from "vue";
 import type {
@@ -16,9 +13,9 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-numeric-input",

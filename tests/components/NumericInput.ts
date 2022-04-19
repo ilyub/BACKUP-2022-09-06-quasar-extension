@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import NumericInput from "@/components/NumericInput.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("numericInput", async () => {
-  const wrapper = vueTestUtils.mount(NumericInput, {
+  const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
     props: {
       max: 2,
@@ -80,7 +80,7 @@ test("numericInput", async () => {
 });
 
 test.each(["big-down", "down"])("numericInput: undef", async down => {
-  const wrapper = vueTestUtils.mount(NumericInput, {
+  const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
     props: {
       bigStep: 5,

@@ -1,5 +1,5 @@
-import { classRef } from "@/components/api";
+import { components } from "@";
 
 test("classRef", () => {
-  expect(classRef(1).value).toBe(1);
+  expect(components.api.classRef(1).value).toBe(1);
 });

@@ -1,10 +1,9 @@
 import * as testUtils from "@vue/test-utils";
 import { QOptionGroup } from "quasar";
-import type { OptionGroupOptions } from "@/components/OptionGroup.extras";
-import OptionGroup from "@/components/OptionGroup.vue";
+import { components } from "@";
 
 test.each([undefined, 1, "a"])("optionGroup", value => {
-  const options: OptionGroupOptions = [
+  const options: components.OptionGroupOptions = [
     {
       disable: true,
       label: "Option 1",
@@ -14,7 +13,7 @@ test.each([undefined, 1, "a"])("optionGroup", value => {
     { label: "Option 3", value: "a" }
   ];
 
-  const wrapper = testUtils.mount(OptionGroup, {
+  const wrapper = testUtils.mount(components.OptionGroup, {
     props: { modelValue: undefined, options }
   });
 

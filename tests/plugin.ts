@@ -1,4 +1,4 @@
-import * as assert from "@skylib/functions/es/assertions";
+import { assert } from "@skylib/functions";
 import type { App } from "vue";
 import { plugin } from "@/plugin";
 

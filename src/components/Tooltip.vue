@@ -9,8 +9,12 @@ import type {
   TooltipSlots
 } from "./Tooltip.extras";
 import { disabled, injectTooltipSettings } from "./Tooltip.extras";
-import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import {
+  prop,
+  propsToPropDefinitions,
+  validateProps,
+  useSlotsNames
+} from "./api";
 
 export default defineComponent({
   name: "m-tooltip",

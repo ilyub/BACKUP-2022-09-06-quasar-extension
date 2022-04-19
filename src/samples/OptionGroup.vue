@@ -1,17 +1,18 @@
 <script lang="ts">
-import * as fn from "@skylib/functions/es/function";
+import { fn } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { OptionGroupOptions } from "../components/OptionGroup.extras";
-import { genericOptionGroup } from "../components/OptionGroup.generic";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-option-group",
-  components: { "generic-option-group": genericOptionGroup<Value>() },
+  components: {
+    "generic-option-group": components.genericOptionGroup<Value>()
+  },
   setup() {
     return {
       // eslint-disable-next-line no-warning-comments
       // fixme: Use typedef
-      options: fn.run<OptionGroupOptions<Value>>(() => [
+      options: fn.run<components.OptionGroupOptions<Value>>(() => [
         { label: "Select option", value: undefined },
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },

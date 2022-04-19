@@ -1,7 +1,7 @@
 <script lang="ts">
-import * as reflect from "@skylib/functions/es/reflect";
+import { reflect } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import { provideSortableSettings } from "../components/Sortable.extras";
+import { components } from "..";
 
 export default defineComponent({
   name: "sample-sortable",
@@ -10,7 +10,7 @@ export default defineComponent({
 
     const disableSorting = ref(false);
 
-    provideSortableSettings(() => {
+    components.provideSortableSettings(() => {
       return {
         animationDuration: 500,
         disableDropping: disableDropping.value,

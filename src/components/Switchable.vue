@@ -6,8 +6,7 @@ import {
   injectSwitchableSettings,
   provideDisable
 } from "./Switchable.extras";
-import { prop, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { prop, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-switchable",

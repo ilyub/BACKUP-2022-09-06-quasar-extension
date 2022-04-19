@@ -1,10 +1,9 @@
 <script lang="ts">
-import * as is from "@skylib/functions/es/guards";
+import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { PageLayoutProps, PageLayoutSlots } from "./PageLayout.extras";
 import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
-import { prop, validateEmit, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-page-layout",

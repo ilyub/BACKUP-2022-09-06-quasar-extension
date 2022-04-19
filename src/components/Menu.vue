@@ -5,8 +5,7 @@ import { defineComponent } from "vue";
 import type { ButtonSlots } from "./Button.extras";
 import type { MenuOwnProps, MenuParentProps } from "./Menu.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-menu",

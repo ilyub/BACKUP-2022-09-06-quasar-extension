@@ -1,17 +1,15 @@
-import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
-import * as reflect from "@skylib/functions/es/reflect";
+import { assert, is, reflect } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { QCard, QDialog } from "quasar";
 import type { ComponentPublicInstance } from "vue";
 import { nextTick } from "vue";
-import DatetimePicker from "@/components/DatetimePicker.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test.each([undefined, "2001-02-03 10:30"])(
   "datetimePicker",
   async modelValue => {
-    const wrapper = vueTestUtils.mount(DatetimePicker, {
+    const wrapper = vueTestUtils.mount(components.DatetimePicker, {
       global: testUtils.globalMountOptions(),
       props: { modelValue }
     });
@@ -172,7 +170,7 @@ test.each([undefined, "2001-02-03 10:30"])(
 );
 
 test.each([undefined, "2001-02-03 10:30"])("show", async modelValue => {
-  const wrapper = vueTestUtils.mount(DatetimePicker, {
+  const wrapper = vueTestUtils.mount(components.DatetimePicker, {
     global: testUtils.globalMountOptions(),
     props: { modelValue }
   });

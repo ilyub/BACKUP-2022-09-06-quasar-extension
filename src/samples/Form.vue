@@ -1,6 +1,6 @@
 <script lang="ts">
-import { wait } from "@skylib/functions/es/helpers";
-import type { stringU } from "@skylib/functions/es/types/core";
+import { wait } from "@skylib/functions";
+import type { stringU } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

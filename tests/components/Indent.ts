@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import Indent from "@/components/Indent.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("indent", () => {
-  const wrapper = vueTestUtils.mount(Indent, {
+  const wrapper = vueTestUtils.mount(components.Indent, {
     global: testUtils.globalMountOptions()
   });
 

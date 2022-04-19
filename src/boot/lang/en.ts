@@ -1,10 +1,7 @@
-import {
-  Definitions,
-  pluralReduce
-} from "@skylib/framework/es/facade-implementations/lang/dictionary";
+import { implementations } from "@skylib/framework";
 
-export const en = new Definitions({
-  pluralReduce,
+export const en = new implementations.lang.dictionary.Definitions({
+  pluralReduce: implementations.lang.dictionary.pluralReduce,
   wordForms: {},
   words: {
     Cancel: "Cancel",

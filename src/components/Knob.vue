@@ -1,7 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Knob] */
 
-import * as is from "@skylib/functions/es/guards";
+import { is } from "@skylib/functions";
 import { defineComponent } from "vue";
 import type { KnobOwnProps, KnobParentProps, KnobSlots } from "./Knob.extras";
 import { injectDisable } from "./Switchable.extras";
@@ -9,9 +9,9 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-knob",

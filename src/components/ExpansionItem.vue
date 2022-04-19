@@ -5,8 +5,12 @@ import type {
   ExpansionItemParentProps,
   ExpansionItemSlots
 } from "./ExpansionItem.extras";
-import { propsToPropDefinitions, validateEmit, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import {
+  propsToPropDefinitions,
+  validateEmit,
+  validateProps,
+  useSlotsNames
+} from "./api";
 
 export default defineComponent({
   name: "m-expansion-item",

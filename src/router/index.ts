@@ -1,5 +1,4 @@
-import * as a from "@skylib/functions/es/array";
-import * as fn from "@skylib/functions/es/function";
+import { a, fn } from "@skylib/functions";
 import { route } from "quasar/wrappers";
 import {
   createRouter,

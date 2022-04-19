@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import CardActions from "@/components/CardActions.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("cardActions", () => {
-  const wrapper = vueTestUtils.mount(CardActions, {
+  const wrapper = vueTestUtils.mount(components.CardActions, {
     global: testUtils.globalMountOptions()
   });
 

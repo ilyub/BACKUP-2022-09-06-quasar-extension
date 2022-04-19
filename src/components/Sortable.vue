@@ -1,9 +1,6 @@
 <script lang="ts">
-import * as a from "@skylib/functions/es/array";
-import * as assert from "@skylib/functions/es/assertions";
-import * as is from "@skylib/functions/es/guards";
-import * as reflect from "@skylib/functions/es/reflect";
-import type { objects, Writable } from "@skylib/functions/es/types/core";
+import { a, assert, is, reflect } from "@skylib/functions";
+import type { objects, Writable } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import VueDraggable from "vuedraggable";
 import type {
@@ -19,8 +16,7 @@ import {
   isMoveData
 } from "./Sortable.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
-import { prop, validateEmit, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-sortable",

@@ -1,11 +1,6 @@
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
-import * as reflect from "@skylib/functions/es/reflect";
-import type {
-  nevers,
-  WritableIndexedObject
-} from "@skylib/functions/es/types/core";
-import * as _ from "lodash-es";
+import { is, o, reflect } from "@skylib/functions";
+import type { nevers, WritableIndexedObject } from "@skylib/functions";
+import * as _ from "@skylib/lodash-commonjs-es";
 // eslint-disable-next-line no-warning-comments
 // fixme
 import type { CamelCase } from "type-fest";

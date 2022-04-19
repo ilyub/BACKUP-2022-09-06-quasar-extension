@@ -1,8 +1,8 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Input] */
 
-import * as is from "@skylib/functions/es/guards";
-import type { NumStrE, stringU } from "@skylib/functions/es/types/core";
+import { is } from "@skylib/functions";
+import type { NumStrE, stringU } from "@skylib/functions";
 import type { QInput } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { ButtonSlots } from "./Button.extras";
@@ -12,9 +12,9 @@ import {
   prop,
   propsToPropDefinitions,
   validateEmit,
-  validateProps
+  validateProps,
+  useSlotsNames
 } from "./api";
-import { useSlotsNames } from "./api/slotNames";
 
 export default defineComponent({
   name: "m-input",

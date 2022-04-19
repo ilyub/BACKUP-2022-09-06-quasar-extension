@@ -5,8 +5,7 @@ import type {
   FormButtonParentProps,
   FormButtonSlots
 } from "./FormButton.extras";
-import { propsToPropDefinitions, validateProps } from "./api";
-import { useSlotsNames } from "./api/slotNames";
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-form-button",

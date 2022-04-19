@@ -1,15 +1,14 @@
 import * as vueTestUtils from "@vue/test-utils";
-import Droppable from "@/components/Droppable.vue";
-import Sortable from "@/components/Sortable.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("droppable", () => {
-  const wrapper = vueTestUtils.mount(Droppable, {
+  const wrapper = vueTestUtils.mount(components.Droppable, {
     global: testUtils.globalMountOptions(),
     props: { group: "sample-group" }
   });
 
-  const sortable = wrapper.findComponent(Sortable);
+  const sortable = wrapper.findComponent(components.Sortable);
 
   expect(sortable).toExist();
 });

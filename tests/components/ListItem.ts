@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import ListItem from "@/components/ListItem.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("prop: caption", () => {
-  const wrapper = vueTestUtils.mount(ListItem, {
+  const wrapper = vueTestUtils.mount(components.ListItem, {
     global: testUtils.globalMountOptions(),
     props: { caption: "sample-caption" }
   });
@@ -14,7 +14,7 @@ test("prop: caption", () => {
 });
 
 test("prop: icon", async () => {
-  const wrapper = vueTestUtils.mount(ListItem, {
+  const wrapper = vueTestUtils.mount(components.ListItem, {
     global: testUtils.globalMountOptions(),
     props: { caption: "sample-caption" }
   });

@@ -1,23 +1,13 @@
-import * as cast from "@skylib/functions/es/converters";
-import * as is from "@skylib/functions/es/guards";
-import { wait } from "@skylib/functions/es/helpers";
-import * as o from "@skylib/functions/es/object";
-import * as reflect from "@skylib/functions/es/reflect";
-import * as functionsTestUtils from "@skylib/functions/es/testUtils";
-import type { objects, Writable } from "@skylib/functions/es/types/core";
-import type { OptionalUndefinedStyle } from "@skylib/functions/es/types/object";
+import { cast, is, wait, o, reflect } from "@skylib/functions";
+import type {
+  objects,
+  Writable,
+  OptionalUndefinedStyle
+} from "@skylib/functions";
+import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QTable } from "quasar";
-import type {
-  Column,
-  Columns,
-  Pagination,
-  TableOwnProps,
-  TableProps,
-  TableSettings
-} from "@/components/Table.extras";
-import Table from "@/components/Table.vue";
-import type { VirtualScrollDetails } from "@/components/extras/QVirtualScroll";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 const testRows = [
@@ -52,9 +42,9 @@ test.each([
     }
   }
 ])("columnSorting", async ({ pagination }) => {
-  const wrapper = vueTestUtils.mount(Table, {
+  const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys<TableOwnProps>({
+    props: o.removeUndefinedKeys<components.TableOwnProps>({
       binaryStateSortOn: true,
       columns: [
         {
@@ -95,9 +85,9 @@ test.each([
 });
 
 test("columnWidths", () => {
-  const wrapper = vueTestUtils.mount(Table, {
+  const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys<TableOwnProps>({
+    props: o.removeUndefinedKeys<components.TableOwnProps>({
       columnWidths: new Map([["column1", 150]]),
       columns: [
         {
@@ -174,9 +164,9 @@ test.each([
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableOwnProps>({
+      props: o.removeUndefinedKeys<components.TableOwnProps>({
         columns: [
           {
             align: "left",
@@ -221,10 +211,10 @@ test.each([
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableOwnProps>({
-        columns: typedef<Columns>([
+      props: o.removeUndefinedKeys<components.TableOwnProps>({
+        columns: typedef<components.Columns>([
           {
             align: "left",
             field(row): string {
@@ -304,11 +294,11 @@ test.each([
     expect.hasAssertions();
 
     await functionsTestUtils.run(async () => {
-      const wrapper = vueTestUtils.mount(Table, {
+      const wrapper = vueTestUtils.mount(components.Table, {
         global: testUtils.globalMountOptions(
           o.removeUndefinedKeys({ tableSettings })
         ),
-        props: o.removeUndefinedKeys<TableProps>({
+        props: o.removeUndefinedKeys<components.TableProps>({
           columns: [
             {
               align: "left",
@@ -368,12 +358,13 @@ test.each([
       }
 
       {
-        const rawEvent: VirtualScrollDetails = {
-          direction: "increase",
-          from: 0,
-          index: 0,
-          to
-        };
+        const rawEvent: components.extras.QVirtualScroll.VirtualScrollDetails =
+          {
+            direction: "increase",
+            from: 0,
+            index: 0,
+            to
+          };
 
         const event = [{ ...pagination, limit: expectedLimit }];
 
@@ -385,7 +376,7 @@ test.each([
       }
 
       {
-        const rawEvent: Pagination = { descending: true };
+        const rawEvent: components.Pagination = { descending: true };
 
         const event = [{ descending: true, limit: pagination.limit }];
 
@@ -397,7 +388,7 @@ test.each([
       }
 
       {
-        const rawEvent: Pagination = { sortBy: "name" };
+        const rawEvent: components.Pagination = { sortBy: "name" };
 
         const event = [{ ...pagination, limit: pagination.limit }];
 
@@ -415,10 +406,10 @@ test("rowClick", async () => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
-        columns: typedef<Columns>([
+        columns: typedef<components.Columns>([
           {
             align: "left",
             field(row): string {
@@ -492,9 +483,9 @@ test.each([
 ])(
   "selected",
   async ({ expectedEmitted, expectedText, method, rows, selected }) => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<TableProps>({
+      props: o.removeUndefinedKeys<components.TableProps>({
         columns: [
           {
             align: "left",
@@ -546,10 +537,10 @@ test.each([
 ])(
   "selection",
   ({ expectedSelection, multiselect, selectByCheckbox, selectByRowClick }) => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
-        columns: typedef<Columns>([
+        columns: typedef<components.Columns>([
           {
             align: "left",
             field(row): string {
@@ -591,11 +582,11 @@ test.each([
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(Table, {
+    const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
         columns: [
-          o.removeUndefinedKeys<OptionalUndefinedStyle<Column>>({
+          o.removeUndefinedKeys<OptionalUndefinedStyle<components.Column>>({
             align: "left",
             field(row: object): string {
               return cast.string(reflect.get(row, "name"));
@@ -627,7 +618,7 @@ test.each([
 
 test.each([
   {
-    tableSettings: typedef<TableSettings>({
+    tableSettings: typedef<components.TableSettings>({
       binaryStateSort: false,
       flat: false,
       growPageBy: 20,
@@ -636,7 +627,7 @@ test.each([
     })
   },
   {
-    tableSettings: typedef<TableSettings>({
+    tableSettings: typedef<components.TableSettings>({
       binaryStateSort: true,
       flat: true,
       growPageBy: 20,
@@ -645,9 +636,9 @@ test.each([
     })
   }
 ])("settings", ({ tableSettings }) => {
-  const wrapper = vueTestUtils.mount(Table, {
+  const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions({ tableSettings }),
-    props: o.removeUndefinedKeys<TableOwnProps>({
+    props: o.removeUndefinedKeys<components.TableOwnProps>({
       columns: [
         {
           align: "left",

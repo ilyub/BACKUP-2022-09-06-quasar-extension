@@ -1,18 +1,20 @@
 <script lang="ts">
-import { compare } from "@skylib/facades/es/compare";
-import type { Engine as InlineSearchEngine } from "@skylib/facades/es/inlineSearch";
-import { inlineSearch } from "@skylib/facades/es/inlineSearch";
-import * as a from "@skylib/functions/es/array";
-import * as is from "@skylib/functions/es/guards";
+import { inlineSearch, compare } from "@skylib/facades";
+import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type {
   GroupItem,
   GroupItems,
   GroupOwnProps,
-  GroupParentProps
+  GroupParentProps,
+  RootElementProp
 } from "./Group.extras";
+import { useRootElement } from "./Group.extras";
 import { prop, propsToPropDefinitions, validateProps } from "./api";
-import { rootElementPropsOptions, useRootElement } from "./api/rootElement";
+
+const rootElementPropsOptions = {
+  rootElement: prop<RootElementProp>()
+} as const;
 
 export default defineComponent({
   name: "m-group",
@@ -41,7 +43,7 @@ export default defineComponent({
       return sortedItems.value;
     });
 
-    const searchIndex = computed<InlineSearchEngine<GroupItem>>(() =>
+    const searchIndex = computed<inlineSearch.Engine<GroupItem>>(() =>
       inlineSearch.create("id", ["title"], props.items)
     );
 

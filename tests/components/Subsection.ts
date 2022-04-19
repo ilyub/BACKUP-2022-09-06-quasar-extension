@@ -1,9 +1,9 @@
 import * as vueTestUtils from "@vue/test-utils";
-import Subsection from "@/components/Subsection.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 test("subsection", () => {
-  const wrapper = vueTestUtils.mount(Subsection, {
+  const wrapper = vueTestUtils.mount(components.Subsection, {
     global: testUtils.globalMountOptions()
   });
 

@@ -1,8 +1,5 @@
-import type { Icons } from "@skylib/facades/es/icons";
-import { icons as baseIcons } from "@skylib/facades/es/icons";
-import type { Lang } from "@skylib/facades/es/lang";
-import { lang as baseLang } from "@skylib/facades/es/lang";
-import type { numberU, stringU } from "@skylib/functions/es/types/core";
+import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
+import type { numberU, stringU } from "@skylib/functions";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
@@ -27,9 +24,10 @@ export const {
   return { iconTooltips: false };
 });
 
-export const icons: Icons<"chevronLeft" | "chevronRight" | "close"> = baseIcons;
+export const icons: baseIcons.Icons<"chevronLeft" | "chevronRight" | "close"> =
+  baseIcons;
 
-export const lang: Lang<keyof ModuleWord, never> = baseLang;
+export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
 
 export type GlobalIconPicker = GlobalComponent<
   IconPickerProps,

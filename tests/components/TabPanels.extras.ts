@@ -1,5 +1,5 @@
-import { genericTabPanels } from "@/components/TabPanels.generic";
+import { components } from "@";
 
 test("genericTabPanels", () => {
-  expect(genericTabPanels()).toBeDefined();
+  expect(components.genericTabPanels()).toBeDefined();
 });

@@ -1,7 +1,6 @@
 import * as testUtils from "@vue/test-utils";
 import { QSelect } from "quasar";
-import type { SelectOptions } from "@/components/Select.extras";
-import Select from "@/components/Select.vue";
+import { components } from "@";
 
 test.each([
   { expected: "Select" },
@@ -9,12 +8,14 @@ test.each([
 ])("initial label", ({ expected, initialLabel }) => {
   // eslint-disable-next-line no-warning-comments
   // fixme: Use typedef
-  const options: SelectOptions = [
+  const options: components.SelectOptions = [
     { label: "Option 1", value: 1 },
     { label: "Option 2", value: "a" }
   ];
 
-  const wrapper = testUtils.mount(Select, { props: { initialLabel, options } });
+  const wrapper = testUtils.mount(components.Select, {
+    props: { initialLabel, options }
+  });
 
   expect(wrapper.find(".q-field__native").text()).toStrictEqual(expected);
 });
@@ -30,7 +31,7 @@ test.each([
 ])("select", option => {
   // eslint-disable-next-line no-warning-comments
   // fixme: Use typedef
-  const options: SelectOptions = [
+  const options: components.SelectOptions = [
     {
       disable: true,
       label: "Option 1",
@@ -40,7 +41,7 @@ test.each([
     { label: "Option 3", value: "a" }
   ];
 
-  const wrapper = testUtils.mount(Select, {
+  const wrapper = testUtils.mount(components.Select, {
     props: { modelValue: undefined, options }
   });
 

@@ -1,34 +1,13 @@
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
-import { reactiveStorage } from "@skylib/facades/es/reactiveStorage";
-import * as a from "@skylib/functions/es/array";
-import * as assert from "@skylib/functions/es/assertions";
-import * as fn from "@skylib/functions/es/function";
-import * as is from "@skylib/functions/es/guards";
-import * as o from "@skylib/functions/es/object";
-import type * as testUtils from "@skylib/functions/es/testUtils";
-import type { WritableRecord } from "@skylib/functions/es/types/core";
+import { reactiveStorage } from "@skylib/facades";
+import { a, assert, fn, is, o } from "@skylib/functions";
+import type { WritableRecord } from "@skylib/functions";
+import type * as testUtils from "@skylib/functions/dist/testUtils";
 import type * as vueTestUtils from "@vue/test-utils";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 import type { ComponentConstructor } from "quasar";
 import type { Component, ComponentPublicInstance, Directive } from "vue";
-import { components } from "../components";
-import type { IconPickerSettings } from "../components/IconPicker.extras";
-import { testIconPickerSettings } from "../components/IconPicker.extras";
-import type { LanguagePickerSettings } from "../components/LanguagePicker.extras";
-import { testLanguagePickerSettings } from "../components/LanguagePicker.extras";
-import type { PageLayoutSettings } from "../components/PageLayout.extras";
-import { testPageLayoutSettings } from "../components/PageLayout.extras";
-import type { ResizerSettings } from "../components/Resizer.extras";
-import { testResizerSettings } from "../components/Resizer.extras";
-import type { SortableSettings } from "../components/Sortable.extras";
-import { testSortableSettings } from "../components/Sortable.extras";
-import type { SwitchableSettings } from "../components/Switchable.extras";
-import { testSwitchableSettings } from "../components/Switchable.extras";
-import type { TableSettings } from "../components/Table.extras";
-import { testTableSettings } from "../components/Table.extras";
-import type { TooltipSettings } from "../components/Tooltip.extras";
-import { testTooltipSettings } from "../components/Tooltip.extras";
-import * as vueStorage from "../facade-implementations/reactiveStorage/vueStorage";
+import { implementations, components } from "..";
 
 declare global {
   namespace jest {
@@ -70,15 +49,128 @@ declare global {
   }
 }
 
+/**
+ * Checks that Vue wrapper contains expected HTML code.
+ *
+ * @param got - Got value.
+ * @param expected - Expected HTML code.
+ * @returns Result object.
+ */
+export const htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual"> = (
+  got,
+  expected
+) => {
+  assert.byGuard(got, isWrapper);
+
+  return got.html() === expected
+    ? {
+        message: (): string => `Expected HTML code not to be "${expected}"`,
+        pass: true
+      }
+    : {
+        message: (): string =>
+          `Expected HTML code to be "${expected}", got "${got.html()}"`,
+        pass: false
+      };
+};
+
+/**
+ * Checks that Vue wrapper contains expected text.
+ *
+ * @param got - Got value.
+ * @param expected - Expected text.
+ * @returns Result object.
+ */
+export const textToEqual: testUtils.ExpectFromMatcher<"textToEqual"> = (
+  got,
+  expected
+) => {
+  assert.byGuard(got, isWrapper);
+
+  return got.text() === expected
+    ? {
+        message: (): string => `Expected text not to be "${expected}"`,
+        pass: true
+      }
+    : {
+        message: (): string =>
+          `Expected text to be "${expected}", got "${got.text()}"`,
+        pass: false
+      };
+};
+
+/**
+ * Checks that Vue wrapper is visible.
+ *
+ * @param got - Got value.
+ * @returns Result object.
+ */
+export const toBeVisible: testUtils.ExpectFromMatcher<"toBeVisible"> = got => {
+  assert.byGuard(got, isWrapper);
+
+  return got.isVisible()
+    ? {
+        message: (): string => "Expected Vue wrapper not to be visible",
+        pass: true
+      }
+    : {
+        message: (): string => "Expected Vue wrapper to be visible",
+        pass: false
+      };
+};
+
+/**
+ * Checks that Vue wrapper exists.
+ *
+ * @param got - Got value.
+ * @returns Result object.
+ */
+export const toExist: testUtils.ExpectFromMatcher<"toExist"> = got => {
+  assert.byGuard(got, isWrapper);
+
+  return got.exists()
+    ? {
+        message: (): string => "Expected Vue wrapper not to exist",
+        pass: true
+      }
+    : { message: (): string => "Expected Vue wrapper to exist", pass: false };
+};
+
+/**
+ * Checks that Vue wrapper has class.
+ *
+ * @param got - Got value.
+ * @param expected - Expected class name.
+ * @returns Result object.
+ */
+export const toHaveClass: testUtils.ExpectFromMatcher<"toHaveClass"> = (
+  got,
+  expected
+) => {
+  assert.byGuard(got, isWrapper);
+
+  return got.classes().includes(expected)
+    ? {
+        message: (): string =>
+          `Expected Vue wrapper not to have "${expected}" class`,
+        pass: true
+      }
+    : {
+        message: (): string =>
+          `Expected Vue wrapper to have "${expected}" class`,
+        pass: false
+      };
+};
+
 export interface CustomGlobalMountOptions {
-  readonly iconPickerSettings?: IconPickerSettings;
-  readonly languagePickerSettings?: LanguagePickerSettings;
-  readonly pageLayoutSettings?: PageLayoutSettings;
-  readonly resizerSettings?: ResizerSettings;
-  readonly sortableSettings?: SortableSettings;
-  readonly switchableSettings?: SwitchableSettings;
-  readonly tableSettings?: TableSettings;
-  readonly tooltipSettings?: TooltipSettings;
+  readonly iconPickerSettings?: components.IconPickerSettings;
+  readonly languagePickerSettings?: components.LanguagePickerSettings;
+  readonly pageLayoutSettings?: components.PageLayoutSettings;
+  readonly resizerSettings?: components.ResizerSettings;
+  readonly sortableSettings?: components.SortableSettings;
+  readonly switchableSettings?: components.SwitchableSettings;
+  readonly tableSettings?: components.TableSettings;
+  readonly tooltipSettings?: components.TooltipSettings;
 }
 
 export interface TouchPanMock {
@@ -217,7 +309,8 @@ export function globalMountOptions(
     components: fn.run(() => {
       const result: WritableRecord<string, Component | object> = {};
 
-      for (const component of components) result[component.name] = component;
+      for (const component of components.components)
+        result[component.name] = component;
 
       return result;
     }),
@@ -225,28 +318,31 @@ export function globalMountOptions(
       const result: WritableRecord<symbol, unknown> = {};
 
       if ("iconPickerSettings" in options)
-        testIconPickerSettings(result, options.iconPickerSettings);
+        components.testIconPickerSettings(result, options.iconPickerSettings);
 
       if ("languagePickerSettings" in options)
-        testLanguagePickerSettings(result, options.languagePickerSettings);
+        components.testLanguagePickerSettings(
+          result,
+          options.languagePickerSettings
+        );
 
       if ("pageLayoutSettings" in options)
-        testPageLayoutSettings(result, options.pageLayoutSettings);
+        components.testPageLayoutSettings(result, options.pageLayoutSettings);
 
       if ("tableSettings" in options)
-        testTableSettings(result, options.tableSettings);
+        components.testTableSettings(result, options.tableSettings);
 
       if ("resizerSettings" in options)
-        testResizerSettings(result, options.resizerSettings);
+        components.testResizerSettings(result, options.resizerSettings);
 
       if ("switchableSettings" in options)
-        testSwitchableSettings(result, options.switchableSettings);
+        components.testSwitchableSettings(result, options.switchableSettings);
 
       if ("sortableSettings" in options)
-        testSortableSettings(result, options.sortableSettings);
+        components.testSortableSettings(result, options.sortableSettings);
 
       if ("tooltipSettings" in options)
-        testTooltipSettings(result, options.tooltipSettings);
+        components.testTooltipSettings(result, options.tooltipSettings);
 
       return result;
     })
@@ -254,35 +350,10 @@ export function globalMountOptions(
 }
 
 /**
- * Checks that Vue wrapper contains expected HTML code.
- *
- * @param got - Got value.
- * @param expected - Expected HTML code.
- * @returns Result object.
- */
-export function htmlToEqual(
-  got: unknown,
-  expected: string
-): testUtils.ExpectReturnType {
-  assert.byGuard(got, isWrapper);
-
-  return got.html() === expected
-    ? {
-        message: (): string => `Expected HTML code not to be "${expected}"`,
-        pass: true
-      }
-    : {
-        message: (): string =>
-          `Expected HTML code to be "${expected}", got "${got.html()}"`,
-        pass: false
-      };
-}
-
-/**
  * Jest reset.
  */
 export function jestReset(): void {
-  reactiveStorage.setImplementation(vueStorage.implementation);
+  reactiveStorage.setImplementation(implementations.reactiveStorage.vueStorage);
 }
 
 /**
@@ -313,94 +384,6 @@ export function jestSetup(): void {
   window.scrollTo = jest.fn();
   installQuasarPlugin();
   jestReset();
-}
-
-/**
- * Checks that Vue wrapper contains expected text.
- *
- * @param got - Got value.
- * @param expected - Expected text.
- * @returns Result object.
- */
-export function textToEqual(
-  got: unknown,
-  expected: string
-): testUtils.ExpectReturnType {
-  assert.byGuard(got, isWrapper);
-
-  return got.text() === expected
-    ? {
-        message: (): string => `Expected text not to be "${expected}"`,
-        pass: true
-      }
-    : {
-        message: (): string =>
-          `Expected text to be "${expected}", got "${got.text()}"`,
-        pass: false
-      };
-}
-
-/**
- * Checks that Vue wrapper is visible.
- *
- * @param got - Got value.
- * @returns Result object.
- */
-export function toBeVisible(got: unknown): testUtils.ExpectReturnType {
-  assert.byGuard(got, isWrapper);
-
-  return got.isVisible()
-    ? {
-        message: (): string => "Expected Vue wrapper not to be visible",
-        pass: true
-      }
-    : {
-        message: (): string => "Expected Vue wrapper to be visible",
-        pass: false
-      };
-}
-
-/**
- * Checks that Vue wrapper exists.
- *
- * @param got - Got value.
- * @returns Result object.
- */
-export function toExist(got: unknown): testUtils.ExpectReturnType {
-  assert.byGuard(got, isWrapper);
-
-  return got.exists()
-    ? {
-        message: (): string => "Expected Vue wrapper not to exist",
-        pass: true
-      }
-    : { message: (): string => "Expected Vue wrapper to exist", pass: false };
-}
-
-/**
- * Checks that Vue wrapper has class.
- *
- * @param got - Got value.
- * @param expected - Expected class name.
- * @returns Result object.
- */
-export function toHaveClass(
-  got: unknown,
-  expected: string
-): testUtils.ExpectReturnType {
-  assert.byGuard(got, isWrapper);
-
-  return got.classes().includes(expected)
-    ? {
-        message: (): string =>
-          `Expected Vue wrapper not to have "${expected}" class`,
-        pass: true
-      }
-    : {
-        message: (): string =>
-          `Expected Vue wrapper to have "${expected}" class`,
-        pass: false
-      };
 }
 
 /**

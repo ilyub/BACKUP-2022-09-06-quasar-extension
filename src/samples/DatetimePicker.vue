@@ -1,6 +1,6 @@
 <script lang="ts">
-import { datetime } from "@skylib/facades/es/datetime";
-import type { stringU } from "@skylib/functions/es/types/core";
+import { datetime } from "@skylib/facades";
+import type { stringU } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

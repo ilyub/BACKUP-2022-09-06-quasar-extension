@@ -1,7 +1,6 @@
-import * as o from "@skylib/functions/es/object";
+import { o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
-import type { PageLayoutSettings } from "@/components/PageLayout.extras";
-import PageLayout from "@/components/PageLayout.vue";
+import { components } from "@";
 import * as testUtils from "@/testUtils";
 
 // eslint-disable-next-line no-warning-comments
@@ -25,7 +24,7 @@ test.each([
   },
   {
     closeExists: false,
-    pageLayoutSettings: typedef<PageLayoutSettings>({
+    pageLayoutSettings: typedef<components.PageLayoutSettings>({
       closeButton: false,
       height: "auto"
     }),
@@ -35,7 +34,7 @@ test.each([
   {
     closeButtonOn: true,
     closeExists: true,
-    pageLayoutSettings: typedef<PageLayoutSettings>({
+    pageLayoutSettings: typedef<components.PageLayoutSettings>({
       closeButton: false,
       height: "auto"
     }),
@@ -52,7 +51,7 @@ test.each([
     title,
     titleExists
   }) => {
-    const wrapper = vueTestUtils.mount(PageLayout, {
+    const wrapper = vueTestUtils.mount(components.PageLayout, {
       global: testUtils.globalMountOptions(
         o.removeUndefinedKeys({ pageLayoutSettings })
       ),

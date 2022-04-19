@@ -1,19 +1,12 @@
-import { Dictionary } from "@skylib/framework/es/facade-implementations/lang/dictionary";
-import type { LocaleName } from "@skylib/functions/es/types/configurable";
+import { implementations } from "@skylib/framework";
+import type { LocaleName } from "@skylib/functions";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import type { Ref } from "vue";
 import { ref } from "vue";
-import { provideIconPickerSettings } from "../components/IconPicker.extras";
-import { provideLanguagePickerSettings } from "../components/LanguagePicker.extras";
-import { providePageLayoutSettings } from "../components/PageLayout.extras";
-import { provideSortableSettings } from "../components/Sortable.extras";
-import type { Transition } from "../components/Switchable.extras";
-import { provideSwitchableSettings } from "../components/Switchable.extras";
-import { provideTableSettings } from "../components/Table.extras";
-import { provideTooltipSettings } from "../components/Tooltip.extras";
+import { components } from "..";
 
 export interface ProvidePlugin {
   readonly iconPickerTooltips: Ref<boolean>;
@@ -22,7 +15,7 @@ export interface ProvidePlugin {
    * Provides all.
    */
   readonly provide: () => void;
-  readonly switchableTransition: Ref<Transition>;
+  readonly switchableTransition: Ref<components.Transition>;
   readonly tooltipDelay: Ref<number>;
   readonly tooltipShow: Ref<boolean>;
 }
@@ -47,7 +40,7 @@ const iconPickerTooltips = ref(false);
 
 const language = ref<LocaleName>("en-US");
 
-const switchableTransition = ref<Transition>("none");
+const switchableTransition = ref<components.Transition>("none");
 
 const tooltipDelay = ref(1000);
 
@@ -57,15 +50,17 @@ const tooltipShow = ref(true);
  * Provides all.
  */
 function provide(): void {
-  provideIconPickerSettings(() => {
+  components.provideIconPickerSettings(() => {
     return { iconTooltips: iconPickerTooltips.value };
   });
 
-  provideLanguagePickerSettings(() => {
+  components.provideLanguagePickerSettings(() => {
     return {
       changeLanguageAction(value): void {
         language.value = value;
-        Dictionary.configure({ localeName: value });
+        implementations.lang.dictionary.Dictionary.configure({
+          localeName: value
+        });
       },
       items: [
         {
@@ -82,11 +77,11 @@ function provide(): void {
     };
   });
 
-  providePageLayoutSettings(() => {
+  components.providePageLayoutSettings(() => {
     return { closeButton: true, height: "calc(100vh - 48px)" };
   });
 
-  provideTableSettings(() => {
+  components.provideTableSettings(() => {
     return {
       binaryStateSort: true,
       flat: false,
@@ -96,7 +91,7 @@ function provide(): void {
     };
   });
 
-  provideSortableSettings(() => {
+  components.provideSortableSettings(() => {
     return {
       animationDuration: 500,
       disableDropping: false,
@@ -104,11 +99,11 @@ function provide(): void {
     };
   });
 
-  provideSwitchableSettings(() => {
+  components.provideSwitchableSettings(() => {
     return { transition: switchableTransition.value, transitionDuration: 500 };
   });
 
-  provideTooltipSettings(() => {
+  components.provideTooltipSettings(() => {
     return {
       delay: tooltipDelay.value,
       fontSize: undefined,
