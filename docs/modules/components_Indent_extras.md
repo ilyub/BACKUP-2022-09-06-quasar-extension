@@ -17,4 +17,4 @@
 
 ### GlobalIndent
 
-Ƭ **GlobalIndent**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`IndentProps`](../interfaces/components_Indent_extras.IndentProps.md), [`IndentSlots`](../interfaces/components_Indent_extras.IndentSlots.md)\>
+Ƭ **GlobalIndent**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`IndentProps`](../interfaces/components_Indent_extras.IndentProps.md), [`IndentSlots`](../interfaces/components_Indent_extras.IndentSlots.md)\>

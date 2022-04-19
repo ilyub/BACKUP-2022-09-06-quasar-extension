@@ -28,7 +28,7 @@ ___
 
 ### language
 
-• `Readonly` **language**: `Ref`<keyof `LocaleName`\>
+• `Readonly` **language**: `Ref`<`LocaleName`\>
 
 ___
 

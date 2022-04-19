@@ -239,7 +239,7 @@ ___
 
 ### htmlToEqual
 
-▸ **htmlToEqual**(`got`, `expected`): `testUtils.ExpectReturnType`
+▸ **htmlToEqual**(`got`, ...`args`): `ExpectReturnType`
 
 Checks that Vue wrapper contains expected HTML code.
 
@@ -248,11 +248,11 @@ Checks that Vue wrapper contains expected HTML code.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `got` | `unknown` | Got value. |
-| `expected` | `string` | Expected HTML code. |
+| `...args` | [expected: string] | - |
 
 #### Returns
 
-`testUtils.ExpectReturnType`
+`ExpectReturnType`
 
 Result object.
 
@@ -284,7 +284,7 @@ ___
 
 ### textToEqual
 
-▸ **textToEqual**(`got`, `expected`): `testUtils.ExpectReturnType`
+▸ **textToEqual**(`got`, ...`args`): `ExpectReturnType`
 
 Checks that Vue wrapper contains expected text.
 
@@ -293,11 +293,11 @@ Checks that Vue wrapper contains expected text.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `got` | `unknown` | Got value. |
-| `expected` | `string` | Expected text. |
+| `...args` | [expected: string] | - |
 
 #### Returns
 
-`testUtils.ExpectReturnType`
+`ExpectReturnType`
 
 Result object.
 
@@ -305,7 +305,7 @@ ___
 
 ### toBeVisible
 
-▸ **toBeVisible**(`got`): `testUtils.ExpectReturnType`
+▸ **toBeVisible**(`got`, ...`args`): `ExpectReturnType`
 
 Checks that Vue wrapper is visible.
 
@@ -314,10 +314,11 @@ Checks that Vue wrapper is visible.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `got` | `unknown` | Got value. |
+| `...args` | [] | - |
 
 #### Returns
 
-`testUtils.ExpectReturnType`
+`ExpectReturnType`
 
 Result object.
 
@@ -325,7 +326,7 @@ ___
 
 ### toExist
 
-▸ **toExist**(`got`): `testUtils.ExpectReturnType`
+▸ **toExist**(`got`, ...`args`): `ExpectReturnType`
 
 Checks that Vue wrapper exists.
 
@@ -334,10 +335,11 @@ Checks that Vue wrapper exists.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `got` | `unknown` | Got value. |
+| `...args` | [] | - |
 
 #### Returns
 
-`testUtils.ExpectReturnType`
+`ExpectReturnType`
 
 Result object.
 
@@ -345,7 +347,7 @@ ___
 
 ### toHaveClass
 
-▸ **toHaveClass**(`got`, `expected`): `testUtils.ExpectReturnType`
+▸ **toHaveClass**(`got`, ...`args`): `ExpectReturnType`
 
 Checks that Vue wrapper has class.
 
@@ -354,11 +356,11 @@ Checks that Vue wrapper has class.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `got` | `unknown` | Got value. |
-| `expected` | `string` | Expected class name. |
+| `...args` | [expected: string] | - |
 
 #### Returns
 
-`testUtils.ExpectReturnType`
+`ExpectReturnType`
 
 Result object.
 

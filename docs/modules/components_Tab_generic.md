@@ -25,7 +25,7 @@
 
 ### GlobalTab
 
-Ƭ **GlobalTab**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`TabProps`](../interfaces/components_Tab_generic.TabProps.md)<`T`\>, [`TabSlots`](components_Tab_generic.md#tabslots)\>
+Ƭ **GlobalTab**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TabProps`](../interfaces/components_Tab_generic.TabProps.md)<`T`\>, [`TabSlots`](components_Tab_generic.md#tabslots)\>
 
 #### Type parameters
 

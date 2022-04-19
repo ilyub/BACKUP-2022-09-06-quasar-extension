@@ -19,7 +19,7 @@
 
 ### GlobalSubsection
 
-Ƭ **GlobalSubsection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SubsectionProps`](../interfaces/components_Subsection_extras.SubsectionProps.md), [`SubsectionSlots`](components_Subsection_extras.md#subsectionslots)\>
+Ƭ **GlobalSubsection**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`SubsectionProps`](../interfaces/components_Subsection_extras.SubsectionProps.md), [`SubsectionSlots`](components_Subsection_extras.md#subsectionslots)\>
 
 ___
 

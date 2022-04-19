@@ -19,7 +19,7 @@
 
 ### GlobalMenu
 
-Ƭ **GlobalMenu**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`MenuProps`](../interfaces/components_Menu_extras.MenuProps.md), [`MenuSlots`](components_Menu_extras.md#menuslots)\>
+Ƭ **GlobalMenu**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`MenuProps`](../interfaces/components_Menu_extras.MenuProps.md), [`MenuSlots`](components_Menu_extras.md#menuslots)\>
 
 ___
 

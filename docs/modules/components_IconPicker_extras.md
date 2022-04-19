@@ -33,7 +33,7 @@
 
 ### GlobalIconPicker
 
-Ƭ **GlobalIconPicker**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`IconPickerProps`](../interfaces/components_IconPicker_extras.IconPickerProps.md), [`IconPickerSlots`](components_IconPicker_extras.md#iconpickerslots)\>
+Ƭ **GlobalIconPicker**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`IconPickerProps`](../interfaces/components_IconPicker_extras.IconPickerProps.md), [`IconPickerSlots`](components_IconPicker_extras.md#iconpickerslots)\>
 
 ___
 
@@ -45,13 +45,13 @@ ___
 
 ### icons
 
-• `Const` **icons**: `Icons`<``"chevronLeft"`` \| ``"chevronRight"`` \| ``"close"``\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<``"chevronLeft"`` \| ``"chevronRight"`` \| ``"close"``\> = `baseIcons`
 
 ___
 
 ### lang
 
-• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_IconPicker_extras.ModuleWord.md), `never`\> = `baseLang`
+• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_IconPicker_extras.ModuleWord.md), `never`\> = `baseLang`
 
 ## Functions
 

@@ -16,4 +16,4 @@
 
 ### definitions
 
-• `Const` **definitions**: `Rec`<`LocaleName`, `Definitions`\>
+• `Const` **definitions**: `Rec`<`LocaleName`, `implementations.lang.dictionary.Definitions`\>

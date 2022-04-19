@@ -23,7 +23,7 @@
 
 ### GlobalTabPanel
 
-Ƭ **GlobalTabPanel**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`TabPanelProps`](../interfaces/components_TabPanel_generic.TabPanelProps.md)<`T`\>, [`TabPanelSlots`](components_TabPanel_generic.md#tabpanelslots)\>
+Ƭ **GlobalTabPanel**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TabPanelProps`](../interfaces/components_TabPanel_generic.TabPanelProps.md)<`T`\>, [`TabPanelSlots`](components_TabPanel_generic.md#tabpanelslots)\>
 
 #### Type parameters
 

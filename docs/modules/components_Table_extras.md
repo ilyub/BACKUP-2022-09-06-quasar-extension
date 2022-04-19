@@ -91,7 +91,7 @@ ___
 
 ### GlobalTable
 
-Ƭ **GlobalTable**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`TableProps`](../interfaces/components_Table_extras.TableProps.md)<`T`\>, [`TableSlots`](../interfaces/components_Table_extras.TableSlots.md)<`T`\>\>
+Ƭ **GlobalTable**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TableProps`](../interfaces/components_Table_extras.TableProps.md)<`T`\>, [`TableSlots`](../interfaces/components_Table_extras.TableSlots.md)<`T`\>\>
 
 #### Type parameters
 
@@ -115,13 +115,13 @@ ___
 
 ### icons
 
-• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_Table_extras.ModuleIcons.md)\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_Table_extras.ModuleIcons.md)\> = `baseIcons`
 
 ___
 
 ### lang
 
-• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_Table_extras.ModuleWord.md), `never`\> = `baseLang`
+• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_Table_extras.ModuleWord.md), `never`\> = `baseLang`
 
 ## Functions
 

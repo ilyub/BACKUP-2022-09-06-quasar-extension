@@ -51,7 +51,7 @@ ___
 
 ### rootElement
 
-• `Optional` `Readonly` **rootElement**: [`RootElementProp`](../modules/components_api_rootElement.md#rootelementprop)
+• `Optional` `Readonly` **rootElement**: [`RootElementProp`](../modules/components_Group_extras.md#rootelementprop)
 
 #### Inherited from
 

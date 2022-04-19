@@ -28,4 +28,4 @@ ___
 
 ### lang
 
-• `Readonly` **lang**: keyof `LocaleName`
+• `Readonly` **lang**: `LocaleName`

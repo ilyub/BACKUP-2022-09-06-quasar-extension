@@ -25,4 +25,4 @@ ___
 
 ### GlobalExpansionItem
 
-Ƭ **GlobalExpansionItem**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`ExpansionItemProps`](../interfaces/components_ExpansionItem_extras.ExpansionItemProps.md), [`ExpansionItemSlots`](components_ExpansionItem_extras.md#expansionitemslots)\>
+Ƭ **GlobalExpansionItem**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ExpansionItemProps`](../interfaces/components_ExpansionItem_extras.ExpansionItemProps.md), [`ExpansionItemSlots`](components_ExpansionItem_extras.md#expansionitemslots)\>

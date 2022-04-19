@@ -50,7 +50,7 @@ ___
 
 ### GlobalSortable
 
-Ƭ **GlobalSortable**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md)<`T`\>, [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)<`T`\>\>
+Ƭ **GlobalSortable**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`SortableProps`](../interfaces/components_Sortable_extras.SortableProps.md)<`T`\>, [`SortableSlots`](../interfaces/components_Sortable_extras.SortableSlots.md)<`T`\>\>
 
 #### Type parameters
 

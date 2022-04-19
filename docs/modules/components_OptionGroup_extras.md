@@ -21,7 +21,7 @@
 
 ### GlobalOptionGroup
 
-Ƭ **GlobalOptionGroup**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`OptionGroupProps`](../interfaces/components_OptionGroup_extras.OptionGroupProps.md)<`T`\>, [`OptionGroupSlots`](components_OptionGroup_extras.md#optiongroupslots)\>
+Ƭ **GlobalOptionGroup**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`OptionGroupProps`](../interfaces/components_OptionGroup_extras.OptionGroupProps.md)<`T`\>, [`OptionGroupSlots`](components_OptionGroup_extras.md#optiongroupslots)\>
 
 #### Type parameters
 

@@ -31,7 +31,7 @@
 
 ### GlobalSelect
 
-Ƭ **GlobalSelect**<`T`\>: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SelectProps`](../interfaces/components_Select_extras.SelectProps.md)<`T`\>, [`SelectSlots`](components_Select_extras.md#selectslots)\>
+Ƭ **GlobalSelect**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`SelectProps`](../interfaces/components_Select_extras.SelectProps.md)<`T`\>, [`SelectSlots`](components_Select_extras.md#selectslots)\>
 
 #### Type parameters
 
@@ -61,7 +61,7 @@ ___
 
 ### lang
 
-• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_Select_extras.ModuleWord.md), `never`\> = `baseLang`
+• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_Select_extras.ModuleWord.md), `never`\> = `baseLang`
 
 ## Functions
 

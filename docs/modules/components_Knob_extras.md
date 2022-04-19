@@ -19,7 +19,7 @@
 
 ### GlobalKnob
 
-Ƭ **GlobalKnob**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`KnobOwnProps`](../interfaces/components_Knob_extras.KnobOwnProps.md), [`KnobSlots`](components_Knob_extras.md#knobslots)\>
+Ƭ **GlobalKnob**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`KnobOwnProps`](../interfaces/components_Knob_extras.KnobOwnProps.md), [`KnobSlots`](components_Knob_extras.md#knobslots)\>
 
 ___
 

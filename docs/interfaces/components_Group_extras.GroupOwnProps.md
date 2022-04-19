@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- [`RootElementProps`](components_api_rootElement.RootElementProps.md)
+- [`RootElementProps`](components_Group_extras.RootElementProps.md)
 
   ↳ **`GroupOwnProps`**
 
@@ -43,11 +43,11 @@ ___
 
 ### rootElement
 
-• `Optional` `Readonly` **rootElement**: [`RootElementProp`](../modules/components_api_rootElement.md#rootelementprop)
+• `Optional` `Readonly` **rootElement**: [`RootElementProp`](../modules/components_Group_extras.md#rootelementprop)
 
 #### Inherited from
 
-[RootElementProps](components_api_rootElement.RootElementProps.md).[rootElement](components_api_rootElement.RootElementProps.md#rootelement)
+[RootElementProps](components_Group_extras.RootElementProps.md).[rootElement](components_Group_extras.RootElementProps.md#rootelement)
 
 ___
 

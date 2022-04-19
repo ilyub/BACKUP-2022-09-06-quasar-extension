@@ -19,7 +19,7 @@
 
 ### GlobalToggle
 
-Ƭ **GlobalToggle**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`ToggleProps`](../interfaces/components_Toggle_extras.ToggleProps.md), [`ToggleSlots`](components_Toggle_extras.md#toggleslots)\>
+Ƭ **GlobalToggle**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ToggleProps`](../interfaces/components_Toggle_extras.ToggleProps.md), [`ToggleSlots`](components_Toggle_extras.md#toggleslots)\>
 
 ___
 

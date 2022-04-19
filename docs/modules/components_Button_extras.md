@@ -31,4 +31,4 @@ ___
 
 ### GlobalButton
 
-Ƭ **GlobalButton**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`ButtonProps`](../interfaces/components_Button_extras.ButtonProps.md), [`ButtonSlots`](components_Button_extras.md#buttonslots)\>
+Ƭ **GlobalButton**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ButtonProps`](../interfaces/components_Button_extras.ButtonProps.md), [`ButtonSlots`](components_Button_extras.md#buttonslots)\>

@@ -24,7 +24,7 @@
 
 ### GlobalResizer
 
-Ƭ **GlobalResizer**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`ResizerProps`](../interfaces/components_Resizer_extras.ResizerProps.md), [`ResizerSlots`](../interfaces/components_Resizer_extras.ResizerSlots.md)\>
+Ƭ **GlobalResizer**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ResizerProps`](../interfaces/components_Resizer_extras.ResizerProps.md), [`ResizerSlots`](../interfaces/components_Resizer_extras.ResizerSlots.md)\>
 
 ## Functions
 

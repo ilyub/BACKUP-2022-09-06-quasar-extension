@@ -24,7 +24,7 @@
 
 ### GlobalTimeInput
 
-Ƭ **GlobalTimeInput**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`TimeInputProps`](../interfaces/components_TimeInput_extras.TimeInputProps.md), [`TimeInputSlots`](components_TimeInput_extras.md#timeinputslots)\>
+Ƭ **GlobalTimeInput**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TimeInputProps`](../interfaces/components_TimeInput_extras.TimeInputProps.md), [`TimeInputSlots`](components_TimeInput_extras.md#timeinputslots)\>
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 ### icons
 
-• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_TimeInput_extras.ModuleIcons.md)\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_TimeInput_extras.ModuleIcons.md)\> = `baseIcons`

@@ -237,7 +237,7 @@ ___
 
 ### language
 
-• `Readonly` **language**: [`PropOptionsRequired`](components_api.PropOptionsRequired.md)<`unknown`\>
+• `Readonly` **language**: [`PropOptionsRequired`](components_api_core.PropOptionsRequired.md)<`unknown`\>
 
 ___
 

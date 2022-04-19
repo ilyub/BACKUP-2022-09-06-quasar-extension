@@ -19,7 +19,7 @@
 
 ### GlobalPageSection
 
-Ƭ **GlobalPageSection**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
+Ƭ **GlobalPageSection**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
 
 ___
 

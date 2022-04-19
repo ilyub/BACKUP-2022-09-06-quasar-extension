@@ -19,7 +19,7 @@
 
 ### GlobalListItem
 
-Ƭ **GlobalListItem**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`ListItemProps`](../interfaces/components_ListItem_extras.ListItemProps.md), [`ListItemSlots`](../interfaces/components_ListItem_extras.ListItemSlots.md)\>
+Ƭ **GlobalListItem**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ListItemProps`](../interfaces/components_ListItem_extras.ListItemProps.md), [`ListItemSlots`](../interfaces/components_ListItem_extras.ListItemSlots.md)\>
 
 ___
 

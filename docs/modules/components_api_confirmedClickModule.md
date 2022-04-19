@@ -42,13 +42,13 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `confirmation` | [`PropOptions`](../interfaces/components_api.PropOptions.md)<`undefined` \| `string`\> |
+| `confirmation` | [`PropOptions`](../interfaces/components_api_core.PropOptions.md)<`undefined` \| `string`\> |
 
 ___
 
 ### lang
 
-• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_api_confirmedClickModule.ModuleWord.md), `never`\> = `baseLang`
+• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_api_confirmedClickModule.ModuleWord.md), `never`\> = `baseLang`
 
 ## Functions
 
@@ -62,8 +62,8 @@ Confirmed click module.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `props` | [`ValidateProps`](components_api.md#validateprops)<[`ConfirmedClickProps`](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)\> | Props. |
-| `emit` | [`ValidateEmit`](components_api.md#validateemit)<[`ConfirmedClickProps`](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)\> | Emit function. |
+| `props` | [`ValidateProps`](components_api_core.md#validateprops)<[`ConfirmedClickProps`](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)\> | Props. |
+| `emit` | [`ValidateEmit`](components_api_core.md#validateemit)<[`ConfirmedClickProps`](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)\> | Emit function. |
 
 #### Returns
 

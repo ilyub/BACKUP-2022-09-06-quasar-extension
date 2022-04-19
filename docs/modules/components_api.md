@@ -4,367 +4,201 @@
 
 ## Table of contents
 
-### Namespaces
-
-- [prop](components_api.prop.md)
-
-### Interfaces
-
-- [GlobalComponent](../interfaces/components_api.GlobalComponent.md)
-- [Injectable](../interfaces/components_api.Injectable.md)
-- [PropOptions](../interfaces/components_api.PropOptions.md)
-- [PropOptionsBoolean](../interfaces/components_api.PropOptionsBoolean.md)
-- [PropOptionsDefault](../interfaces/components_api.PropOptionsDefault.md)
-- [PropOptionsRequired](../interfaces/components_api.PropOptionsRequired.md)
-- [ValidateEmit2](../interfaces/components_api.ValidateEmit2.md)
-
-### Type aliases
+### References
 
 - [Capital](components_api.md#capital)
+- [ConfirmedClickProps](components_api.md#confirmedclickprops)
 - [Emits](components_api.md#emits)
 - [ExtendQuasarProps](components_api.md#extendquasarprops)
+- [GlobalComponent](components_api.md#globalcomponent)
+- [Injectable](components_api.md#injectable)
 - [LooseRequired](components_api.md#looserequired)
 - [NonCapital](components_api.md#noncapital)
+- [PropOptions](components_api.md#propoptions)
+- [PropOptionsBoolean](components_api.md#propoptionsboolean)
+- [PropOptionsDefault](components_api.md#propoptionsdefault)
+- [PropOptionsRequired](components_api.md#propoptionsrequired)
 - [SetupProps](components_api.md#setupprops)
 - [ValidateEmit](components_api.md#validateemit)
 - [ValidateEmit1](components_api.md#validateemit1)
+- [ValidateEmit2](components_api.md#validateemit2)
 - [ValidateProps](components_api.md#validateprops)
-
-### Functions
-
 - [classRef](components_api.md#classref)
+- [confirmedClickEmits](components_api.md#confirmedclickemits)
+- [confirmedClickProps](components_api.md#confirmedclickprops-1)
 - [createInjectable](components_api.md#createinjectable)
 - [injectRequire](components_api.md#injectrequire)
 - [prop](components_api.md#prop)
-- [propOptionsBoolean](components_api.md#propoptionsboolean)
-- [propOptionsDefault](components_api.md#propoptionsdefault)
-- [propOptionsRequired](components_api.md#propoptionsrequired)
 - [propsToPropDefinitions](components_api.md#propstopropdefinitions)
+- [useConfirmedClick](components_api.md#useconfirmedclick)
+- [useSlotsNames](components_api.md#useslotsnames)
 - [validateEmit](components_api.md#validateemit-1)
 - [validateProps](components_api.md#validateprops-1)
 
-## Type aliases
+## References
 
 ### Capital
 
-Ƭ **Capital**: ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"H"`` \| ``"I"`` \| ``"J"`` \| ``"K"`` \| ``"L"`` \| ``"M"`` \| ``"N"`` \| ``"O"`` \| ``"P"`` \| ``"Q"`` \| ``"R"`` \| ``"S"`` \| ``"T"`` \| ``"U"`` \| ``"V"`` \| ``"W"`` \| ``"X"`` \| ``"Y"`` \| ``"Z"``
+Re-exports [Capital](components_api_core.md#capital)
+
+___
+
+### ConfirmedClickProps
+
+Re-exports [ConfirmedClickProps](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)
 
 ___
 
 ### Emits
 
-Ƭ **Emits**: { readonly [K in \`on${Capital}${string}\`]: Function }
+Re-exports [Emits](components_api_core.md#emits)
 
 ___
 
 ### ExtendQuasarProps
 
-Ƭ **ExtendQuasarProps**<`T`\>: `Join2`<{ readonly [K in OptionalKeys<T\>]: PropOptions<T[K]\> }, { readonly [K in RequiredKeys<T\>]: PropOptionsRequired<T[K]\> }\>
+Re-exports [ExtendQuasarProps](components_api_core.md#extendquasarprops)
 
-#### Type parameters
+___
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` |
+### GlobalComponent
+
+Re-exports [GlobalComponent](../interfaces/components_api_core.GlobalComponent.md)
+
+___
+
+### Injectable
+
+Re-exports [Injectable](../interfaces/components_api_core.Injectable.md)
 
 ___
 
 ### LooseRequired
 
-Ƭ **LooseRequired**<`T`\>: { [P in string & keyof T]: T[P] }
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
+Re-exports [LooseRequired](components_api_core.md#looserequired)
 
 ___
 
 ### NonCapital
 
-Ƭ **NonCapital**: ``"a"`` \| ``"b"`` \| ``"c"`` \| ``"d"`` \| ``"e"`` \| ``"f"`` \| ``"g"`` \| ``"h"`` \| ``"i"`` \| ``"j"`` \| ``"k"`` \| ``"l"`` \| ``"m"`` \| ``"n"`` \| ``"o"`` \| ``"p"`` \| ``"q"`` \| ``"r"`` \| ``"s"`` \| ``"t"`` \| ``"u"`` \| ``"v"`` \| ``"w"`` \| ``"x"`` \| ``"y"`` \| ``"z"``
+Re-exports [NonCapital](components_api_core.md#noncapital)
+
+___
+
+### PropOptions
+
+Re-exports [PropOptions](../interfaces/components_api_core.PropOptions.md)
+
+___
+
+### PropOptionsBoolean
+
+Re-exports [PropOptionsBoolean](../interfaces/components_api_core.PropOptionsBoolean.md)
+
+___
+
+### PropOptionsDefault
+
+Re-exports [PropOptionsDefault](../interfaces/components_api_core.PropOptionsDefault.md)
+
+___
+
+### PropOptionsRequired
+
+Re-exports [PropOptionsRequired](../interfaces/components_api_core.PropOptionsRequired.md)
 
 ___
 
 ### SetupProps
 
-Ƭ **SetupProps**<`T`\>: `Readonly`<[`LooseRequired`](components_api.md#looserequired)<`Readonly`<`ExtractPropTypes`<`T`\>\>\>\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` |
+Re-exports [SetupProps](components_api_core.md#setupprops)
 
 ___
 
 ### ValidateEmit
 
-Ƭ **ValidateEmit**<`T`\>: [`ValidateEmit1`](components_api.md#validateemit1)<`T`\> \| [`ValidateEmit2`](../interfaces/components_api.ValidateEmit2.md)
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
+Re-exports [ValidateEmit](components_api_core.md#validateemit)
 
 ___
 
 ### ValidateEmit1
 
-Ƭ **ValidateEmit1**<`T`\>: `ValueOf`<{ [K in keyof T & \`on${Capital}${string}\`]: T[K] extends Callable \| undefined ? Function : never }\>
+Re-exports [ValidateEmit1](components_api_core.md#validateemit1)
 
-#### Type parameters
+___
 
-| Name |
-| :------ |
-| `T` |
+### ValidateEmit2
+
+Re-exports [ValidateEmit2](../interfaces/components_api_core.ValidateEmit2.md)
 
 ___
 
 ### ValidateProps
 
-Ƭ **ValidateProps**<`T`\>: `Omit`<`T`, \`on${Capital}${string}\`\>
+Re-exports [ValidateProps](components_api_core.md#validateprops)
 
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-## Functions
+___
 
 ### classRef
 
-▸ **classRef**<`T`\>(`value`): `Ref`<`T`\>
+Re-exports [classRef](components_api_core.md#classref)
 
-Returns Vue reference compatible with non-public class methods.
+___
 
-#### Type parameters
+### confirmedClickEmits
 
-| Name |
-| :------ |
-| `T` |
+Re-exports [confirmedClickEmits](components_api_confirmedClickModule.md#confirmedclickemits)
 
-#### Parameters
+___
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `T` | Value. |
+### confirmedClickProps
 
-#### Returns
-
-`Ref`<`T`\>
-
-Vue reference.
+Re-exports [confirmedClickProps](components_api_confirmedClickModule.md#confirmedclickprops)
 
 ___
 
 ### createInjectable
 
-▸ **createInjectable**<`T`\>(`createDefault?`): [`Injectable`](../interfaces/components_api.Injectable.md)<`T`\>
-
-Creates injectable.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `createDefault?` | () => `T` | Returns default value. |
-
-#### Returns
-
-[`Injectable`](../interfaces/components_api.Injectable.md)<`T`\>
-
-Injectable.
+Re-exports [createInjectable](components_api_core.md#createinjectable)
 
 ___
 
 ### injectRequire
 
-▸ **injectRequire**<`T`\>(`key`): `T`
-
-Injects required value.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `string` \| `InjectionKey`<`T`\> | Key. |
-
-#### Returns
-
-`T`
-
-Value.
+Re-exports [injectRequire](components_api_core.md#injectrequire)
 
 ___
 
 ### prop
 
-▸ **prop**<`T`\>(): [`PropOptions`](../interfaces/components_api.PropOptions.md)<`T` \| `undefined`\>
-
-Creates Vue property.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Returns
-
-[`PropOptions`](../interfaces/components_api.PropOptions.md)<`T` \| `undefined`\>
-
-Vue property.
-
-___
-
-### propOptionsBoolean
-
-▸ **propOptionsBoolean**(`defVal?`): [`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
-
-Creates Vue property.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `defVal` | `boolean` | `false` | Default value. |
-
-#### Returns
-
-[`PropOptionsBoolean`](../interfaces/components_api.PropOptionsBoolean.md)
-
-Vue property.
-
-___
-
-### propOptionsDefault
-
-▸ **propOptionsDefault**<`T`\>(`defVal`): [`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`T`\>
-
-Creates Vue property.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `defVal` | `T` | Default value. |
-
-#### Returns
-
-[`PropOptionsDefault`](../interfaces/components_api.PropOptionsDefault.md)<`T`\>
-
-Vue property.
-
-___
-
-### propOptionsRequired
-
-▸ **propOptionsRequired**<`T`\>(): [`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`T`\>
-
-Creates Vue property.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Returns
-
-[`PropOptionsRequired`](../interfaces/components_api.PropOptionsRequired.md)<`T`\>
-
-Vue property.
+Re-exports [prop](components_api_core.md#prop)
 
 ___
 
 ### propsToPropDefinitions
 
-▸ **propsToPropDefinitions**<`T`\>(): [`ExtendQuasarProps`](components_api.md#extendquasarprops)<`T`\>
+Re-exports [propsToPropDefinitions](components_api_core.md#propstopropdefinitions)
 
-Creates extandable quasar component.
+___
 
-#### Type parameters
+### useConfirmedClick
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` |
+Re-exports [useConfirmedClick](components_api_confirmedClickModule.md#useconfirmedclick)
 
-#### Returns
+___
 
-[`ExtendQuasarProps`](components_api.md#extendquasarprops)<`T`\>
+### useSlotsNames
 
-Extandable quasar component.
+Re-exports [useSlotsNames](components_api_slotNames.md#useslotsnames)
 
 ___
 
 ### validateEmit
 
-▸ **validateEmit**<`T`\>(`emit`): [`ValidateEmit`](components_api.md#validateemit)<`T`\>
-
-Validates emit function.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `emit` | [`ValidateEmit`](components_api.md#validateemit)<`T`\> | Emit function. |
-
-#### Returns
-
-[`ValidateEmit`](components_api.md#validateemit)<`T`\>
-
-Emit function.
+Re-exports [validateEmit](components_api_core.md#validateemit-1)
 
 ___
 
 ### validateProps
 
-▸ **validateProps**<`T`\>(`props`): [`ValidateProps`](components_api.md#validateprops)<`T`\>
-
-Validates props.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `props` | [`ValidateProps`](components_api.md#validateprops)<`T`\> | Props. |
-
-#### Returns
-
-[`ValidateProps`](components_api.md#validateprops)<`T`\>
-
-Props.
+Re-exports [validateProps](components_api_core.md#validateprops-1)

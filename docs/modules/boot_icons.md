@@ -12,4 +12,4 @@
 
 ### icons
 
-• `Const` **icons**: `Facade`
+• `Const` **icons**: `iconsFacade.Facade`

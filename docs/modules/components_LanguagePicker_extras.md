@@ -30,7 +30,7 @@
 
 ### GlobalLanguagePicker
 
-Ƭ **GlobalLanguagePicker**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`LanguagePickerProps`](../interfaces/components_LanguagePicker_extras.LanguagePickerProps.md), [`LanguagePickerSlots`](components_LanguagePicker_extras.md#languagepickerslots)\>
+Ƭ **GlobalLanguagePicker**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`LanguagePickerProps`](../interfaces/components_LanguagePicker_extras.LanguagePickerProps.md), [`LanguagePickerSlots`](components_LanguagePicker_extras.md#languagepickerslots)\>
 
 ___
 

@@ -30,10 +30,10 @@ ___
 
 ### GlobalCard
 
-Ƭ **GlobalCard**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`CardProps`](../interfaces/components_Card_extras.CardProps.md), [`CardSlots`](../interfaces/components_Card_extras.CardSlots.md)\>
+Ƭ **GlobalCard**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`CardProps`](../interfaces/components_Card_extras.CardProps.md), [`CardSlots`](../interfaces/components_Card_extras.CardSlots.md)\>
 
 ## Variables
 
 ### icons
 
-• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_Card_extras.ModuleIcons.md)\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_Card_extras.ModuleIcons.md)\> = `baseIcons`

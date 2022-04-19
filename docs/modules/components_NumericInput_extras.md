@@ -24,7 +24,7 @@
 
 ### GlobalNumericInput
 
-Ƭ **GlobalNumericInput**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`NumericInputProps`](../interfaces/components_NumericInput_extras.NumericInputProps.md), [`NumericInputSlots`](components_NumericInput_extras.md#numericinputslots)\>
+Ƭ **GlobalNumericInput**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`NumericInputProps`](../interfaces/components_NumericInput_extras.NumericInputProps.md), [`NumericInputSlots`](components_NumericInput_extras.md#numericinputslots)\>
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 ### icons
 
-• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_NumericInput_extras.ModuleIcons.md)\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_NumericInput_extras.ModuleIcons.md)\> = `baseIcons`

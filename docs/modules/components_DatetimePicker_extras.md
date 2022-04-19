@@ -32,16 +32,16 @@ ___
 
 ### GlobalDatetimePicker
 
-Ƭ **GlobalDatetimePicker**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
+Ƭ **GlobalDatetimePicker**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
 
 ## Variables
 
 ### icons
 
-• `Const` **icons**: `Icons`<keyof [`ModuleIcons`](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)\> = `baseIcons`
+• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)\> = `baseIcons`
 
 ___
 
 ### lang
 
-• `Const` **lang**: `Lang`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md), `never`\> = `baseLang`
+• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md), `never`\> = `baseLang`

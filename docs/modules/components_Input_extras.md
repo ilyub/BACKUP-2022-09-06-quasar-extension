@@ -19,7 +19,7 @@
 
 ### GlobalInput
 
-Ƭ **GlobalInput**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`InputProps`](../interfaces/components_Input_extras.InputProps.md), [`InputSlots`](components_Input_extras.md#inputslots)\>
+Ƭ **GlobalInput**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`InputProps`](../interfaces/components_Input_extras.InputProps.md), [`InputSlots`](components_Input_extras.md#inputslots)\>
 
 ___
 

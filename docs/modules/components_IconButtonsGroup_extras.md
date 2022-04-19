@@ -17,4 +17,4 @@
 
 ### GlobalIconButtonsGroup
 
-Ƭ **GlobalIconButtonsGroup**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`IconButtonsGroupProps`](../interfaces/components_IconButtonsGroup_extras.IconButtonsGroupProps.md), [`IconButtonsGroupSlots`](../interfaces/components_IconButtonsGroup_extras.IconButtonsGroupSlots.md)\>
+Ƭ **GlobalIconButtonsGroup**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`IconButtonsGroupProps`](../interfaces/components_IconButtonsGroup_extras.IconButtonsGroupProps.md), [`IconButtonsGroupSlots`](../interfaces/components_IconButtonsGroup_extras.IconButtonsGroupSlots.md)\>

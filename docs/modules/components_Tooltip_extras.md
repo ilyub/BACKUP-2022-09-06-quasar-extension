@@ -42,7 +42,7 @@ ___
 
 ### GlobalTooltip
 
-Ƭ **GlobalTooltip**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`TooltipProps`](../interfaces/components_Tooltip_extras.TooltipProps.md), [`TooltipSlots`](components_Tooltip_extras.md#tooltipslots)\>
+Ƭ **GlobalTooltip**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TooltipProps`](../interfaces/components_Tooltip_extras.TooltipProps.md), [`TooltipSlots`](components_Tooltip_extras.md#tooltipslots)\>
 
 ___
 

@@ -16,7 +16,7 @@ Change language action.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `language` | keyof `LocaleName` | Language. |
+| `language` | `LocaleName` | Language. |
 
 #### Returns
 

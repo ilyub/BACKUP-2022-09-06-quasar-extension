@@ -33,7 +33,7 @@
 
 ### GlobalSwitchable
 
-Ƭ **GlobalSwitchable**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`SwitchableProps`](../interfaces/components_Switchable_extras.SwitchableProps.md), [`SwitchableSlots`](../interfaces/components_Switchable_extras.SwitchableSlots.md)\>
+Ƭ **GlobalSwitchable**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`SwitchableProps`](../interfaces/components_Switchable_extras.SwitchableProps.md), [`SwitchableSlots`](../interfaces/components_Switchable_extras.SwitchableSlots.md)\>
 
 ___
 

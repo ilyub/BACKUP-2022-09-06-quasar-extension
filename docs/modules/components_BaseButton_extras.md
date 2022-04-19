@@ -26,4 +26,4 @@ ___
 
 ### GlobalBaseButton
 
-Ƭ **GlobalBaseButton**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`BaseButtonProps`](../interfaces/components_BaseButton_extras.BaseButtonProps.md), [`BaseButtonSlots`](components_BaseButton_extras.md#basebuttonslots)\>
+Ƭ **GlobalBaseButton**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`BaseButtonProps`](../interfaces/components_BaseButton_extras.BaseButtonProps.md), [`BaseButtonSlots`](components_BaseButton_extras.md#basebuttonslots)\>

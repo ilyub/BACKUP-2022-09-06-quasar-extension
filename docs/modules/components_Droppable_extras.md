@@ -25,4 +25,4 @@ ___
 
 ### GlobalDroppable
 
-Ƭ **GlobalDroppable**: [`GlobalComponent`](../interfaces/components_api.GlobalComponent.md)<[`DroppableProps`](../interfaces/components_Droppable_extras.DroppableProps.md), [`DroppableSlots`](../interfaces/components_Droppable_extras.DroppableSlots.md)\>
+Ƭ **GlobalDroppable**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`DroppableProps`](../interfaces/components_Droppable_extras.DroppableProps.md), [`DroppableSlots`](../interfaces/components_Droppable_extras.DroppableSlots.md)\>
