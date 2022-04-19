@@ -18,6 +18,8 @@
   "license": "ISC",
   "author": "Ilya Lyubinskiy <admin.phpdev@gmail.com> (https://github.com/ilyub)",
   "publisher": "ilyub",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "browserslist": "browserslist",
     "build-doc": "typedoc src",

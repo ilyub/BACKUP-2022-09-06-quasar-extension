@@ -2,6 +2,7 @@
 !configs/**
 !src/components/**
 !src/facade-implementations/**
+!src/index.ts
 !src/plugin.ts
 !src/style.scss
 !src/testUtils/**
