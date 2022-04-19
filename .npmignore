@@ -1,6 +1,6 @@
 *
+!configs/**
 !src/components/**
-!src/configs/**
 !src/facade-implementations/**
 !src/plugin.ts
 !src/style.scss
