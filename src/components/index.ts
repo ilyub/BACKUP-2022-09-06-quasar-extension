@@ -77,6 +77,8 @@ export type {
   TableProps
 } from "./Table.extras";
 
+export { isTableState } from "./Table.extras";
+
 export type { RootElementProp } from "./Group.extras";
 
 export type { ColumnsOrder, ColumnWidths, HiddenColumns } from "./Table.extras";

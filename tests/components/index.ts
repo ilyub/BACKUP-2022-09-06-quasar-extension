@@ -1,6 +1,7 @@
 import { components } from "@";
 
 test("index", () => {
+  expect(components.isTableState).toBeDefined();
   expect(components.provideResizerSettings).toBeDefined();
   expect(components.provideIconPickerSettings).toBeDefined();
   expect(components.provideLanguagePickerSettings).toBeDefined();
