@@ -76,6 +76,7 @@
 - [genericTable](components.md#generictable)
 - [genericTabs](components.md#generictabs)
 - [injectDisable](components.md#injectdisable)
+- [isTableState](components.md#istablestate)
 - [provideIconPickerSettings](components.md#provideiconpickersettings)
 - [provideLanguagePickerSettings](components.md#providelanguagepickersettings)
 - [providePageLayoutSettings](components.md#providepagelayoutsettings)
@@ -517,6 +518,12 @@ ___
 ### injectDisable
 
 Re-exports [injectDisable](components_Switchable_extras.md#injectdisable)
+
+___
+
+### isTableState
+
+Re-exports [isTableState](components_Table_extras.md#istablestate)
 
 ___
 
