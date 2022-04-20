@@ -2,7 +2,6 @@
 .scannerwork
 .vscode
 cache
-dist
 lcov.info
 lcov-report
 node_modules

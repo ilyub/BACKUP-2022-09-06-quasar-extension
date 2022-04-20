@@ -1,5 +1,7 @@
 *
 !configs/**
+!dist/**
+!es/**
 !src/components/**
 !src/facade-implementations/**
 !src/index.ts
