@@ -15,14 +15,14 @@ export type SlotsNames1<T extends PropertyKey> = {
 
 export interface SlotsNames2<T extends PropertyKey> {
   /**
-   * Checks that slot exists.
+   * Checks if slot exists.
    *
    * @param name - Slot name.
    * @returns _True_ if slot exists, _false_ otherwise.
    */
   readonly has: (name: T) => boolean;
   /**
-   * Checks that some slot exists.
+   * Checks if some slot exists.
    *
    * @param names - Slot names.
    * @returns _True_ if slot exists, _false_ otherwise.

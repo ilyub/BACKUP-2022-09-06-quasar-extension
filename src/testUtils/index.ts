@@ -49,13 +49,6 @@ declare global {
   }
 }
 
-/**
- * Checks that Vue wrapper contains expected HTML code.
- *
- * @param got - Got value.
- * @param expected - Expected HTML code.
- * @returns Result object.
- */
 export const htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual"> = (
   got,
   expected
@@ -74,13 +67,6 @@ export const htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual"> = (
       };
 };
 
-/**
- * Checks that Vue wrapper contains expected text.
- *
- * @param got - Got value.
- * @param expected - Expected text.
- * @returns Result object.
- */
 export const textToEqual: testUtils.ExpectFromMatcher<"textToEqual"> = (
   got,
   expected
@@ -99,12 +85,6 @@ export const textToEqual: testUtils.ExpectFromMatcher<"textToEqual"> = (
       };
 };
 
-/**
- * Checks that Vue wrapper is visible.
- *
- * @param got - Got value.
- * @returns Result object.
- */
 export const toBeVisible: testUtils.ExpectFromMatcher<"toBeVisible"> = got => {
   assert.byGuard(got, isWrapper);
 
@@ -119,12 +99,6 @@ export const toBeVisible: testUtils.ExpectFromMatcher<"toBeVisible"> = got => {
       };
 };
 
-/**
- * Checks that Vue wrapper exists.
- *
- * @param got - Got value.
- * @returns Result object.
- */
 export const toExist: testUtils.ExpectFromMatcher<"toExist"> = got => {
   assert.byGuard(got, isWrapper);
 
@@ -136,13 +110,6 @@ export const toExist: testUtils.ExpectFromMatcher<"toExist"> = got => {
     : { message: (): string => "Expected Vue wrapper to exist", pass: false };
 };
 
-/**
- * Checks that Vue wrapper has class.
- *
- * @param got - Got value.
- * @param expected - Expected class name.
- * @returns Result object.
- */
 export const toHaveClass: testUtils.ExpectFromMatcher<"toHaveClass"> = (
   got,
   expected
@@ -409,7 +376,7 @@ export function touchPanMock(): TouchPanMock {
 }
 
 /**
- * Checks that value is a wrapper.
+ * Checks if value is a wrapper.
  *
  * @param value - Value.
  * @returns _True_ if value is a wrapper, _false_ otherwise.
