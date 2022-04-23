@@ -1,3 +1,5 @@
+export * from "./core";
+
 export type { ConfirmedClickProps } from "./confirmedClickModule";
 
 export {
@@ -7,5 +9,3 @@ export {
 } from "./confirmedClickModule";
 
 export { useSlotsNames } from "./slotNames";
-
-export * from "./core";

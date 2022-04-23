@@ -8,6 +8,7 @@ import type { Ref } from "vue";
 import { ref } from "vue";
 import { components } from "..";
 
+// eslint-disable-next-line @skylib/primary-export-only
 export interface ProvidePlugin {
   readonly iconPickerTooltips: Ref<boolean>;
   readonly language: Ref<LocaleName>;

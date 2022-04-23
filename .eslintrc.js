@@ -1,5 +1,19 @@
 module.exports = {
   extends: [require.resolve("@skylib/config/src/eslintrc")],
+  overrides: [
+    {
+      files: ["./src/components/*.generic.ts"],
+      rules: { "@skylib/only-export-name": "off" }
+    },
+    {
+      files: ["./src/components/*.vue"],
+      rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
+    },
+    {
+      files: ["./src/samples/*.vue"],
+      rules: { "@skylib/vue-component-name": ["warn", { prefix: "sample-" }] }
+    }
+  ],
   // eslint-disable-next-line no-warning-comments
   // fixme
   rules: {

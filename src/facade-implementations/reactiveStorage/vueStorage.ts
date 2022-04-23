@@ -13,6 +13,7 @@ declare global {
   }
 }
 
+// eslint-disable-next-line @skylib/only-export-name
 export const implementation = fn.run<reactiveStorage.Facade>(() =>
   o.extend(
     <T extends object>(obj: T): T =>

@@ -29,9 +29,9 @@ import TimeInput from "./TimeInput.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
 
-export { useProvide } from "./useProvide";
-
 export { default as Index } from "./Index.vue";
+
+export { useProvide } from "./useProvide";
 
 export const components = o.freeze([
   Button,
