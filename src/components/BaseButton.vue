@@ -1,17 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[BaseButton] */
 
-import { handlePromise } from "@skylib/facades";
-import { is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
-import type {
-  AsyncClick,
-  BaseButtonOwnProps,
-  BaseButtonParentProps,
-  BaseButtonSlots
-} from "./BaseButton.extras";
 import { injectDisable } from "./Switchable.extras";
-import type { Direction } from "./Tooltip.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -21,6 +11,16 @@ import {
   useConfirmedClick,
   useSlotsNames
 } from "./api";
+import { handlePromise } from "@skylib/facades";
+import { is } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
+import type {
+  AsyncClick,
+  BaseButtonOwnProps,
+  BaseButtonParentProps,
+  BaseButtonSlots
+} from "./BaseButton.extras";
+import type { Direction } from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-base-button",

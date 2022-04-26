@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { stringU } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-input",

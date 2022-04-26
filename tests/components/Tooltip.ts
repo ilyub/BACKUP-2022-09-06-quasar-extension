@@ -1,7 +1,7 @@
-import * as vueTestUtils from "@vue/test-utils";
-import { QTooltip } from "quasar";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import * as vueTestUtils from "@vue/test-utils";
+import { QTooltip } from "quasar";
 
 interface TestOption {
   readonly delay: number;
@@ -25,11 +25,7 @@ test.each<TestOption>([
 ])("delay", options => {
   const wrapper = vueTestUtils.mount(components.Tooltip, {
     global: testUtils.globalMountOptions({
-      tooltipSettings: {
-        delay: options.delay,
-        fontSize: undefined,
-        show: true
-      }
+      tooltipSettings: { delay: options.delay, show: true }
     }),
     props: { direction: options.direction }
   });
@@ -42,11 +38,7 @@ test.each<TestOption>([
 test("delay", () => {
   const wrapper = vueTestUtils.mount(components.Tooltip, {
     global: testUtils.globalMountOptions({
-      tooltipSettings: {
-        delay: 1000,
-        fontSize: undefined,
-        show: false
-      }
+      tooltipSettings: { delay: 1000, show: false }
     })
   });
 

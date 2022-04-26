@@ -1,7 +1,7 @@
-import type { numberU, NumStrU } from "@skylib/functions";
-import type { QTabProps, QTabSlots } from "quasar";
 import { QTab } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { NumStrU } from "@skylib/functions";
+import type { QTabProps, QTabSlots } from "quasar";
 
 export type GlobalTab<T extends NumStrU = NumStrU> = GlobalComponent<
   TabProps<T>,
@@ -9,7 +9,7 @@ export type GlobalTab<T extends NumStrU = NumStrU> = GlobalComponent<
 >;
 
 export interface TabOption<T extends NumStrU = NumStrU> {
-  readonly count: numberU;
+  readonly count?: number;
   readonly icon: string;
   readonly label: string;
   readonly value: T;
@@ -20,7 +20,7 @@ export type TabOptions<T extends NumStrU = NumStrU> = ReadonlyArray<
 >;
 
 export interface TabOwnProps<T extends NumStrU = NumStrU> {
-  readonly name?: T;
+  readonly name?: T | undefined;
 }
 
 export interface TabParentProps

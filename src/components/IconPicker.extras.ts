@@ -1,8 +1,8 @@
+import { createInjectable } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import type { numberU, stringU } from "@skylib/functions";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
-import { createInjectable } from "./api";
+import type { numberU, stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {

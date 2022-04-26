@@ -1,8 +1,8 @@
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
 import { nextTick } from "vue";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
 
 test("menu", async () => {
   const wrapper = vueTestUtils.mount(components.Menu, {

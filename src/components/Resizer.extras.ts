@@ -1,7 +1,6 @@
-import type { numberU } from "@skylib/functions";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
+import type { GlobalComponent, VNodes } from "./api";
+import type { numberU } from "@skylib/functions";
 
 export const {
   inject: injectResizerSettings,
@@ -35,5 +34,5 @@ export interface ResizerSlots {
    *
    * @returns Node.
    */
-  readonly default: () => readonly VNode[];
+  readonly default: () => VNodes;
 }

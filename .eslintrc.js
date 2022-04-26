@@ -20,6 +20,26 @@ module.exports = {
     "@skylib/no-multi-type-tuples": "off",
     "@skylib/no-mutable-signature": "off",
     "@skylib/no-unsafe-object-assignment": "off",
+    "@skylib/optional-property-style": [
+      "warn",
+      {
+        classes: "undefined",
+        interfaces: "optional",
+        overrides: [
+          {
+            patterns: ["Props$"],
+            style: "combined",
+            target: "interfaces"
+          },
+          {
+            patterns: ["Props$"],
+            propertyPatterns: ["^on[A-Z]"],
+            style: "optional",
+            target: "interfaces"
+          }
+        ]
+      }
+    ],
     "@skylib/prefer-readonly": "off",
     "@skylib/prefer-readonly-props": "off",
     "@typescript-eslint/no-empty-interface": "off",

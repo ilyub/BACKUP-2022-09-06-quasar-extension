@@ -1,11 +1,11 @@
+// eslint-disable-next-line import/no-internal-modules
+import { icons as iconsImplementation } from "./src/boot/icons";
+// eslint-disable-next-line import/no-internal-modules
+import { definitions } from "./src/boot/lang";
+import * as testUtils from "./src/testUtils";
 import { icons } from "@skylib/facades";
 import * as frameworkTestUtils from "@skylib/framework/dist/testUtils";
 import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
-// eslint-disable-next-line import/no-internal-modules -- Postponed.
-import { icons as iconsImplementation } from "./src/boot/icons";
-// eslint-disable-next-line import/no-internal-modules -- Postponed.
-import { definitions } from "./src/boot/lang";
-import * as testUtils from "./src/testUtils";
 
 icons.setImplementation(iconsImplementation);
 functionsTestUtils.jestSetup();

@@ -1,7 +1,7 @@
-import type { LocaleName } from "@skylib/functions";
+import { createInjectable } from "./api";
 import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
 import type { GlobalComponent, PropOptionsRequired } from "./api";
-import { createInjectable } from "./api";
+import type { LocaleName } from "@skylib/functions";
 
 export const {
   inject: injectLanguagePickerSettings,

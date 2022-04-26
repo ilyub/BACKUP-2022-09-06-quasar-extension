@@ -1,9 +1,9 @@
 <script lang="ts">
+import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
+import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
 import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { PageLayoutProps, PageLayoutSlots } from "./PageLayout.extras";
-import { icons, injectPageLayoutSettings } from "./PageLayout.extras";
-import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-page-layout",

@@ -1,6 +1,6 @@
+import { components } from "@";
 import * as testUtils from "@vue/test-utils";
 import { QSelect } from "quasar";
-import { components } from "@";
 
 test.each([
   { expected: "Select" },

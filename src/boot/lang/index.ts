@@ -1,7 +1,7 @@
-import type { implementations } from "@skylib/framework";
-import type { LocaleName, Rec } from "@skylib/functions";
 import { en } from "./en";
 import { ru } from "./ru";
+import type { implementations } from "@skylib/framework";
+import type { LocaleName, Rec } from "@skylib/functions";
 
 declare global {
   namespace configurable {

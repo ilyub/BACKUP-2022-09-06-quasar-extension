@@ -1,3 +1,4 @@
+import { routes } from "../routes";
 import { a, fn } from "@skylib/functions";
 import { route } from "quasar/wrappers";
 import {
@@ -5,7 +6,6 @@ import {
   createWebHashHistory,
   createWebHistory
 } from "vue-router";
-import { routes } from "../routes";
 
 export default route(() => {
   const createHistory = fn.run(() => {

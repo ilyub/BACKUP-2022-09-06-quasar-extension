@@ -1,14 +1,4 @@
 <script lang="ts">
-import { a, assert, is, reflect } from "@skylib/functions";
-import type { objects, Writable } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
-import VueDraggable from "vuedraggable";
-import type {
-  Elems,
-  Move,
-  SortableProps,
-  SortableSlots
-} from "./Sortable.extras";
 import {
   buildElements,
   injectSortableSettings,
@@ -17,6 +7,16 @@ import {
 } from "./Sortable.extras";
 import { useDisableTooltips } from "./Tooltip.extras";
 import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
+import { a, assert, is, reflect } from "@skylib/functions";
+import { computed, defineComponent } from "vue";
+import VueDraggable from "vuedraggable";
+import type {
+  Elems,
+  Move,
+  SortableProps,
+  SortableSlots
+} from "./Sortable.extras";
+import type { objects, Writable } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-sortable",

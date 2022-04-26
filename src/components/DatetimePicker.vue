@@ -1,14 +1,4 @@
 <script lang="ts">
-import { compare, datetime } from "@skylib/facades";
-import { assert, is } from "@skylib/functions";
-import type { stringU } from "@skylib/functions";
-import type { QField } from "quasar";
-import { computed, defineComponent, ref } from "vue";
-import type {
-  DatetimePickerOwnProps,
-  DatetimePickerParentProps,
-  DatetimePickerSlots
-} from "./DatetimePicker.extras";
 import { icons, lang } from "./DatetimePicker.extras";
 import {
   prop,
@@ -17,6 +7,16 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
+import { compare, datetime } from "@skylib/facades";
+import { assert, is } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
+import type {
+  DatetimePickerOwnProps,
+  DatetimePickerParentProps,
+  DatetimePickerSlots
+} from "./DatetimePicker.extras";
+import type { stringU } from "@skylib/functions";
+import type { QField } from "quasar";
 
 export default defineComponent({
   name: "m-datetime-picker",

@@ -1,8 +1,8 @@
 <script lang="ts">
+import { components } from "..";
 import { json, reflect } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
-import { components } from "..";
 
 export default defineComponent({
   name: "sample-droppable",

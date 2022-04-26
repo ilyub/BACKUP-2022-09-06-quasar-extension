@@ -1,7 +1,7 @@
 <script lang="ts">
+import { components } from "..";
 import { reflect } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import { components } from "..";
 
 export default defineComponent({
   name: "sample-sortable",

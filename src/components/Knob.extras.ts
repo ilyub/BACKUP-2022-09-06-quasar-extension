@@ -1,6 +1,6 @@
+import type { GlobalComponent } from "./api";
 import type { booleanU } from "@skylib/functions";
 import type { QKnobProps, QKnobSlots } from "quasar";
-import type { GlobalComponent } from "./api";
 
 export type GlobalKnob = GlobalComponent<KnobOwnProps, KnobSlots>;
 

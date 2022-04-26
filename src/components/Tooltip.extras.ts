@@ -1,10 +1,9 @@
+import { createInjectable } from "./api";
 import { is, createValidationObject } from "@skylib/functions";
-import type { stringU } from "@skylib/functions";
-import type { QTooltipProps, QTooltipSlots } from "quasar";
-import type { Ref } from "vue";
 import { computed, onUnmounted, ref, watch } from "vue";
 import type { GlobalComponent } from "./api";
-import { createInjectable } from "./api";
+import type { QTooltipProps, QTooltipSlots } from "quasar";
+import type { Ref } from "vue";
 
 export const DirectionVO = createValidationObject<Direction>({
   "down": "down",
@@ -32,11 +31,7 @@ export const {
   provide: provideTooltipSettings,
   test: testTooltipSettings
 } = createInjectable<TooltipSettings>(() => {
-  return {
-    delay: 0,
-    fontSize: undefined,
-    show: true
-  };
+  return { delay: 0, show: true };
 });
 
 export type Direction =
@@ -69,7 +64,7 @@ export interface TooltipProps extends TooltipParentProps, TooltipOwnProps {}
 
 export interface TooltipSettings {
   readonly delay: number;
-  readonly fontSize: stringU;
+  readonly fontSize?: string;
   readonly show: boolean;
 }
 

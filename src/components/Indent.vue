@@ -1,7 +1,7 @@
 <script lang="ts">
+import { useSlotsNames } from "./api";
 import { defineComponent } from "vue";
 import type { IndentSlots } from "./Indent.extras";
-import { useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-indent",

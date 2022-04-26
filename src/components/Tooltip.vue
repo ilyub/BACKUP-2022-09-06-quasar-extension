@@ -1,13 +1,6 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Tooltip] */
 
-import { computed, defineComponent } from "vue";
-import type {
-  Direction,
-  TooltipOwnProps,
-  TooltipParentProps,
-  TooltipSlots
-} from "./Tooltip.extras";
 import { disabled, injectTooltipSettings } from "./Tooltip.extras";
 import {
   prop,
@@ -15,6 +8,13 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
+import { computed, defineComponent } from "vue";
+import type {
+  Direction,
+  TooltipOwnProps,
+  TooltipParentProps,
+  TooltipSlots
+} from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-tooltip",

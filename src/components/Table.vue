@@ -1,29 +1,7 @@
 <script lang="ts">
 // eslint-disable-next-line no-warning-comments
 // fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
-import { a, assert, fn, is, map, o, set } from "@skylib/functions";
-import type {
-  booleanU,
-  IndexedObject,
-  numberU,
-  objects,
-  Writable
-} from "@skylib/functions";
-import * as _ from "@skylib/lodash-commonjs-es";
-import type { QDialog, QTable } from "quasar";
-import { computed, defineComponent, ref } from "vue";
 import { genericSortable } from "./Sortable.generic";
-import type {
-  Column,
-  Columns,
-  ColumnsOrder,
-  ColumnWidths,
-  HiddenColumns,
-  Pagination,
-  TableOwnProps,
-  TableParentProps,
-  TableSlots
-} from "./Table.extras";
 import {
   icons,
   injectTableSettings,
@@ -40,7 +18,29 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
+import { a, assert, fn, is, map, o, set } from "@skylib/functions";
+import * as _ from "@skylib/lodash-commonjs-es";
+import { computed, defineComponent, ref } from "vue";
+import type {
+  Column,
+  Columns,
+  ColumnsOrder,
+  ColumnWidths,
+  HiddenColumns,
+  Pagination,
+  TableOwnProps,
+  TableParentProps,
+  TableSlots
+} from "./Table.extras";
 import type { QVirtualScroll } from "./extras";
+import type {
+  booleanU,
+  IndexedObject,
+  numberU,
+  objects,
+  Writable
+} from "@skylib/functions";
+import type { QDialog, QTable } from "quasar";
 
 export default defineComponent({
   name: "m-table",

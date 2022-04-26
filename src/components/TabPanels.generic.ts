@@ -1,7 +1,7 @@
-import type { NumStrU } from "@skylib/functions";
-import type { QTabPanelsProps, QTabPanelsSlots } from "quasar";
 import { QTabPanels } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { NumStrU } from "@skylib/functions";
+import type { QTabPanelsProps, QTabPanelsSlots } from "quasar";
 
 export type GlobalTabPanels<T extends NumStrU = NumStrU> = GlobalComponent<
   TabPanelsProps<T>,
@@ -9,7 +9,7 @@ export type GlobalTabPanels<T extends NumStrU = NumStrU> = GlobalComponent<
 >;
 
 export interface TabPanelsOwnProps<T extends NumStrU = NumStrU> {
-  modelValue?: T;
+  modelValue?: T | undefined;
   /**
    * Emits model value.
    *

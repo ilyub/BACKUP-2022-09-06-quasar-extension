@@ -1,6 +1,6 @@
-import type { booleanU, stringU } from "@skylib/functions";
-import { computed } from "vue";
 import { components } from "@";
+import { computed } from "vue";
+import type { booleanU, stringU } from "@skylib/functions";
 
 test.each([
   {

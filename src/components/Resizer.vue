@@ -1,12 +1,12 @@
 <script lang="ts">
 // eslint-disable-next-line no-warning-comments
 // fixme: Get rid of m-resizer__root
-import { assert, is } from "@skylib/functions";
-import type { numberU } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
-import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
 import { injectResizerSettings } from "./Resizer.extras";
 import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
+import { assert, is } from "@skylib/functions";
+import { computed, defineComponent } from "vue";
+import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
+import type { numberU } from "@skylib/functions";
 
 const isOffset = is.object.factory<Offset>({ x: is.number, y: is.number }, {});
 

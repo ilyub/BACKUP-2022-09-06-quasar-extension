@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { stringU } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
 import { components } from "..";
+import { computed, defineComponent, ref } from "vue";
+import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-group",

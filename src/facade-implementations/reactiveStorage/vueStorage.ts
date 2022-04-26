@@ -1,6 +1,6 @@
-import type { reactiveStorage } from "@skylib/facades";
 import { assert, fn, o } from "@skylib/functions";
 import { computed, reactive, watch } from "vue";
+import type { reactiveStorage } from "@skylib/facades";
 import type { WatchStopHandle } from "vue";
 
 declare global {

@@ -1,8 +1,7 @@
-import { icons as baseIcons } from "@skylib/facades";
-import type { booleanU, stringU } from "@skylib/functions";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
+import { icons as baseIcons } from "@skylib/facades";
+import type { GlobalComponent, VNodes } from "./api";
+import type { booleanU, stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -48,41 +47,41 @@ export interface PageLayoutSlots {
    *
    * @returns Node.
    */
-  readonly actions: () => readonly VNode[];
+  readonly actions: () => VNodes;
   /**
    * Default slot.
    *
    * @returns Node.
    */
-  readonly default: () => readonly VNode[];
+  readonly default: () => VNodes;
   /**
    * Fit slot.
    *
    * @returns Node.
    */
-  readonly fit: () => readonly VNode[];
+  readonly fit: () => VNodes;
   /**
    * Footer slot.
    *
    * @returns Node.
    */
-  readonly footer: () => readonly VNode[];
+  readonly footer: () => VNodes;
   /**
    * Header slot.
    *
    * @returns Node.
    */
-  readonly header: () => readonly VNode[];
+  readonly header: () => VNodes;
   /**
    * Sticky footer slot.
    *
    * @returns Node.
    */
-  readonly "sticky-footer": () => readonly VNode[];
+  readonly "sticky-footer": () => VNodes;
   /**
    * Sticky header slot.
    *
    * @returns Node.
    */
-  readonly "sticky-header": () => readonly VNode[];
+  readonly "sticky-header": () => VNodes;
 }

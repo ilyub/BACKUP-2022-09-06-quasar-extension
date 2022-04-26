@@ -1,9 +1,9 @@
+import { prop } from "./core";
 import { lang as baseLang } from "@skylib/facades";
 import { is } from "@skylib/functions";
-import type { stringU } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import type { ValidateEmit, ValidateProps } from "./core";
-import { prop } from "./core";
+import type { stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {

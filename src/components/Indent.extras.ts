@@ -1,5 +1,4 @@
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, VNodes } from "./api";
 
 export type GlobalIndent = GlobalComponent<IndentProps, IndentSlots>;
 
@@ -11,5 +10,5 @@ export interface IndentSlots {
    *
    * @returns Node.
    */
-  readonly default: () => readonly VNode[];
+  readonly default: () => VNodes;
 }

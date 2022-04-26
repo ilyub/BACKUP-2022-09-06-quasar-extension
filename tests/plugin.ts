@@ -1,6 +1,6 @@
+import { plugin } from "@/plugin";
 import { assert } from "@skylib/functions";
 import type { App } from "vue";
-import { plugin } from "@/plugin";
 
 test("plugin", () => {
   const component = jest.fn();

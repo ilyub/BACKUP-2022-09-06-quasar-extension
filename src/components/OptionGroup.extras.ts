@@ -1,5 +1,6 @@
-import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { booleanU } from "@skylib/functions";
+import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 
 export type GlobalOptionGroup<T = unknown> = GlobalComponent<
   OptionGroupProps<T>,
@@ -17,7 +18,7 @@ export type OptionGroupOptions<T = unknown> = ReadonlyArray<
 >;
 
 export interface OptionGroupOwnProps<T = unknown> {
-  readonly inline?: boolean;
+  readonly inline?: booleanU;
   readonly modelValue: T;
   /**
    * Emits model value.

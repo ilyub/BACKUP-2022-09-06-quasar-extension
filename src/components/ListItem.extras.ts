@@ -1,7 +1,6 @@
+import type { GlobalComponent, ConfirmedClickProps, VNodes } from "./api";
 import type { stringU } from "@skylib/functions";
 import type { QItemProps } from "quasar";
-import type { VNode } from "vue";
-import type { GlobalComponent, ConfirmedClickProps } from "./api";
 
 export type GlobalListItem = GlobalComponent<ListItemProps, ListItemSlots>;
 
@@ -20,17 +19,17 @@ export interface ListItemSlots {
    *
    * @returns Node.
    */
-  readonly caption: () => readonly VNode[];
+  readonly caption: () => VNodes;
   /**
    * Default slot.
    *
    * @returns Node.
    */
-  readonly default: () => readonly VNode[];
+  readonly default: () => VNodes;
   /**
    * Header actions.
    *
    * @returns Node.
    */
-  readonly icon: () => readonly VNode[];
+  readonly icon: () => VNodes;
 }

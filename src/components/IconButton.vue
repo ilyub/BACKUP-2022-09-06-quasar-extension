@@ -1,11 +1,11 @@
 <script lang="ts">
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 import { defineComponent } from "vue";
 import type {
   IconButtonOwnProps,
   IconButtonParentProps,
   IconButtonSlots
 } from "./IconButton.extras";
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-icon-button",

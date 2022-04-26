@@ -1,7 +1,7 @@
-import type { booleanU, stringU } from "@skylib/functions";
-import type { QBtnProps, QBtnSlots } from "quasar";
 import type { Direction } from "./Tooltip.extras";
 import type { GlobalComponent, ConfirmedClickProps } from "./api";
+import type { booleanU, stringU } from "@skylib/functions";
+import type { QBtnProps, QBtnSlots } from "quasar";
 
 export interface AsyncClick {
   /**

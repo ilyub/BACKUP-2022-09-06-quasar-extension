@@ -1,10 +1,10 @@
 <script lang="ts">
+import { components, useProvide } from "./samples";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
-import { components, useProvide } from "./samples";
 
 export default defineComponent({
   name: "app",

@@ -1,4 +1,6 @@
 <script lang="ts">
+import { useRootElement } from "./Group.extras";
+import { prop, propsToPropDefinitions, validateProps } from "./api";
 import { inlineSearch, compare } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
@@ -9,8 +11,6 @@ import type {
   GroupParentProps,
   RootElementProp
 } from "./Group.extras";
-import { useRootElement } from "./Group.extras";
-import { prop, propsToPropDefinitions, validateProps } from "./api";
 
 const rootElementPropsOptions = {
   rootElement: prop<RootElementProp>()

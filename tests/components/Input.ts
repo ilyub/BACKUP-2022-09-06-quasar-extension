@@ -1,7 +1,7 @@
-import * as vueTestUtils from "@vue/test-utils";
-import { QInput } from "quasar";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import * as vueTestUtils from "@vue/test-utils";
+import { QInput } from "quasar";
 
 test.each([
   { expectedValue: undefined, value: "" },

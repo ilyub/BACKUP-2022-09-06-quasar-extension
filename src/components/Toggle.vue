@@ -1,14 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Toggle] */
 
-import { is } from "@skylib/functions";
-import { defineComponent } from "vue";
 import { injectDisable } from "./Switchable.extras";
-import type {
-  ToggleOwnProps,
-  ToggleParentProps,
-  ToggleSlots
-} from "./Toggle.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -16,6 +9,13 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
+import { is } from "@skylib/functions";
+import { defineComponent } from "vue";
+import type {
+  ToggleOwnProps,
+  ToggleParentProps,
+  ToggleSlots
+} from "./Toggle.extras";
 
 export default defineComponent({
   name: "m-toggle",

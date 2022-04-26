@@ -1,4 +1,11 @@
 <script lang="ts">
+import { injectDisable, provideDisable } from "./Switchable.extras";
+import {
+  prop,
+  propsToPropDefinitions,
+  validateProps,
+  useSlotsNames
+} from "./api";
 import { handlePromise } from "@skylib/facades";
 import { assert } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -9,13 +16,6 @@ import type {
   OnSubmit,
   OnSubmitAsync
 } from "./Form.extras";
-import { injectDisable, provideDisable } from "./Switchable.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  useSlotsNames
-} from "./api";
 
 export default defineComponent({
   name: "m-form",

@@ -1,7 +1,7 @@
-import * as vueTestUtils from "@vue/test-utils";
-import { QList } from "quasar";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import * as vueTestUtils from "@vue/test-utils";
+import { QList } from "quasar";
 
 test.each([
   { expected: "en-US", menuItemIndex: 0 },

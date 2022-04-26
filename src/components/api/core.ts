@@ -1,4 +1,5 @@
 import { assert, o } from "@skylib/functions";
+import { computed, inject, provide, ref } from "vue";
 import type {
   Rec,
   WritableRecord,
@@ -15,9 +16,9 @@ import type {
   ExtractPropTypes,
   InjectionKey,
   PropType,
-  Ref
+  Ref,
+  VNode
 } from "vue";
-import { computed, inject, provide, ref } from "vue";
 
 /**
  * Creates Vue property.
@@ -184,6 +185,8 @@ export type SetupProps<T extends object> = Readonly<
   LooseRequired<Readonly<ExtractPropTypes<T>>>
 >;
 
+export type VNodes = readonly VNode[];
+
 export type ValidateEmit<T> = ValidateEmit1<T> | ValidateEmit2;
 
 export type ValidateEmit1<T> = ValueOf<{
@@ -206,7 +209,7 @@ export interface ValidateEmit2 {
    * @param event - Event.
    * @param args - Arguments.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @skylib/prefer-alias-for-array-types
   (event: string, ...args: any[]): void;
 }
 

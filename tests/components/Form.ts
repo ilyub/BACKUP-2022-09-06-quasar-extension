@@ -1,12 +1,12 @@
-import type { handlePromise } from "@skylib/facades";
-import type { unknowns } from "@skylib/functions";
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import { wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QForm } from "quasar";
 import { nextTick, watch } from "vue";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
+import type { handlePromise } from "@skylib/facades";
+import type { unknowns } from "@skylib/functions";
 
 beforeAll(functionsTestUtils.installFakeTimer);
 

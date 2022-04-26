@@ -1,11 +1,11 @@
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import { wait } from "@skylib/functions";
-import type { Callable } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QTooltip } from "quasar";
+import type { Callable } from "@skylib/functions";
 import type { DialogChainObject } from "quasar";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
 
 functionsTestUtils.installFakeTimer();
 

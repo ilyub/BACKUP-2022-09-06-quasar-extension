@@ -1,14 +1,14 @@
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import { cast, is, wait, o, reflect } from "@skylib/functions";
+import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
+import * as vueTestUtils from "@vue/test-utils";
+import { QTable } from "quasar";
 import type {
   objects,
   Writable,
   OptionalUndefinedStyle
 } from "@skylib/functions";
-import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
-import * as vueTestUtils from "@vue/test-utils";
-import { QTable } from "quasar";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
 
 const testRows = [
   { id: "key1", name: "Sample row 1" },

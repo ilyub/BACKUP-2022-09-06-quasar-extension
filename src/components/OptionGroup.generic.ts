@@ -1,5 +1,5 @@
-import type { GlobalOptionGroup } from "./OptionGroup.extras";
 import OptionGroup from "./OptionGroup.vue";
+import type { GlobalOptionGroup } from "./OptionGroup.extras";
 
 /**
  * Generic OptionGroup component.

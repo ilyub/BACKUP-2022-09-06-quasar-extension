@@ -1,10 +1,10 @@
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import { assert, is, reflect } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { QCard, QDialog } from "quasar";
-import type { ComponentPublicInstance } from "vue";
 import { nextTick } from "vue";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
+import type { ComponentPublicInstance } from "vue";
 
 test.each([undefined, "2001-02-03 10:30"])(
   "datetimePicker",

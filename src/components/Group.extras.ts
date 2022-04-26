@@ -1,10 +1,10 @@
-import type { Rec, stringU } from "@skylib/functions";
-import type { VNode, ComputedRef } from "vue";
-import { computed } from "vue";
 import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
-import type { GlobalComponent, SetupProps } from "./api";
+import { computed } from "vue";
+import type { GlobalComponent, SetupProps, VNodes } from "./api";
+import type { Rec, stringU } from "@skylib/functions";
+import type { ComputedRef } from "vue";
 
 export type GlobalGroup<T extends string = string> = GlobalComponent<
   GroupProps<T>,
@@ -32,10 +32,7 @@ export interface GroupProps<T extends string = string>
   extends GroupParentProps,
     GroupOwnProps<T> {}
 
-export type GroupSlots<T extends string = string> = Rec<
-  T,
-  () => readonly VNode[]
->;
+export type GroupSlots<T extends string = string> = Rec<T, () => VNodes>;
 
 export type RootElementProp = "div" | "page-section" | "section" | "subsection";
 

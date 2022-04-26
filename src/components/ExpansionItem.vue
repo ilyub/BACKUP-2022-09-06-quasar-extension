@@ -1,16 +1,16 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import type {
-  ExpansionItemOwnProps,
-  ExpansionItemParentProps,
-  ExpansionItemSlots
-} from "./ExpansionItem.extras";
 import {
   propsToPropDefinitions,
   validateEmit,
   validateProps,
   useSlotsNames
 } from "./api";
+import { defineComponent } from "vue";
+import type {
+  ExpansionItemOwnProps,
+  ExpansionItemParentProps,
+  ExpansionItemSlots
+} from "./ExpansionItem.extras";
 
 export default defineComponent({
   name: "m-expansion-item",

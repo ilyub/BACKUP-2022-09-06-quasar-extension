@@ -1,10 +1,11 @@
-import type { QToggleProps, QToggleSlots } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { booleanU } from "@skylib/functions";
+import type { QToggleProps, QToggleSlots } from "quasar";
 
 export type GlobalToggle = GlobalComponent<ToggleProps, ToggleSlots>;
 
 export interface ToggleOwnProps {
-  readonly disable?: boolean;
+  readonly disable?: booleanU;
   readonly modelValue: boolean;
   /**
    * Emits model value.

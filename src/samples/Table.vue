@@ -1,7 +1,7 @@
 <script lang="ts">
+import { components } from "..";
 import { a, assert, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import { components } from "..";
 
 export default defineComponent({
   name: "sample-table",

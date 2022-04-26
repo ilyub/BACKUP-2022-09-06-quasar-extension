@@ -1,4 +1,3 @@
-import { o } from "@skylib/functions";
 import Button from "./Button.vue";
 import Card from "./Card.vue";
 import DatetimePicker from "./DatetimePicker.vue";
@@ -28,6 +27,7 @@ import Table from "./Table.vue";
 import TimeInput from "./TimeInput.vue";
 import Toggle from "./Toggle.vue";
 import Tooltip from "./Tooltip.vue";
+import { o } from "@skylib/functions";
 
 export { default as Index } from "./Index.vue";
 

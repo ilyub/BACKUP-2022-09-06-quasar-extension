@@ -1,8 +1,8 @@
 <script lang="ts">
-import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
-import type { stringU } from "@skylib/functions";
-import { defineComponent, ref } from "vue";
 import { useProvide } from "./useProvide";
+import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
+import { defineComponent, ref } from "vue";
+import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-icon-picker",

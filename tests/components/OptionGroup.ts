@@ -1,6 +1,6 @@
+import { components } from "@";
 import * as testUtils from "@vue/test-utils";
 import { QOptionGroup } from "quasar";
-import { components } from "@";
 
 test.each([undefined, 1, "a"])("optionGroup", value => {
   const options: components.OptionGroupOptions = [

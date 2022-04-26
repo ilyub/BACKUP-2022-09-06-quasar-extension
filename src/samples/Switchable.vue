@@ -1,8 +1,8 @@
 <script lang="ts">
+import { useProvide } from "./useProvide";
 import { fn } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { components } from "..";
-import { useProvide } from "./useProvide";
 
 export default defineComponent({
   name: "sample-switchable",

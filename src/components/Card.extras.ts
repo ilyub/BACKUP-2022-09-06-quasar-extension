@@ -1,8 +1,7 @@
 import { icons as baseIcons } from "@skylib/facades";
+import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QCardProps } from "quasar";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
 
 declare global {
   namespace facades {
@@ -30,19 +29,19 @@ export interface CardSlots {
    *
    * @returns Node.
    */
-  readonly "default": () => readonly VNode[];
+  readonly "default": () => VNodes;
   /**
    * Header actions.
    *
    * @returns Node.
    */
-  readonly "header-actions": () => readonly VNode[];
+  readonly "header-actions": () => VNodes;
   /**
    * Title slot.
    *
    * @returns Node.
    */
-  readonly "title": () => readonly VNode[];
+  readonly "title": () => VNodes;
 }
 
 export type GlobalCard = GlobalComponent<CardProps, CardSlots>;

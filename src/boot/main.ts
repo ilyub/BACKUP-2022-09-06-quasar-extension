@@ -1,3 +1,7 @@
+import { implementations as implementations2 } from "..";
+import { plugin } from "../plugin";
+import { icons as iconsImplementation } from "./icons";
+import { definitions } from "./lang";
 import {
   compare,
   datetime,
@@ -13,10 +17,6 @@ import { implementations } from "@skylib/framework";
 import { cast } from "@skylib/functions";
 import { Notify } from "quasar";
 import { boot } from "quasar/wrappers";
-import { implementations as implementations2 } from "..";
-import { plugin } from "../plugin";
-import { icons as iconsImplementation } from "./icons";
-import { definitions } from "./lang";
 
 export default boot(({ app }) => {
   {

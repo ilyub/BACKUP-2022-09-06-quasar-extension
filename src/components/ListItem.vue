@@ -1,13 +1,6 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[ListItem] */
 
-import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
-import type {
-  ListItemOwnProps,
-  ListItemParentProps,
-  ListItemSlots
-} from "./ListItem.extras";
 import {
   prop,
   propsToPropDefinitions,
@@ -17,6 +10,13 @@ import {
   useConfirmedClick,
   useSlotsNames
 } from "./api";
+import { is } from "@skylib/functions";
+import { computed, defineComponent } from "vue";
+import type {
+  ListItemOwnProps,
+  ListItemParentProps,
+  ListItemSlots
+} from "./ListItem.extras";
 
 export default defineComponent({
   name: "m-list-item",

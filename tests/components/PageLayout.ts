@@ -1,7 +1,7 @@
-import { o } from "@skylib/functions";
-import * as vueTestUtils from "@vue/test-utils";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import { o } from "@skylib/functions";
+import * as vueTestUtils from "@vue/test-utils";
 
 // eslint-disable-next-line no-warning-comments
 // fixme: Use @skylib/functions

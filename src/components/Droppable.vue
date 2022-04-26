@@ -1,11 +1,11 @@
 <script lang="ts">
+import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 import { defineComponent } from "vue";
 import type {
   DroppableOwnProps,
   DroppableParentProps,
   DroppableSlots
 } from "./Droppable.extras";
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
 
 export default defineComponent({
   name: "m-droppable",

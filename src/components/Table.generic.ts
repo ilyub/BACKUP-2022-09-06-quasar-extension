@@ -1,5 +1,5 @@
-import type { GlobalTable } from "./Table.extras";
 import Table from "./Table.vue";
+import type { GlobalTable } from "./Table.extras";
 
 /**
  * Generic Table component.

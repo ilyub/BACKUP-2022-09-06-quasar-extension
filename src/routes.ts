@@ -1,7 +1,7 @@
-import type { RouteRecordRaw } from "vue-router";
 import { components, Index } from "./samples";
+import type { RouteRecordRaw } from "vue-router";
 
-export const routes: readonly RouteRecordRaw[] = [
+export const routes: RouteRecordRaws = [
   { component: Index, path: "/" },
   ...components.map(component => {
     return {
@@ -17,3 +17,5 @@ export const routes: readonly RouteRecordRaw[] = [
     }
   }
 ];
+
+type RouteRecordRaws = readonly RouteRecordRaw[];

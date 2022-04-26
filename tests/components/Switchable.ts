@@ -1,7 +1,7 @@
-import * as vueTestUtils from "@vue/test-utils";
-import { watch } from "vue";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import * as vueTestUtils from "@vue/test-utils";
+import { watch } from "vue";
 
 test.each<components.Transition>(["none", "slide"])(
   "switchable",

@@ -2,6 +2,8 @@
 
 /* eslint-disable jest/no-conditional-in-test */
 
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import * as mdi from "@mdi/js-dynamic";
 import { handlePromise } from "@skylib/facades";
 import { implementations } from "@skylib/framework";
@@ -11,8 +13,6 @@ import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QCard, QDialog } from "quasar";
 import { nextTick } from "vue";
 import type { ComponentPublicInstance } from "vue";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
 
 beforeAll(functionsTestUtils.installFakeTimer);
 

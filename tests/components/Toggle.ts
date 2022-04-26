@@ -1,6 +1,6 @@
+import { components } from "@";
 import * as testUtils from "@vue/test-utils";
 import { QToggle } from "quasar";
-import { components } from "@";
 
 test("toggle", () => {
   const wrapper = testUtils.mount(components.Toggle, {

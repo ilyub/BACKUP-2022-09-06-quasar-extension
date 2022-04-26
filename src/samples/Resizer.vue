@@ -1,6 +1,6 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
 import { components } from "..";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-resizer",

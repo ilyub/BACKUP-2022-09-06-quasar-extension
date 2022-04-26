@@ -1,12 +1,12 @@
+import { components } from "..";
 import { implementations } from "@skylib/framework";
-import type { LocaleName } from "@skylib/functions";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
-import type { Ref } from "vue";
 import { ref } from "vue";
-import { components } from "..";
+import type { LocaleName } from "@skylib/functions";
+import type { Ref } from "vue";
 
 // eslint-disable-next-line @skylib/primary-export-only
 export interface ProvidePlugin {
@@ -105,10 +105,6 @@ function provide(): void {
   });
 
   components.provideTooltipSettings(() => {
-    return {
-      delay: tooltipDelay.value,
-      fontSize: undefined,
-      show: tooltipShow.value
-    };
+    return { delay: tooltipDelay.value, show: tooltipShow.value };
   });
 }

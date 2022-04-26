@@ -1,8 +1,7 @@
-import { assert, is, json, reflect } from "@skylib/functions";
-import type { objects, stringU } from "@skylib/functions";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
+import { assert, is, json, reflect } from "@skylib/functions";
+import type { GlobalComponent, VNodes } from "./api";
+import type { objects, stringU, booleanU } from "@skylib/functions";
 
 export const isItemAttrsFn: is.Guard<(item: object) => object> = is.callable;
 
@@ -124,17 +123,17 @@ export interface SortableProps<T extends object = object> {
    * @param item - Item.
    * @param group - Group.
    */
-  readonly onDropped?: ((item: object, group: string) => void) | undefined;
-  readonly onItemClick?: ItemClickEvent<T> | undefined;
+  readonly onDropped?: (item: object, group: string) => void;
+  readonly onItemClick?: ItemClickEvent<T>;
   /**
    * Emits model value.
    *
    * @param value - Value.
    */
-  readonly "onUpdate:modelValue"?: ((value: readonly T[]) => void) | undefined;
-  readonly pull?: boolean;
-  readonly put?: boolean;
-  readonly sort?: boolean;
+  readonly "onUpdate:modelValue"?: (value: readonly T[]) => void;
+  readonly pull?: booleanU;
+  readonly put?: booleanU;
+  readonly sort?: booleanU;
 }
 
 export interface SortableSettings {
@@ -149,20 +148,20 @@ export interface SortableSlots<T extends object = object> {
    *
    * @returns Node.
    */
-  readonly footer: () => readonly VNode[];
+  readonly footer: () => VNodes;
   /**
    *Header slot.
    *
    * @returns Node.
    */
-  readonly header: () => readonly VNode[];
+  readonly header: () => VNodes;
   /**
    * Item slot.
    *
    * @param data - Data.
    * @returns Node.
    */
-  readonly item: (data: ItemSlotData<T>) => readonly VNode[];
+  readonly item: (data: ItemSlotData<T>) => VNodes;
 }
 
 /**

@@ -1,7 +1,7 @@
-import { o } from "@skylib/functions";
-import * as vueTestUtils from "@vue/test-utils";
 import { components } from "@";
 import * as testUtils from "@/testUtils";
+import { o } from "@skylib/functions";
+import * as vueTestUtils from "@vue/test-utils";
 
 const rootElement1: components.RootElementProp = "div";
 

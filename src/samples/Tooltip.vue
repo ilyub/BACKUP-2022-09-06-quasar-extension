@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useProvide } from "./useProvide";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -7,7 +8,6 @@ import {
   mdiMenu
 } from "@mdi/js";
 import { defineComponent } from "vue";
-import { useProvide } from "./useProvide";
 
 export default defineComponent({
   name: "sample-tooltip",

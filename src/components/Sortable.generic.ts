@@ -1,5 +1,5 @@
-import type { GlobalSortable } from "./Sortable.extras";
 import Sortable from "./Sortable.vue";
+import type { GlobalSortable } from "./Sortable.extras";
 
 /**
  * Generic Sortable component.

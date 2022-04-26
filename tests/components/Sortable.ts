@@ -1,9 +1,9 @@
+import { components } from "@";
+import * as testUtils from "@/testUtils";
 import { assert, fn, is, o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { nextTick } from "vue";
 import VueDraggable from "vuedraggable";
-import { components } from "@";
-import * as testUtils from "@/testUtils";
 
 const group = "sample-group";
 

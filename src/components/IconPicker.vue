@@ -1,13 +1,4 @@
 <script lang="ts">
-import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
-import { assert, is, o } from "@skylib/functions";
-import type { stringU, Writable } from "@skylib/functions";
-import * as _ from "@skylib/lodash-commonjs-es";
-import { computed, defineComponent, ref, watch } from "vue";
-import type {
-  IconPickerOwnProps,
-  IconPickerParentProps
-} from "./IconPicker.extras";
 import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
 import {
   prop,
@@ -15,6 +6,15 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
+import { assert, is, o } from "@skylib/functions";
+import * as _ from "@skylib/lodash-commonjs-es";
+import { computed, defineComponent, ref, watch } from "vue";
+import type {
+  IconPickerOwnProps,
+  IconPickerParentProps
+} from "./IconPicker.extras";
+import type { stringU, Writable } from "@skylib/functions";
 
 const mdi = ref<Mdi | undefined>(undefined);
 
@@ -88,14 +88,14 @@ export default defineComponent({
 
             const icon = mdi.value[item.id];
 
-            return {
+            return o.removeUndefinedKeys({
               icon,
               padding: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
                 ? item.description
                 : undefined
-            };
+            });
           });
 
         while (buttons.length < pageSize.value)
@@ -156,7 +156,7 @@ interface Button {
   readonly icon?: string;
   readonly padding: boolean;
   readonly selected: boolean;
-  readonly tooltip?: stringU;
+  readonly tooltip?: string;
 }
 
 type Buttons = readonly Button[];

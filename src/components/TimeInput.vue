@@ -1,13 +1,4 @@
 <script lang="ts">
-import { a, assert, cast, is, o } from "@skylib/functions";
-import type { numberU, NumStrE } from "@skylib/functions";
-import { maska } from "maska";
-import { computed, defineComponent } from "vue";
-import type {
-  TimeInputOwnProps,
-  TimeInputParentProps,
-  TimeInputSlots
-} from "./TimeInput.extras";
 import { icons } from "./TimeInput.extras";
 import {
   prop,
@@ -16,6 +7,15 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
+import { a, assert, cast, is, o } from "@skylib/functions";
+import { maska } from "maska";
+import { computed, defineComponent } from "vue";
+import type {
+  TimeInputOwnProps,
+  TimeInputParentProps,
+  TimeInputSlots
+} from "./TimeInput.extras";
+import type { numberU, NumStrE } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-time-input",

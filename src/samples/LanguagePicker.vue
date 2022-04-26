@@ -1,7 +1,7 @@
 <script lang="ts">
+import { useProvide } from "./useProvide";
 import { lang } from "@skylib/facades";
 import { defineComponent } from "vue";
-import { useProvide } from "./useProvide";
 
 export default defineComponent({
   name: "sample-language-picker",

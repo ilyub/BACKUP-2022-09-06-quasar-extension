@@ -1,5 +1,5 @@
-import type { QCardSectionProps, QCardSectionSlots } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { QCardSectionProps, QCardSectionSlots } from "quasar";
 
 export interface CardSectionOwnProps {}
 

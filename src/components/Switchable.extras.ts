@@ -1,8 +1,7 @@
-import { is, createValidationObject } from "@skylib/functions";
-import type { booleanU } from "@skylib/functions";
-import type { VNode } from "vue";
-import type { GlobalComponent } from "./api";
 import { createInjectable } from "./api";
+import { is, createValidationObject } from "@skylib/functions";
+import type { GlobalComponent, VNodes } from "./api";
+import type { booleanU } from "@skylib/functions";
 
 export const TransitionVO = createValidationObject<Transition>({
   none: "none",
@@ -46,7 +45,7 @@ export interface SwitchableSlots {
    *
    * @returns Node.
    */
-  readonly default: () => readonly VNode[];
+  readonly default: () => VNodes;
 }
 
 export type Transition = "none" | "slide";

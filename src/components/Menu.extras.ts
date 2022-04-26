@@ -1,5 +1,5 @@
-import type { QMenuProps, QMenuSlots } from "quasar";
 import type { GlobalComponent } from "./api";
+import type { QMenuProps, QMenuSlots } from "quasar";
 
 export type GlobalMenu = GlobalComponent<MenuProps, MenuSlots>;
 

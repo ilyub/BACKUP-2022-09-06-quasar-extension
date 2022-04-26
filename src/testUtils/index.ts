@@ -1,13 +1,13 @@
+import { implementations, components } from "..";
 import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-jest";
 import { reactiveStorage } from "@skylib/facades";
 import { a, assert, fn, is, o } from "@skylib/functions";
-import type { WritableRecord } from "@skylib/functions";
+import type { WritableRecord, unknowns } from "@skylib/functions";
 import type * as testUtils from "@skylib/functions/dist/testUtils";
 import type * as vueTestUtils from "@vue/test-utils";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 import type { ComponentConstructor } from "quasar";
 import type { Component, ComponentPublicInstance, Directive } from "vue";
-import { implementations, components } from "..";
 
 declare global {
   namespace jest {
@@ -147,7 +147,7 @@ export interface TouchPanMock {
    *
    * @param args - Arguments.
    */
-  readonly triggerTouchPan: (...args: unknown[]) => void;
+  readonly triggerTouchPan: (...args: unknowns) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -369,7 +369,7 @@ export function touchPanMock(): TouchPanMock {
 
   return { touchPan, triggerTouchPan };
 
-  function triggerTouchPan(...args: unknown[]): void {
+  function triggerTouchPan(...args: unknowns): void {
     assert.callable(touchPanValue);
     touchPanValue(...args);
   }

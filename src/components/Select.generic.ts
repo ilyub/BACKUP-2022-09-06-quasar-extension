@@ -1,5 +1,5 @@
-import type { GlobalSelect } from "./Select.extras";
 import Select from "./Select.vue";
+import type { GlobalSelect } from "./Select.extras";
 
 /**
  * Generic Select component.

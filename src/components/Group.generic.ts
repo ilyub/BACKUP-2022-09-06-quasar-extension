@@ -1,5 +1,5 @@
-import type { GlobalGroup } from "./Group.extras";
 import Group from "./Group.vue";
+import type { GlobalGroup } from "./Group.extras";
 
 /**
  * Generic Group component.

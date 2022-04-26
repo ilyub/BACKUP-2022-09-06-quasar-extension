@@ -1,11 +1,11 @@
+import { createInjectable } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
 import { is, createValidationObject, json } from "@skylib/functions";
+import { computed, ref } from "vue";
+import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU, objects, stringU } from "@skylib/functions";
 import type { QTableProps, QTableSlots } from "quasar";
-import { computed, ref } from "vue";
-import type { ComputedRef, Ref, VNode } from "vue";
-import type { GlobalComponent } from "./api";
-import { createInjectable } from "./api";
+import type { ComputedRef, Ref } from "vue";
 
 declare global {
   namespace facades {
@@ -170,6 +170,7 @@ export interface ModuleWord {
 }
 
 export interface MultiSelectData {
+  // eslint-disable-next-line @skylib/optional-property-style
   readonly allSelected: booleanU;
   /**
    * Handles click.
@@ -208,17 +209,17 @@ export interface SteadyBottomSlotData extends MultiSelectData {}
 export interface TableOwnProps<T extends object = object> {
   readonly binaryStateSortOff?: booleanU;
   readonly binaryStateSortOn?: booleanU;
-  readonly columnWidths?: ColumnWidths;
+  readonly columnWidths?: ColumnWidths | undefined;
   readonly columns?: Columns<T> | undefined;
-  readonly columnsOrder?: ColumnsOrder;
+  readonly columnsOrder?: ColumnsOrder | undefined;
   readonly externalSorting?: booleanU;
   readonly flatOff?: booleanU;
   readonly flatOn?: booleanU;
   readonly headerSeparatorOff?: booleanU;
   readonly headerSeparatorOn?: booleanU;
-  readonly hiddenColumns?: HiddenColumns;
-  readonly manageColumns?: boolean;
-  readonly multiselect?: boolean;
+  readonly hiddenColumns?: HiddenColumns | undefined;
+  readonly manageColumns?: booleanU;
+  readonly multiselect?: booleanU;
   /**
    * Emits column order.
    *
@@ -258,7 +259,7 @@ export interface TableOwnProps<T extends object = object> {
   readonly selected?: readonly T[] | undefined;
   readonly squareOff?: booleanU;
   readonly squareOn?: booleanU;
-  readonly sticky?: boolean;
+  readonly sticky?: booleanU;
 }
 
 export interface TableParentProps
@@ -304,73 +305,63 @@ export interface TableSlots<T extends object = object>
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "body-cell": (scope: BodyCellSlotData<T>) => readonly VNode[];
+  readonly "body-cell": (scope: BodyCellSlotData<T>) => VNodes;
   /**
    * Body context menu slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "body-cell-context": (
-    scope: BodyCellContextSlotData<T>
-  ) => readonly VNode[];
+  readonly "body-cell-context": (scope: BodyCellContextSlotData<T>) => VNodes;
   /**
    * Body context menu slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "body-context": (scope: BodyContextSlotData<T>) => readonly VNode[];
+  readonly "body-context": (scope: BodyContextSlotData<T>) => VNodes;
   /**
    * Body selection slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "body-selection": (
-    scope: BodySelectionSlotData<T>
-  ) => readonly VNode[];
+  readonly "body-selection": (scope: BodySelectionSlotData<T>) => VNodes;
   /**
    * Header cell slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "header-cell": (scope: HeaderCellSlotData<T>) => readonly VNode[];
+  readonly "header-cell": (scope: HeaderCellSlotData<T>) => VNodes;
   /**
    * Header menu append slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "header-menu-append": (
-    scope: HeaderMenuAppendSlotData
-  ) => readonly VNode[];
+  readonly "header-menu-append": (scope: HeaderMenuAppendSlotData) => VNodes;
   /**
    * Header menu prepend slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "header-menu-prepend": (
-    scope: HeaderMenuPrependSlotData
-  ) => readonly VNode[];
+  readonly "header-menu-prepend": (scope: HeaderMenuPrependSlotData) => VNodes;
   /**
    * Header selection slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "header-selection": (
-    scope: HeaderSelectionSlotData
-  ) => readonly VNode[];
+  readonly "header-selection": (scope: HeaderSelectionSlotData) => VNodes;
   /**
    * Steady bottom slot.
    *
    * @param scope - Scope.
    * @returns Node.
    */
-  readonly "steady-bottom": (scope: SteadyBottomSlotData) => readonly VNode[];
+  readonly "steady-bottom": (scope: SteadyBottomSlotData) => VNodes;
 }
 
 export interface TableState {
