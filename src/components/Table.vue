@@ -256,10 +256,8 @@ export default defineComponent({
           main.value.sort(column.name);
         }
       },
-      tableRows: computed<Writable<objects>>(() => o.unfreeze(props.rows)),
-      tableSelected: computed<Writable<objects>>(() =>
-        o.unfreeze(props.selected)
-      ),
+      tableRows: computed<Writable<objects>>(() => a.clone(props.rows)),
+      tableSelected: computed<Writable<objects>>(() => a.clone(props.selected)),
       toggleSelection(): void {
         emit("update:selected", allSelected.value === false ? props.rows : []);
       },

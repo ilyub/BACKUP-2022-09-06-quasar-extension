@@ -7,7 +7,7 @@ import {
   validateProps,
   useSlotsNames
 } from "./api";
-import { assert, is, o } from "@skylib/functions";
+import { a, assert, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { ButtonSlots } from "./Button.extras";
 import type {
@@ -43,7 +43,7 @@ export default defineComponent({
         () => selectedOption.value
       ),
       selectOptions: computed<Writable<SelectOptions>>(() =>
-        o.unfreeze(props.options)
+        a.clone(props.options)
       ),
       slotNames: useSlotsNames<ButtonSlots>()(),
       updateModelValue(value: unknown): void {
