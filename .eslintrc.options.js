@@ -12,12 +12,12 @@ module.exports = {
     }
   ],
   extends: [
-    require("@skylib/functions/configs/eslintrc.options"),
-    require("@skylib/framework/configs/eslintrc.options"),
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
+    "@skylib/functions/configs/eslintrc.options.js",
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/facades update
     // fixme
-    // eslint-disable-next-line import/no-internal-modules -- Wait for @skylib/config update
-    require("./configs/eslintrc.options")
+    // "@skylib/facades/configs/eslintrc.options.js",
+    "@skylib/framework/configs/eslintrc.options.js",
+    "./configs/eslintrc.options.js"
   ],
   extraChoreLocations: [
     "src/App.vue",

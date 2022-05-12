@@ -20,12 +20,10 @@ import { boot } from "quasar/wrappers";
 
 export default boot(({ app }) => {
   {
-    compare.setImplementation(implementations.compare.naturalCompare);
-    datetime.setImplementation(
-      implementations.datetime.dateFnsWrapper.implementation
-    );
+    compare.setImplementation(implementations.compare.naturalCompareWrapper);
+    datetime.setImplementation(implementations.datetime.dateFnsWrapper);
     handlePromise.setImplementation(
-      implementations.handlePromise.promiseHandler.implementation
+      implementations.handlePromise.promiseHandler
     );
     icons.setImplementation(iconsImplementation);
     inlineSearch.setImplementation(implementations.inlineSearch.lunrWrapper);
@@ -33,20 +31,18 @@ export default boot(({ app }) => {
       implementations.lang.dictionary.Dictionary.create(definitions)
     );
     progressReporter.setImplementation(
-      implementations.progressReporter.progressBar.implementation
+      implementations.progressReporter.progressBar
     );
     reactiveStorage.setImplementation(
       implementations2.reactiveStorage.vueStorage
     );
     testDelay.setImplementation(
-      implementations.testDelay.configurableTestDelay.implementation
+      implementations.testDelay.configurableTestDelay
     );
   }
 
   {
-    implementations.lang.dictionary.Dictionary.configure({
-      localeName: "en-US"
-    });
+    implementations.lang.dictionary.configure({ localeName: "en-US" });
 
     implementations.testDelay.configurableTestDelay.configure({
       enabled: true,

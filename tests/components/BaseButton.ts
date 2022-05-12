@@ -1,7 +1,7 @@
 import { components } from "@";
 import * as testUtils from "@/testUtils";
 import { wait } from "@skylib/functions";
-import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
+import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QTooltip } from "quasar";
 import type { Callable } from "@skylib/functions";
@@ -45,7 +45,6 @@ test("prop: confirmation", () => {
       }
     };
 
-    // eslint-disable-next-line no-type-assertion/no-type-assertion
     return result as DialogChainObject;
   };
 

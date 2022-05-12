@@ -8,7 +8,7 @@ import * as mdi from "@mdi/js-dynamic";
 import { handlePromise } from "@skylib/facades";
 import { implementations } from "@skylib/framework";
 import { a, is, o } from "@skylib/functions";
-import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
+import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QBtn, QCard, QDialog } from "quasar";
 import { nextTick } from "vue";

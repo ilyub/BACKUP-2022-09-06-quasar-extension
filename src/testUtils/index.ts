@@ -3,7 +3,7 @@ import { installQuasarPlugin } from "@quasar/quasar-app-extension-testing-unit-j
 import { reactiveStorage } from "@skylib/facades";
 import { a, assert, fn, is, o } from "@skylib/functions";
 import type { WritableRecord, unknowns } from "@skylib/functions";
-import type * as testUtils from "@skylib/functions/dist/testUtils";
+import type * as testUtils from "@skylib/functions/dist/test-utils";
 import type * as vueTestUtils from "@vue/test-utils";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 import type { ComponentConstructor } from "quasar";

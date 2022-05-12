@@ -59,9 +59,7 @@ function provide(): void {
     return {
       changeLanguageAction(value): void {
         language.value = value;
-        implementations.lang.dictionary.Dictionary.configure({
-          localeName: value
-        });
+        implementations.lang.dictionary.configure({ localeName: value });
       },
       items: [
         {

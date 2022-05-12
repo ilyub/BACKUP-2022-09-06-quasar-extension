@@ -5,7 +5,6 @@ import type { App } from "vue";
 test("plugin", () => {
   const component = jest.fn();
 
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
   const app = { component } as unknown as App;
 
   assert.not.empty(plugin.install);

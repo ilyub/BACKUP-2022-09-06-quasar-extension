@@ -1,7 +1,7 @@
 import { components } from "@";
 import * as testUtils from "@/testUtils";
 import { wait } from "@skylib/functions";
-import * as functionsTestUtils from "@skylib/functions/dist/testUtils";
+import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QForm } from "quasar";
 import { nextTick, watch } from "vue";

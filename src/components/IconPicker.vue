@@ -170,7 +170,6 @@ interface Item {
 
 type Items = readonly Item[];
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 type Mdi = typeof import("@mdi/js-dynamic");
 </script>
 
