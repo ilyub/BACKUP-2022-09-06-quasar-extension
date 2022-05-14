@@ -1,5 +1,5 @@
-import { components } from "@";
-import * as testUtils from "@/testUtils";
+import { components, injections } from "@";
+import * as testUtils from "@/test-utils";
 import { wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
@@ -8,9 +8,9 @@ import { nextTick, watch } from "vue";
 import type { handlePromise } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 
-beforeAll(functionsTestUtils.installFakeTimer);
+functionsTestUtils.installFakeTimer();
 
-test("form, onSubmit", () => {
+test("prop: onSubmit", () => {
   const onSubmit = jest.fn();
 
   const wrapper = vueTestUtils.mount(components.Form, {
@@ -18,18 +18,15 @@ test("form, onSubmit", () => {
     props: { onSubmit }
   });
 
-  const form = wrapper.findComponent(QForm);
+  const main = wrapper.findComponent(QForm);
 
-  {
-    form.vm.$emit("submit", { value: 1 });
-    expect(onSubmit).toHaveBeenCalledTimes(1);
-    expect(onSubmit).toHaveBeenCalledWith({ value: 1 });
-    onSubmit.mockClear();
-  }
+  main.vm.$emit("submit", { value: 1 });
+  expect(onSubmit).toHaveBeenCalledTimes(1);
+  expect(onSubmit).toHaveBeenCalledWith({ value: 1 });
 });
 
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
-  "form: onSubmitAsync",
+  "prop: onSubmitAsync",
   async asyncTaskType => {
     expect.hasAssertions();
 
@@ -38,32 +35,27 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
 
       const wrapper = vueTestUtils.mount(components.Form, {
         global: testUtils.globalMountOptions(),
-        props: { asyncTaskType, onSubmitAsync }
+        props: {
+          asyncTaskType,
+          onSubmitAsync: async (...args: unknowns): Promise<void> => {
+            await wait(1000);
+            callback(...args);
+          }
+        }
       });
 
-      const form = wrapper.findComponent(QForm);
+      const main = wrapper.findComponent(QForm);
 
-      {
-        form.vm.$emit("submit", { value: 1 });
-        expect(callback).not.toHaveBeenCalled();
-      }
-
-      {
-        await wait(1500);
-        expect(callback).toHaveBeenCalledTimes(1);
-        expect(callback).toHaveBeenCalledWith({ value: 1 });
-        callback.mockClear();
-      }
-
-      async function onSubmitAsync(...args: unknowns): Promise<void> {
-        await wait(1000);
-        callback(...args);
-      }
+      main.vm.$emit("submit", { value: 1 });
+      expect(callback).not.toHaveBeenCalled();
+      await wait(1000);
+      expect(callback).toHaveBeenCalledTimes(1);
+      expect(callback).toHaveBeenCalledWith({ value: 1 });
     });
   }
 );
 
-test("form: provideDisable", async () => {
+test("provideDisable", async () => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
@@ -71,11 +63,15 @@ test("form: provideDisable", async () => {
 
     const wrapper = vueTestUtils.mount(components.Form, {
       global: testUtils.globalMountOptions(),
-      props: { onSubmitAsync },
+      props: {
+        onSubmitAsync: async (): Promise<void> => {
+          await wait(1000);
+        }
+      },
       slots: {
         default: {
-          setup() {
-            watch(components.injectDisable(), value => {
+          setup: () => {
+            watch(injections.globalDisable.inject(), value => {
               callback(value);
             });
           },
@@ -84,10 +80,10 @@ test("form: provideDisable", async () => {
       }
     });
 
-    const form = wrapper.findComponent(QForm);
+    const main = wrapper.findComponent(QForm);
 
     {
-      form.vm.$emit("submit", { value: 1 });
+      main.vm.$emit("submit", { value: 1 });
       await nextTick();
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith(true);
@@ -95,14 +91,10 @@ test("form: provideDisable", async () => {
     }
 
     {
-      await wait(1500);
+      await wait(1000);
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith(false);
       callback.mockClear();
-    }
-
-    async function onSubmitAsync(): Promise<void> {
-      await wait(1000);
     }
   });
 });

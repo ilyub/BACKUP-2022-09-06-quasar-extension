@@ -5,7 +5,9 @@ export default defineComponent({ name: "sample-subsection" });
 </script>
 
 <template>
-  <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
-  <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
-  <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
+  <m-page-section>
+    <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
+    <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
+    <m-subsection class="bg-grey-3 q-pa-md">Content</m-subsection>
+  </m-page-section>
 </template>

@@ -1,27 +1,23 @@
-import { components } from "@";
-import * as testUtils from "@/testUtils";
+import { components, injections } from "@";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { watch } from "vue";
+import type { extras } from "@";
 
-test.each<components.Transition>(["none", "slide"])(
+test.each<extras.Switchable.Transition>(["none", "slide"])(
   "switchable",
   async transition => {
     const callback = jest.fn();
 
-    // eslint-disable-next-line no-warning-comments
-    // fixme: Use typedef()
-    const switchableSettings: components.SwitchableSettings = {
-      transition,
-      transitionDuration: 400
-    };
-
     const wrapper = vueTestUtils.mount(components.Switchable, {
-      global: testUtils.globalMountOptions({ switchableSettings }),
+      global: testUtils.globalMountOptions({
+        switchableSettings: { transition, transitionDuration: 500 }
+      }),
       slots: {
         default: {
-          setup() {
+          setup: () => {
             watch(
-              components.injectDisable(),
+              injections.globalDisable.inject(),
               value => {
                 callback(value);
               },

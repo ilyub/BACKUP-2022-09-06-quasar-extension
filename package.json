@@ -46,21 +46,20 @@
     "vue-tsc": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@mdi/js": "^6.6.96",
-    "@quasar/app-webpack": "^3.5.1",
-    "@quasar/extras": "^1.13.6",
-    "@skylib/config": "^1.13.0",
-    "@skylib/eslint-plugin": "^0.1.27",
+    "@mdi/js": "^6.7.96",
+    "@quasar/app-webpack": "^3.5.3",
+    "@quasar/extras": "^1.14.0",
+    "@skylib/config": "^1.14.1",
+    "@skylib/eslint-plugin": "^0.1.28",
     "autoprefixer": "^10.4.7",
-    "core-js": "^3.22.5",
+    "core-js": "^3.22.7",
     "flag-icon-css": "^4.1.7",
-    "quasar": "^2.6.6",
     "typeface-roboto-multilang": "^1.0.0",
     "vue-router": "^4.0.15",
-    "vue-tsc": "^0.34.13"
+    "vue-tsc": "^0.34.16"
   },
   "peerDependencies": {
-    "@mdi/js-dynamic": "npm:@mdi/js@^6.6.96",
+    "@mdi/js-dynamic": "npm:@mdi/js@^6.7.96",
     "@quasar/quasar-app-extension-testing": "^2.0.3",
     "@quasar/quasar-app-extension-testing-unit-jest": "3.0.0-alpha.10",
     "@skylib/facades": "^3.1.1",
@@ -68,8 +67,11 @@
     "@skylib/functions": "^2.3.0",
     "@skylib/lodash-commonjs-es": "^0.1.0",
     "@skylib/typescript-types": "^1.0.0",
+    "@types/jquery": "^3.5.14",
     "@vue/test-utils": "^2.0.0-rc.21",
+    "jquery": "^3.6.0",
     "maska": "^1.5.0",
+    "quasar": "^2.7.0",
     "type-fest": "^2.12.2",
     "vue": "^3.2.33",
     "vuedraggable": "^4.1.0"

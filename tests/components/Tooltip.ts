@@ -1,48 +1,30 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QTooltip } from "quasar";
+import type { plugins } from "@";
 
-interface TestOption {
-  readonly delay: number;
-  readonly direction: components.Direction;
-}
-
-test.each<TestOption>([
-  { delay: 0, direction: "down" },
-  { delay: 0, direction: "down-left" },
-  { delay: 0, direction: "down-right" },
-  { delay: 0, direction: "left" },
-  { delay: 0, direction: "left-down" },
-  { delay: 0, direction: "left-up" },
-  { delay: 0, direction: "right" },
-  { delay: 0, direction: "right-down" },
-  { delay: 0, direction: "right-up" },
-  { delay: 0, direction: "up" },
-  { delay: 0, direction: "up-left" },
-  { delay: 0, direction: "up-right" },
-  { delay: 1000, direction: "down" }
-])("delay", options => {
+test.each<plugins.useDirection.Direction | undefined>([
+  undefined,
+  "down",
+  "down-left",
+  "down-right",
+  "left",
+  "left-down",
+  "left-up",
+  "right",
+  "right-down",
+  "right-up",
+  "up",
+  "up-left",
+  "up-right"
+])("Tooltip", direction => {
   const wrapper = vueTestUtils.mount(components.Tooltip, {
-    global: testUtils.globalMountOptions({
-      tooltipSettings: { delay: options.delay, show: true }
-    }),
-    props: { direction: options.direction }
+    global: testUtils.globalMountOptions(),
+    props: { direction }
   });
 
-  const tooltip = wrapper.findComponent(QTooltip);
+  const main = wrapper.findComponent(QTooltip);
 
-  expect(tooltip.vm.delay).toStrictEqual(options.delay);
-});
-
-test("delay", () => {
-  const wrapper = vueTestUtils.mount(components.Tooltip, {
-    global: testUtils.globalMountOptions({
-      tooltipSettings: { delay: 1000, show: false }
-    })
-  });
-
-  const tooltip = wrapper.findComponent(QTooltip);
-
-  expect(tooltip).not.toExist();
+  expect(main).toExist();
 });

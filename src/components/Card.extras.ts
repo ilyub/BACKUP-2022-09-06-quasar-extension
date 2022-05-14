@@ -6,46 +6,50 @@ import type { QCardProps } from "quasar";
 declare global {
   namespace facades {
     namespace icons {
-      interface Icon extends ModuleIcons {}
+      interface Icon extends Card.Icon {}
     }
   }
 }
 
-export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
+export namespace Card {
+  export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-export interface CardOwnProps {
-  readonly minWidth?: stringU;
-  readonly title?: stringU;
-  readonly transparentHeader?: booleanU;
-}
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export type CardParentProps = QCardProps;
+  export interface Icon {
+    readonly close: true;
+  }
 
-export interface CardProps extends CardParentProps, CardOwnProps {}
+  export interface OwnProps {
+    readonly minWidth?: stringU;
+    readonly title?: stringU;
+    readonly transparentHeader?: booleanU;
+  }
 
-export interface CardSlots {
-  /**
-   * Default slot.
-   *
-   * @returns Node.
-   */
-  readonly "default": () => VNodes;
-  /**
-   * Header actions.
-   *
-   * @returns Node.
-   */
-  readonly "header-actions": () => VNodes;
-  /**
-   * Title slot.
-   *
-   * @returns Node.
-   */
-  readonly "title": () => VNodes;
-}
+  export interface OwnSlots {
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly "default": () => VNodes;
+    /**
+     * Header actions slot.
+     *
+     * @returns Nodes.
+     */
+    readonly "header-actions": () => VNodes;
+    /**
+     * Title slot.
+     *
+     * @returns Nodes.
+     */
+    readonly "title": () => VNodes;
+  }
 
-export type GlobalCard = GlobalComponent<CardProps, CardSlots>;
+  export interface ParentProps extends Omit<QCardProps, keyof OwnProps> {}
 
-export interface ModuleIcons {
-  readonly close: true;
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends OwnSlots {}
 }

@@ -1,4 +1,4 @@
-import { createInjectable } from "./api";
+import { injectableSettings } from "./api";
 import { icons as baseIcons } from "@skylib/facades";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
@@ -6,82 +6,85 @@ import type { booleanU, stringU } from "@skylib/functions";
 declare global {
   namespace facades {
     namespace icons {
-      interface Icon extends ModuleIcons {}
+      interface Icon extends PageLayout.Icon {}
     }
   }
 }
 
-export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
+export namespace PageLayout {
+  export const defaultSettings: Settings = {
+    closeButton: true,
+    height: "auto"
+  };
 
-export const {
-  inject: injectPageLayoutSettings,
-  provide: providePageLayoutSettings,
-  test: testPageLayoutSettings
-} = createInjectable<PageLayoutSettings>(() => {
-  return { closeButton: true, height: "auto" };
-});
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
 
-export type GlobalPageLayout = GlobalComponent<
-  PageLayoutProps,
-  PageLayoutSlots
->;
+  export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-export interface ModuleIcons {
-  readonly close: true;
-}
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface PageLayoutProps {
-  readonly closeButtonOff?: booleanU;
-  readonly closeButtonOn?: booleanU;
-  readonly title?: stringU;
-}
+  export interface Icon {
+    readonly close: true;
+  }
 
-export interface PageLayoutSettings {
-  readonly closeButton: boolean;
-  readonly height: string;
-}
+  export interface OwnProps {
+    readonly closeButtonOff?: booleanU;
+    readonly closeButtonOn?: booleanU;
+    readonly title?: stringU;
+  }
 
-export interface PageLayoutSlots {
-  /**
-   * Actions slot.
-   *
-   * @returns Node.
-   */
-  readonly actions: () => VNodes;
-  /**
-   * Default slot.
-   *
-   * @returns Node.
-   */
-  readonly default: () => VNodes;
-  /**
-   * Fit slot.
-   *
-   * @returns Node.
-   */
-  readonly fit: () => VNodes;
-  /**
-   * Footer slot.
-   *
-   * @returns Node.
-   */
-  readonly footer: () => VNodes;
-  /**
-   * Header slot.
-   *
-   * @returns Node.
-   */
-  readonly header: () => VNodes;
-  /**
-   * Sticky footer slot.
-   *
-   * @returns Node.
-   */
-  readonly "sticky-footer": () => VNodes;
-  /**
-   * Sticky header slot.
-   *
-   * @returns Node.
-   */
-  readonly "sticky-header": () => VNodes;
+  export interface OwnSlots {
+    /**
+     * Actions slot.
+     *
+     * @returns Nodes.
+     */
+    readonly actions: () => VNodes;
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly default: () => VNodes;
+    /**
+     * Fit slot.
+     *
+     * @returns Nodes.
+     */
+    readonly fit: () => VNodes;
+    /**
+     * Footer slot.
+     *
+     * @returns Nodes.
+     */
+    readonly footer: () => VNodes;
+    /**
+     * Header slot.
+     *
+     * @returns Nodes.
+     */
+    readonly header: () => VNodes;
+    /**
+     * Sticky footer slot.
+     *
+     * @returns Nodes.
+     */
+    readonly "sticky-footer": () => VNodes;
+    /**
+     * Sticky header slot.
+     *
+     * @returns Nodes.
+     */
+    readonly "sticky-header": () => VNodes;
+  }
+
+  export interface Props extends OwnProps {}
+
+  export interface Settings {
+    readonly closeButton: boolean;
+    readonly height: string;
+  }
+
+  export interface Slots extends OwnSlots {}
 }

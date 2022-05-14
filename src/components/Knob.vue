@@ -1,34 +1,34 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Knob] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Knob] */
 
-import { injectDisable } from "./Switchable.extras";
 import {
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins,
+  skipCheck,
+  injections
 } from "./api";
-import { is } from "@skylib/functions";
 import { defineComponent } from "vue";
-import type { KnobOwnProps, KnobParentProps, KnobSlots } from "./Knob.extras";
+import type { Knob } from "./Knob.extras";
 
 export default defineComponent({
   name: "m-knob",
   props: {
-    ...propsToPropDefinitions<KnobParentProps>(),
+    ...parentProps<Knob.ParentProps>(),
     disable: prop.boolean(),
     inline: prop.boolean(),
-    modelValue: prop.required<number>()
+    modelValue: prop.required<Knob.Props["modelValue"]>()
   },
-  emits: { "update:modelValue": (value: number) => is.number(value) },
-  setup(props, { emit }) {
-    validateEmit<KnobOwnProps>(emit);
-    validateProps<KnobOwnProps>(props);
+  emits: { "update:modelValue": (value: number) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<Knob.OwnProps>(emit);
+    validateProps<Knob.OwnProps>(props);
 
     return {
-      globalDisable: injectDisable(),
-      slotNames: useSlotsNames<KnobSlots>()()
+      globalDisable: injections.globalDisable.inject(),
+      slotNames: plugins.useSlotNames<Knob.Slots>()()
     };
   }
 });
@@ -37,9 +37,7 @@ export default defineComponent({
 <template>
   <q-knob
     class="m-knob"
-    :class="{
-      'm-knob__inline': inline
-    }"
+    :class="{ 'm-knob__inline': inline }"
     color="primary"
     :disable="disable || globalDisable"
     :model-value="modelValue"
@@ -49,8 +47,8 @@ export default defineComponent({
     track-color="grey-3"
     @update:model-value="$emit('update:modelValue', $event)"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-knob>
 </template>

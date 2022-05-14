@@ -1,240 +1,54 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Tooltip] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Tooltip] */
 
-import { disabled, injectTooltipSettings } from "./Tooltip.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  useSlotsNames
-} from "./api";
+import { disableCounter } from "./Tooltip.core";
+import { Tooltip } from "./Tooltip.extras";
+import { parentProps, plugins } from "./api";
 import { computed, defineComponent } from "vue";
-import type {
-  Direction,
-  TooltipOwnProps,
-  TooltipParentProps,
-  TooltipSlots
-} from "./Tooltip.extras";
 
 export default defineComponent({
   name: "m-tooltip",
   props: {
-    ...propsToPropDefinitions<TooltipParentProps>(),
-    direction: prop<Direction>()
+    ...parentProps<Tooltip.ParentProps>(),
+    ...plugins.useDirection.props
   },
-  setup(props) {
-    validateProps<TooltipOwnProps>(props);
-
-    const direction = computed<Direction>(() => props.direction ?? "down");
-
-    const settings = injectTooltipSettings();
+  setup: props => {
+    const {
+      dirAnchor,
+      dirOffset,
+      dirSelf,
+      dirTransitionHide,
+      dirTransitionShow
+    } = plugins.useDirection(props);
 
     return {
-      anchor: computed<Anchor>(() => {
-        switch (direction.value) {
-          case "down":
-            return "bottom middle";
-
-          case "down-left":
-            return "bottom right";
-
-          case "down-right":
-            return "bottom left";
-
-          case "left":
-            return "center left";
-
-          case "left-down":
-            return "top left";
-
-          case "left-up":
-            return "bottom left";
-
-          case "right":
-            return "center right";
-
-          case "right-down":
-            return "top right";
-
-          case "right-up":
-            return "bottom right";
-
-          case "up":
-            return "top middle";
-
-          case "up-left":
-            return "top right";
-
-          case "up-right":
-            return "top left";
-        }
-      }),
-      disabled,
-      offset: computed<[number, number]>(() => {
-        switch (direction.value) {
-          case "down":
-          case "down-left":
-          case "down-right":
-            return [0, 10];
-
-          case "left":
-          case "left-down":
-          case "left-up":
-            return [10, 0];
-
-          case "right":
-          case "right-down":
-          case "right-up":
-            return [10, 0];
-
-          case "up":
-          case "up-left":
-          case "up-right":
-            return [0, 10];
-        }
-      }),
-      self: computed<Self>(() => {
-        switch (direction.value) {
-          case "down":
-            return "top middle";
-
-          case "down-left":
-            return "top right";
-
-          case "down-right":
-            return "top left";
-
-          case "left":
-            return "center right";
-
-          case "left-down":
-            return "top right";
-
-          case "left-up":
-            return "bottom right";
-
-          case "right":
-            return "center left";
-
-          case "right-down":
-            return "top left";
-
-          case "right-up":
-            return "bottom left";
-
-          case "up":
-            return "bottom middle";
-
-          case "up-left":
-            return "bottom right";
-
-          case "up-right":
-            return "bottom left";
-        }
-      }),
-      settings,
-      slotNames: useSlotsNames<TooltipSlots>()(),
-      transitionHide: computed<string>(() => {
-        switch (direction.value) {
-          case "down":
-          case "down-left":
-          case "down-right":
-            return "jump-up";
-
-          case "left":
-          case "left-down":
-          case "left-up":
-            return "jump-right";
-
-          case "right":
-          case "right-down":
-          case "right-up":
-            return "jump-left";
-
-          case "up":
-          case "up-left":
-          case "up-right":
-            return "jump-down";
-        }
-      }),
-      transitionShow: computed<string>(() => {
-        switch (direction.value) {
-          case "down":
-          case "down-left":
-          case "down-right":
-            return "jump-down";
-
-          case "left":
-          case "left-down":
-          case "left-up":
-            return "jump-left";
-
-          case "right":
-          case "right-down":
-          case "right-up":
-            return "jump-right";
-
-          case "up":
-          case "up-left":
-          case "up-right":
-            return "jump-up";
-        }
-      })
+      dirAnchor,
+      dirOffset,
+      dirSelf,
+      dirTransitionHide,
+      dirTransitionShow,
+      disabled: computed(() => disableCounter.value > 0),
+      settings: Tooltip.injectSettings(),
+      slotNames: plugins.useSlotNames<Tooltip.Slots>()()
     };
   }
 });
-
-type Anchor =
-  | "bottom end"
-  | "bottom left"
-  | "bottom middle"
-  | "bottom right"
-  | "bottom start"
-  | "center end"
-  | "center left"
-  | "center middle"
-  | "center right"
-  | "center start"
-  | "top end"
-  | "top left"
-  | "top middle"
-  | "top right"
-  | "top start";
-
-type Self =
-  | "bottom end"
-  | "bottom left"
-  | "bottom middle"
-  | "bottom right"
-  | "bottom start"
-  | "center end"
-  | "center left"
-  | "center middle"
-  | "center right"
-  | "center start"
-  | "top end"
-  | "top left"
-  | "top middle"
-  | "top right"
-  | "top start";
 </script>
 
 <template>
   <q-tooltip
     v-if="settings.show && !disabled"
-    :anchor="anchor"
+    :anchor="dirAnchor"
     class="m-tooltip"
     :delay="settings.delay"
-    :offset="offset"
-    :self="self"
-    :style="{
-      fontSize: settings.fontSize
-    }"
-    :transition-hide="transitionHide"
-    :transition-show="transitionShow"
+    :offset="dirOffset"
+    :self="dirSelf"
+    :style="{ fontSize: settings.fontSize }"
+    :transition-hide="dirTransitionHide"
+    :transition-show="dirTransitionShow"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-tooltip>
 </template>

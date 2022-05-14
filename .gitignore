@@ -1,6 +1,5 @@
 .quasar
 .scannerwork
-.vscode
 cache
 lcov.info
 lcov-report

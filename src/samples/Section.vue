@@ -5,7 +5,9 @@ export default defineComponent({ name: "sample-section" });
 </script>
 
 <template>
-  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
-  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
-  <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+  <m-page-section>
+    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+  </m-page-section>
 </template>

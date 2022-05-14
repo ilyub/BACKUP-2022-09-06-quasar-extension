@@ -7,4 +7,5 @@
 !src/index.ts
 !src/plugin.ts
 !src/style.scss
-!src/testUtils/**
+!src/variables.scss
+!src/test-utils/**

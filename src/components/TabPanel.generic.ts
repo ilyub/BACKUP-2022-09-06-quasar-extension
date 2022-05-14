@@ -1,32 +1,13 @@
 import { QTabPanel } from "quasar";
-import type { GlobalComponent } from "./api";
+import type { TabPanel } from "./TabPanel.extras";
 import type { NumStrU } from "@skylib/functions";
-import type { QTabPanelProps, QTabPanelSlots } from "quasar";
-
-export type GlobalTabPanel<T extends NumStrU = NumStrU> = GlobalComponent<
-  TabPanelProps<T>,
-  TabPanelSlots
->;
-
-export interface TabPanelOwnProps<T extends NumStrU = NumStrU> {
-  readonly name?: T | undefined;
-}
-
-export interface TabPanelParentProps
-  extends Readonly<Omit<QTabPanelProps, keyof TabPanelOwnProps>> {}
-
-export interface TabPanelProps<T extends NumStrU = NumStrU>
-  extends TabPanelOwnProps<T>,
-    TabPanelParentProps {}
-
-export type TabPanelSlots = QTabPanelSlots;
 
 /**
  * Generic TabPanel component.
  *
  * @returns TabPanel component.
  */
-export function genericTabPanel<T extends NumStrU>(): GlobalTabPanel<T> {
-  // eslint-disable-next-line no-type-assertion/no-type-assertion
-  return QTabPanel as unknown as GlobalTabPanel<T>;
+export function genericTabPanel<T extends NumStrU>(): TabPanel.Global<T> {
+  // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
+  return QTabPanel as unknown as TabPanel.Global<T>;
 }

@@ -1,12 +1,14 @@
-import type { BaseButtonProps, BaseButtonSlots } from "./BaseButton.extras";
+import type { BaseButton } from "./BaseButton.extras";
 import type { GlobalComponent } from "./api";
 
-export interface ButtonOwnProps {}
+export namespace Button {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export type ButtonParentProps = BaseButtonProps;
+  export interface ParentProps extends BaseButton.Props {}
 
-export interface ButtonProps extends ButtonParentProps, ButtonOwnProps {}
+  export interface ParentSlots extends BaseButton.Slots {}
 
-export type ButtonSlots = BaseButtonSlots;
+  export interface Props extends ParentProps {}
 
-export type GlobalButton = GlobalComponent<ButtonProps, ButtonSlots>;
+  export interface Slots extends ParentSlots {}
+}

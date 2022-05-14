@@ -1,38 +1,41 @@
-import { createInjectable } from "./api";
+import { injectableSettings } from "./api";
 import type { GlobalComponent, VNodes } from "./api";
 import type { numberU } from "@skylib/functions";
 
-export const {
-  inject: injectResizerSettings,
-  provide: provideResizerSettings,
-  test: testResizerSettings
-} = createInjectable<ResizerSettings>(() => {
-  return { disable: false };
-});
+export namespace Resizer {
+  export const defaultSettings: Settings = { disable: false };
 
-export type GlobalResizer = GlobalComponent<ResizerProps, ResizerSlots>;
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
 
-export interface ResizerProps {
-  readonly max?: numberU;
-  readonly min?: numberU;
-  readonly modelValue?: numberU;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: (value: number) => void;
-}
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface ResizerSettings {
-  readonly disable: boolean;
-}
+  export interface OwnProps {
+    readonly max?: numberU;
+    readonly min?: numberU;
+    readonly modelValue?: numberU;
+    /**
+     * Emits model value.
+     *
+     * @param value - Value.
+     */
+    readonly "onUpdate:modelValue"?: (value: number) => void;
+  }
 
-export interface ResizerSlots {
-  /**
-   * Default slot.
-   *
-   * @returns Node.
-   */
-  readonly default: () => VNodes;
+  export interface OwnSlots {
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly default: () => VNodes;
+  }
+
+  export interface Props extends OwnProps {}
+
+  export interface Settings {
+    readonly disable: boolean;
+  }
+
+  export interface Slots extends OwnSlots {}
 }

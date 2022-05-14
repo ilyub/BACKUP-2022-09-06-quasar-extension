@@ -1,51 +1,40 @@
-import { createInjectable } from "./api";
-import { is, createValidationObject } from "@skylib/functions";
+import { injectableSettings } from "./api";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU } from "@skylib/functions";
 
-export const TransitionVO = createValidationObject<Transition>({
-  none: "none",
-  slide: "slide"
-});
+export namespace Switchable {
+  export const defaultSettings: Settings = {
+    transition: "none",
+    transitionDuration: 200
+  };
 
-export const isTransition = is.factory(is.enumeration, TransitionVO);
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
 
-export const {
-  inject: injectDisable,
-  provide: provideDisable,
-  test: testDisable
-} = createInjectable<boolean>(() => false);
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export const {
-  inject: injectSwitchableSettings,
-  provide: provideSwitchableSettings,
-  test: testSwitchableSettings
-} = createInjectable<SwitchableSettings>(() => {
-  return { transition: "none", transitionDuration: 200 };
-});
+  export interface OwnProps {
+    readonly disable?: booleanU;
+    readonly indent?: booleanU;
+  }
 
-export type GlobalSwitchable = GlobalComponent<
-  SwitchableProps,
-  SwitchableSlots
->;
+  export interface OwnSlots {
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly default: () => VNodes;
+  }
 
-export interface SwitchableProps {
-  readonly disable?: booleanU;
-  readonly indent?: booleanU;
+  export interface Props extends OwnProps {}
+
+  export interface Settings {
+    readonly transition: Transition;
+    readonly transitionDuration: number;
+  }
+
+  export interface Slots extends OwnSlots {}
+
+  export type Transition = "none" | "slide";
 }
-
-export interface SwitchableSettings {
-  readonly transition: Transition;
-  readonly transitionDuration: number;
-}
-
-export interface SwitchableSlots {
-  /**
-   * Default slot.
-   *
-   * @returns Node.
-   */
-  readonly default: () => VNodes;
-}
-
-export type Transition = "none" | "slide";

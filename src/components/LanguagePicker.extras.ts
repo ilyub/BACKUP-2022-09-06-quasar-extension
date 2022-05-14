@@ -1,53 +1,41 @@
-import { createInjectable } from "./api";
-import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
-import type { GlobalComponent, PropOptionsRequired } from "./api";
+import { injectableSettings } from "./api";
+import type { IconButton } from "./IconButton.extras";
+import type { GlobalComponent } from "./api";
 import type { LocaleName } from "@skylib/functions";
 
-export const {
-  inject: injectLanguagePickerSettings,
-  provide: provideLanguagePickerSettings,
-  test: testLanguagePickerSettings
-} = createInjectable<LanguagePickerSettings>();
+export namespace LanguagePicker {
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings<Settings>();
 
-export interface ChangeLanguageAction {
-  /**
-   * Change language action.
-   *
-   * @param language - Language.
-   */
-  (language: LocaleName): void;
+  export interface Global extends GlobalComponent<Props, Slots> {}
+
+  export interface Option {
+    readonly caption: string;
+    readonly flag: string;
+    readonly lang: LocaleName;
+  }
+
+  export type Options = readonly Option[];
+
+  export interface OwnProps {
+    readonly language: LocaleName;
+  }
+
+  export interface ParentProps extends Omit<IconButton.Props, keyof OwnProps> {}
+
+  export interface ParentSlots extends IconButton.Slots {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Settings {
+    /**
+     * Change language action.
+     *
+     * @param language - Language.
+     */
+    readonly changeLanguageAction: (language: LocaleName) => void;
+    readonly options: Options;
+  }
+
+  export interface Slots extends ParentSlots {}
 }
-
-export type GlobalLanguagePicker = GlobalComponent<
-  LanguagePickerProps,
-  LanguagePickerSlots
->;
-
-export interface LanguagePickerItem {
-  readonly caption: string;
-  readonly flag: string;
-  readonly lang: LocaleName;
-}
-
-export type LanguagePickerItems = readonly LanguagePickerItem[];
-
-export interface LanguagePickerOptions extends IconButtonProps {
-  readonly language: PropOptionsRequired<unknown>;
-}
-
-export interface LanguagePickerOwnProps {
-  readonly language: unknown;
-}
-
-export type LanguagePickerParentProps = IconButtonProps;
-
-export interface LanguagePickerProps
-  extends LanguagePickerParentProps,
-    LanguagePickerOwnProps {}
-
-export interface LanguagePickerSettings {
-  readonly changeLanguageAction: ChangeLanguageAction;
-  readonly items: LanguagePickerItems;
-}
-
-export type LanguagePickerSlots = IconButtonSlots;

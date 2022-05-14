@@ -1,11 +1,10 @@
-export * from "./core";
+// eslint-disable-next-line @skylib/export-all-name -- Ok
+export * as directives from "./index.directives";
 
-export type { ConfirmedClickProps } from "./confirmedClickModule";
+// eslint-disable-next-line @skylib/export-all-name -- Ok
+export * as injections from "./index.injections";
 
-export {
-  confirmedClickEmits,
-  confirmedClickProps,
-  useConfirmedClick
-} from "./confirmedClickModule";
+// eslint-disable-next-line @skylib/export-all-name -- Ok
+export * as plugins from "./index.plugins";
 
-export { useSlotsNames } from "./slotNames";
+export * from "./misc";

@@ -1,65 +1,59 @@
 <script lang="ts">
-import {
-  buildElements,
-  injectSortableSettings,
-  isElems,
-  isMoveData
-} from "./Sortable.extras";
-import { useDisableTooltips } from "./Tooltip.extras";
-import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
-import { a, assert, is, reflect } from "@skylib/functions";
+import { buildElements, isElements, isMoveData } from "./Sortable.core";
+import { Sortable } from "./Sortable.extras";
+import { Tooltip } from "./Tooltip.extras";
+import { prop, validateEmit, validateProps, plugins, skipCheck } from "./api";
+import { as, assert, is, o } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import VueDraggable from "vuedraggable";
-import type {
-  Elems,
-  Move,
-  SortableProps,
-  SortableSlots
-} from "./Sortable.extras";
-import type { objects, Writable } from "@skylib/functions";
+import type { objects } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-sortable",
   components: { "vue-draggable": VueDraggable },
   props: {
-    group: prop.required<string>(),
-    itemClass: prop<string>(),
-    itemKey: prop.required<string>(),
-    itemTag: prop.default<unknown>("div"),
-    modelValue: prop.required<objects>(),
-    move: prop<Move>(),
+    group: prop.required<Sortable.Props["group"]>(),
+    itemClass: prop<Sortable.Props["itemClass"]>(),
+    itemKey: prop.required<Sortable.Props["itemKey"]>(),
+    itemTag: prop.default<Sortable.Props["itemTag"]>("div"),
+    modelValue: prop.required<Sortable.Props["modelValue"]>(),
+    move: prop<Sortable.Props["move"]>(),
     pull: prop.boolean(),
     put: prop.boolean(),
     sort: prop.boolean()
   },
   emits: {
-    "dropped": (item: object, group: string) =>
-      is.object(item) && is.string(group),
-    "itemClick": (item: object) => is.object(item),
-    "update:modelValue": (value: objects) => is.objects(value)
+    "dropped": (item: object, group: string) => skipCheck(item, group),
+    "itemClick": (item: object) => skipCheck(item),
+    "update:modelValue": (value: objects) => skipCheck(value)
   },
-  setup(props, { emit }) {
-    validateEmit<SortableProps>(emit);
-    validateProps<SortableProps>(props);
+  setup: (props, { emit }) => {
+    validateEmit<Sortable.OwnProps>(emit);
+    validateProps<Sortable.OwnProps>(props);
 
-    const { active } = useDisableTooltips();
+    const disableTooltips = Tooltip.useDisableTooltips();
 
-    const settings = injectSortableSettings();
+    const settings = Sortable.injectSettings();
 
-    const draggablePull = computed<boolean>(
+    const canPull = computed(
       () => props.pull && !settings.value.disableDropping
     );
 
-    const draggablePut = computed<boolean>(
-      () => props.put && !settings.value.disableDropping
-    );
+    const canPut = computed(() => props.put && !settings.value.disableDropping);
 
-    const draggableSort = computed<boolean>(
+    const canSort = computed(
       () => props.sort && !settings.value.disableSorting
     );
 
+    const ids = computed(
+      () =>
+        new Set(
+          props.modelValue.map(item => o.get(item, props.itemKey, is.string))
+        )
+    );
+
     return {
-      baseMove(data: unknown): boolean {
+      baseMove: (data: unknown): boolean => {
         assert.byGuard(data, isMoveData);
 
         const destAttrs = data.related.attributes;
@@ -74,53 +68,42 @@ export default defineComponent({
 
         const sourceGroup = sourceAttrs.getNamedItem("data-group");
 
-        assert.not.empty(destGroup);
-        assert.not.empty(sourceId);
-        assert.not.empty(sourceGroup);
-
         return props.move
           ? props.move(
               destId?.value,
-              destGroup.value,
-              sourceId.value,
-              sourceGroup.value
+              as.not.empty(destGroup).value,
+              as.not.empty(sourceId).value,
+              as.not.empty(sourceGroup).value
             )
           : true;
       },
-      draggableDisabled: computed<boolean>(
-        () =>
-          !draggablePull.value && !draggablePut.value && !draggableSort.value
+      canPull,
+      canPut,
+      canSort,
+      disabled: computed(
+        () => !canPull.value && !canPut.value && !canSort.value
       ),
-      draggablePull,
-      draggablePut,
-      draggableSort,
-      elements: computed<Writable<Elems>>(() =>
-        a.clone(buildElements(props.modelValue, props.group, props.itemKey))
+      elements: computed(() =>
+        buildElements(props.modelValue, props.group, props.itemKey)
       ),
-      end(): void {
-        active.value = false;
-      },
-      itemSlotData(data: unknown): object {
-        assert.object(data);
-
-        return data;
+      end: (): void => {
+        disableTooltips.value = false;
       },
       settings,
-      slotNames: useSlotsNames<SortableSlots>()("footer", "header", "item"),
-      start(): void {
-        active.value = true;
+      slotNames: plugins.useSlotNames<Sortable.Slots>()(
+        "footer",
+        "header",
+        "item"
+      ),
+      start: (): void => {
+        disableTooltips.value = true;
       },
-      updateModel(elements: unknown): void {
-        assert.byGuard(elements, isElems);
+      update: (elements: unknown): void => {
+        assert.byGuard(elements, isElements);
 
         for (const element of elements)
-          if (
-            element.group === props.group &&
-            props.modelValue.some(
-              item => reflect.get(item, props.itemKey) === element.id
-            )
-          ) {
-            // Sorted or untouched
+          if (element.group === props.group && ids.value.has(element.id)) {
+            // Already was there
           } else emit("dropped", element.item, element.group);
 
         emit(
@@ -138,25 +121,25 @@ export default defineComponent({
     :animation="settings.animationDuration"
     class="m-sortable"
     :data-group="group"
-    :disabled="draggableDisabled"
+    :disabled="disabled"
     :group="{
       name: group,
-      pull: draggablePull ? 'clone' : false,
-      put: draggablePut
+      pull: canPull ? 'clone' : false,
+      put: canPut
     }"
     item-key="elementId"
     :model-value="elements"
     :move="baseMove"
-    :sort="draggableSort"
+    :sort="canSort"
     @end="end"
     @start="start"
-    @update:model-value="updateModel"
+    @update:model-value="update"
   >
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
+    </template>
     <template v-if="$slots[slotNames.header]" #header>
       <slot :name="slotNames.header"></slot>
-    </template>
-    <template v-if="$slots[slotNames.footer]" #footer>
-      <slot :name="slotNames.footer"></slot>
     </template>
     <template #item="{ element }">
       <component
@@ -166,8 +149,11 @@ export default defineComponent({
         :data-id="element.id"
         @click="$emit('itemClick', element.item)"
       >
-        <slot :item="itemSlotData(element.item)" :name="slotNames.item"></slot>
+        <slot :item="element.item" :name="slotNames.item"></slot>
       </component>
+    </template>
+    <template v-if="$slots[slotNames.footer]" #footer>
+      <slot :name="slotNames.footer"></slot>
     </template>
   </vue-draggable>
 </template>

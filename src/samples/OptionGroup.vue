@@ -1,19 +1,17 @@
 <script lang="ts">
-import { components } from "..";
-import { fn } from "@skylib/functions";
+import { generic } from "..";
+import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import type { extras } from "..";
+
+type Value = "a" | "b" | 1;
 
 export default defineComponent({
   name: "sample-option-group",
-  components: {
-    "generic-option-group": components.genericOptionGroup<Value>()
-  },
-  setup() {
+  components: { "value-option-group": generic.OptionGroup<Value>() },
+  setup: () => {
     return {
-      // eslint-disable-next-line no-warning-comments
-      // fixme: Use typedef
-      options: fn.run<components.OptionGroupOptions<Value>>(() => [
-        { label: "Select option", value: undefined },
+      options: typedef<extras.OptionGroup.Options<Value>>([
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },
         {
@@ -22,14 +20,18 @@ export default defineComponent({
           value: "b"
         }
       ]),
-      value: ref<Value>("a")
+      value1: ref<Value>("a"),
+      value2: ref<Value>()
     };
   }
 });
-
-type Value = "a" | "b" | 1 | undefined;
 </script>
 
 <template>
-  <generic-option-group v-model="value" inline :options="options" />
+  <m-page-section>
+    <value-option-group v-model="value1" :options="options" />
+  </m-page-section>
+  <m-page-section>
+    <value-option-group v-model="value2" inline :options="options" />
+  </m-page-section>
 </template>

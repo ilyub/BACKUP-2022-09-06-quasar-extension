@@ -1,20 +1,11 @@
 <script lang="ts">
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
+import { parentProps } from "./api";
 import { defineComponent } from "vue";
-import type {
-  DroppableOwnProps,
-  DroppableParentProps,
-  DroppableSlots
-} from "./Droppable.extras";
+import type { Droppable } from "./Droppable.extras";
 
 export default defineComponent({
   name: "m-droppable",
-  props: propsToPropDefinitions<DroppableParentProps>(),
-  setup(props) {
-    validateProps<DroppableOwnProps>(props);
-
-    return { slotNames: useSlotsNames<DroppableSlots>()("default") };
-  }
+  props: parentProps<Droppable.ParentProps>()
 });
 </script>
 
@@ -27,8 +18,8 @@ export default defineComponent({
     :model-value="[]"
     put
   >
-    <template v-if="$slots[slotNames.default]" #header>
-      <slot :name="slotNames.default"></slot>
+    <template #header>
+      <slot></slot>
     </template>
   </m-sortable>
 </template>

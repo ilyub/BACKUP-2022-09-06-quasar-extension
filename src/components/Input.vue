@@ -1,43 +1,40 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Input] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Input] */
 
-import { injectDisable } from "./Switchable.extras";
 import {
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins,
+  skipCheck,
+  injections
 } from "./api";
 import { is } from "@skylib/functions";
-import { defineComponent, ref } from "vue";
-import type { ButtonSlots } from "./Button.extras";
-import type { InputOwnProps, InputParentProps } from "./Input.extras";
+import { defineComponent } from "vue";
+import type { Button } from "./Button.extras";
+import type { Input } from "./Input.extras";
 import type { NumStrE, stringU } from "@skylib/functions";
-import type { QInput } from "quasar";
 
 export default defineComponent({
   name: "m-input",
   props: {
-    ...propsToPropDefinitions<InputParentProps>(),
+    ...parentProps<Input.ParentProps>(),
     disable: prop.boolean(),
-    modelValue: prop<string>()
+    modelValue: prop<Input.Props["modelValue"]>()
   },
-  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
-  setup(props, { emit }) {
-    validateEmit<InputOwnProps>(emit);
-    validateProps<InputOwnProps>(props);
-
-    const input = ref<QInput | undefined>(undefined);
+  emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<Input.OwnProps>(emit);
+    validateProps<Input.OwnProps>(props);
 
     return {
-      globalDisable: injectDisable(),
-      input,
-      slotNames: useSlotsNames<ButtonSlots>()(),
-      updateModel(value: NumStrE): void {
+      globalDisable: injections.globalDisable.inject(),
+      slotNames: plugins.useSlotNames<Button.Slots>()(),
+      update: (value: NumStrE): void => {
         emit(
           "update:modelValue",
-          is.string(value) && value !== "" ? value : undefined
+          is.string(value) && value ? value : undefined
         );
       }
     };
@@ -47,15 +44,14 @@ export default defineComponent({
 
 <template>
   <q-input
-    ref="input"
     class="m-input"
     dense
     :disable="disable || globalDisable"
     :model-value="modelValue"
-    @update:model-value="updateModel"
+    @update:model-value="update"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-input>
 </template>

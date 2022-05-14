@@ -7,9 +7,9 @@ test("knob", () => {
     props: { modelValue: 50 }
   });
 
-  const knob = wrapper.findComponent(QKnob);
+  const main = wrapper.findComponent(QKnob);
 
   expect(wrapper.emitted("update:modelValue")).toBeUndefined();
-  knob.vm.$emit("update:modelValue", 75);
+  main.vm.$emit("update:modelValue", 75);
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[75]]);
 });

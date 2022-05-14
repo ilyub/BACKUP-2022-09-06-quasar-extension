@@ -3,10 +3,10 @@ const { configure } = require("quasar/wrappers");
 module.exports = configure(ctx => {
   return {
     animations: [],
-    boot: ["main"],
+    boot: ["facades", "main"],
     build: {
       analyze: true,
-      extendWebpack(config) {
+      extendWebpack: config => {
         config.optimization = {
           ...config.optimization,
           minimize: ctx.prod,
@@ -39,10 +39,10 @@ module.exports = configure(ctx => {
     electron: {
       builder: { appId: "quasar-extension" },
       bundler: "packager",
-      chainWebpack() {
+      chainWebpack: () => {
         //
       },
-      chainWebpackPreload() {
+      chainWebpackPreload: () => {
         //
       },
       packager: {}
@@ -54,7 +54,7 @@ module.exports = configure(ctx => {
       plugins: ["Dialog", "Notify"]
     },
     pwa: {
-      chainWebpackCustomSW() {
+      chainWebpackCustomSW: () => {
         //
       },
       manifest: {
@@ -97,7 +97,7 @@ module.exports = configure(ctx => {
       workboxPluginMode: "GenerateSW"
     },
     ssr: {
-      chainWebpackWebserver() {
+      chainWebpackWebserver: () => {
         //
       },
       maxAge: 30 * 24 * 3600 * 1000,
@@ -107,7 +107,7 @@ module.exports = configure(ctx => {
     },
     supportTS: {
       tsCheckerConfig: {
-        eslint: { enabled: true, files: "./src/**/*.{js,jsx,ts,tsx,vue}" }
+        eslint: { enabled: true, files: "./src/**/*.{js,ts,vue}" }
       }
     }
   };

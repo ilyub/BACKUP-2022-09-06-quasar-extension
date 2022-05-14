@@ -6,58 +6,51 @@ import type { QFieldProps, QFieldSlots } from "quasar";
 declare global {
   namespace facades {
     namespace icons {
-      interface Icon extends ModuleIcons {}
+      interface Icon extends DatetimePicker.Icon {}
     }
 
     namespace lang {
-      interface Context {
-        aaa: true;
-      }
-
-      interface Word extends ModuleWord {}
+      interface Word extends DatetimePicker.Word {}
     }
   }
 }
 
-export const icons: baseIcons.Icons<keyof ModuleIcons> = baseIcons;
+export namespace DatetimePicker {
+  export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
+  export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
-export interface DatetimePickerOwnProps {
-  readonly max?: stringU;
-  readonly min?: stringU;
-  readonly modelValue?: stringU;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: (value: stringU) => void;
-}
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface DatetimePickerParentProps
-  extends Omit<QFieldProps, "modelValue" | "onUpdate:modelValue"> {}
+  export interface Icon {
+    readonly am: true;
+    readonly close: true;
+    readonly pickDate: true;
+    readonly pickTime: true;
+    readonly pm: true;
+  }
 
-export interface DatetimePickerProps
-  extends DatetimePickerParentProps,
-    DatetimePickerOwnProps {}
+  export interface OwnProps {
+    readonly max?: stringU;
+    readonly min?: stringU;
+    readonly modelValue?: stringU;
+    /**
+     * Emits model value.
+     *
+     * @param value - Value.
+     */
+    readonly "onUpdate:modelValue"?: (value: stringU) => void;
+  }
 
-export type DatetimePickerSlots = QFieldSlots;
+  export interface ParentProps extends Omit<QFieldProps, keyof OwnProps> {}
 
-export type GlobalDatetimePicker = GlobalComponent<
-  DatetimePickerProps,
-  DatetimePickerSlots
->;
+  export interface ParentSlots extends QFieldSlots {}
 
-export interface ModuleIcons {
-  readonly am: true;
-  readonly close: true;
-  readonly pickDate: true;
-  readonly pickTime: true;
-  readonly pm: true;
-}
+  export interface Props extends ParentProps, OwnProps {}
 
-export interface ModuleWord {
-  readonly PickDate: true;
-  readonly Save: true;
+  export interface Slots extends ParentSlots {}
+
+  export interface Word {
+    readonly Save: true;
+  }
 }

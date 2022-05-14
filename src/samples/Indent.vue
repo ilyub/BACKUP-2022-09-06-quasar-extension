@@ -5,8 +5,8 @@ export default defineComponent({ name: "sample-indent" });
 </script>
 
 <template>
-  <div class="bg-grey-3 q-pa-md">
+  <m-page-section class="bg-grey-3">
     Outer
     <m-indent class="bg-grey-5">Inner</m-indent>
-  </div>
+  </m-page-section>
 </template>

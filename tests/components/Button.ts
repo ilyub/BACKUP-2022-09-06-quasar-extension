@@ -1,8 +1,8 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 
-test("button", () => {
+test("Button", () => {
   const wrapper = vueTestUtils.mount(components.Button, {
     global: testUtils.globalMountOptions()
   });

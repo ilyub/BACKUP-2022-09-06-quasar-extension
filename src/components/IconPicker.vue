@@ -1,58 +1,70 @@
 <script lang="ts">
-import { icons, injectIconPickerSettings, lang } from "./IconPicker.extras";
+import { IconPicker } from "./IconPicker.extras";
 import {
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
-  validateProps
+  validateProps,
+  directives,
+  skipCheck
 } from "./api";
 import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
 import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
-import type {
-  IconPickerOwnProps,
-  IconPickerParentProps
-} from "./IconPicker.extras";
 import type { stringU, Writable } from "@skylib/functions";
 
-const mdi = ref<Mdi | undefined>(undefined);
+const mdi = ref<Mdi>();
+
+interface Button {
+  readonly icon?: string;
+  readonly placeholder: boolean;
+  readonly selected: boolean;
+  readonly tooltip?: string;
+}
+
+type Buttons = readonly Button[];
+
+interface Item {
+  readonly description: string;
+  readonly id: keyof Mdi;
+}
+
+type Mdi = typeof import("@mdi/js-dynamic");
 
 export default defineComponent({
   name: "m-icon-picker",
+  directives: { debugId: directives.debugId("icon-picker") },
   props: {
-    ...propsToPropDefinitions<IconPickerParentProps>(),
-    cols: prop.default(7),
-    modelValue: prop<string>(),
-    placeholder: prop.required<string>(),
-    rows: prop.default(5),
-    spinnerSize: prop.default("70px")
+    ...parentProps<IconPicker.ParentProps>(),
+    modelValue: prop<IconPicker.Props["modelValue"]>(),
+    placeholder: prop.required<IconPicker.Props["placeholder"]>()
   },
-  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
-  setup(props, { emit }) {
-    validateEmit<IconPickerOwnProps>(emit);
-    validateProps<IconPickerOwnProps>(props);
+  emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<IconPicker.OwnProps>(emit);
+    validateProps<IconPicker.OwnProps>(props);
 
-    const filteredItems = computed<Items>(() =>
+    const filteredItems = computed(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)
         : items.value
     );
 
-    const from = computed<number>(() => page.value * pageSize.value + 1);
+    const from = computed(() => page.value * pageSize.value + 1);
 
-    const searchIndex = computed<inlineSearch.Engine<Item>>(() =>
-      inlineSearch.create("id", ["description"], items.value)
+    const searchIndex = computed(() =>
+      inlineSearch.create<Item>("id", ["description"], items.value)
     );
 
-    const settings = injectIconPickerSettings();
+    const settings = IconPicker.injectSettings();
 
-    const items = computed<Items>(() =>
+    const items = computed(() =>
       mdi.value
         ? o
             .keys(mdi.value)
             .filter(id => id.startsWith("mdi"))
-            .map(id => {
+            .map((id): Item => {
               return { description: _.kebabCase(id), id };
             })
         : []
@@ -60,24 +72,22 @@ export default defineComponent({
 
     const page = ref(0);
 
-    const pageSize = computed<number>(() => props.cols * props.rows);
+    const pageSize = computed(() => settings.value.cols * settings.value.rows);
 
-    const searchString = ref<stringU>(undefined);
+    const searchString = ref<string>();
 
     const show = ref(false);
 
-    const to = computed<number>(() =>
+    const to = computed(() =>
       Math.min(page.value * pageSize.value + pageSize.value, total.value)
     );
 
-    const total = computed<number>(() => filteredItems.value.length);
+    const total = computed(() => filteredItems.value.length);
 
-    watch(searchString, () => {
-      page.value = 0;
-    });
+    watch([mdi, searchString], resetPage);
 
     return {
-      frame: computed<Frame>(() => {
+      contents: computed(() => {
         const buttons: Writable<Buttons> = filteredItems.value
           .slice(
             page.value * pageSize.value,
@@ -90,7 +100,7 @@ export default defineComponent({
 
             return o.removeUndefinedKeys({
               icon,
-              padding: false,
+              placeholder: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
                 ? item.description
@@ -99,136 +109,120 @@ export default defineComponent({
           });
 
         while (buttons.length < pageSize.value)
-          buttons.push({ padding: true, selected: false });
+          buttons.push({ placeholder: true, selected: false });
 
-        return _.chunk(buttons, props.cols);
+        return _.chunk(buttons, settings.value.cols);
       }),
       from,
-      icon: computed<string>(() => props.modelValue ?? props.placeholder),
-      icons,
-      lang,
-      loading: computed<boolean>(() => is.empty(mdi.value)),
-      nextClick(): void {
+      icon: computed(() => props.modelValue ?? props.placeholder),
+      icons: IconPicker.icons,
+      lang: IconPicker.lang,
+      loading: computed(() => is.empty(mdi.value)),
+      nextClick: (): void => {
         page.value++;
       },
-      nextDisable: computed<boolean>(() => to.value >= total.value),
-      notFound: computed<boolean>(() => total.value === 0),
-      notSelected: computed<boolean>(() => is.empty(props.modelValue)),
-      open(): void {
-        const index = is.not.empty(props.modelValue)
-          ? filteredItems.value.findIndex(item => {
-              assert.not.empty(mdi.value);
-
-              return mdi.value[item.id] === props.modelValue;
-            })
-          : -1;
-
-        page.value = index === -1 ? 0 : Math.floor(index / pageSize.value);
-
+      nextDisable: computed(() => to.value >= total.value),
+      notFound: computed(() => total.value === 0),
+      notSelected: computed(() => is.empty(props.modelValue)),
+      open: (): void => {
         show.value = true;
+        resetPage();
+        handlePromise.silent(load);
 
-        handlePromise.silent(async (): Promise<void> => {
+        async function load(): Promise<void> {
           await testDelay();
           mdi.value = await import(
             /* webpackChunkName: "dynamic/quasar-extension/mdi" */
             "@mdi/js-dynamic"
           );
-        });
+        }
       },
-      pickIcon(icon: unknown): void {
-        assert.string(icon);
+      pickIcon: (icon: stringU): void => {
         emit("update:modelValue", icon === props.modelValue ? undefined : icon);
         show.value = false;
       },
-      prevClick(): void {
+      prevClick: (): void => {
         page.value--;
       },
-      prevDisable: computed<boolean>(() => from.value <= 1),
+      prevDisable: computed(() => from.value <= 1),
       searchString,
+      settings,
       show,
       to,
       total
     };
+
+    function resetPage(): void {
+      const value = props.modelValue;
+
+      const values = mdi.value;
+
+      const index =
+        is.not.empty(value) && is.not.empty(values)
+          ? filteredItems.value.findIndex(item => values[item.id] === value)
+          : -1;
+
+      page.value = index === -1 ? 0 : Math.floor(index / pageSize.value);
+    }
   }
 });
-
-interface Button {
-  readonly icon?: string;
-  readonly padding: boolean;
-  readonly selected: boolean;
-  readonly tooltip?: string;
-}
-
-type Buttons = readonly Button[];
-
-type Frame = readonly Buttons[];
-
-interface Item {
-  readonly description: string;
-  readonly id: keyof Mdi;
-}
-
-type Items = readonly Item[];
-
-type Mdi = typeof import("@mdi/js-dynamic");
 </script>
 
 <template>
   <m-icon-button
     class="m-icon-picker"
-    :class="{
-      'text-grey-5': notSelected
-    }"
+    :class="{ 'text-grey-5': notSelected }"
     :icon="icon"
     @click="open"
   >
     <q-dialog v-model="show">
-      <m-card :title="lang.IconPicker" transparent-header>
+      <m-card v-debug-id="'dialog'" :title="lang.IconPicker" transparent-header>
         <m-card-section>
-          <m-input v-model="searchString" class="q-pb-md search" />
-          <div class="relative-position">
+          <m-subsection>
+            <m-input v-model="searchString" v-debug-id="'search'" />
+          </m-subsection>
+          <m-subsection class="relative-position">
             <div
               v-if="loading"
-              class="absolute fit flex items-center justify-center loading"
+              v-debug-id="'loading'"
+              class="absolute fit items-center justify-center row"
             >
-              <q-spinner color="primary" :size="spinnerSize" />
+              <q-spinner color="primary" :size="settings.spinnerSize" />
             </div>
-            <div v-for="(row, i) in frame" :key="i">
+            <div v-for="(buttons, i) in contents" :key="i">
               <m-icon-button
-                v-for="(button, j) in row"
+                v-for="(button, j) in buttons"
                 :key="j"
-                class="pick-icon"
+                v-debug-id="'pick-icon'"
                 :class="{
                   'bg-primary text-white': button.selected,
-                  'invisible': button.padding
+                  'invisible': button.placeholder
                 }"
-                :disable="button.padding"
+                :disable="button.placeholder"
                 :icon="button.icon"
                 :tooltip="button.tooltip"
                 @click="pickIcon(button.icon)"
               />
             </div>
-          </div>
+          </m-subsection>
         </m-card-section>
         <m-card-actions>
           <m-icon-button
-            class="prev"
+            v-debug-id="'prev'"
             :disable="prevDisable"
             :icon="icons.chevronLeft"
             @click="prevClick"
           />
           <q-space />
           <span
-            class="pagination"
-            :class="{
-              invisible: loading || notFound
-            }"
+            v-debug-id="'pagination'"
+            :class="{ invisible: loading || notFound }"
           >
             {{ from }} &ndash; {{ to }} {{ lang.of }} {{ total }}
           </span>
           <q-space />
           <m-icon-button
-            class="next"
+            v-debug-id="'next'"
             :disable="nextDisable"
             :icon="icons.chevronRight"
             @click="nextClick"

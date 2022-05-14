@@ -1,31 +1,42 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import type { numberU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-numeric-input",
-  setup() {
-    return { value: ref<numberU>(undefined) };
+  setup: () => {
+    return {
+      value1: ref<number>(),
+      value2: ref<number>(),
+      value3: ref<number>(),
+      value4: ref<number>()
+    };
   }
 });
 </script>
 
 <template>
-  <m-section>
+  <m-page-section>
+    <m-numeric-input v-model="value1" label="Optional" :max="59" />
+    <m-numeric-input v-model="value2" label="Required" :max="59" required />
+    <m-numeric-input disable label="Disabled" :model-value="undefined" />
     <m-numeric-input
-      v-model="value"
+      v-model="value3"
       :big-step="15"
-      label="No undef"
+      label="Optional"
       :max="59"
     />
-  </m-section>
-  <m-section>
     <m-numeric-input
-      v-model="value"
+      v-model="value4"
       :big-step="15"
-      can-undef
-      label="Undef"
+      label="Required"
       :max="59"
+      required
     />
-  </m-section>
+    <m-numeric-input
+      :big-step="15"
+      disable
+      label="Disabled"
+      :model-value="undefined"
+    />
+  </m-page-section>
 </template>

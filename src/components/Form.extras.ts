@@ -2,34 +2,31 @@ import type { GlobalComponent } from "./api";
 import type { handlePromise } from "@skylib/facades";
 import type { QFormProps, QFormSlots } from "quasar";
 
-export interface FormOwnProps {
-  readonly asyncTaskType?: handlePromise.Type | undefined;
-  readonly onSubmit?: OnSubmit;
-  readonly onSubmitAsync?: OnSubmitAsync;
-}
+export namespace Form {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface FormParentProps extends Omit<QFormProps, "onSubmit"> {}
+  export interface OwnProps {
+    readonly asyncTaskType?: handlePromise.Type | undefined;
+    /**
+     * Form submission event.
+     *
+     * @param event - DOM event.
+     */
+    readonly onSubmit?: (event: Event) => void;
+    /**
+     * Form submission event.
+     *
+     * @param event - DOM event.
+     * @returns Promise.
+     */
+    readonly onSubmitAsync?: (event: Event) => Promise<void>;
+  }
 
-export interface FormProps extends FormParentProps, FormOwnProps {}
+  export interface ParentProps extends Omit<QFormProps, keyof OwnProps> {}
 
-export type FormSlots = Readonly<QFormSlots>;
+  export interface ParentSlots extends QFormSlots {}
 
-export type GlobalForm = GlobalComponent<FormProps, FormSlots>;
+  export interface Props extends ParentProps, OwnProps {}
 
-export interface OnSubmit {
-  /**
-   * Form submission event.
-   *
-   * @param evt - DOM event.
-   */
-  (evt: Event | SubmitEvent): void;
-}
-
-export interface OnSubmitAsync {
-  /**
-   * Form submission event.
-   *
-   * @param evt - DOM event.
-   */
-  (evt: Event | SubmitEvent): Promise<void>;
+  export interface Slots extends ParentSlots {}
 }

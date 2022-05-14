@@ -1,101 +1,104 @@
 <script lang="ts">
-import { icons, lang } from "./DatetimePicker.extras";
+import { DatetimePicker } from "./DatetimePicker.extras";
 import {
+  directives,
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins,
+  skipCheck
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
-import { assert, is } from "@skylib/functions";
+import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import type {
-  DatetimePickerOwnProps,
-  DatetimePickerParentProps,
-  DatetimePickerSlots
-} from "./DatetimePicker.extras";
 import type { stringU } from "@skylib/functions";
-import type { QField } from "quasar";
 
 export default defineComponent({
   name: "m-datetime-picker",
+  directives: { debugId: directives.debugId("datetime-picker") },
   props: {
-    ...propsToPropDefinitions<DatetimePickerParentProps>(),
-    max: prop<string>(),
-    min: prop<string>(),
-    modelValue: prop<string>()
+    ...parentProps<DatetimePicker.ParentProps>(),
+    max: prop<DatetimePicker.Props["max"]>(),
+    min: prop<DatetimePicker.Props["min"]>(),
+    modelValue: prop<DatetimePicker.Props["modelValue"]>()
   },
-  emits: { "update:modelValue": (value: stringU) => is.stringU(value) },
-  setup(props, { emit }) {
-    validateEmit<DatetimePickerOwnProps>(emit);
-    validateProps<DatetimePickerOwnProps>(props);
+  emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<DatetimePicker.OwnProps>(emit);
+    validateProps<DatetimePicker.OwnProps>(props);
 
     const dialogShow = ref(false);
 
-    const minDate = computed<stringU>(() =>
+    const minDate = computed(() =>
       is.not.empty(props.min)
         ? datetime.create(props.min).format("yyyy/MM/dd")
         : undefined
     );
 
-    const maxDate = computed<stringU>(() =>
+    const maxDate = computed(() =>
       is.not.empty(props.max)
         ? datetime.create(props.max).format("yyyy/MM/dd")
         : undefined
     );
 
-    const minTime = computed<Time | undefined>(() => {
+    const minTime = computed(() => {
       if (
         is.not.empty(props.min) &&
         is.not.empty(minDate.value) &&
         is.not.empty(pickerDate.value) &&
         pickerDate.value === minDate.value
       ) {
-        const dt = datetime.create(props.min);
+        const date = datetime.create(props.min);
 
-        return { hours: dt.hours(), minutes: dt.minutes() };
+        return { hours: date.hours(), minutes: date.minutes() };
       }
 
       return undefined;
     });
 
-    const maxTime = computed<Time | undefined>(() => {
+    const maxTime = computed(() => {
       if (
         is.not.empty(props.max) &&
         is.not.empty(maxDate.value) &&
         is.not.empty(pickerDate.value) &&
         pickerDate.value === maxDate.value
       ) {
-        const dt = datetime.create(props.max);
+        const date = datetime.create(props.max);
 
-        return { hours: dt.hours(), minutes: dt.minutes() };
+        return { hours: date.hours(), minutes: date.minutes() };
       }
 
       return undefined;
     });
 
-    const nextStep = ref(false);
-
-    const pickerDate = computed<stringU>(() =>
-      is.not.empty(pickerValue.value)
-        ? datetime.create(pickerValue.value).format("yyyy/MM/dd")
+    // eslint-disable-next-line no-warning-comments -- Use "ReadonlyDateTime" type
+    // fixme
+    const modelObject = computed(() =>
+      is.not.empty(props.modelValue) && datetime.validate(props.modelValue)
+        ? datetime.create(props.modelValue)
         : undefined
     );
 
-    const pickerEmpty = computed<boolean>(() => is.empty(pickerValue.value));
+    const pickerDate = computed(() => pickerObject.value?.format("yyyy/MM/dd"));
 
-    const pickerValue = ref<stringU>(undefined);
+    const pickerValue = ref<string>();
 
-    const pm = computed<boolean>(() =>
+    // eslint-disable-next-line no-warning-comments -- Use "ReadonlyDateTime" type
+    // fixme
+    const pickerObject = computed(() =>
       is.not.empty(pickerValue.value)
-        ? datetime.create(pickerValue.value).hours() >= 12
-        : false
+        ? datetime.create(pickerValue.value)
+        : undefined
     );
 
+    const step = ref<"date" | "time">("date");
+
     return {
-      date: computed<string>(() => pickerDt()?.format("E, d MMM") ?? "\u2014"),
-      dateOptions(date: string): boolean {
+      date: computed(() =>
+        pickerObject.value ? pickerObject.value.format("E, d MMM") : "\u2014"
+      ),
+      dateOptions: (date: string): boolean => {
         if (
           is.not.empty(minDate.value) &&
           compare.strings(date, minDate.value) < 0
@@ -110,63 +113,64 @@ export default defineComponent({
 
         return true;
       },
-      dateValueUpdate(value: unknown): void {
+      dateUpdate: (value: unknown): void => {
         if (is.string(value)) pickerValue.value = value;
 
-        if (is.not.empty(pickerValue.value)) nextStep.value = true;
+        if (is.not.empty(pickerValue.value)) step.value = "time";
       },
       dialogShow,
-      icons,
-      inputModelValue: computed<stringU>(() =>
-        modelDt()?.format("E, d MMM yyyy HHH:mm A")
-      ),
-      inputUpdateModelValue(value: unknown): void {
+      fieldClick: (): void => {
+        dialogShow.value = true;
+        step.value = is.not.empty(props.modelValue) ? "time" : "date";
+        pickerValue.value = modelObject.value?.toString();
+      },
+      fieldUpdate: (value: unknown): void => {
         if (is.empty(value)) emit("update:modelValue", undefined);
       },
-      lang,
-      main: ref<QField | undefined>(undefined),
-      nextClick(): void {
-        nextStep.value = true;
+      fieldValue: computed(() =>
+        modelObject.value?.format("E, d MMM yyyy HHH:mm A")
+      ),
+      icons: DatetimePicker.icons,
+      lang: DatetimePicker.lang,
+      nextClick: (): void => {
+        step.value = "time";
       },
-      nextStep,
-      pickDate(): void {
+      pickDate: (): void => {
         dialogShow.value = true;
-        nextStep.value = false;
-        pickerValue.value = modelDt()?.toString();
+        step.value = "date";
+        pickerValue.value = modelObject.value?.toString();
       },
-      pickSmart(): void {
+      pickTime: (): void => {
         dialogShow.value = true;
-        nextStep.value = is.not.empty(props.modelValue);
-        pickerValue.value = modelDt()?.toString();
+        step.value = "time";
+        pickerValue.value = modelObject.value?.toString();
       },
-      pickTime(): void {
-        dialogShow.value = true;
-        nextStep.value = true;
-        pickerValue.value = modelDt()?.toString();
-      },
-      pickerEmpty,
+      pickerEmpty: computed(() => is.empty(pickerValue.value)),
       pickerValue,
-      pm,
-      pmToggle(): void {
-        assert.not.empty(pickerValue.value);
+      pm: computed(() =>
+        pickerObject.value ? pickerObject.value.hours() >= 12 : false
+      ),
+      pmToggle: (): void => {
+        const date = datetime.create(as.not.empty(pickerValue.value));
 
-        const dt = datetime.create(pickerValue.value);
-
-        pickerValue.value = dt.setHours((dt.hours() + 12) % 24).toString();
+        pickerValue.value = date.setHours((date.hours() + 12) % 24).toString();
       },
-      prevClick(): void {
-        nextStep.value = false;
+      prevClick: (): void => {
+        step.value = "date";
       },
-      save(): void {
-        emit("update:modelValue", pickerDt()?.toString());
+      save: (): void => {
+        emit("update:modelValue", pickerObject.value?.toString());
       },
-      slotNames: useSlotsNames<DatetimePickerSlots>()(
+      slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
         "control",
         "prepend"
       ),
-      time: computed<string>(() => pickerDt()?.format("HHH:mm A") ?? "\u2014"),
-      timeOptions(hours: number, minutes: number | null): boolean {
+      step,
+      time: computed(() =>
+        pickerObject.value ? pickerObject.value.format("HHH:mm A") : "\u2014"
+      ),
+      timeOptions: (hours: number, minutes: number | null): boolean => {
         if (is.not.empty(minTime.value)) {
           if (hours < minTime.value.hours) return false;
 
@@ -191,155 +195,122 @@ export default defineComponent({
 
         return true;
       },
-      timeValueUpdate(value: string | null): void {
-        assert.string(value);
-        pickerValue.value = value;
+      timeUpdate: (value: string | null): void => {
+        pickerValue.value = as.not.empty(value);
       },
-      year: computed<string>(() => pickerDt()?.format("yyyy") ?? "\u2013")
+      year: computed(() =>
+        pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
+      )
     };
-
-    function modelDt(): datetime.DateTime | undefined {
-      return is.not.empty(props.modelValue) &&
-        datetime.validate(props.modelValue)
-        ? datetime.create(props.modelValue)
-        : undefined;
-    }
-
-    function pickerDt(): datetime.DateTime | undefined {
-      return is.not.empty(pickerValue.value)
-        ? datetime.create(pickerValue.value)
-        : undefined;
-    }
   }
 });
-
-interface Time {
-  readonly hours: number;
-  readonly minutes: number;
-}
 </script>
 
 <template>
   <q-field
-    ref="main"
     class="m-datetime-picker"
     dense
-    :model-value="inputModelValue"
-    @update:model-value="inputUpdateModelValue"
+    :model-value="fieldValue"
+    @update:model-value="fieldUpdate"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
-    </template>
-    <template #append>
-      <slot :name="slotNames.append">
-        <q-icon
-          class="cursor-pointer ref-datetime-picker-show-time"
-          :name="icons.pickTime"
-          @click="pickTime"
-        />
-      </slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control>
       <slot :name="slotNames.control">
         <div
-          class="cursor-pointer fit items-center ref-datetime-picker-control row"
-          @click="pickSmart"
+          v-debug-id="'control'"
+          class="cursor-pointer fit items-center row"
+          @click="fieldClick"
         >
-          {{ inputModelValue }}
+          {{ fieldValue }}
         </div>
-        <q-dialog
-          v-model="dialogShow"
-          anchor="bottom left"
-          :offset="[0, 10]"
-          self="top left"
-        >
-          <m-card class="m-datetime-picker__dialog">
-            <template #title>
-              <div class="items-end row">
-                <div
-                  class="ref-datetime-picker-prev"
-                  :class="{
-                    'm-datetime-picker__header-clickable text-blue-2': nextStep
-                  }"
-                  @click="prevClick"
-                >
-                  <div
-                    class="m-datetime-picker__header-text q-mb-xs text-body2 text-weight-thin"
-                  >
-                    {{ year }}
-                  </div>
-                  <div class="m-datetime-picker__header-text text-subtitle1">
-                    {{ date }}
-                  </div>
-                </div>
-                <div
-                  class="q-ml-sm ref-datetime-picker-next"
-                  :class="{
-                    'm-datetime-picker__header-clickable text-blue-2': !nextStep
-                  }"
-                  @click="nextClick"
-                >
-                  <div class="m-datetime-picker__header-text text-subtitle1">
-                    {{ time }}
-                  </div>
-                </div>
-              </div>
-            </template>
+        <q-dialog v-model="dialogShow">
+          <m-card v-debug-id="'dialog'" class="m-datetime-picker__dialog">
             <template #header-actions>
               <m-icon-button
-                class="ref-datetime-picker-pm"
+                v-debug-id="'pm'"
                 :disable="pickerEmpty"
                 :icon="pm ? icons.am : icons.pm"
                 @click="pmToggle"
               />
             </template>
-            <m-card-section>
-              <q-time
-                v-if="nextStep"
-                class="m-datetime-picker__time ref-datetime-picker-time"
-                flat
-                mask="YYYY-MM-DD HH:mm"
-                :model-value="pickerValue"
-                :options="timeOptions"
-                @update:model-value="timeValueUpdate"
-              >
+            <template #title>
+              <div class="items-end row">
                 <div
-                  class="items-center justify-end m-datetime-picker__footer-actions row"
+                  v-debug-id="'prev'"
+                  :class="{
+                    'm-datetime-picker__header-clickable': step === 'time'
+                  }"
+                  @click="prevClick"
                 >
-                  <m-form-button
-                    v-close-popup
-                    class="ref-datetime-picker-time-save"
-                    color="primary"
-                    :disable="pickerEmpty"
-                    :label="lang.Save"
-                    @click="save"
-                  />
+                  <div class="m-datetime-picker__header-overline">
+                    {{ year }}
+                  </div>
+                  <div class="m-datetime-picker__header-text">
+                    {{ date }}
+                  </div>
                 </div>
-              </q-time>
-              <q-date
-                v-else
-                class="ref-datetime-picker-date"
-                flat
-                mask="YYYY-MM-DD HH:mm"
-                minimal
-                :model-value="pickerValue"
-                :options="dateOptions"
-                @update:model-value="dateValueUpdate"
-              >
                 <div
-                  class="items-center justify-end m-datetime-picker__footer-actions row"
+                  v-debug-id="'next'"
+                  class="q-ml-sm"
+                  :class="{
+                    'm-datetime-picker__header-clickable': step === 'date'
+                  }"
+                  @click="nextClick"
                 >
-                  <m-form-button
-                    v-close-popup
-                    class="ref-datetime-picker-date-save"
-                    color="primary"
-                    :disable="pickerEmpty"
-                    :label="lang.Save"
-                    @click="save"
-                  />
+                  <div class="m-datetime-picker__header-text">
+                    {{ time }}
+                  </div>
                 </div>
-              </q-date>
-            </m-card-section>
+              </div>
+            </template>
+            <template #default>
+              <m-card-section>
+                <q-date
+                  v-if="step === 'date'"
+                  v-debug-id="'date'"
+                  flat
+                  mask="YYYY-MM-DD HH:mm"
+                  minimal
+                  :model-value="pickerValue"
+                  :options="dateOptions"
+                  @update:model-value="dateUpdate"
+                >
+                  <div class="m-datetime-picker__footer-actions">
+                    <m-form-button
+                      v-close-popup
+                      v-debug-id="'date-save'"
+                      color="primary"
+                      :disable="pickerEmpty"
+                      :label="lang.Save"
+                      @click="save"
+                    />
+                  </div>
+                </q-date>
+                <q-time
+                  v-if="step === 'time'"
+                  v-debug-id="'time'"
+                  class="m-datetime-picker__time"
+                  flat
+                  mask="YYYY-MM-DD HH:mm"
+                  :model-value="pickerValue"
+                  :options="timeOptions"
+                  @update:model-value="timeUpdate"
+                >
+                  <div class="m-datetime-picker__footer-actions">
+                    <m-form-button
+                      v-close-popup
+                      v-debug-id="'time-save'"
+                      color="primary"
+                      :disable="pickerEmpty"
+                      :label="lang.Save"
+                      @click="save"
+                    />
+                  </div>
+                </q-time>
+              </m-card-section>
+            </template>
           </m-card>
         </q-dialog>
       </slot>
@@ -347,9 +318,20 @@ interface Time {
     <template #prepend>
       <slot :name="slotNames.prepend">
         <q-icon
-          class="cursor-pointer ref-datetime-picker-show-date"
+          v-debug-id="'show-date'"
+          class="cursor-pointer"
           :name="icons.pickDate"
           @click="pickDate"
+        />
+      </slot>
+    </template>
+    <template #append>
+      <slot :name="slotNames.append">
+        <q-icon
+          v-debug-id="'show-time'"
+          class="cursor-pointer"
+          :name="icons.pickTime"
+          @click="pickTime"
         />
       </slot>
     </template>

@@ -9,7 +9,7 @@ import {
 
 export default route(() => {
   const createHistory = fn.run(() => {
-    switch (process.env["VUE_ROUTER_MODE"]) {
+    switch (process.env.VUE_ROUTER_MODE) {
       case "history":
         return createWebHistory;
 
@@ -23,10 +23,10 @@ export default route(() => {
 
   return createRouter({
     history: createHistory(
-      process.env["MODE"] === "ssr" ? undefined : process.env["VUE_ROUTER_BASE"]
+      process.env.MODE === "ssr" ? undefined : process.env.VUE_ROUTER_BASE
     ),
     routes: a.clone(routes),
-    scrollBehavior() {
+    scrollBehavior: () => {
       return { left: 0, top: 0 };
     }
   });

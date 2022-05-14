@@ -6,6 +6,6 @@ export default defineComponent({ name: "m-icon-buttons-group" });
 
 <template>
   <div class="m-icon-buttons-group">
-    <slot name="default"></slot>
+    <slot></slot>
   </div>
 </template>

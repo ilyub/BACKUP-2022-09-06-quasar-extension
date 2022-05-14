@@ -1,5 +1,7 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+// eslint-disable-next-line import/no-internal-modules -- Ok
+import { disableCounter } from "@/components/Tooltip.core";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
 import { nextTick } from "vue";
@@ -9,26 +11,28 @@ test("menu", async () => {
     global: testUtils.globalMountOptions()
   });
 
-  const menu = wrapper.findComponent(QMenu);
+  const main = wrapper.findComponent(QMenu);
 
   {
-    menu.vm.$emit("update:modelValue", true);
+    main.vm.$emit("update:modelValue", true);
     await nextTick();
-    expect(components.disabled.value).toBeTrue();
+    expect(disableCounter.value).toBe(1);
   }
 
   {
-    menu.vm.$emit("update:modelValue", false);
+    main.vm.$emit("update:modelValue", false);
     await nextTick();
-    expect(components.disabled.value).toBeFalse();
+    expect(disableCounter.value).toBe(0);
   }
 
   {
-    menu.vm.$emit("update:modelValue", true);
+    main.vm.$emit("update:modelValue", true);
     await nextTick();
-    expect(components.disabled.value).toBeTrue();
+    expect(disableCounter.value).toBe(1);
   }
 
-  wrapper.unmount();
-  expect(components.disabled.value).toBeFalse();
+  {
+    wrapper.unmount();
+    expect(disableCounter.value).toBe(0);
+  }
 });

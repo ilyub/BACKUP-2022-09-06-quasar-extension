@@ -1,36 +1,288 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
-import { cast, is, wait, o, reflect } from "@skylib/functions";
+import * as testUtils from "@/test-utils";
+import { fn, is, o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QTable } from "quasar";
-import type {
-  objects,
-  Writable,
-  OptionalUndefinedStyle
-} from "@skylib/functions";
+import { nextTick } from "vue";
 
-const testRows = [
-  { id: "key1", name: "Sample row 1" },
-  { id: "key2", name: "Sample row 2" },
-  { id: "key3", name: "Sample row 3" }
-];
+const props = {
+  columns: [
+    {
+      align: "left",
+      field: (row: object): string => o.get(row, "name", is.string),
+      label: "Sample label 1",
+      name: "column1",
+      sortable: true,
+      width: 100
+    },
+    {
+      align: "left",
+      field: (row: object): string => o.get(row, "name", is.string),
+      label: "Sample label 2",
+      name: "column2",
+      width: 100
+    },
+    {
+      align: "left",
+      field: (row: object): string => o.get(row, "name", is.string),
+      label: "Sample label 3",
+      name: "column3"
+    }
+  ],
+  rowKey: "id",
+  rows: [
+    { id: "key1", name: "Sample row 1" },
+    { id: "key2", name: "Sample row 2" },
+    { id: "key3", name: "Sample row 3" }
+  ]
+} as const;
 
-beforeAll(functionsTestUtils.installFakeTimer);
+functionsTestUtils.installFakeTimer();
 
-// eslint-disable-next-line no-warning-comments
-// fixme: Use @skylib/functions
-function typedef<T>(source: T): T {
-  return source;
-}
+test("prop: columnWidths", () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      ...props,
+      columnWidths: new Map([["column1", 100]]),
+      resizableColumns: true
+    }
+  });
+
+  const { comp } = testUtils.findFactory("table", wrapper);
+
+  const expected = [[new Map([["column1", 200]])]];
+
+  expect(comp("resizer").props("modelValue")).toBe(100);
+  comp("resizer").vm.$emit("update:modelValue", 200);
+  expect(wrapper.emitted("update:columnWidths")).toStrictEqual(expected);
+});
+
+test("prop: columns", () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      ...props,
+      columns: [
+        {
+          align: "left",
+          field: (row: object): string => o.get(row, "name", is.string),
+          label: "Sample label 1",
+          maxWidth: 300,
+          minWidth: 100,
+          name: "column1",
+          sortable: true,
+          width: 200
+        }
+      ]
+    }
+  });
+
+  const { elem } = testUtils.findFactory("table", wrapper);
+
+  const expected = "max-width: 300px; min-width: 100px; width: 200px;";
+
+  expect(elem("header-cell-wrapper").attributes("style")).toStrictEqual(
+    expected
+  );
+});
+
+test("prop: columnsOrder (update)", async () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props
+  });
+
+  const { comp, compByRef } = testUtils.findFactory("table", wrapper);
+
+  const value = [{ name: "column2" }, { name: "column1" }];
+
+  const columnsOrder = new Map([
+    ["column2", 0],
+    ["column1", 1]
+  ]);
+
+  const expected = [[columnsOrder]];
+
+  compByRef("debugDialog").vm.$emit("update:modelValue", true);
+  await nextTick();
+  comp("dialog-sortable").vm.$emit("update:modelValue", value);
+  expect(wrapper.emitted("update:columnsOrder")).toStrictEqual(expected);
+});
+
+test("prop: columnsOrder", async () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      ...props,
+      columnsOrder: new Map([
+        ["column1", 1],
+        ["column2", 0]
+      ])
+    }
+  });
+
+  const { compByRef, comps, elems } = testUtils.findFactory("table", wrapper);
+
+  compByRef("debugDialog").vm.$emit("update:modelValue", true);
+  await nextTick();
+
+  const texts1 = elems("header-cell").map(elem => elem.text());
+
+  const texts2 = comps("dialog-label").map(elem => elem.text());
+
+  const expected = ["Sample label 2", "Sample label 1", "Sample label 3"];
+
+  expect(texts1).toStrictEqual(expected);
+  expect(texts2).toStrictEqual(expected);
+});
+
+test.each([
+  { expected: fn.identity, externalSorting: true },
+  { externalSorting: false }
+])("prop: externalSorting", ({ expected, externalSorting }) => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: { ...props, externalSorting }
+  });
+
+  const main = wrapper.findComponent(QTable);
+
+  // eslint-disable-next-line no-restricted-syntax -- Ok
+  expect(main.props("sortMethod")).toBe(expected);
+});
+
+test.each([
+  { expected: [[new Set(["column1"])]] },
+  { expected: [[new Set([])]], hiddenColumns: new Set(["column1"]) }
+])("prop: hiddenColumns", async ({ expected, hiddenColumns }) => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys({ ...props, hiddenColumns })
+  });
+
+  const { comp, compByRef } = testUtils.findFactory("table", wrapper);
+
+  compByRef("debugDialog").vm.$emit("update:modelValue", true);
+  await nextTick();
+  await comp("dialog-hidden").trigger("click");
+  expect(wrapper.emitted("update:hiddenColumns")).toStrictEqual(expected);
+});
+
+test.each([
+  { expected: "none" },
+  {
+    expected: "single",
+    multiSelect: false,
+    selectByCheckbox: true
+  },
+  {
+    expected: "multiple",
+    multiSelect: true,
+    selectByRowClick: true
+  }
+])(
+  "prop: multiSelect, selectByRowClick",
+  ({ expected, multiSelect, selectByCheckbox, selectByRowClick }) => {
+    const wrapper = vueTestUtils.mount(components.Table, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys({
+        ...props,
+        multiSelect,
+        selectByCheckbox,
+        selectByRowClick
+      })
+    });
+
+    const main = wrapper.findComponent(QTable);
+
+    expect(main.props("selection")).toStrictEqual(expected);
+  }
+);
 
 test.each([
   {
+    limit: 15,
+    page: 1,
+    rowsPerPage: 0,
+    sortBy: "column1"
+  },
+  {
+    descending: false,
+    limit: 15,
+    page: 1,
+    rowsPerPage: 0,
+    sortBy: "column1"
+  }
+])("prop: pagination (virtual-scroll)", pagination => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: { ...props, pagination }
+  });
+
+  {
+    const expected = [[{ ...pagination, descending: false }]];
+
+    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+    testUtils.clearEmitted(wrapper);
+  }
+
+  {
+    const main = wrapper.findComponent(QTable);
+
+    const rawEvent = {
+      direction: "increase",
+      from: 0,
+      index: 0,
+      to: 14
+    };
+
+    const expected = [
+      [
+        {
+          ...pagination,
+          descending: false,
+          limit: 25
+        }
+      ]
+    ];
+
+    main.vm.$emit("virtual-scroll", rawEvent);
+    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+    testUtils.clearEmitted(wrapper);
+  }
+});
+
+test.each([
+  {
+    binaryStateSortOn: true,
+    pagination: {
+      descending: true,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: "column1"
+    },
+    paginationNext: {
+      descending: false,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: "column1"
+    }
+  },
+  {
+    binaryStateSortOn: true,
     pagination: {
       descending: false,
       page: 1,
       rowsPerPage: 0,
-      sortBy: "column"
+      sortBy: "column1"
+    },
+    paginationNext: {
+      descending: true,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: "column1"
     }
   },
   {
@@ -38,625 +290,134 @@ test.each([
       descending: true,
       page: 1,
       rowsPerPage: 0,
-      sortBy: "column"
+      sortBy: "column1"
+    },
+    paginationNext: {
+      descending: true,
+      page: 1,
+      rowsPerPage: 0,
+      sortBy: null
     }
   }
-])("columnSorting", async ({ pagination }) => {
-  const wrapper = vueTestUtils.mount(components.Table, {
-    global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys<components.TableOwnProps>({
-      binaryStateSortOn: true,
-      columns: [
-        {
-          align: "left",
-          field(row): string {
-            return cast.string(reflect.get(row, "name"));
-          },
-          label: "Sample label",
-          name: "column",
-          sortable: true
-        }
-      ],
-      pagination,
-      rowKey: "id",
-      rows: [
-        { id: "key1", name: "Sample row 1" },
-        { id: "key2", name: "Sample row 2" },
-        { id: "key3", name: "Sample row 3" }
-      ]
-    })
-  });
-
-  const elem = testUtils.findElementFactory(".m-table__", wrapper);
-
-  {
-    const expected = [[pagination]];
-
-    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
-  }
-
-  {
-    const expected = [[{ ...pagination, descending: !pagination.descending }]];
-
-    await elem("header-cell").trigger("click");
-    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-  }
-});
-
-test("columnWidths", () => {
-  const wrapper = vueTestUtils.mount(components.Table, {
-    global: testUtils.globalMountOptions(),
-    props: o.removeUndefinedKeys<components.TableOwnProps>({
-      columnWidths: new Map([["column1", 150]]),
-      columns: [
-        {
-          align: "left",
-          field(row): string {
-            return cast.string(reflect.get(row, "name"));
-          },
-          label: "Sample label 1",
-          name: "column1",
-          width: 100
-        },
-        {
-          align: "left",
-          field(row): string {
-            return cast.string(reflect.get(row, "name"));
-          },
-          label: "Sample label 2",
-          name: "column2",
-          width: 100
-        },
-        {
-          align: "left",
-          field(row): string {
-            return cast.string(reflect.get(row, "name"));
-          },
-          label: "Sample label 3",
-          name: "column3"
-        }
-      ],
-      resizableColumns: true,
-      rowKey: "id",
-      rows: [
-        { id: "key1", name: "Sample row 1" },
-        { id: "key2", name: "Sample row 2" },
-        { id: "key3", name: "Sample row 3" }
-      ]
-    })
-  });
-
-  expect(wrapper).toBeDefined();
-
-  const comp = testUtils.findComponentFactory(".m-table__", wrapper);
-
-  const expected = [[new Map([["column1", 200]])]];
-
-  comp("header-cell__resizer").vm.$emit("update:modelValue", 200);
-  expect(wrapper.emitted("update:columnWidths")).toStrictEqual(expected);
-});
-
-test.each([
-  {
-    expected: [
-      [
-        new Map([
-          ["column1", 0],
-          ["column2", 1]
-        ])
-      ]
-    ],
-    modelValue: [{ name: "column1" }, { name: "column2" }]
-  },
-  {
-    expected: [
-      [
-        new Map([
-          ["column2", 0],
-          ["column1", 1]
-        ])
-      ]
-    ],
-    modelValue: [{ name: "column2" }, { name: "column1" }]
-  }
-])("columnsOrder", async ({ expected, modelValue }) => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(components.Table, {
-      global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<components.TableOwnProps>({
-        columns: [
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label 1",
-            name: "column1"
-          },
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label 2",
-            name: "column2"
-          }
-        ],
-        columnsOrder: new Map([["column2", 0]]),
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ]
-      })
-    });
-
-    const { comp, compByRef } = testUtils.findFactory(".m-table__", wrapper);
-
-    compByRef("dialog").vm.$emit("update:modelValue", true);
-    await wait(100);
-    comp("dialog__sortable").vm.$emit("update:modelValue", modelValue);
-    expect(wrapper.emitted("update:columnsOrder")).toStrictEqual(expected);
-  });
-});
-
-test.each([
-  { expected: [[new Set()]], index: 0 },
-  { expected: [[new Set(["column1", "column2"])]], index: 1 }
-])("hiddenColumns", async ({ expected, index }) => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(components.Table, {
-      global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<components.TableOwnProps>({
-        columns: typedef<components.Columns>([
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label 1",
-            name: "column1"
-          },
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label 2",
-            name: "column2"
-          }
-        ]),
-        hiddenColumns: new Set(["column1"]),
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ]
-      })
-    });
-
-    const { comp, compByRef } = testUtils.findFactory(".m-table__", wrapper);
-
-    compByRef("dialog").vm.$emit("update:modelValue", true);
-    await wait(100);
-    await comp("dialog__hidden-column", index).trigger("click");
-    expect(wrapper.emitted("update:hiddenColumns")).toStrictEqual(expected);
-  });
-});
-
-test.each([
-  {
-    expectedHtml: "Sample row 1",
-    expectedLimit: 25,
-    externalSorting: false,
-    pagination: { limit: 15, sortBy: "name" },
-    to: 14
-  },
-  {
-    bodyCellSlot: "Sample body cell slot",
-    expectedHtml: "Sample body cell slot",
-    expectedLimit: 45,
-    externalSorting: true,
-    pagination: {
-      descending: false,
-      limit: 25,
-      sortBy: "name"
-    },
-    selected: [],
-    tableSettings: {
-      binaryStateSort: false,
-      flat: false,
-      growPageBy: 20,
-      headerSeparator: false,
-      square: false
-    },
-    to: 24
-  }
 ])(
-  "pageTable",
-  async ({
-    bodyCellSlot,
-    expectedHtml,
-    expectedLimit,
-    externalSorting,
-    pagination,
-    selected,
-    tableSettings,
-    to
-  }) => {
-    expect.hasAssertions();
-
-    await functionsTestUtils.run(async () => {
-      const wrapper = vueTestUtils.mount(components.Table, {
-        global: testUtils.globalMountOptions(
-          o.removeUndefinedKeys({ tableSettings })
-        ),
-        props: o.removeUndefinedKeys<components.TableProps>({
-          columns: [
-            {
-              align: "left",
-              field(row): string {
-                return o.get(row, "name", is.string);
-              },
-              label: "Sample label",
-              name: "column"
-            }
-          ],
-          externalSorting,
-          pagination,
-          rowKey: "id",
-          rows: testRows,
-          selected
-        }),
-        slots: o.removeUndefinedKeys({ "body-cell": bodyCellSlot })
-      });
-
-      const emittedPagination: Writable<objects> = [];
-
-      const emittedSelected: Writable<objects> = [];
-
-      const table = wrapper.findComponent(QTable);
-
-      {
-        await wait(100);
-        expect(table.html()).toInclude(expectedHtml);
-      }
-
-      {
-        const event = [{ name: "Sample row 2" }];
-
-        emittedSelected.push([event]);
-        table.vm.$emit("update:selected", event);
-        await wait(100);
-        expect(wrapper.emitted("update:selected")).toStrictEqual(
-          emittedSelected
-        );
-      }
-
-      {
-        const event = [
-          o.removeUndefinedKeys({
-            descending: false,
-            limit: pagination.limit,
-            page: 1,
-            rowsPerPage: 0,
-            sortBy: "name"
-          })
-        ];
-
-        emittedPagination.push(event);
-        expect(wrapper.emitted("update:pagination")).toStrictEqual(
-          emittedPagination
-        );
-      }
-
-      {
-        const rawEvent: components.extras.QVirtualScroll.VirtualScrollDetails =
-          {
-            direction: "increase",
-            from: 0,
-            index: 0,
-            to
-          };
-
-        const event = [{ ...pagination, limit: expectedLimit }];
-
-        emittedPagination.push(event);
-        table.vm.$emit("virtual-scroll", rawEvent);
-        expect(wrapper.emitted("update:pagination")).toStrictEqual(
-          emittedPagination
-        );
-      }
-
-      {
-        const rawEvent: components.Pagination = { descending: true };
-
-        const event = [{ descending: true, limit: pagination.limit }];
-
-        emittedPagination.push(event);
-        table.vm.$emit("update:pagination", rawEvent);
-        expect(wrapper.emitted("update:pagination")).toStrictEqual(
-          emittedPagination
-        );
-      }
-
-      {
-        const rawEvent: components.Pagination = { sortBy: "name" };
-
-        const event = [{ ...pagination, limit: pagination.limit }];
-
-        emittedPagination.push(event);
-        table.vm.$emit("update:pagination", rawEvent);
-        expect(wrapper.emitted("update:pagination")).toStrictEqual(
-          emittedPagination
-        );
-      }
-    });
-  }
-);
-
-test("rowClick", async () => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
+  "prop: pagination",
+  async ({ binaryStateSortOn, pagination, paginationNext }) => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
       props: o.removeUndefinedKeys({
-        columns: typedef<components.Columns>([
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label",
-            name: "column"
-          }
-        ]),
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ],
-        selectByRowClick: true
+        ...props,
+        binaryStateSortOn,
+        pagination
       })
     });
 
-    const elem = testUtils.findElementFactory(".m-table__", wrapper);
+    const { elem } = testUtils.findFactory("table", wrapper);
 
-    await wait(100);
-    await elem("select-by-row-click").trigger("click");
-    expect(wrapper.emitted("update:selected")).toStrictEqual([[[testRows[0]]]]);
+    {
+      const expected = [[pagination]];
+
+      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+      testUtils.clearEmitted(wrapper);
+    }
+
+    {
+      const expected = [[paginationNext]];
+
+      await elem("header-cell").trigger("click");
+      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
+      testUtils.clearEmitted(wrapper);
+    }
+  }
+);
+
+test("prop: rows", () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: {
+      ...props,
+      multiSelect: true,
+      rows: [],
+      selectByCheckbox: true
+    }
   });
+
+  const { comp } = testUtils.findFactory("table", wrapper);
+
+  expect(comp("header-select").props("disable")).toBeTrue();
 });
 
 test.each([
   {
-    expectedEmitted: [[[]]],
-    expectedText: "Undefined",
-    method: "selectAll",
-    rows: [],
-    selected: []
+    deselectAll: [[[]]],
+    selectAll: [[props.rows]],
+    toggleSelection: [[props.rows]]
   },
   {
-    expectedEmitted: [[testRows]],
-    expectedText: "False",
-    method: "selectAll",
-    rows: testRows,
-    selected: []
+    deselectAll: [[[]]],
+    selectAll: [[props.rows]],
+    selected: props.rows,
+    toggleSelection: [[[]]]
   },
   {
-    expectedEmitted: [[testRows]],
-    expectedText: "False",
-    method: "toggleSelection",
-    rows: testRows,
-    selected: []
-  },
-  {
-    expectedEmitted: [[[]]],
-    expectedText: "Undefined",
-    method: "toggleSelection",
-    rows: testRows,
-    selected: testRows.slice(1, 2)
-  },
-  {
-    expectedEmitted: [[[]]],
-    expectedText: "True",
-    method: "toggleSelection",
-    rows: testRows,
-    selected: testRows
-  },
-  {
-    expectedEmitted: [[[]]],
-    expectedText: "True",
-    method: "deselectAll",
-    rows: testRows,
-    selected: testRows
+    deselectAll: [[[]]],
+    selectAll: [[props.rows]],
+    selected: [props.rows[0]],
+    toggleSelection: [[[]]]
   }
 ])(
-  "selected",
-  async ({ expectedEmitted, expectedText, method, rows, selected }) => {
+  "prop: selected (multi-select)",
+  async ({ deselectAll, selectAll, selected, toggleSelection }) => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys<components.TableProps>({
-        columns: [
-          {
-            align: "left",
-            field(row): string {
-              return o.get(row, "name", is.string);
-            },
-            label: "Sample label",
-            name: "column"
-          }
-        ],
-        rowKey: "id",
-        rows,
-        selectByRowClick: true,
-        selected
-      }),
+      props: o.removeUndefinedKeys({ ...props, selected }),
       slots: {
         "steady-bottom": `
-          <template #steady-bottom="{ allSelected, ${method} }">
-            <button class="ref-table-steady-bottom" @click="${method}">
-              <template v-if="allSelected === true">True</template>
-              <template v-if="allSelected === false">False</template>
-              <template v-if="allSelected === undefined">Undefined</template>
-            </button>
+          <template #steady-bottom="{ deselectAll, selectAll, toggleSelection }">
+            <button data-debug="table__sample-deselect-all" @click="deselectAll"></button>
+            <button data-debug="table__sample-select-all" @click="selectAll"></button>
+            <button data-debug="table__sample-toggle-selection" @click="toggleSelection"></button>
           </template>
         `
       }
     });
 
-    const elem = testUtils.findElementFactory(".ref-table-", wrapper);
+    const { elem } = testUtils.findFactory("table", wrapper);
 
-    expect(elem("steady-bottom").text()).toStrictEqual(expectedText);
-    await elem("steady-bottom").trigger("click");
-    expect(wrapper.emitted("update:selected")).toStrictEqual(expectedEmitted);
+    {
+      await elem("sample-deselect-all").trigger("click");
+      expect(wrapper.emitted("update:selected")).toStrictEqual(deselectAll);
+      testUtils.clearEmitted(wrapper);
+    }
+
+    {
+      await elem("sample-select-all").trigger("click");
+      expect(wrapper.emitted("update:selected")).toStrictEqual(selectAll);
+      testUtils.clearEmitted(wrapper);
+    }
+
+    {
+      await elem("sample-toggle-selection").trigger("click");
+      expect(wrapper.emitted("update:selected")).toStrictEqual(toggleSelection);
+      testUtils.clearEmitted(wrapper);
+    }
   }
 );
 
-test.each([
-  { expectedSelection: "none" },
-  {
-    expectedSelection: "single",
-    multiselect: false,
-    selectByCheckbox: true
-  },
-  {
-    expectedSelection: "multiple",
-    multiselect: true,
-    selectByRowClick: true
-  }
-])(
-  "selection",
-  ({ expectedSelection, multiselect, selectByCheckbox, selectByRowClick }) => {
-    const wrapper = vueTestUtils.mount(components.Table, {
-      global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys({
-        columns: typedef<components.Columns>([
-          {
-            align: "left",
-            field(row): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label",
-            name: "column"
-          }
-        ]),
-        multiselect,
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ],
-        selectByCheckbox,
-        selectByRowClick
-      })
-    });
-
-    const compByRef = testUtils.findComponentByRefFactory(wrapper);
-
-    const main = compByRef("main");
-
-    expect(main.props("selection")).toStrictEqual(expectedSelection);
-  }
-);
-
-test.each([
-  {},
-  {
-    expectedStyle: "max-width: 300px; min-width: 100px; width: 200px;",
-    maxWidth: 300,
-    minWidth: 100,
-    width: 200
-  }
-])("selection", async ({ expectedStyle, maxWidth, minWidth, width }) => {
+test("prop: selected", async () => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys({
-        columns: [
-          o.removeUndefinedKeys<OptionalUndefinedStyle<components.Column>>({
-            align: "left",
-            field(row: object): string {
-              return cast.string(reflect.get(row, "name"));
-            },
-            label: "Sample label",
-            maxWidth,
-            minWidth,
-            name: "column",
-            width
-          })
-        ],
-        rowKey: "id",
-        rows: [
-          { id: "key1", name: "Sample row 1" },
-          { id: "key2", name: "Sample row 2" },
-          { id: "key3", name: "Sample row 3" }
-        ]
-      })
+      props: { ...props, selectByRowClick: true }
     });
 
-    const elem = testUtils.findElementFactory(".m-table__", wrapper);
+    const { comp } = testUtils.findFactory("table", wrapper);
 
-    await wait(100);
-    expect(elem("header-cell__wrapper").attributes("style")).toBe(
-      expectedStyle
-    );
+    const expected = [[[props.rows[0]]]];
+
+    await wait(1000);
+    await comp("body-row", 0).trigger("click");
+    expect(wrapper.emitted("update:selected")).toStrictEqual(expected);
   });
-});
-
-test.each([
-  {
-    tableSettings: typedef<components.TableSettings>({
-      binaryStateSort: false,
-      flat: false,
-      growPageBy: 20,
-      headerSeparator: false,
-      square: false
-    })
-  },
-  {
-    tableSettings: typedef<components.TableSettings>({
-      binaryStateSort: true,
-      flat: true,
-      growPageBy: 20,
-      headerSeparator: true,
-      square: true
-    })
-  }
-])("settings", ({ tableSettings }) => {
-  const wrapper = vueTestUtils.mount(components.Table, {
-    global: testUtils.globalMountOptions({ tableSettings }),
-    props: o.removeUndefinedKeys<components.TableOwnProps>({
-      columns: [
-        {
-          align: "left",
-          field(row): string {
-            return cast.string(reflect.get(row, "name"));
-          },
-          label: "Sample label",
-          name: "column"
-        }
-      ],
-      rowKey: "id",
-      rows: [
-        { id: "key1", name: "Sample row 1" },
-        { id: "key2", name: "Sample row 2" },
-        { id: "key3", name: "Sample row 3" }
-      ]
-    })
-  });
-
-  expect(wrapper).toBeDefined();
 });

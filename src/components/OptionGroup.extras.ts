@@ -2,41 +2,34 @@ import type { GlobalComponent } from "./api";
 import type { booleanU } from "@skylib/functions";
 import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
 
-export type GlobalOptionGroup<T = unknown> = GlobalComponent<
-  OptionGroupProps<T>,
-  OptionGroupSlots
->;
+export namespace OptionGroup {
+  export interface Global<T = unknown>
+    extends GlobalComponent<Props<T>, Slots> {}
 
-export interface OptionGroupOption<T = unknown> {
-  readonly disable?: boolean;
-  readonly label: string;
-  readonly value: T;
+  export interface Option<T = unknown> {
+    readonly disable?: true;
+    readonly label: string;
+    readonly value: T;
+  }
+
+  export type Options<T = unknown> = ReadonlyArray<Option<T>>;
+
+  export interface OwnProps<T = unknown> {
+    readonly inline?: booleanU;
+    readonly modelValue?: T | undefined;
+    /**
+     * Emits model value.
+     *
+     * @param value - Value.
+     */
+    readonly "onUpdate:modelValue"?: (value: T) => void;
+    readonly options: Options<T>;
+  }
+
+  export interface ParentProps
+    extends Omit<QOptionGroupProps, keyof OwnProps> {}
+
+  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
+
+  export interface Slots extends QOptionGroupSlots {}
 }
-
-export type OptionGroupOptions<T = unknown> = ReadonlyArray<
-  OptionGroupOption<T>
->;
-
-export interface OptionGroupOwnProps<T = unknown> {
-  readonly inline?: booleanU;
-  readonly modelValue: T;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: (value: T) => void;
-  readonly options: OptionGroupOptions<T>;
-}
-
-export interface OptionGroupParentProps
-  extends Omit<
-    QOptionGroupProps,
-    "inline" | "modelValue" | "onUpdate:modelValue" | "options"
-  > {}
-
-export interface OptionGroupProps<T = unknown>
-  extends OptionGroupParentProps,
-    OptionGroupOwnProps<T> {}
-
-export type OptionGroupSlots = QOptionGroupSlots;

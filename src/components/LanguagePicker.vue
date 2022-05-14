@@ -1,51 +1,31 @@
 <script lang="ts">
-import { injectLanguagePickerSettings } from "./LanguagePicker.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  useSlotsNames
-} from "./api";
-import { assert } from "@skylib/functions";
+import { LanguagePicker } from "./LanguagePicker.extras";
+import { prop, parentProps, validateProps, plugins, directives } from "./api";
+import { as } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
-import type {
-  LanguagePickerItem,
-  LanguagePickerOwnProps,
-  LanguagePickerParentProps,
-  LanguagePickerSlots
-} from "./LanguagePicker.extras";
 
 export default defineComponent({
   name: "m-language-picker",
+  directives: { debugId: directives.debugId("language-picker") },
   props: {
-    ...propsToPropDefinitions<LanguagePickerParentProps>(),
-    language: prop()
+    ...parentProps<LanguagePicker.ParentProps>(),
+    language: prop.required<LanguagePicker.Props["language"]>()
   },
-  setup(props) {
-    validateProps<LanguagePickerOwnProps>(props);
+  setup: props => {
+    validateProps<LanguagePicker.OwnProps>(props);
 
-    const settings = injectLanguagePickerSettings();
+    const settings = LanguagePicker.injectSettings();
 
     return {
-      activeItem: computed<LanguagePickerItem>(() => {
-        const item = settings.value.items.find(
-          candidate => candidate.lang === props.language
-        );
-
-        assert.not.empty(item);
-
-        return item;
-      }),
-      changeLanguage(newLanguage: unknown): void {
-        const item = settings.value.items.find(
-          candidate => candidate.lang === newLanguage
-        );
-
-        assert.not.empty(item);
-        settings.value.changeLanguageAction(item.lang);
-      },
+      activeOption: computed(() =>
+        as.not.empty(
+          settings.value.options.find(
+            candidate => candidate.lang === props.language
+          )
+        )
+      ),
       settings,
-      slotNames: useSlotsNames<LanguagePickerSlots>()("default")
+      slotNames: plugins.useSlotNames<LanguagePicker.Slots>()("default")
     };
   }
 });
@@ -53,35 +33,36 @@ export default defineComponent({
 
 <template>
   <m-icon-button class="m-language-picker">
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #default>
       <slot :name="slotNames.default">
         <img
-          :alt="activeItem.caption"
+          :alt="activeOption.caption"
           height="20"
-          :src="activeItem.flag"
+          :src="activeOption.flag"
           width="20"
         />
         <m-menu auto-close>
           <q-list>
-            <m-list-item
-              v-for="(item, index) in settings.items"
+            <m-menu-item
+              v-for="(option, index) in settings.options"
               :key="index"
-              :caption="item.caption"
+              v-debug-id="'menu-item'"
+              :caption="option.caption"
               :class="`menu-item-${index}`"
-              @click="changeLanguage(item.lang)"
+              @click="settings.changeLanguageAction(option.lang)"
             >
               <template #icon>
                 <img
-                  :alt="item.caption"
+                  :alt="option.caption"
                   height="18"
-                  :src="item.flag"
+                  :src="option.flag"
                   width="18"
                 />
               </template>
-            </m-list-item>
+            </m-menu-item>
           </q-list>
         </m-menu>
       </slot>

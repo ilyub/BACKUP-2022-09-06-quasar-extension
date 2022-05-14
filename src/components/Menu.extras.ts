@@ -1,12 +1,14 @@
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, plugins } from "./api";
 import type { QMenuProps, QMenuSlots } from "quasar";
 
-export type GlobalMenu = GlobalComponent<MenuProps, MenuSlots>;
+export namespace Menu {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface MenuOwnProps {}
+  export interface OwnProps extends plugins.useDirection.Props {}
 
-export type MenuParentProps = QMenuProps;
+  export interface ParentProps extends QMenuProps {}
 
-export interface MenuProps extends MenuParentProps, MenuOwnProps {}
+  export interface Props extends ParentProps {}
 
-export type MenuSlots = QMenuSlots;
+  export interface Slots extends QMenuSlots {}
+}

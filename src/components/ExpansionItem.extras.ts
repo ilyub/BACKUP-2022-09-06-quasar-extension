@@ -1,17 +1,14 @@
 import type { GlobalComponent } from "./api";
 import type { QExpansionItemProps, QExpansionItemSlots } from "quasar";
 
-export interface ExpansionItemOwnProps {}
+export namespace ExpansionItem {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface ExpansionItemParentProps extends QExpansionItemProps {}
+  export interface ParentProps extends QExpansionItemProps {}
 
-export interface ExpansionItemProps
-  extends ExpansionItemParentProps,
-    ExpansionItemOwnProps {}
+  export interface ParentSlots extends QExpansionItemSlots {}
 
-export type ExpansionItemSlots = QExpansionItemSlots;
+  export interface Props extends ParentProps {}
 
-export type GlobalExpansionItem = GlobalComponent<
-  ExpansionItemProps,
-  ExpansionItemSlots
->;
+  export interface Slots extends ParentSlots {}
+}

@@ -1,136 +1,165 @@
-/* eslint-disable jest/no-conditional-expect */
-
-/* eslint-disable jest/no-conditional-in-test */
-
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as mdi from "@mdi/js-dynamic";
-import { handlePromise } from "@skylib/facades";
-import { implementations } from "@skylib/framework";
-import { a, is, o } from "@skylib/functions";
+import { o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { QBtn, QCard, QDialog } from "quasar";
+import { QTooltip } from "quasar";
 import { nextTick } from "vue";
-import type { ComponentPublicInstance } from "vue";
 
-beforeAll(functionsTestUtils.installFakeTimer);
+let counter = 0;
 
-beforeEach(() => {
-  implementations.testDelay.configurableTestDelay.configure({
-    enabled: true,
-    timeout: 1000
+const icons = o
+  .keys(mdi)
+  .filter(id => id.startsWith("mdi"))
+  .slice(0, 10)
+  .map(icon => mdi[icon]);
+
+functionsTestUtils.installFakeTimer();
+
+test.each([
+  { expected: [[icons[0]]], index: 0 },
+  {
+    expected: [[undefined]],
+    index: 1,
+    modelValue: icons[1]
+  }
+])("pick-icon", async ({ expected, index, modelValue }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(components.IconPicker, {
+      global: testUtils.globalMountOptions(),
+      props: { modelValue, placeholder: "" }
+    });
+
+    const main = wrapper.findComponent(components.IconButton);
+
+    const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
+
+    {
+      expect(comp("dialog")).not.toExist();
+      await main.trigger("click");
+      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      await wait(1000);
+      expect(compElem("dialog", "loading")).not.toExist();
+      counter++;
+    }
+
+    {
+      await comp("pick-icon", index).trigger("click");
+      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+      testUtils.clearEmitted(wrapper);
+    }
   });
 });
 
-// eslint-disable-next-line jest/prefer-expect-assertions
-test.each(
-  [true, false, undefined].map((value, index) => {
-    return { first: index === 0, iconTooltipsSetting: value };
-  })
-)("iconPicker", async ({ first, iconTooltipsSetting }) => {
-  await functionsTestUtils.run(async () => {
-    const iconTooltips = iconTooltipsSetting ?? false;
+test("prev, next", async () => {
+  expect.hasAssertions();
 
+  await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.IconPicker, {
-      global: testUtils.globalMountOptions(
-        is.not.empty(iconTooltipsSetting)
-          ? { iconPickerSettings: { iconTooltips } }
-          : {}
-      ),
+      global: testUtils.globalMountOptions(),
       props: { placeholder: "" }
     });
 
-    const button = wrapper.findComponent(components.IconButton);
+    const main = wrapper.findComponent(components.IconButton);
 
-    const dialog = wrapper.findComponent(QDialog);
-
-    const icon = mdi[a.first(o.keys(mdi).filter(id => id.startsWith("mdi")))];
+    const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
 
     {
-      expect(dialog.props("modelValue")).toBeFalse();
-      await button.trigger("click");
-      expect(dialog.props("modelValue")).toBeTrue();
-    }
-
-    if (first) {
-      expect(loading()).toExist();
-      expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
-      expect(next().findComponent(QBtn).props("disable")).toBeTrue();
-      await handlePromise.runAll();
-      expect(loading()).not.toExist();
-      expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
-      expect(next().findComponent(QBtn).props("disable")).toBeFalse();
-    } else {
-      expect(loading()).not.toExist();
-      expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
-      expect(next().findComponent(QBtn).props("disable")).toBeFalse();
+      expect(comp("dialog")).not.toExist();
+      await main.trigger("click");
+      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      await wait(1000);
+      expect(compElem("dialog", "loading")).not.toExist();
+      counter++;
     }
 
     {
-      const expected = [[icon]];
-
-      await pickIcon().trigger("click");
-      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-      expect(dialog.props("modelValue")).toBeFalse();
-      await button.trigger("click");
-      expect(dialog.props("modelValue")).toBeTrue();
+      expect(comp("prev")).toHaveClass("disabled");
+      expect(comp("next")).not.toHaveClass("disabled");
+      await comp("next").trigger("click");
+      expect(comp("next")).not.toHaveClass("disabled");
+      expect(comp("next")).not.toHaveClass("disabled");
     }
 
     {
-      const expected = [[icon], [undefined]];
+      await comp("prev").trigger("click");
+      expect(comp("prev")).toHaveClass("disabled");
+      expect(comp("next")).not.toHaveClass("disabled");
+    }
+  });
+});
 
-      await wrapper.setProps({ modelValue: icon });
-      await pickIcon().trigger("click");
-      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-      expect(dialog.props("modelValue")).toBeFalse();
-      await button.trigger("click");
-      expect(dialog.props("modelValue")).toBeTrue();
+test("search", async () => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(components.IconPicker, {
+      global: testUtils.globalMountOptions(),
+      props: { placeholder: "" }
+    });
+
+    const main = wrapper.findComponent(components.IconButton);
+
+    const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
+
+    {
+      expect(comp("dialog")).not.toExist();
+      await main.trigger("click");
+      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      await wait(1000);
+      expect(compElem("dialog", "loading")).not.toExist();
+      counter++;
     }
 
     {
-      await next().trigger("click");
-      expect(prev().findComponent(QBtn).props("disable")).toBeFalse();
-      expect(next().findComponent(QBtn).props("disable")).toBeFalse();
-    }
-
-    {
-      await prev().trigger("click");
-      expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
-      expect(next().findComponent(QBtn).props("disable")).toBeFalse();
-    }
-
-    {
-      expect(pagination()).not.toHaveClass("invisible");
-      search().vm.$emit("update:modelValue", "aB3umD5inT7g");
+      expect(comp("prev")).toHaveClass("disabled");
+      expect(comp("next")).not.toHaveClass("disabled");
+      expect(compElem("dialog", "pagination")).not.toHaveClass("invisible");
+      comp("search").vm.$emit("update:modelValue", "aB3umD5inT7g");
       await nextTick();
-      expect(pagination()).toHaveClass("invisible");
-      expect(prev().findComponent(QBtn).props("disable")).toBeTrue();
-      expect(next().findComponent(QBtn).props("disable")).toBeTrue();
+      expect(comp("prev")).toHaveClass("disabled");
+      expect(comp("next")).toHaveClass("disabled");
+      expect(compElem("dialog", "pagination")).toHaveClass("invisible");
+    }
+  });
+});
+
+test.each([true, false])("setting: tooltip", async iconTooltips => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(components.IconPicker, {
+      global: testUtils.globalMountOptions({
+        iconPickerSettings: {
+          cols: 7,
+          iconTooltips,
+          rows: 5,
+          spinnerSize: "70px"
+        }
+      }),
+      props: { placeholder: "" }
+    });
+
+    const main = wrapper.findComponent(components.IconButton);
+
+    const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
+
+    {
+      expect(comp("dialog")).not.toExist();
+      await main.trigger("click");
+      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      await wait(1000);
+      expect(compElem("dialog", "loading")).not.toExist();
+      counter++;
     }
 
-    function loading(): vueTestUtils.DOMWrapper<Element> {
-      return wrapper.findComponent(QCard).find(".loading");
-    }
+    {
+      const tooltop = comp("pick-icon").findComponent(QTooltip);
 
-    function next(): vueTestUtils.VueWrapper {
-      return wrapper.findComponent<ComponentPublicInstance>(".next");
-    }
-
-    function pagination(): vueTestUtils.DOMWrapper<Element> {
-      return wrapper.findComponent(QCard).find(".pagination");
-    }
-
-    function pickIcon(): vueTestUtils.VueWrapper {
-      return wrapper.findComponent<ComponentPublicInstance>(".pick-icon");
-    }
-
-    function prev(): vueTestUtils.VueWrapper {
-      return wrapper.findComponent<ComponentPublicInstance>(".prev");
-    }
-
-    function search(): vueTestUtils.VueWrapper {
-      return wrapper.findComponent<ComponentPublicInstance>(".search");
+      expect(tooltop.exists()).toStrictEqual(iconTooltips);
     }
   });
 });

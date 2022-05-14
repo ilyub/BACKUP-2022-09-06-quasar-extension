@@ -1,12 +1,5 @@
 @use "sass:map";
-@import "~quasar/src/css/variables.sass";
-
-$m-buttons-group__spacing: map.get($space-sm, "x") !default;
-$m-icon-buttons-group__spacing: map.get($space-xs, "x") !default;
-$m-indent__padding: map.get($space-lg, "x") !default;
-$m-page-section__spacing: map.get($space-lg, "y") !default;
-$m-section__spacing: map.get($space-md, "y") !default;
-$m-subsection__spacing: map.get($space-sm, "y") !default;
+@import "./variables.scss";
 
 .border-collapse {
   border-collapse: collapse;
@@ -24,11 +17,11 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
   overflow: hidden;
 }
 
-.overflow-hidden-x {
+.overflow-x-hidden {
   overflow-x: hidden;
 }
 
-.overflow-hidden-y {
+.overflow-y-hidden {
   overflow-y: hidden;
 }
 
@@ -36,11 +29,11 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
   overflow: auto;
 }
 
-.overflow-auto-x {
+.overflow-x-auto {
   overflow-x: auto;
 }
 
-.overflow-auto-y {
+.overflow-y-auto {
   overflow-y: auto;
 }
 
@@ -62,40 +55,38 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
   margin-right: $m-buttons-group__spacing;
 }
 
-.m-card {
-  .m-card__header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: map.get($space-md, "y") map.get($space-md, "x");
-    font-size: map.get($h6, "size");
-    font-weight: map.get($h6, "weight");
-    letter-spacing: map.get($h6, "letter-spacing");
-    line-height: map.get($h6, "line-height");
+.m-card .m-card__header {
+  display: flex;
+  align-items: center;
+  padding: map.get($space-md, "y") map.get($space-md, "x");
+  font-size: map.get($h6, "size");
+  font-weight: map.get($h6, "weight");
+  letter-spacing: map.get($h6, "letter-spacing");
+  line-height: map.get($h6, "line-height");
 
-    &.m-card__header__default {
-      background: $primary;
-      color: white;
-    }
+  &.m-card__header__default {
+    background: $primary;
+    color: white;
+  }
 
-    &.m-card__header__transparent {
-      padding-bottom: 0;
-    }
+  &.m-card__header__transparent {
+    padding-bottom: 0;
+  }
 
-    .m-card__header__actions {
-      position: absolute;
-      top: map.get($space-sm, "y");
-      right: map.get($space-sm, "x");
-    }
+  .m-card__header__actions {
+    position: absolute;
+    top: map.get($space-sm, "y");
+    right: map.get($space-sm, "x");
   }
 }
 
-.m-datetime-picker__dialog {
-  .q-time__header {
-    display: none;
-  }
+.m-card-actions {
+  padding-top: 0;
+}
 
+.m-datetime-picker__dialog {
   .m-datetime-picker__header-clickable {
+    color: $blue-2;
     cursor: pointer;
 
     &:hover {
@@ -103,26 +94,50 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
     }
   }
 
+  .m-datetime-picker__header-overline {
+    margin-bottom: map.get($space-sm, "y");
+    font-size: map.get($body2, "size");
+    font-weight: map.get($body2, "weight");
+    letter-spacing: map.get($body2, "letter-spacing");
+    line-height: 1em;
+    user-select: none;
+  }
+
   .m-datetime-picker__header-text {
+    font-size: map.get($subtitle1, "size");
+    font-weight: map.get($subtitle1, "weight");
+    letter-spacing: map.get($subtitle1, "letter-spacing");
     line-height: 1em;
     user-select: none;
   }
 
   .m-datetime-picker__footer-actions {
+    display: flex;
+    justify-content: flex-end;
     margin-right: -10px;
   }
-}
 
-.m-droppable {
-  .m-droppable__ghost-class {
+  .m-datetime-picker__time > .q-time__header {
     display: none;
   }
 }
 
-.m-expansion-item {
-  .q-expansion-item__container > .q-item .q-item__section--side {
-    min-width: 0;
-  }
+.m-droppable .m-droppable__ghost-class {
+  display: none;
+}
+
+.m-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $m-section__spacing;
+}
+
+.m-form-section + .m-form-section {
+  margin-top: $m-section__spacing;
+}
+
+.m-expansion-item > .q-expansion-item__container > .q-item > .q-item__section--side {
+  min-width: 0;
 }
 
 .m-icon-buttons-group > * {
@@ -133,21 +148,57 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
   padding-left: $m-indent__padding;
 }
 
-.m-numeric-input {
-  .m-numeric-input__disable {
-    &,
-    &:focus,
-    &:hover {
-      opacity: 0.3;
-      cursor: default;
-    }
+.m-knob.m-knob__inline {
+  margin-right: map.get($space-sm, "x");
+  margin-left: map.get($space-sm, "x");
+}
+
+.m-numeric-input .m-numeric-input__disable {
+  &,
+  &:focus,
+  &:hover {
+    opacity: 0.3;
+    cursor: default;
   }
 }
 
-.m-knob {
-  .m-knob__inline {
-    margin-right: map.get($space-sm, "x");
-    margin-left: map.get($space-sm, "x");
+.m-option-group.m-option-group__inline {
+  display: inline-block;
+}
+
+.m-page-layout {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .m-page-layout__fit {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .m-page-layout__sticky {
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .m-page-layout__sticky-header {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background: white;
+  }
+
+  .m-page-layout__sticky-footer {
+    position: sticky;
+    z-index: 1;
+    bottom: 0;
+    background: white;
+  }
+
+  .m-page-layout__title {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
 
@@ -214,22 +265,22 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
       align-items: center;
       justify-content: center;
       height: 100%;
+    }
 
-      .m-table__header-cell__label {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: normal;
-      }
+    .m-table__header-cell__label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
 
-      .m-table__header-cell__left {
-        min-width: 16px;
-        opacity: 0;
-      }
+    .m-table__header-cell__left {
+      min-width: 16px;
+      opacity: 0;
+    }
 
-      .m-table__header-cell__right {
-        min-width: 16px;
-        text-align: left;
-      }
+    .m-table__header-cell__right {
+      min-width: 16px;
+      text-align: left;
     }
   }
 
@@ -251,23 +302,12 @@ $m-subsection__spacing: map.get($space-sm, "y") !default;
   }
 }
 
-.m-table__dialog {
-  .m-table__dialog__table {
+.m-table__columns-management {
+  .m-table__columns-management__table {
     overflow: hidden;
   }
 
-  .m-table__dialog__label {
+  .m-table__columns-management__label {
     min-width: 300px;
-  }
-}
-
-.m-time-input {
-  .m-time-input__disable {
-    &,
-    &:focus,
-    &:hover {
-      opacity: 0.3;
-      cursor: default;
-    }
   }
 }

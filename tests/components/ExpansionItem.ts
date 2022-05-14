@@ -1,11 +1,11 @@
 import { components } from "@";
-import * as testUtils from "@vue/test-utils";
-import { QExpansionItem } from "quasar";
+import * as testUtils from "@/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
 
 test("knob", () => {
-  const wrapper = testUtils.mount(components.ExpansionItem);
+  const wrapper = vueTestUtils.mount(components.ExpansionItem, {
+    global: testUtils.globalMountOptions()
+  });
 
-  const expansionItem = wrapper.findComponent(QExpansionItem);
-
-  expect(expansionItem).toExist();
+  expect(wrapper).toHaveClass("m-expansion-item");
 });

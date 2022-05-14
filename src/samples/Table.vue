@@ -1,25 +1,43 @@
 <script lang="ts">
-import { components } from "..";
-import { a, assert, fn, o } from "@skylib/functions";
+import { generic } from "..";
+import { a, assert, fn } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import type { extras } from "..";
+
+interface ColumnWidths extends extras.Table.ColumnWidths {}
+
+type Columns = extras.Table.Columns<Item>;
+
+interface ColumnsOrder extends extras.Table.ColumnsOrder {}
+
+interface HiddenColumns extends extras.Table.HiddenColumns {}
+
+interface Item {
+  readonly id: number;
+  readonly name: string;
+}
+
+type Items = readonly Item[];
+
+interface PaginationProp extends extras.Table.PaginationProp {}
 
 export default defineComponent({
   name: "sample-table",
-  components: { "generic-table": components.genericTable<TableItem>() },
-  setup() {
-    const columnsOrder = ref<components.ColumnsOrder>(new Map());
+  components: { "items-table": generic.Table<Item>() },
+  setup: () => {
+    const columnWidths = ref<ColumnWidths>(new Map());
 
-    const columnWidths = ref<components.ColumnWidths>(new Map());
+    const columnsOrder = ref<ColumnsOrder>(new Map());
 
-    const hiddenColumns = ref<components.HiddenColumns>(new Set());
+    const hiddenColumns = ref<HiddenColumns>(new Set());
 
     const manageColumns = ref(false);
 
-    const multiselect = ref(false);
+    const multiSelect = ref(false);
 
     const noData = ref(false);
 
-    const pagination = ref<components.Pagination>({
+    const pagination = ref<PaginationProp>({
       descending: false,
       limit: 10,
       sortBy: "name"
@@ -41,40 +59,36 @@ export default defineComponent({
 
     return {
       columnWidths,
-      columnsOrder,
-      hiddenColumns,
-      manageColumns,
-      multiselect,
-      noData,
-      pageTableColumns: computed<components.Columns<TableItem>>(() => [
-        o.removeUndefinedKeys<components.Column<TableItem>>({
+      columns: computed<Columns>(() => [
+        {
           align: "left",
-          field(row): string {
-            return `${row.name}!1!1234567890`;
-          },
+          field: (row): string => `${row.name}!1!1234567890`,
           label: "Column name 1",
           maxWidth: 300,
           minWidth: 30,
           name: "name1",
-          sort(_value1, _value2, row1, row2): number {
-            return row1.id - row2.id;
-          },
+          sort: (_value1, _value2, row1, row2): number => row1.id - row2.id,
           sortable: true,
           width: width1.value
-        }),
-        o.removeUndefinedKeys<components.Column<TableItem>>({
+        },
+        {
           align: "left",
-          field(row): string {
-            return `${row.name}!2!1234567890`;
-          },
+          field: (row): string => `${row.name}!2!1234567890`,
           label: "Column name 2",
           maxWidth: 300,
           minWidth: 30,
           name: "name2",
           width: width2.value
-        })
+        }
       ]),
-      pageTableRows: computed<TableItems>(() => {
+      columnsOrder,
+      hiddenColumns,
+      manageColumns,
+      multiSelect,
+      noData,
+      pagination,
+      resizableColumns,
+      rows: computed<Items>(() => {
         if (noData.value) return [];
 
         const ids = fn.run(() => {
@@ -91,98 +105,91 @@ export default defineComponent({
           return { id, name: `Item ${id}` };
         });
       }),
-      pagination,
-      resizableColumns,
       selectByCheckbox,
       selectByRowClick,
-      selected: ref<TableItems>([]),
+      selected: ref<Items>([]),
       shortData,
       sticky
     };
   }
 });
-
-interface TableItem {
-  readonly id: number;
-  readonly name: string;
-}
-
-type TableItems = readonly TableItem[];
 </script>
 
 <template>
-  <m-page-layout :class="$style.pageLayout" title="Title">
-    <template #fit>
-      <generic-table
-        v-model:columnWidths="columnWidths"
-        v-model:columnsOrder="columnsOrder"
-        v-model:hiddenColumns="hiddenColumns"
-        v-model:pagination="pagination"
-        v-model:selected="selected"
-        class="fit"
-        :columns="pageTableColumns"
-        :manage-columns="manageColumns"
-        :multiselect="multiselect"
-        :resizable-columns="resizableColumns"
-        row-key="id"
-        :rows="pageTableRows"
-        :select-by-checkbox="selectByCheckbox"
-        :select-by-row-click="selectByRowClick"
-        :sticky="sticky"
-      >
-        <template #top>
-          <m-buttons-group>
-            <m-toggle v-model="manageColumns" label="Manage columns" />
-            <m-toggle v-model="multiselect" label="Multi-select" />
-            <m-toggle v-model="noData" label="No data" />
-            <m-toggle v-model="resizableColumns" label="Resizable columns" />
-            <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
-            <m-toggle v-model="selectByRowClick" label="Select by row click" />
-            <m-toggle v-model="shortData" label="Short data" />
-            <m-toggle v-model="sticky" label="Sticky" />
-          </m-buttons-group>
-        </template>
-        <template
-          #steady-bottom="{
-            allSelected,
-            toggleSelection,
-            toggleSelectionDisable
-          }"
+  <m-page-section>
+    <m-page-layout :class="$style.pageLayout" title="Title">
+      <template #fit>
+        <items-table
+          v-model:columnWidths="columnWidths"
+          v-model:columnsOrder="columnsOrder"
+          v-model:hiddenColumns="hiddenColumns"
+          v-model:pagination="pagination"
+          v-model:selected="selected"
+          class="fit"
+          :columns="columns"
+          :manage-columns="manageColumns"
+          :multi-select="multiSelect"
+          :resizable-columns="resizableColumns"
+          row-key="id"
+          :rows="rows"
+          :select-by-checkbox="selectByCheckbox"
+          :select-by-row-click="selectByRowClick"
+          :sticky="sticky"
         >
-          <template v-if="multiselect">
-            <q-checkbox
-              :disable="toggleSelectionDisable"
-              :model-value="allSelected"
-              @update:model-value="toggleSelection"
-            />
-            {{ selected.length }} selected
+          <template #top>
+            <m-buttons-group>
+              <m-toggle v-model="manageColumns" label="Manage columns" />
+              <m-toggle v-model="multiSelect" label="Multi-select" />
+              <m-toggle v-model="noData" label="No data" />
+              <m-toggle v-model="resizableColumns" label="Resizable columns" />
+              <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
+              <m-toggle
+                v-model="selectByRowClick"
+                label="Select by row click"
+              />
+              <m-toggle v-model="shortData" label="Short data" />
+              <m-toggle v-model="sticky" label="Sticky" />
+            </m-buttons-group>
           </template>
-          <q-space />
-          {{ pageTableRows.length }} out of 1000
-        </template>
-        <template #body-context="{ row }">
-          <m-menu auto-close context-menu>
-            <q-list>
-              <m-list-item
-                :caption="row.name"
-                @click="$q.notify('Click row')"
+          <template #body-context="{ row }">
+            <m-menu auto-close context-menu>
+              <q-list>
+                <m-menu-item :caption="row.name" @click="$q.notify(row.name)" />
+              </q-list>
+            </m-menu>
+          </template>
+          <template #body-cell-context="{ column, row }">
+            <m-menu auto-close context-menu>
+              <q-list>
+                <m-menu-item
+                  :caption="column.label"
+                  @click="$q.notify(column.field(row))"
+                />
+              </q-list>
+            </m-menu>
+          </template>
+          <template
+            #steady-bottom="{
+              allSelected,
+              toggleSelection,
+              toggleSelectionDisable
+            }"
+          >
+            <template v-if="multiSelect">
+              <q-checkbox
+                :disable="toggleSelectionDisable"
+                :model-value="allSelected"
+                @update:model-value="toggleSelection"
               />
-            </q-list>
-          </m-menu>
-        </template>
-        <template #body-cell-context="{ column }">
-          <m-menu auto-close context-menu>
-            <q-list>
-              <m-list-item
-                :caption="column.label"
-                @click="$q.notify('Click cell')"
-              />
-            </q-list>
-          </m-menu>
-        </template>
-      </generic-table>
-    </template>
-  </m-page-layout>
+              {{ selected.length }} selected
+            </template>
+            <q-space />
+            {{ rows.length }} out of 1000
+          </template>
+        </items-table>
+      </template>
+    </m-page-layout>
+  </m-page-section>
 </template>
 
 <style lang="scss" module>

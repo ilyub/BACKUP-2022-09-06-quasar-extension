@@ -1,16 +1,16 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import { wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { QBtn, QTooltip } from "quasar";
-import type { Callable } from "@skylib/functions";
+import { QBtn } from "quasar";
+import type { Callable, unknowns } from "@skylib/functions";
 import type { DialogChainObject } from "quasar";
 
 functionsTestUtils.installFakeTimer();
 
-test("async сlick", async () => {
-  expect.assertions(2);
+test("prop: asyncClick", async () => {
+  expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
     const callback = jest.fn();
@@ -18,9 +18,9 @@ test("async сlick", async () => {
     const wrapper = vueTestUtils.mount(components.BaseButton, {
       global: testUtils.globalMountOptions(),
       props: {
-        async asyncClick() {
-          await wait(500);
-          callback();
+        asyncClick: async (...args: unknowns) => {
+          await wait(1000);
+          callback(...args);
         }
       }
     });
@@ -29,10 +29,13 @@ test("async сlick", async () => {
     expect(callback).not.toHaveBeenCalled();
     await wait(1000);
     expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith();
   });
 });
 
-test("prop: confirmation", () => {
+test("prop: confirmation, confirmedClick", async () => {
+  const confirmedClick = jest.fn();
+
   const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
     props: { confirmation: "Sample confirmation" }
@@ -40,7 +43,7 @@ test("prop: confirmation", () => {
 
   wrapper.vm.$q.dialog = (): DialogChainObject => {
     const result = {
-      onOk(callback: Callable): void {
+      onOk: (callback: Callable): void => {
         callback();
       }
     };
@@ -48,27 +51,27 @@ test("prop: confirmation", () => {
     return result as DialogChainObject;
   };
 
-  const btn = wrapper.findComponent(QBtn);
+  const main = wrapper.findComponent(QBtn);
 
-  btn.vm.$emit("click");
-  expect(wrapper.emitted("confirmedClick")).toStrictEqual([[]]);
-});
+  {
+    main.vm.$emit("click");
+    expect(confirmedClick).not.toHaveBeenCalled();
+  }
 
-test("prop: tooltip", async () => {
-  const wrapper = vueTestUtils.mount(components.BaseButton, {
-    global: testUtils.globalMountOptions()
-  });
-
-  expect(wrapper.findComponent(QTooltip)).not.toExist();
-  await wrapper.setProps({ tooltip: "sample-tooltip" });
-  expect(wrapper.findComponent(QTooltip)).toExist();
+  {
+    await wrapper.setProps({ confirmedClick });
+    main.vm.$emit("click");
+    expect(confirmedClick).toHaveBeenCalledTimes(1);
+    expect(confirmedClick).toHaveBeenCalledWith();
+    confirmedClick.mockClear();
+  }
 });
 
 test("slot: default", () => {
   const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
-    slots: { default: '<div class="sample-class">sample-contents</div>"' }
+    slots: { default: '<div id="sample-id">sample-text</div>"' }
   });
 
-  expect(wrapper.find(".sample-class")).textToEqual("sample-contents");
+  expect(wrapper.find("#sample-id")).textToEqual("sample-text");
 });

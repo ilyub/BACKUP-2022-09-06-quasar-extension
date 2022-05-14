@@ -1,27 +1,21 @@
 <script lang="ts">
-import {
-  injectDisable,
-  injectSwitchableSettings,
-  provideDisable
-} from "./Switchable.extras";
-import { prop, validateProps, useSlotsNames } from "./api";
+import { Switchable } from "./Switchable.extras";
+import { injections, prop, validateProps } from "./api";
 import { defineComponent } from "vue";
-import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-switchable",
   props: { disable: prop.boolean(), indent: prop.boolean() },
-  setup(props) {
-    validateProps<SwitchableProps>(props);
+  setup: props => {
+    validateProps<Switchable.OwnProps>(props);
 
-    const parentDisable = injectDisable();
+    const globalDisable = injections.globalDisable.inject();
 
-    provideDisable(() => parentDisable.value || props.disable);
+    injections.globalDisable.provide(
+      () => globalDisable.value || props.disable
+    );
 
-    return {
-      settings: injectSwitchableSettings(),
-      slotNames: useSlotsNames<SwitchableSlots>()("default")
-    };
+    return { settings: Switchable.injectSettings() };
   }
 });
 </script>
@@ -30,22 +24,18 @@ export default defineComponent({
   <div
     v-if="settings.transition === 'none'"
     class="m-switchable"
-    :class="{
-      'm-indent': indent
-    }"
+    :class="{ 'm-indent': indent }"
   >
-    <slot :name="slotNames.default"></slot>
+    <slot></slot>
   </div>
   <q-slide-transition
     v-else-if="settings.transition === 'slide'"
     class="m-switchable"
-    :class="{
-      'm-indent': indent
-    }"
+    :class="{ 'm-indent': indent }"
     :duration="settings.transitionDuration"
   >
     <div v-if="!disable">
-      <slot :name="slotNames.default"></slot>
+      <slot></slot>
     </div>
   </q-slide-transition>
 </template>

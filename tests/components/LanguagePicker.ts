@@ -1,19 +1,18 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { QList } from "quasar";
 
 test.each([
-  { expected: "en-US", menuItemIndex: 0 },
-  { expected: "ru-RU", menuItemIndex: 1 }
-])("languagePicker", async ({ expected, menuItemIndex }) => {
+  { expected: "en-US", index: 0 },
+  { expected: "ru-RU", index: 1 }
+])("languagePicker", async ({ expected, index }) => {
   const changeLanguageAction = jest.fn();
 
   const wrapper = vueTestUtils.mount(components.LanguagePicker, {
     global: testUtils.globalMountOptions({
       languagePickerSettings: {
         changeLanguageAction,
-        items: [
+        options: [
           {
             caption: "English (USA)",
             flag: "us-flag",
@@ -30,27 +29,12 @@ test.each([
     props: { language: "en-US" }
   });
 
-  const button = wrapper.findComponent(components.IconButton);
+  const main = wrapper.findComponent(components.IconButton);
 
-  {
-    expect(list()).not.toExist();
-    await button.trigger("click");
-    expect(list()).toExist();
-  }
+  const { comp } = testUtils.findFactory("language-picker", wrapper);
 
-  {
-    expect(changeLanguageAction).not.toHaveBeenCalled();
-    await menuItem().trigger("click");
-    expect(changeLanguageAction).toHaveBeenCalledTimes(1);
-    expect(changeLanguageAction).toHaveBeenCalledWith(expected);
-    changeLanguageAction.mockClear();
-  }
-
-  function list(): vueTestUtils.VueWrapper {
-    return wrapper.findComponent(QList);
-  }
-
-  function menuItem(): vueTestUtils.DOMWrapper<Element> {
-    return wrapper.findComponent(QList).find(`.menu-item-${menuItemIndex}`);
-  }
+  await main.trigger("click");
+  await comp("menu-item", index).trigger("click");
+  expect(changeLanguageAction).toHaveBeenCalledTimes(1);
+  expect(changeLanguageAction).toHaveBeenCalledWith(expected);
 });

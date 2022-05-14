@@ -1,20 +1,19 @@
 <script lang="ts">
 import { wait } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-form",
-  setup() {
-    const name = ref<stringU>(undefined);
+  setup: () => {
+    const name = ref<string>();
 
     return {
       name,
-      submit(): void {
+      submit: (): void => {
         name.value = undefined;
       },
-      async submitAsync(): Promise<void> {
-        await wait(1000);
+      submitAsync: async (): Promise<void> => {
+        await wait(3000);
         name.value = undefined;
       }
     };
@@ -23,30 +22,30 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-section>
+  <m-page-section>
+    <m-form :class="$style.form" @submit="submit">
+      <m-form-section>
+        <m-input v-model="name" label="Name" />
+      </m-form-section>
+      <m-form-actions>
+        <m-form-button label="Submit" type="submit" />
+      </m-form-actions>
+    </m-form>
+  </m-page-section>
+  <m-page-section>
     <m-form
       async-task-type="httpRequest"
       :class="$style.form"
       @submit-async="submitAsync"
     >
-      <m-section>
+      <m-form-section>
         <m-input v-model="name" label="Name" />
-      </m-section>
-      <m-section class="justify-end row">
-        <m-form-button label="Submit" type="submit" />
-      </m-section>
+      </m-form-section>
+      <m-form-actions>
+        <m-form-button label="Async submit" type="submit" />
+      </m-form-actions>
     </m-form>
-  </m-section>
-  <m-section>
-    <m-form :class="$style.form" @submit="submit">
-      <m-section>
-        <m-input v-model="name" label="Name" />
-      </m-section>
-      <m-section class="justify-end row">
-        <m-form-button label="Submit" type="submit" />
-      </m-section>
-    </m-form>
-  </m-section>
+  </m-page-section>
 </template>
 
 <style lang="scss" module>

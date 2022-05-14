@@ -1,1 +1,1 @@
-export * as reactiveStorage from "./reactiveStorage";
+export * as reactiveStorage from "./reactive-storage";

@@ -1,28 +1,21 @@
 <script lang="ts">
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
+import { parentProps, plugins } from "./api";
 import { defineComponent } from "vue";
-import type {
-  PageSectionOwnProps,
-  PageSectionParentProps,
-  PageSectionSlots
-} from "./PageSection.extras";
+import type { PageSection } from "./PageSection.extras";
 
 export default defineComponent({
   name: "m-page-section",
-  props: propsToPropDefinitions<PageSectionParentProps>(),
-  setup(props) {
-    validateProps<PageSectionOwnProps>(props);
-
-    return { slotNames: useSlotsNames<PageSectionSlots>()() };
+  props: parentProps<PageSection.ParentProps>(),
+  setup: () => {
+    return { slotNames: plugins.useSlotNames<PageSection.Slots>()() };
   }
 });
 </script>
 
 <template>
   <m-switchable class="m-page-section">
-    {{ slotNames.passThroughSlots }}
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </m-switchable>
 </template>

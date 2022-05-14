@@ -1,24 +1,19 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QInput } from "quasar";
 
 test.each([
-  { expectedValue: undefined, value: "" },
-  { expectedValue: "sample-value", value: "sample-value" }
-])("input", ({ expectedValue, value }) => {
+  { expected: [[undefined]], value: "" },
+  { expected: [["sample-value"]], value: "sample-value" }
+])("input", ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.Input, {
-    global: testUtils.globalMountOptions(),
-    props: { modelValue: undefined }
+    global: testUtils.globalMountOptions()
   });
 
-  const input = wrapper.findComponent(QInput);
+  const main = wrapper.findComponent(QInput);
 
-  {
-    const expected = [[expectedValue]];
-
-    expect(wrapper.emitted("update:modelValue")).toBeUndefined();
-    input.vm.$emit("update:modelValue", value);
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-  }
+  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  main.vm.$emit("update:modelValue", value);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });

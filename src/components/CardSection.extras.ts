@@ -1,17 +1,14 @@
 import type { GlobalComponent } from "./api";
 import type { QCardSectionProps, QCardSectionSlots } from "quasar";
 
-export interface CardSectionOwnProps {}
+export namespace CardSection {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export type CardSectionParentProps = QCardSectionProps;
+  export interface ParentProps extends QCardSectionProps {}
 
-export interface CardSectionProps
-  extends CardSectionParentProps,
-    CardSectionOwnProps {}
+  export interface ParentSlots extends QCardSectionSlots {}
 
-export type CardSectionSlots = QCardSectionSlots;
+  export interface Props extends ParentProps {}
 
-export type GlobalCardSection = GlobalComponent<
-  CardSectionProps,
-  CardSectionSlots
->;
+  export interface Slots extends ParentSlots {}
+}

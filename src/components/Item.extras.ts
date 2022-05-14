@@ -1,0 +1,39 @@
+import type { GlobalComponent, VNodes } from "./api";
+import type { stringU } from "@skylib/functions";
+import type { QItemProps } from "quasar";
+
+export namespace Item {
+  export interface Global extends GlobalComponent<Props, Slots> {}
+
+  export interface OwnProps {
+    readonly caption?: stringU;
+    readonly icon?: stringU;
+  }
+
+  export interface OwnSlots {
+    /**
+     * Caption slot.
+     *
+     * @returns Nodes.
+     */
+    readonly caption: () => VNodes;
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly default: () => VNodes;
+    /**
+     * Icon slot.
+     *
+     * @returns Nodes.
+     */
+    readonly icon: () => VNodes;
+  }
+
+  export interface ParentProps extends Omit<QItemProps, keyof OwnProps> {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends OwnSlots {}
+}

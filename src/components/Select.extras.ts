@@ -1,5 +1,4 @@
 import { lang as baseLang } from "@skylib/facades";
-import { is } from "@skylib/functions";
 import type { GlobalComponent } from "./api";
 import type { stringU } from "@skylib/functions";
 import type { QSelectProps, QSelectSlots } from "quasar";
@@ -7,57 +6,46 @@ import type { QSelectProps, QSelectSlots } from "quasar";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends ModuleWord {}
+      interface Word extends Select.Word {}
     }
   }
 }
 
-export const isSelectOption = is.object.factory<SelectOption>(
-  { label: is.string, value: is.unknown },
-  { disable: is.boolean }
-);
+export namespace Select {
+  export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
-export const isSelectOptions = is.factory(is.array.of, isSelectOption);
+  export interface Global<T = unknown>
+    extends GlobalComponent<Props<T>, Slots> {}
 
-export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
+  export interface Option<T = unknown> {
+    readonly disable?: true;
+    readonly label: string;
+    readonly value: T;
+  }
 
-export type GlobalSelect<T = unknown> = GlobalComponent<
-  SelectProps<T>,
-  SelectSlots
->;
+  export type Options<T = unknown> = ReadonlyArray<Option<T>>;
 
-export interface ModuleWord {
-  readonly Select: true;
+  export interface OwnProps<T = unknown> {
+    readonly initialLabel?: stringU;
+    readonly modelValue?: T | undefined;
+    /**
+     * Emits model value.
+     *
+     * @param value - Value.
+     */
+    readonly "onUpdate:modelValue"?: (value: T) => void;
+    readonly options: Options<T>;
+  }
+
+  export interface ParentProps extends Omit<QSelectProps, keyof OwnProps> {}
+
+  export interface ParentSlots extends QSelectSlots {}
+
+  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
+
+  export interface Slots extends ParentSlots {}
+
+  export interface Word {
+    readonly Select: true;
+  }
 }
-
-export interface SelectOption<T = unknown> {
-  readonly disable?: boolean;
-  readonly label: string;
-  readonly value: T;
-}
-
-export type SelectOptions<T = unknown> = ReadonlyArray<SelectOption<T>>;
-
-export interface SelectOwnProps<T = unknown> {
-  readonly initialLabel?: stringU;
-  readonly modelValue?: T | undefined;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: (value: T) => void;
-  readonly options: SelectOptions<T>;
-}
-
-export interface SelectParentProps
-  extends Omit<
-    QSelectProps,
-    "modelValue" | "onUpdate:modelValue" | "options"
-  > {}
-
-export interface SelectProps<T = unknown>
-  extends SelectParentProps,
-    SelectOwnProps<T> {}
-
-export type SelectSlots = QSelectSlots;

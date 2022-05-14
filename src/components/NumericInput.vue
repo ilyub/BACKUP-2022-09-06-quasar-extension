@@ -1,47 +1,44 @@
 <script lang="ts">
-import { icons } from "./NumericInput.extras";
+import { NumericInput } from "./NumericInput.extras";
 import {
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins,
+  directives,
+  skipCheck
 } from "./api";
-import { assert, cast, is, o } from "@skylib/functions";
+import { as, cast, is, num, o } from "@skylib/functions";
 import { maska } from "maska";
 import { computed, defineComponent } from "vue";
-import type {
-  NumericInputOwnProps,
-  NumericInputParentProps,
-  NumericInputSlots
-} from "./NumericInput.extras";
 import type { numberU, NumStrE } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-numeric-input",
-  directives: { maska },
+  directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
-    ...propsToPropDefinitions<NumericInputParentProps>(),
-    bigStep: prop.default(1),
-    max: prop.default(Number.MAX_VALUE),
-    min: prop.default(0),
-    modelValue: prop<number>(),
+    ...parentProps<NumericInput.ParentProps>(),
+    bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
+    max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
+    min: prop.default<NumericInput.Props["min"]>(0),
+    modelValue: prop<NumericInput.Props["modelValue"]>(),
     required: prop.boolean(),
-    smallStep: prop.default(1)
+    smallStep: prop.default<NumericInput.Props["smallStep"]>(1)
   },
-  emits: { "update:modelValue": (value: numberU) => is.numberU(value) },
-  setup(props, { emit }) {
-    validateEmit<NumericInputOwnProps>(emit);
-    validateProps<NumericInputOwnProps>(props);
+  emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<NumericInput.OwnProps>(emit);
+    validateProps<NumericInput.OwnProps>(props);
 
     return {
-      downClick(step: number): void {
+      downClick: (step: number): void => {
         if (is.not.empty(props.modelValue))
           if (props.modelValue > props.min)
             emit(
               "update:modelValue",
               Math.max(
-                stepCeil(props.modelValue, step, props.min) - step,
+                num.ceil.step(props.modelValue, step, props.min) - step,
                 props.min
               )
             );
@@ -49,32 +46,34 @@ export default defineComponent({
             // Do nothing
           } else emit("update:modelValue", undefined);
       },
-      downDisable: computed<boolean>(() =>
+      downDisable: computed(() =>
         is.not.empty(props.modelValue)
           ? props.modelValue <= props.min && props.required
           : true
       ),
-      icons,
-      inputChange(e: Event, emitValue: (value: unknown) => void): void {
-        assert.not.empty(e.target);
-        emitValue(o.get(e.target, "value", is.string));
+      icons: NumericInput.icons,
+      inputChange: (
+        event: Event,
+        emitValue: (value: NumStrE) => void
+      ): void => {
+        emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
-      inputUpdateValue(value: NumStrE): void {
+      inputUpdate: (value: NumStrE): void => {
         emit("update:modelValue", cast.numberU(value));
       },
-      inputValue: computed<string>(() => cast.string(props.modelValue)),
-      slotNames: useSlotsNames<NumericInputSlots>()(
+      inputValue: computed(() => cast.string(props.modelValue)),
+      slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",
         "control",
         "prepend"
       ),
-      upClick(step: number): void {
+      upClick: (step: number): void => {
         if (is.not.empty(props.modelValue))
           if (props.modelValue < props.max)
             emit(
               "update:modelValue",
               Math.min(
-                stepFloor(props.modelValue, step, props.min) + step,
+                num.floor.step(props.modelValue, step, props.min) + step,
                 props.max
               )
             );
@@ -83,24 +82,12 @@ export default defineComponent({
           }
         else emit("update:modelValue", props.min);
       },
-      upDisable: computed<boolean>(() =>
+      upDisable: computed(() =>
         is.not.empty(props.modelValue) ? props.modelValue >= props.max : false
       )
     };
   }
 });
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepCeil(value: number, step: number, from: number): number {
-  return Math.ceil((value - from) / step) * step + from;
-}
-
-// eslint-disable-next-line no-warning-comments
-// fixme
-function stepFloor(value: number, step: number, from: number): number {
-  return Math.floor((value - from) / step) * step + from;
-}
 </script>
 
 <template>
@@ -108,60 +95,57 @@ function stepFloor(value: number, step: number, from: number): number {
     class="m-numeric-input"
     dense
     :model-value="inputValue"
-    @update:model-value="inputUpdateValue"
+    @update:model-value="inputUpdate"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #append>
-      <slot :name="slotNames.append">
-        <q-icon
-          class="q-field__focusable-action ref-numeric-input-up"
-          :class="{
-            'm-numeric-input__disable': upDisable
-          }"
-          :name="icons.chevronRight"
-          @click="upClick(smallStep)"
-        />
-        <q-icon
-          v-if="bigStep > 1"
-          class="q-field__focusable-action ref-numeric-input-big-up"
-          :class="{
-            'm-numeric-input__disable': upDisable
-          }"
-          :name="icons.chevronDoubleRight"
-          @click="upClick(bigStep)"
-        />
-      </slot>
-    </template>
-    <template #control="{ emitValue }">
-      <slot :name="slotNames.control">
+    <template #control="data">
+      <slot :name="slotNames.control" v-bind="data">
         <input
+          v-debug-id="'input'"
           v-maska="'#*'"
-          class="q-field__input ref-numeric-input-input"
+          class="q-field__input"
           :value="inputValue"
-          @change="inputChange($event, emitValue)"
+          @change="inputChange($event, data.emitValue)"
         />
       </slot>
     </template>
     <template #prepend>
       <slot :name="slotNames.prepend">
         <q-icon
-          v-if="bigStep > 1"
-          class="q-field__focusable-action ref-numeric-input-big-down"
-          :class="{
-            'm-numeric-input__disable': downDisable
-          }"
+          v-if="bigStep > smallStep"
+          v-debug-id="'big-down'"
+          class="q-field__focusable-action"
+          :class="{ 'm-numeric-input__disable': downDisable }"
           :name="icons.chevronDoubleLeft"
           @click="downClick(bigStep)"
         />
         <q-icon
-          class="q-field__focusable-action ref-numeric-input-down"
-          :class="{
-            'm-numeric-input__disable': downDisable
-          }"
+          v-debug-id="'down'"
+          class="q-field__focusable-action"
+          :class="{ 'm-numeric-input__disable': downDisable }"
           :name="icons.chevronLeft"
           @click="downClick(smallStep)"
+        />
+      </slot>
+    </template>
+    <template #append>
+      <slot :name="slotNames.append">
+        <q-icon
+          v-debug-id="'up'"
+          class="q-field__focusable-action"
+          :class="{ 'm-numeric-input__disable': upDisable }"
+          :name="icons.chevronRight"
+          @click="upClick(smallStep)"
+        />
+        <q-icon
+          v-if="bigStep > smallStep"
+          v-debug-id="'big-up'"
+          class="q-field__focusable-action"
+          :class="{ 'm-numeric-input__disable': upDisable }"
+          :name="icons.chevronDoubleRight"
+          @click="upClick(bigStep)"
         />
       </slot>
     </template>

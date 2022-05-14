@@ -1,5 +1,5 @@
-import { components } from "@";
+import { generic, components } from "@";
 
-test("genericTable", () => {
-  expect(components.genericTable()).toBeDefined();
+test("Table", () => {
+  expect(generic.Table()).toStrictEqual(components.Table);
 });

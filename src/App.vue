@@ -1,5 +1,5 @@
 <script lang="ts">
-import { components, useProvide } from "./samples";
+import { components, useInjections } from "./samples";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
@@ -9,16 +9,13 @@ import { RouterView } from "vue-router";
 export default defineComponent({
   name: "app",
   components: { "router-view": RouterView },
-  setup() {
-    const { provide } = useProvide();
-
-    provide();
+  setup: () => {
+    useInjections().provide();
 
     return {
-      components,
-      name(rawName: string): string {
-        return _.startCase(rawName).replace(/^Sample /u, "");
-      }
+      caption: (name: string): string =>
+        _.startCase(name).replace(/^Sample /u, ""),
+      components
     };
   }
 });
@@ -30,16 +27,16 @@ export default defineComponent({
     <div class="row">
       <div>
         <q-list :class="$style.list" dense>
-          <m-list-item
+          <m-item
             v-for="component in components"
             :key="component.name"
-            :caption="name(component.name)"
+            :caption="caption(component.name)"
             :class="$style.listItem"
             :to="`/${component.name}`"
           />
         </q-list>
       </div>
-      <div :class="`${$style.component} flex-grow-1`">
+      <div :class="$style.component">
         <router-view />
       </div>
     </div>
@@ -50,7 +47,9 @@ export default defineComponent({
 @use "sass:map";
 
 .component {
+  flex-grow: 1;
   max-width: 600px;
+  margin-left: map.get($space-md, "x");
 }
 
 .list {

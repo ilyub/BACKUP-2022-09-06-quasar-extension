@@ -1,37 +1,33 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Toggle] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Toggle] */
 
-import { injectDisable } from "./Switchable.extras";
 import {
   prop,
-  propsToPropDefinitions,
+  parentProps,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins,
+  skipCheck,
+  injections
 } from "./api";
-import { is } from "@skylib/functions";
 import { defineComponent } from "vue";
-import type {
-  ToggleOwnProps,
-  ToggleParentProps,
-  ToggleSlots
-} from "./Toggle.extras";
+import type { Toggle } from "./Toggle.extras";
 
 export default defineComponent({
   name: "m-toggle",
   props: {
-    ...propsToPropDefinitions<ToggleParentProps>(),
+    ...parentProps<Toggle.ParentProps>(),
     disable: prop.boolean(),
     modelValue: prop.boolean()
   },
-  emits: { "update:modelValue": (value: boolean) => is.boolean(value) },
-  setup(props, { emit }) {
-    validateEmit<ToggleOwnProps>(emit);
-    validateProps<ToggleOwnProps>(props);
+  emits: { "update:modelValue": (value: boolean) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<Toggle.OwnProps>(emit);
+    validateProps<Toggle.OwnProps>(props);
 
     return {
-      globalDisable: injectDisable(),
-      slotNames: useSlotsNames<ToggleSlots>()()
+      globalDisable: injections.globalDisable.inject(),
+      slotNames: plugins.useSlotNames<Toggle.Slots>()()
     };
   }
 });
@@ -44,8 +40,8 @@ export default defineComponent({
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-toggle>
 </template>

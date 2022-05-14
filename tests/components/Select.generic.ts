@@ -1,5 +1,5 @@
-import { components } from "@";
+import { generic, components } from "@";
 
-test("genericSelect", () => {
-  expect(components.genericSelect()).toBeDefined();
+test("Select", () => {
+  expect(generic.Select()).toStrictEqual(components.Select);
 });

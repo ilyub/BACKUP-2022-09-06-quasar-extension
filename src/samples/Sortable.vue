@@ -1,16 +1,21 @@
 <script lang="ts">
-import { components } from "..";
-import { reflect } from "@skylib/functions";
+import { extras, generic } from "..";
 import { defineComponent, ref } from "vue";
+
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
 
 export default defineComponent({
   name: "sample-sortable",
-  setup() {
+  components: { "m-sortable-items": generic.Sortable<Item, Item>() },
+  setup: () => {
     const disableDropping = ref(false);
 
     const disableSorting = ref(false);
 
-    components.provideSortableSettings(() => {
+    extras.Sortable.provideSettings(() => {
       return {
         animationDuration: 500,
         disableDropping: disableDropping.value,
@@ -27,25 +32,25 @@ export default defineComponent({
         { id: "c", name: "C" }
       ]),
       sortable2: ref([]),
-      sortableName(item: object): unknown {
-        return reflect.get(item, "name");
-      }
+      sortableName: (item: Item): string => item.name
     };
   }
 });
 </script>
 
 <template>
-  <m-section>
-    <m-toggle v-model="disableDropping" label="Disable dropping" left-label />
-    <m-toggle v-model="disableSorting" label="Disable sorting" left-label />
-  </m-section>
-  <m-section>
-    <m-sortable
+  <m-page-section>
+    <m-buttons-group>
+      <m-toggle v-model="disableDropping" label="Disable dropping" />
+      <m-toggle v-model="disableSorting" label="Disable sorting" />
+    </m-buttons-group>
+  </m-page-section>
+  <m-page-section>
+    <m-sortable-items
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
-      :item-class="`${$style.sortableItem} q-mr-sm`"
+      :item-class="$style.sortableItem"
       item-key="id"
       pull
       sort
@@ -54,14 +59,14 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>Sample tooltip</m-tooltip>
       </template>
-    </m-sortable>
-  </m-section>
-  <m-section>
-    <m-sortable
+    </m-sortable-items>
+  </m-page-section>
+  <m-page-section>
+    <m-sortable-items
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
-      :item-class="`${$style.sortableItem} q-mr-sm`"
+      :item-class="$style.sortableItem"
       item-key="id"
       put
       sort
@@ -70,11 +75,13 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>Sample tooltip</m-tooltip>
       </template>
-    </m-sortable>
-  </m-section>
+    </m-sortable-items>
+  </m-page-section>
 </template>
 
 <style lang="scss" module>
+@use "sass:map";
+
 .sortable {
   height: 50px;
   background: $grey-3;
@@ -85,6 +92,7 @@ export default defineComponent({
     justify-content: center;
     width: 50px;
     height: 50px;
+    margin-right: map.get($space-sm, "x");
     background: $grey-5;
     cursor: default;
   }

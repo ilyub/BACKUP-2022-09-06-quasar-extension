@@ -1,29 +1,23 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[CardSection] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.CardSection] */
 
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
+import { parentProps, plugins } from "./api";
 import { defineComponent } from "vue";
-import type {
-  CardSectionOwnProps,
-  CardSectionParentProps,
-  CardSectionSlots
-} from "./CardSection.extras";
+import type { CardSection } from "./CardSection.extras";
 
 export default defineComponent({
   name: "m-card-section",
-  props: propsToPropDefinitions<CardSectionParentProps>(),
-  setup(props) {
-    validateProps<CardSectionOwnProps>(props);
-
-    return { slotNames: useSlotsNames<CardSectionSlots>()() };
+  props: parentProps<CardSection.ParentProps>(),
+  setup: () => {
+    return { slotNames: plugins.useSlotNames<CardSection.Slots>()() };
   }
 });
 </script>
 
 <template>
   <q-card-section class="m-card-section">
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-card-section>
 </template>

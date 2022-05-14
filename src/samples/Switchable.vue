@@ -1,24 +1,26 @@
 <script lang="ts">
-import { useProvide } from "./useProvide";
-import { fn } from "@skylib/functions";
+import { generic } from "..";
+import { useInjections } from "./core";
+import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { components } from "..";
+import type { extras } from "..";
+
+type Options = extras.OptionGroup.Options<Transition>;
+
+type Transition = extras.Switchable.Transition;
 
 export default defineComponent({
   name: "sample-switchable",
-  setup() {
-    const { switchableTransition } = useProvide();
+  components: { "value-option-group": generic.OptionGroup<Transition>() },
+  setup: () => {
+    const { switchableTransition } = useInjections();
 
     return {
       disable: ref(false),
       sampleKnob: ref(5),
       sampleToggle: ref(false),
       switchableTransition,
-      // eslint-disable-next-line no-warning-comments
-      // fixme: Use typedef
-      switchableTransitionOptions: fn.run<
-        components.OptionGroupOptions<components.Transition>
-      >(() => [
+      switchableTransitionOptions: typedef<Options>([
         { label: "None", value: "none" },
         { label: "Slide", value: "slide" }
       ])
@@ -28,24 +30,28 @@ export default defineComponent({
 </script>
 
 <template>
-  Transition:
-  <m-option-group
-    v-model="switchableTransition"
-    inline
-    :options="switchableTransitionOptions"
-  />
-  <m-subsection>
-    <m-toggle v-model="disable" />
-  </m-subsection>
-  <m-subsection>
-    <m-switchable :disable="disable" indent>
-      <m-subsection>
-        Sample knob:
-        <m-knob v-model="sampleKnob" inline :max="10" :step="1" />
-      </m-subsection>
-      <m-subsection>
-        <m-toggle v-model="sampleToggle" label="Sample toggle:" left-label />
-      </m-subsection>
-    </m-switchable>
-  </m-subsection>
+  <m-page-section>
+    Transition:
+    <value-option-group
+      v-model="switchableTransition"
+      inline
+      :options="switchableTransitionOptions"
+    />
+  </m-page-section>
+  <m-page-section>
+    <m-section>
+      <m-toggle v-model="disable" label="Disable" />
+    </m-section>
+    <m-section>
+      <m-switchable :disable="disable" indent>
+        <m-subsection>
+          Sample knob:
+          <m-knob v-model="sampleKnob" inline :max="10" :step="1" />
+        </m-subsection>
+        <m-subsection>
+          <m-toggle v-model="sampleToggle" label="Sample toggle" />
+        </m-subsection>
+      </m-switchable>
+    </m-section>
+  </m-page-section>
 </template>

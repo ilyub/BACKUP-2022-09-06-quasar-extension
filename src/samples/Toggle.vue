@@ -3,12 +3,14 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-toggle",
-  setup() {
+  setup: () => {
     return { value: ref(false) };
   }
 });
 </script>
 
 <template>
-  <m-toggle v-model="value" />
+  <m-page-section>
+    <m-toggle v-model="value" />
+  </m-page-section>
 </template>

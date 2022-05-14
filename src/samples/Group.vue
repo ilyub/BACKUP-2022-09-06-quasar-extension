@@ -1,12 +1,14 @@
 <script lang="ts">
-import { components } from "..";
+import { generic } from "..";
 import { computed, defineComponent, ref } from "vue";
-import type { stringU } from "@skylib/functions";
+import type { extras } from "..";
+
+type Section = "section1" | "section2" | "section3" | "section4";
 
 export default defineComponent({
   name: "sample-group",
-  components: { "generic-group": components.genericGroup<Section>() },
-  setup() {
+  components: { "page-sections-group": generic.Group<Section>() },
+  setup: () => {
     const showSection1 = ref(true);
 
     const showSection2 = ref(true);
@@ -16,7 +18,7 @@ export default defineComponent({
     const showSection4 = ref(true);
 
     return {
-      groupItems: computed<components.GroupItems<Section>>(() => [
+      groupItems: computed<extras.Group.Items<Section>>(() => [
         {
           id: "section2",
           show: showSection2.value,
@@ -38,7 +40,7 @@ export default defineComponent({
           title: "Section 12 ddd eee"
         }
       ]),
-      searchString: ref<stringU>(undefined),
+      searchString: ref<string>(),
       showSection1,
       showSection2,
       showSection3,
@@ -46,35 +48,40 @@ export default defineComponent({
     };
   }
 });
-
-type Section = "section1" | "section2" | "section3" | "section4";
 </script>
 
 <template>
-  <m-input v-model="searchString" label="Search for settings" />
-  <div class="q-mt-md">
-    Show
-    <q-checkbox v-model="showSection1" /> 1
-    <q-checkbox v-model="showSection2" /> 2
-    <q-checkbox v-model="showSection3" /> 3
-    <q-checkbox v-model="showSection4" /> 4
-  </div>
-  <generic-group
+  <m-page-section>
+    <m-subsection>
+      <m-input v-model="searchString" label="Search for settings" />
+    </m-subsection>
+    <m-subsection>
+      Show
+      <q-checkbox v-model="showSection1" /> 1
+      <q-checkbox v-model="showSection2" /> 2
+      <q-checkbox v-model="showSection3" /> 3
+      <q-checkbox v-model="showSection4" /> 4
+    </m-subsection>
+  </m-page-section>
+  <page-sections-group
     :class="$style.section"
     :items="groupItems"
     not-found-label="No results found"
-    root-element="section"
+    root-element="page-section"
     :search-string="searchString"
   >
     <template #section2>Section 2</template>
     <template #section1>Section 1</template>
     <template #section3>Section 11</template>
     <template #section4>Section 12</template>
-  </generic-group>
+  </page-sections-group>
 </template>
 
 <style lang="scss" module>
+@use "sass:map";
+
 .section {
-  border: 1px solid blue;
+  padding: map.get($space-md, "y") map.get($space-md, "x");
+  border: 1px solid $grey-5;
 }
 </style>

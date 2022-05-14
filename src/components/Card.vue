@@ -1,32 +1,26 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[Card] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Card] */
 
-import { icons } from "./Card.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  useSlotsNames
-} from "./api";
+import { Card } from "./Card.extras";
+import { prop, parentProps, validateProps, plugins } from "./api";
 import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
-import type { CardOwnProps, CardParentProps, CardSlots } from "./Card.extras";
 
 export default defineComponent({
   name: "m-card",
   props: {
-    ...propsToPropDefinitions<CardParentProps>(),
-    minWidth: prop<string>(),
-    title: prop<string>(),
+    ...parentProps<Card.ParentProps>(),
+    minWidth: prop<Card.Props["minWidth"]>(),
+    title: prop<Card.Props["title"]>(),
     transparentHeader: prop.boolean()
   },
-  setup(props) {
-    validateProps<CardOwnProps>(props);
+  setup: props => {
+    validateProps<Card.OwnProps>(props);
 
     return {
-      hasTitle: computed<boolean>(() => is.not.empty(props.title)),
-      icons,
-      slotNames: useSlotsNames<CardSlots>()(
+      hasTitle: computed(() => is.not.empty(props.title)),
+      icons: Card.icons,
+      slotNames: plugins.useSlotNames<Card.Slots>()(
         "default",
         "header-actions",
         "title"
@@ -37,15 +31,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-card
-    class="m-card"
-    :style="{
-      minWidth: minWidth
-    }"
-  >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
-    </template>
+  <q-card class="m-card" :style="{ minWidth: minWidth }">
     <template #default>
       <m-card-section
         v-if="hasTitle || slotNames.has('title')"

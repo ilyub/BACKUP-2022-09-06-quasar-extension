@@ -1,10 +1,19 @@
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, VNodes } from "./api";
 
-export type GlobalIconButtonsGroup = GlobalComponent<
-  IconButtonsGroupProps,
-  IconButtonsGroupSlots
->;
+export namespace IconButtonsGroup {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface IconButtonsGroupProps {}
+  export interface OwnSlots {
+    /**
+     * Default slot.
+     *
+     * @returns Nodes.
+     */
+    readonly default: () => VNodes;
+  }
 
-export interface IconButtonsGroupSlots {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface Props {}
+
+  export interface Slots extends OwnSlots {}
+}

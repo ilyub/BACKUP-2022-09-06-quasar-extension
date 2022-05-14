@@ -1,5 +1,5 @@
-import { components } from "@";
+import { generic, components } from "@";
 
-test("genericGroup", () => {
-  expect(components.genericGroup()).toBeDefined();
+test("Group", () => {
+  expect(generic.Group()).toStrictEqual(components.Group);
 });

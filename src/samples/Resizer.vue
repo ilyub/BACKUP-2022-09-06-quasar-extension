@@ -1,34 +1,24 @@
 <script lang="ts">
-import { components } from "..";
+import { useInjections } from "./core";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-resizer",
-  setup() {
-    const disable = ref(false);
-
-    components.provideResizerSettings(() => {
-      return { disable: disable.value };
-    });
-
-    return { disable, width: ref(200) };
+  setup: () => {
+    return { disable: useInjections().resizerDisable, width: ref(200) };
   }
 });
 </script>
 
 <template>
-  <m-section>
-    <m-toggle v-model="disable" label="Disable" left-label />
-  </m-section>
-  <m-section>
-    <div
-      :class="$style.resizer"
-      :style="{
-        width: `${width}px`
-      }"
-    >
-      <m-resizer v-model="width" :max="400" :min="100" /></div
-  ></m-section>
+  <m-page-section>
+    <m-toggle v-model="disable" label="Disable" />
+  </m-page-section>
+  <m-page-section>
+    <div :class="$style.resizer" :style="{ width: `${width}px` }">
+      <m-resizer v-model="width" :max="400" :min="100" />
+    </div>
+  </m-page-section>
 </template>
 
 <style lang="scss" module>

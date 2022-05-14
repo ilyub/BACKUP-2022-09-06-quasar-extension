@@ -1,35 +1,27 @@
 <script lang="ts">
-import { useRootElement } from "./Group.extras";
-import { prop, propsToPropDefinitions, validateProps } from "./api";
+import PageSection from "./PageSection.vue";
+import Section from "./Section.vue";
+import Subsection from "./Subsection.vue";
+import { directives, prop, validateProps } from "./api";
 import { inlineSearch, compare } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
-import type {
-  GroupItem,
-  GroupItems,
-  GroupOwnProps,
-  GroupParentProps,
-  RootElementProp
-} from "./Group.extras";
-
-const rootElementPropsOptions = {
-  rootElement: prop<RootElementProp>()
-} as const;
+import type { Group } from "./Group.extras";
 
 export default defineComponent({
   name: "m-group",
+  directives: { debugId: directives.debugId("group") },
   inheritAttrs: false,
   props: {
-    ...propsToPropDefinitions<GroupParentProps>(),
-    ...rootElementPropsOptions,
-    items: prop.required<GroupItems>(),
-    notFoundLabel: prop<string>(),
-    searchString: prop<string>()
+    items: prop.required<Group.Props["items"]>(),
+    notFoundLabel: prop<Group.Props["notFoundLabel"]>(),
+    rootElement: prop<Group.Props["rootElement"]>(),
+    searchString: prop<Group.Props["searchString"]>()
   },
-  setup(props) {
-    validateProps<GroupOwnProps>(props);
+  setup: props => {
+    validateProps<Group.OwnProps>(props);
 
-    const filteredItems = computed<GroupItems>(() => {
+    const filteredItems = computed(() => {
       if (is.not.empty(props.searchString)) {
         const ids = new Set(
           searchIndex.value.search(props.searchString).map(item => item.id)
@@ -43,11 +35,11 @@ export default defineComponent({
       return sortedItems.value;
     });
 
-    const searchIndex = computed<inlineSearch.Engine<GroupItem>>(() =>
+    const searchIndex = computed(() =>
       inlineSearch.create("id", ["title"], props.items)
     );
 
-    const sortedItems = computed<GroupItems>(() =>
+    const sortedItems = computed(() =>
       a.sort(props.items, (item1, item2) =>
         compare.strings(item1.title, item2.title)
       )
@@ -55,13 +47,26 @@ export default defineComponent({
 
     return {
       filteredItems,
-      notFoundLabelExists: computed<boolean>(() =>
-        is.not.empty(props.notFoundLabel)
-      ),
-      notFoundLabelShow: computed<boolean>(
-        () => !filteredItems.value.some(item => item.show)
-      ),
-      rootComponent: useRootElement(props)
+      rootComponent: computed(() => {
+        switch (props.rootElement) {
+          case "page-section":
+            return PageSection;
+
+          case "section":
+            return Section;
+
+          case "subsection":
+            return Subsection;
+
+          case undefined:
+            return "div";
+        }
+      }),
+      showNotFoundLabel: computed(() =>
+        filteredItems.value.some(item => item.show)
+          ? false
+          : is.not.empty(props.notFoundLabel)
+      )
     };
   }
 });
@@ -69,7 +74,12 @@ export default defineComponent({
 
 <template>
   <keep-alive v-for="item in filteredItems" :key="item.id">
-    <component v-bind="$attrs" :is="rootComponent" v-if="item.show">
+    <component
+      v-bind="$attrs"
+      :is="rootComponent"
+      v-if="item.show"
+      class="m-group"
+    >
       <slot :name="item.id"></slot>
     </component>
   </keep-alive>
@@ -77,8 +87,9 @@ export default defineComponent({
     <component
       v-bind="$attrs"
       :is="rootComponent"
-      v-if="notFoundLabelShow && notFoundLabelExists"
-      class="ref-group-not-found text-grey-7"
+      v-if="showNotFoundLabel"
+      v-debug-id="'not-found'"
+      class="m-group m-group__not-found"
     >
       {{ notFoundLabel }}
     </component>

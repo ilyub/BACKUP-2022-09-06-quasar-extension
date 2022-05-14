@@ -1,12 +1,14 @@
-import type { SwitchableProps, SwitchableSlots } from "./Switchable.extras";
+import type { Switchable } from "./Switchable.extras";
 import type { GlobalComponent } from "./api";
 
-export type GlobalSection = GlobalComponent<SectionProps, SectionSlots>;
+export namespace Section {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface SectionOwnProps {}
+  export interface ParentProps extends Switchable.Props {}
 
-export type SectionParentProps = SwitchableProps;
+  export interface ParentSlots extends Switchable.Slots {}
 
-export interface SectionProps extends SectionParentProps, SectionOwnProps {}
+  export interface Props extends ParentProps {}
 
-export type SectionSlots = SwitchableSlots;
+  export interface Slots extends ParentSlots {}
+}

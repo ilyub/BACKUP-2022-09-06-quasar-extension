@@ -1,19 +1,17 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-input",
-  setup() {
-    return {
-      inputValue1: ref<stringU>(undefined),
-      inputValue2: ref<stringU>(undefined)
-    };
+  setup: () => {
+    return { value1: ref<string>(), value2: ref<string>() };
   }
 });
 </script>
 
 <template>
-  <m-input v-model="inputValue1" />
-  <m-input v-model="inputValue2" clearable />
+  <m-page-section>
+    <m-input v-model="value1" />
+    <m-input v-model="value2" clearable />
+  </m-page-section>
 </template>

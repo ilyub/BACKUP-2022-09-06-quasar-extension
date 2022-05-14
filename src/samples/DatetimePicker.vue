@@ -1,35 +1,35 @@
 <script lang="ts">
 import { datetime } from "@skylib/facades";
 import { defineComponent, ref } from "vue";
-import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-datetime-picker",
-  setup() {
+  setup: () => {
     return {
-      datetimeMax: datetime
+      max: datetime
         .create()
+        .setHours(12)
+        .setMinutes(0)
         .add(3, "days")
-        .setHours(14)
-        .setMinutes(30)
+        .add(2, "hours")
+        .add(30, "minutes")
         .toString(),
-      datetimeMin: datetime
+      min: datetime
         .create()
+        .setHours(12)
+        .setMinutes(0)
         .sub(3, "days")
-        .setHours(9)
-        .setMinutes(30)
+        .sub(2, "hours")
+        .sub(30, "minutes")
         .toString(),
-      datetimeValue: ref<stringU>(undefined)
+      value: ref<string>()
     };
   }
 });
 </script>
 
 <template>
-  <m-datetime-picker
-    v-model="datetimeValue"
-    clearable
-    :max="datetimeMax"
-    :min="datetimeMin"
-  />
+  <m-page-section>
+    <m-datetime-picker v-model="value" clearable :max="max" :min="min" />
+  </m-page-section>
 </template>

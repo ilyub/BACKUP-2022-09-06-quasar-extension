@@ -1,27 +1,21 @@
 <script lang="ts">
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
+import { parentProps, plugins } from "./api";
 import { defineComponent } from "vue";
-import type {
-  FormButtonOwnProps,
-  FormButtonParentProps,
-  FormButtonSlots
-} from "./FormButton.extras";
+import type { FormButton } from "./FormButton.extras";
 
 export default defineComponent({
   name: "m-form-button",
-  props: propsToPropDefinitions<FormButtonParentProps>(),
-  setup(props) {
-    validateProps<FormButtonOwnProps>(props);
-
-    return { slotNames: useSlotsNames<FormButtonSlots>()() };
+  props: parentProps<FormButton.ParentProps>(),
+  setup: () => {
+    return { slotNames: plugins.useSlotNames<FormButton.Slots>()() };
   }
 });
 </script>
 
 <template>
   <m-base-button class="m-form-button" flat>
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </m-base-button>
 </template>

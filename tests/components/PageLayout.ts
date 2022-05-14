@@ -1,60 +1,39 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import { o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 
-// eslint-disable-next-line no-warning-comments
-// fixme: Use @skylib/functions
-function typedef<T>(source: T): T {
-  return source;
-}
-
 test.each([
-  { closeExists: false, titleExists: false },
+  { closeButton: true, expected: false },
   {
-    closeExists: true,
-    title: "Sample title",
-    titleExists: true
+    closeButton: true,
+    expected: true,
+    title: "Sample title"
   },
   {
+    closeButton: true,
     closeButtonOff: true,
-    closeExists: false,
-    title: "Sample title",
-    titleExists: true
+    expected: false,
+    title: "Sample title"
   },
   {
-    closeExists: false,
-    pageLayoutSettings: typedef<components.PageLayoutSettings>({
-      closeButton: false,
-      height: "auto"
-    }),
-    title: "Sample title",
-    titleExists: true
+    closeButton: false,
+    expected: false,
+    title: "Sample title"
   },
   {
+    closeButton: false,
     closeButtonOn: true,
-    closeExists: true,
-    pageLayoutSettings: typedef<components.PageLayoutSettings>({
-      closeButton: false,
-      height: "auto"
-    }),
-    title: "Sample title",
-    titleExists: true
+    expected: true,
+    title: "Sample title"
   }
 ])(
-  "title",
-  ({
-    closeButtonOff,
-    closeButtonOn,
-    closeExists,
-    pageLayoutSettings,
-    title,
-    titleExists
-  }) => {
+  "prop: closeButtonOn, closeButtonOff",
+  ({ closeButton, closeButtonOff, closeButtonOn, expected, title }) => {
     const wrapper = vueTestUtils.mount(components.PageLayout, {
-      global: testUtils.globalMountOptions(
-        o.removeUndefinedKeys({ pageLayoutSettings })
-      ),
+      global: testUtils.globalMountOptions({
+        pageLayoutSettings: { closeButton, height: "auto" }
+      }),
       props: o.removeUndefinedKeys({
         closeButtonOff,
         closeButtonOn,
@@ -62,9 +41,22 @@ test.each([
       })
     });
 
-    const { comp, elem } = testUtils.findFactory(".m-page-layout__", wrapper);
+    const { comp } = testUtils.findFactory("page-layout", wrapper);
 
-    expect(elem("title").exists()).toStrictEqual(titleExists);
-    expect(comp("close").exists()).toStrictEqual(closeExists);
+    expect(comp("close").exists()).toStrictEqual(expected);
+  }
+);
+
+test.each([{ expected: false }, { expected: true, title: "Sample title" }])(
+  "prop: title",
+  ({ expected, title }) => {
+    const wrapper = vueTestUtils.mount(components.PageLayout, {
+      global: testUtils.globalMountOptions(),
+      props: o.removeUndefinedKeys({ title })
+    });
+
+    const { elem } = testUtils.findFactory("page-layout", wrapper);
+
+    expect(elem("title").exists()).toStrictEqual(expected);
   }
 );

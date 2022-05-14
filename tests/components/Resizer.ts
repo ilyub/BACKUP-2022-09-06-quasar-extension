@@ -1,65 +1,66 @@
 import { components } from "@";
-import * as testUtils from "@/testUtils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 
 test.each([
   {
-    cursor: "not-allowed",
+    expectedCursor: "not-allowed",
+    expectedEmitted: [[100]],
     max: 300,
     min: 100,
-    offset: -110,
-    value: 100
+    x: -110
   },
   {
-    cursor: "ew-resize",
+    expectedCursor: "ew-resize",
+    expectedEmitted: [[190]],
     max: 300,
     min: 100,
-    offset: -10,
-    value: 190
+    x: -10
   },
   {
-    cursor: "ew-resize",
+    expectedCursor: "ew-resize",
+    expectedEmitted: [[210]],
     max: 300,
     min: 100,
-    offset: 10,
-    value: 210
+    x: 10
   },
   {
-    cursor: "not-allowed",
+    expectedCursor: "not-allowed",
+    expectedEmitted: [[300]],
     max: 300,
     min: 100,
-    offset: 110,
-    value: 300
+    x: 110
   },
   {
-    cursor: "not-allowed",
+    expectedCursor: "not-allowed",
+    expectedEmitted: [[100]],
     min: 100,
-    offset: -110,
-    value: 100
+    x: -110
   },
   {
-    cursor: "ew-resize",
+    expectedCursor: "ew-resize",
+    expectedEmitted: [[190]],
     min: 100,
-    offset: -10,
-    value: 190
+    x: -10
   },
   {
-    cursor: "ew-resize",
+    expectedCursor: "ew-resize",
+    expectedEmitted: [[210]],
     min: 100,
-    offset: 10,
-    value: 210
+    x: 10
   },
   {
-    cursor: "ew-resize",
+    expectedCursor: "ew-resize",
+    expectedEmitted: [[310]],
     min: 100,
-    offset: 110,
-    value: 310
+    x: 110
   }
-])("resizer", ({ cursor, max, min, offset, value }) => {
-  const { touchPan, triggerTouchPan } = testUtils.touchPanMock();
+])("resizer", ({ expectedCursor, expectedEmitted, max, min, x }) => {
+  const touchPan = testUtils.mocks.touchPan();
 
   const wrapper = vueTestUtils.mount(components.Resizer, {
-    directives: { touchPan },
+    directives: { touchPan: touchPan.directive },
+    global: testUtils.globalMountOptions(),
     props: {
       max,
       min,
@@ -71,52 +72,27 @@ test.each([
     const event = {
       isFinal: false,
       isFirst: true,
-      offset: { x: offset, y: 0 }
+      offset: { x, y: 0 }
     };
 
-    const emitted = [[value]];
-
     document.documentElement.style.cursor = "";
-    triggerTouchPan(event);
-    expect(document.documentElement.style.cursor).toStrictEqual(cursor);
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(emitted);
+    touchPan.trigger(event);
+    expect(document.documentElement.style.cursor).toStrictEqual(expectedCursor);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expectedEmitted);
+    testUtils.clearEmitted(wrapper);
   }
 
   {
     const event = {
       isFinal: true,
       isFirst: false,
-      offset: { x: offset, y: 0 }
+      offset: { x, y: 0 }
     };
 
-    const emitted = [[value], [value]];
-
     document.documentElement.style.cursor = "";
-    triggerTouchPan(event);
+    touchPan.trigger(event);
     expect(document.documentElement.style.cursor).toBe("");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(emitted);
+    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expectedEmitted);
+    testUtils.clearEmitted(wrapper);
   }
-});
-
-test.each([
-  {
-    exists: true,
-    modelValue: 100,
-    resizerSettings: { disable: false }
-  },
-  { exists: false, resizerSettings: { disable: false } },
-  {
-    exists: false,
-    modelValue: 100,
-    resizerSettings: { disable: true }
-  }
-])("settings", ({ exists, modelValue, resizerSettings }) => {
-  const wrapper = vueTestUtils.mount(components.Resizer, {
-    global: testUtils.globalMountOptions({ resizerSettings }),
-    props: { modelValue }
-  });
-
-  const elem = testUtils.findElementFactory(".m-resizer__", wrapper);
-
-  expect(elem("root").exists()).toStrictEqual(exists);
 });

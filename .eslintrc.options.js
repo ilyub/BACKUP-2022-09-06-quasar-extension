@@ -6,30 +6,51 @@ module.exports = {
       type: "wildcard"
     },
     {
-      autoImportSource: "@/testUtils",
-      sourcePattern: "@skylib/quasar/src/testUtils",
+      localName: "VueDraggable",
+      sourcePattern: "vuedraggable",
+      type: "default"
+    },
+    {
+      autoImportSource: "./application",
+      localName: "app",
+      sourcePattern: "@skylib/quasar-extension/src/application",
+      type: "wildcard"
+    },
+    {
+      autoImportSource: "./test-utils",
+      sourcePattern: "@skylib/quasar-extension/src/test-utils",
       type: "wildcard"
     }
   ],
   extends: [
-    "@skylib/functions/configs/eslintrc.options.js",
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/facades update
-    // fixme
-    // "@skylib/facades/configs/eslintrc.options.js",
-    "@skylib/framework/configs/eslintrc.options.js",
+    "@skylib/functions/configs/eslintrc.options",
+    "@skylib/facades/configs/eslintrc.options",
+    "@skylib/framework/configs/eslintrc.options",
     "./configs/eslintrc.options.js"
   ],
   extraChoreLocations: [
     "src/App.vue",
+    "src/application/**",
     "src/boot/**",
     "src/router/**",
     "src/routes.ts",
-    "src/samples/**",
-    "src/typings/**"
+    "src/samples/**"
   ],
   extraDefaultExportLocations: [
     "__mocks__/flag-icon-css/*",
     "__mocks__/typeface-roboto-multilang/*"
+  ],
+  noRestrictedSyntax: [
+    {
+      message: 'Use "Props" interface',
+      selector:
+        "CallExpression[callee.name=prop] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword, TSTypeReference).params"
+    },
+    {
+      message: 'Use "Props" interface',
+      selector:
+        "CallExpression[callee.object.name=prop][callee.property.name=/^(?:default|required)$/u] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword, TSTypeReference).params"
+    }
   ],
   quasar: true,
   quasarGlobalComponents: [/^[mq]-/u.source]

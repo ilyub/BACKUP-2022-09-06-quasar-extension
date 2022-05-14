@@ -1,21 +1,19 @@
-import { components, Index } from "./samples";
+import { components, Overview } from "./samples";
+import { o } from "@skylib/functions";
 import type { RouteRecordRaw } from "vue-router";
 
-export const routes: RouteRecordRaws = [
-  { component: Index, path: "/" },
-  ...components.map(component => {
+export const routes: routes.RouteRecordRaws = [
+  { component: Overview, path: "/" },
+  ...o.values(components).map(component => {
     return {
       component,
       name: component.name,
       path: `/${component.name}`
     };
   }),
-  {
-    path: "/:catchAll(.*)",
-    redirect(): string {
-      return "/";
-    }
-  }
+  { path: "/:catchAll(.*)", redirect: (): string => "/" }
 ];
 
-type RouteRecordRaws = readonly RouteRecordRaw[];
+export namespace routes {
+  export type RouteRecordRaws = readonly RouteRecordRaw[];
+}

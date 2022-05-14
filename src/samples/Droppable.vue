@@ -1,19 +1,28 @@
 <script lang="ts">
-import { components } from "..";
-import { json, reflect } from "@skylib/functions";
+import { extras, generic } from "..";
+import { json } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
+
 export default defineComponent({
   name: "sample-droppable",
-  setup() {
+  components: {
+    "m-droppable-items": generic.Droppable<Item, Item>(),
+    "m-sortable-items": generic.Sortable<Item, Item>()
+  },
+  setup: () => {
     const $q = useQuasar();
 
     const disableDropping = ref(false);
 
     const disableSorting = ref(false);
 
-    components.provideSortableSettings(() => {
+    extras.Sortable.provideSettings(() => {
       return {
         animationDuration: 500,
         disableDropping: disableDropping.value,
@@ -24,7 +33,7 @@ export default defineComponent({
     return {
       disableDropping,
       disableSorting,
-      dropped(item: unknown, group: unknown): void {
+      dropped: (item: Item, group: string): void => {
         $q.notify(json.encode({ group, item }));
       },
       sortable1: ref([
@@ -33,25 +42,25 @@ export default defineComponent({
         { id: "c", name: "C" }
       ]),
       sortable2: ref([]),
-      sortableName(item: object): unknown {
-        return reflect.get(item, "name");
-      }
+      sortableName: (item: Item): string => item.name
     };
   }
 });
 </script>
 
 <template>
-  <m-section>
-    <m-toggle v-model="disableDropping" label="Disable dropping" left-label />
-    <m-toggle v-model="disableSorting" label="Disable sorting" left-label />
-  </m-section>
-  <m-section>
-    <m-sortable
+  <m-page-section>
+    <m-buttons-group>
+      <m-toggle v-model="disableDropping" label="Disable dropping" />
+      <m-toggle v-model="disableSorting" label="Disable sorting" />
+    </m-buttons-group>
+  </m-page-section>
+  <m-page-section>
+    <m-sortable-items
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
-      :item-class="`${$style.sortableItem} q-mr-sm`"
+      :item-class="$style.sortableItem"
       item-key="id"
       pull
       sort
@@ -60,14 +69,14 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>Sample tooltip</m-tooltip>
       </template>
-    </m-sortable>
-  </m-section>
-  <m-section>
-    <m-sortable
+    </m-sortable-items>
+  </m-page-section>
+  <m-page-section>
+    <m-sortable-items
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
-      :item-class="`${$style.sortableItem} q-mr-sm`"
+      :item-class="$style.sortableItem"
       item-key="id"
       put
       sort
@@ -76,15 +85,18 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>Sample tooltip</m-tooltip>
       </template>
-    </m-sortable>
-  </m-section>
-  <m-section>
-    <!-- eslint-disable-next-line vue/v-on-function-call -->
-    <m-droppable :class="$style.droppable" @dropped="dropped">D</m-droppable>
-  </m-section>
+    </m-sortable-items>
+  </m-page-section>
+  <m-page-section>
+    <m-droppable-items :class="$style.droppable" @dropped="dropped">
+      D
+    </m-droppable-items>
+  </m-page-section>
 </template>
 
 <style lang="scss" module>
+@use "sass:map";
+
 .droppable {
   display: flex;
   align-items: center;
@@ -104,6 +116,7 @@ export default defineComponent({
     justify-content: center;
     width: 50px;
     height: 50px;
+    margin-right: map.get($space-sm, "x");
     background: $grey-5;
     cursor: default;
   }

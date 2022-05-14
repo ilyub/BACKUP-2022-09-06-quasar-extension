@@ -1,17 +1,12 @@
 import type { GlobalComponent } from "./api";
 import type { QCardActionsProps, QCardActionsSlots } from "quasar";
 
-export interface CardActionsOwnProps {}
+export namespace CardActions {
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export type CardActionsParentProps = QCardActionsProps;
+  export interface ParentProps extends QCardActionsProps {}
 
-export interface CardActionsProps
-  extends CardActionsParentProps,
-    CardActionsOwnProps {}
+  export interface Props extends ParentProps {}
 
-export type CardActionsSlots = QCardActionsSlots;
-
-export type GlobalCardActions = GlobalComponent<
-  CardActionsProps,
-  CardActionsSlots
->;
+  export interface Slots extends QCardActionsSlots {}
+}

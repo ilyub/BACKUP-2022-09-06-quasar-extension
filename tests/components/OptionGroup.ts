@@ -1,9 +1,10 @@
 import { components } from "@";
 import * as testUtils from "@vue/test-utils";
 import { QOptionGroup } from "quasar";
+import type { extras } from "@";
 
-test.each([undefined, 1, "a"])("optionGroup", value => {
-  const options: components.OptionGroupOptions = [
+test.each([undefined, 1, "a"])("OptionGroup", value => {
+  const options: extras.OptionGroup.Options = [
     {
       disable: true,
       label: "Option 1",
@@ -14,11 +15,11 @@ test.each([undefined, 1, "a"])("optionGroup", value => {
   ];
 
   const wrapper = testUtils.mount(components.OptionGroup, {
-    props: { modelValue: undefined, options }
+    props: { options }
   });
 
-  const expected = [[value]];
+  const main = wrapper.findComponent(QOptionGroup);
 
-  wrapper.findComponent(QOptionGroup).vm.$emit("update:modelValue", value);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  main.vm.$emit("update:modelValue", value);
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[value]]);
 });

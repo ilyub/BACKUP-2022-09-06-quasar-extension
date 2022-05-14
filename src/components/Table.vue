@@ -1,89 +1,77 @@
 <script lang="ts">
-// eslint-disable-next-line no-warning-comments
-// fixme: Use QTh, https://github.com/quasarframework/quasar/issues/12845
 import { genericSortable } from "./Sortable.generic";
+import { Table } from "./Table.extras";
 import {
-  icons,
-  injectTableSettings,
-  isColumnsOrder,
-  isColumnWidths,
-  isHiddenColumns,
-  isPagination,
-  lang
-} from "./Table.extras";
-import {
+  directives,
+  override,
+  parentProps,
   prop,
-  propsToPropDefinitions,
+  skipCheck,
   validateEmit,
   validateProps,
-  useSlotsNames
+  plugins
 } from "./api";
-import { a, assert, fn, is, map, o, set } from "@skylib/functions";
+import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref } from "vue";
 import type {
-  Column,
-  Columns,
-  ColumnsOrder,
-  ColumnWidths,
-  HiddenColumns,
-  Pagination,
-  TableOwnProps,
-  TableParentProps,
-  TableSlots
-} from "./Table.extras";
-import type { QVirtualScroll } from "./extras";
-import type {
-  booleanU,
-  IndexedObject,
+  IndexedRecord,
   numberU,
   objects,
   Writable
 } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
 
+interface VirtualScrollDetails {
+  readonly direction: "decrease" | "increase";
+  readonly from: number;
+  readonly index: number;
+  readonly to: number;
+}
+
 export default defineComponent({
   name: "m-table",
-  components: { "m-sortable-column": genericSortable<Column>() },
+  directives: { debugId: directives.debugId("table") },
+  components: { "sortable-columns": genericSortable<Table.Column>() },
   inheritAttrs: false,
   props: {
-    ...propsToPropDefinitions<TableParentProps>(),
+    ...parentProps<Table.ParentProps>(),
     binaryStateSortOff: prop.boolean(),
     binaryStateSortOn: prop.boolean(),
-    columnWidths: prop.default<ColumnWidths>(new Map()),
-    columns: prop.default<Columns>([]),
-    columnsOrder: prop.default<ColumnsOrder>(new Map()),
+    columnWidths: prop.default<Table.Props["columnWidths"]>(new Map()),
+    columns: prop.default<Table.Props["columns"]>([]),
+    columnsOrder: prop.default<Table.Props["columnsOrder"]>(new Map()),
     externalSorting: prop.boolean(),
     flatOff: prop.boolean(),
     flatOn: prop.boolean(),
     headerSeparatorOff: prop.boolean(),
     headerSeparatorOn: prop.boolean(),
-    hiddenColumns: prop.default<HiddenColumns>(new Set()),
+    hiddenColumns: prop.default<Table.Props["hiddenColumns"]>(new Set()),
     manageColumns: prop.boolean(),
-    multiselect: prop.boolean(),
-    pagination: prop.default<Pagination>({}),
+    multiSelect: prop.boolean(),
+    pagination: prop.default<Table.Props["pagination"]>({}),
     resizableColumns: prop.boolean(),
-    rowKey: prop<string>(),
-    rows: prop.default<objects>([]),
+    rowKey: prop<Table.Props["rowKey"]>(),
+    rows: prop.default<Table.Props["rows"]>([]),
     selectByCheckbox: prop.boolean(),
     selectByRowClick: prop.boolean(),
-    selected: prop.default<objects>([]),
+    selected: prop.default<Table.Props["selected"]>([]),
     squareOff: prop.boolean(),
     squareOn: prop.boolean(),
     sticky: prop.boolean()
   },
   emits: {
-    "update:columnWidths": (value: ColumnWidths) => isColumnWidths(value),
-    "update:columnsOrder": (value: ColumnsOrder) => isColumnsOrder(value),
-    "update:hiddenColumns": (value: HiddenColumns) => isHiddenColumns(value),
-    "update:pagination": (value: Pagination) => isPagination(value),
-    "update:selected": (value: objects) => is.array.of(value, is.object)
+    "update:columnWidths": (value: Table.ColumnWidths) => skipCheck(value),
+    "update:columnsOrder": (value: Table.ColumnsOrder) => skipCheck(value),
+    "update:hiddenColumns": (value: Table.HiddenColumns) => skipCheck(value),
+    "update:pagination": (value: Table.PaginationEmit) => skipCheck(value),
+    "update:selected": (value: objects) => skipCheck(value)
   },
-  setup(props, { emit }) {
-    validateEmit<TableOwnProps>(emit);
-    validateProps<TableOwnProps>(props);
+  setup: (props, { emit }) => {
+    validateEmit<Table.OwnProps>(emit);
+    validateProps<Table.OwnProps>(props);
 
-    const allSelected = computed<booleanU>(() => {
+    const allSelected = computed(() => {
       if (props.rows.length)
         switch (selected.value.length) {
           case 0:
@@ -99,35 +87,36 @@ export default defineComponent({
       return undefined;
     });
 
-    const selected = computed<Writable<objects>>(() => {
-      assert.not.empty(props.rowKey);
+    const icons = Table.icons;
 
-      return _.intersectionBy(props.selected, props.rows, props.rowKey);
-    });
+    const lang = Table.lang;
 
-    const settings = injectTableSettings();
+    const main = ref<QTable>();
 
-    const main = ref<QTable | undefined>(undefined);
+    const selected = computed(() =>
+      _.intersectionBy(props.selected, props.rows, as.not.empty(props.rowKey))
+    );
 
-    const dialog = ref<QDialog | undefined>(undefined);
+    const settings = Table.injectSettings();
 
     return {
       allSelected,
-      binaryStateSort: computed<boolean>(() =>
-        settings.value.binaryStateSort
-          ? !props.binaryStateSortOff
-          : props.binaryStateSortOn
+      binaryStateSort: computed(() =>
+        override(
+          settings.value.binaryStateSort,
+          props.binaryStateSortOn,
+          props.binaryStateSortOff
+        )
       ),
-      columnSortingIcon: computed<string>(() =>
+      columnSortingIcon: computed(() =>
         props.pagination.descending ?? false
           ? icons.descending
           : icons.ascending
       ),
-      columnSortingIconShow(column: Column): boolean {
-        return column.name === props.pagination.sortBy;
-      },
-      columnStyle(column: Column): IndexedObject<string> {
-        return o.removeUndefinedKeys({
+      columnSortingIconShow: (column: Table.Column): boolean =>
+        column.name === props.pagination.sortBy,
+      columnStyle: (column: Table.Column): IndexedRecord<string> =>
+        o.removeUndefinedKeys({
           maxWidth: is.not.empty(column.maxWidth)
             ? `${column.maxWidth}px`
             : undefined,
@@ -137,33 +126,8 @@ export default defineComponent({
           width: is.not.empty(column.width)
             ? `${props.columnWidths.get(column.name) ?? column.width}px`
             : undefined
-        });
-      },
-      deselectAll(): void {
-        emit("update:selected", []);
-      },
-      deselectAllDisable: computed<boolean>(
-        () => props.rows.length === 0 || allSelected.value === false
-      ),
-      deselectAllIcon: computed<string>(() => icons.deselectAll),
-      deselectAllLabel: computed<string>(() => lang.DeselectAll),
-      dialog,
-      empty: computed<boolean>(() => props.rows.length === 0),
-      finalCell: computed<boolean>(() =>
-        props.columns.some(column => is.not.empty(column.width))
-      ),
-      flat: computed<boolean>(() =>
-        settings.value.flat ? !props.flatOff : props.flatOn
-      ),
-      headerSeparator: computed<boolean>(() =>
-        settings.value.headerSeparator
-          ? !props.headerSeparatorOff
-          : props.headerSeparatorOn
-      ),
-      icons,
-      lang,
-      main,
-      manageColumnsRows: computed<Writable<Columns>>(() =>
+        }),
+      columnsManagementRows: computed<Writable<Table.Columns>>(() =>
         props.columns
           .map((column, index) => {
             return {
@@ -173,52 +137,68 @@ export default defineComponent({
           })
           .sort((x, y) => x.order - y.order)
       ),
-      manageColumnsShow: ref(false),
-      onScroll(details: QVirtualScroll.VirtualScrollDetails): void {
-        if (
-          is.not.empty(props.pagination.limit) &&
-          details.to === props.pagination.limit - 1
-        )
-          emit("update:pagination", {
-            ...props.pagination,
-            limit: props.pagination.limit + settings.value.growPageBy
-          });
+      columnsManagementShow: ref(false),
+      debugDialog: ref<QDialog>(),
+      deselectAll: (): void => {
+        emit("update:selected", []);
       },
-      resizerUpdateValue(column: Column, width: number): void {
+      deselectAllDisable: computed(
+        () => props.rows.length === 0 || allSelected.value === false
+      ),
+      deselectAllIcon: computed(() => icons.deselectAll),
+      deselectAllLabel: computed(() => lang.DeselectAll),
+      empty: computed(() => props.rows.length === 0),
+      flat: computed(() =>
+        override(settings.value.flat, props.flatOn, props.flatOff)
+      ),
+      headerCellClick: (column: Table.Column): void => {
+        if (column.sortable) as.not.empty(main.value).sort(column.name);
+      },
+      headerSeparator: computed(() =>
+        override(
+          settings.value.headerSeparator,
+          props.headerSeparatorOn,
+          props.headerSeparatorOff
+        )
+      ),
+      icons,
+      lang,
+      main,
+      resizerUpdate: (column: Table.Column, width: number): void => {
         emit(
           "update:columnWidths",
           map.set(props.columnWidths, column.name, width)
         );
       },
-      resizerValue(column: Column): numberU {
-        return is.not.empty(column.width)
+      resizerValue: (column: Table.Column): numberU =>
+        is.not.empty(column.width)
           ? props.columnWidths.get(column.name) ?? column.width
-          : undefined;
-      },
-      rowClick(row: object): void {
-        if (props.selectByRowClick) {
-          assert.not.empty(props.rowKey);
+          : undefined,
+      rowClick: (row: object): void => {
+        if (props.selectByRowClick)
           emit(
             "update:selected",
-            a.toggleBy(selected.value, row, props.rowKey)
+            a.toggleBy(selected.value, row, as.not.empty(props.rowKey))
           );
-        }
       },
-      selectAll(): void {
+      selectAll: (): void => {
         emit("update:selected", props.rows);
       },
-      selectAllDisable: computed<boolean>(
+      selectAllDisable: computed(
         () => props.rows.length === 0 || allSelected.value === true
       ),
-      selectAllIcon: computed<string>(() => icons.selectAll),
-      selectAllLabel: computed<string>(() => lang.SelectAll),
-      selection: computed<"multiple" | "none" | "single">(() => {
+      selectAllIcon: computed(() => icons.selectAll),
+      selectAllLabel: computed(() => lang.SelectAll),
+      selection: computed(() => {
         if (props.selectByCheckbox || props.selectByRowClick)
-          return props.multiselect ? "multiple" : "single";
+          return props.multiSelect ? "multiple" : "single";
 
         return "none";
       }),
-      slotNames: useSlotsNames<TableSlots>()(
+      showFinalCell: computed(() =>
+        props.columns.some(column => is.not.empty(column.width))
+      ),
+      slotNames: plugins.useSlotNames<Table.Slots>()(
         "body",
         "body-cell",
         "body-cell-context",
@@ -233,13 +213,10 @@ export default defineComponent({
         "no-data",
         "steady-bottom"
       ),
-      sortMethod: computed<SortMethod | undefined>(() =>
+      sortMethod: computed(() =>
         props.externalSorting ? fn.identity : undefined
       ),
-      square: computed<boolean>(() =>
-        settings.value.square ? !props.squareOff : props.squareOn
-      ),
-      tableColumns: computed<Writable<Columns>>(() =>
+      sortedColumns: computed(() =>
         props.columns
           .filter(column => !props.hiddenColumns.has(column.name))
           .map((column, index) => {
@@ -250,31 +227,26 @@ export default defineComponent({
           })
           .sort((x, y) => x.order - y.order)
       ),
-      tableColumnsItemClick(column: Column): void {
-        if (column.sortable) {
-          assert.not.empty(main.value);
-          main.value.sort(column.name);
-        }
-      },
-      tableRows: computed<Writable<objects>>(() => a.clone(props.rows)),
-      tableSelected: computed<Writable<objects>>(() => a.clone(props.selected)),
-      toggleSelection(): void {
+      square: computed(() =>
+        override(settings.value.square, props.squareOn, props.squareOff)
+      ),
+      toggleSelection: (): void => {
         emit("update:selected", allSelected.value === false ? props.rows : []);
       },
-      toggleSelectionDisable: computed<boolean>(() => props.rows.length === 0),
-      toggleSelectionIcon: computed<string>(() =>
+      toggleSelectionDisable: computed(() => props.rows.length === 0),
+      toggleSelectionIcon: computed(() =>
         allSelected.value === false ? icons.selectAll : icons.deselectAll
       ),
-      toggleSelectionLabel: computed<string>(() =>
+      toggleSelectionLabel: computed(() =>
         allSelected.value === false ? lang.SelectAll : lang.DeselectAll
       ),
-      updateColumnsOrder(columns: Columns): void {
+      updateColumnsOrder: (columns: Table.Columns): void => {
         emit(
           "update:columnsOrder",
           new Map(columns.map((column, index) => [column.name, index]))
         );
       },
-      updateHiddenColumns(column: Column, show: boolean): void {
+      updateHiddenColumns: (column: Table.Column, show: boolean): void => {
         emit(
           "update:hiddenColumns",
           show
@@ -282,18 +254,11 @@ export default defineComponent({
             : set.add(props.hiddenColumns, column.name)
         );
       },
-      updatePagination(pagination: Pagination): void {
-        pagination = o.removeUndefinedKeys({
-          ...props.pagination,
-          ...pagination,
-          sortBy: is.not.empty(pagination.sortBy)
-            ? pagination.sortBy
-            : undefined
-        });
-
+      updatePagination: (pagination: Table.PaginationEmit): void => {
+        pagination = { ...props.pagination, ...pagination };
         emit("update:pagination", pagination);
 
-        const descending1 = pagination.descending ?? false;
+        const descending1 = pagination.descending;
 
         const descending2 = props.pagination.descending ?? false;
 
@@ -301,20 +266,31 @@ export default defineComponent({
 
         const sortBy2 = props.pagination.sortBy;
 
-        if (descending1 === descending2 && sortBy1 === sortBy2) {
+        if (
+          descending1 === descending2 &&
+          cast.stringU(sortBy1) === cast.stringU(sortBy2)
+        ) {
           // Do nothing
-        } else {
-          assert.not.empty(main.value);
-          main.value.scrollTo(0, "start");
-        }
-      }
+        } else as.not.empty(main.value).scrollTo(0, "start");
+      },
+      virtualScroll: (details: VirtualScrollDetails): void => {
+        if (
+          is.not.empty(props.pagination.limit) &&
+          details.to === props.pagination.limit - 1
+        )
+          emit("update:pagination", {
+            ...props.pagination,
+            descending: props.pagination.descending ?? false,
+            limit: props.pagination.limit + settings.value.growPageBy,
+            page: 1,
+            rowsPerPage: 0
+          });
+      },
+      writableRows: computed(() => a.clone(props.rows)),
+      writableSelected: computed(() => a.clone(props.selected))
     };
   }
 });
-
-interface SortMethod {
-  (rows: objects): objects;
-}
 </script>
 
 <template>
@@ -323,16 +299,14 @@ interface SortMethod {
     ref="main"
     :binary-state-sort="binaryStateSort"
     class="m-table"
-    :class="{
-      'm-table__sticky': sticky
-    }"
-    :columns="tableColumns"
+    :class="{ 'm-table__sticky': sticky }"
+    :columns="sortedColumns"
     :flat="flat"
     :pagination="pagination"
     :row-key="rowKey"
-    :rows="tableRows"
+    :rows="writableRows"
     :rows-per-page-options="[0]"
-    :selected="tableSelected"
+    :selected="writableSelected"
     :selection="selection"
     :sort-method="sortMethod"
     :square="square"
@@ -341,19 +315,19 @@ interface SortMethod {
     :virtual-scroll-sticky-size-start="48"
     @update:pagination="updatePagination"
     @update:selected="$emit('update:selected', $event)"
-    @virtual-scroll="onScroll"
+    @virtual-scroll="virtualScroll"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #header="data">
       <slot :name="slotNames.header" v-bind="data">
-        <tr>
+        <q-tr>
           <m-menu
             v-if="
               manageColumns ||
-              slotNames.has('header-menu-append') ||
-              slotNames.has('header-menu-prepend')
+              slotNames.has('header-menu-prepend') ||
+              slotNames.has('header-menu-append')
             "
             auto-close
             context-menu
@@ -375,10 +349,10 @@ interface SortMethod {
                 :toggle-selection-icon="toggleSelectionIcon"
                 :toggle-selection-label="toggleSelectionLabel"
               ></slot>
-              <m-list-item
+              <m-menu-item
                 :caption="lang.ManageColumns"
                 :icon="icons.manageColumns"
-                @click="manageColumnsShow = true"
+                @click="columnsManagementShow = true"
               />
               <slot
                 :all-selected="allSelected"
@@ -398,7 +372,7 @@ interface SortMethod {
               ></slot>
             </q-list>
           </m-menu>
-          <th v-if="selectByCheckbox" class="m-table__selection-cell">
+          <q-th v-if="selectByCheckbox" class="m-table__selection-cell">
             <slot
               :all-selected="allSelected"
               :deselect-all="deselectAll"
@@ -416,23 +390,26 @@ interface SortMethod {
               :toggle-selection-label="toggleSelectionLabel"
             >
               <q-checkbox
-                v-if="multiselect"
+                v-if="multiSelect"
                 v-model="data.selected"
+                v-debug-id="'header-select'"
                 :disable="empty"
               />
             </slot>
-          </th>
-          <th
-            v-for="column in tableColumns"
+          </q-th>
+          <q-th
+            v-for="column in sortedColumns"
             :key="column.name"
+            v-debug-id="'header-cell'"
             class="m-table__header-cell"
             :class="{
               'cursor-pointer': column.sortable,
               'm-table__header-cell__separator': headerSeparator
             }"
-            @click="tableColumnsItemClick(column)"
+            @click="headerCellClick(column)"
           >
             <div
+              v-debug-id="'header-cell-wrapper'"
               class="m-table__header-cell__wrapper"
               :style="columnStyle(column)"
             >
@@ -472,20 +449,21 @@ interface SortMethod {
             </div>
             <m-resizer
               v-if="resizableColumns"
-              class="m-table__header-cell__resizer"
+              v-debug-id="'resizer'"
               :max="column.maxWidth"
               :min="column.minWidth"
               :model-value="resizerValue(column)"
-              @update:model-value="resizerUpdateValue(column, $event)"
+              @update:model-value="resizerUpdate(column, $event)"
             />
-          </th>
-          <th v-if="finalCell" class="m-table__final-cell"></th>
-        </tr>
+          </q-th>
+          <q-th v-if="showFinalCell" class="m-table__final-cell" />
+        </q-tr>
       </slot>
     </template>
     <template #body="data">
       <slot :name="slotNames.body" v-bind="data">
-        <tr
+        <q-tr
+          v-debug-id="'body-row'"
           :class="{
             'm-table__select-by-row-click': selectByRowClick,
             'selected': data.selected
@@ -509,7 +487,7 @@ interface SortMethod {
             :toggle-selection-icon="toggleSelectionIcon"
             :toggle-selection-label="toggleSelectionLabel"
           ></slot>
-          <td v-if="selectByCheckbox" class="m-table__selection-cell">
+          <q-td v-if="selectByCheckbox" class="m-table__selection-cell">
             <slot
               :all-selected="allSelected"
               :deselect-all="deselectAll"
@@ -529,9 +507,9 @@ interface SortMethod {
             >
               <q-checkbox v-model="data.selected" />
             </slot>
-          </td>
-          <td
-            v-for="column in tableColumns"
+          </q-td>
+          <q-td
+            v-for="column in sortedColumns"
             :key="column.name"
             class="m-table__body-cell"
           >
@@ -578,9 +556,9 @@ interface SortMethod {
                 {{ column.field(data.row) }}
               </slot>
             </div>
-          </td>
-          <td v-if="finalCell" class="m-table__final-cell"></td>
-        </tr>
+          </q-td>
+          <q-td v-if="showFinalCell" class="m-table__final-cell" />
+        </q-tr>
       </slot>
     </template>
     <template
@@ -628,42 +606,44 @@ interface SortMethod {
       ></slot>
     </template>
   </q-table>
-  <q-dialog ref="dialog" v-model="manageColumnsShow">
-    <m-card class="m-table__dialog" :title="lang.ManageColumns">
+  <q-dialog ref="debugDialog" v-model="columnsManagementShow">
+    <m-card class="m-table__columns-management" :title="lang.ManageColumns">
       <m-card-section>
         <q-markup-table
-          class="m-table__dialog__table"
+          class="m-table__columns-management__table"
           flat
           separator="horizontal"
         >
-          <m-sortable-column
-            class="m-table__dialog__sortable"
-            group="m-table__column-management"
+          <sortable-columns
+            v-debug-id="'dialog-sortable'"
+            group="m-table__columns-management"
             item-key="name"
             item-tag="tr"
-            :model-value="manageColumnsRows"
+            :model-value="columnsManagementRows"
             sort
             tag="tbody"
             @update:model-value="updateColumnsOrder"
           >
             <template #item="{ item: column }">
-              <tr>
-                <td class="m-table__dialog__label">
+              <q-tr>
+                <q-td
+                  v-debug-id="'dialog-label'"
+                  class="m-table__columns-management__label"
+                >
                   {{ column.label }}
-                </td>
-                <td class="text-right">
+                </q-td>
+                <q-td class="text-right">
                   <q-checkbox
-                    class="m-table__dialog__hidden-column"
+                    v-debug-id="'dialog-hidden'"
                     :model-value="!hiddenColumns.has(column.name)"
                     @update:model-value="updateHiddenColumns(column, $event)"
                   />
-                </td>
-              </tr>
+                </q-td>
+              </q-tr>
             </template>
-          </m-sortable-column>
+          </sortable-columns>
         </q-markup-table>
       </m-card-section>
-      <m-card-actions />
     </m-card>
   </q-dialog>
 </template>

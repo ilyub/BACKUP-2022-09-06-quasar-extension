@@ -1,73 +1,70 @@
-import { createInjectable } from "./api";
+import { injectableSettings } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import type { IconButtonProps, IconButtonSlots } from "./IconButton.extras";
+import type { IconButton } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
-import type { numberU, stringU } from "@skylib/functions";
+import type { stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {
     namespace icons {
-      interface Icon extends ModuleIcons {}
+      interface Icon extends IconPicker.Icon {}
     }
 
     namespace lang {
-      interface Word extends ModuleWord {}
+      interface Word extends IconPicker.Word {}
     }
   }
 }
 
-export const {
-  inject: injectIconPickerSettings,
-  provide: provideIconPickerSettings,
-  test: testIconPickerSettings
-} = createInjectable<IconPickerSettings>(() => {
-  return { iconTooltips: false };
-});
+export namespace IconPicker {
+  export const defaultSettings: Settings = {
+    cols: 7,
+    iconTooltips: false,
+    rows: 5,
+    spinnerSize: "70px"
+  };
 
-export const icons: baseIcons.Icons<"chevronLeft" | "chevronRight" | "close"> =
-  baseIcons;
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
 
-export const lang: baseLang.Lang<keyof ModuleWord, never> = baseLang;
+  export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-export type GlobalIconPicker = GlobalComponent<
-  IconPickerProps,
-  IconPickerSlots
->;
+  export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
-export interface IconPickerOwnProps {
-  readonly cols?: numberU;
-  readonly modelValue?: stringU;
-  /**
-   * Emits model value.
-   *
-   * @param value - Value.
-   */
-  readonly "onUpdate:modelValue"?: (value: stringU) => void;
-  readonly placeholder: string;
-  readonly rows?: numberU;
-  readonly spinnerSize?: stringU;
-}
+  export interface Global extends GlobalComponent<Props, Slots> {}
 
-export interface IconPickerParentProps
-  extends Omit<IconButtonProps, "modelValue" | "onUpdate:modelValue"> {}
+  export interface Icon {
+    readonly chevronLeft: true;
+    readonly chevronRight: true;
+    readonly close: true;
+  }
 
-export interface IconPickerProps
-  extends IconPickerParentProps,
-    IconPickerOwnProps {}
+  export interface OwnProps {
+    readonly modelValue?: stringU;
+    /**
+     * Emits model value.
+     *
+     * @param value - Value.
+     */
+    readonly "onUpdate:modelValue"?: (value: stringU) => void;
+    readonly placeholder: string;
+  }
 
-export interface IconPickerSettings {
-  readonly iconTooltips: boolean;
-}
+  export interface ParentProps extends Omit<IconButton.Props, keyof OwnProps> {}
 
-export type IconPickerSlots = IconButtonSlots;
+  export interface Props extends ParentProps, OwnProps {}
 
-export interface ModuleIcons {
-  readonly chevronLeft: true;
-  readonly chevronRight: true;
-  readonly close: true;
-}
+  export interface Settings {
+    readonly cols: number;
+    readonly iconTooltips: boolean;
+    readonly rows: number;
+    readonly spinnerSize: string;
+  }
 
-export interface ModuleWord {
-  readonly IconPicker: true;
-  readonly Of: true;
+  export interface Slots extends IconButton.Slots {}
+
+  export interface Word {
+    readonly IconPicker: true;
+    readonly Of: true;
+  }
 }

@@ -1,27 +1,21 @@
 <script lang="ts">
-import { propsToPropDefinitions, validateProps, useSlotsNames } from "./api";
+import { parentProps, plugins } from "./api";
 import { defineComponent } from "vue";
-import type {
-  SectionOwnProps,
-  SectionParentProps,
-  SectionSlots
-} from "./Section.extras";
+import type { Section } from "./Section.extras";
 
 export default defineComponent({
   name: "m-section",
-  props: propsToPropDefinitions<SectionParentProps>(),
-  setup(props) {
-    validateProps<SectionOwnProps>(props);
-
-    return { slotNames: useSlotsNames<SectionSlots>()() };
+  props: parentProps<Section.ParentProps>(),
+  setup: () => {
+    return { slotNames: plugins.useSlotNames<Section.Slots>()() };
   }
 });
 </script>
 
 <template>
   <m-switchable class="m-section">
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </m-switchable>
 </template>

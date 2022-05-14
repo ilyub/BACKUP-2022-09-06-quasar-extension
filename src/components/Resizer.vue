@@ -1,11 +1,8 @@
 <script lang="ts">
-// eslint-disable-next-line no-warning-comments
-// fixme: Get rid of m-resizer__root
-import { injectResizerSettings } from "./Resizer.extras";
-import { prop, validateEmit, validateProps, useSlotsNames } from "./api";
-import { assert, is } from "@skylib/functions";
+import { Resizer } from "./Resizer.extras";
+import { prop, skipCheck, validateEmit, validateProps } from "./api";
+import { as, assert, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
-import type { ResizerProps, ResizerSlots } from "./Resizer.extras";
 import type { numberU } from "@skylib/functions";
 
 const isOffset = is.object.factory<Offset>({ x: is.number, y: is.number }, {});
@@ -19,31 +16,40 @@ const isResizerEvent = is.object.factory<ResizerEvent>(
   {}
 );
 
+interface Offset {
+  readonly x: number;
+  readonly y: number;
+}
+
+interface ResizerEvent {
+  readonly isFinal: boolean;
+  readonly isFirst: boolean;
+  readonly offset: Offset;
+}
+
 export default defineComponent({
   name: "m-resizer",
   props: {
-    max: prop<number>(),
-    min: prop.default(0),
-    modelValue: prop<number>()
+    max: prop<Resizer.Props["max"]>(),
+    min: prop.default<Resizer.Props["min"]>(0),
+    modelValue: prop<Resizer.Props["modelValue"]>()
   },
-  emits: { "update:modelValue": (value: number) => is.number(value) },
-  setup(props, { emit }) {
-    validateEmit<ResizerProps>(emit);
-    validateProps<ResizerProps>(props);
+  emits: { "update:modelValue": (value: number) => skipCheck(value) },
+  setup: (props, { emit }) => {
+    validateEmit<Resizer.OwnProps>(emit);
+    validateProps<Resizer.OwnProps>(props);
 
     let initialValue: numberU;
 
-    const settings = injectResizerSettings();
+    const settings = Resizer.injectSettings();
 
     return {
-      handlePan(event: unknown): void {
+      handlePan: (event: unknown): void => {
         assert.byGuard(event, isResizerEvent);
 
         if (event.isFirst) initialValue = props.modelValue;
 
-        assert.not.empty(initialValue);
-
-        const value = initialValue + event.offset.x;
+        const value = as.not.empty(initialValue) + event.offset.x;
 
         const limitedValue = limitMin(limitMax(value));
 
@@ -55,10 +61,9 @@ export default defineComponent({
           document.documentElement.style.cursor =
             limitedValue === value ? "ew-resize" : "not-allowed";
       },
-      show: computed<boolean>(
+      show: computed(
         () => is.not.empty(props.modelValue) && !settings.value.disable
-      ),
-      slotNames: useSlotsNames<ResizerSlots>()("default")
+      )
     };
 
     function limitMax(value: number): number {
@@ -70,25 +75,10 @@ export default defineComponent({
     }
   }
 });
-
-interface Offset {
-  readonly x: number;
-  readonly y: number;
-}
-
-interface ResizerEvent {
-  readonly isFinal: boolean;
-  readonly isFirst: boolean;
-  readonly offset: Offset;
-}
 </script>
 
 <template>
-  <div
-    v-if="show"
-    v-touch-pan.horizontal.mouse="handlePan"
-    class="m-resizer m-resizer__root"
-  >
-    <slot :name="slotNames.default"></slot>
+  <div v-if="show" v-touch-pan.horizontal.mouse="handlePan" class="m-resizer">
+    <slot></slot>
   </div>
 </template>

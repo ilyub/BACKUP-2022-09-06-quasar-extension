@@ -1,54 +1,44 @@
 <script lang="ts">
-import { injectDisable, provideDisable } from "./Switchable.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  useSlotsNames
-} from "./api";
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Form] */
+
+import { prop, parentProps, validateProps, plugins, injections } from "./api";
 import { handlePromise } from "@skylib/facades";
-import { assert } from "@skylib/functions";
+import { as } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type {
-  FormOwnProps,
-  FormParentProps,
-  FormSlots,
-  OnSubmit,
-  OnSubmitAsync
-} from "./Form.extras";
+import type { Form } from "./Form.extras";
 
 export default defineComponent({
   name: "m-form",
   props: {
-    ...propsToPropDefinitions<FormParentProps>(),
-    asyncTaskType: prop<handlePromise.Type>(),
-    onSubmit: prop<OnSubmit>(),
-    onSubmitAsync: prop<OnSubmitAsync>()
+    ...parentProps<Form.ParentProps>(),
+    asyncTaskType: prop<Form.Props["asyncTaskType"]>(),
+    onSubmit: prop<Form.Props["onSubmit"]>(),
+    onSubmitAsync: prop<Form.Props["onSubmitAsync"]>()
   },
-  setup(props) {
-    validateProps<FormOwnProps>(props);
+  setup: props => {
+    validateProps<Form.OwnProps>(props);
 
     const disable = ref(false);
 
-    const parentDisable = injectDisable();
+    const globalDisable = injections.globalDisable.inject();
 
-    provideDisable(() => parentDisable.value || disable.value);
+    injections.globalDisable.provide(
+      () => globalDisable.value || disable.value
+    );
 
     return {
-      slotNames: useSlotsNames<FormSlots>()(),
-      submit(evt: Event | SubmitEvent): void {
-        const { asyncTaskType, onSubmit, onSubmitAsync } = props;
+      slotNames: plugins.useSlotNames<Form.Slots>()(),
+      submit: (event: Event): void => {
+        if (props.onSubmit) props.onSubmit(event);
 
-        if (onSubmit) onSubmit(evt);
-
-        if (onSubmitAsync)
-          if (asyncTaskType) handlePromise.verbose(submit, asyncTaskType);
+        if (props.onSubmitAsync)
+          if (props.asyncTaskType)
+            handlePromise.verbose(submit, props.asyncTaskType);
           else handlePromise.silent(submit);
 
         async function submit(): Promise<void> {
-          assert.not.empty(onSubmitAsync);
           disable.value = true;
-          await onSubmitAsync(evt);
+          await as.not.empty(props.onSubmitAsync)(event);
           disable.value = false;
         }
       }
@@ -59,8 +49,8 @@ export default defineComponent({
 
 <template>
   <q-form class="m-form" @submit="submit">
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
   </q-form>
 </template>

@@ -1,67 +1,38 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[BaseButton] */
+/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.BaseButton] */
 
-import { injectDisable } from "./Switchable.extras";
-import {
-  prop,
-  propsToPropDefinitions,
-  validateProps,
-  confirmedClickEmits,
-  confirmedClickProps,
-  useConfirmedClick,
-  useSlotsNames
-} from "./api";
-import { handlePromise } from "@skylib/facades";
+import { prop, parentProps, validateProps, plugins, injections } from "./api";
 import { is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
-import type {
-  AsyncClick,
-  BaseButtonOwnProps,
-  BaseButtonParentProps,
-  BaseButtonSlots
-} from "./BaseButton.extras";
-import type { Direction } from "./Tooltip.extras";
+import { computed, defineComponent } from "vue";
+import type { BaseButton } from "./BaseButton.extras";
 
 export default defineComponent({
   name: "m-base-button",
   props: {
-    ...propsToPropDefinitions<BaseButtonParentProps>(),
-    ...confirmedClickProps,
-    asyncClick: prop<AsyncClick>(),
+    ...parentProps<BaseButton.ParentProps>(),
+    ...plugins.useAsyncClick.props,
+    ...plugins.useConfirmedClick.props,
     disable: prop.boolean(),
     loading: prop.boolean(),
-    tooltip: prop<string>(),
-    tooltipDirection: prop<Direction>()
+    tooltip: prop<BaseButton.Props["tooltip"]>(),
+    tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>()
   },
-  emits: confirmedClickEmits,
-  setup(props, { emit }) {
-    validateProps<BaseButtonOwnProps>(props);
+  setup: props => {
+    validateProps<BaseButton.OwnProps>(props);
 
-    const { confirmedClick } = useConfirmedClick(props, emit);
+    const asyncClick = plugins.useAsyncClick(props);
 
-    const asyncClickActive = ref(false);
+    const confirmedClick = plugins.useConfirmedClick(props);
 
     return {
-      asyncClickActive,
-      click(): void {
+      asyncClick,
+      click: (): void => {
+        asyncClick();
         confirmedClick();
-
-        const asyncClick = props.asyncClick;
-
-        if (asyncClick)
-          handlePromise.silent(async () => {
-            asyncClickActive.value = true;
-
-            try {
-              await asyncClick();
-            } finally {
-              asyncClickActive.value = false;
-            }
-          });
       },
-      globalDisable: injectDisable(),
-      hasTooltip: computed<boolean>(() => is.not.empty(props.tooltip)),
-      slotNames: useSlotsNames<BaseButtonSlots>()("default")
+      globalDisable: injections.globalDisable.inject(),
+      hasTooltip: computed(() => is.not.empty(props.tooltip)),
+      slotNames: plugins.useSlotNames<BaseButton.Slots>()("default")
     };
   }
 });
@@ -71,11 +42,11 @@ export default defineComponent({
   <q-btn
     class="m-base-button"
     :disable="disable || globalDisable"
-    :loading="loading || asyncClickActive"
+    :loading="loading || asyncClick.active.value"
     @click="click"
   >
-    <template v-for="slotName in slotNames.passThroughSlots" #[slotName]="data">
-      <slot :name="slotName" v-bind="data ?? {}"></slot>
+    <template v-for="name in slotNames.passThroughSlots" #[name]="data">
+      <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #default>
       <slot :name="slotNames.default"></slot>
