@@ -19,6 +19,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("datetime-picker") },
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),
+    ...plugins.useValidation.props,
     max: prop<DatetimePicker.Props["max"]>(),
     min: prop<DatetimePicker.Props["min"]>(),
     modelValue: prop<DatetimePicker.Props["modelValue"]>()
@@ -94,6 +95,8 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
+    const validation = plugins.useValidation(props, () => props.modelValue);
+
     return {
       date: computed(() =>
         pickerObject.value ? pickerObject.value.format("E, d MMM") : "\u2014"
@@ -125,13 +128,14 @@ export default defineComponent({
         pickerValue.value = modelObject.value?.toString();
       },
       fieldUpdate: (value: unknown): void => {
-        if (is.empty(value)) emit("update:modelValue", undefined);
+        if (is.empty(value)) emitModelValue(undefined);
       },
       fieldValue: computed(() =>
         modelObject.value?.format("E, d MMM yyyy HHH:mm A")
       ),
       icons: DatetimePicker.icons,
       lang: DatetimePicker.lang,
+      main: validation.target,
       nextClick: (): void => {
         step.value = "time";
       },
@@ -158,8 +162,9 @@ export default defineComponent({
       prevClick: (): void => {
         step.value = "date";
       },
+      rules: validation.rules,
       save: (): void => {
-        emit("update:modelValue", pickerObject.value?.toString());
+        emitModelValue(pickerObject.value?.toString());
       },
       slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
@@ -202,28 +207,35 @@ export default defineComponent({
         pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
       )
     };
+
+    function emitModelValue(value: stringU): void {
+      emit("update:modelValue", value);
+      validation.change();
+    }
   }
 });
 </script>
 
 <template>
   <q-field
+    ref="main"
     class="m-datetime-picker"
     dense
     :model-value="fieldValue"
+    :rules="rules"
     @update:model-value="fieldUpdate"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #control>
-      <slot :name="slotNames.control">
+    <template #control="data">
+      <slot :name="slotNames.control" v-bind="data">
         <div
           v-debug-id="'control'"
           class="cursor-pointer fit items-center row"
           @click="fieldClick"
         >
-          {{ fieldValue }}
+          {{ data.modelValue }}
         </div>
         <q-dialog v-model="dialogShow">
           <m-card v-debug-id="'dialog'" class="m-datetime-picker__dialog">

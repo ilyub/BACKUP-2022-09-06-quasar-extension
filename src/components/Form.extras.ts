@@ -1,9 +1,11 @@
 import type { GlobalComponent } from "./api";
 import type { handlePromise } from "@skylib/facades";
-import type { QFormProps, QFormSlots } from "quasar";
+import type { QForm, QFormProps, QFormSlots } from "quasar";
 
 export namespace Form {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QForm;
+  }
 
   export interface OwnProps {
     readonly asyncTaskType?: handlePromise.Type | undefined;

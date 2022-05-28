@@ -20,6 +20,7 @@ export default defineComponent({
   name: "m-input",
   props: {
     ...parentProps<Input.ParentProps>(),
+    ...plugins.useValidation.props,
     disable: prop.boolean(),
     modelValue: prop<Input.Props["modelValue"]>()
   },
@@ -28,8 +29,13 @@ export default defineComponent({
     validateEmit<Input.OwnProps>(emit);
     validateProps<Input.OwnProps>(props);
 
+    const validation = plugins.useValidation(props, () => props.modelValue);
+
     return {
+      change: validation.change,
       globalDisable: injections.globalDisable.inject(),
+      main: validation.target,
+      rules: validation.rules,
       slotNames: plugins.useSlotNames<Button.Slots>()(),
       update: (value: NumStrE): void => {
         emit(
@@ -44,10 +50,13 @@ export default defineComponent({
 
 <template>
   <q-input
+    ref="main"
     class="m-input"
     dense
     :disable="disable || globalDisable"
     :model-value="modelValue"
+    :rules="rules"
+    @change="change"
     @update:model-value="update"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">

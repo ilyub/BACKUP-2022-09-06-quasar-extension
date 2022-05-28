@@ -1,5 +1,5 @@
 import { icons as baseIcons } from "@skylib/facades";
-import type { GlobalComponent, VNodes } from "./api";
+import type { GlobalComponent, plugins, VNodes } from "./api";
 import type { booleanU, numberU, NumStrE } from "@skylib/functions";
 import type { QFieldProps, QFieldSlots } from "quasar";
 
@@ -32,7 +32,7 @@ export namespace NumericInput {
     readonly chevronRight: true;
   }
 
-  export interface OwnProps {
+  export interface OwnProps extends plugins.useValidation.Props<numberU> {
     readonly bigStep?: numberU;
     readonly max?: numberU;
     readonly min?: numberU;

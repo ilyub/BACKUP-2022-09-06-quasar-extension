@@ -1,5 +1,5 @@
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, plugins } from "./api";
 import type { stringU } from "@skylib/functions";
 import type { QFieldProps, QFieldSlots } from "quasar";
 
@@ -30,7 +30,7 @@ export namespace DatetimePicker {
     readonly pm: true;
   }
 
-  export interface OwnProps {
+  export interface OwnProps extends plugins.useValidation.Props<stringU> {
     readonly max?: stringU;
     readonly min?: stringU;
     readonly modelValue?: stringU;

@@ -6,6 +6,7 @@ import { handlePromise } from "@skylib/facades";
 import { as } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { Form } from "./Form.extras";
+import type { QForm } from "quasar";
 
 export default defineComponent({
   name: "m-form",
@@ -18,28 +19,47 @@ export default defineComponent({
   setup: props => {
     validateProps<Form.OwnProps>(props);
 
-    const disable = ref(false);
+    const disable = ref(0);
 
     const globalDisable = injections.globalDisable.inject();
 
+    const main = ref<QForm>();
+
+    const submitting = ref(0);
+
     injections.globalDisable.provide(
-      () => globalDisable.value || disable.value
+      () => globalDisable.value || disable.value > 0
     );
+    injections.submitting.provide(() => submitting.value > 0);
 
     return {
+      main,
       slotNames: plugins.useSlotNames<Form.Slots>()(),
       submit: (event: Event): void => {
-        if (props.onSubmit) props.onSubmit(event);
-
-        if (props.onSubmitAsync)
-          if (props.asyncTaskType)
-            handlePromise.verbose(submit, props.asyncTaskType);
-          else handlePromise.silent(submit);
+        if (props.asyncTaskType)
+          handlePromise.verbose(submit, props.asyncTaskType);
+        else handlePromise.silent(submit);
 
         async function submit(): Promise<void> {
-          disable.value = true;
-          await as.not.empty(props.onSubmitAsync)(event);
-          disable.value = false;
+          submitting.value++;
+
+          try {
+            if (await as.not.empty(main.value).validate()) {
+              if (props.onSubmit) props.onSubmit(event);
+
+              if (props.onSubmitAsync) {
+                disable.value++;
+
+                try {
+                  await props.onSubmitAsync(event);
+                } catch {
+                  disable.value--;
+                }
+              }
+            }
+          } finally {
+            submitting.value--;
+          }
         }
       }
     };
@@ -48,7 +68,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-form class="m-form" @submit="submit">
+  <q-form ref="main" class="m-form" @submit="submit">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

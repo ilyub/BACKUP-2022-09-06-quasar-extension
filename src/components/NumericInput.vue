@@ -19,6 +19,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
     ...parentProps<NumericInput.ParentProps>(),
+    ...plugins.useValidation.props,
     bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
     max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
     min: prop.default<NumericInput.Props["min"]>(0),
@@ -31,7 +32,10 @@ export default defineComponent({
     validateEmit<NumericInput.OwnProps>(emit);
     validateProps<NumericInput.OwnProps>(props);
 
+    const validation = plugins.useValidation(props, () => props.modelValue);
+
     return {
+      change: validation.change,
       downClick: (step: number): void => {
         if (is.not.empty(props.modelValue))
           if (props.modelValue > props.min)
@@ -51,17 +55,16 @@ export default defineComponent({
           ? props.modelValue <= props.min && props.required
           : true
       ),
-      icons: NumericInput.icons,
-      inputChange: (
-        event: Event,
-        emitValue: (value: NumStrE) => void
-      ): void => {
-        emitValue(o.get(as.not.empty(event.target), "value", is.string));
-      },
-      inputUpdate: (value: NumStrE): void => {
+      fieldUpdate: (value: NumStrE): void => {
         emit("update:modelValue", cast.numberU(value));
       },
-      inputValue: computed(() => cast.string(props.modelValue)),
+      fieldValue: computed(() => cast.string(props.modelValue)),
+      icons: NumericInput.icons,
+      input: (event: Event, emitValue: (value: NumStrE) => void): void => {
+        emitValue(o.get(as.not.empty(event.target), "value", is.string));
+      },
+      main: validation.target,
+      rules: validation.rules,
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",
         "control",
@@ -92,10 +95,12 @@ export default defineComponent({
 
 <template>
   <q-field
+    ref="main"
     class="m-numeric-input"
     dense
-    :model-value="inputValue"
-    @update:model-value="inputUpdate"
+    :model-value="fieldValue"
+    :rules="rules"
+    @update:model-value="fieldUpdate"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
@@ -106,8 +111,9 @@ export default defineComponent({
           v-debug-id="'input'"
           v-maska="'#*'"
           class="q-field__input"
-          :value="inputValue"
-          @change="inputChange($event, data.emitValue)"
+          :value="data.modelValue"
+          @change="change"
+          @input="input($event, data.emitValue)"
         />
       </slot>
     </template>
