@@ -1,20 +1,22 @@
 <script lang="ts">
 import { wait } from "@skylib/functions";
+import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-form",
   setup: () => {
-    const name = ref<string>();
+    const $q = useQuasar();
 
     return {
-      name,
+      name1: ref<string>(),
+      name2: ref<string>(),
       submit: (): void => {
-        name.value = undefined;
+        $q.notify("Submit");
       },
       submitAsync: async (): Promise<void> => {
-        await wait(3000);
-        name.value = undefined;
+        await wait(2000);
+        $q.notify("Async submit");
       }
     };
   }
@@ -25,7 +27,7 @@ export default defineComponent({
   <m-page-section>
     <m-form :class="$style.form" @submit="submit">
       <m-form-section>
-        <m-input v-model="name" label="Name" />
+        <m-input v-model="name1" label="Name" />
       </m-form-section>
       <m-form-actions>
         <m-form-button label="Submit" type="submit" />
@@ -39,7 +41,7 @@ export default defineComponent({
       @submit-async="submitAsync"
     >
       <m-form-section>
-        <m-input v-model="name" label="Name" />
+        <m-input v-model="name2" label="Name" />
       </m-form-section>
       <m-form-actions>
         <m-form-button label="Async submit" type="submit" />

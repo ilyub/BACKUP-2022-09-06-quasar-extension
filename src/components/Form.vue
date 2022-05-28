@@ -1,7 +1,15 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Form] */
 
-import { prop, parentProps, validateProps, plugins, injections } from "./api";
+import {
+  prop,
+  parentProps,
+  validateProps,
+  plugins,
+  injections,
+  skipCheck,
+  validateEmit
+} from "./api";
 import { handlePromise } from "@skylib/facades";
 import { as } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -13,10 +21,11 @@ export default defineComponent({
   props: {
     ...parentProps<Form.ParentProps>(),
     asyncTaskType: prop<Form.Props["asyncTaskType"]>(),
-    onSubmit: prop<Form.Props["onSubmit"]>(),
     onSubmitAsync: prop<Form.Props["onSubmitAsync"]>()
   },
-  setup: props => {
+  emits: { submit: (event: Event) => skipCheck(event) },
+  setup: (props, { emit }) => {
+    validateEmit<Form.OwnProps>(emit);
     validateProps<Form.OwnProps>(props);
 
     const disable = ref(0);
@@ -45,7 +54,7 @@ export default defineComponent({
 
           try {
             if (await as.not.empty(main.value).validate()) {
-              if (props.onSubmit) props.onSubmit(event);
+              emit("submit", event);
 
               if (props.onSubmitAsync) {
                 disable.value++;
