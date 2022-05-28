@@ -61,7 +61,7 @@ export default defineComponent({
 
                 try {
                   await props.onSubmitAsync(event);
-                } catch {
+                } finally {
                   disable.value--;
                 }
               }
