@@ -2,7 +2,7 @@ import { disableCounter } from "./Tooltip.core";
 import { injectableSettings } from "./api";
 import { onUnmounted, ref, watch } from "vue";
 import type { GlobalComponent, plugins } from "./api";
-import type { QTooltipProps, QTooltipSlots } from "quasar";
+import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 
 export namespace Tooltip {
@@ -11,7 +11,9 @@ export namespace Tooltip {
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(() => defaultSettings);
 
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QTooltip;
+  }
 
   export interface OwnProps extends plugins.useDirection.Props {}
 

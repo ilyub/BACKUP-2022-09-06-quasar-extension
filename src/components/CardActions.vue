@@ -2,20 +2,24 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.CardActions] */
 
 import { parentProps, plugins } from "./api";
-import { defineComponent } from "vue";
+import { QCardActions } from "quasar";
+import { defineComponent, ref } from "vue";
 import type { CardActions } from "./CardActions.extras";
 
 export default defineComponent({
   name: "m-card-actions",
   props: parentProps<CardActions.ParentProps>(),
   setup: () => {
-    return { slotNames: plugins.useSlotNames<CardActions.Slots>()() };
+    return {
+      main: ref(QCardActions),
+      slotNames: plugins.useSlotNames<CardActions.Slots>()()
+    };
   }
 });
 </script>
 
 <template>
-  <q-card-actions class="m-card-actions">
+  <q-card-actions ref="main" class="m-card-actions">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

@@ -10,8 +10,9 @@ import {
   skipCheck,
   injections
 } from "./api";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Toggle } from "./Toggle.extras";
+import type { QToggle } from "quasar";
 
 export default defineComponent({
   name: "m-toggle",
@@ -27,6 +28,7 @@ export default defineComponent({
 
     return {
       globalDisable: injections.globalDisable.inject(),
+      main: ref<QToggle>(),
       slotNames: plugins.useSlotNames<Toggle.Slots>()()
     };
   }
@@ -35,6 +37,7 @@ export default defineComponent({
 
 <template>
   <q-toggle
+    ref="main"
     class="m-toggle"
     :disable="disable || globalDisable"
     :model-value="modelValue"

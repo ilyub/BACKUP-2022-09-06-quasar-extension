@@ -1,9 +1,11 @@
 import type { GlobalComponent, VNodes } from "./api";
 import type { stringU } from "@skylib/functions";
-import type { QItemProps } from "quasar";
+import type { QItem, QItemProps } from "quasar";
 
 export namespace Item {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QItem;
+  }
 
   export interface OwnProps {
     readonly caption?: stringU;

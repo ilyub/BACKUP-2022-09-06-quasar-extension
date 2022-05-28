@@ -2,7 +2,9 @@ import type { BaseButton } from "./BaseButton.extras";
 import type { GlobalComponent } from "./api";
 
 export namespace Button {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: BaseButton.Global;
+  }
 
   export interface ParentProps extends BaseButton.Props {}
 

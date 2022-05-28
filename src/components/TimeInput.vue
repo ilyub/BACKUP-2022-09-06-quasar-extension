@@ -10,7 +10,8 @@ import {
 } from "./api";
 import { a, as, cast, is, o } from "@skylib/functions";
 import { maska } from "maska";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
 import type { numberU, NumStrE } from "@skylib/functions";
 
@@ -59,6 +60,7 @@ export default defineComponent({
 
         return "";
       }),
+      main: ref<NumericInput.Global>(),
       slotNames: plugins.useSlotNames<TimeInput.Slots>()("control")
     };
   }
@@ -67,6 +69,7 @@ export default defineComponent({
 
 <template>
   <m-numeric-input
+    ref="main"
     :big-step="60"
     class="m-time-input"
     :model-value="modelValue"

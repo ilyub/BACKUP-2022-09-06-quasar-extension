@@ -2,7 +2,9 @@ import type { Switchable } from "./Switchable.extras";
 import type { GlobalComponent } from "./api";
 
 export namespace FormSection {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: Switchable.Global;
+  }
 
   export interface ParentProps extends Switchable.Props {}
 

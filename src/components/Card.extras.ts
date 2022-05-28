@@ -1,7 +1,7 @@
 import { icons as baseIcons } from "@skylib/facades";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
-import type { QCardProps } from "quasar";
+import type { QCard, QCardProps } from "quasar";
 
 declare global {
   namespace facades {
@@ -14,7 +14,9 @@ declare global {
 export namespace Card {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QCard;
+  }
 
   export interface Icon {
     readonly close: true;

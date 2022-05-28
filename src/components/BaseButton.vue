@@ -3,7 +3,8 @@
 
 import { prop, parentProps, validateProps, plugins, injections } from "./api";
 import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { QBtn } from "quasar";
+import { computed, defineComponent, ref } from "vue";
 import type { BaseButton } from "./BaseButton.extras";
 
 export default defineComponent({
@@ -32,6 +33,7 @@ export default defineComponent({
       },
       globalDisable: injections.globalDisable.inject(),
       hasTooltip: computed(() => is.not.empty(props.tooltip)),
+      main: ref(QBtn),
       slotNames: plugins.useSlotNames<BaseButton.Slots>()("default")
     };
   }
@@ -40,6 +42,7 @@ export default defineComponent({
 
 <template>
   <q-btn
+    ref="main"
     class="m-base-button"
     :disable="disable || globalDisable"
     :loading="loading || asyncClick.active.value"

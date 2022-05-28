@@ -1,6 +1,6 @@
 <script lang="ts">
 import { parentProps, plugins } from "./api";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
 
 export default defineComponent({
@@ -12,6 +12,7 @@ export default defineComponent({
   setup: props => {
     return {
       confirmedClick: plugins.useConfirmedClick(props),
+      main: ref<Item.Global>(),
       slotNames: plugins.useSlotNames<Item.Slots>()()
     };
   }
@@ -19,7 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-item class="m-menu-item" clickable @click="confirmedClick">
+  <m-item ref="main" class="m-menu-item" clickable @click="confirmedClick">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

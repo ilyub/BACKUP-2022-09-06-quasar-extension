@@ -2,7 +2,8 @@
 import { LanguagePicker } from "./LanguagePicker.extras";
 import { prop, parentProps, validateProps, plugins, directives } from "./api";
 import { as } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import type { IconButton } from "./IconButton.extras";
 
 export default defineComponent({
   name: "m-language-picker",
@@ -24,6 +25,7 @@ export default defineComponent({
           )
         )
       ),
+      main: ref<IconButton.Global>(),
       settings,
       slotNames: plugins.useSlotNames<LanguagePicker.Slots>()("default")
     };
@@ -32,7 +34,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-icon-button class="m-language-picker">
+  <m-icon-button ref="main" class="m-language-picker">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

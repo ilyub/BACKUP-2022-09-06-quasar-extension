@@ -10,8 +10,9 @@ import {
   skipCheck
 } from "./api";
 import { a } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { OptionGroup } from "./OptionGroup.extras";
+import type { QOptionGroup } from "quasar";
 
 export default defineComponent({
   name: "m-option-group",
@@ -22,6 +23,7 @@ export default defineComponent({
     options: prop.required<OptionGroup.Props["options"]>()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
+  main: ref<QOptionGroup>(),
   setup: (props, { emit }) => {
     validateEmit<OptionGroup.OwnProps>(emit);
     validateProps<OptionGroup.OwnProps>(props);

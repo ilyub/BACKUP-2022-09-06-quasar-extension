@@ -1,9 +1,11 @@
 import type { GlobalComponent } from "./api";
 import type { booleanU } from "@skylib/functions";
-import type { QKnobProps, QKnobSlots } from "quasar";
+import type { QKnob, QKnobProps, QKnobSlots } from "quasar";
 
 export namespace Knob {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QKnob;
+  }
 
   export interface OwnProps {
     readonly disable?: booleanU;

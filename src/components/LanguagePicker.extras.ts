@@ -7,7 +7,9 @@ export namespace LanguagePicker {
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings<Settings>();
 
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: IconButton.Global;
+  }
 
   export interface Option {
     readonly caption: string;

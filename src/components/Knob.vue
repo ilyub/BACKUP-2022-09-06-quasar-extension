@@ -10,8 +10,9 @@ import {
   skipCheck,
   injections
 } from "./api";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Knob } from "./Knob.extras";
+import type { QKnob } from "quasar";
 
 export default defineComponent({
   name: "m-knob",
@@ -28,6 +29,7 @@ export default defineComponent({
 
     return {
       globalDisable: injections.globalDisable.inject(),
+      main: ref<QKnob>(),
       slotNames: plugins.useSlotNames<Knob.Slots>()()
     };
   }
@@ -36,6 +38,7 @@ export default defineComponent({
 
 <template>
   <q-knob
+    ref="main"
     class="m-knob"
     :class="{ 'm-knob__inline': inline }"
     color="primary"

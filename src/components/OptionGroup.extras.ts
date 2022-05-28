@@ -1,10 +1,16 @@
 import type { GlobalComponent } from "./api";
 import type { booleanU } from "@skylib/functions";
-import type { QOptionGroupProps, QOptionGroupSlots } from "quasar";
+import type {
+  QOptionGroup,
+  QOptionGroupProps,
+  QOptionGroupSlots
+} from "quasar";
 
 export namespace OptionGroup {
   export interface Global<T = unknown>
-    extends GlobalComponent<Props<T>, Slots> {}
+    extends GlobalComponent<Props<T>, Slots> {
+    readonly main: QOptionGroup;
+  }
 
   export interface Option<T = unknown> {
     readonly disable?: true;

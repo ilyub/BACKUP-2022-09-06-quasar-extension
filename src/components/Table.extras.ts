@@ -2,7 +2,7 @@ import { injectableSettings } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU, objects, stringU } from "@skylib/functions";
-import type { QTableProps, QTableSlots } from "quasar";
+import type { QTable, QTableProps, QTableSlots } from "quasar";
 
 declare global {
   namespace facades {
@@ -85,7 +85,9 @@ export namespace Table {
   export type ColumnsOrder = ReadonlyMap<string, number>;
 
   export interface Global<T extends object = object>
-    extends GlobalComponent<Props<T>, Slots<T>> {}
+    extends GlobalComponent<Props<T>, Slots<T>> {
+    readonly main: QTable;
+  }
 
   export interface HeaderCellSlotData<T extends object = object>
     extends MultiSelectData {

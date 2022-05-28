@@ -1,9 +1,11 @@
 import type { GlobalComponent } from "./api";
 import type { booleanU } from "@skylib/functions";
-import type { QToggleProps, QToggleSlots } from "quasar";
+import type { QToggle, QToggleProps, QToggleSlots } from "quasar";
 
 export namespace Toggle {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QToggle;
+  }
 
   export interface OwnProps {
     readonly disable?: booleanU;

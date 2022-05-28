@@ -3,7 +3,9 @@ import type { GlobalComponent } from "./api";
 import type { numberU } from "@skylib/functions";
 
 export namespace TimeInput {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: NumericInput.Global;
+  }
 
   export interface OwnProps {
     readonly modelValue?: numberU;

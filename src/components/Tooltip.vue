@@ -4,7 +4,8 @@
 import { disableCounter } from "./Tooltip.core";
 import { Tooltip } from "./Tooltip.extras";
 import { parentProps, plugins } from "./api";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import type { QTooltip } from "quasar";
 
 export default defineComponent({
   name: "m-tooltip",
@@ -18,6 +19,7 @@ export default defineComponent({
     return {
       anchor: direction.anchor,
       disabled: computed(() => disableCounter.value > 0),
+      main: ref<QTooltip>(),
       offset: direction.offset,
       self: direction.self,
       settings: Tooltip.injectSettings(),
@@ -32,6 +34,7 @@ export default defineComponent({
 <template>
   <q-tooltip
     v-if="settings.show && !disabled"
+    ref="main"
     :anchor="anchor"
     class="m-tooltip"
     :delay="settings.delay"

@@ -11,8 +11,9 @@ import {
   skipCheck
 } from "./api";
 import { a } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { Button } from "./Button.extras";
+import type { QSelect } from "quasar";
 
 export default defineComponent({
   name: "m-select",
@@ -32,6 +33,7 @@ export default defineComponent({
     );
 
     return {
+      main: ref<QSelect>(),
       selectDisplayValue: computed(() =>
         selectedOption.value
           ? undefined
@@ -47,6 +49,7 @@ export default defineComponent({
 
 <template>
   <q-select
+    ref="main"
     class="m-select"
     dense
     :display-value="selectDisplayValue"

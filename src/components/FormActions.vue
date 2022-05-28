@@ -1,19 +1,23 @@
 <script lang="ts">
 import { parentProps, plugins } from "./api";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { FormActions } from "./FormActions.extras";
+import type { Switchable } from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-form-actions",
   props: parentProps<FormActions.ParentProps>(),
   setup: () => {
-    return { slotNames: plugins.useSlotNames<FormActions.Slots>()() };
+    return {
+      main: ref<Switchable.Global>(),
+      slotNames: plugins.useSlotNames<FormActions.Slots>()()
+    };
   }
 });
 </script>
 
 <template>
-  <m-switchable class="m-form-actions">
+  <m-switchable ref="main" class="m-form-actions">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

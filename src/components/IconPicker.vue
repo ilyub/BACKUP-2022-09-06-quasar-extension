@@ -12,6 +12,7 @@ import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
 import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
+import type { IconButton } from "./IconButton.extras";
 import type { stringU, Writable } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
@@ -118,6 +119,7 @@ export default defineComponent({
       icons: IconPicker.icons,
       lang: IconPicker.lang,
       loading: computed(() => is.empty(mdi.value)),
+      main: ref<IconButton.Global>(),
       nextClick: (): void => {
         page.value++;
       },
@@ -170,6 +172,7 @@ export default defineComponent({
 
 <template>
   <m-icon-button
+    ref="main"
     class="m-icon-picker"
     :class="{ 'text-grey-5': notSelected }"
     :icon="icon"

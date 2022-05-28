@@ -3,9 +3,10 @@
 
 import { Tooltip } from "./Tooltip.extras";
 import { parentProps, plugins } from "./api";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Button } from "./Button.extras";
 import type { Menu } from "./Menu.extras";
+import type { QMenu } from "quasar";
 
 export default defineComponent({
   name: "m-menu",
@@ -16,6 +17,7 @@ export default defineComponent({
     return {
       anchor: direction.anchor,
       disableTooltips: Tooltip.useDisableTooltips(),
+      main: ref<QMenu>(),
       offset: direction.offset,
       self: direction.self,
       slotNames: plugins.useSlotNames<Button.Slots>()()
@@ -26,6 +28,7 @@ export default defineComponent({
 
 <template>
   <q-menu
+    ref="main"
     :anchor="anchor"
     class="m-menu"
     :offset="offset"

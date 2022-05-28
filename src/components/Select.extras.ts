@@ -1,12 +1,14 @@
 import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent } from "./api";
 import type { stringU } from "@skylib/functions";
-import type { QSelectProps, QSelectSlots } from "quasar";
+import type { QSelect, QSelectProps, QSelectSlots } from "quasar";
 
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends Select.Word {}
+      interface Word extends Select.Word {
+        readonly main: QSelect;
+      }
     }
   }
 }

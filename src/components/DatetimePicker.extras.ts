@@ -1,7 +1,7 @@
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, plugins } from "./api";
 import type { stringU } from "@skylib/functions";
-import type { QFieldProps, QFieldSlots } from "quasar";
+import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
 declare global {
   namespace facades {
@@ -20,7 +20,9 @@ export namespace DatetimePicker {
 
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QField;
+  }
 
   export interface Icon {
     readonly am: true;

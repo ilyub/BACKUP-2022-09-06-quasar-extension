@@ -1,9 +1,11 @@
 import type { plugins, GlobalComponent } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
-import type { QInputProps, QInputSlots } from "quasar";
+import type { QInput, QInputProps, QInputSlots } from "quasar";
 
 export namespace Input {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QInput;
+  }
 
   export interface OwnProps extends plugins.useValidation.Props<stringU> {
     readonly disable?: booleanU;

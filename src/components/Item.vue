@@ -3,8 +3,9 @@
 
 import { prop, parentProps, validateProps, plugins, directives } from "./api";
 import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
+import type { QItem } from "quasar";
 
 export default defineComponent({
   name: "m-item",
@@ -20,6 +21,7 @@ export default defineComponent({
     return {
       hasCaption: computed(() => is.not.empty(props.caption)),
       hasIcon: computed(() => is.not.empty(props.icon)),
+      main: ref<QItem>(),
       slotNames: plugins.useSlotNames<Item.Slots>()(
         "caption",
         "default",
@@ -31,7 +33,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-item class="m-item">
+  <q-item ref="main" class="m-item">
     <q-item-section
       v-if="hasIcon || slotNames.has('icon')"
       v-debug-id="'icon'"

@@ -1,7 +1,7 @@
 import { icons as baseIcons } from "@skylib/facades";
 import type { GlobalComponent, plugins, VNodes } from "./api";
 import type { booleanU, numberU, NumStrE } from "@skylib/functions";
-import type { QFieldProps, QFieldSlots } from "quasar";
+import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
 declare global {
   namespace facades {
@@ -23,7 +23,9 @@ export namespace NumericInput {
     readonly emitValue: (value: NumStrE) => void;
   }
 
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: QField;
+  }
 
   export interface Icon {
     readonly chevronDoubleLeft: true;

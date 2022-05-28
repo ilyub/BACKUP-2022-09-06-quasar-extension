@@ -2,7 +2,9 @@ import type { Item } from "./Item.extras";
 import type { GlobalComponent, plugins } from "./api";
 
 export namespace MenuItem {
-  export interface Global extends GlobalComponent<Props, Slots> {}
+  export interface Global extends GlobalComponent<Props, Slots> {
+    readonly main: Item.Global;
+  }
 
   export interface OwnProps extends plugins.useConfirmedClick.Props {}
 

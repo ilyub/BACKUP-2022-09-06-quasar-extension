@@ -4,7 +4,8 @@
 import { Card } from "./Card.extras";
 import { prop, parentProps, validateProps, plugins } from "./api";
 import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { QCard } from "quasar";
+import { computed, defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "m-card",
@@ -20,6 +21,7 @@ export default defineComponent({
     return {
       hasTitle: computed(() => is.not.empty(props.title)),
       icons: Card.icons,
+      main: ref(QCard),
       slotNames: plugins.useSlotNames<Card.Slots>()(
         "default",
         "header-actions",
@@ -31,7 +33,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-card class="m-card" :style="{ minWidth: minWidth }">
+  <q-card ref="main" class="m-card" :style="{ minWidth: minWidth }">
     <template #default>
       <m-card-section
         v-if="hasTitle || slotNames.has('title')"
