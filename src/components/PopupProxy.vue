@@ -12,12 +12,12 @@ export default defineComponent({
     ...plugins.useDirection.props
   },
   setup: props => {
-    const { dirAnchor, dirOffset, dirSelf } = plugins.useDirection(props);
+    const direction = plugins.useDirection(props);
 
     return {
-      dirAnchor,
-      dirOffset,
-      dirSelf,
+      anchor: direction.anchor,
+      offset: direction.offset,
+      self: direction.self,
       slotNames: plugins.useSlotNames<PopupProxy.Slots>()()
     };
   }
@@ -26,10 +26,10 @@ export default defineComponent({
 
 <template>
   <q-popup-proxy
-    :anchor="dirAnchor"
+    :anchor="anchor"
     class="m-popup-proxy"
-    :offset="dirOffset"
-    :self="dirSelf"
+    :offset="offset"
+    :self="self"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

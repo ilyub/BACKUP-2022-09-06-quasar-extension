@@ -13,23 +13,17 @@ export default defineComponent({
     ...plugins.useDirection.props
   },
   setup: props => {
-    const {
-      dirAnchor,
-      dirOffset,
-      dirSelf,
-      dirTransitionHide,
-      dirTransitionShow
-    } = plugins.useDirection(props);
+    const direction = plugins.useDirection(props);
 
     return {
-      dirAnchor,
-      dirOffset,
-      dirSelf,
-      dirTransitionHide,
-      dirTransitionShow,
+      anchor: direction.anchor,
       disabled: computed(() => disableCounter.value > 0),
+      offset: direction.offset,
+      self: direction.self,
       settings: Tooltip.injectSettings(),
-      slotNames: plugins.useSlotNames<Tooltip.Slots>()()
+      slotNames: plugins.useSlotNames<Tooltip.Slots>()(),
+      transitionHide: direction.transitionHide,
+      transitionShow: direction.transitionShow
     };
   }
 });
@@ -38,14 +32,14 @@ export default defineComponent({
 <template>
   <q-tooltip
     v-if="settings.show && !disabled"
-    :anchor="dirAnchor"
+    :anchor="anchor"
     class="m-tooltip"
     :delay="settings.delay"
-    :offset="dirOffset"
-    :self="dirSelf"
+    :offset="offset"
+    :self="self"
     :style="{ fontSize: settings.fontSize }"
-    :transition-hide="dirTransitionHide"
-    :transition-show="dirTransitionShow"
+    :transition-hide="transitionHide"
+    :transition-show="transitionShow"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

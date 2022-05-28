@@ -15,7 +15,7 @@ export const useDirection = defineFn(
     const direction = computed(() => props.direction ?? "down");
 
     return {
-      dirAnchor: computed(() => {
+      anchor: computed(() => {
         switch (direction.value) {
           case "down":
             return "bottom middle";
@@ -54,7 +54,7 @@ export const useDirection = defineFn(
             return "top left";
         }
       }),
-      dirOffset: computed(() => {
+      offset: computed(() => {
         switch (direction.value) {
           case "down":
           case "down-left":
@@ -77,7 +77,7 @@ export const useDirection = defineFn(
             return [0, 5];
         }
       }),
-      dirSelf: computed(() => {
+      self: computed(() => {
         switch (direction.value) {
           case "down":
             return "top middle";
@@ -116,7 +116,7 @@ export const useDirection = defineFn(
             return "bottom left";
         }
       }),
-      dirTransitionHide: computed(() => {
+      transitionHide: computed(() => {
         switch (direction.value) {
           case "down":
           case "down-left":
@@ -139,7 +139,7 @@ export const useDirection = defineFn(
             return "jump-down";
         }
       }),
-      dirTransitionShow: computed(() => {
+      transitionShow: computed(() => {
         switch (direction.value) {
           case "down":
           case "down-left":
@@ -201,11 +201,11 @@ export namespace useDirection {
   }
 
   export interface Plugin {
-    readonly dirAnchor: ComputedRef<Coupling>;
-    readonly dirOffset: ComputedRef<readonly [number, number]>;
-    readonly dirSelf: ComputedRef<Coupling>;
-    readonly dirTransitionHide: ComputedRef<Transition>;
-    readonly dirTransitionShow: ComputedRef<Transition>;
+    readonly anchor: ComputedRef<Coupling>;
+    readonly offset: ComputedRef<readonly [number, number]>;
+    readonly self: ComputedRef<Coupling>;
+    readonly transitionHide: ComputedRef<Transition>;
+    readonly transitionShow: ComputedRef<Transition>;
   }
 
   export interface Props extends OwnProps {}

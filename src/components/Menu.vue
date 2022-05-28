@@ -11,13 +11,13 @@ export default defineComponent({
   name: "m-menu",
   props: { ...parentProps<Menu.ParentProps>(), ...plugins.useDirection.props },
   setup: props => {
-    const { dirAnchor, dirOffset, dirSelf } = plugins.useDirection(props);
+    const direction = plugins.useDirection(props);
 
     return {
-      dirAnchor,
-      dirOffset,
-      dirSelf,
+      anchor: direction.anchor,
       disableTooltips: Tooltip.useDisableTooltips(),
+      offset: direction.offset,
+      self: direction.self,
       slotNames: plugins.useSlotNames<Button.Slots>()()
     };
   }
@@ -26,10 +26,10 @@ export default defineComponent({
 
 <template>
   <q-menu
-    :anchor="dirAnchor"
+    :anchor="anchor"
     class="m-menu"
-    :offset="dirOffset"
-    :self="dirSelf"
+    :offset="offset"
+    :self="self"
     @update:model-value="disableTooltips = $event"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
