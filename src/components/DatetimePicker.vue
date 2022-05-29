@@ -221,6 +221,7 @@ export default defineComponent({
     ref="main"
     class="m-datetime-picker"
     dense
+    hide-bottom-space
     :model-value="fieldValue"
     :rules="rules"
     @update:model-value="fieldUpdate"

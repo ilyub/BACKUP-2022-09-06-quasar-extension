@@ -54,6 +54,7 @@ export default defineComponent({
     class="m-input"
     dense
     :disable="disable || globalDisable"
+    hide-bottom-space
     :model-value="modelValue"
     :rules="rules"
     @change="change"

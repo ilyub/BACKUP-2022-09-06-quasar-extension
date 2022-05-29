@@ -84,6 +84,11 @@
   padding-top: 0;
 }
 
+.m-datetime-picker > .q-field__inner > .q-field__bottom {
+  position: absolute;
+  padding-top: map.get($space-xs, "y");
+}
+
 .m-datetime-picker__dialog {
   .m-datetime-picker__header-clickable {
     color: $blue-2;
@@ -146,6 +151,16 @@
 
 .m-indent {
   padding-left: $m-indent__padding;
+}
+
+.m-input > .q-field__inner > .q-field__bottom {
+  position: absolute;
+  padding-top: map.get($space-xs, "y");
+}
+
+.m-numeric-input > .q-field__inner > .q-field__bottom {
+  position: absolute;
+  padding-top: map.get($space-xs, "y");
 }
 
 .m-knob.m-knob__inline {
