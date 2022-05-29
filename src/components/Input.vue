@@ -12,7 +12,6 @@ import {
 } from "./api";
 import { is } from "@skylib/functions";
 import { defineComponent } from "vue";
-import type { Button } from "./Button.extras";
 import type { Input } from "./Input.extras";
 import type { NumStrE, stringU } from "@skylib/functions";
 
@@ -22,7 +21,9 @@ export default defineComponent({
     ...parentProps<Input.ParentProps>(),
     ...plugins.useValidation.props,
     disable: prop.boolean(),
-    modelValue: prop<Input.Props["modelValue"]>()
+    label: prop<Input.Props["label"]>(),
+    modelValue: prop<Input.Props["modelValue"]>(),
+    required: prop.boolean()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -36,7 +37,7 @@ export default defineComponent({
       globalDisable: injections.globalDisable.inject(),
       main: validation.target,
       rules: validation.rules,
-      slotNames: plugins.useSlotNames<Button.Slots>()(),
+      slotNames: plugins.useSlotNames<Input.Slots>()("label"),
       update: (value: NumStrE): void => {
         emit(
           "update:modelValue",
@@ -55,6 +56,7 @@ export default defineComponent({
     dense
     :disable="disable || globalDisable"
     hide-bottom-space
+    :label="label"
     :model-value="modelValue"
     :rules="rules"
     @change="change"
@@ -62,6 +64,12 @@ export default defineComponent({
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
+    </template>
+    <template #label>
+      <slot :name="slotNames.label">
+        {{ label }}
+        <span v-if="required" class="m-input__required">*</span>
+      </slot>
     </template>
   </q-input>
 </template>

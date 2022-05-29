@@ -9,6 +9,7 @@ export namespace Input {
 
   export interface OwnProps extends plugins.useValidation.Props<stringU> {
     readonly disable?: booleanU;
+    readonly label?: stringU;
     readonly modelValue?: stringU;
     /**
      * Emits model value.
@@ -16,6 +17,7 @@ export namespace Input {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: stringU) => void;
+    readonly required?: booleanU;
   }
 
   export interface ParentProps extends Omit<QInputProps, keyof OwnProps> {}

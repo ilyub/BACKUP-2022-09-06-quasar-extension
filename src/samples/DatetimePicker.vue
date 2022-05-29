@@ -18,6 +18,10 @@ export default defineComponent({
 
     const value4 = ref<string>();
 
+    const value5 = ref<string>();
+
+    const value6 = ref<string>();
+
     return {
       form,
       max: datetime
@@ -41,6 +45,8 @@ export default defineComponent({
         value2.value = undefined;
         value3.value = undefined;
         value4.value = undefined;
+        value5.value = undefined;
+        value6.value = undefined;
       },
       resetValidation: (): void => {
         as.not.empty(form.value).main.resetValidation();
@@ -54,7 +60,9 @@ export default defineComponent({
       value1,
       value2,
       value3,
-      value4
+      value4,
+      value5,
+      value6
     };
   }
 });
@@ -85,7 +93,18 @@ export default defineComponent({
         />
       </m-form-section>
       <m-form-section>
-        <m-datetime-picker v-model="value4" clearable :max="max" :min="min" />
+        <m-datetime-picker v-model="value4" clearable label="Clearable" />
+      </m-form-section>
+      <m-form-section>
+        <m-datetime-picker
+          v-model="value5"
+          label="Min/max"
+          :max="max"
+          :min="min"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-datetime-picker v-model="value6" label="Required" required />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

@@ -21,6 +21,7 @@ export default defineComponent({
     ...parentProps<NumericInput.ParentProps>(),
     ...plugins.useValidation.props,
     bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
+    label: prop.default<NumericInput.Props["label"]>(""),
     max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
     min: prop.default<NumericInput.Props["min"]>(0),
     modelValue: prop<NumericInput.Props["modelValue"]>(),
@@ -69,6 +70,7 @@ export default defineComponent({
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",
         "control",
+        "label",
         "prepend"
       ),
       upClick: (step: number): void => {
@@ -100,6 +102,7 @@ export default defineComponent({
     class="m-numeric-input"
     dense
     hide-bottom-space
+    :label="label"
     :model-value="fieldValue"
     :rules="rules"
     @update:model-value="fieldUpdate"
@@ -118,6 +121,12 @@ export default defineComponent({
           @change="change"
           @input="input($event, data.emitValue)"
         />
+      </slot>
+    </template>
+    <template #label>
+      <slot :name="slotNames.label">
+        {{ label }}
+        <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>
     <template #prepend>

@@ -20,9 +20,11 @@ export default defineComponent({
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),
     ...plugins.useValidation.props,
+    label: prop<DatetimePicker.Props["label"]>(),
     max: prop<DatetimePicker.Props["max"]>(),
     min: prop<DatetimePicker.Props["min"]>(),
-    modelValue: prop<DatetimePicker.Props["modelValue"]>()
+    modelValue: prop<DatetimePicker.Props["modelValue"]>(),
+    required: prop.boolean()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -169,6 +171,7 @@ export default defineComponent({
       slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
         "control",
+        "label",
         "prepend"
       ),
       step,
@@ -222,6 +225,7 @@ export default defineComponent({
     class="m-datetime-picker"
     dense
     hide-bottom-space
+    :label="label"
     :model-value="fieldValue"
     :rules="rules"
     @update:model-value="fieldUpdate"
@@ -326,6 +330,12 @@ export default defineComponent({
             </template>
           </m-card>
         </q-dialog>
+      </slot>
+    </template>
+    <template #label>
+      <slot :name="slotNames.label">
+        {{ label }}
+        <span v-if="required" class="m-datetime-picker__required">*</span>
       </slot>
     </template>
     <template #prepend>

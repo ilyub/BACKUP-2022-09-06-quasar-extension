@@ -36,6 +36,7 @@ export namespace NumericInput {
 
   export interface OwnProps extends plugins.useValidation.Props<numberU> {
     readonly bigStep?: numberU;
+    readonly label?: stringU;
     readonly max?: numberU;
     readonly min?: numberU;
     readonly modelValue?: numberU;
