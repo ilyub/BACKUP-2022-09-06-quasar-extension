@@ -7,7 +7,7 @@ test.each([
   { expected: [[undefined]], value: "" },
   { expected: [[30]], value: "30" },
   { expected: [[90]], value: "90" }
-])("emit: update:modelValue, change", async ({ expected, value }) => {
+])("emit: update:modelValue (change)", async ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions()
   });
@@ -23,7 +23,7 @@ test.each([
   {},
   { expected: [[undefined]], modelValue: 1 },
   { expected: [[1]], modelValue: 2 }
-])("emit: update:modelValue, down", async ({ expected, modelValue }) => {
+])("emit: update:modelValue (down)", async ({ expected, modelValue }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
     props: {
