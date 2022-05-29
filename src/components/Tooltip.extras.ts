@@ -6,10 +6,10 @@ import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 
 export namespace Tooltip {
-  export const defaultSettings: Settings = { delay: 0, show: true };
-
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(() => defaultSettings);
+
+  export const defaultSettings: Settings = { delay: 0, show: true };
 
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main: QTooltip;

@@ -3,10 +3,10 @@ import type { GlobalComponent, VNodes } from "./api";
 import type { numberU } from "@skylib/functions";
 
 export namespace Resizer {
-  export const defaultSettings: Settings = { disable: false };
-
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(() => defaultSettings);
+
+  export const defaultSettings: Settings = { disable: false };
 
   export interface Global extends GlobalComponent<Props, Slots> {}
 

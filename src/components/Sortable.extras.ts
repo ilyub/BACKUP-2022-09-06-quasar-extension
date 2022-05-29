@@ -3,14 +3,14 @@ import type { GlobalComponent, VNodes } from "./api";
 import type { stringU, booleanU } from "@skylib/functions";
 
 export namespace Sortable {
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
+
   export const defaultSettings: Settings = {
     animationDuration: 500,
     disableDropping: false,
     disableSorting: false
   };
-
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
 
   export interface Global<T extends object = object, D extends object = object>
     extends GlobalComponent<Props<T, D>, Slots<T>> {}

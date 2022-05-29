@@ -17,15 +17,15 @@ declare global {
 }
 
 export namespace IconPicker {
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
+
   export const defaultSettings: Settings = {
     cols: 7,
     iconTooltips: false,
     rows: 5,
     spinnerSize: "70px"
   };
-
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
 
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 

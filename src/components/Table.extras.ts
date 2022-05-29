@@ -17,6 +17,9 @@ declare global {
 }
 
 export namespace Table {
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(() => defaultSettings);
+
   export const defaultSettings: Settings = {
     binaryStateSort: false,
     flat: false,
@@ -24,9 +27,6 @@ export namespace Table {
     headerSeparator: false,
     square: false
   };
-
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
 
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
