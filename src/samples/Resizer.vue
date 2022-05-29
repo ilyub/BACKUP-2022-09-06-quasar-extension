@@ -5,14 +5,16 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "sample-resizer",
   setup: () => {
-    return { disable: useInjections().resizerDisable, width: ref(200) };
+    const { resizerDisable } = useInjections();
+
+    return { resizerDisable, width: ref(200) };
   }
 });
 </script>
 
 <template>
   <m-page-section>
-    <m-toggle v-model="disable" label="Disable" />
+    <m-toggle v-model="resizerDisable" label="Disable" />
   </m-page-section>
   <m-page-section>
     <div :class="$style.resizer" :style="{ width: `${width}px` }">

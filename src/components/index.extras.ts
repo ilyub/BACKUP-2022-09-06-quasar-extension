@@ -1,4 +1,4 @@
-export type { BaseButton } from "./BaseButton.extras";
+export { BaseButton } from "./BaseButton.extras";
 
 export type { Button } from "./Button.extras";
 

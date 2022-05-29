@@ -1,28 +1,49 @@
 <script lang="ts">
+import { useInjections } from "./core";
 import { mdiCheck } from "@mdi/js";
 import { wait } from "@skylib/functions";
 import { useQuasar } from "quasar";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-base-button",
   setup: () => {
     const $q = useQuasar();
 
+    const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
+      useInjections();
+
     return {
       asyncClick: async (): Promise<void> => {
         await wait(3000);
       },
+      baseButtonAnimateAsyncClick,
+      baseButtonAnimateSubmitting,
       confirmedClick: (): void => {
         $q.notify("Confirmed click");
       },
-      icon: mdiCheck
+      icon: mdiCheck,
+      name: ref<string>(),
+      submitAsync: async (): Promise<void> => {
+        await wait(2000);
+        $q.notify("Async submit");
+      }
     };
   }
 });
 </script>
 
 <template>
+  <m-page-section>
+    <m-toggle
+      v-model="baseButtonAnimateAsyncClick"
+      label="Animate async click"
+    />
+    <m-toggle
+      v-model="baseButtonAnimateSubmitting"
+      label="Animate submitting"
+    />
+  </m-page-section>
   <m-page-section>
     <m-buttons-group>
       <m-base-button label="Click" @click="$q.notify('Click')" />
@@ -48,4 +69,28 @@ export default defineComponent({
       <m-base-button label="Up" tooltip="Up" tooltip-direction="up" />
     </m-buttons-group>
   </m-page-section>
+  <m-page-section>
+    <m-form
+      async-task-type="httpRequest"
+      :class="$style.form"
+      @submit-async="submitAsync"
+    >
+      <m-form-section>
+        <m-input v-model="name" label="Name" />
+      </m-form-section>
+      <m-form-actions>
+        <m-form-button label="Async submit" type="submit" />
+        <m-form-button label="Reset" @click="name = undefined" />
+      </m-form-actions>
+    </m-form>
+  </m-page-section>
 </template>
+
+<style lang="scss" module>
+@use "sass:map";
+
+.form {
+  padding: map.get($space-md, "y") map.get($space-md, "x");
+  border: 1px solid $grey-5;
+}
+</style>

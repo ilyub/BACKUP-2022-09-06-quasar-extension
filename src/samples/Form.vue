@@ -31,6 +31,7 @@ export default defineComponent({
       </m-form-section>
       <m-form-actions>
         <m-form-button label="Submit" type="submit" />
+        <m-form-button label="Reset" @click="name1 = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>
@@ -45,6 +46,7 @@ export default defineComponent({
       </m-form-section>
       <m-form-actions>
         <m-form-button label="Async submit" type="submit" />
+        <m-form-button label="Reset" @click="name2 = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>

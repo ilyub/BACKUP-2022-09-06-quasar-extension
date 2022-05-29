@@ -21,6 +21,7 @@ export function globalMountOptions(
     ),
     provide: fn.run(() => {
       const {
+        BaseButton,
         IconPicker,
         LanguagePicker,
         PageLayout,
@@ -32,6 +33,7 @@ export function globalMountOptions(
       } = extras;
 
       const {
+        baseButtonSettings,
         iconPickerSettings,
         languagePickerSettings,
         pageLayoutSettings,
@@ -43,6 +45,9 @@ export function globalMountOptions(
       } = options;
 
       const provide: WritableRecord<symbol, unknown> = {};
+
+      if (baseButtonSettings)
+        o.assign(provide, BaseButton.testProvideSettings(baseButtonSettings));
 
       if (iconPickerSettings)
         o.assign(provide, IconPicker.testProvideSettings(iconPickerSettings));
@@ -78,6 +83,7 @@ export function globalMountOptions(
 
 export namespace globalMountOptions {
   export interface CustomOptions {
+    readonly baseButtonSettings?: extras.BaseButton.Settings;
     readonly iconPickerSettings?: extras.IconPicker.Settings;
     readonly languagePickerSettings?: extras.LanguagePicker.Settings;
     readonly pageLayoutSettings?: extras.PageLayout.Settings;

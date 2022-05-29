@@ -19,6 +19,8 @@ export function useInjections(): useInjections.Plugin {
 
 export namespace useInjections {
   export interface Plugin {
+    readonly baseButtonAnimateAsyncClick: Ref<boolean>;
+    readonly baseButtonAnimateSubmitting: Ref<boolean>;
     readonly iconPickerSmall: Ref<boolean>;
     readonly iconPickerTooltips: Ref<boolean>;
     readonly language: Ref<LocaleName>;
@@ -35,11 +37,20 @@ export namespace useInjections {
 }
 
 const plugin: useInjections.Plugin = {
+  baseButtonAnimateAsyncClick: ref(true),
+  baseButtonAnimateSubmitting: ref(true),
   iconPickerSmall: ref(false),
   iconPickerTooltips: ref(false),
   language: ref("en-US"),
   pageLayoutCloseButton: ref(true),
   provide: () => {
+    extras.BaseButton.provideSettings(() => {
+      return {
+        animateAsyncClick: plugin.baseButtonAnimateAsyncClick.value,
+        animateSubmitting: plugin.baseButtonAnimateSubmitting.value
+      };
+    });
+
     extras.IconPicker.provideSettings(() => {
       return {
         cols: plugin.iconPickerSmall.value ? 5 : 7,
