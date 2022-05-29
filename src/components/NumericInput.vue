@@ -24,6 +24,7 @@ export default defineComponent({
     max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
     min: prop.default<NumericInput.Props["min"]>(0),
     modelValue: prop<NumericInput.Props["modelValue"]>(),
+    placeholder: prop.default<NumericInput.Props["placeholder"]>(""),
     required: prop.boolean(),
     smallStep: prop.default<NumericInput.Props["smallStep"]>(1)
   },
@@ -112,6 +113,7 @@ export default defineComponent({
           v-debug-id="'input'"
           v-maska="'#*'"
           class="q-field__input"
+          :placeholder="placeholder"
           :value="data.modelValue"
           @change="change"
           @input="input($event, data.emitValue)"

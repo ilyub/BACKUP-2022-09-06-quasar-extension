@@ -23,6 +23,8 @@ export default defineComponent({
 
     const value7 = ref<number>();
 
+    const value8 = ref<number>();
+
     return {
       form,
       reset: (): void => {
@@ -33,6 +35,7 @@ export default defineComponent({
         value5.value = undefined;
         value6.value = undefined;
         value7.value = undefined;
+        value8.value = undefined;
       },
       resetValidation: (): void => {
         as.not.empty(form.value).main.resetValidation();
@@ -47,7 +50,8 @@ export default defineComponent({
       value4,
       value5,
       value6,
-      value7
+      value7,
+      value8
     };
   }
 });
@@ -101,6 +105,16 @@ export default defineComponent({
           :big-step="15"
           label="Required"
           :max="59"
+          required
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-numeric-input
+          v-model="value8"
+          :big-step="15"
+          label="Placeholder"
+          :max="59"
+          placeholder="###"
           required
         />
       </m-form-section>

@@ -20,7 +20,8 @@ export default defineComponent({
   directives: { debugId: directives.debugId("time-input"), maska },
   props: {
     ...parentProps<TimeInput.ParentProps>(),
-    modelValue: prop<TimeInput.Props["modelValue"]>()
+    modelValue: prop<TimeInput.Props["modelValue"]>(),
+    placeholder: prop.default<NumericInput.Props["placeholder"]>("")
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -85,6 +86,7 @@ export default defineComponent({
           v-debug-id="'input'"
           v-maska="inputMask"
           class="q-field__input"
+          :placeholder="placeholder"
           :value="inputValue"
           @change="inputChange($event, data.emitValue)"
         />

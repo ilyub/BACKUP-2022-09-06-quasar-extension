@@ -1,6 +1,6 @@
 import { icons as baseIcons } from "@skylib/facades";
 import type { GlobalComponent, plugins, VNodes } from "./api";
-import type { booleanU, numberU, NumStrE } from "@skylib/functions";
+import type { booleanU, numberU, NumStrE, stringU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
 declare global {
@@ -45,6 +45,7 @@ export namespace NumericInput {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: numberU) => void;
+    readonly placeholder?: stringU;
     readonly required?: booleanU;
     readonly smallStep?: numberU;
   }
