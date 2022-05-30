@@ -1,12 +1,20 @@
 import { prop } from "./misc";
 import { submitting as submittingInjection } from "./submitting";
-import { handlePromise } from "@skylib/facades";
-import { as, defineFn, reflect } from "@skylib/functions";
+import { handlePromise, lang as baseLang } from "@skylib/facades";
+import { as, defineFn, fn, is, reflect, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
-import type { Writable } from "@skylib/functions";
+import type { Writable, booleanU, stringU } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
 import type { ComputedRef, Ref } from "vue";
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends useValidation.Word {}
+    }
+  }
+}
 
 export const useValidation = defineFn(
   /**
@@ -22,6 +30,12 @@ export const useValidation = defineFn(
   ): useValidation.Plugin<T> => {
     let change = 0;
 
+    const field = computed(() =>
+      is.not.empty(props.label) && useValidation.lang.has(props.label)
+        ? props.label
+        : "field"
+    );
+
     const submitting = submittingInjection.inject();
 
     const target = ref<QField | QInput>();
@@ -32,7 +46,7 @@ export const useValidation = defineFn(
           change++;
 
           try {
-            await as.not.empty(target.value).validate(modelValue());
+            await as.not.empty(target.value).validate();
           } finally {
             change--;
           }
@@ -43,17 +57,32 @@ export const useValidation = defineFn(
 
         const rulesOnChange = props.rulesOnChange ?? [];
 
-        const rulesOnSubmit = props.rulesOnSubmit ?? [];
+        const rulesOnSubmit = fn.run(() => {
+          const rules1 =
+            props.required ?? false
+              ? [
+                  (value: T): string | true =>
+                    value === undefined
+                      ? useValidation.lang.with("field", field.value)
+                          .FieldIsRequired
+                      : true
+                ]
+              : [];
+
+          const rules2 = props.rulesOnSubmit ?? [];
+
+          return [...rules1, ...rules2];
+        });
 
         return [
           ...rulesOnInput,
-          ...rulesOnChange.map(rule => async (value: T) => {
+          ...rulesOnChange.map(rule => async () => {
             const prevInvalid = as.boolean(
               reflect.getOwnMetadata(MetadataKey, rule) ?? false
             );
 
             if (prevInvalid || submitting.value || change) {
-              const result = await rule(value);
+              const result = await rule(modelValue());
 
               reflect.defineMetadata(MetadataKey, result !== true, rule);
 
@@ -62,13 +91,13 @@ export const useValidation = defineFn(
 
             return true;
           }),
-          ...rulesOnSubmit.map(rule => async (value: T) => {
+          ...rulesOnSubmit.map(rule => async () => {
             const prevInvalid = as.boolean(
               reflect.getOwnMetadata(MetadataKey, rule) ?? false
             );
 
             if (prevInvalid || submitting.value) {
-              const result = await rule(value);
+              const result = await rule(modelValue());
 
               reflect.defineMetadata(MetadataKey, result !== true, rule);
 
@@ -83,7 +112,10 @@ export const useValidation = defineFn(
     };
   },
   {
+    lang: typedef<baseLang.Lang<keyof useValidation.Word, never>>(baseLang),
     props: {
+      label: prop<useValidation.Props["label"]>(),
+      required: prop.boolean(),
       rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
       rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
       rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>()
@@ -95,6 +127,8 @@ export namespace useValidation {
   export type Context = "change" | "input" | "submit";
 
   export interface OwnProps<T = unknown> {
+    readonly label?: stringU;
+    readonly required?: booleanU;
     readonly rulesOnChange?: Rules<T> | undefined;
     readonly rulesOnInput?: Rules<T> | undefined;
     readonly rulesOnSubmit?: Rules<T> | undefined;
@@ -105,13 +139,11 @@ export namespace useValidation {
      * Handles "change" event.
      */
     readonly change: () => void;
-    readonly rules: ComputedRef<Writable<QuasarRules<T>>>;
+    readonly rules: ComputedRef<Writable<ValidationRules<T>>>;
     readonly target: Ref<QField | QInput | undefined>;
   }
 
   export interface Props<T = unknown> extends OwnProps<T> {}
-
-  export type QuasarRules<T = unknown> = ReadonlyArray<ValidationRule<T>>;
 
   export interface Rule<T = unknown> {
     /**
@@ -124,6 +156,13 @@ export namespace useValidation {
   }
 
   export type Rules<T = unknown> = ReadonlyArray<Rule<T>>;
+
+  export type ValidationRules<T = unknown> = ReadonlyArray<ValidationRule<T>>;
+
+  export interface Word {
+    readonly Field: true;
+    readonly FieldIsRequired: true;
+  }
 }
 
 const MetadataKey = Symbol("prev-invalid");

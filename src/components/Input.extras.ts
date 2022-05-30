@@ -1,8 +1,11 @@
+import { lang as baseLang } from "@skylib/facades";
 import type { plugins, GlobalComponent } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QInput, QInputProps, QInputSlots } from "quasar";
 
 export namespace Input {
+  export const lang: baseLang.Lang<never, never> = baseLang;
+
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main: QInput;
   }

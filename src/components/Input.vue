@@ -1,6 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Input] */
 
+import { Input } from "./Input.extras";
 import {
   prop,
   parentProps,
@@ -11,8 +12,7 @@ import {
   injections
 } from "./api";
 import { is } from "@skylib/functions";
-import { defineComponent } from "vue";
-import type { Input } from "./Input.extras";
+import { computed, defineComponent } from "vue";
 import type { NumStrE, stringU } from "@skylib/functions";
 
 export default defineComponent({
@@ -35,6 +35,11 @@ export default defineComponent({
     return {
       change: validation.change,
       globalDisable: injections.globalDisable.inject(),
+      inputLabel: computed(() =>
+        is.not.empty(props.label) && Input.lang.has(props.label)
+          ? Input.lang.get(props.label)
+          : props.label
+      ),
       main: validation.target,
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Input.Slots>()("label"),
@@ -56,7 +61,7 @@ export default defineComponent({
     dense
     :disable="disable || globalDisable"
     hide-bottom-space
-    :label="label"
+    :label="inputLabel"
     :model-value="modelValue"
     :rules="rules"
     @change="change"
@@ -67,7 +72,7 @@ export default defineComponent({
     </template>
     <template #label>
       <slot :name="slotNames.label">
-        {{ label }}
+        {{ inputLabel }}
         <span v-if="required" class="m-input__required">*</span>
       </slot>
     </template>

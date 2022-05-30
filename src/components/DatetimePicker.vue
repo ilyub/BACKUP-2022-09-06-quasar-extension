@@ -129,6 +129,11 @@ export default defineComponent({
         step.value = is.not.empty(props.modelValue) ? "time" : "date";
         pickerValue.value = modelObject.value?.toString();
       },
+      fieldLabel: computed(() =>
+        is.not.empty(props.label) && DatetimePicker.lang.has(props.label)
+          ? DatetimePicker.lang.get(props.label)
+          : props.label
+      ),
       fieldUpdate: (value: unknown): void => {
         if (is.empty(value)) emitModelValue(undefined);
       },
@@ -225,7 +230,7 @@ export default defineComponent({
     class="m-datetime-picker"
     dense
     hide-bottom-space
-    :label="label"
+    :label="fieldLabel"
     :model-value="fieldValue"
     :rules="rules"
     @update:model-value="fieldUpdate"
@@ -334,7 +339,7 @@ export default defineComponent({
     </template>
     <template #label>
       <slot :name="slotNames.label">
-        {{ label }}
+        {{ fieldLabel }}
         <span v-if="required" class="m-datetime-picker__required">*</span>
       </slot>
     </template>

@@ -21,7 +21,7 @@ export default defineComponent({
     ...parentProps<NumericInput.ParentProps>(),
     ...plugins.useValidation.props,
     bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
-    label: prop.default<NumericInput.Props["label"]>(""),
+    label: prop<NumericInput.Props["label"]>(),
     max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
     min: prop.default<NumericInput.Props["min"]>(0),
     modelValue: prop<NumericInput.Props["modelValue"]>(),
@@ -56,6 +56,11 @@ export default defineComponent({
         is.not.empty(props.modelValue)
           ? props.modelValue <= props.min && props.required
           : true
+      ),
+      fieldLabel: computed(() =>
+        is.not.empty(props.label) && NumericInput.lang.has(props.label)
+          ? NumericInput.lang.get(props.label)
+          : props.label
       ),
       fieldUpdate: (value: NumStrE): void => {
         emit("update:modelValue", cast.numberU(value));
@@ -102,7 +107,7 @@ export default defineComponent({
     class="m-numeric-input"
     dense
     hide-bottom-space
-    :label="label"
+    :label="fieldLabel"
     :model-value="fieldValue"
     :rules="rules"
     @update:model-value="fieldUpdate"
@@ -125,7 +130,7 @@ export default defineComponent({
     </template>
     <template #label>
       <slot :name="slotNames.label">
-        {{ label }}
+        {{ fieldLabel }}
         <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>

@@ -1,13 +1,53 @@
 <script lang="ts">
+import { useInjections } from "./core";
+import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import type { extras } from "..";
+import type { numberU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-time-input",
   setup: () => {
+    const form = ref<extras.Form.Global>();
+
+    const { language } = useInjections();
+
+    const value1 = ref<number>();
+
+    const value2 = ref<number>();
+
+    const value3 = ref<number>();
+
+    const value4 = ref<number>();
+
+    const value5 = ref<number>();
+
+    const value6 = ref<number>();
+
     return {
-      value1: ref<number>(),
-      value2: ref<number>(),
-      value3: ref<number>()
+      form,
+      language,
+      reset: (): void => {
+        value1.value = undefined;
+        value2.value = undefined;
+        value3.value = undefined;
+        value4.value = undefined;
+        value5.value = undefined;
+        value6.value = undefined;
+      },
+      resetValidation: (): void => {
+        as.not.empty(form.value).main.resetValidation();
+      },
+      rules: [
+        (value: numberU): string | true =>
+          is.not.empty(value) && value % 2 === 1 ? "Invalid" : true
+      ],
+      value1,
+      value2,
+      value3,
+      value4,
+      value5,
+      value6
     };
   }
 });
@@ -15,15 +55,52 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-time-input v-model="value1" label="Optional" :max="600" />
-    <m-time-input v-model="value2" label="Required" :max="600" required />
-    <m-time-input
-      v-model="value3"
-      label="Placeholder"
-      :max="600"
-      placeholder="##:##"
-      required
-    />
-    <m-time-input disable label="Disabled" :model-value="undefined" />
+    <m-language-picker :language="language" />
+  </m-page-section>
+  <m-page-section>
+    <m-form ref="form" @submit="$q.notify('Submitted')">
+      <m-form-section>
+        <m-time-input v-model="value1" label="Time" required />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input
+          v-model="value2"
+          label="Validate on input"
+          :rules-on-input="rules"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input
+          v-model="value3"
+          label="Validate on change"
+          :rules-on-change="rules"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input
+          v-model="value4"
+          label="Validate on submit"
+          :rules-on-submit="rules"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input disable label="Disabled" :model-value="undefined" />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input v-model="value5" label="Min/max" :max="60" :min="15" />
+      </m-form-section>
+      <m-form-section>
+        <m-time-input
+          v-model="value6"
+          label="Placeholder"
+          placeholder="##:##"
+        />
+      </m-form-section>
+      <m-form-actions>
+        <m-form-button type="submit">Submit</m-form-button>
+        <m-form-button @click="reset">Reset</m-form-button>
+        <m-form-button @click="resetValidation">Reset validation</m-form-button>
+      </m-form-actions>
+    </m-form>
   </m-page-section>
 </template>

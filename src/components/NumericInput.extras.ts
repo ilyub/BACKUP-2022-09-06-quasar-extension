@@ -1,4 +1,4 @@
-import { icons as baseIcons } from "@skylib/facades";
+import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, plugins, VNodes } from "./api";
 import type { booleanU, numberU, NumStrE, stringU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
@@ -13,6 +13,8 @@ declare global {
 
 export namespace NumericInput {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
+
+  export const lang: baseLang.Lang<never, never> = baseLang;
 
   export interface ControlSlotData {
     /**

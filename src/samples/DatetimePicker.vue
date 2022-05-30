@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useInjections } from "./core";
 import { datetime } from "@skylib/facades";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -9,6 +10,8 @@ export default defineComponent({
   name: "sample-datetime-picker",
   setup: () => {
     const form = ref<extras.Form.Global>();
+
+    const { language } = useInjections();
 
     const value1 = ref<string>();
 
@@ -24,6 +27,7 @@ export default defineComponent({
 
     return {
       form,
+      language,
       max: datetime
         .create()
         .setHours(12)
@@ -53,9 +57,7 @@ export default defineComponent({
       },
       rules: [
         (value: stringU): string | true =>
-          is.not.empty(value) && datetime.create(value).minutes() % 2 === 1
-            ? "Invalid"
-            : true
+          is.not.empty(value) && value.endsWith("0") ? "Invalid" : true
       ],
       value1,
       value2,
@@ -70,41 +72,47 @@ export default defineComponent({
 
 <template>
   <m-page-section>
+    <m-language-picker :language="language" />
+  </m-page-section>
+  <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
+        <m-datetime-picker v-model="value1" label="Date" required />
+      </m-form-section>
+      <m-form-section>
         <m-datetime-picker
-          v-model="value1"
+          v-model="value2"
           label="Validate on input"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
-          v-model="value2"
+          v-model="value3"
           label="Validate on change"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
-          v-model="value3"
+          v-model="value4"
           label="Validate on submit"
           :rules-on-submit="rules"
         />
       </m-form-section>
       <m-form-section>
-        <m-datetime-picker v-model="value4" clearable label="Clearable" />
+        <m-datetime-picker v-model="value5" clearable label="Clearable" />
+      </m-form-section>
+      <m-form-section>
+        <m-datetime-picker disable label="Disabled" />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
-          v-model="value5"
+          v-model="value6"
           label="Min/max"
           :max="max"
           :min="min"
         />
-      </m-form-section>
-      <m-form-section>
-        <m-datetime-picker v-model="value6" label="Required" required />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

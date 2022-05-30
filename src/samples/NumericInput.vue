@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useInjections } from "./core";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -8,6 +9,8 @@ export default defineComponent({
   name: "sample-numeric-input",
   setup: () => {
     const form = ref<extras.Form.Global>();
+
+    const { language } = useInjections();
 
     const value1 = ref<number>();
 
@@ -21,12 +24,9 @@ export default defineComponent({
 
     const value6 = ref<number>();
 
-    const value7 = ref<number>();
-
-    const value8 = ref<number>();
-
     return {
       form,
+      language,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -34,8 +34,6 @@ export default defineComponent({
         value4.value = undefined;
         value5.value = undefined;
         value6.value = undefined;
-        value7.value = undefined;
-        value8.value = undefined;
       },
       resetValidation: (): void => {
         as.not.empty(form.value).main.resetValidation();
@@ -49,9 +47,7 @@ export default defineComponent({
       value3,
       value4,
       value5,
-      value6,
-      value7,
-      value8
+      value6
     };
   }
 });
@@ -59,71 +55,50 @@ export default defineComponent({
 
 <template>
   <m-page-section>
+    <m-language-picker :language="language" />
+  </m-page-section>
+  <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
+        <m-numeric-input v-model="value1" label="Number" required />
+      </m-form-section>
+      <m-form-section>
         <m-numeric-input
-          v-model="value1"
+          v-model="value2"
           label="Validate on input"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-numeric-input
-          v-model="value2"
+          v-model="value3"
           label="Validate on change"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-numeric-input
-          v-model="value3"
+          v-model="value4"
           label="Validate on submit"
           :rules-on-submit="rules"
         />
       </m-form-section>
-
       <m-form-section>
-        <m-numeric-input v-model="value4" label="Optional" :max="59" />
+        <m-numeric-input
+          v-model="value5"
+          :big-step="15"
+          label="Big step"
+          :max="59"
+        />
       </m-form-section>
       <m-form-section>
-        <m-numeric-input v-model="value5" label="Required" :max="59" required />
-      </m-form-section>
-      <m-form-section>
-        <m-numeric-input disable label="Disabled" :model-value="undefined" />
+        <m-numeric-input disable label="Disabled" />
       </m-form-section>
       <m-form-section>
         <m-numeric-input
           v-model="value6"
-          :big-step="15"
-          label="Optional"
-          :max="59"
-        />
-      </m-form-section>
-      <m-form-section>
-        <m-numeric-input
-          v-model="value7"
-          :big-step="15"
-          label="Required"
-          :max="59"
-          required
-        />
-      </m-form-section>
-      <m-form-section>
-        <m-numeric-input
-          v-model="value8"
-          :big-step="15"
           label="Placeholder"
-          :max="59"
           placeholder="###"
-          required
-        />
-      </m-form-section>
-      <m-form-section>
-        <m-numeric-input
-          :big-step="15"
-          disable
-          label="Disabled"
-          :model-value="undefined"
         />
       </m-form-section>
       <m-form-actions>
