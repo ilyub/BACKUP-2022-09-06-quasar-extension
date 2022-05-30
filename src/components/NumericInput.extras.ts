@@ -1,6 +1,6 @@
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, plugins, VNodes } from "./api";
-import type { booleanU, numberU, NumStrE, stringU } from "@skylib/functions";
+import type { booleanU, numberU, stringU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
 declare global {
@@ -18,11 +18,17 @@ export namespace NumericInput {
 
   export interface ControlSlotData {
     /**
+     * Triggers change.
+     */
+    readonly change: () => void;
+    /**
      * Emits value.
      *
      * @param value - Value.
      */
-    readonly emitValue: (value: NumStrE) => void;
+    readonly emitValue: (value: unknown) => void;
+    readonly modelValue: unknown;
+    readonly placeholder: string;
   }
 
   export interface Global extends GlobalComponent<Props, Slots> {

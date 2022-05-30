@@ -5,6 +5,10 @@ import type { QForm, QFormProps, QFormSlots } from "quasar";
 export namespace Form {
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main: QForm;
+    /**
+     * Resets validation.
+     */
+    readonly resetValidation: () => void;
   }
 
   export interface OwnProps {

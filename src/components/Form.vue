@@ -36,6 +36,8 @@ export default defineComponent({
 
     const submitting = ref(0);
 
+    const resetValidation = plugins.useValidation.reset.get();
+
     injections.globalDisable.provide(
       () => globalDisable.value || disable.value > 0
     );
@@ -43,6 +45,11 @@ export default defineComponent({
 
     return {
       main,
+      // eslint-disable-next-line vue/no-unused-properties -- Ok
+      resetValidation: (): void => {
+        as.not.empty(main.value).resetValidation();
+        resetValidation();
+      },
       slotNames: plugins.useSlotNames<Form.Slots>()(),
       submit: (event: Event): void => {
         if (props.asyncTaskType)
@@ -77,7 +84,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-form ref="main" class="m-form" @submit="submit">
+  <q-form ref="main" class="m-form" greedy @submit="submit">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

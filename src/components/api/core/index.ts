@@ -89,3 +89,18 @@ export type SetupEmitAux<K, V> = V extends Callable
   : never;
 
 export type SetupProps<T> = Omit<T, `on${UppercaseLetter}${string}`>;
+
+export interface Trigger {
+  /**
+   * Creates trigger.
+   *
+   * @returns Trigger.
+   */
+  readonly get: () => () => void;
+  /**
+   * Watches trigger.
+   *
+   * @param handler - Handler.
+   */
+  readonly watch: (handler: () => void) => void;
+}

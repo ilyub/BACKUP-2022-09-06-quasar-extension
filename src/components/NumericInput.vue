@@ -67,7 +67,10 @@ export default defineComponent({
       },
       fieldValue: computed(() => cast.string(props.modelValue)),
       icons: NumericInput.icons,
-      input: (event: Event, emitValue: (value: NumStrE) => void): void => {
+      input: (
+        event: Event,
+        emitValue: NumericInput.ControlSlotData["emitValue"]
+      ): void => {
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
       main: validation.target,
@@ -116,7 +119,12 @@ export default defineComponent({
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control="data">
-      <slot :name="slotNames.control" v-bind="data">
+      <slot
+        v-bind="data"
+        :change="change"
+        :name="slotNames.control"
+        :placeholder="placeholder"
+      >
         <input
           v-debug-id="'input'"
           v-maska="'#*'"

@@ -1,5 +1,5 @@
 import { as, o } from "@skylib/functions";
-import { computed, inject, provide, ref } from "vue";
+import { computed, inject, provide, ref, watch } from "vue";
 import type {
   Emits,
   Injectable,
@@ -9,7 +9,8 @@ import type {
   PropOptionsDefault,
   PropOptionsRequired,
   SetupEmit,
-  SetupProps
+  SetupProps,
+  Trigger
 } from "./core";
 import type { unknowns, Join2, IndexedObject } from "@skylib/functions";
 import type { PublicProps } from "quasar";
@@ -165,6 +166,35 @@ export function parentProps<T extends object>(): ParentProps<T> {
  */
 export function skipCheck(..._args: unknowns): boolean {
   return true;
+}
+
+/**
+ * Creates trigger.
+ *
+ * @returns Trigger.
+ */
+export function trigger(): Trigger {
+  const id: InjectionKey<ComputedRef<number>> = Symbol("trigger-id");
+
+  const result: Trigger = {
+    get: () => {
+      const counter = ref(0);
+
+      provide(
+        id,
+        computed(() => counter.value)
+      );
+
+      return () => {
+        counter.value++;
+      };
+    },
+    watch: handler => {
+      watch(injectRequire(id), handler);
+    }
+  };
+
+  return result;
 }
 
 /**

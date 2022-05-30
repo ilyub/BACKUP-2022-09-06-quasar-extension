@@ -1,7 +1,7 @@
-import { prop } from "./misc";
-import { submitting as submittingInjection } from "./submitting";
+import { submitting as submittingInjection } from "./injections";
+import { prop, trigger } from "./misc";
 import { handlePromise, lang as baseLang } from "@skylib/facades";
-import { as, defineFn, fn, is, reflect, typedef } from "@skylib/functions";
+import { as, defineFn, is, reflect, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
 import type { Writable, booleanU, stringU } from "@skylib/functions";
@@ -36,9 +36,35 @@ export const useValidation = defineFn(
         : "field"
     );
 
+    const rulesOnInput = computed(() => props.rulesOnInput ?? []);
+
+    const rulesOnChange = computed(() => props.rulesOnChange ?? []);
+
+    const rulesOnSubmit = computed(() => {
+      const rules1 =
+        props.required ?? false
+          ? [
+              (value: T): string | true =>
+                value === undefined
+                  ? useValidation.lang.with("field", field.value)
+                      .FieldIsRequired
+                  : true
+            ]
+          : [];
+
+      const rules2 = props.rulesOnSubmit ?? [];
+
+      return [...rules1, ...rules2];
+    });
+
     const submitting = submittingInjection.inject();
 
     const target = ref<QField | QInput>();
+
+    useValidation.reset.watch(() => {
+      for (const rule of [...rulesOnChange.value, ...rulesOnSubmit.value])
+        reflect.defineMetadata(MetadataKey.PrevInvalid, false, rule);
+    });
 
     return {
       change: (): void => {
@@ -52,64 +78,38 @@ export const useValidation = defineFn(
           }
         });
       },
-      rules: computed(() => {
-        const rulesOnInput = props.rulesOnInput ?? [];
-
-        const rulesOnChange = props.rulesOnChange ?? [];
-
-        const rulesOnSubmit = fn.run(() => {
-          const rules1 =
-            props.required ?? false
-              ? [
-                  (value: T): string | true =>
-                    value === undefined
-                      ? useValidation.lang.with("field", field.value)
-                          .FieldIsRequired
-                      : true
-                ]
-              : [];
-
-          const rules2 = props.rulesOnSubmit ?? [];
-
-          return [...rules1, ...rules2];
-        });
-
-        return [
-          ...rulesOnInput,
-          ...rulesOnChange.map(rule => async () => {
-            const prevInvalid = as.boolean(
-              reflect.getOwnMetadata(MetadataKey, rule) ?? false
-            );
-
-            if (prevInvalid || submitting.value || change) {
-              const result = await rule(modelValue());
-
-              reflect.defineMetadata(MetadataKey, result !== true, rule);
-
-              return result;
-            }
-
-            return true;
-          }),
-          ...rulesOnSubmit.map(rule => async () => {
-            const prevInvalid = as.boolean(
-              reflect.getOwnMetadata(MetadataKey, rule) ?? false
-            );
-
-            if (prevInvalid || submitting.value) {
-              const result = await rule(modelValue());
-
-              reflect.defineMetadata(MetadataKey, result !== true, rule);
-
-              return result;
-            }
-
-            return true;
-          })
-        ];
-      }),
+      rules: computed(() => [
+        ...rulesOnInput.value,
+        ...rulesOnChange.value.map(
+          rule => async () => await applyRule(rule, true)
+        ),
+        ...rulesOnSubmit.value.map(
+          rule => async () => await applyRule(rule, false)
+        )
+      ]),
       target
     };
+
+    async function applyRule(
+      rule: useValidation.Rule<T>,
+      useChange: boolean
+    ): Promise<string | true> {
+      // eslint-disable-next-line no-warning-comments -- Wait @skylib/functions update
+      // fixme
+      const prevInvalid = as.boolean(
+        reflect.getOwnMetadata(MetadataKey.PrevInvalid, rule) ?? false
+      );
+
+      if (prevInvalid || submitting.value || (useChange && change)) {
+        const result = await rule(modelValue());
+
+        reflect.defineMetadata(MetadataKey.PrevInvalid, result !== true, rule);
+
+        return result;
+      }
+
+      return true;
+    }
   },
   {
     lang: typedef<baseLang.Lang<keyof useValidation.Word, never>>(baseLang),
@@ -119,7 +119,8 @@ export const useValidation = defineFn(
       rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
       rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
       rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>()
-    } as const
+    } as const,
+    reset: trigger()
   }
 );
 
@@ -165,4 +166,6 @@ export namespace useValidation {
   }
 }
 
-const MetadataKey = Symbol("prev-invalid");
+const MetadataKey = {
+  PrevInvalid: Symbol("prev-invalid")
+} as const;

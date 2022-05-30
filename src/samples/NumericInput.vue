@@ -34,9 +34,10 @@ export default defineComponent({
         value4.value = undefined;
         value5.value = undefined;
         value6.value = undefined;
+        as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
-        as.not.empty(form.value).main.resetValidation();
+        as.not.empty(form.value).resetValidation();
       },
       rules: [
         (value: numberU): string | true =>

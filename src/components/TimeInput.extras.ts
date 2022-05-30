@@ -1,6 +1,6 @@
 import type { NumericInput } from "./NumericInput.extras";
 import type { GlobalComponent } from "./api";
-import type { numberU, stringU } from "@skylib/functions";
+import type { numberU } from "@skylib/functions";
 
 export namespace TimeInput {
   export interface Global extends GlobalComponent<Props, Slots> {
@@ -15,7 +15,6 @@ export namespace TimeInput {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: numberU) => void;
-    readonly placeholder?: stringU;
   }
 
   export interface ParentProps
