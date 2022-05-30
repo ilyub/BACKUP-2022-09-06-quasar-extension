@@ -1,7 +1,7 @@
 import { submitting as submittingInjection } from "./injections";
 import { prop, trigger } from "./misc";
 import { handlePromise, lang as baseLang } from "@skylib/facades";
-import { as, defineFn, is, reflect, typedef } from "@skylib/functions";
+import { as, defineFn, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
 import type { Writable, booleanU, stringU } from "@skylib/functions";
@@ -28,7 +28,7 @@ export const useValidation = defineFn(
     props: SetupProps<useValidation.Props<T>>,
     modelValue: () => T
   ): useValidation.Plugin<T> => {
-    let change = 0;
+    let changing = 0;
 
     const field = computed(() =>
       is.not.empty(props.label) && useValidation.lang.has(props.label)
@@ -36,26 +36,38 @@ export const useValidation = defineFn(
         : "field"
     );
 
-    const rulesOnInput = computed(() => props.rulesOnInput ?? []);
+    const rulesOnInput = computed(() =>
+      props.rulesOnInput
+        ? props.rulesOnInput.map(rule => wrapRule(rule, "input"))
+        : []
+    );
 
-    const rulesOnChange = computed(() => props.rulesOnChange ?? []);
+    const rulesOnChange = computed(() =>
+      props.rulesOnChange
+        ? props.rulesOnChange.map(rule => wrapRule(rule, "change"))
+        : []
+    );
 
-    const rulesOnSubmit = computed(() => {
-      const rules1 =
-        props.required ?? false
-          ? [
+    const rulesOnSubmit = computed(() =>
+      props.rulesOnSubmit
+        ? props.rulesOnSubmit.map(rule => wrapRule(rule, "submit"))
+        : []
+    );
+
+    const rulesRequired = computed(() =>
+      props.required ?? false
+        ? [
+            wrapRule(
               (value: T): string | true =>
                 value === undefined
                   ? useValidation.lang.with("field", field.value)
                       .FieldIsRequired
-                  : true
-            ]
-          : [];
-
-      const rules2 = props.rulesOnSubmit ?? [];
-
-      return [...rules1, ...rules2];
-    });
+                  : true,
+              "submit"
+            )
+          ]
+        : []
+    );
 
     const submitting = submittingInjection.inject();
 
@@ -63,52 +75,56 @@ export const useValidation = defineFn(
 
     useValidation.reset.watch(() => {
       for (const rule of [...rulesOnChange.value, ...rulesOnSubmit.value])
-        reflect.defineMetadata(MetadataKey.PrevInvalid, false, rule);
+        rule.prevInvalid.value = false;
     });
 
     return {
       change: (): void => {
         handlePromise.silent(async () => {
-          change++;
+          changing++;
 
           try {
             await as.not.empty(target.value).validate();
           } finally {
-            change--;
+            changing--;
           }
         });
       },
       rules: computed(() => [
         ...rulesOnInput.value,
-        ...rulesOnChange.value.map(
-          rule => async () => await applyRule(rule, true)
-        ),
-        ...rulesOnSubmit.value.map(
-          rule => async () => await applyRule(rule, false)
-        )
+        ...rulesOnChange.value,
+        ...rulesRequired.value,
+        ...rulesOnSubmit.value
       ]),
       target
     };
 
-    async function applyRule(
+    function wrapRule(
       rule: useValidation.Rule<T>,
-      useChange: boolean
-    ): Promise<string | true> {
-      // eslint-disable-next-line no-warning-comments -- Wait @skylib/functions update
-      // fixme
-      const prevInvalid = as.boolean(
-        reflect.getOwnMetadata(MetadataKey.PrevInvalid, rule) ?? false
+      context: "change" | "input" | "submit"
+    ): RuleWrapper<T> {
+      const prevInvalid = ref(false);
+
+      return defineFn(
+        async () => {
+          if (
+            context === "input" ||
+            (context === "change" && changing) ||
+            submitting.value ||
+            prevInvalid.value
+          ) {
+            const result = await rule(modelValue());
+
+            // eslint-disable-next-line require-atomic-updates -- Ok
+            prevInvalid.value = result !== true;
+
+            return result;
+          }
+
+          return true;
+        },
+        { prevInvalid }
       );
-
-      if (prevInvalid || submitting.value || (useChange && change)) {
-        const result = await rule(modelValue());
-
-        reflect.defineMetadata(MetadataKey.PrevInvalid, result !== true, rule);
-
-        return result;
-      }
-
-      return true;
     }
   },
   {
@@ -125,8 +141,6 @@ export const useValidation = defineFn(
 );
 
 export namespace useValidation {
-  export type Context = "change" | "input" | "submit";
-
   export interface OwnProps<T = unknown> {
     readonly label?: stringU;
     readonly required?: booleanU;
@@ -166,6 +180,6 @@ export namespace useValidation {
   }
 }
 
-const MetadataKey = {
-  PrevInvalid: Symbol("prev-invalid")
-} as const;
+interface RuleWrapper<T = unknown> extends useValidation.Rule<T> {
+  readonly prevInvalid: Ref<boolean>;
+}
