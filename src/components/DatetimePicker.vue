@@ -13,6 +13,7 @@ import { compare, datetime } from "@skylib/facades";
 import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { stringU } from "@skylib/functions";
+import type { QField } from "quasar";
 
 export default defineComponent({
   name: "m-datetime-picker",
@@ -97,7 +98,13 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
-    const validation = plugins.useValidation(props, () => props.modelValue);
+    const main = ref<QField>();
+
+    const validation = plugins.useValidation(
+      props,
+      main,
+      () => props.modelValue
+    );
 
     return {
       date: computed(() =>
@@ -142,7 +149,7 @@ export default defineComponent({
       ),
       icons: DatetimePicker.icons,
       lang: DatetimePicker.lang,
-      main: validation.target,
+      main,
       nextClick: (): void => {
         step.value = "time";
       },

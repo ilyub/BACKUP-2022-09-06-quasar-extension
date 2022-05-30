@@ -23,6 +23,7 @@ export namespace BaseButton {
     readonly loading?: booleanU;
     readonly tooltip?: stringU;
     readonly tooltipDirection?: plugins.useDirection.Direction | undefined;
+    readonly type?: stringU;
   }
 
   export interface ParentProps extends Omit<QBtnProps, keyof OwnProps> {}

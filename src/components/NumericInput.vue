@@ -13,6 +13,7 @@ import { as, cast, is, num, o } from "@skylib/functions";
 import { maska } from "maska";
 import { computed, defineComponent, ref } from "vue";
 import type { numberU, NumStrE } from "@skylib/functions";
+import type { QField } from "quasar";
 
 export default defineComponent({
   name: "m-numeric-input",
@@ -36,7 +37,13 @@ export default defineComponent({
 
     const input = ref<HTMLInputElement>();
 
-    const validation = plugins.useValidation(props, () => props.modelValue);
+    const main = ref<QField>();
+
+    const validation = plugins.useValidation(
+      props,
+      main,
+      () => props.modelValue
+    );
 
     return {
       downClick: (step: number): void => {
@@ -75,7 +82,7 @@ export default defineComponent({
           ? NumericInput.lang.get(props.label)
           : props.label
       ),
-      main: validation.target,
+      main,
       rules: validation.rules,
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",

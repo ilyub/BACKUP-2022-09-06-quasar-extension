@@ -152,6 +152,7 @@ module.exports = {
   readonlyTypes: [
     "^ComponentOptionsBase$",
     "^ComputedRef$",
+    "^Ref",
     "^VNode$",
     "^VueWrapper$"
   ]

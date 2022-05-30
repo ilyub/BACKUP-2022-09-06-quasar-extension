@@ -16,9 +16,10 @@ export default defineComponent({
     disable: prop.boolean(),
     loading: prop.boolean(),
     tooltip: prop<BaseButton.Props["tooltip"]>(),
-    tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>()
+    tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>(),
+    type: prop<BaseButton.Props["type"]>()
   },
-  setup: (props, { attrs }) => {
+  setup: props => {
     validateProps<BaseButton.OwnProps>(props);
 
     const asyncClick = plugins.useAsyncClick(props);
@@ -29,7 +30,11 @@ export default defineComponent({
 
     const settings = BaseButton.injectSettings();
 
-    const submitting = injections.submitting.inject();
+    const submitting = computed(
+      () => submittingAux.value && props.type === "submit"
+    );
+
+    const submittingAux = injections.submitting.inject();
 
     return {
       buttonClick: (): void => {
@@ -37,14 +42,16 @@ export default defineComponent({
         confirmedClick();
       },
       buttonDisable: computed(
-        () => props.disable || globalDisable.value || asyncClick.active.value
+        () =>
+          props.disable ||
+          globalDisable.value ||
+          submitting.value ||
+          asyncClick.active.value
       ),
       buttonLoading: computed(
         () =>
           props.loading ||
-          (submitting.value &&
-            attrs["type"] === "submit" &&
-            settings.value.animateSubmitting) ||
+          (submitting.value && settings.value.animateSubmitting) ||
           (asyncClick.active.value && settings.value.animateAsyncClick)
       ),
       hasTooltip: computed(() => is.not.empty(props.tooltip)),
@@ -61,6 +68,7 @@ export default defineComponent({
     class="m-base-button"
     :disable="buttonDisable"
     :loading="buttonLoading"
+    :type="type"
     @click="buttonClick"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
@@ -68,7 +76,6 @@ export default defineComponent({
     </template>
     <template #default>
       <slot :name="slotNames.default"></slot>
-
       <m-tooltip v-if="hasTooltip" :direction="tooltipDirection">
         {{ tooltip }}
       </m-tooltip>

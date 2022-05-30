@@ -12,8 +12,9 @@ import {
   injections
 } from "./api";
 import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { NumStrE, stringU } from "@skylib/functions";
+import type { QInput } from "quasar";
 
 export default defineComponent({
   name: "m-input",
@@ -30,7 +31,13 @@ export default defineComponent({
     validateEmit<Input.OwnProps>(emit);
     validateProps<Input.OwnProps>(props);
 
-    const validation = plugins.useValidation(props, () => props.modelValue);
+    const main = ref<QInput>();
+
+    const validation = plugins.useValidation(
+      props,
+      main,
+      () => props.modelValue
+    );
 
     return {
       change: validation.change,
@@ -40,7 +47,7 @@ export default defineComponent({
           ? Input.lang.get(props.label)
           : props.label
       ),
-      main: validation.target,
+      main,
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Input.Slots>()("label"),
       update: (value: NumStrE): void => {

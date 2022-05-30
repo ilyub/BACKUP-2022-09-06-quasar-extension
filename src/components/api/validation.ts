@@ -21,11 +21,13 @@ export const useValidation = defineFn(
    * Use validation plugin.
    *
    * @param props - Props.
+   * @param target - Target.
    * @param modelValue - Model value.
    * @returns Validation plugin.
    */
   <T = unknown>(
     props: SetupProps<useValidation.Props<T>>,
+    target: Ref<QField | QInput | undefined>,
     modelValue: () => T
   ): useValidation.Plugin<T> => {
     let changing = 0;
@@ -71,8 +73,6 @@ export const useValidation = defineFn(
 
     const submitting = submittingInjection.inject();
 
-    const target = ref<QField | QInput>();
-
     useValidation.reset.watch(() => {
       for (const rule of [...rulesOnChange.value, ...rulesOnSubmit.value])
         rule.prevInvalid.value = false;
@@ -95,8 +95,7 @@ export const useValidation = defineFn(
         ...rulesOnChange.value,
         ...rulesRequired.value,
         ...rulesOnSubmit.value
-      ]),
-      target
+      ])
     };
 
     function wrapRule(
@@ -155,7 +154,6 @@ export namespace useValidation {
      */
     readonly change: () => void;
     readonly rules: ComputedRef<Writable<ValidationRules<T>>>;
-    readonly target: Ref<QField | QInput | undefined>;
   }
 
   export interface Props<T = unknown> extends OwnProps<T> {}
