@@ -29,26 +29,31 @@ export default defineComponent({
 
     const active = ref(false);
 
-    const formattedValue = ref<string>();
+    const input = ref<HTMLInputElement>();
+
+    const inputValue = ref<string>();
 
     watch(() => props.modelValue, format);
 
     return {
-      blur: (): void => {
+      focus: (): void => {
+        as.not.empty(input.value).focus();
+      },
+      input,
+      inputBlur: (): void => {
         active.value = false;
         format();
       },
-      focus: (): void => {
+      inputFocus: (): void => {
         active.value = true;
       },
-      formattedValue,
-      input: (
+      inputInput: (
         event: Event,
         emitValue: NumericInput.ControlSlotData["emitValue"]
       ): void => {
         const value = o.get(as.not.empty(event.target), "value", is.string);
 
-        formattedValue.value = value;
+        inputValue.value = value;
 
         if (value.includes(":")) {
           const [hours, minutes] = value.split(":").map(cast.number);
@@ -56,6 +61,7 @@ export default defineComponent({
           emitValue(60 * as.not.empty(hours) + as.not.empty(minutes));
         } else emitValue(value);
       },
+      inputValue,
       main: ref<NumericInput.Global>(),
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
       slotNames: plugins.useSlotNames<TimeInput.Slots>()("control")
@@ -65,7 +71,7 @@ export default defineComponent({
       if (active.value) {
         // Do not format while editing
       } else
-        formattedValue.value = fn.run(() => {
+        inputValue.value = fn.run(() => {
           if (is.not.empty(props.modelValue)) {
             const hours = Math.floor(props.modelValue / 60);
 
@@ -94,6 +100,7 @@ export default defineComponent({
     class="m-time-input"
     :model-value="modelValue"
     :small-step="15"
+    @focus="focus"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
@@ -102,15 +109,16 @@ export default defineComponent({
     <template #control="data">
       <slot :name="slotNames.control" v-bind="data">
         <input
+          ref="input"
           v-debug-id="'input'"
           v-maska="mask"
           class="q-field__input"
           :placeholder="data.placeholder"
-          :value="formattedValue"
-          @blur="blur"
+          :value="inputValue"
+          @blur="inputBlur"
           @change="data.change"
-          @focus="focus"
-          @input="input($event, data.emitValue)"
+          @focus="inputFocus"
+          @input="inputInput($event, data.emitValue)"
         />
       </slot>
     </template>

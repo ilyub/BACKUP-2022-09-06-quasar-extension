@@ -11,7 +11,7 @@ import {
 } from "./api";
 import { as, cast, is, num, o } from "@skylib/functions";
 import { maska } from "maska";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { numberU, NumStrE } from "@skylib/functions";
 
 export default defineComponent({
@@ -34,10 +34,11 @@ export default defineComponent({
     validateEmit<NumericInput.OwnProps>(emit);
     validateProps<NumericInput.OwnProps>(props);
 
+    const input = ref<HTMLInputElement>();
+
     const validation = plugins.useValidation(props, () => props.modelValue);
 
     return {
-      change: validation.change,
       downClick: (step: number): void => {
         if (is.not.empty(props.modelValue))
           if (props.modelValue > props.min)
@@ -57,22 +58,23 @@ export default defineComponent({
           ? props.modelValue <= props.min && props.required
           : true
       ),
-      fieldLabel: computed(() =>
-        is.not.empty(props.label) && NumericInput.lang.has(props.label)
-          ? NumericInput.lang.get(props.label)
-          : props.label
-      ),
-      fieldUpdate: (value: NumStrE): void => {
-        emit("update:modelValue", cast.numberU(value));
+      focus: (): void => {
+        as.not.empty(input.value).focus();
       },
-      fieldValue: computed(() => cast.string(props.modelValue)),
       icons: NumericInput.icons,
-      input: (
+      input,
+      inputChange: validation.change,
+      inputInput: (
         event: Event,
         emitValue: NumericInput.ControlSlotData["emitValue"]
       ): void => {
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
+      langLabel: computed(() =>
+        is.not.empty(props.label) && NumericInput.lang.has(props.label)
+          ? NumericInput.lang.get(props.label)
+          : props.label
+      ),
       main: validation.target,
       rules: validation.rules,
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
@@ -98,7 +100,11 @@ export default defineComponent({
       },
       upDisable: computed(() =>
         is.not.empty(props.modelValue) ? props.modelValue >= props.max : false
-      )
+      ),
+      update: (value: NumStrE): void => {
+        emit("update:modelValue", cast.numberU(value));
+      },
+      value: computed(() => cast.string(props.modelValue))
     };
   }
 });
@@ -110,10 +116,11 @@ export default defineComponent({
     class="m-numeric-input"
     dense
     hide-bottom-space
-    :label="fieldLabel"
-    :model-value="fieldValue"
+    :label="langLabel"
+    :model-value="value"
     :rules="rules"
-    @update:model-value="fieldUpdate"
+    @focus="focus"
+    @update:model-value="update"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
@@ -121,24 +128,25 @@ export default defineComponent({
     <template #control="data">
       <slot
         v-bind="data"
-        :change="change"
+        :change="inputChange"
         :name="slotNames.control"
         :placeholder="placeholder"
       >
         <input
+          ref="input"
           v-debug-id="'input'"
           v-maska="'#*'"
           class="q-field__input"
           :placeholder="placeholder"
           :value="data.modelValue"
-          @change="change"
-          @input="input($event, data.emitValue)"
+          @change="inputChange"
+          @input="inputInput($event, data.emitValue)"
         />
       </slot>
     </template>
     <template #label>
       <slot :name="slotNames.label">
-        {{ fieldLabel }}
+        {{ langLabel }}
         <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>
