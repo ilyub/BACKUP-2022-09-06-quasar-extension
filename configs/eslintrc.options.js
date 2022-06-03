@@ -144,6 +144,11 @@ module.exports = {
         "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
     },
     {
+      message: 'Prefer to extend "ParentProps" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
+    },
+    {
       message: "Use interface",
       selector:
         "TSTypeAliasDeclaration > Identifier.id[name=/^(?:Props|Slots)$/u]"

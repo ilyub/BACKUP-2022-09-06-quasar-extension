@@ -16,9 +16,7 @@ export namespace BaseButton {
     readonly main: QBtn;
   }
 
-  export interface OwnProps
-    extends plugins.useAsyncClick.Props,
-      plugins.useConfirmedClick.Props {
+  export interface OwnProps {
     readonly disable?: booleanU;
     readonly loading?: booleanU;
     readonly tooltip?: stringU;
@@ -26,7 +24,10 @@ export namespace BaseButton {
     readonly type?: stringU;
   }
 
-  export interface ParentProps extends Omit<QBtnProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends Omit<QBtnProps, keyof OwnProps>,
+      plugins.useAsyncClick.Props,
+      plugins.useConfirmedClick.Props {}
 
   export interface ParentSlots extends QBtnSlots {}
 
