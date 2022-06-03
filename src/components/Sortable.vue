@@ -6,11 +6,18 @@ import { prop, validateEmit, validateProps, plugins, skipCheck } from "./api";
 import { as, assert, is, o } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import VueDraggable from "vuedraggable";
+import type { GlobalComponent } from "./api";
 import type { objects } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-sortable",
-  components: { "vue-draggable": VueDraggable },
+  components: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
+    "vue-draggable": VueDraggable as unknown as GlobalComponent<
+      Sortable.VueDraggableProps,
+      Sortable.VueDraggableSlots
+    >
+  },
   props: {
     group: prop.required<Sortable.Props["group"]>(),
     itemClass: prop<Sortable.Props["itemClass"]>(),

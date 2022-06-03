@@ -1,6 +1,12 @@
 import { injectableSettings } from "./api";
 import type { GlobalComponent, VNodes } from "./api";
-import type { stringU, booleanU } from "@skylib/functions";
+import type {
+  stringU,
+  booleanU,
+  numberU,
+  objectU,
+  unknowns
+} from "@skylib/functions";
 
 export namespace Sortable {
   export const { injectSettings, provideSettings, testProvideSettings } =
@@ -93,8 +99,13 @@ export namespace Sortable {
     readonly item: (data: ItemSlotData<T>) => VNodes;
   }
 
+  export interface ParentProps extends VueDraggableProps {}
+
+  export interface ParentSlots extends VueDraggableProps {}
+
   export interface Props<T extends object = object, D extends object = object>
-    extends OwnProps<T, D> {}
+    extends Omit<ParentProps, keyof OwnProps>,
+      OwnProps<T, D> {}
 
   export interface Settings {
     readonly animationDuration: number;
@@ -102,5 +113,52 @@ export namespace Sortable {
     readonly disableSorting: boolean;
   }
 
-  export interface Slots<T extends object = object> extends OwnSlots<T> {}
+  export interface Slots<T extends object = object>
+    extends ParentSlots,
+      OwnSlots<T> {}
+
+  export interface VueDraggableElement {
+    readonly group: string;
+    readonly id: string;
+    readonly item: object;
+  }
+
+  export interface VueDraggableItemSlotData {
+    readonly element: VueDraggableElement;
+  }
+
+  export interface VueDraggableProps {
+    readonly animation?: numberU;
+    readonly dataGroup?: stringU;
+    readonly disabled?: booleanU;
+    readonly ghostClass?: stringU;
+    readonly group?: objectU;
+    readonly itemKey?: stringU;
+    readonly modelValue?: unknowns | undefined;
+    readonly move?: Function | undefined;
+    readonly sort?: booleanU;
+    readonly tag?: stringU;
+  }
+
+  export interface VueDraggableSlots {
+    /**
+     * Footer slot.
+     *
+     * @returns Nodes.
+     */
+    readonly footer: () => VNodes;
+    /**
+     *Header slot.
+     *
+     * @returns Nodes.
+     */
+    readonly header: () => VNodes;
+    /**
+     * Item slot.
+     *
+     * @param data - Data.
+     * @returns Nodes.
+     */
+    readonly item: (data: VueDraggableItemSlotData) => VNodes;
+  }
 }

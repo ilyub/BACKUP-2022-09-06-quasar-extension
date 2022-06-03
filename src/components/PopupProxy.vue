@@ -2,12 +2,20 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.PopupProxy] */
 
 import { parentProps, plugins } from "./api";
+import { QPopupProxy } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { PopupProxy } from "./PopupProxy.extras";
-import type { QPopupProxy } from "quasar";
+import type { GlobalComponent } from "./api";
 
 export default defineComponent({
   name: "m-popup-proxy",
+  components: {
+    // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
+    "q-popup-proxy": QPopupProxy as unknown as GlobalComponent<
+      PopupProxy.QPopupProxyProps,
+      PopupProxy.QPopupProxySlots
+    >
+  },
   props: {
     ...parentProps<PopupProxy.ParentProps>(),
     ...plugins.useDirection.props
