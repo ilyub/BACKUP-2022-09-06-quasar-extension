@@ -6,9 +6,7 @@ export namespace Menu {
     readonly main: QMenu;
   }
 
-  export interface OwnProps extends plugins.useDirection.Props {}
-
-  export interface ParentProps extends QMenuProps {}
+  export interface ParentProps extends QMenuProps, plugins.useDirection.Props {}
 
   export interface Props extends ParentProps {}
 

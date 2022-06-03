@@ -1,5 +1,5 @@
 import type { NumericInput } from "./NumericInput.extras";
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, plugins } from "./api";
 import type { numberU } from "@skylib/functions";
 
 export namespace TimeInput {
@@ -15,6 +15,7 @@ export namespace TimeInput {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: numberU) => void;
+    readonly validationOptions?: plugins.useValidation.Props<numberU>["validationOptions"];
   }
 
   export interface ParentProps

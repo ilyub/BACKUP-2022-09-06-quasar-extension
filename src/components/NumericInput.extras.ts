@@ -42,7 +42,7 @@ export namespace NumericInput {
     readonly chevronRight: true;
   }
 
-  export interface OwnProps extends plugins.useValidation.Props<numberU> {
+  export interface OwnProps {
     readonly bigStep?: numberU;
     readonly label?: stringU;
     readonly max?: numberU;
@@ -69,7 +69,9 @@ export namespace NumericInput {
     readonly control: (scope: ControlSlotData) => VNodes;
   }
 
-  export interface ParentProps extends Omit<QFieldProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends Omit<QFieldProps, keyof OwnProps>,
+      plugins.useValidation.Props<numberU> {}
 
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 

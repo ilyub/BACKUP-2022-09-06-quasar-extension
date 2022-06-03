@@ -15,13 +15,13 @@ export namespace Tooltip {
     readonly main: QTooltip;
   }
 
-  export interface OwnProps extends plugins.useDirection.Props {}
-
-  export interface ParentProps extends Omit<QTooltipProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends QTooltipProps,
+      plugins.useDirection.Props {}
 
   export interface ParentSlots extends QTooltipSlots {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends ParentProps {}
 
   export interface Settings {
     readonly delay: number;

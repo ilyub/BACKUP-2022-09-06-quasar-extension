@@ -6,13 +6,13 @@ export namespace MenuItem {
     readonly main: Item.Global;
   }
 
-  export interface OwnProps extends plugins.useConfirmedClick.Props {}
-
-  export interface ParentProps extends Omit<Item.Props, keyof OwnProps> {}
+  export interface ParentProps
+    extends Item.Props,
+      plugins.useConfirmedClick.Props {}
 
   export interface ParentSlots extends Item.Slots {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends ParentProps {}
 
   export interface Slots extends ParentSlots {}
 }

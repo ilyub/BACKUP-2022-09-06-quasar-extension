@@ -11,7 +11,7 @@ import {
   skipCheck,
   injections
 } from "./api";
-import { is } from "@skylib/functions";
+import { is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { NumStrE, stringU } from "@skylib/functions";
 import type { QInput } from "quasar";
@@ -36,7 +36,9 @@ export default defineComponent({
     const validation = plugins.useValidation(
       props,
       main,
-      () => props.modelValue
+      () => props.modelValue,
+      () =>
+        o.removeUndefinedKeys({ label: props.label, required: props.required })
     );
 
     return {

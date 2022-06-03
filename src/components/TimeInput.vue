@@ -8,9 +8,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { as, cast, fn, is, o } from "@skylib/functions";
+import { as, cast, is, o } from "@skylib/functions";
 import { maska } from "maska";
-import { defineComponent, ref, watch } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
 import type { numberU } from "@skylib/functions";
@@ -20,7 +20,8 @@ export default defineComponent({
   directives: { debugId: directives.debugId("time-input"), maska },
   props: {
     ...parentProps<TimeInput.ParentProps>(),
-    modelValue: prop<TimeInput.Props["modelValue"]>()
+    modelValue: prop<TimeInput.Props["modelValue"]>(),
+    validationOptions: prop<TimeInput.Props["validationOptions"]>()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -33,16 +34,13 @@ export default defineComponent({
 
     const inputValue = ref<string>();
 
-    watch(() => props.modelValue, format);
+    watch(() => props.modelValue, inputFormat);
 
     return {
-      focus: (): void => {
-        as.not.empty(input.value).focus();
-      },
       input,
       inputBlur: (): void => {
         active.value = false;
-        format();
+        inputFormat();
       },
       inputFocus: (): void => {
         active.value = true;
@@ -63,31 +61,43 @@ export default defineComponent({
       },
       inputValue,
       main: ref<NumericInput.Global>(),
+      mainFocus: (): void => {
+        as.not.empty(input.value).focus();
+      },
+      mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(
+        () => {
+          return { ...props.validationOptions, minMaxFormat: format };
+        }
+      ),
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
       slotNames: plugins.useSlotNames<TimeInput.Slots>()("control")
     };
 
-    function format(): void {
+    function format(value: number): string {
+      if (is.not.empty(value)) {
+        const hours = Math.floor(value / 60);
+
+        if (hours) {
+          const minutes = value % 60;
+
+          const minutes1 = Math.floor(minutes / 10);
+
+          const minutes2 = minutes % 10;
+
+          return `${hours}:${minutes1}${minutes2}`;
+        }
+      }
+
+      return cast.string(value);
+    }
+
+    function inputFormat(): void {
       if (active.value) {
         // Do not format while editing
       } else
-        inputValue.value = fn.run(() => {
-          if (is.not.empty(props.modelValue)) {
-            const hours = Math.floor(props.modelValue / 60);
-
-            if (hours) {
-              const minutes = props.modelValue % 60;
-
-              const minutes1 = Math.floor(minutes / 10);
-
-              const minutes2 = minutes % 10;
-
-              return `${hours}:${minutes1}${minutes2}`;
-            }
-          }
-
-          return cast.stringU(props.modelValue);
-        });
+        inputValue.value = is.not.empty(props.modelValue)
+          ? format(props.modelValue)
+          : undefined;
     }
   }
 });
@@ -100,7 +110,8 @@ export default defineComponent({
     class="m-time-input"
     :model-value="modelValue"
     :small-step="15"
-    @focus="focus"
+    :validation-options="mainValidationOptions"
+    @focus="mainFocus"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">

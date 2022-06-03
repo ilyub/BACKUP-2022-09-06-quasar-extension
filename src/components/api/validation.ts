@@ -1,10 +1,10 @@
 import { submitting as submittingInjection } from "./injections";
 import { prop, trigger } from "./misc";
-import { handlePromise, lang as baseLang } from "@skylib/facades";
-import { as, defineFn, is, typedef } from "@skylib/functions";
+import { compare, handlePromise, lang as baseLang } from "@skylib/facades";
+import { as, cast, defineFn, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
-import type { Writable, booleanU, stringU } from "@skylib/functions";
+import type { Writable, empty } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
 import type { ComputedRef, Ref } from "vue";
 
@@ -23,20 +23,27 @@ export const useValidation = defineFn(
    * @param props - Props.
    * @param target - Target.
    * @param modelValue - Model value.
+   * @param getOptions - Returns options.
    * @returns Validation plugin.
    */
   <T = unknown>(
     props: SetupProps<useValidation.Props<T>>,
     target: Ref<QField | QInput | undefined>,
-    modelValue: () => T
+    modelValue: () => T,
+    getOptions?: () => useValidation.Options<T>
   ): useValidation.Plugin<T> => {
     let changing = 0;
 
     const field = computed(() =>
-      is.not.empty(props.label) && useValidation.lang.has(props.label)
-        ? props.label
+      is.not.empty(options.value.label) &&
+      useValidation.lang.has(options.value.label)
+        ? options.value.label
         : "field"
     );
+
+    const options = computed(() => {
+      return { ...props.validationOptions, ...getOptions?.() };
+    });
 
     const rulesOnInput = computed(() =>
       props.rulesOnInput
@@ -50,14 +57,60 @@ export const useValidation = defineFn(
         : []
     );
 
+    const rulesOnChangeMin = computed(() => {
+      const min = options.value.min;
+
+      return is.not.empty(min)
+        ? [
+            wrapRule(
+              (value: T): string | true =>
+                is.not.empty(value) && compare(value, min) < 0
+                  ? useValidation.lang
+                      .with("field", field.value)
+                      .with(
+                        "min",
+                        options.value.minMaxFormat
+                          ? options.value.minMaxFormat(min)
+                          : cast.string(min)
+                      ).FieldShouldBeGteMin
+                  : true,
+              "change"
+            )
+          ]
+        : [];
+    });
+
+    const rulesOnChangeMax = computed(() => {
+      const max = options.value.max;
+
+      return is.not.empty(max)
+        ? [
+            wrapRule(
+              (value: T): string | true =>
+                is.not.empty(value) && compare(value, max) > 0
+                  ? useValidation.lang
+                      .with("field", field.value)
+                      .with(
+                        "max",
+                        options.value.minMaxFormat
+                          ? options.value.minMaxFormat(max)
+                          : cast.string(max)
+                      ).FieldShouldBeLteMax
+                  : true,
+              "change"
+            )
+          ]
+        : [];
+    });
+
     const rulesOnSubmit = computed(() =>
       props.rulesOnSubmit
         ? props.rulesOnSubmit.map(rule => wrapRule(rule, "submit"))
         : []
     );
 
-    const rulesRequired = computed(() =>
-      props.required ?? false
+    const rulesOnSubmitRequired = computed(() =>
+      options.value.required ?? false
         ? [
             wrapRule(
               (value: T): string | true =>
@@ -92,8 +145,10 @@ export const useValidation = defineFn(
       },
       rules: computed(() => [
         ...rulesOnInput.value,
+        ...rulesOnChangeMin.value,
+        ...rulesOnChangeMax.value,
         ...rulesOnChange.value,
-        ...rulesRequired.value,
+        ...rulesOnSubmitRequired.value,
         ...rulesOnSubmit.value
       ])
     };
@@ -129,23 +184,35 @@ export const useValidation = defineFn(
   {
     lang: typedef<baseLang.Lang<keyof useValidation.Word, never>>(baseLang),
     props: {
-      label: prop<useValidation.Props["label"]>(),
-      required: prop.boolean(),
       rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
       rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
-      rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>()
+      rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>(),
+      validationOptions: prop<useValidation.Props["validationOptions"]>()
     } as const,
     reset: trigger()
   }
 );
 
 export namespace useValidation {
+  export interface Options<T = unknown> {
+    readonly label?: string;
+    readonly max?: T;
+    readonly min?: T;
+    /**
+     * Formats min/max value.
+     *
+     * @param value - Value.
+     * @returns Formatted value.l.
+     */
+    readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
+    readonly required?: boolean;
+  }
+
   export interface OwnProps<T = unknown> {
-    readonly label?: stringU;
-    readonly required?: booleanU;
     readonly rulesOnChange?: Rules<T> | undefined;
     readonly rulesOnInput?: Rules<T> | undefined;
     readonly rulesOnSubmit?: Rules<T> | undefined;
+    readonly validationOptions?: Options<T> | undefined;
   }
 
   export interface Plugin<T = unknown> {
@@ -173,8 +240,11 @@ export namespace useValidation {
   export type ValidationRules<T = unknown> = ReadonlyArray<ValidationRule<T>>;
 
   export interface Word {
+    readonly Equal: true;
     readonly Field: true;
     readonly FieldIsRequired: true;
+    readonly FieldShouldBeGteMin: true;
+    readonly FieldShouldBeLteMax: true;
   }
 }
 

@@ -42,7 +42,14 @@ export default defineComponent({
     const validation = plugins.useValidation(
       props,
       main,
-      () => props.modelValue
+      () => props.modelValue,
+      () =>
+        o.removeUndefinedKeys({
+          label: props.label,
+          max: props.max,
+          min: props.min,
+          required: props.required
+        })
     );
 
     return {
@@ -65,9 +72,6 @@ export default defineComponent({
           ? props.modelValue <= props.min && props.required
           : true
       ),
-      focus: (): void => {
-        as.not.empty(input.value).focus();
-      },
       icons: NumericInput.icons,
       input,
       inputChange: validation.change,
@@ -77,13 +81,20 @@ export default defineComponent({
       ): void => {
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
-      langLabel: computed(() =>
+      main,
+      mainFocus: (): void => {
+        as.not.empty(input.value).focus();
+      },
+      mainLabel: computed(() =>
         is.not.empty(props.label) && NumericInput.lang.has(props.label)
           ? NumericInput.lang.get(props.label)
           : props.label
       ),
-      main,
-      rules: validation.rules,
+      mainRules: validation.rules,
+      mainUpdate: (value: NumStrE): void => {
+        emit("update:modelValue", cast.numberU(value));
+      },
+      mainValue: computed(() => cast.string(props.modelValue)),
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",
         "control",
@@ -107,11 +118,7 @@ export default defineComponent({
       },
       upDisable: computed(() =>
         is.not.empty(props.modelValue) ? props.modelValue >= props.max : false
-      ),
-      update: (value: NumStrE): void => {
-        emit("update:modelValue", cast.numberU(value));
-      },
-      value: computed(() => cast.string(props.modelValue))
+      )
     };
   }
 });
@@ -123,11 +130,11 @@ export default defineComponent({
     class="m-numeric-input"
     dense
     hide-bottom-space
-    :label="langLabel"
-    :model-value="value"
-    :rules="rules"
-    @focus="focus"
-    @update:model-value="update"
+    :label="mainLabel"
+    :model-value="mainValue"
+    :rules="mainRules"
+    @focus="mainFocus"
+    @update:model-value="mainUpdate"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
@@ -153,7 +160,7 @@ export default defineComponent({
     </template>
     <template #label>
       <slot :name="slotNames.label">
-        {{ langLabel }}
+        {{ mainLabel }}
         <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>

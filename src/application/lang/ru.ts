@@ -15,11 +15,24 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Confirm: "Подтверждение",
     Date: ["кто-что-она", { "кого-что-ее": "Дату", "кто-что-она": "Дата" }],
     DeselectAll: "Снять выделение",
+    Equal: [
+      "кого-что-его",
+      {
+        "кого-что-его": "Равный",
+        "кого-что-его-ср": "Равное",
+        "кого-что-ее": "Равную"
+      }
+    ],
     Field: "Поле",
     FieldIsRequired: "Введите <field:кого-что>",
+    FieldShouldBeGteMin: "Введите <field:кого-что> больше либо {equal} @min",
+    FieldShouldBeLteMax: "Введите <field:кого-что> больше либо {equal} @max",
     IconPicker: "Выбор иконки",
     ManageColumns: "Управлять колонками",
-    Number: "Число",
+    Number: [
+      "кто-что-оно",
+      { "кого-что-его-ср": "Число", "кто-что-оно": "Число" }
+    ],
     Of: "Из",
     Ok: "Ок",
     Password: "Пароль",
@@ -30,6 +43,9 @@ export const ru = new implementations.lang.dictionary.Definitions({
       "кто-что-она",
       { "кого-что-ее": "Строку", "кто-что-она": "Строка" }
     ],
-    Time: "Время"
+    Time: [
+      "кто-что-оно",
+      { "кого-что-его-ср": "Время", "кто-что-оно": "Время" }
+    ]
   }
 });

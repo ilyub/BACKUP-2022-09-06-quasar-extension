@@ -10,7 +10,7 @@ export namespace Input {
     readonly main: QInput;
   }
 
-  export interface OwnProps extends plugins.useValidation.Props<stringU> {
+  export interface OwnProps {
     readonly disable?: booleanU;
     readonly label?: stringU;
     readonly modelValue?: stringU;
@@ -23,7 +23,9 @@ export namespace Input {
     readonly required?: booleanU;
   }
 
-  export interface ParentProps extends Omit<QInputProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends Omit<QInputProps, keyof OwnProps>,
+      plugins.useValidation.Props<stringU> {}
 
   export interface Props extends ParentProps, OwnProps {}
 

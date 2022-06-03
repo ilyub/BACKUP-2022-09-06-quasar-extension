@@ -23,8 +23,6 @@ export default defineComponent({
 
     const value5 = ref<string>();
 
-    const value6 = ref<string>();
-
     return {
       form,
       language,
@@ -50,7 +48,6 @@ export default defineComponent({
         value3.value = undefined;
         value4.value = undefined;
         value5.value = undefined;
-        value6.value = undefined;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
@@ -64,8 +61,7 @@ export default defineComponent({
       value2,
       value3,
       value4,
-      value5,
-      value6
+      value5
     };
   }
 });
@@ -78,7 +74,14 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <m-datetime-picker v-model="value1" label="Date" required />
+        <m-datetime-picker
+          v-model="value1"
+          clearable
+          label="Date"
+          :max="max"
+          :min="min"
+          required
+        />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
@@ -106,14 +109,6 @@ export default defineComponent({
       </m-form-section>
       <m-form-section>
         <m-datetime-picker disable label="Disabled" />
-      </m-form-section>
-      <m-form-section>
-        <m-datetime-picker
-          v-model="value6"
-          label="Min/max"
-          :max="max"
-          :min="min"
-        />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

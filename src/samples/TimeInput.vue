@@ -22,8 +22,6 @@ export default defineComponent({
 
     const value5 = ref<number>();
 
-    const value6 = ref<number>();
-
     return {
       form,
       language,
@@ -33,7 +31,6 @@ export default defineComponent({
         value3.value = undefined;
         value4.value = undefined;
         value5.value = undefined;
-        value6.value = undefined;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
@@ -47,8 +44,7 @@ export default defineComponent({
       value2,
       value3,
       value4,
-      value5,
-      value6
+      value5
     };
   }
 });
@@ -61,7 +57,14 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <m-time-input v-model="value1" label="Time" required />
+        <m-time-input
+          v-model="value1"
+          clearable
+          label="Time"
+          :max="120"
+          :min="15"
+          required
+        />
       </m-form-section>
       <m-form-section>
         <m-time-input
@@ -88,11 +91,8 @@ export default defineComponent({
         <m-time-input disable label="Disabled" :model-value="undefined" />
       </m-form-section>
       <m-form-section>
-        <m-time-input v-model="value5" label="Min/max" :max="60" :min="15" />
-      </m-form-section>
-      <m-form-section>
         <m-time-input
-          v-model="value6"
+          v-model="value5"
           label="Placeholder"
           placeholder="##:##"
         />

@@ -32,7 +32,7 @@ export namespace DatetimePicker {
     readonly pm: true;
   }
 
-  export interface OwnProps extends plugins.useValidation.Props<stringU> {
+  export interface OwnProps {
     readonly label?: stringU;
     readonly max?: stringU;
     readonly min?: stringU;
@@ -46,7 +46,9 @@ export namespace DatetimePicker {
     readonly required?: booleanU;
   }
 
-  export interface ParentProps extends Omit<QFieldProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends Omit<QFieldProps, keyof OwnProps>,
+      plugins.useValidation.Props<stringU> {}
 
   export interface ParentSlots extends QFieldSlots {}
 

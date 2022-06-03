@@ -6,13 +6,13 @@ export namespace PopupProxy {
     readonly main: QPopupProxy;
   }
 
-  export interface OwnProps extends plugins.useDirection.Props {}
-
-  export interface ParentProps extends Omit<QPopupProxyProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends QPopupProxyProps,
+      plugins.useDirection.Props {}
 
   export interface ParentSlots extends QPopupProxySlots {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends ParentProps {}
 
   export interface Slots extends ParentSlots {}
 }

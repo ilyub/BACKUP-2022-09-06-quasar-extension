@@ -10,7 +10,7 @@ import {
   skipCheck
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
-import { as, is } from "@skylib/functions";
+import { as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { stringU } from "@skylib/functions";
 import type { QField } from "quasar";
@@ -103,7 +103,14 @@ export default defineComponent({
     const validation = plugins.useValidation(
       props,
       main,
-      () => props.modelValue
+      () => props.modelValue,
+      () =>
+        o.removeUndefinedKeys({
+          label: props.label,
+          max: props.max,
+          min: props.min,
+          required: props.required
+        })
     );
 
     return {
