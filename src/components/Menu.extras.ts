@@ -6,9 +6,19 @@ export namespace Menu {
     readonly main: QMenu;
   }
 
-  export interface ParentProps extends QMenuProps, plugins.useDirection.Props {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
 
-  export interface Props extends ParentProps {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
 
-  export interface Slots extends QMenuSlots {}
+  export interface ParentProps
+    extends Omit<QMenuProps, keyof OwnProps>,
+      Omit<plugins.useDirection.Props, keyof OwnProps> {}
+
+  export interface ParentSlots extends Omit<QMenuSlots, keyof OwnSlots> {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

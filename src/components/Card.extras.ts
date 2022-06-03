@@ -51,7 +51,10 @@ export namespace Card {
 
   export interface ParentProps extends Omit<QCardProps, keyof OwnProps> {}
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentSlots {}
+
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends OwnSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

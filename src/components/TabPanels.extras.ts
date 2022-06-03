@@ -16,11 +16,16 @@ export namespace TabPanels {
     readonly "onUpdate:modelValue"?: (value: T) => void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps extends Omit<QTabPanelsProps, keyof OwnProps> {}
+
+  export interface ParentSlots extends Omit<QTabPanelsSlots, keyof OwnSlots> {}
 
   export interface Props<T extends NumStrU = NumStrU>
     extends OwnProps<T>,
       ParentProps {}
 
-  export interface Slots extends QTabPanelsSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

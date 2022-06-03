@@ -6,11 +6,17 @@ export namespace Subsection {
     readonly main: Switchable.Global;
   }
 
-  export interface ParentProps extends Switchable.Props {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
 
-  export interface ParentSlots extends Switchable.Slots {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
 
-  export interface Props extends ParentProps {}
+  export interface ParentProps extends Omit<Switchable.Props, keyof OwnProps> {}
 
-  export interface Slots extends ParentSlots {}
+  export interface ParentSlots extends Omit<Switchable.Slots, keyof OwnSlots> {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

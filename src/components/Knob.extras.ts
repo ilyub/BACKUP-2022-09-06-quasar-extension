@@ -19,9 +19,14 @@ export namespace Knob {
     readonly "onUpdate:modelValue"?: (value: number) => void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps extends Omit<QKnobProps, keyof OwnProps> {}
+
+  export interface ParentSlots extends Omit<QKnobSlots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends QKnobSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

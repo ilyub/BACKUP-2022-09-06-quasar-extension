@@ -3,6 +3,9 @@ import type { GlobalComponent, VNodes } from "./api";
 export namespace Indent {
   export interface Global extends GlobalComponent<Props, Slots> {}
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
+
   export interface OwnSlots {
     /**
      * Default slot.
@@ -13,7 +16,12 @@ export namespace Indent {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface Props {}
+  export interface ParentProps {}
 
-  export interface Slots extends OwnSlots {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentSlots {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

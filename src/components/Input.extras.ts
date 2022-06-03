@@ -23,11 +23,16 @@ export namespace Input {
     readonly required?: booleanU;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps
     extends Omit<QInputProps, keyof OwnProps>,
-      plugins.useValidation.Props<stringU> {}
+      Omit<plugins.useValidation.Props<stringU>, keyof OwnProps> {}
+
+  export interface ParentSlots extends Omit<QInputSlots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends QInputSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

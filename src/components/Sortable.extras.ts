@@ -99,12 +99,14 @@ export namespace Sortable {
     readonly item: (data: ItemSlotData<T>) => VNodes;
   }
 
-  export interface ParentProps extends VueDraggableProps {}
+  export interface ParentProps
+    extends Omit<VueDraggableProps, keyof OwnProps> {}
 
-  export interface ParentSlots extends VueDraggableProps {}
+  export interface ParentSlots
+    extends Omit<VueDraggableProps, keyof OwnSlots> {}
 
   export interface Props<T extends object = object, D extends object = object>
-    extends Omit<ParentProps, keyof OwnProps>,
+    extends ParentProps,
       OwnProps<T, D> {}
 
   export interface Settings {

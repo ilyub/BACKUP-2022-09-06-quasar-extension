@@ -7,6 +7,9 @@ export namespace Droppable {
     readonly main: Sortable.Global;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
+
   export interface OwnSlots {
     /**
      * Default slot.
@@ -21,8 +24,12 @@ export namespace Droppable {
     D extends object = object
   > extends Omit<Sortable.Props<T, D>, "group" | "itemKey" | "modelValue"> {}
 
-  export interface Props<T extends object = object, D extends object = object>
-    extends ParentProps<T, D> {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentSlots {}
 
-  export interface Slots extends OwnSlots {}
+  export interface Props<T extends object = object, D extends object = object>
+    extends ParentProps<T, D>,
+      OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

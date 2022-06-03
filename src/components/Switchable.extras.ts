@@ -27,14 +27,20 @@ export namespace Switchable {
     readonly default: () => VNodes;
   }
 
-  export interface Props extends OwnProps {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentProps {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentSlots {}
+
+  export interface Props extends ParentProps, OwnProps {}
 
   export interface Settings {
     readonly transition: Transition;
     readonly transitionDuration: number;
   }
 
-  export interface Slots extends OwnSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 
   export type Transition = "none" | "slide";
 }

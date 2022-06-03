@@ -18,10 +18,16 @@ export namespace TimeInput {
     readonly validationOptions?: plugins.useValidation.Props<numberU>["validationOptions"];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps
     extends Omit<NumericInput.Props, keyof OwnProps> {}
 
+  export interface ParentSlots
+    extends Omit<NumericInput.Slots, keyof OwnSlots> {}
+
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends NumericInput.Slots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

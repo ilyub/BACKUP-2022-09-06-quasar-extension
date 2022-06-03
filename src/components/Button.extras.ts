@@ -6,11 +6,17 @@ export namespace Button {
     readonly main: BaseButton.Global;
   }
 
-  export interface ParentProps extends BaseButton.Props {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
 
-  export interface ParentSlots extends BaseButton.Slots {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
 
-  export interface Props extends ParentProps {}
+  export interface ParentProps extends Omit<BaseButton.Props, keyof OwnProps> {}
 
-  export interface Slots extends ParentSlots {}
+  export interface ParentSlots extends Omit<BaseButton.Slots, keyof OwnSlots> {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

@@ -18,11 +18,14 @@ export namespace Toggle {
     readonly "onUpdate:modelValue"?: (value: boolean) => void;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps extends Omit<QToggleProps, keyof OwnProps> {}
 
-  export interface ParentSlots extends QToggleSlots {}
+  export interface ParentSlots extends Omit<QToggleSlots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

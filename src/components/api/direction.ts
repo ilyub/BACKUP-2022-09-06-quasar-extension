@@ -200,6 +200,9 @@ export namespace useDirection {
     readonly direction?: Direction | undefined;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface ParentProps {}
+
   export interface Plugin {
     readonly anchor: ComputedRef<Coupling>;
     readonly offset: ComputedRef<readonly [number, number]>;
@@ -208,7 +211,7 @@ export namespace useDirection {
     readonly transitionShow: ComputedRef<Transition>;
   }
 
-  export interface Props extends OwnProps {}
+  export interface Props extends ParentProps, OwnProps {}
 
   export type Transition = "jump-down" | "jump-left" | "jump-right" | "jump-up";
 }

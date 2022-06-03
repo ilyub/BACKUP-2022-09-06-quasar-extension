@@ -10,9 +10,19 @@ export namespace CardActions {
     readonly main: QCardActions;
   }
 
-  export interface ParentProps extends QCardActionsProps {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnProps {}
 
-  export interface Props extends ParentProps {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
 
-  export interface Slots extends QCardActionsSlots {}
+  export interface ParentProps
+    extends Omit<QCardActionsProps, keyof OwnProps> {}
+
+  export interface ParentSlots
+    extends Omit<QCardActionsSlots, keyof OwnSlots> {}
+
+  export interface Props extends ParentProps, OwnProps {}
+
+  export interface Slots extends ParentSlots, OwnSlots {}
 }

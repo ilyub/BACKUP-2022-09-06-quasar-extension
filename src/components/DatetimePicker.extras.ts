@@ -46,15 +46,18 @@ export namespace DatetimePicker {
     readonly required?: booleanU;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps
     extends Omit<QFieldProps, keyof OwnProps>,
-      plugins.useValidation.Props<stringU> {}
+      Omit<plugins.useValidation.Props<stringU>, keyof OwnProps> {}
 
-  export interface ParentSlots extends QFieldSlots {}
+  export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 
   export interface Word {
     readonly Save: true;

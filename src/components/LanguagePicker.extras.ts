@@ -23,9 +23,12 @@ export namespace LanguagePicker {
     readonly language: LocaleName;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
+
   export interface ParentProps extends Omit<IconButton.Props, keyof OwnProps> {}
 
-  export interface ParentSlots extends IconButton.Slots {}
+  export interface ParentSlots extends Omit<IconButton.Slots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
@@ -39,5 +42,5 @@ export namespace LanguagePicker {
     readonly options: Options;
   }
 
-  export interface Slots extends ParentSlots {}
+  export interface Slots extends ParentSlots, OwnSlots {}
 }
