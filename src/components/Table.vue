@@ -321,7 +321,7 @@ export default defineComponent({
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #header="data">
-      <slot :name="slotNames.header" v-bind="data">
+      <slot :name="slotNames.header" v-bind="data ?? {}">
         <q-tr>
           <m-menu
             v-if="
@@ -461,7 +461,7 @@ export default defineComponent({
       </slot>
     </template>
     <template #body="data">
-      <slot :name="slotNames.body" v-bind="data">
+      <slot :name="slotNames.body" v-bind="data ?? {}">
         <q-tr
           v-debug-id="'body-row'"
           :class="{
@@ -565,7 +565,7 @@ export default defineComponent({
       v-if="slotNames.hasSome('bottom', 'steady-bottom')"
       #bottom="data"
     >
-      <slot :name="slotNames.bottom" v-bind="data"></slot>
+      <slot :name="slotNames.bottom" v-bind="data ?? {}"></slot>
       <slot
         :all-selected="allSelected"
         :deselect-all="deselectAll"
@@ -587,7 +587,7 @@ export default defineComponent({
       v-if="slotNames.hasSome('no-data', 'steady-bottom')"
       #no-data="data"
     >
-      <slot :name="slotNames.noData" v-bind="data"></slot>
+      <slot :name="slotNames.noData" v-bind="data ?? {}"></slot>
       <slot
         :all-selected="allSelected"
         :deselect-all="deselectAll"

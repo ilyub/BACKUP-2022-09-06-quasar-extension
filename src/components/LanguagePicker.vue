@@ -38,8 +38,8 @@ export default defineComponent({
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #default>
-      <slot :name="slotNames.default">
+    <template #default="data">
+      <slot :name="slotNames.default" v-bind="data ?? {}">
         <img
           :alt="activeOption.caption"
           height="20"

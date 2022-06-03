@@ -34,7 +34,7 @@ export default defineComponent({
 
 <template>
   <q-card ref="main" class="m-card" :style="{ minWidth: minWidth }">
-    <template #default>
+    <template #default="data">
       <m-card-section
         v-if="hasTitle || slotNames.has('title')"
         class="m-card__header"
@@ -50,7 +50,7 @@ export default defineComponent({
           <m-icon-button v-close-popup :icon="icons.close" />
         </div>
       </m-card-section>
-      <slot :name="slotNames.default"></slot>
+      <slot :name="slotNames.default" v-bind="data ?? {}"></slot>
     </template>
   </q-card>
 </template>

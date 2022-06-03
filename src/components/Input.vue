@@ -79,8 +79,8 @@ export default defineComponent({
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #label>
-      <slot :name="slotNames.label">
+    <template #label="data">
+      <slot :name="slotNames.label" v-bind="data ?? {}">
         {{ inputLabel }}
         <span v-if="required" class="m-input__required">*</span>
       </slot>

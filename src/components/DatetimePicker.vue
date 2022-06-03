@@ -253,7 +253,7 @@ export default defineComponent({
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control="data">
-      <slot :name="slotNames.control" v-bind="data">
+      <slot :name="slotNames.control" v-bind="data ?? {}">
         <div
           v-debug-id="'control'"
           class="cursor-pointer fit items-center row"
@@ -263,14 +263,6 @@ export default defineComponent({
         </div>
         <q-dialog v-model="dialogShow">
           <m-card v-debug-id="'dialog'" class="m-datetime-picker__dialog">
-            <template #header-actions>
-              <m-icon-button
-                v-debug-id="'pm'"
-                :disable="pickerEmpty"
-                :icon="pm ? icons.am : icons.pm"
-                @click="pmToggle"
-              />
-            </template>
             <template #title>
               <div class="items-end row">
                 <div
@@ -300,6 +292,14 @@ export default defineComponent({
                   </div>
                 </div>
               </div>
+            </template>
+            <template #header-actions>
+              <m-icon-button
+                v-debug-id="'pm'"
+                :disable="pickerEmpty"
+                :icon="pm ? icons.am : icons.pm"
+                @click="pmToggle"
+              />
             </template>
             <template #default>
               <m-card-section>
@@ -351,14 +351,14 @@ export default defineComponent({
         </q-dialog>
       </slot>
     </template>
-    <template #label>
-      <slot :name="slotNames.label">
+    <template #label="data">
+      <slot :name="slotNames.label" v-bind="data ?? {}">
         {{ fieldLabel }}
         <span v-if="required" class="m-datetime-picker__required">*</span>
       </slot>
     </template>
-    <template #prepend>
-      <slot :name="slotNames.prepend">
+    <template #prepend="data">
+      <slot :name="slotNames.prepend" v-bind="data ?? {}">
         <q-icon
           v-debug-id="'show-date'"
           class="cursor-pointer"
@@ -367,8 +367,8 @@ export default defineComponent({
         />
       </slot>
     </template>
-    <template #append>
-      <slot :name="slotNames.append">
+    <template #append="data">
+      <slot :name="slotNames.append" v-bind="data ?? {}">
         <q-icon
           v-debug-id="'show-time'"
           class="cursor-pointer"

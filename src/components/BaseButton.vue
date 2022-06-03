@@ -74,8 +74,8 @@ export default defineComponent({
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #default>
-      <slot :name="slotNames.default"></slot>
+    <template #default="data">
+      <slot :name="slotNames.default" v-bind="data ?? {}"></slot>
       <m-tooltip v-if="hasTooltip" :direction="tooltipDirection">
         {{ tooltip }}
       </m-tooltip>

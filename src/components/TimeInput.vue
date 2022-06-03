@@ -118,7 +118,7 @@ export default defineComponent({
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control="data">
-      <slot :name="slotNames.control" v-bind="data">
+      <slot :name="slotNames.control" v-bind="data ?? {}">
         <input
           ref="input"
           v-debug-id="'input'"

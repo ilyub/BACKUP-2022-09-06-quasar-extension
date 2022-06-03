@@ -141,7 +141,7 @@ export default defineComponent({
     </template>
     <template #control="data">
       <slot
-        v-bind="data"
+        v-bind="data ?? {}"
         :change="inputChange"
         :name="slotNames.control"
         :placeholder="placeholder"
@@ -158,14 +158,14 @@ export default defineComponent({
         />
       </slot>
     </template>
-    <template #label>
-      <slot :name="slotNames.label">
+    <template #label="data">
+      <slot :name="slotNames.label" v-bind="data ?? {}">
         {{ mainLabel }}
         <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>
-    <template #prepend>
-      <slot :name="slotNames.prepend">
+    <template #prepend="data">
+      <slot :name="slotNames.prepend" v-bind="data ?? {}">
         <q-icon
           v-if="bigStep > smallStep"
           v-debug-id="'big-down'"
@@ -183,8 +183,8 @@ export default defineComponent({
         />
       </slot>
     </template>
-    <template #append>
-      <slot :name="slotNames.append">
+    <template #append="data">
+      <slot :name="slotNames.append" v-bind="data ?? {}">
         <q-icon
           v-debug-id="'up'"
           class="q-field__focusable-action"

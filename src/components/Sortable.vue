@@ -145,9 +145,6 @@ export default defineComponent({
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template v-if="$slots[slotNames.header]" #header>
-      <slot :name="slotNames.header"></slot>
-    </template>
     <template #item="{ element }">
       <component
         :is="itemTag"
@@ -159,8 +156,11 @@ export default defineComponent({
         <slot :item="element.item" :name="slotNames.item"></slot>
       </component>
     </template>
-    <template v-if="$slots[slotNames.footer]" #footer>
-      <slot :name="slotNames.footer"></slot>
+    <template v-if="$slots[slotNames.header]" #header="data">
+      <slot :name="slotNames.header" v-bind="data ?? {}"></slot>
+    </template>
+    <template v-if="$slots[slotNames.footer]" #footer="data">
+      <slot :name="slotNames.footer" v-bind="data ?? {}"></slot>
     </template>
   </vue-draggable>
 </template>

@@ -23,8 +23,8 @@ export default defineComponent({
     :model-value="[]"
     put
   >
-    <template #header>
-      <slot></slot>
+    <template #header="data">
+      <slot v-bind="data ?? {}"></slot>
     </template>
   </m-sortable>
 </template>
