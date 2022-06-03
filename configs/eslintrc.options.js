@@ -144,9 +144,52 @@ module.exports = {
         "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
     },
     {
-      message: 'Prefer to extend "ParentProps" interface',
+      message: 'Do not extend "OwnProps" interface',
       selector:
         "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
+    },
+    {
+      message: 'Do not extend "OwnSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends"
+    },
+    {
+      message: 'Prefer "Omit<..., keyof OwnProps>"',
+      selector:
+        "TSInterfaceDeclaration[id.name=ParentProps] > TSInterfaceHeritage.extends > *.expression[name!=Omit]"
+    },
+    {
+      message: 'Prefer "Omit<..., keyof OwnSlots>"',
+      selector:
+        "TSInterfaceDeclaration[id.name=ParentSlots] > TSInterfaceHeritage.extends > *.expression[name!=Omit]"
+    },
+    {
+      message: 'Extend "ParentProps" interfaces',
+      selector:
+        "TSInterfaceDeclaration[id.name=Props] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
+    },
+    {
+      message: 'Extend "OwnProps" interfaces',
+      selector:
+        "TSInterfaceDeclaration[id.name=Props] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps]"
+    },
+    {
+      message: 'Extend "ParentSlots" interfaces',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
+    },
+    {
+      message: 'Extend "OwnSlots" interfaces',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots]"
+    },
+    {
+      message: 'Extend "ParentProps" and "OwnProps" interfaces',
+      selector: "TSInterfaceDeclaration[id.name=Props][extends.length!=2]"
+    },
+    {
+      message: 'Extend "ParentSlots" and "OwnSlots" interfaces',
+      selector: "TSInterfaceDeclaration[id.name=Slots][extends.length!=2]"
     },
     {
       message: "Use interface",
