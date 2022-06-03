@@ -141,6 +141,10 @@
   display: flex;
   justify-content: flex-end;
   margin-top: $m-section__spacing;
+
+  > .m-form-button ~ .m-form-button {
+    margin-left: $m-icon-buttons-group__spacing;
+  }
 }
 
 .m-form-section + .m-form-section {
