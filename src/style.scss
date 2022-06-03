@@ -262,6 +262,16 @@
 }
 
 .m-table {
+  &.q-table--horizontal-separator > .q-table__middle > .q-table > .q-virtual-scroll__content > tr {
+    > td {
+      border-bottom-width: 1px;
+    }
+
+    &:last-child > td {
+      border-color: transparent;
+    }
+  }
+
   &.m-table__sticky > .q-table__middle > .q-table {
     > thead > tr {
       position: sticky;

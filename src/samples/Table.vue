@@ -109,7 +109,14 @@ export default defineComponent({
       selectByRowClick,
       selected: ref<Items>([]),
       shortData,
-      sticky
+      sticky,
+      total: computed(() => {
+        if (noData.value) return 0;
+
+        if (shortData.value) return 5;
+
+        return 1000;
+      })
     };
   }
 });
@@ -184,7 +191,7 @@ export default defineComponent({
               {{ selected.length }} selected
             </template>
             <q-space />
-            {{ rows.length }} out of 1000
+            {{ rows.length }} out of {{ total }}
           </template>
         </items-table>
       </template>
