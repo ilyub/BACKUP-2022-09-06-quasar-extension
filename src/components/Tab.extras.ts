@@ -18,8 +18,8 @@ export namespace Tab {
   export interface ParentSlots extends Omit<QTabSlots, keyof OwnSlots> {}
 
   export interface Props<T extends NumStrU = NumStrU>
-    extends OwnProps<T>,
-      ParentProps {}
+    extends ParentProps,
+      OwnProps<T> {}
 
   export interface Slots extends ParentSlots, OwnSlots {}
 }

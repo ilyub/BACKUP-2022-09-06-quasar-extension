@@ -71,7 +71,7 @@ export namespace NumericInput {
 
   export interface ParentProps
     extends Omit<QFieldProps, keyof OwnProps>,
-      plugins.useValidation.Props<numberU> {}
+      Omit<plugins.useValidation.Props<numberU>, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 

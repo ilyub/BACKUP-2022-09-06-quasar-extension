@@ -23,7 +23,7 @@ export namespace Tooltip {
 
   export interface ParentProps
     extends Omit<QTooltipProps, keyof OwnProps>,
-      plugins.useDirection.Props {}
+      Omit<plugins.useDirection.Props, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<QTooltipSlots, keyof OwnSlots> {}
 
