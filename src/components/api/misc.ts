@@ -190,7 +190,13 @@ export function trigger(): Trigger {
       };
     },
     watch: handler => {
-      watch(injectRequire(id), handler);
+      watch(
+        inject(
+          id,
+          computed(() => 0)
+        ),
+        handler
+      );
     }
   };
 
