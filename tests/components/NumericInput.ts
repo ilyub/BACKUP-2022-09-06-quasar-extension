@@ -4,22 +4,6 @@ import * as vueTestUtils from "@vue/test-utils";
 import $ from "jquery";
 
 test.each([
-  { expected: [[undefined]], value: "" },
-  { expected: [[30]], value: "30" },
-  { expected: [[90]], value: "90" }
-])("emit: update:modelValue (change)", async ({ expected, value }) => {
-  const wrapper = vueTestUtils.mount(components.NumericInput, {
-    global: testUtils.globalMountOptions()
-  });
-
-  const { elem } = testUtils.findFactory("numeric-input", wrapper);
-
-  elem("input").element.setAttribute("value", value);
-  await elem("input").trigger("change");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-});
-
-test.each([
   {},
   { expected: [[undefined]], modelValue: 1 },
   { expected: [[1]], modelValue: 2 }
@@ -36,6 +20,22 @@ test.each([
   const { comp } = testUtils.findFactory("numeric-input", wrapper);
 
   await comp("down").trigger("click");
+  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+});
+
+test.each([
+  { expected: [[undefined]], value: "" },
+  { expected: [[30]], value: "30" },
+  { expected: [[90]], value: "90" }
+])("emit: update:modelValue (input)", async ({ expected, value }) => {
+  const wrapper = vueTestUtils.mount(components.NumericInput, {
+    global: testUtils.globalMountOptions()
+  });
+
+  const { elem } = testUtils.findFactory("numeric-input", wrapper);
+
+  elem("input").element.setAttribute("value", value);
+  await elem("input").trigger("input");
   expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });
 

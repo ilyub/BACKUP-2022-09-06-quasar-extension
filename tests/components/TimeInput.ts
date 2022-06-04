@@ -15,7 +15,7 @@ test.each([
   const { elem } = testUtils.findFactory("time-input", wrapper);
 
   elem("input").element.setAttribute("value", value);
-  await elem("input").trigger("change");
+  await elem("input").trigger("input");
   expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });
 
