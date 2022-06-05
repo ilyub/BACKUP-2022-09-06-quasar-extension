@@ -1,17 +1,23 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default defineComponent({ name: "sample-form-actions" });
+export default defineComponent({
+  name: "sample-form-actions",
+  setup: () => {
+    return { name: ref<string>() };
+  }
+});
 </script>
 
 <template>
   <m-page-section>
     <m-form :class="$style.form">
       <m-form-section>
-        <m-input label="Name" />
+        <m-input v-model="name" label="Name" />
       </m-form-section>
       <m-form-actions>
         <m-form-button label="Submit" type="submit" />
+        <m-form-button label="Reset" @click="name = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>

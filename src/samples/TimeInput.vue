@@ -1,5 +1,4 @@
 <script lang="ts">
-import { useInjections } from "./core";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -9,8 +8,6 @@ export default defineComponent({
   name: "sample-time-input",
   setup: () => {
     const form = ref<extras.Form.Global>();
-
-    const { language } = useInjections();
 
     const value1 = ref<number>();
 
@@ -24,13 +21,12 @@ export default defineComponent({
 
     return {
       form,
-      language,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
         value3.value = undefined;
         value4.value = undefined;
-        value5.value = undefined;
+        value5.value = 90;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
@@ -51,9 +47,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <m-page-section>
-    <m-language-picker :language="language" />
-  </m-page-section>
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>

@@ -1,5 +1,4 @@
 <script lang="ts">
-import { useInjections } from "./core";
 import { datetime } from "@skylib/facades";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -11,8 +10,6 @@ export default defineComponent({
   setup: () => {
     const form = ref<extras.Form.Global>();
 
-    const { language } = useInjections();
-
     const value1 = ref<string>();
 
     const value2 = ref<string>();
@@ -21,11 +18,8 @@ export default defineComponent({
 
     const value4 = ref<string>();
 
-    const value5 = ref<string>();
-
     return {
       form,
-      language,
       max: datetime
         .create()
         .setHours(12)
@@ -47,7 +41,6 @@ export default defineComponent({
         value2.value = undefined;
         value3.value = undefined;
         value4.value = undefined;
-        value5.value = undefined;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
@@ -60,17 +53,13 @@ export default defineComponent({
       value1,
       value2,
       value3,
-      value4,
-      value5
+      value4
     };
   }
 });
 </script>
 
 <template>
-  <m-page-section>
-    <m-language-picker :language="language" />
-  </m-page-section>
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
@@ -103,9 +92,6 @@ export default defineComponent({
           label="Validate on submit"
           :rules-on-submit="rules"
         />
-      </m-form-section>
-      <m-form-section>
-        <m-datetime-picker v-model="value5" clearable label="Clearable" />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker disable label="Disabled" />

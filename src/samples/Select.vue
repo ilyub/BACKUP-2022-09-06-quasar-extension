@@ -1,6 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
-import { typedef } from "@skylib/functions";
+import { as, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
 
@@ -8,10 +8,19 @@ type Value = "a" | "b" | 1;
 
 export default defineComponent({
   name: "sample-select",
-  components: { "value-select": generic.Select<Value>() },
+  components: { "select-value": generic.Select<Value>() },
   setup: () => {
+    const form = ref<extras.Form.Global>();
+
+    const value1 = ref<Value | undefined>("a");
+
+    const value2 = ref<Value>();
+
+    const value3 = ref<Value>();
+
     return {
-      selectOptions: typedef<extras.Select.Options<Value>>([
+      form,
+      options: typedef<extras.Select.Options<Value>>([
         { label: "Option 1", value: 1 },
         { label: "Option 2", value: "a" },
         {
@@ -20,9 +29,18 @@ export default defineComponent({
           value: "b"
         }
       ]),
-      selectValue1: ref<Value>("a"),
-      selectValue2: ref<Value>(),
-      selectValue3: ref<Value>()
+      reset: (): void => {
+        value1.value = "a";
+        value2.value = undefined;
+        value3.value = undefined;
+        as.not.empty(form.value).resetValidation();
+      },
+      resetValidation: (): void => {
+        as.not.empty(form.value).resetValidation();
+      },
+      value1,
+      value2,
+      value3
     };
   }
 });
@@ -30,12 +48,26 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <value-select v-model="selectValue1" :options="selectOptions" />
-    <value-select v-model="selectValue2" :options="selectOptions" />
-    <value-select
-      v-model="selectValue3"
-      initial-label="Custom label"
-      :options="selectOptions"
-    />
+    <m-form ref="form" @submit="$q.notify('Submitted')">
+      <m-form-section>
+        <select-value v-model="value1" :options="options" />
+      </m-form-section>
+      <m-form-section>
+        <select-value v-model="value2" :options="options" required />
+      </m-form-section>
+      <m-form-section>
+        <select-value
+          v-model="value3"
+          initial-label="Custom label"
+          :options="options"
+          required
+        />
+      </m-form-section>
+      <m-form-actions>
+        <m-form-button type="submit">Submit</m-form-button>
+        <m-form-button @click="reset">Reset</m-form-button>
+        <m-form-button @click="resetValidation">Reset validation</m-form-button>
+      </m-form-actions>
+    </m-form>
   </m-page-section>
 </template>

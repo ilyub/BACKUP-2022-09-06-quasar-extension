@@ -15,7 +15,8 @@ export default defineComponent({
 
     return {
       asyncClick: async (): Promise<void> => {
-        await wait(3000);
+        await wait(2000);
+        $q.notify("Async click");
       },
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
@@ -35,14 +36,16 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-toggle
-      v-model="baseButtonAnimateAsyncClick"
-      label="Animate async click"
-    />
-    <m-toggle
-      v-model="baseButtonAnimateSubmitting"
-      label="Animate submitting"
-    />
+    <m-buttons-group>
+      <m-toggle
+        v-model="baseButtonAnimateAsyncClick"
+        label="Animate async click"
+      />
+      <m-toggle
+        v-model="baseButtonAnimateSubmitting"
+        label="Animate submitting"
+      />
+    </m-buttons-group>
   </m-page-section>
   <m-page-section>
     <m-buttons-group>
@@ -79,7 +82,7 @@ export default defineComponent({
         <m-input v-model="name" label="Name" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button label="Async submit" type="submit" />
+        <m-form-button label="Submit" type="submit" />
         <m-form-button label="Reset" @click="name = undefined" />
       </m-form-actions>
     </m-form>

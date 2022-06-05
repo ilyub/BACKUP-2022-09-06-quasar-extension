@@ -1,6 +1,6 @@
 <script lang="ts">
 import { useInjections } from "./core";
-import { mdiImageEdit, mdiImageEditOutline } from "@mdi/js";
+import { mdiImageEdit } from "@mdi/js";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
@@ -9,12 +9,10 @@ export default defineComponent({
     const { iconPickerSmall, iconPickerTooltips } = useInjections();
 
     return {
-      icon1: ref<string>(),
-      icon2: ref<string>(),
+      icon: ref<string>(),
       iconPickerSmall,
       iconPickerTooltips,
-      mdiImageEdit,
-      mdiImageEditOutline
+      mdiImageEdit
     };
   }
 });
@@ -28,8 +26,7 @@ export default defineComponent({
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
-    <m-icon-picker v-model="icon1" :placeholder="mdiImageEdit" />
-    <m-icon-picker v-model="icon2" :placeholder="mdiImageEditOutline" />
+    <m-icon-picker v-model="icon" :placeholder="mdiImageEdit" />
     d = 30, f = 17
   </m-page-section>
 </template>

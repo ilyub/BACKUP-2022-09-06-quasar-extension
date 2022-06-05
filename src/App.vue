@@ -10,12 +10,15 @@ export default defineComponent({
   name: "app",
   components: { "router-view": RouterView },
   setup: () => {
-    useInjections().provide();
+    const { language, provide } = useInjections();
+
+    provide();
 
     return {
       caption: (name: string): string =>
         _.startCase(name).replace(/^Sample /u, ""),
-      components
+      components,
+      language
     };
   }
 });
@@ -38,6 +41,10 @@ export default defineComponent({
       </div>
       <div :class="$style.component">
         <router-view />
+      </div>
+      <q-space />
+      <div>
+        <m-language-picker :language="language" />
       </div>
     </div>
   </div>

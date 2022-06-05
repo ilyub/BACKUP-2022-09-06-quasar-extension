@@ -11,7 +11,7 @@ export default defineComponent({
       closeButton: pageLayoutCloseButton,
       closeButtonOff: ref(false),
       closeButtonOn: ref(false),
-      scrollbar: ref(false),
+      scrollbar: ref(true),
       title: ref(true)
     };
   }
@@ -69,6 +69,6 @@ export default defineComponent({
 
 <style lang="scss" module>
 .pageLayout {
-  border: 1px solid red;
+  border: 1px solid $grey-5;
 }
 </style>

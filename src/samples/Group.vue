@@ -70,10 +70,18 @@ export default defineComponent({
     root-element="page-section"
     :search-string="searchString"
   >
-    <template #section2>Section 2</template>
-    <template #section1>Section 1</template>
-    <template #section3>Section 11</template>
-    <template #section4>Section 12</template>
+    <template #section2>
+      {{ groupItems.find(item => item.id === "section2")?.title }}
+    </template>
+    <template #section1>
+      {{ groupItems.find(item => item.id === "section1")?.title }}
+    </template>
+    <template #section3>
+      {{ groupItems.find(item => item.id === "section3")?.title }}
+    </template>
+    <template #section4>
+      {{ groupItems.find(item => item.id === "section4")?.title }}
+    </template>
   </page-sections-group>
 </template>
 
