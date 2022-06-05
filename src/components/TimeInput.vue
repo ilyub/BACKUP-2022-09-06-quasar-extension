@@ -34,7 +34,7 @@ export default defineComponent({
 
     const inputValue = ref<string>();
 
-    watch(() => props.modelValue, inputFormat);
+    watch(() => props.modelValue, inputFormat, { immediate: true });
 
     return {
       input,
@@ -78,15 +78,13 @@ export default defineComponent({
       if (is.not.empty(value)) {
         const hours = Math.floor(value / 60);
 
-        if (hours) {
-          const minutes = value % 60;
+        const minutes = value % 60;
 
-          const minutes1 = Math.floor(minutes / 10);
+        const minutes1 = Math.floor(minutes / 10);
 
-          const minutes2 = minutes % 10;
+        const minutes2 = minutes % 10;
 
-          return `${hours}:${minutes1}${minutes2}`;
-        }
+        return `${hours}:${minutes1}${minutes2}`;
       }
 
       return cast.string(value);

@@ -20,7 +20,7 @@ export default defineComponent({
 
     const value4 = ref<string>();
 
-    const value5 = ref<string>();
+    const value5 = ref<stringU>("1");
 
     return {
       form,

@@ -20,7 +20,7 @@ export default defineComponent({
 
     const value4 = ref<number>();
 
-    const value5 = ref<number>();
+    const value5 = ref<numberU>(90);
 
     return {
       form,
