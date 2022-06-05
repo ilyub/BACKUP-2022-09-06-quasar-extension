@@ -44,7 +44,10 @@ export default defineComponent({
             : 'm-card__header__default'
         "
       >
-        <slot :name="slotNames.title">{{ title }}</slot>
+        <div class="m-card__header__title">
+          <slot :name="slotNames.title">{{ title }}</slot>
+        </div>
+        <q-space />
         <div class="m-card__header__actions">
           <slot :name="slotNames.headerActions"></slot>
           <m-icon-button v-close-popup :icon="icons.close" />

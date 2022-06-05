@@ -57,31 +57,41 @@
 
 .m-card .m-card__header {
   display: flex;
-  align-items: center;
-  padding: map.get($space-md, "y") map.get($space-md, "x");
-  font-size: map.get($h6, "size");
-  font-weight: map.get($h6, "weight");
-  letter-spacing: map.get($h6, "letter-spacing");
-  line-height: map.get($h6, "line-height");
+  padding: 0;
+
+  .m-card__header__title {
+    padding: map.get($space-md, "y") map.get($space-md, "x");
+    font-size: map.get($h6, "size");
+    font-weight: map.get($h6, "weight");
+    letter-spacing: map.get($h6, "letter-spacing");
+    line-height: map.get($h6, "line-height");
+  }
+
+  .m-card__header__actions {
+    padding: map.get($space-sm, "y") map.get($space-sm, "x");
+  }
 
   &.m-card__header__default {
+    align-items: center;
     background: $primary;
     color: white;
   }
 
   &.m-card__header__transparent {
-    padding-bottom: 0;
-  }
+    align-items: start;
 
-  .m-card__header__actions {
-    position: absolute;
-    top: map.get($space-sm, "y");
-    right: map.get($space-sm, "x");
+    .m-card__header__title, .m-card__header__actions {
+      padding-bottom: 0;
+    }
   }
 }
 
 .m-card-actions {
   padding-top: 0;
+
+  > .q-btn-item + .q-btn-item {
+    margin-left: $m-buttons-group__spacing;
+  }
 }
 
 .m-datetime-picker {
@@ -142,8 +152,8 @@
   justify-content: flex-end;
   margin-top: $m-section__spacing;
 
-  > .m-form-button ~ .m-form-button {
-    margin-left: $m-icon-buttons-group__spacing;
+  > .m-form-button + .m-form-button {
+    margin-left: $m-buttons-group__spacing;
   }
 }
 
@@ -262,16 +272,6 @@
 }
 
 .m-table {
-  &.q-table--horizontal-separator > .q-table__middle > .q-table > .q-virtual-scroll__content > tr {
-    > td {
-      border-bottom-width: 1px;
-    }
-
-    &:last-child > td {
-      border-color: transparent;
-    }
-  }
-
   &.m-table__sticky > .q-table__middle > .q-table {
     > thead > tr {
       position: sticky;
@@ -285,6 +285,16 @@
       z-index: 1;
       bottom: 0;
       background: white;
+    }
+  }
+
+  &.q-table--horizontal-separator > .q-table__middle > .q-table > .q-virtual-scroll__content > tr {
+    > td {
+      border-bottom-width: 1px;
+    }
+
+    &:last-child > td {
+      border-color: transparent;
     }
   }
 
