@@ -62,7 +62,8 @@ export default defineComponent({
       inputValue,
       main: ref<NumericInput.Global>(),
       mainFocus: (): void => {
-        as.not.empty(input.value).focus();
+        // Focus input when user submits invalid field
+        input.value?.focus();
       },
       mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(
         () => {

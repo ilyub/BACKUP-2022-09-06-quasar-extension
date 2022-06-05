@@ -83,7 +83,8 @@ export default defineComponent({
       },
       main,
       mainFocus: (): void => {
-        as.not.empty(input.value).focus();
+        // Focus input when user submits invalid field
+        input.value?.focus();
       },
       mainLabel: computed(() =>
         is.not.empty(props.label) && NumericInput.lang.has(props.label)
