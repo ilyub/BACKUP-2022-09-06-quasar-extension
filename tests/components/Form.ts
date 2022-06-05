@@ -4,7 +4,7 @@ import { wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QForm } from "quasar";
-import { nextTick, watch } from "vue";
+import { watch } from "vue";
 import type { handlePromise } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 
@@ -21,8 +21,7 @@ test("prop: onSubmit", () => {
   const main = wrapper.findComponent(QForm);
 
   main.vm.$emit("submit", { value: 1 });
-  expect(onSubmit).toHaveBeenCalledTimes(1);
-  expect(onSubmit).toHaveBeenCalledWith({ value: 1 });
+  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
 });
 
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
@@ -48,7 +47,7 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
 
       main.vm.$emit("submit", { value: 1 });
       expect(callback).not.toHaveBeenCalled();
-      await wait(1000);
+      await wait(1500);
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith({ value: 1 });
     });
@@ -65,7 +64,7 @@ test("provideDisable", async () => {
       global: testUtils.globalMountOptions(),
       props: {
         onSubmitAsync: async (): Promise<void> => {
-          await wait(1000);
+          await wait(2000);
         }
       },
       slots: {
@@ -84,7 +83,7 @@ test("provideDisable", async () => {
 
     {
       main.vm.$emit("submit", { value: 1 });
-      await nextTick();
+      await wait(1000);
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith(true);
       callback.mockClear();
