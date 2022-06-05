@@ -121,12 +121,12 @@ module.exports = {
     {
       message: 'Unnecessary "undefined"',
       selector:
-        "CallExpression[callee.name=ref] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > Identifier.typeName[name=/U$/u]"
+        "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > Identifier.typeName[name=/U$/u]"
     },
     {
       message: 'Unnecessary "undefined"',
       selector:
-        "CallExpression[callee.name=ref] > TSTypeParameterInstantiation.typeParameters > TSUnionType.params > TSUndefinedKeyword.types"
+        "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSUnionType.params > TSUndefinedKeyword.types"
     },
     {
       message: "Unnecessary type parameter",
