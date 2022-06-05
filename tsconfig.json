@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "module": "ES2015",
+    "module": "ES2020",
     "outDir": "cache/typescript",
     "paths": {
       "@": [
