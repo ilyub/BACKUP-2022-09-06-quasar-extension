@@ -42,7 +42,7 @@ export default defineComponent({
     );
 
     return {
-      change: validation.change,
+      blur: validation.change,
       globalDisable: injections.globalDisable.inject(),
       inputLabel: computed(() =>
         is.not.empty(props.label) && Input.lang.has(props.label)
@@ -74,7 +74,7 @@ export default defineComponent({
     :label="inputLabel"
     :model-value="modelValue"
     :rules="rules"
-    @change="change"
+    @blur="blur"
     @update:model-value="update"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">

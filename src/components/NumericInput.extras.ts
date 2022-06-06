@@ -18,10 +18,6 @@ export namespace NumericInput {
 
   export interface ControlSlotData {
     /**
-     * Triggers change.
-     */
-    readonly change: () => void;
-    /**
      * Emits value.
      *
      * @param value - Value.

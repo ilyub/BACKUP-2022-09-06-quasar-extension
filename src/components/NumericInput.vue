@@ -74,7 +74,6 @@ export default defineComponent({
       ),
       icons: NumericInput.icons,
       input,
-      inputChange: validation.change,
       inputInput: (
         event: Event,
         emitValue: NumericInput.ControlSlotData["emitValue"]
@@ -82,6 +81,7 @@ export default defineComponent({
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
       main,
+      mainBlur: validation.change,
       mainFocus: (): void => {
         // Focus input when user submits invalid field
         input.value?.focus();
@@ -135,6 +135,7 @@ export default defineComponent({
     :label="mainLabel"
     :model-value="mainValue"
     :rules="mainRules"
+    @blur="mainBlur"
     @focus="mainFocus"
     @update:model-value="mainUpdate"
   >
@@ -144,7 +145,6 @@ export default defineComponent({
     <template #control="data">
       <slot
         v-bind="data ?? {}"
-        :change="inputChange"
         :name="slotNames.control"
         :placeholder="placeholder"
       >
@@ -155,7 +155,6 @@ export default defineComponent({
           class="q-field__input"
           :placeholder="placeholder"
           :value="data.modelValue"
-          @change="inputChange"
           @input="inputInput($event, data.emitValue)"
         />
       </slot>

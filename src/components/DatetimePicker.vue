@@ -150,7 +150,7 @@ export default defineComponent({
           : props.label
       ),
       fieldUpdate: (value: unknown): void => {
-        if (is.empty(value)) emitValue(undefined);
+        if (is.empty(value)) emit("update:modelValue", undefined);
       },
       fieldValue: computed(() =>
         modelObject.value?.format("E, d MMM yyyy HHH:mm A")
@@ -186,7 +186,7 @@ export default defineComponent({
       },
       rules: validation.rules,
       save: (): void => {
-        emitValue(pickerObject.value?.toString());
+        emit("update:modelValue", pickerObject.value?.toString());
       },
       slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
@@ -230,11 +230,6 @@ export default defineComponent({
         pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
       )
     };
-
-    function emitValue(value: stringU): void {
-      emit("update:modelValue", value);
-      validation.change();
-    }
   }
 });
 </script>

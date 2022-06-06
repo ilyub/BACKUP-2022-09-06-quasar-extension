@@ -126,7 +126,6 @@ export default defineComponent({
           :placeholder="data.placeholder"
           :value="inputValue"
           @blur="inputBlur"
-          @change="data.change"
           @focus="inputFocus"
           @input="inputInput($event, data.emitValue)"
         />
