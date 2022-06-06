@@ -9,14 +9,14 @@ export default defineComponent({
     const $q = useQuasar();
 
     return {
+      asyncSubmit: async (): Promise<void> => {
+        await wait(2000);
+        $q.notify("Async submit");
+      },
       name1: ref<string>(),
       name2: ref<string>(),
       submit: (): void => {
         $q.notify("Submit");
-      },
-      submitAsync: async (): Promise<void> => {
-        await wait(2000);
-        $q.notify("Async submit");
       }
     };
   }
@@ -39,7 +39,7 @@ export default defineComponent({
     <m-form
       async-task-type="httpRequest"
       :class="$style.form"
-      @submit-async="submitAsync"
+      @async-submit="asyncSubmit"
     >
       <m-form-section>
         <m-input v-model="name2" label="Name" />

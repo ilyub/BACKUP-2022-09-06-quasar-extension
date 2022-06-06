@@ -10,22 +10,8 @@ import type { unknowns } from "@skylib/functions";
 
 functionsTestUtils.installFakeTimer();
 
-test("prop: onSubmit", () => {
-  const onSubmit = jest.fn();
-
-  const wrapper = vueTestUtils.mount(components.Form, {
-    global: testUtils.globalMountOptions(),
-    props: { onSubmit }
-  });
-
-  const main = wrapper.findComponent(QForm);
-
-  main.vm.$emit("submit", { value: 1 });
-  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
-});
-
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
-  "prop: onSubmitAsync",
+  "prop: onAsyncSubmit",
   async asyncTaskType => {
     expect.hasAssertions();
 
@@ -36,7 +22,7 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
         global: testUtils.globalMountOptions(),
         props: {
           asyncTaskType,
-          onSubmitAsync: async (...args: unknowns): Promise<void> => {
+          onAsyncSubmit: async (...args: unknowns): Promise<void> => {
             await wait(1000);
             callback(...args);
           }
@@ -54,6 +40,20 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
   }
 );
 
+test("prop: onSubmit", () => {
+  const onSubmit = jest.fn();
+
+  const wrapper = vueTestUtils.mount(components.Form, {
+    global: testUtils.globalMountOptions(),
+    props: { onSubmit }
+  });
+
+  const main = wrapper.findComponent(QForm);
+
+  main.vm.$emit("submit", { value: 1 });
+  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
+});
+
 test("provideDisable", async () => {
   expect.hasAssertions();
 
@@ -63,7 +63,7 @@ test("provideDisable", async () => {
     const wrapper = vueTestUtils.mount(components.Form, {
       global: testUtils.globalMountOptions(),
       props: {
-        onSubmitAsync: async (): Promise<void> => {
+        onAsyncSubmit: async (): Promise<void> => {
           await wait(2000);
         }
       },

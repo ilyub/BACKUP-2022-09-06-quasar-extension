@@ -3,6 +3,15 @@ import type { handlePromise } from "@skylib/facades";
 import type { QForm, QFormProps, QFormSlots } from "quasar";
 
 export namespace Form {
+  export interface AsyncSubmit {
+    /**
+     * Form submission event.
+     *
+     * @param event - DOM event.
+     */
+    (event: Event): Promise<void>;
+  }
+
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main: QForm;
     /**
@@ -13,14 +22,14 @@ export namespace Form {
 
   export interface OwnProps {
     readonly asyncTaskType?: handlePromise.Type | undefined;
+    // eslint-disable-next-line @skylib/optional-property-style -- Ok
+    readonly onAsyncSubmit?: AsyncSubmit | undefined;
     /**
      * Form submission event.
      *
      * @param event - DOM event.
      */
     readonly onSubmit?: (event: Event) => void;
-    // eslint-disable-next-line @skylib/optional-property-style -- Ok
-    readonly onSubmitAsync?: SubmitAsync | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
@@ -33,13 +42,4 @@ export namespace Form {
   export interface Props extends ParentProps, OwnProps {}
 
   export interface Slots extends ParentSlots, OwnSlots {}
-
-  export interface SubmitAsync {
-    /**
-     * Form submission event.
-     *
-     * @param event - DOM event.
-     */
-    (event: Event): Promise<void>;
-  }
 }

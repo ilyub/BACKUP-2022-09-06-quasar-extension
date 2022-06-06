@@ -21,12 +21,12 @@ export default defineComponent({
   props: {
     ...parentProps<Form.ParentProps>(),
     asyncTaskType: prop<Form.Props["asyncTaskType"]>(),
-    onSubmitAsync: prop<Form.Props["onSubmitAsync"]>()
+    onAsyncSubmit: prop<Form.Props["onAsyncSubmit"]>()
   },
   emits: { submit: (event: Event) => skipCheck(event) },
   setup: (props, { emit }) => {
     validateEmit<Form.OwnProps>(emit);
-    validateProps<Form.OwnProps, "onSubmitAsync">(props);
+    validateProps<Form.OwnProps, "onAsyncSubmit">(props);
 
     const disable = ref(0);
 
@@ -63,11 +63,11 @@ export default defineComponent({
             if (await as.not.empty(main.value).validate()) {
               emit("submit", event);
 
-              if (props.onSubmitAsync) {
+              if (props.onAsyncSubmit) {
                 disable.value++;
 
                 try {
-                  await props.onSubmitAsync(event);
+                  await props.onAsyncSubmit(event);
                 } finally {
                   disable.value--;
                 }

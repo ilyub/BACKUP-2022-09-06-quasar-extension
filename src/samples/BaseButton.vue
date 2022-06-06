@@ -18,17 +18,17 @@ export default defineComponent({
         await wait(2000);
         $q.notify("Async click");
       },
+      asyncSubmit: async (): Promise<void> => {
+        await wait(2000);
+        $q.notify("Async submit");
+      },
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
       confirmedClick: (): void => {
         $q.notify("Confirmed click");
       },
       icon: mdiCheck,
-      name: ref<string>(),
-      submitAsync: async (): Promise<void> => {
-        await wait(2000);
-        $q.notify("Async submit");
-      }
+      name: ref<string>()
     };
   }
 });
@@ -76,7 +76,7 @@ export default defineComponent({
     <m-form
       async-task-type="httpRequest"
       :class="$style.form"
-      @submit-async="submitAsync"
+      @async-submit="asyncSubmit"
     >
       <m-form-section>
         <m-input v-model="name" label="Name" />
