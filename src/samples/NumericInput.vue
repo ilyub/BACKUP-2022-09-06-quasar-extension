@@ -53,7 +53,6 @@ export default defineComponent({
         <m-numeric-input
           v-model="value1"
           :big-step="15"
-          clearable
           label="Number"
           :max="59"
           :min="15"

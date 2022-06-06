@@ -52,7 +52,6 @@ export default defineComponent({
       <m-form-section>
         <m-time-input
           v-model="value1"
-          clearable
           label="Time"
           :max="120"
           :min="15"

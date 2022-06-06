@@ -67,6 +67,7 @@ export default defineComponent({
   <q-input
     ref="main"
     class="m-input"
+    :clearable="!required"
     dense
     :disable="disable || globalDisable"
     hide-bottom-space

@@ -129,6 +129,7 @@ export default defineComponent({
   <q-field
     ref="main"
     class="m-numeric-input"
+    :clearable="!required"
     dense
     hide-bottom-space
     :label="mainLabel"

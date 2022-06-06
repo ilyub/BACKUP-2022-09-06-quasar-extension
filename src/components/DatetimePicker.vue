@@ -243,6 +243,7 @@ export default defineComponent({
   <q-field
     ref="main"
     class="m-datetime-picker"
+    :clearable="!required"
     dense
     hide-bottom-space
     :label="fieldLabel"

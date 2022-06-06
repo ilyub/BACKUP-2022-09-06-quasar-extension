@@ -65,7 +65,6 @@ export default defineComponent({
       <m-form-section>
         <m-datetime-picker
           v-model="value1"
-          clearable
           label="Date"
           :max="max"
           :min="min"

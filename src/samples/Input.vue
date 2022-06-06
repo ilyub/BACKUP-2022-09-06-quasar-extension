@@ -50,7 +50,7 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <m-input v-model="value1" clearable label="String" required />
+        <m-input v-model="value1" label="String" required />
       </m-form-section>
       <m-form-section>
         <m-input
