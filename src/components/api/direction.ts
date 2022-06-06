@@ -12,7 +12,7 @@ export const useDirection = defineFn(
    * @returns Direction plugin.
    */
   (props: SetupProps<useDirection.Props>): useDirection.Plugin => {
-    const direction = computed(() => props.direction ?? "down");
+    const direction = computed(() => props.direction ?? "down-right");
 
     return {
       anchor: computed(() => {
