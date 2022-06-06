@@ -114,6 +114,7 @@ export default defineComponent({
     );
 
     return {
+      blur: validation.change,
       date: computed(() =>
         pickerObject.value ? pickerObject.value.format("E, d MMM") : "\u2014"
       ),
@@ -149,7 +150,7 @@ export default defineComponent({
           : props.label
       ),
       fieldUpdate: (value: unknown): void => {
-        if (is.empty(value)) emitModelValue(undefined);
+        if (is.empty(value)) emitValue(undefined);
       },
       fieldValue: computed(() =>
         modelObject.value?.format("E, d MMM yyyy HHH:mm A")
@@ -185,7 +186,7 @@ export default defineComponent({
       },
       rules: validation.rules,
       save: (): void => {
-        emitModelValue(pickerObject.value?.toString());
+        emitValue(pickerObject.value?.toString());
       },
       slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
@@ -230,7 +231,7 @@ export default defineComponent({
       )
     };
 
-    function emitModelValue(value: stringU): void {
+    function emitValue(value: stringU): void {
       emit("update:modelValue", value);
       validation.change();
     }
@@ -247,6 +248,7 @@ export default defineComponent({
     :label="fieldLabel"
     :model-value="fieldValue"
     :rules="rules"
+    @blur="blur"
     @update:model-value="fieldUpdate"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
@@ -254,13 +256,13 @@ export default defineComponent({
     </template>
     <template #control="data">
       <slot :name="slotNames.control" v-bind="data ?? {}">
-        <div
+        <input
           v-debug-id="'control'"
-          class="cursor-pointer fit items-center row"
+          class="m-datetime-picker__input"
+          readonly
+          :value="data.modelValue"
           @click="fieldClick"
-        >
-          {{ data.modelValue }}
-        </div>
+        />
         <q-dialog v-model="dialogShow">
           <m-card v-debug-id="'dialog'" class="m-datetime-picker__dialog">
             <template #title>

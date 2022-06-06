@@ -80,7 +80,8 @@
   &.m-card__header__transparent {
     align-items: start;
 
-    .m-card__header__title, .m-card__header__actions {
+    .m-card__header__title,
+    .m-card__header__actions {
       padding-bottom: 0;
     }
   }
@@ -98,6 +99,16 @@
   > .q-field__inner > .q-field__bottom {
     position: absolute;
     padding-top: map.get($space-xs, "y");
+  }
+
+  .m-datetime-picker__input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
   }
 
   .m-datetime-picker__required {
