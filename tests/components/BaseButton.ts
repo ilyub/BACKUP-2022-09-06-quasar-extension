@@ -9,30 +9,6 @@ import type { DialogChainObject } from "quasar";
 
 functionsTestUtils.installFakeTimer();
 
-test("prop: asyncClick", async () => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const callback = jest.fn();
-
-    const wrapper = vueTestUtils.mount(components.BaseButton, {
-      global: testUtils.globalMountOptions(),
-      props: {
-        asyncClick: async (...args: unknowns) => {
-          await wait(1000);
-          callback(...args);
-        }
-      }
-    });
-
-    await wrapper.trigger("click");
-    expect(callback).not.toHaveBeenCalled();
-    await wait(1000);
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith();
-  });
-});
-
 test("prop: confirmation, confirmedClick", async () => {
   const confirmedClick = jest.fn();
 
@@ -65,6 +41,30 @@ test("prop: confirmation, confirmedClick", async () => {
     expect(confirmedClick).toHaveBeenCalledWith();
     confirmedClick.mockClear();
   }
+});
+
+test("prop: onAsyncClick", async () => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const callback = jest.fn();
+
+    const wrapper = vueTestUtils.mount(components.BaseButton, {
+      global: testUtils.globalMountOptions(),
+      props: {
+        onAsyncClick: async (...args: unknowns) => {
+          await wait(1000);
+          callback(...args);
+        }
+      }
+    });
+
+    await wrapper.trigger("click");
+    expect(callback).not.toHaveBeenCalled();
+    await wait(1000);
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith();
+  });
 });
 
 test("slot: default", () => {

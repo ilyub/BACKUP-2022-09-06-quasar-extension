@@ -26,7 +26,7 @@ export default defineComponent({
   emits: { submit: (event: Event) => skipCheck(event) },
   setup: (props, { emit }) => {
     validateEmit<Form.OwnProps>(emit);
-    validateProps<Form.OwnProps>(props);
+    validateProps<Form.OwnProps, "onSubmitAsync">(props);
 
     const disable = ref(0);
 

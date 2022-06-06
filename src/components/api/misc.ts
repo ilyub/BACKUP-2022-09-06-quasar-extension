@@ -12,7 +12,12 @@ import type {
   SetupProps,
   Trigger
 } from "./core";
-import type { unknowns, Join2, IndexedObject } from "@skylib/functions";
+import type {
+  unknowns,
+  Join2,
+  IndexedObject,
+  UppercaseLetter
+} from "@skylib/functions";
 import type { PublicProps } from "quasar";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
@@ -219,6 +224,9 @@ export function validateEmit<T>(emit: SetupEmit<T>): SetupEmit<T> {
  * @param props - Props.
  * @returns Props.
  */
-export function validateProps<T>(props: SetupProps<T>): SetupProps<T> {
+export function validateProps<
+  T,
+  K extends keyof T & `on${UppercaseLetter}${string}` = never
+>(props: SetupProps<T, K>): SetupProps<T, K> {
   return props;
 }

@@ -88,7 +88,10 @@ export type SetupEmitAux<K, V> = V extends Callable
     : never
   : never;
 
-export type SetupProps<T> = Omit<T, `on${UppercaseLetter}${string}`>;
+export type SetupProps<
+  T,
+  K extends keyof T & `on${UppercaseLetter}${string}` = never
+> = Omit<T, Exclude<keyof T & `on${UppercaseLetter}${string}`, K>>;
 
 export interface Trigger {
   /**

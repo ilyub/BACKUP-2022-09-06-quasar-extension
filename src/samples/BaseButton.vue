@@ -50,11 +50,11 @@ export default defineComponent({
   <m-page-section>
     <m-buttons-group>
       <m-base-button label="Click" @click="$q.notify('Click')" />
-      <m-base-button :async-click="asyncClick" label="Async click" />
+      <m-base-button label="Async click" @async-click="asyncClick" />
       <m-base-button
-        :async-click="asyncClick"
         :icon="icon"
         label="Async click"
+        @async-click="asyncClick"
       />
       <m-base-button
         confirmation="Confirmation message"

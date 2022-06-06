@@ -12,12 +12,14 @@ export const useAsyncClick = defineFn(
    * @param props - Props.
    * @returns Async click plugin.
    */
-  (props: SetupProps<useAsyncClick.Props>): useAsyncClick.Plugin => {
+  (
+    props: SetupProps<useAsyncClick.Props, "onAsyncClick">
+  ): useAsyncClick.Plugin => {
     const active = ref(false);
 
     return defineFn(
       (): void => {
-        const callback = props.asyncClick;
+        const callback = props.onAsyncClick;
 
         if (callback)
           handlePromise.silent(async () => {
@@ -35,7 +37,7 @@ export const useAsyncClick = defineFn(
   },
   {
     props: {
-      asyncClick: prop<useAsyncClick.Props["asyncClick"]>()
+      onAsyncClick: prop<useAsyncClick.Props["onAsyncClick"]>()
     } as const
   }
 );
@@ -49,7 +51,8 @@ export namespace useAsyncClick {
   }
 
   export interface OwnProps {
-    readonly asyncClick?: AsyncClick | undefined;
+    // eslint-disable-next-line @skylib/optional-property-style -- Ok
+    readonly onAsyncClick?: AsyncClick | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok

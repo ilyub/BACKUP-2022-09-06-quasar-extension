@@ -19,13 +19,8 @@ export namespace Form {
      * @param event - DOM event.
      */
     readonly onSubmit?: (event: Event) => void;
-    /**
-     * Form submission event.
-     *
-     * @param event - DOM event.
-     * @returns Promise.
-     */
-    readonly onSubmitAsync?: (event: Event) => Promise<void>;
+    // eslint-disable-next-line @skylib/optional-property-style -- Ok
+    readonly onSubmitAsync?: SubmitAsync | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
@@ -38,4 +33,13 @@ export namespace Form {
   export interface Props extends ParentProps, OwnProps {}
 
   export interface Slots extends ParentSlots, OwnSlots {}
+
+  export interface SubmitAsync {
+    /**
+     * Form submission event.
+     *
+     * @param event - DOM event.
+     */
+    (event: Event): Promise<void>;
+  }
 }
