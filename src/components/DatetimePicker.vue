@@ -244,6 +244,7 @@ export default defineComponent({
     :label="fieldLabel"
     :model-value="fieldValue"
     :rules="rules"
+    :stack-label="dialogShow"
     @blur="blur"
     @update:model-value="fieldUpdate"
   >
