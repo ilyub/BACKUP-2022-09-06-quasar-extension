@@ -1,4 +1,5 @@
 <script lang="ts">
+import { genericField } from "./Field.generic";
 import { NumericInput } from "./NumericInput.extras";
 import {
   prop,
@@ -12,23 +13,25 @@ import {
 import { as, cast, is, num, o } from "@skylib/functions";
 import { maska } from "maska";
 import { computed, defineComponent, ref } from "vue";
-import type { numberU, NumStrE } from "@skylib/functions";
-import type { QField } from "quasar";
+import type { Field } from "./Field.extras";
+import type { numberU } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-numeric-input",
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-field__number": genericField<numberU>()
+  },
   directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
     ...parentProps<NumericInput.ParentProps>(),
-    ...plugins.useValidation.props,
     bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
-    label: prop<NumericInput.Props["label"]>(),
     max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
     min: prop.default<NumericInput.Props["min"]>(0),
     modelValue: prop<NumericInput.Props["modelValue"]>(),
-    placeholder: prop.default<NumericInput.Props["placeholder"]>(""),
     required: prop.boolean(),
-    smallStep: prop.default<NumericInput.Props["smallStep"]>(1)
+    smallStep: prop.default<NumericInput.Props["smallStep"]>(1),
+    validationOptions: prop<NumericInput.Props["validationOptions"]>()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -37,20 +40,7 @@ export default defineComponent({
 
     const input = ref<HTMLInputElement>();
 
-    const main = ref<QField>();
-
-    const validation = plugins.useValidation(
-      props,
-      main,
-      () => props.modelValue,
-      () =>
-        o.removeUndefinedKeys({
-          label: props.label,
-          max: props.max,
-          min: props.min,
-          required: props.required
-        })
-    );
+    const main = ref<Field.Global<numberU>>();
 
     return {
       downClick: (step: number): void => {
@@ -76,30 +66,26 @@ export default defineComponent({
       input,
       inputInput: (
         event: Event,
-        emitValue: NumericInput.ControlSlotData["emitValue"]
+        emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
-        emitValue(o.get(as.not.empty(event.target), "value", is.string));
+        emitValue(
+          cast.numberU(o.get(as.not.empty(event.target), "value", is.string))
+        );
       },
       main,
-      mainBlur: validation.change,
-      mainFocus: (): void => {
-        // Focus input when user submits invalid field
-        input.value?.focus();
-      },
-      mainLabel: computed(() =>
-        is.not.empty(props.label) && NumericInput.lang.has(props.label)
-          ? NumericInput.lang.get(props.label)
-          : props.label
+      mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(
+        () => {
+          return {
+            format: (value: unknown): numberU => cast.numberU(value),
+            max: props.max,
+            min: props.min,
+            ...props.validationOptions
+          };
+        }
       ),
-      mainRules: validation.rules,
-      mainUpdate: (value: NumStrE): void => {
-        emit("update:modelValue", cast.numberU(value));
-      },
-      mainValue: computed(() => cast.string(props.modelValue)),
       slotNames: plugins.useSlotNames<NumericInput.Slots>()(
         "append",
         "control",
-        "label",
         "prepend"
       ),
       upClick: (step: number): void => {
@@ -126,43 +112,29 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-field
+  <m-field__number
     ref="main"
     class="m-numeric-input"
-    :clearable="!required"
-    dense
-    hide-bottom-space
-    :label="mainLabel"
-    :model-value="mainValue"
-    :rules="mainRules"
-    @blur="mainBlur"
-    @focus="mainFocus"
-    @update:model-value="mainUpdate"
+    :focusable-element="input"
+    :model-value="modelValue"
+    :required="required"
+    :validation-options="mainValidationOptions"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control="data">
-      <slot
-        v-bind="data ?? {}"
-        :name="slotNames.control"
-        :placeholder="placeholder"
-      >
+      <slot v-bind="data ?? {}" :name="slotNames.control">
         <input
           ref="input"
           v-debug-id="'input'"
           v-maska="'#*'"
           class="q-field__input"
-          :placeholder="placeholder"
+          :placeholder="data.placeholder ?? ''"
           :value="data.modelValue"
           @input="inputInput($event, data.emitValue)"
         />
-      </slot>
-    </template>
-    <template #label="data">
-      <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ mainLabel }}
-        <span v-if="required" class="m-numeric-input__required">*</span>
       </slot>
     </template>
     <template #prepend="data">
@@ -203,5 +175,5 @@ export default defineComponent({
         />
       </slot>
     </template>
-  </q-field>
+  </m-field__number>
 </template>

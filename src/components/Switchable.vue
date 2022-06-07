@@ -9,11 +9,9 @@ export default defineComponent({
   setup: props => {
     validateProps<Switchable.OwnProps>(props);
 
-    const globalDisable = injections.globalDisable.inject();
+    const globalDisable = injections.disable.inject();
 
-    injections.globalDisable.provide(
-      () => globalDisable.value || props.disable
-    );
+    injections.disable.provide(() => props.disable || globalDisable.value);
 
     return { settings: Switchable.injectSettings() };
   }

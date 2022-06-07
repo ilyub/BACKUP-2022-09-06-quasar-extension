@@ -8,9 +8,10 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { as, cast, is, o } from "@skylib/functions";
+import { as, cast, is, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
-import { computed, defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
+import type { Field } from "./Field.extras";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
 import type { numberU } from "@skylib/functions";
@@ -20,8 +21,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("time-input"), maska },
   props: {
     ...parentProps<TimeInput.ParentProps>(),
-    modelValue: prop<TimeInput.Props["modelValue"]>(),
-    validationOptions: prop<TimeInput.Props["validationOptions"]>()
+    modelValue: prop<TimeInput.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -34,20 +34,20 @@ export default defineComponent({
 
     const inputValue = ref<string>();
 
-    watch(() => props.modelValue, inputFormat, { immediate: true });
+    watch(() => props.modelValue, updateInputValue, { immediate: true });
 
     return {
       input,
       inputBlur: (): void => {
         active.value = false;
-        inputFormat();
+        updateInputValue();
       },
       inputFocus: (): void => {
         active.value = true;
       },
       inputInput: (
         event: Event,
-        emitValue: NumericInput.ControlSlotData["emitValue"]
+        emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
         const value = o.get(as.not.empty(event.target), "value", is.string);
 
@@ -57,21 +57,16 @@ export default defineComponent({
           const [hours, minutes] = value.split(":").map(cast.number);
 
           emitValue(60 * as.not.empty(hours) + as.not.empty(minutes));
-        } else emitValue(value);
+        } else emitValue(cast.numberU(value));
       },
       inputValue,
       main: ref<NumericInput.Global>(),
-      mainFocus: (): void => {
-        // Focus input when user submits invalid field
-        input.value?.focus();
-      },
-      mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(
-        () => {
-          return { ...props.validationOptions, minMaxFormat: format };
-        }
-      ),
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
-      slotNames: plugins.useSlotNames<TimeInput.Slots>()("control")
+      slotNames: plugins.useSlotNames<TimeInput.Slots>()("control"),
+      validationOptions: typedef<plugins.useValidation.Options<numberU>>({
+        format: (value: unknown): numberU => cast.numberU(value),
+        minMaxFormat: format
+      })
     };
 
     function format(value: number): string {
@@ -90,7 +85,7 @@ export default defineComponent({
       return cast.string(value);
     }
 
-    function inputFormat(): void {
+    function updateInputValue(): void {
       if (active.value) {
         // Do not format while editing
       } else
@@ -107,10 +102,10 @@ export default defineComponent({
     ref="main"
     :big-step="60"
     class="m-time-input"
+    :focusable-element="input"
     :model-value="modelValue"
     :small-step="15"
-    :validation-options="mainValidationOptions"
-    @focus="mainFocus"
+    :validation-options="validationOptions"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
@@ -123,7 +118,7 @@ export default defineComponent({
           v-debug-id="'input'"
           v-maska="mask"
           class="q-field__input"
-          :placeholder="data.placeholder"
+          :placeholder="data.placeholder ?? ''"
           :value="inputValue"
           @blur="inputBlur"
           @focus="inputFocus"

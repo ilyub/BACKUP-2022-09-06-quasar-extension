@@ -1,11 +1,11 @@
-import { submitting as submittingInjection } from "./injections";
 import { prop, trigger } from "./misc";
 import { compare, handlePromise, lang as baseLang } from "@skylib/facades";
-import { as, cast, defineFn, is, typedef } from "@skylib/functions";
+import { a, cast, defineFn, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
 import type { Writable, empty } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
+import type { Optional } from "ts-toolbelt/out/Object/Optional";
 import type { ComputedRef, Ref } from "vue";
 
 declare global {
@@ -22,28 +22,22 @@ export const useValidation = defineFn(
    *
    * @param props - Props.
    * @param target - Target.
-   * @param modelValue - Model value.
-   * @param getOptions - Returns options.
+   * @param options - Options.
    * @returns Validation plugin.
    */
   <T = unknown>(
     props: SetupProps<useValidation.Props<T>>,
-    target: Ref<QField | QInput | undefined>,
-    modelValue: () => T,
-    getOptions?: () => useValidation.Options<T>
+    target: ComputedRef<QField | QInput>,
+    options: ComputedRef<useValidation.Options<T>>
   ): useValidation.Plugin<T> => {
-    let changing = 0;
+    const contexts = new Map<symbol, useValidation.Context>();
 
-    const field = computed(() =>
+    const label = computed(() =>
       is.not.empty(options.value.label) &&
       useValidation.lang.has(options.value.label)
         ? options.value.label
         : "field"
     );
-
-    const options = computed(() => {
-      return { ...props.validationOptions, ...getOptions?.() };
-    });
 
     const rulesOnInput = computed(() =>
       props.rulesOnInput
@@ -66,7 +60,7 @@ export const useValidation = defineFn(
               (value: T): string | true =>
                 is.not.empty(value) && compare(value, min) < 0
                   ? useValidation.lang
-                      .with("field", field.value)
+                      .with("field", label.value)
                       .with(
                         "min",
                         options.value.minMaxFormat
@@ -89,7 +83,7 @@ export const useValidation = defineFn(
               (value: T): string | true =>
                 is.not.empty(value) && compare(value, max) > 0
                   ? useValidation.lang
-                      .with("field", field.value)
+                      .with("field", label.value)
                       .with(
                         "max",
                         options.value.minMaxFormat
@@ -115,7 +109,7 @@ export const useValidation = defineFn(
             wrapRule(
               (value: T): string | true =>
                 value === undefined
-                  ? useValidation.lang.with("field", field.value)
+                  ? useValidation.lang.with("field", label.value)
                       .FieldIsRequired
                   : true,
               "submit"
@@ -124,25 +118,12 @@ export const useValidation = defineFn(
         : []
     );
 
-    const submitting = submittingInjection.inject();
-
     useValidation.reset.watch(() => {
       for (const rule of [...rulesOnChange.value, ...rulesOnSubmit.value])
-        rule.prevInvalid.value = false;
+        rule.state.value = true;
     });
 
     return {
-      change: (): void => {
-        handlePromise.silent(async () => {
-          changing++;
-
-          try {
-            await as.not.empty(target.value).validate();
-          } finally {
-            changing--;
-          }
-        });
-      },
       rules: computed(() => [
         ...rulesOnInput.value,
         ...rulesOnChangeMin.value,
@@ -150,34 +131,47 @@ export const useValidation = defineFn(
         ...rulesOnChange.value,
         ...rulesOnSubmitRequired.value,
         ...rulesOnSubmit.value
-      ])
+      ]),
+      validate: (value: T, context: useValidation.Context): void => {
+        handlePromise.silent(async () => {
+          const key = Symbol("validation-context");
+
+          contexts.set(key, context);
+
+          try {
+            await target.value.validate(() => value);
+          } finally {
+            contexts.delete(key);
+          }
+        });
+      }
     };
+
+    interface RuleWrapper extends useValidation.Rule {
+      readonly state: Ref<string | true>;
+    }
 
     function wrapRule(
       rule: useValidation.Rule<T>,
-      context: "change" | "input" | "submit"
-    ): RuleWrapper<T> {
-      const prevInvalid = ref(false);
+      context: useValidation.Context
+    ): RuleWrapper {
+      const state = ref<string | true>(true);
 
       return defineFn(
-        async () => {
+        async (value: unknown) => {
+          if (is.callable(value)) value = value();
+
           if (
-            context === "input" ||
-            (context === "change" && changing) ||
-            submitting.value ||
-            prevInvalid.value
-          ) {
-            const result = await rule(modelValue());
-
+            a.fromIterable(contexts.values()).includes(context) ||
+            contexts.size === 0 ||
+            state.value !== true
+          )
             // eslint-disable-next-line require-atomic-updates -- Ok
-            prevInvalid.value = result !== true;
+            state.value = await rule(options.value.format(value));
 
-            return result;
-          }
-
-          return true;
+          return state.value;
         },
-        { prevInvalid }
+        { state }
       );
     }
   },
@@ -186,15 +180,23 @@ export const useValidation = defineFn(
     props: {
       rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
       rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
-      rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>(),
-      validationOptions: prop<useValidation.Props["validationOptions"]>()
+      rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>()
     } as const,
     reset: trigger()
   }
 );
 
 export namespace useValidation {
+  export type Context = "change" | "input" | "submit";
+
   export interface Options<T = unknown> {
+    /**
+     * Formats value for validation.
+     *
+     * @param value - Value.
+     * @returns Formatted value.
+     */
+    readonly format: (value: unknown) => T;
     readonly label?: string;
     readonly max?: T;
     readonly min?: T;
@@ -208,22 +210,26 @@ export namespace useValidation {
     readonly required?: boolean;
   }
 
+  export type OptionsProp<T = unknown> = Optional<Options<T>>;
+
   export interface OwnProps<T = unknown> {
     readonly rulesOnChange?: Rules<T> | undefined;
     readonly rulesOnInput?: Rules<T> | undefined;
     readonly rulesOnSubmit?: Rules<T> | undefined;
-    readonly validationOptions?: Options<T> | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface ParentProps {}
 
   export interface Plugin<T = unknown> {
+    readonly rules: ComputedRef<Writable<ValidationRules>>;
     /**
-     * Handles "change" event.
+     * Validates field.
+     *
+     * @param value - Value.
+     * @param context - Context.
      */
-    readonly change: () => void;
-    readonly rules: ComputedRef<Writable<ValidationRules<T>>>;
+    readonly validate: (value: T, context: Context) => void;
   }
 
   export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
@@ -249,8 +255,4 @@ export namespace useValidation {
     readonly FieldShouldBeGteMin: true;
     readonly FieldShouldBeLteMax: true;
   }
-}
-
-interface RuleWrapper<T = unknown> extends useValidation.Rule<T> {
-  readonly prevInvalid: Ref<boolean>;
 }

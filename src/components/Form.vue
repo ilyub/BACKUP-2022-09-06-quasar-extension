@@ -30,7 +30,7 @@ export default defineComponent({
 
     const disable = ref(0);
 
-    const globalDisable = injections.globalDisable.inject();
+    const globalDisable = injections.disable.inject();
 
     const main = ref<QForm>();
 
@@ -38,9 +38,7 @@ export default defineComponent({
 
     const resetValidation = plugins.useValidation.reset.get();
 
-    injections.globalDisable.provide(
-      () => globalDisable.value || disable.value > 0
-    );
+    injections.disable.provide(() => globalDisable.value || disable.value > 0);
     injections.submitting.provide(() => submitting.value > 0);
 
     return {
@@ -60,17 +58,15 @@ export default defineComponent({
           submitting.value++;
 
           try {
-            if (await as.not.empty(main.value).validate()) {
-              emit("submit", event);
+            emit("submit", event);
 
-              if (props.onAsyncSubmit) {
-                disable.value++;
+            if (props.onAsyncSubmit) {
+              disable.value++;
 
-                try {
-                  await props.onAsyncSubmit(event);
-                } finally {
-                  disable.value--;
-                }
+              try {
+                await props.onAsyncSubmit(event);
+              } finally {
+                disable.value--;
               }
             }
           } finally {

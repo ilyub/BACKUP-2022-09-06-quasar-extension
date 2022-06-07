@@ -42,6 +42,11 @@ module.exports = {
     },
     {
       contexts: ["code"],
+      patterns: [/<q-field(?![\w-])/u.source],
+      subOptionsId: "quasar-extension.Field"
+    },
+    {
+      contexts: ["code"],
       patterns: [/<q-form(?![\w-])/u.source],
       subOptionsId: "quasar-extension.Form"
     },

@@ -16,6 +16,8 @@ export type { Droppable } from "./Droppable.extras";
 
 export type { ExpansionItem } from "./ExpansionItem.extras";
 
+export { Field } from "./Field.extras";
+
 export type { Form } from "./Form.extras";
 
 export type { FormActions } from "./FormActions.extras";

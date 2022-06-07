@@ -28,7 +28,7 @@ export default defineComponent({
     validateProps<Knob.OwnProps>(props);
 
     return {
-      globalDisable: injections.globalDisable.inject(),
+      globalDisable: injections.disable.inject(),
       main: ref<QKnob>(),
       slotNames: plugins.useSlotNames<Knob.Slots>()()
     };

@@ -110,10 +110,6 @@
     outline: none;
     cursor: pointer;
   }
-
-  .m-datetime-picker__required {
-    color: $negative;
-  }
 }
 
 .m-datetime-picker__dialog {
@@ -158,6 +154,10 @@
   display: none;
 }
 
+.m-field .m-field__required {
+  color: $negative;
+}
+
 .m-form-actions {
   display: flex;
   justify-content: flex-end;
@@ -184,26 +184,14 @@
   padding-left: $m-indent__padding;
 }
 
-.m-input {
-  > .q-field__inner > .q-field__bottom {
-    position: absolute;
-    padding-top: map.get($space-xs, "y");
-  }
-
-  .m-input__required {
-    color: $negative;
-  }
+.m-input > .q-field__inner > .q-field__bottom {
+  position: absolute;
+  padding-top: map.get($space-xs, "y");
 }
 
-.m-numeric-input {
-  > .q-field__inner > .q-field__bottom {
-    position: absolute;
-    padding-top: map.get($space-xs, "y");
-  }
-
-  .m-numeric-input__required {
-    color: $negative;
-  }
+.m-numeric-input > .q-field__inner > .q-field__bottom {
+  position: absolute;
+  padding-top: map.get($space-xs, "y");
 }
 
 .m-knob.m-knob__inline {

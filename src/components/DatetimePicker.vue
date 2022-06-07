@@ -1,5 +1,6 @@
 <script lang="ts">
 import { DatetimePicker } from "./DatetimePicker.extras";
+import { genericField } from "./Field.generic";
 import {
   directives,
   prop,
@@ -10,29 +11,30 @@ import {
   skipCheck
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
-import { as, is, o } from "@skylib/functions";
+import { as, cast, is, typedef } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import type { Field } from "./Field.extras";
 import type { stringU } from "@skylib/functions";
-import type { QField } from "quasar";
 
 export default defineComponent({
   name: "m-datetime-picker",
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-field__string": genericField<stringU>()
+  },
   directives: { debugId: directives.debugId("datetime-picker") },
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),
-    ...plugins.useValidation.props,
-    label: prop<DatetimePicker.Props["label"]>(),
     max: prop<DatetimePicker.Props["max"]>(),
     min: prop<DatetimePicker.Props["min"]>(),
-    modelValue: prop<DatetimePicker.Props["modelValue"]>(),
-    required: prop.boolean()
+    modelValue: prop<DatetimePicker.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit }) => {
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateProps<DatetimePicker.OwnProps>(props);
 
-    const dialogShow = ref(false);
+    const showDialog = ref(false);
 
     const minDate = computed(() =>
       is.not.empty(props.min)
@@ -76,8 +78,8 @@ export default defineComponent({
       return undefined;
     });
 
-    // eslint-disable-next-line no-warning-comments -- Use "ReadonlyDateTime" type
-    // fixme
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+    // fixme -- Use "ReadonlyDateTime" type
     const modelObject = computed(() =>
       is.not.empty(props.modelValue) && datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
@@ -88,8 +90,8 @@ export default defineComponent({
 
     const pickerValue = ref<string>();
 
-    // eslint-disable-next-line no-warning-comments -- Use "ReadonlyDateTime" type
-    // fixme
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+    // fixme -- Use "ReadonlyDateTime" type
     const pickerObject = computed(() =>
       is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value)
@@ -98,23 +100,9 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
-    const main = ref<QField>();
-
-    const validation = plugins.useValidation(
-      props,
-      main,
-      () => props.modelValue,
-      () =>
-        o.removeUndefinedKeys({
-          label: props.label,
-          max: props.max,
-          min: props.min,
-          required: props.required
-        })
-    );
+    const main = ref<Field.Global<stringU>>();
 
     return {
-      blur: validation.change,
       date: computed(() =>
         pickerObject.value ? pickerObject.value.format("E, d MMM") : "\u2014"
       ),
@@ -138,36 +126,33 @@ export default defineComponent({
 
         if (is.not.empty(pickerValue.value)) step.value = "time";
       },
-      dialogShow,
-      fieldClick: (): void => {
-        dialogShow.value = true;
+      icons: DatetimePicker.icons,
+      inputClick: (): void => {
+        showDialog.value = true;
         step.value = is.not.empty(props.modelValue) ? "time" : "date";
         pickerValue.value = modelObject.value?.toString();
       },
-      fieldLabel: computed(() =>
-        is.not.empty(props.label) && DatetimePicker.lang.has(props.label)
-          ? DatetimePicker.lang.get(props.label)
-          : props.label
-      ),
-      fieldUpdate: (value: unknown): void => {
-        if (is.empty(value)) emit("update:modelValue", undefined);
-      },
-      fieldValue: computed(() =>
-        modelObject.value?.format("E, d MMM yyyy HHH:mm A")
-      ),
-      icons: DatetimePicker.icons,
       lang: DatetimePicker.lang,
       main,
+      mainUpdate: (value: stringU): void => {
+        if (is.empty(value)) emit("update:modelValue", undefined);
+      },
+      mainValidationOptions: typedef<plugins.useValidation.Options<stringU>>({
+        format: (value: unknown): stringU => cast.stringU(value)
+      }),
+      mainValue: computed(() =>
+        modelObject.value?.format("E, d MMM yyyy HHH:mm A")
+      ),
       nextClick: (): void => {
         step.value = "time";
       },
       pickDate: (): void => {
-        dialogShow.value = true;
+        showDialog.value = true;
         step.value = "date";
         pickerValue.value = modelObject.value?.toString();
       },
       pickTime: (): void => {
-        dialogShow.value = true;
+        showDialog.value = true;
         step.value = "time";
         pickerValue.value = modelObject.value?.toString();
       },
@@ -184,14 +169,13 @@ export default defineComponent({
       prevClick: (): void => {
         step.value = "date";
       },
-      rules: validation.rules,
       save: (): void => {
         emit("update:modelValue", pickerObject.value?.toString());
       },
+      showDialog,
       slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
         "append",
         "control",
-        "label",
         "prepend"
       ),
       step,
@@ -235,18 +219,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-field
+  <m-field__string
     ref="main"
     class="m-datetime-picker"
-    :clearable="!required"
-    dense
-    hide-bottom-space
-    :label="fieldLabel"
-    :model-value="fieldValue"
-    :rules="rules"
-    :stack-label="dialogShow"
-    @blur="blur"
-    @update:model-value="fieldUpdate"
+    :model-value="mainValue"
+    :stack-label="showDialog"
+    :validation-options="mainValidationOptions"
+    @update:model-value="mainUpdate"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
@@ -258,9 +237,9 @@ export default defineComponent({
           class="m-datetime-picker__input"
           readonly
           :value="data.modelValue"
-          @click="fieldClick"
+          @click="inputClick"
         />
-        <q-dialog v-model="dialogShow">
+        <q-dialog v-model="showDialog">
           <m-card v-debug-id="'dialog'" class="m-datetime-picker__dialog">
             <template #title>
               <div class="items-end row">
@@ -350,12 +329,6 @@ export default defineComponent({
         </q-dialog>
       </slot>
     </template>
-    <template #label="data">
-      <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ fieldLabel }}
-        <span v-if="required" class="m-datetime-picker__required">*</span>
-      </slot>
-    </template>
     <template #prepend="data">
       <slot :name="slotNames.prepend" v-bind="data ?? {}">
         <q-icon
@@ -376,5 +349,5 @@ export default defineComponent({
         />
       </slot>
     </template>
-  </q-field>
+  </m-field__string>
 </template>

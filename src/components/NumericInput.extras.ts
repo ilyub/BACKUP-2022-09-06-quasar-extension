@@ -1,7 +1,7 @@
-import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import type { GlobalComponent, plugins, VNodes } from "./api";
-import type { booleanU, numberU, stringU } from "@skylib/functions";
-import type { QField, QFieldProps, QFieldSlots } from "quasar";
+import { icons as baseIcons } from "@skylib/facades";
+import type { Field } from "./Field.extras";
+import type { GlobalComponent, plugins } from "./api";
+import type { booleanU, numberU } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -14,21 +14,8 @@ declare global {
 export namespace NumericInput {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
-  export const lang: baseLang.Lang<never, never> = baseLang;
-
-  export interface ControlSlotData {
-    /**
-     * Emits value.
-     *
-     * @param value - Value.
-     */
-    readonly emitValue: (value: unknown) => void;
-    readonly modelValue: unknown;
-    readonly placeholder: string;
-  }
-
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QField;
+    readonly main: Field.Global<numberU>;
   }
 
   export interface Icon {
@@ -40,7 +27,6 @@ export namespace NumericInput {
 
   export interface OwnProps {
     readonly bigStep?: numberU;
-    readonly label?: stringU;
     readonly max?: numberU;
     readonly min?: numberU;
     readonly modelValue?: numberU;
@@ -50,26 +36,21 @@ export namespace NumericInput {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: numberU) => void;
-    readonly placeholder?: stringU;
     readonly required?: booleanU;
     readonly smallStep?: numberU;
+    readonly validationOptions?:
+      | plugins.useValidation.OptionsProp<numberU>
+      | undefined;
   }
 
-  export interface OwnSlots {
-    /**
-     * Control slot.
-     *
-     * @param scope - Scope.
-     * @returns Nodes.
-     */
-    readonly control: (scope: ControlSlotData) => VNodes;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
+  export interface OwnSlots {}
 
   export interface ParentProps
-    extends Omit<QFieldProps, keyof OwnProps>,
-      Omit<plugins.useValidation.Props<numberU>, keyof OwnProps> {}
+    extends Omit<Field.Props<numberU>, keyof OwnProps> {}
 
-  export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
+  export interface ParentSlots
+    extends Omit<Field.Slots<numberU>, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 

@@ -1,6 +1,6 @@
 import { injectable } from "./misc";
 
-export namespace globalDisable {
+export namespace disable {
   export const { inject, provide } = injectable(() => false);
 }
 

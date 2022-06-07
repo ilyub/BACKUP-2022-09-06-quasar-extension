@@ -7,6 +7,7 @@ import type { CardSection } from "./CardSection.extras";
 import type { DatetimePicker } from "./DatetimePicker.extras";
 import type { Droppable } from "./Droppable.extras";
 import type { ExpansionItem } from "./ExpansionItem.extras";
+import type { Field } from "./Field.extras";
 import type { Form } from "./Form.extras";
 import type { FormActions } from "./FormActions.extras";
 import type { FormButton } from "./FormButton.extras";
@@ -50,6 +51,7 @@ declare module "@vue/runtime-core" {
     readonly "m-dialog": PopupProxy.Global;
     readonly "m-droppable": Droppable.Global;
     readonly "m-expansion-item": ExpansionItem.Global;
+    readonly "m-field": Field.Global;
     readonly "m-form": Form.Global;
     readonly "m-form-actions": FormActions.Global;
     readonly "m-form-button": FormButton.Global;

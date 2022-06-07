@@ -17,7 +17,7 @@ test.each<extras.Switchable.Transition>(["none", "slide"])(
         default: {
           setup: () => {
             watch(
-              injections.globalDisable.inject(),
+              injections.disable.inject(),
               value => {
                 callback(value);
               },

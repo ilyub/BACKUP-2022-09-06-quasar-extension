@@ -70,7 +70,7 @@ test("provideDisable", async () => {
       slots: {
         default: {
           setup: () => {
-            watch(injections.globalDisable.inject(), value => {
+            watch(injections.disable.inject(), value => {
               callback(value);
             });
           },

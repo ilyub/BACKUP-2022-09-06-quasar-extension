@@ -1,5 +1,7 @@
 export { genericDroppable as Droppable } from "./Droppable.generic";
 
+export { genericField as Field } from "./Field.generic";
+
 export { genericGroup as Group } from "./Group.generic";
 
 export { genericOptionGroup as OptionGroup } from "./OptionGroup.generic";

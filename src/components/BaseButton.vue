@@ -26,15 +26,17 @@ export default defineComponent({
 
     const confirmedClick = plugins.useConfirmedClick(props);
 
-    const globalDisable = injections.globalDisable.inject();
+    const disable = computed(() => props.disable && globalDisable.value);
+
+    const globalDisable = injections.disable.inject();
+
+    const globalSubmitting = injections.submitting.inject();
 
     const settings = BaseButton.injectSettings();
 
     const submitting = computed(
-      () => submittingAux.value && props.type === "submit"
+      () => globalSubmitting.value && props.type === "submit"
     );
-
-    const submittingAux = injections.submitting.inject();
 
     return {
       buttonClick: (): void => {
@@ -42,11 +44,7 @@ export default defineComponent({
         confirmedClick();
       },
       buttonDisable: computed(
-        () =>
-          props.disable ||
-          globalDisable.value ||
-          submitting.value ||
-          asyncClick.active.value
+        () => disable.value || submitting.value || asyncClick.active.value
       ),
       buttonLoading: computed(
         () =>

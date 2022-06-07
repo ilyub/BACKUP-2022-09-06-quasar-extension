@@ -17,7 +17,7 @@ export default defineComponent({
 
     const value4 = ref<string>();
 
-    const value5 = ref<stringU>("1");
+    const value5 = ref<string>();
 
     return {
       form,
@@ -74,7 +74,7 @@ export default defineComponent({
         />
       </m-form-section>
       <m-form-section>
-        <m-input v-model="value5" label="Mask" mask="###" />
+        <m-input v-model="value5" label="Mask" mask="###" placeholder="###" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

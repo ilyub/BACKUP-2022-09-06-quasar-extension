@@ -1,7 +1,7 @@
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import type { GlobalComponent, plugins } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
-import type { QField, QFieldProps, QFieldSlots } from "quasar";
+import type { Field } from "./Field.extras";
+import type { GlobalComponent } from "./api";
+import type { stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -21,7 +21,7 @@ export namespace DatetimePicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QField;
+    readonly main: Field.Global<stringU>;
   }
 
   export interface Icon {
@@ -33,7 +33,6 @@ export namespace DatetimePicker {
   }
 
   export interface OwnProps {
-    readonly label?: stringU;
     readonly max?: stringU;
     readonly min?: stringU;
     readonly modelValue?: stringU;
@@ -43,17 +42,16 @@ export namespace DatetimePicker {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: stringU) => void;
-    readonly required?: booleanU;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface OwnSlots {}
 
   export interface ParentProps
-    extends Omit<QFieldProps, keyof OwnProps>,
-      Omit<plugins.useValidation.Props<stringU>, keyof OwnProps> {}
+    extends Omit<Field.Props<stringU>, keyof OwnProps> {}
 
-  export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
+  export interface ParentSlots
+    extends Omit<Field.Slots<stringU>, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 

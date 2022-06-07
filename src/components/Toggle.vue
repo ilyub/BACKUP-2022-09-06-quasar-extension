@@ -27,7 +27,7 @@ export default defineComponent({
     validateProps<Toggle.OwnProps>(props);
 
     return {
-      globalDisable: injections.globalDisable.inject(),
+      globalDisable: injections.disable.inject(),
       main: ref<QToggle>(),
       slotNames: plugins.useSlotNames<Toggle.Slots>()()
     };

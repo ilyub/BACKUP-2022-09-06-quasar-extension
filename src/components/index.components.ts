@@ -16,6 +16,8 @@ export { default as Droppable } from "./Droppable.vue";
 
 export { default as ExpansionItem } from "./ExpansionItem.vue";
 
+export { default as Field } from "./Field.vue";
+
 export { default as Form } from "./Form.vue";
 
 export { default as FormActions } from "./FormActions.vue";

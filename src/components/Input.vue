@@ -1,90 +1,82 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Input] */
 
-import { Input } from "./Input.extras";
+import { genericField } from "./Field.generic";
 import {
   prop,
   parentProps,
   validateEmit,
   validateProps,
   plugins,
-  skipCheck,
-  injections
+  skipCheck
 } from "./api";
-import { is, o } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
-import type { NumStrE, stringU } from "@skylib/functions";
-import type { QInput } from "quasar";
+import { as, cast, is, o, typedef } from "@skylib/functions";
+import { defineComponent, ref } from "vue";
+import type { Field } from "./Field.extras";
+import type { Input } from "./Input.extras";
+import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-input",
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-field__string": genericField<stringU>()
+  },
   props: {
     ...parentProps<Input.ParentProps>(),
-    ...plugins.useValidation.props,
-    disable: prop.boolean(),
-    label: prop<Input.Props["label"]>(),
-    modelValue: prop<Input.Props["modelValue"]>(),
-    required: prop.boolean()
+    modelValue: prop<Input.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit }) => {
     validateEmit<Input.OwnProps>(emit);
     validateProps<Input.OwnProps>(props);
 
-    const main = ref<QInput>();
+    const input = ref<HTMLInputElement>();
 
-    const validation = plugins.useValidation(
-      props,
-      main,
-      () => props.modelValue,
-      () =>
-        o.removeUndefinedKeys({ label: props.label, required: props.required })
-    );
+    const main = ref<Field.Global<stringU>>();
 
     return {
-      blur: validation.change,
-      globalDisable: injections.globalDisable.inject(),
-      inputLabel: computed(() =>
-        is.not.empty(props.label) && Input.lang.has(props.label)
-          ? Input.lang.get(props.label)
-          : props.label
-      ),
-      main,
-      rules: validation.rules,
-      slotNames: plugins.useSlotNames<Input.Slots>()("label"),
-      update: (value: NumStrE): void => {
-        emit(
-          "update:modelValue",
-          is.string(value) && value ? value : undefined
+      input,
+      inputInput: (
+        event: Event,
+        emitValue: Field.ControlSlotData<stringU>["emitValue"]
+      ): void => {
+        emitValue(
+          cast.stringU(o.get(as.not.empty(event.target), "value", is.string))
         );
-      }
+      },
+      main,
+      slotNames: plugins.useSlotNames<Input.Slots>()("control"),
+      validationOptions: typedef<plugins.useValidation.Options<stringU>>({
+        format: (value: unknown): stringU => cast.stringU(value)
+      })
     };
   }
 });
 </script>
 
 <template>
-  <q-input
+  <m-field__string
     ref="main"
     class="m-input"
-    :clearable="!required"
-    dense
-    :disable="disable || globalDisable"
-    hide-bottom-space
-    :label="inputLabel"
+    :focusable-element="input"
     :model-value="modelValue"
-    :rules="rules"
-    @blur="blur"
-    @update:model-value="update"
+    :validation-options="validationOptions"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
-    <template #label="data">
-      <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ inputLabel }}
-        <span v-if="required" class="m-input__required">*</span>
+    <template #control="data">
+      <slot v-bind="data ?? {}" :name="slotNames.control">
+        <input
+          ref="input"
+          class="q-field__input"
+          :placeholder="data.placeholder ?? ''"
+          :value="data.modelValue"
+          @input="inputInput($event, data.emitValue)"
+        />
       </slot>
     </template>
-  </q-input>
+  </m-field__string>
 </template>
