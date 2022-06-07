@@ -29,8 +29,8 @@ export default defineComponent({
     validateProps<OptionGroup.OwnProps>(props);
 
     return {
-      slotNames: plugins.useSlotNames<OptionGroup.Slots>()(),
-      writableOptions: computed(() => a.clone(props.options))
+      mainOptions: computed(() => a.clone(props.options)),
+      slotNames: plugins.useSlotNames<OptionGroup.Slots>()()
     };
   }
 });
@@ -42,7 +42,7 @@ export default defineComponent({
     :class="{ 'm-option-group__inline': inline }"
     :inline="inline"
     :model-value="modelValue"
-    :options="writableOptions"
+    :options="mainOptions"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">

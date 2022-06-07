@@ -88,6 +88,19 @@ export default defineComponent({
     watch([mdi, searchString], resetPage);
 
     return {
+      click: (): void => {
+        show.value = true;
+        resetPage();
+        handlePromise.silent(load);
+
+        async function load(): Promise<void> {
+          await testDelay();
+          mdi.value = await import(
+            /* webpackChunkName: "dynamic/quasar-extension/mdi" */
+            "@mdi/js-dynamic"
+          );
+        }
+      },
       contents: computed(() => {
         const buttons: Writable<Buttons> = filteredItems.value
           .slice(
@@ -126,19 +139,6 @@ export default defineComponent({
       nextDisable: computed(() => to.value >= total.value),
       notFound: computed(() => total.value === 0),
       notSelected: computed(() => is.empty(props.modelValue)),
-      open: (): void => {
-        show.value = true;
-        resetPage();
-        handlePromise.silent(load);
-
-        async function load(): Promise<void> {
-          await testDelay();
-          mdi.value = await import(
-            /* webpackChunkName: "dynamic/quasar-extension/mdi" */
-            "@mdi/js-dynamic"
-          );
-        }
-      },
       pickIcon: (icon: stringU): void => {
         emit("update:modelValue", icon === props.modelValue ? undefined : icon);
         show.value = false;
@@ -176,7 +176,7 @@ export default defineComponent({
     class="m-icon-picker"
     :class="{ 'text-grey-5': notSelected }"
     :icon="icon"
-    @click="open"
+    @click="click"
   >
     <q-dialog v-model="show">
       <m-card v-debug-id="'dialog'" :title="lang.IconPicker" transparent-header>

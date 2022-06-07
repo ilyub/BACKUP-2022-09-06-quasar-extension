@@ -34,12 +34,12 @@ export default defineComponent({
 
     return {
       main: ref<QSelect>(),
-      selectDisplayValue: computed(() =>
+      mainDisplayValue: computed(() =>
         selectedOption.value
           ? undefined
           : props.initialLabel ?? Select.lang.Select
       ),
-      selectValue: computed(() => selectedOption.value),
+      mainValue: computed(() => selectedOption.value),
       slotNames: plugins.useSlotNames<Button.Slots>()(),
       writableOptions: computed(() => a.clone(props.options))
     };
@@ -52,8 +52,8 @@ export default defineComponent({
     ref="main"
     class="m-select"
     dense
-    :display-value="selectDisplayValue"
-    :model-value="selectValue"
+    :display-value="mainDisplayValue"
+    :model-value="mainValue"
     :options="writableOptions"
     @update:model-value="$emit('update:modelValue', $event)"
   >

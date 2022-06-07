@@ -39,21 +39,21 @@ export default defineComponent({
     );
 
     return {
-      buttonClick: (): void => {
+      hasTooltip: computed(() => is.not.empty(props.tooltip)),
+      main: ref(QBtn),
+      mainClick: (): void => {
         asyncClick();
         confirmedClick();
       },
-      buttonDisable: computed(
+      mainDisable: computed(
         () => disable.value || submitting.value || asyncClick.active.value
       ),
-      buttonLoading: computed(
+      mainLoading: computed(
         () =>
           props.loading ||
           (submitting.value && settings.value.animateSubmitting) ||
           (asyncClick.active.value && settings.value.animateAsyncClick)
       ),
-      hasTooltip: computed(() => is.not.empty(props.tooltip)),
-      main: ref(QBtn),
       slotNames: plugins.useSlotNames<BaseButton.Slots>()("default")
     };
   }
@@ -64,10 +64,10 @@ export default defineComponent({
   <q-btn
     ref="main"
     class="m-base-button"
-    :disable="buttonDisable"
-    :loading="buttonLoading"
+    :disable="mainDisable"
+    :loading="mainLoading"
     :type="type"
-    @click="buttonClick"
+    @click="mainClick"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
