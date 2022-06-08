@@ -50,6 +50,8 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
+        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
+        <!-- fixme - use lang.keys.***, etc -->
         <m-numeric-input
           v-model="value1"
           :big-step="15"
@@ -84,15 +86,15 @@ export default defineComponent({
         />
       </m-form-section>
       <m-form-section>
-        <m-numeric-input :big-step="15" disable label="Disabled" />
-      </m-form-section>
-      <m-form-section>
         <m-numeric-input
           v-model="value5"
           :big-step="15"
           label="Placeholder"
           placeholder="###"
         />
+      </m-form-section>
+      <m-form-section>
+        <m-numeric-input :big-step="15" disable label="Disabled" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

@@ -79,7 +79,7 @@ export default defineComponent({
     });
 
     // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-    // fixme -- Use "ReadonlyDateTime" type
+    // fixme - Use "ReadonlyDateTime" type
     const modelObject = computed(() =>
       is.not.empty(props.modelValue) && datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
@@ -91,7 +91,7 @@ export default defineComponent({
     const pickerValue = ref<string>();
 
     // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-    // fixme -- Use "ReadonlyDateTime" type
+    // fixme - Use "ReadonlyDateTime" type
     const pickerObject = computed(() =>
       is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value)

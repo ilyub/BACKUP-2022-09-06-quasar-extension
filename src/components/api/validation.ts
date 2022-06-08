@@ -56,20 +56,21 @@ export const useValidation = defineFn(
 
       return is.not.empty(min)
         ? [
-            wrapRule(
-              (value: T): string | true =>
-                is.not.empty(value) && compare(value, min) < 0
-                  ? useValidation.lang
-                      .with("field", label.value)
-                      .with(
-                        "min",
-                        options.value.minMaxFormat
-                          ? options.value.minMaxFormat(min)
-                          : cast.string(min)
-                      ).FieldShouldBeGteMin
-                  : true,
-              "change"
-            )
+            wrapRule((value: T): string | true => {
+              const message =
+                options.value.minErrorMessage ?? "FieldShouldBeGteMin";
+
+              const minMaxFormat = options.value.minMaxFormat ?? cast.string;
+
+              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+              // fixme - Use getIfExists
+              return is.not.empty(value) && compare(value, min) < 0
+                ? useValidation.lang
+                    .with("field", label.value)
+                    .with("min", minMaxFormat(min))
+                    .get(message)
+                : true;
+            }, "change")
           ]
         : [];
     });
@@ -79,20 +80,21 @@ export const useValidation = defineFn(
 
       return is.not.empty(max)
         ? [
-            wrapRule(
-              (value: T): string | true =>
-                is.not.empty(value) && compare(value, max) > 0
-                  ? useValidation.lang
-                      .with("field", label.value)
-                      .with(
-                        "max",
-                        options.value.minMaxFormat
-                          ? options.value.minMaxFormat(max)
-                          : cast.string(max)
-                      ).FieldShouldBeLteMax
-                  : true,
-              "change"
-            )
+            wrapRule((value: T): string | true => {
+              const message =
+                options.value.maxErrorMessage ?? "FieldShouldBeGteMax";
+
+              const minMaxFormat = options.value.minMaxFormat ?? cast.string;
+
+              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+              // fixme - Use getIfExists
+              return is.not.empty(value) && compare(value, max) > 0
+                ? useValidation.lang
+                    .with("field", label.value)
+                    .with("max", minMaxFormat(max))
+                    .get(message)
+                : true;
+            }, "change")
           ]
         : [];
     });
@@ -106,14 +108,16 @@ export const useValidation = defineFn(
     const rulesOnSubmitRequired = computed(() =>
       options.value.required ?? false
         ? [
-            wrapRule(
-              (value: T): string | true =>
-                value === undefined
-                  ? useValidation.lang.with("field", label.value)
-                      .FieldIsRequired
-                  : true,
-              "submit"
-            )
+            wrapRule((value: T): string | true => {
+              const message =
+                options.value.requiredErrorMessage ?? "FieldIsRequired";
+
+              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+              // fixme - Use getIfExists
+              return value === undefined
+                ? useValidation.lang.with("field", label.value).get(message)
+                : true;
+            }, "submit")
           ]
         : []
     );
@@ -199,7 +203,9 @@ export namespace useValidation {
     readonly format: (value: unknown) => T;
     readonly label?: string;
     readonly max?: T;
+    readonly maxErrorMessage?: string;
     readonly min?: T;
+    readonly minErrorMessage?: string;
     /**
      * Formats min/max value.
      *
@@ -208,6 +214,7 @@ export namespace useValidation {
      */
     readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
     readonly required?: boolean;
+    readonly requiredErrorMessage?: string;
   }
 
   export type OptionsProp<T = unknown> = Optional<Options<T>>;

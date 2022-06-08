@@ -8,20 +8,24 @@ import {
   validateEmit,
   validateProps,
   plugins,
-  skipCheck
+  skipCheck,
+  injections
 } from "./api";
-import { a } from "@skylib/functions";
+import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import type { Button } from "./Button.extras";
 import type { QSelect } from "quasar";
 
 export default defineComponent({
   name: "m-select",
   props: {
     ...parentProps<Select.ParentProps>(),
+    disable: prop.boolean(),
     initialLabel: prop<Select.Props["initialLabel"]>(),
+    label: prop<Select.Props["label"]>(),
     modelValue: prop<Select.Props["modelValue"]>(),
-    options: prop.required<Select.Props["options"]>()
+    options: prop.required<Select.Props["options"]>(),
+    required: prop.boolean(),
+    validationLabel: prop<Select.Props["validationLabel"]>()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit }) => {
@@ -32,16 +36,58 @@ export default defineComponent({
       props.options.find(option => option.value === props.modelValue)
     );
 
+    const main = ref<QSelect>();
+
+    const validation = plugins.useValidation(
+      props,
+      computed(() => as.not.empty(main.value)),
+      computed(() =>
+        o.removeUndefinedKeys({
+          format: fn.identity,
+          label: props.validationLabel,
+          required: props.required,
+          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+          // fixme - Use lang.keys.SelectField instead of "SelectField"
+          requiredErrorMessage: "SelectField"
+        })
+      )
+    );
+
     return {
-      main: ref<QSelect>(),
-      mainDisplayValue: computed(() =>
-        selectedOption.value
-          ? undefined
-          : props.initialLabel ?? Select.lang.Select
+      blur: (): void => {
+        validation.validate(props.modelValue, "change");
+      },
+      displayValue: computed(() => {
+        if (selectedOption.value) return selectedOption.value.label;
+
+        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+        // fixme - Use "getIfExists"
+        if (is.not.empty(props.initialLabel))
+          return Select.lang.get(props.initialLabel);
+
+        return undefined;
+      }),
+      displayValueInitial: computed(() => is.empty(selectedOption.value)),
+      displayValueShowRequired: computed(
+        () => is.empty(props.label) && is.empty(selectedOption.value)
       ),
-      mainValue: computed(() => selectedOption.value),
-      slotNames: plugins.useSlotNames<Button.Slots>()(),
-      writableOptions: computed(() => a.clone(props.options))
+      globalDisable: injections.disable.inject(),
+      main,
+      mainLabel: computed(() =>
+        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+        // fixme - Use "getIfExists"
+        is.not.empty(props.label) ? Select.lang.get(props.label) : undefined
+      ),
+      rules: validation.rules,
+      slotNames: plugins.useSlotNames<Select.Slots>()("label", "selected"),
+      update: (value: unknown): void => {
+        emit(
+          "update:modelValue",
+          is.indexedObject(value) ? value["value"] : undefined
+        );
+        validation.validate(value, "input");
+      },
+      value: computed(() => selectedOption.value)
     };
   }
 });
@@ -51,14 +97,44 @@ export default defineComponent({
   <q-select
     ref="main"
     class="m-select"
+    :clearable="!required"
     dense
-    :display-value="mainDisplayValue"
-    :model-value="mainValue"
-    :options="writableOptions"
-    @update:model-value="$emit('update:modelValue', $event)"
+    :disable="disable || globalDisable"
+    :display-value="displayValue"
+    hide-bottom-space
+    :label="mainLabel"
+    lazy-rules="ondemand"
+    :model-value="value"
+    :options="options"
+    :rules="rules"
+    @blur="blur"
+    @update:model-value="update"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
+    </template>
+    <template #label="data">
+      <slot :name="slotNames.label" v-bind="data ?? {}">
+        {{ mainLabel }}
+        <span v-if="required" class="m-select__label__required">*</span>
+      </slot>
+    </template>
+    <template #selected="data">
+      <slot :name="slotNames.selected" v-bind="data ?? {}">
+        <span
+          :class="{
+            'm-select__display-value__initial': displayValueInitial
+          }"
+        >
+          {{ displayValue }}
+        </span>
+        <span
+          v-if="required && displayValueShowRequired"
+          class="m-select__display-value__required"
+        >
+          *
+        </span>
+      </slot>
     </template>
   </q-select>
 </template>

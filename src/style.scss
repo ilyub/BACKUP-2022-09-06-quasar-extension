@@ -96,11 +96,6 @@
 }
 
 .m-datetime-picker {
-  > .q-field__inner > .q-field__bottom {
-    position: absolute;
-    padding-top: map.get($space-xs, "y");
-  }
-
   .m-datetime-picker__input {
     display: flex;
     align-items: center;
@@ -154,8 +149,15 @@
   display: none;
 }
 
-.m-field .m-field__required {
-  color: $negative;
+.m-field {
+  > .q-field__inner > .q-field__bottom {
+    position: absolute;
+    padding-top: map.get($space-xs, "y");
+  }
+
+  .m-field__required {
+    color: $negative;
+  }
 }
 
 .m-form-actions {
@@ -182,16 +184,6 @@
 
 .m-indent {
   padding-left: $m-indent__padding;
-}
-
-.m-input > .q-field__inner > .q-field__bottom {
-  position: absolute;
-  padding-top: map.get($space-xs, "y");
-}
-
-.m-numeric-input > .q-field__inner > .q-field__bottom {
-  position: absolute;
-  padding-top: map.get($space-xs, "y");
 }
 
 .m-knob.m-knob__inline {
@@ -264,6 +256,26 @@
 
 .m-section + .m-section {
   margin-top: $m-section__spacing;
+}
+
+.m-select {
+  > .q-field__inner > .q-field__bottom {
+    position: absolute;
+    padding-top: map.get($space-xs, "y");
+  }
+
+  .m-select__label__required {
+    color: $negative;
+  }
+
+  .m-select__display-value__initial {
+    color: rgb(0 0 0 / 60%);
+  }
+
+  .m-select__display-value__required {
+    margin-left: map.get($space-xs, "x");
+    color: $negative;
+  }
 }
 
 .m-subsection + .m-subsection {

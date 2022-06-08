@@ -63,6 +63,8 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
+        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
+        <!-- fixme - use lang.keys.***, etc -->
         <m-datetime-picker
           v-model="value1"
           label="Date"

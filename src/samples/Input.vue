@@ -50,6 +50,8 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
+        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
+        <!-- fixme - use lang.keys.***, etc -->
         <m-input v-model="value1" label="String" required />
       </m-form-section>
       <m-form-section>
@@ -75,6 +77,9 @@ export default defineComponent({
       </m-form-section>
       <m-form-section>
         <m-input v-model="value5" label="Mask" mask="###" placeholder="###" />
+      </m-form-section>
+      <m-form-section>
+        <m-input disable label="Disabled" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

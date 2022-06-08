@@ -12,9 +12,11 @@ export const ru = new implementations.lang.dictionary.Definitions({
   },
   words: {
     Cancel: "Отменить",
+    Color: ["кто-что-он", { "кого-что-его": "Цвет", "кто-что-он": "Цвет" }],
     Confirm: "Подтверждение",
     Date: ["кто-что-она", { "кого-что-ее": "Дату", "кто-что-она": "Дата" }],
     DeselectAll: "Снять выделение",
+    Disabled: "Отключено",
     Equal: [
       "кого-что-его",
       {
@@ -37,8 +39,9 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Ok: "Ок",
     Password: "Пароль",
     Save: "Сохранить",
-    Select: "Выбрать",
     SelectAll: "Выделить все",
+    SelectColor: "Выбрать цвет",
+    SelectField: "Выберите <field:кого-что>",
     String: [
       "кто-что-она",
       { "кого-что-ее": "Строку", "кто-что-она": "Строка" }

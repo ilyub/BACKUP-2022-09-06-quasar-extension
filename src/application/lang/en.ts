@@ -5,9 +5,11 @@ export const en = new implementations.lang.dictionary.Definitions({
   wordForms: {},
   words: {
     Cancel: "Cancel",
+    Color: "Color",
     Confirm: "Confirm",
     Date: "Date",
     DeselectAll: "Deselect all",
+    Disabled: "Disabled",
     Equal: "Equal",
     Field: "Field",
     FieldIsRequired: "<Field> is required",
@@ -20,8 +22,9 @@ export const en = new implementations.lang.dictionary.Definitions({
     Ok: "Ok",
     Password: "Password",
     Save: "Save",
-    Select: "Select",
     SelectAll: "Select all",
+    SelectColor: "Select color",
+    SelectField: "Select <field>",
     String: "String",
     Time: "Time"
   }
