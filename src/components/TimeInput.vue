@@ -1,10 +1,10 @@
 <script lang="ts">
 import {
-  parentProps,
-  prop,
   directives,
-  skipCheck,
+  parentProps,
   plugins,
+  prop,
+  skipCheck,
   validateEmit,
   validateProps
 } from "./api";
@@ -49,6 +49,7 @@ export default defineComponent({
         event: Event,
         emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
+        // eslint-disable-next-line no-restricted-syntax -- Ok
         const value = o.get(as.not.empty(event.target), "value", is.string);
 
         inputValue.value = value;

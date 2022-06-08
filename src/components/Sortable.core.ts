@@ -1,5 +1,5 @@
 import { is, json, o } from "@skylib/functions";
-import type { objects, Writable } from "@skylib/functions";
+import type { Writable, objects } from "@skylib/functions";
 
 export const isHtmlElement = is.factory(is.instance, HTMLElement);
 
@@ -48,6 +48,7 @@ export function buildElements(
   key: string
 ): Writable<Elements> {
   return items.map(item => {
+    // eslint-disable-next-line no-restricted-syntax -- Ok
     const id = o.get(item, key, is.string);
 
     return {

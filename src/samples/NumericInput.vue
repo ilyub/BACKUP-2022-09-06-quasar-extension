@@ -64,7 +64,7 @@ export default defineComponent({
       <m-form-section>
         <m-numeric-input
           v-model="value2"
-          label="Validate on input"
+          label="ValidateOnInput"
           :rules-on-input="rules"
           :small-step="2"
         />
@@ -73,7 +73,7 @@ export default defineComponent({
         <m-numeric-input
           v-model="value3"
           :big-step="15"
-          label="Validate on change"
+          label="ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
@@ -81,7 +81,7 @@ export default defineComponent({
         <m-numeric-input
           v-model="value4"
           :big-step="15"
-          label="Validate on submit"
+          label="ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>

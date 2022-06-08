@@ -53,7 +53,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-subsection>
-      <m-input v-model="searchString" label="Search for settings" />
+      <m-input v-model="searchString" label="SearchForSettings" />
     </m-subsection>
     <m-subsection>
       Show

@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-unassigned-import -- Ok
 import "./index.global";
 
+// eslint-disable-next-line no-restricted-syntax -- Ok
 export * from "./api";
 
 // eslint-disable-next-line @skylib/export-all-name -- Ok

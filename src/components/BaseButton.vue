@@ -2,7 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.BaseButton] */
 
 import { BaseButton } from "./BaseButton.extras";
-import { prop, parentProps, validateProps, plugins, injections } from "./api";
+import { injections, parentProps, plugins, prop, validateProps } from "./api";
 import { is } from "@skylib/functions";
 import { QBtn } from "quasar";
 import { computed, defineComponent, ref } from "vue";

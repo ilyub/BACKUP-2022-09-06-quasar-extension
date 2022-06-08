@@ -1,19 +1,19 @@
 <script lang="ts">
 import { IconPicker } from "./IconPicker.extras";
 import {
-  prop,
-  parentProps,
-  validateEmit,
-  validateProps,
   directives,
-  skipCheck
+  parentProps,
+  prop,
+  skipCheck,
+  validateEmit,
+  validateProps
 } from "./api";
-import { inlineSearch, testDelay, handlePromise } from "@skylib/facades";
+import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
 import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
-import type { stringU, Writable } from "@skylib/functions";
+import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
 

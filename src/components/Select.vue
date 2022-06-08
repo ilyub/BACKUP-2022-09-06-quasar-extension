@@ -3,14 +3,15 @@
 
 import { Select } from "./Select.extras";
 import {
-  prop,
+  injections,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
+  prop,
   skipCheck,
-  injections
+  validateEmit,
+  validateProps
 } from "./api";
+import { lang } from "@skylib/facades";
 import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
@@ -48,7 +49,7 @@ export default defineComponent({
           required: props.required,
           // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
           // fixme - Use lang.keys.SelectField instead of "SelectField"
-          requiredErrorMessage: "SelectField"
+          requiredErrorMessage: Select.lang.keys.SelectField
         })
       )
     );
@@ -63,7 +64,7 @@ export default defineComponent({
         // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
         // fixme - Use "getIfExists"
         if (is.not.empty(props.initialLabel))
-          return Select.lang.get(props.initialLabel);
+          return lang.get(props.initialLabel);
 
         return undefined;
       }),
@@ -76,7 +77,7 @@ export default defineComponent({
       mainLabel: computed(() =>
         // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
         // fixme - Use "getIfExists"
-        is.not.empty(props.label) ? Select.lang.get(props.label) : undefined
+        is.not.empty(props.label) ? lang.get(props.label) : undefined
       ),
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Select.Slots>()("label", "selected"),

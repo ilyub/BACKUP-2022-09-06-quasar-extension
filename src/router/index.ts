@@ -1,5 +1,5 @@
 import { routes } from "../routes";
-import { a, fn } from "@skylib/functions";
+import { a, evaluate } from "@skylib/functions";
 import { route } from "quasar/wrappers";
 import {
   createRouter,
@@ -8,7 +8,7 @@ import {
 } from "vue-router";
 
 export default route(() => {
-  const createHistory = fn.run(() => {
+  const createHistory = evaluate(() => {
     switch (process.env.VUE_ROUTER_MODE) {
       case "history":
         return createWebHistory;

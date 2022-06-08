@@ -1,4 +1,4 @@
-import { is, o, reflect } from "@skylib/functions";
+import { is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, useSlots } from "vue";
 import type { nevers } from "@skylib/functions";
@@ -29,9 +29,9 @@ export function useSlotNames<T>() {
       ) as useSlotNames.UsableSlots<U>;
 
       return {
-        has: (name: U): boolean => is.not.empty(reflect.get(slots, name)),
+        has: (name: U): boolean => is.not.empty(slots[name]),
         hasSome: (...names: U[]): boolean =>
-          names.some(name => is.not.empty(reflect.get(slots, name))),
+          names.some(name => is.not.empty(slots[name])),
         passThroughSlots,
         ...usableSlots
       };

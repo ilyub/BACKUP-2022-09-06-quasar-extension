@@ -86,8 +86,10 @@ test("min, max", async () => {
     }
   });
 
+  // eslint-disable-next-line no-restricted-syntax -- Ok
   const dateOptions = o.get(wrapper.vm, "dateOptions", is.callable);
 
+  // eslint-disable-next-line no-restricted-syntax -- Ok
   const timeOptions = o.get(wrapper.vm, "timeOptions", is.callable);
 
   const { elem } = testUtils.findFactory("datetime-picker", wrapper);

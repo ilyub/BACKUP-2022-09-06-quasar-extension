@@ -1,18 +1,19 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Field] */
 
-import { Field } from "./Field.extras";
 import {
-  prop,
+  injections,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
+  prop,
   skipCheck,
-  injections
+  validateEmit,
+  validateProps
 } from "./api";
+import { lang } from "@skylib/facades";
 import { as, cast, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import type { Field } from "./Field.extras";
 import type { NumStrE } from "@skylib/functions";
 import type { QField } from "quasar";
 
@@ -57,12 +58,10 @@ export default defineComponent({
         props.focusableElement?.focus();
       },
       globalDisable: injections.disable.inject(),
-      labelFromLang: computed(() =>
-        is.not.empty(props.label) && Field.lang.has(props.label)
-          ? Field.lang.get(props.label)
-          : props.label
-      ),
       main,
+      mainLabel: computed(() =>
+        is.not.empty(props.label) ? lang.get(props.label) : undefined
+      ),
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Field.Slots>()("control", "label"),
       update: (value: NumStrE): void => {
@@ -83,7 +82,7 @@ export default defineComponent({
     dense
     :disable="disable || globalDisable"
     hide-bottom-space
-    :label="labelFromLang"
+    :label="mainLabel"
     lazy-rules="ondemand"
     :model-value="value"
     :rules="rules"
@@ -104,7 +103,7 @@ export default defineComponent({
     </template>
     <template #label="data">
       <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ labelFromLang }}
+        {{ mainLabel }}
         <span v-if="required" class="m-field__required">*</span>
       </slot>
     </template>

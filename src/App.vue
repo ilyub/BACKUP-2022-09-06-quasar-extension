@@ -26,7 +26,7 @@ export default defineComponent({
 
 <template>
   <div class="q-pa-lg">
-    <div id="progressBar" :class="$style.progressBar"></div>
+    <div id="progressBar" :class="$style['progress-bar']"></div>
     <div class="row">
       <div>
         <q-list :class="$style.list" dense>
@@ -34,7 +34,7 @@ export default defineComponent({
             v-for="component in components"
             :key="component.name"
             :caption="caption(component.name)"
-            :class="$style.listItem"
+            :class="$style['list-item']"
             :to="`/${component.name}`"
           />
         </q-list>
@@ -63,12 +63,12 @@ export default defineComponent({
   width: 300px;
 }
 
-.listItem {
+.list-item {
   width: 150px;
   float: left;
 }
 
-.progressBar {
+.progress-bar {
   display: none;
   position: fixed;
   z-index: 1000;

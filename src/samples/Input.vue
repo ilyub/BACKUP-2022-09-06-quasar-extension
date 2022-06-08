@@ -1,4 +1,5 @@
 <script lang="ts">
+import { lang } from "./core";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -21,6 +22,7 @@ export default defineComponent({
 
     return {
       form,
+      keys: lang.keys,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -52,26 +54,26 @@ export default defineComponent({
       <m-form-section>
         <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
         <!-- fixme - use lang.keys.***, etc -->
-        <m-input v-model="value1" label="String" required />
+        <m-input v-model="value1" :label="keys.String" required />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value2"
-          label="Validate on input"
+          label="ValidateOnInput"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value3"
-          label="Validate on change"
+          label="ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value4"
-          label="Validate on submit"
+          label="ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>

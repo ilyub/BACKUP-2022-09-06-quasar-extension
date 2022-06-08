@@ -60,7 +60,7 @@ export default defineComponent({
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
-      :item-class="$style.sortableItem"
+      :item-class="$style['sortable-item']"
       item-key="id"
       pull
       sort
@@ -76,7 +76,7 @@ export default defineComponent({
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
-      :item-class="$style.sortableItem"
+      :item-class="$style['sortable-item']"
       item-key="id"
       put
       sort
@@ -110,7 +110,7 @@ export default defineComponent({
   height: 50px;
   background: $grey-3;
 
-  .sortableItem {
+  .sortable-item {
     display: inline-flex;
     align-items: center;
     justify-content: center;

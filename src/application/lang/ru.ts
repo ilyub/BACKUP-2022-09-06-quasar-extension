@@ -31,6 +31,8 @@ export const ru = new implementations.lang.dictionary.Definitions({
     FieldShouldBeLteMax: "Введите <field:кого-что> больше либо {equal} @max",
     IconPicker: "Выбор иконки",
     ManageColumns: "Управлять колонками",
+    Mask: "Маска",
+    Name: "Имя",
     Number: [
       "кто-что-оно",
       { "кого-что-его-ср": "Число", "кто-что-оно": "Число" }
@@ -38,7 +40,10 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Of: "Из",
     Ok: "Ок",
     Password: "Пароль",
+    Placeholder: "Текст по умолчанию",
+    SampleField: "Пример поля",
     Save: "Сохранить",
+    SearchForSettings: "Поиск настроек",
     SelectAll: "Выделить все",
     SelectColor: "Выбрать цвет",
     SelectField: "Выберите <field:кого-что>",
@@ -49,6 +54,9 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Time: [
       "кто-что-оно",
       { "кого-что-его-ср": "Время", "кто-что-оно": "Время" }
-    ]
+    ],
+    ValidateOnChange: "Проверка при изменении",
+    ValidateOnInput: "Проверка при вводе",
+    ValidateOnSubmit: "Проверка при отправке"
   }
 });

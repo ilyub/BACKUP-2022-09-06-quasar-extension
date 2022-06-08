@@ -2,7 +2,7 @@
 import { buildElements, isElements, isMoveData } from "./Sortable.core";
 import { Sortable } from "./Sortable.extras";
 import { Tooltip } from "./Tooltip.extras";
-import { prop, validateEmit, validateProps, plugins, skipCheck } from "./api";
+import { plugins, prop, skipCheck, validateEmit, validateProps } from "./api";
 import { as, assert, is, o } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import VueDraggable from "vuedraggable";
@@ -55,6 +55,7 @@ export default defineComponent({
     const ids = computed(
       () =>
         new Set(
+          // eslint-disable-next-line no-restricted-syntax -- Ok
           props.modelValue.map(item => o.get(item, props.itemKey, is.string))
         )
     );

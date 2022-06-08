@@ -1,6 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
-import { a, assert, fn } from "@skylib/functions";
+import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
 
@@ -91,7 +91,7 @@ export default defineComponent({
       rows: computed<Items>(() => {
         if (noData.value) return [];
 
-        const ids = fn.run(() => {
+        const ids = evaluate(() => {
           if (shortData.value) return a.fromRange(1, 5);
 
           assert.not.empty(pagination.value.limit);
@@ -124,7 +124,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-page-layout :class="$style.pageLayout" title="Title">
+    <m-page-layout :class="$style['page-layout']" title="Title">
       <template #fit>
         <items-table
           v-model:columnWidths="columnWidths"
@@ -200,7 +200,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" module>
-.pageLayout {
+.page-layout {
   border: 1px solid $grey-5;
 }
 </style>

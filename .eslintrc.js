@@ -49,6 +49,9 @@ module.exports = {
           }
         ]
       }
-    ]
+    ],
+    // eslint-disable-next-line no-warning-comments -- Postponed
+    // fixme
+    "boundaries/element-types": "off"
   }
 };

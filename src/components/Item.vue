@@ -1,7 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Item] */
 
-import { prop, parentProps, validateProps, plugins, directives } from "./api";
+import { directives, parentProps, plugins, prop, validateProps } from "./api";
 import { is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";

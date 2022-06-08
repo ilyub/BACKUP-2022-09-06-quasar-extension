@@ -1,4 +1,4 @@
-import { components, Overview } from "./samples";
+import { Overview, components } from "./samples";
 import { o } from "@skylib/functions";
 import type { RouteRecordRaw } from "vue-router";
 

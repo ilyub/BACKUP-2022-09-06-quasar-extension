@@ -1,4 +1,5 @@
 import { components } from "@";
+import { lang } from "@skylib/facades";
 import * as testUtils from "@vue/test-utils";
 import { QSelect } from "quasar";
 import type { extras } from "@";
@@ -24,7 +25,7 @@ test.each([undefined, 1, "a"])("emit: update:modelValue", value => {
 
 test.each([
   { expected: "Select" },
-  { expected: "Sample label", initialLabel: "Sample label" }
+  { expected: "Select color", initialLabel: lang.keys.SelectColor }
 ])("prop: initialLabel", ({ expected, initialLabel }) => {
   const wrapper = testUtils.mount(components.Select, {
     props: {

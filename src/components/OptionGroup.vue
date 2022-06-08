@@ -2,12 +2,12 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.OptionGroup] */
 
 import {
-  prop,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
-  skipCheck
+  prop,
+  skipCheck,
+  validateEmit,
+  validateProps
 } from "./api";
 import { a } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";

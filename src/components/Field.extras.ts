@@ -1,5 +1,6 @@
 import { lang as baseLang } from "@skylib/facades";
-import type { GlobalComponent, plugins, VNodes } from "./api";
+import type { GlobalComponent, VNodes, plugins } from "./api";
+import type { lang } from "@skylib/facades";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
@@ -26,7 +27,7 @@ export namespace Field {
   export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
     readonly focusableElement?: HTMLElement | undefined;
-    readonly label?: stringU;
+    readonly label?: lang.Transform<lang.Word> | undefined;
     readonly modelValue: T;
     /**
      * Emits model value.

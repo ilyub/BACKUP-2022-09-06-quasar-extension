@@ -3,7 +3,7 @@ import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
 import { directives, prop, validateProps } from "./api";
-import { inlineSearch, compare } from "@skylib/facades";
+import { compare, inlineSearch } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { Group } from "./Group.extras";

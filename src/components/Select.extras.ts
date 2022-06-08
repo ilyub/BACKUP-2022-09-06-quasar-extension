@@ -29,8 +29,8 @@ export namespace Select {
 
   export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
-    readonly initialLabel?: stringU;
-    readonly label?: stringU;
+    readonly initialLabel?: baseLang.Transform<baseLang.Word> | undefined;
+    readonly label?: baseLang.Transform<baseLang.Word> | undefined;
     readonly modelValue?: T | undefined;
     /**
      * Emits model value.

@@ -3,12 +3,12 @@ import { DatetimePicker } from "./DatetimePicker.extras";
 import { genericField } from "./Field.generic";
 import {
   directives,
-  prop,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
-  skipCheck
+  prop,
+  skipCheck,
+  validateEmit,
+  validateProps
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
 import { as, cast, is, typedef } from "@skylib/functions";

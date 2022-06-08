@@ -2,13 +2,13 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Toggle] */
 
 import {
-  prop,
+  injections,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
+  prop,
   skipCheck,
-  injections
+  validateEmit,
+  validateProps
 } from "./api";
 import { defineComponent, ref } from "vue";
 import type { Toggle } from "./Toggle.extras";

@@ -1,5 +1,5 @@
 import { components, extras } from "..";
-import { fn, o } from "@skylib/functions";
+import { evaluate, o } from "@skylib/functions";
 import type { WritableRecord } from "@skylib/functions";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
@@ -19,7 +19,7 @@ export function globalMountOptions(
     components: o.fromEntries.exhaustive(
       o.values(components).map(component => [component.name, component])
     ),
-    provide: fn.run(() => {
+    provide: evaluate(() => {
       const {
         BaseButton,
         IconPicker,

@@ -76,21 +76,21 @@ export default defineComponent({
       <m-form-section>
         <m-datetime-picker
           v-model="value2"
-          label="Validate on input"
+          label="ValidateOnInput"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
           v-model="value3"
-          label="Validate on change"
+          label="ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
           v-model="value4"
-          label="Validate on submit"
+          label="ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>

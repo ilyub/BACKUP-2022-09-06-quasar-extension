@@ -16,6 +16,7 @@ export default defineComponent({
         event: Event,
         emitValue: extras.Field.ControlSlotData<string>["emitValue"]
       ): void => {
+        // eslint-disable-next-line no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
       value: ref("")
@@ -26,7 +27,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-field__string v-model="value" label="Sample field">
+    <m-field__string v-model="value" label="SampleField">
       <template #control="data">
         <input
           class="q-field__input"

@@ -1,5 +1,5 @@
 import { prop, trigger } from "./misc";
-import { compare, handlePromise, lang as baseLang } from "@skylib/facades";
+import { compare, handlePromise, lang } from "@skylib/facades";
 import { a, cast, defineFn, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { SetupProps } from "./core";
@@ -82,7 +82,7 @@ export const useValidation = defineFn(
         ? [
             wrapRule((value: T): string | true => {
               const message =
-                options.value.maxErrorMessage ?? "FieldShouldBeGteMax";
+                options.value.maxErrorMessage ?? "FieldShouldBeLteMax";
 
               const minMaxFormat = options.value.minMaxFormat ?? cast.string;
 
@@ -180,7 +180,7 @@ export const useValidation = defineFn(
     }
   },
   {
-    lang: typedef<baseLang.Lang<keyof useValidation.Word, never>>(baseLang),
+    lang: typedef<lang.Lang<keyof useValidation.Word, never>>(lang),
     props: {
       rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
       rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
@@ -203,9 +203,9 @@ export namespace useValidation {
     readonly format: (value: unknown) => T;
     readonly label?: string;
     readonly max?: T;
-    readonly maxErrorMessage?: string;
+    readonly maxErrorMessage?: lang.Transform<lang.Word>;
     readonly min?: T;
-    readonly minErrorMessage?: string;
+    readonly minErrorMessage?: lang.Transform<lang.Word>;
     /**
      * Formats min/max value.
      *
@@ -213,8 +213,9 @@ export namespace useValidation {
      * @returns Formatted value.l.
      */
     readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
+    // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly required?: boolean;
-    readonly requiredErrorMessage?: string;
+    readonly requiredErrorMessage?: lang.Transform<lang.Word>;
   }
 
   export type OptionsProp<T = unknown> = Optional<Options<T>>;

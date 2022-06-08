@@ -2,13 +2,13 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Form] */
 
 import {
-  prop,
-  parentProps,
-  validateProps,
-  plugins,
   injections,
+  parentProps,
+  plugins,
+  prop,
   skipCheck,
-  validateEmit
+  validateEmit,
+  validateProps
 } from "./api";
 import { handlePromise } from "@skylib/facades";
 import { as } from "@skylib/functions";
@@ -50,9 +50,7 @@ export default defineComponent({
       },
       slotNames: plugins.useSlotNames<Form.Slots>()(),
       submit: (event: Event): void => {
-        if (props.asyncTaskType)
-          handlePromise.verbose(submit, props.asyncTaskType);
-        else handlePromise.silent(submit);
+        handlePromise(props.asyncTaskType, submit);
 
         async function submit(): Promise<void> {
           submitting.value++;

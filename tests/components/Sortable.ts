@@ -4,7 +4,7 @@ import { buildElements } from "@/components/Sortable.core";
 // eslint-disable-next-line import/no-internal-modules -- Ok
 import { disableCounter } from "@/components/Tooltip.core";
 import * as testUtils from "@/test-utils";
-import { as, fn, o, typedef } from "@skylib/functions";
+import { as, evaluate, o, typedef } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { nextTick } from "vue";
 import VueDraggable from "vuedraggable";
@@ -135,7 +135,7 @@ test.each([
 
   const move = jest.fn();
 
-  const moveData = fn.run(() => {
+  const moveData = evaluate(() => {
     const dragged = document.createElement("div");
 
     const related = document.createElement("div");

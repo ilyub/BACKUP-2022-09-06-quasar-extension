@@ -1,6 +1,6 @@
 <script lang="ts">
 import { PageLayout } from "./PageLayout.extras";
-import { prop, validateProps, plugins, override, directives } from "./api";
+import { directives, override, plugins, prop, validateProps } from "./api";
 import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 

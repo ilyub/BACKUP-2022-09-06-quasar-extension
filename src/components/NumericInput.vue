@@ -2,13 +2,13 @@
 import { genericField } from "./Field.generic";
 import { NumericInput } from "./NumericInput.extras";
 import {
-  prop,
-  parentProps,
-  validateEmit,
-  validateProps,
-  plugins,
   directives,
-  skipCheck
+  parentProps,
+  plugins,
+  prop,
+  skipCheck,
+  validateEmit,
+  validateProps
 } from "./api";
 import { as, cast, is, num, o } from "@skylib/functions";
 import { maska } from "maska";
@@ -68,9 +68,8 @@ export default defineComponent({
         event: Event,
         emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
-        emitValue(
-          cast.numberU(o.get(as.not.empty(event.target), "value", is.string))
-        );
+        // eslint-disable-next-line no-restricted-syntax -- Ok
+        emitValue(cast.numberU(o.get(as.not.empty(event.target), "value")));
       },
       main,
       mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(

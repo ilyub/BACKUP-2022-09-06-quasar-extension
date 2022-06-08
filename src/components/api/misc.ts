@@ -13,10 +13,10 @@ import type {
   Trigger
 } from "./core";
 import type {
-  unknowns,
-  Join2,
   IndexedObject,
-  UppercaseLetter
+  Join2,
+  UppercaseLetter,
+  unknowns
 } from "@skylib/functions";
 import type { PublicProps } from "quasar";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
@@ -66,10 +66,12 @@ export interface GlobalComponent<P, S> {
   /**
    * Constructor.
    */
-  new (): {
-    $props: Emits & P & PublicProps;
-    $slots: S;
-  };
+  new (): GlobalComponentInstance<P, S>;
+}
+
+export interface GlobalComponentInstance<P, S> {
+  readonly $props: Emits & P & PublicProps;
+  readonly $slots: S;
 }
 
 export type ParentProps<T extends object> = Join2<

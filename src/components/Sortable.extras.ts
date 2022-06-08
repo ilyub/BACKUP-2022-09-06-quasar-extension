@@ -1,10 +1,10 @@
 import { injectableSettings } from "./api";
 import type { GlobalComponent, VNodes } from "./api";
 import type {
-  stringU,
   booleanU,
   numberU,
   objectU,
+  stringU,
   unknowns
 } from "@skylib/functions";
 

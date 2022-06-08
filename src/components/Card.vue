@@ -2,7 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Card] */
 
 import { Card } from "./Card.extras";
-import { prop, parentProps, validateProps, plugins } from "./api";
+import { parentProps, plugins, prop, validateProps } from "./api";
 import { is } from "@skylib/functions";
 import { QCard } from "quasar";
 import { computed, defineComponent, ref } from "vue";

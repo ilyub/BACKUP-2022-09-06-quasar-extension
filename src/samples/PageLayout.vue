@@ -21,7 +21,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-page-layout
-      :class="$style.pageLayout"
+      :class="$style['page-layout']"
       :close-button-off="closeButtonOff"
       :close-button-on="closeButtonOn"
       :title="title ? 'Title' : undefined"
@@ -68,7 +68,7 @@ export default defineComponent({
 </template>
 
 <style lang="scss" module>
-.pageLayout {
+.page-layout {
   border: 1px solid $grey-5;
 }
 </style>

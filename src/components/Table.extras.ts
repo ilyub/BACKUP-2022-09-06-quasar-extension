@@ -262,6 +262,7 @@ export namespace Table {
   }
 
   export interface PaginationProp {
+    // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly descending?: boolean;
     readonly limit?: number;
     readonly page?: number;

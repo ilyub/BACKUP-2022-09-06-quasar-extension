@@ -3,14 +3,14 @@
 
 import { genericField } from "./Field.generic";
 import {
-  prop,
   parentProps,
-  validateEmit,
-  validateProps,
   plugins,
-  skipCheck
+  prop,
+  skipCheck,
+  validateEmit,
+  validateProps
 } from "./api";
-import { as, cast, is, o, typedef } from "@skylib/functions";
+import { as, cast, o, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
@@ -41,9 +41,8 @@ export default defineComponent({
         event: Event,
         emitValue: Field.ControlSlotData<stringU>["emitValue"]
       ): void => {
-        emitValue(
-          cast.stringU(o.get(as.not.empty(event.target), "value", is.string))
-        );
+        // eslint-disable-next-line no-restricted-syntax -- Ok
+        emitValue(cast.stringU(o.get(as.not.empty(event.target), "value")));
       },
       main,
       slotNames: plugins.useSlotNames<Input.Slots>()("control"),

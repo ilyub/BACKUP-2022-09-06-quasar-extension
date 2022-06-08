@@ -1,8 +1,8 @@
 import type {
   Callable,
   IndexedObject,
-  is,
-  UppercaseLetter
+  UppercaseLetter,
+  is
 } from "@skylib/functions";
 import type { ValueOf } from "type-fest";
 import type { ComputedRef, PropType } from "vue";

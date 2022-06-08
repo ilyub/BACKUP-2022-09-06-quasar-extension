@@ -1,6 +1,6 @@
 <script lang="ts">
 import { LanguagePicker } from "./LanguagePicker.extras";
-import { prop, parentProps, validateProps, plugins, directives } from "./api";
+import { directives, parentProps, plugins, prop, validateProps } from "./api";
 import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { IconButton } from "./IconButton.extras";
