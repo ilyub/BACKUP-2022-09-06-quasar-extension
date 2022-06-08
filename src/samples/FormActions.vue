@@ -1,10 +1,11 @@
 <script lang="ts">
+import { FormActions } from "./FormActions.extras";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-form-actions",
   setup: () => {
-    return { name: ref<string>() };
+    return { lk: FormActions.lang.keys, name: ref<string>() };
   }
 });
 </script>
@@ -13,11 +14,11 @@ export default defineComponent({
   <m-page-section>
     <m-form :class="$style.form">
       <m-form-section>
-        <m-input v-model="name" label="Name" />
+        <m-input v-model="name" :label="lk.Name" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button label="Submit" type="submit" />
-        <m-form-button label="Reset" @click="name = undefined" />
+        <m-form-button :label="lk.Submit" type="submit" />
+        <m-form-button :label="lk.Reset" @click="name = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>

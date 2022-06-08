@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { Field } from "./Field.extras";
 import { as, is, o } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -19,6 +20,7 @@ export default defineComponent({
         // eslint-disable-next-line no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value", is.string));
       },
+      lk: Field.lang.keys,
       value: ref("")
     };
   }
@@ -27,7 +29,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-field__string v-model="value" label="SampleField">
+    <m-field__string v-model="value" :label="lk.SampleField">
       <template #control="data">
         <input
           class="q-field__input"

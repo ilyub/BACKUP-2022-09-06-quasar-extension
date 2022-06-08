@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { Switchable } from "./Switchable.extras";
 import { useInjections } from "./core";
 import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -17,6 +18,7 @@ export default defineComponent({
 
     return {
       disable: ref(false),
+      lk: Switchable.lang.keys,
       sampleKnob: ref(5),
       sampleToggle: ref(false),
       switchableTransition,
@@ -40,7 +42,7 @@ export default defineComponent({
   </m-page-section>
   <m-page-section>
     <m-section>
-      <m-toggle v-model="disable" label="Disable" />
+      <m-toggle v-model="disable" :label="lk.Disable" />
     </m-section>
     <m-section>
       <m-switchable :disable="disable" indent>
@@ -49,7 +51,7 @@ export default defineComponent({
           <m-knob v-model="sampleKnob" inline :max="10" :step="1" />
         </m-subsection>
         <m-subsection>
-          <m-toggle v-model="sampleToggle" label="Sample toggle" />
+          <m-toggle v-model="sampleToggle" :label="lk.SampleToggle" />
         </m-subsection>
       </m-switchable>
     </m-section>

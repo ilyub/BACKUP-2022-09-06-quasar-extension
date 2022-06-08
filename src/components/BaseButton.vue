@@ -13,6 +13,7 @@ export default defineComponent({
     ...parentProps<BaseButton.ParentProps>(),
     ...plugins.useAsyncClick.props,
     ...plugins.useConfirmedClick.props,
+    ...plugins.useLabel.props,
     disable: prop.boolean(),
     loading: prop.boolean(),
     tooltip: prop<BaseButton.Props["tooltip"]>(),
@@ -48,6 +49,7 @@ export default defineComponent({
       mainDisable: computed(
         () => disable.value || submitting.value || asyncClick.active.value
       ),
+      mainLabel: plugins.useLabel(props),
       mainLoading: computed(
         () =>
           props.loading ||
@@ -65,6 +67,7 @@ export default defineComponent({
     ref="main"
     class="m-base-button"
     :disable="mainDisable"
+    :label="mainLabel"
     :loading="mainLoading"
     :type="type"
     @click="mainClick"

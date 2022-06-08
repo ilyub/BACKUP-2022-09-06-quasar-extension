@@ -1,4 +1,5 @@
 <script lang="ts">
+import { BaseButton } from "./BaseButton.extras";
 import { useInjections } from "./core";
 import { mdiCheck } from "@mdi/js";
 import { wait } from "@skylib/functions";
@@ -16,18 +17,19 @@ export default defineComponent({
     return {
       asyncClick: async (): Promise<void> => {
         await wait(2000);
-        $q.notify("Async click");
+        $q.notify(BaseButton.lang.AsyncClick);
       },
       asyncSubmit: async (): Promise<void> => {
         await wait(2000);
-        $q.notify("Async submit");
+        $q.notify(BaseButton.lang.AsyncSubmit);
       },
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
       confirmedClick: (): void => {
-        $q.notify("Confirmed click");
+        $q.notify(BaseButton.lang.ConfirmedClick);
       },
       icon: mdiCheck,
+      lk: BaseButton.lang.keys,
       name: ref<string>()
     };
   }
@@ -39,37 +41,45 @@ export default defineComponent({
     <m-buttons-group>
       <m-toggle
         v-model="baseButtonAnimateAsyncClick"
-        label="Animate async click"
+        :label="lk.AnimateAsyncClick"
       />
       <m-toggle
         v-model="baseButtonAnimateSubmitting"
-        label="Animate submitting"
+        :label="lk.AnimateSubmitting"
       />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
+    <m-base-button :label="lk.Click" @click="$q.notify('Click')" />
+  </m-page-section>
+  <m-page-section>
     <m-buttons-group>
-      <m-base-button label="Click" @click="$q.notify('Click')" />
-      <m-base-button label="Async click" @async-click="asyncClick" />
+      <m-base-button :label="lk.AsyncClick" @async-click="asyncClick" />
       <m-base-button
         :icon="icon"
-        label="Async click"
+        :label="lk.AsyncClick"
         @async-click="asyncClick"
-      />
-      <m-base-button
-        confirmation="Confirmation message"
-        :confirmed-click="confirmedClick"
-        label="Confirmed click"
       />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
+    <m-base-button
+      confirmation="ConfirmationMessage"
+      :confirmed-click="confirmedClick"
+      :label="lk.ConfirmedClick"
+    />
+  </m-page-section>
+  <m-page-section>
     <m-buttons-group>
-      <m-base-button label="Down" tooltip="Down" />
-      <m-base-button label="Down" tooltip="Down" tooltip-direction="down" />
-      <m-base-button label="Left" tooltip="Left" tooltip-direction="left" />
-      <m-base-button label="Right" tooltip="Right" tooltip-direction="right" />
-      <m-base-button label="Up" tooltip="Up" tooltip-direction="up" />
+      <m-base-button :label="lk.Down" tooltip="Down" />
+      <m-base-button :label="lk.Down" tooltip="Down" tooltip-direction="down" />
+      <m-base-button :label="lk.Left" tooltip="Left" tooltip-direction="left" />
+      <m-base-button
+        :label="lk.Right"
+        tooltip="Right"
+        tooltip-direction="right"
+      />
+      <m-base-button :label="lk.Up" tooltip="Up" tooltip-direction="up" />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
@@ -79,11 +89,11 @@ export default defineComponent({
       @async-submit="asyncSubmit"
     >
       <m-form-section>
-        <m-input v-model="name" label="Name" />
+        <m-input v-model="name" :label="lk.Name" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button label="Submit" type="submit" />
-        <m-form-button label="Reset" @click="name = undefined" />
+        <m-form-button :label="lk.AsyncSubmit" type="submit" />
+        <m-form-button :label="lk.Reset" @click="name = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>

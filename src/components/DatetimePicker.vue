@@ -132,7 +132,7 @@ export default defineComponent({
         step.value = is.not.empty(props.modelValue) ? "time" : "date";
         pickerValue.value = modelObject.value?.toString();
       },
-      lang: DatetimePicker.lang,
+      lk: DatetimePicker.lang.keys,
       main,
       mainUpdate: (value: stringU): void => {
         if (is.empty(value)) emit("update:modelValue", undefined);
@@ -297,7 +297,7 @@ export default defineComponent({
                       v-debug-id="'date-save'"
                       color="primary"
                       :disable="pickerEmpty"
-                      :label="lang.Save"
+                      :label="lk.Save"
                       @click="save"
                     />
                   </div>
@@ -318,7 +318,7 @@ export default defineComponent({
                       v-debug-id="'time-save'"
                       color="primary"
                       :disable="pickerEmpty"
-                      :label="lang.Save"
+                      :label="lk.Save"
                       @click="save"
                     />
                   </div>

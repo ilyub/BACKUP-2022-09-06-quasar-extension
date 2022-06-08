@@ -1,4 +1,5 @@
 <script lang="ts">
+import { PageLayout } from "./PageLayout.extras";
 import { useInjections } from "./core";
 import { defineComponent, ref } from "vue";
 
@@ -11,6 +12,7 @@ export default defineComponent({
       closeButton: pageLayoutCloseButton,
       closeButtonOff: ref(false),
       closeButtonOn: ref(false),
+      lk: PageLayout.lang.keys,
       scrollbar: ref(true),
       title: ref(true)
     };
@@ -33,19 +35,19 @@ export default defineComponent({
         <div class="bg-yellow q-pa-md">
           <m-subsection>Sticky header</m-subsection>
           <m-subsection>
-            <m-toggle v-model="title" label="Title" />
+            <m-toggle v-model="title" :label="lk.Title" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="closeButton" label="Close button" />
+            <m-toggle v-model="closeButton" :label="lk.CloseButton" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="closeButtonOn" label="Close button on" />
+            <m-toggle v-model="closeButtonOn" :label="lk.CloseButtonOn" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="closeButtonOff" label="Close button off" />
+            <m-toggle v-model="closeButtonOff" :label="lk.CloseButtonOff" />
           </m-subsection>
           <m-subsection>
-            <m-toggle v-model="scrollbar" label="Scrollbar" />
+            <m-toggle v-model="scrollbar" :label="lk.Scrollbar" />
           </m-subsection>
         </div>
       </template>

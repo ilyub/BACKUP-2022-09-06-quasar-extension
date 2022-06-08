@@ -20,9 +20,10 @@ export default defineComponent({
   name: "m-select",
   props: {
     ...parentProps<Select.ParentProps>(),
+    ...plugins.useLabel.props,
+    ...plugins.useValidation.props,
     disable: prop.boolean(),
     initialLabel: prop<Select.Props["initialLabel"]>(),
-    label: prop<Select.Props["label"]>(),
     modelValue: prop<Select.Props["modelValue"]>(),
     options: prop.required<Select.Props["options"]>(),
     required: prop.boolean(),
@@ -36,6 +37,8 @@ export default defineComponent({
     const selectedOption = computed(() =>
       props.options.find(option => option.value === props.modelValue)
     );
+
+    const label = plugins.useLabel(props);
 
     const main = ref<QSelect>();
 
@@ -70,15 +73,11 @@ export default defineComponent({
       }),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
       displayValueShowRequired: computed(
-        () => is.empty(props.label) && is.empty(selectedOption.value)
+        () => is.empty(label.value) && is.empty(selectedOption.value)
       ),
       globalDisable: injections.disable.inject(),
+      label,
       main,
-      mainLabel: computed(() =>
-        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-        // fixme - Use "getIfExists"
-        is.not.empty(props.label) ? lang.get(props.label) : undefined
-      ),
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
@@ -103,7 +102,7 @@ export default defineComponent({
     :disable="disable || globalDisable"
     :display-value="displayValue"
     hide-bottom-space
-    :label="mainLabel"
+    :label="label"
     lazy-rules="ondemand"
     :model-value="value"
     :options="options"
@@ -116,7 +115,7 @@ export default defineComponent({
     </template>
     <template #label="data">
       <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ mainLabel }}
+        {{ label }}
         <span v-if="required" class="m-select__label__required">*</span>
       </slot>
     </template>

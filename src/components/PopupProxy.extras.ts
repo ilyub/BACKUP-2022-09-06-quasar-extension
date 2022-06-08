@@ -12,15 +12,12 @@ export namespace PopupProxy {
     readonly main: QPopupProxy;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnProps {}
+  export interface OwnProps extends plugins.useDirection.Props {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface OwnSlots {}
 
-  export interface ParentProps
-    extends Omit<QPopupProxyProps, keyof OwnProps>,
-      Omit<plugins.useDirection.Props, keyof OwnProps> {}
+  export interface ParentProps extends Omit<QPopupProxyProps, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<QPopupProxySlots, keyof OwnSlots> {}
 

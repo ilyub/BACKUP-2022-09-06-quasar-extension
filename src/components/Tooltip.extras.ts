@@ -15,15 +15,12 @@ export namespace Tooltip {
     readonly main: QTooltip;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnProps {}
+  export interface OwnProps extends plugins.useDirection.Props {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface OwnSlots {}
 
-  export interface ParentProps
-    extends Omit<QTooltipProps, keyof OwnProps>,
-      Omit<plugins.useDirection.Props, keyof OwnProps> {}
+  export interface ParentProps extends Omit<QTooltipProps, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<QTooltipSlots, keyof OwnSlots> {}
 

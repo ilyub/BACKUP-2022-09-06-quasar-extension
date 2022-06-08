@@ -6,15 +6,12 @@ export namespace MenuItem {
     readonly main: Item.Global;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnProps {}
+  export interface OwnProps extends plugins.useConfirmedClick.Props {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface OwnSlots {}
 
-  export interface ParentProps
-    extends Omit<Item.Props, keyof OwnProps>,
-      Omit<plugins.useConfirmedClick.Props, keyof OwnProps> {}
+  export interface ParentProps extends Omit<Item.Props, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<Item.Slots, keyof OwnSlots> {}
 

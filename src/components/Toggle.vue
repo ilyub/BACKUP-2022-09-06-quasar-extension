@@ -18,6 +18,7 @@ export default defineComponent({
   name: "m-toggle",
   props: {
     ...parentProps<Toggle.ParentProps>(),
+    ...plugins.useLabel.props,
     disable: prop.boolean(),
     modelValue: prop.boolean()
   },
@@ -28,6 +29,7 @@ export default defineComponent({
 
     return {
       globalDisable: injections.disable.inject(),
+      label: plugins.useLabel(props),
       main: ref<QToggle>(),
       slotNames: plugins.useSlotNames<Toggle.Slots>()()
     };
@@ -40,6 +42,7 @@ export default defineComponent({
     ref="main"
     class="m-toggle"
     :disable="disable || globalDisable"
+    :label="label"
     :model-value="modelValue"
     @update:model-value="$emit('update:modelValue', $event)"
   >

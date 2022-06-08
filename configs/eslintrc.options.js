@@ -10,6 +10,7 @@ module.exports = {
     {
       contexts: ["code"],
       patterns: [
+        / label="/u.source,
         /<!--\s*(fixme|todo|x{3})\s*-->/u.source,
         /<[^<>]+>(?![\n\r])\s[^\n\r<>]+<\/[^<>]+>/u.source,
         /<[^<>]+>[^\n\r<>]+(?![\n\r])\s<\/[^<>]+>/u.source
@@ -147,11 +148,6 @@ module.exports = {
       message: 'Use "OwnSlots" interface',
       selector:
         "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
-    },
-    {
-      message: 'Do not extend "OwnProps" interface',
-      selector:
-        "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
     },
     {
       message: 'Do not extend "OwnSlots" interface',

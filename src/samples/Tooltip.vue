@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Tooltip } from "./Tooltip.extras";
 import { useInjections } from "./core";
 import {
   mdiArrowDown,
@@ -15,6 +16,7 @@ export default defineComponent({
     const { tooltipDelay, tooltipShow } = useInjections();
 
     return {
+      lk: Tooltip.lang.keys,
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,
@@ -30,7 +32,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-subsection>
-      <m-toggle v-model="tooltipShow" label="Show tooltips" />
+      <m-toggle v-model="tooltipShow" :label="lk.ShowTooltips" />
     </m-subsection>
     <m-subsection indent>
       with delay of

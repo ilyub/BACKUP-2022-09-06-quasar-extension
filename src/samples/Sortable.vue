@@ -1,5 +1,6 @@
 <script lang="ts">
 import { extras, generic } from "..";
+import { Sortable } from "./Sortable.extras";
 import { defineComponent, ref } from "vue";
 
 interface Item {
@@ -26,6 +27,7 @@ export default defineComponent({
     return {
       disableDropping,
       disableSorting,
+      lk: Sortable.lang.keys,
       sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },
@@ -41,8 +43,8 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-buttons-group>
-      <m-toggle v-model="disableDropping" label="Disable dropping" />
-      <m-toggle v-model="disableSorting" label="Disable sorting" />
+      <m-toggle v-model="disableDropping" :label="lk.DisableDropping" />
+      <m-toggle v-model="disableSorting" :label="lk.DisableSorting" />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>

@@ -1,4 +1,4 @@
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, plugins } from "./api";
 import type { booleanU } from "@skylib/functions";
 import type { QToggle, QToggleProps, QToggleSlots } from "quasar";
 
@@ -7,7 +7,7 @@ export namespace Toggle {
     readonly main: QToggle;
   }
 
-  export interface OwnProps {
+  export interface OwnProps extends plugins.useLabel.Props {
     readonly disable?: booleanU;
     readonly modelValue: boolean;
     /**

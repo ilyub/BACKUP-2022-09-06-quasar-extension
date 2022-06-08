@@ -1,6 +1,5 @@
 import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
-import type { lang } from "@skylib/facades";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
@@ -24,10 +23,11 @@ export namespace Field {
     readonly main: QField;
   }
 
-  export interface OwnProps<T = unknown> {
+  export interface OwnProps<T = unknown>
+    extends plugins.useLabel.Props,
+      plugins.useValidation.Props<T> {
     readonly disable?: booleanU;
     readonly focusableElement?: HTMLElement | undefined;
-    readonly label?: lang.Transform<lang.Word> | undefined;
     readonly modelValue: T;
     /**
      * Emits model value.
@@ -52,13 +52,11 @@ export namespace Field {
     readonly control: (scope: ControlSlotData<T>) => VNodes;
   }
 
-  export interface ParentProps<T = unknown>
-    extends Omit<QFieldProps, keyof OwnProps>,
-      Omit<plugins.useValidation.Props<T>, keyof OwnProps> {}
+  export interface ParentProps extends Omit<QFieldProps, keyof OwnProps> {}
 
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 
-  export interface Props<T = unknown> extends ParentProps<T>, OwnProps<T> {}
+  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
 
   export interface Slots<T = unknown> extends ParentSlots, OwnSlots<T> {}
 }

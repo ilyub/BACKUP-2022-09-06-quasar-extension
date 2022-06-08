@@ -5,7 +5,10 @@ module.exports = {
       files: [
         "./src/components/*.core.ts",
         "./src/components/*.generic.ts",
-        "./src/components/*.extras.ts"
+        "./src/components/*.extras.ts",
+        "./src/samples/*.core.ts",
+        "./src/samples/*.generic.ts",
+        "./src/samples/*.extras.ts"
       ],
       rules: {
         // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update

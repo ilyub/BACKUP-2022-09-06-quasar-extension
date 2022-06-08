@@ -1,5 +1,5 @@
 <script lang="ts">
-import { lang } from "./core";
+import { Input } from "./Input.extras";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -22,7 +22,7 @@ export default defineComponent({
 
     return {
       form,
-      keys: lang.keys,
+      lk: Input.lang.keys,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -52,36 +52,39 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
-        <!-- fixme - use lang.keys.***, etc -->
-        <m-input v-model="value1" :label="keys.String" required />
+        <m-input v-model="value1" :label="lk.String" required />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value2"
-          label="ValidateOnInput"
+          :label="lk.ValidateOnInput"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value3"
-          label="ValidateOnChange"
+          :label="lk.ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-input
           v-model="value4"
-          label="ValidateOnSubmit"
+          :label="lk.ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>
       <m-form-section>
-        <m-input v-model="value5" label="Mask" mask="###" placeholder="###" />
+        <m-input
+          v-model="value5"
+          :label="lk.Mask"
+          mask="###"
+          placeholder="###"
+        />
       </m-form-section>
       <m-form-section>
-        <m-input disable label="Disabled" />
+        <m-input disable :label="lk.Disabled" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

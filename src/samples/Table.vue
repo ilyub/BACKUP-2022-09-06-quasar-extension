@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { Table } from "./Table.extras";
 import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -83,6 +84,7 @@ export default defineComponent({
       ]),
       columnsOrder,
       hiddenColumns,
+      lk: Table.lang.keys,
       manageColumns,
       multiSelect,
       noData,
@@ -145,17 +147,23 @@ export default defineComponent({
         >
           <template #top>
             <m-buttons-group>
-              <m-toggle v-model="manageColumns" label="Manage columns" />
-              <m-toggle v-model="multiSelect" label="Multi-select" />
-              <m-toggle v-model="noData" label="No data" />
-              <m-toggle v-model="resizableColumns" label="Resizable columns" />
-              <m-toggle v-model="selectByCheckbox" label="Select by checkbox" />
+              <m-toggle v-model="manageColumns" :label="lk.ManageColumns" />
+              <m-toggle v-model="multiSelect" :label="lk.MultiSelect" />
+              <m-toggle v-model="noData" :label="lk.NoData" />
+              <m-toggle
+                v-model="resizableColumns"
+                :label="lk.ResizableColumns"
+              />
+              <m-toggle
+                v-model="selectByCheckbox"
+                :label="lk.SelectByCheckbox"
+              />
               <m-toggle
                 v-model="selectByRowClick"
-                label="Select by row click"
+                :label="lk.SelectByRowClick"
               />
-              <m-toggle v-model="shortData" label="Short data" />
-              <m-toggle v-model="sticky" label="Sticky" />
+              <m-toggle v-model="shortData" :label="lk.ShortData" />
+              <m-toggle v-model="sticky" :label="lk.Sticky" />
             </m-buttons-group>
           </template>
           <template #body-context="{ row }">

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { DatetimePicker } from "./DatetimePicker.extras";
 import { datetime } from "@skylib/facades";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
@@ -20,6 +21,7 @@ export default defineComponent({
 
     return {
       form,
+      lk: DatetimePicker.lang.keys,
       max: datetime
         .create()
         .setHours(12)
@@ -63,11 +65,9 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
-        <!-- fixme - use lang.keys.***, etc -->
         <m-datetime-picker
           v-model="value1"
-          label="Date"
+          :label="lk.Date"
           :max="max"
           :min="min"
           required
@@ -76,26 +76,26 @@ export default defineComponent({
       <m-form-section>
         <m-datetime-picker
           v-model="value2"
-          label="ValidateOnInput"
+          :label="lk.ValidateOnInput"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
           v-model="value3"
-          label="ValidateOnChange"
+          :label="lk.ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-datetime-picker
           v-model="value4"
-          label="ValidateOnSubmit"
+          :label="lk.ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>
       <m-form-section>
-        <m-datetime-picker disable label="Disabled" />
+        <m-datetime-picker disable :label="lk.Disabled" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

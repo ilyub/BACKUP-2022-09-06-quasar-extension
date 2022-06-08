@@ -16,7 +16,10 @@ export namespace BaseButton {
     readonly main: QBtn;
   }
 
-  export interface OwnProps {
+  export interface OwnProps
+    extends plugins.useAsyncClick.Props,
+      plugins.useConfirmedClick.Props,
+      plugins.useLabel.Props {
     readonly disable?: booleanU;
     readonly loading?: booleanU;
     readonly tooltip?: stringU;
@@ -28,9 +31,7 @@ export namespace BaseButton {
   export interface OwnSlots {}
 
   export interface ParentProps
-    extends Omit<QBtnProps, keyof OwnProps>,
-      Omit<plugins.useAsyncClick.Props, keyof OwnProps>,
-      Omit<plugins.useConfirmedClick.Props, keyof OwnProps> {}
+    extends Omit<QBtnProps, keyof OwnProps | keyof plugins.useLabel.Props> {}
 
   export interface ParentSlots extends Omit<QBtnSlots, keyof OwnSlots> {}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { Group } from "./Group.extras";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
 
@@ -40,6 +41,7 @@ export default defineComponent({
           title: "Section 12 ddd eee"
         }
       ]),
+      lk: Group.lang.keys,
       searchString: ref<string>(),
       showSection1,
       showSection2,
@@ -53,7 +55,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-subsection>
-      <m-input v-model="searchString" label="SearchForSettings" />
+      <m-input v-model="searchString" :label="lk.SearchForSettings" />
     </m-subsection>
     <m-subsection>
       Show

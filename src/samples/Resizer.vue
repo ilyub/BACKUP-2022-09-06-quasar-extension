@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Resizer } from "./Resizer.extras";
 import { useInjections } from "./core";
 import { defineComponent, ref } from "vue";
 
@@ -7,14 +8,18 @@ export default defineComponent({
   setup: () => {
     const { resizerDisable } = useInjections();
 
-    return { resizerDisable, width: ref(200) };
+    return {
+      lk: Resizer.lang.keys,
+      resizerDisable,
+      width: ref(200)
+    };
   }
 });
 </script>
 
 <template>
   <m-page-section>
-    <m-toggle v-model="resizerDisable" label="Disable" />
+    <m-toggle v-model="resizerDisable" :label="lk.Disable" />
   </m-page-section>
   <m-page-section>
     <div :class="$style.resizer" :style="{ width: `${width}px` }">

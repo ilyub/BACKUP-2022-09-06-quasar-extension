@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Form } from "./Form.extras";
 import { wait } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
@@ -13,6 +14,7 @@ export default defineComponent({
         await wait(2000);
         $q.notify("Async submit");
       },
+      lk: Form.lang.keys,
       name1: ref<string>(),
       name2: ref<string>(),
       submit: (): void => {
@@ -27,11 +29,11 @@ export default defineComponent({
   <m-page-section>
     <m-form :class="$style.form" @submit="submit">
       <m-form-section>
-        <m-input v-model="name1" label="Name" />
+        <m-input v-model="name1" :label="lk.Name" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button label="Submit" type="submit" />
-        <m-form-button label="Reset" @click="name1 = undefined" />
+        <m-form-button :label="lk.Submit" type="submit" />
+        <m-form-button :label="lk.Reset" @click="name1 = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>
@@ -42,11 +44,11 @@ export default defineComponent({
       @async-submit="asyncSubmit"
     >
       <m-form-section>
-        <m-input v-model="name2" label="Name" />
+        <m-input v-model="name2" :label="lk.Name" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button label="Async submit" type="submit" />
-        <m-form-button label="Reset" @click="name2 = undefined" />
+        <m-form-button :label="lk.AsyncSubmit" type="submit" />
+        <m-form-button :label="lk.Reset" @click="name2 = undefined" />
       </m-form-actions>
     </m-form>
   </m-page-section>

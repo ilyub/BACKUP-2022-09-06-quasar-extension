@@ -10,8 +10,7 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { lang } from "@skylib/facades";
-import { as, cast, fn, is, o } from "@skylib/functions";
+import { as, cast, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { NumStrE } from "@skylib/functions";
@@ -21,10 +20,10 @@ export default defineComponent({
   name: "m-field",
   props: {
     ...parentProps<Field.ParentProps>(),
+    ...plugins.useLabel.props,
     ...plugins.useValidation.props,
     disable: prop.boolean(),
     focusableElement: prop<Field.Props["focusableElement"]>(),
-    label: prop<Field.Props["label"]>(),
     modelValue: prop<Field.Props["modelValue"]>(),
     placeholder: prop.default<Field.Props["placeholder"]>(""),
     required: prop.boolean(),
@@ -35,6 +34,8 @@ export default defineComponent({
     validateEmit<Field.OwnProps>(emit);
     validateProps<Field.OwnProps>(props);
 
+    const label = plugins.useLabel(props);
+
     const main = ref<QField>();
 
     const validation = plugins.useValidation(
@@ -43,7 +44,7 @@ export default defineComponent({
       computed(() =>
         o.removeUndefinedKeys({
           format: fn.identity,
-          label: props.label,
+          label: label.value,
           required: props.required,
           ...props.validationOptions
         })
@@ -58,10 +59,8 @@ export default defineComponent({
         props.focusableElement?.focus();
       },
       globalDisable: injections.disable.inject(),
+      label,
       main,
-      mainLabel: computed(() =>
-        is.not.empty(props.label) ? lang.get(props.label) : undefined
-      ),
       rules: validation.rules,
       slotNames: plugins.useSlotNames<Field.Slots>()("control", "label"),
       update: (value: NumStrE): void => {
@@ -82,7 +81,7 @@ export default defineComponent({
     dense
     :disable="disable || globalDisable"
     hide-bottom-space
-    :label="mainLabel"
+    :label="label"
     lazy-rules="ondemand"
     :model-value="value"
     :rules="rules"
@@ -103,7 +102,7 @@ export default defineComponent({
     </template>
     <template #label="data">
       <slot :name="slotNames.label" v-bind="data ?? {}">
-        {{ mainLabel }}
+        {{ label }}
         <span v-if="required" class="m-field__required">*</span>
       </slot>
     </template>

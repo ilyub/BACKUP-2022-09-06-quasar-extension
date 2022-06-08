@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { Select } from "./Select.extras";
 import { as, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -8,7 +9,10 @@ type Color = "blue" | "green" | "red";
 
 export default defineComponent({
   name: "sample-select",
-  components: { "select-value": generic.Select<Color>() },
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Ok
+    "m-select__value": generic.Select<Color>()
+  },
   setup: () => {
     const form = ref<extras.Form.Global>();
 
@@ -20,6 +24,7 @@ export default defineComponent({
 
     return {
       form,
+      lk: Select.lang.keys,
       options: typedef<extras.Select.Options<Color>>([
         { label: "Blue", value: "blue" },
         { label: "Green", value: "green" },
@@ -52,16 +57,16 @@ export default defineComponent({
       <m-form-section>
         <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
         <!-- fixme - use lang.keys.SelectColor, etc -->
-        <select-value
+        <m-select__value
           v-model="value1"
-          label="Color"
+          :label="lk.Color"
           :options="options"
           required
           validation-label="Color"
         />
       </m-form-section>
       <m-form-section>
-        <select-value
+        <m-select__value
           v-model="value2"
           initial-label="SelectColor"
           :options="options"
@@ -69,10 +74,10 @@ export default defineComponent({
         />
       </m-form-section>
       <m-form-section>
-        <select-value v-model="value3" :options="options" />
+        <m-select__value v-model="value3" :options="options" />
       </m-form-section>
       <m-form-section>
-        <select-value disable initial-label="Disabled" :options="options" />
+        <m-select__value disable initial-label="Disabled" :options="options" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

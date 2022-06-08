@@ -1,4 +1,4 @@
-import type { GlobalComponent } from "./api";
+import type { GlobalComponent, plugins } from "./api";
 import type {
   QExpansionItem,
   QExpansionItemProps,
@@ -10,8 +10,7 @@ export namespace ExpansionItem {
     readonly main: QExpansionItem;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnProps {}
+  export interface OwnProps extends plugins.useLabel.Props {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface OwnSlots {}

@@ -8,9 +8,13 @@ import type { ExpansionItem } from "./ExpansionItem.extras";
 
 export default defineComponent({
   name: "m-expansion-item",
-  props: parentProps<ExpansionItem.ParentProps>(),
-  setup: () => {
+  props: {
+    ...parentProps<ExpansionItem.ParentProps>(),
+    ...plugins.useLabel.props
+  },
+  setup: props => {
     return {
+      label: plugins.useLabel(props),
       main: ref(QExpansionItem),
       slotNames: plugins.useSlotNames<ExpansionItem.Slots>()()
     };
@@ -19,7 +23,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-expansion-item ref="main" class="m-expansion-item">
+  <q-expansion-item ref="main" class="m-expansion-item" :label="label">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>

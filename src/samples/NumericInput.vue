@@ -1,4 +1,5 @@
 <script lang="ts">
+import { NumericInput } from "./NumericInput.extras";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -21,6 +22,7 @@ export default defineComponent({
 
     return {
       form,
+      lk: NumericInput.lang.keys,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -50,12 +52,10 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
-        <!-- fixme - use lang.keys.***, etc -->
         <m-numeric-input
           v-model="value1"
           :big-step="15"
-          label="Number"
+          :label="lk.Number"
           :max="59"
           :min="15"
           required
@@ -64,7 +64,7 @@ export default defineComponent({
       <m-form-section>
         <m-numeric-input
           v-model="value2"
-          label="ValidateOnInput"
+          :label="lk.ValidateOnInput"
           :rules-on-input="rules"
           :small-step="2"
         />
@@ -73,7 +73,7 @@ export default defineComponent({
         <m-numeric-input
           v-model="value3"
           :big-step="15"
-          label="ValidateOnChange"
+          :label="lk.ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
@@ -81,7 +81,7 @@ export default defineComponent({
         <m-numeric-input
           v-model="value4"
           :big-step="15"
-          label="ValidateOnSubmit"
+          :label="lk.ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>
@@ -89,12 +89,12 @@ export default defineComponent({
         <m-numeric-input
           v-model="value5"
           :big-step="15"
-          label="Placeholder"
+          :label="lk.Placeholder"
           placeholder="###"
         />
       </m-form-section>
       <m-form-section>
-        <m-numeric-input :big-step="15" disable label="Disabled" />
+        <m-numeric-input :big-step="15" disable :label="lk.Disabled" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

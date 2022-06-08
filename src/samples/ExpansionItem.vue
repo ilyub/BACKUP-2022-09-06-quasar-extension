@@ -1,11 +1,12 @@
 <script lang="ts">
+import { ExpansionItem } from "./ExpansionItem.extras";
 import { mdiClose } from "@mdi/js";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-expansion-item",
   setup: () => {
-    return { icon: mdiClose };
+    return { icon: mdiClose, lk: ExpansionItem.lang.keys };
   }
 });
 </script>
@@ -18,7 +19,7 @@ export default defineComponent({
       :duration="200"
       header-class="bg-primary q-pa-md"
       :icon="icon"
-      label="Label"
+      :label="lk.Label"
     >
       <m-item caption="Menu item 1" :icon="icon" />
       <q-separator />

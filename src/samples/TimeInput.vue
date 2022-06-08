@@ -1,4 +1,5 @@
 <script lang="ts">
+import { TimeInput } from "./TimeInput.extras";
 import { as, is } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -21,6 +22,7 @@ export default defineComponent({
 
     return {
       form,
+      lk: TimeInput.lang.keys,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -50,11 +52,9 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify('Submitted')">
       <m-form-section>
-        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
-        <!-- fixme - use lang.keys.***, etc -->
         <m-time-input
           v-model="value1"
-          label="Time"
+          :label="lk.Time"
           :max="120"
           :min="15"
           required
@@ -63,33 +63,33 @@ export default defineComponent({
       <m-form-section>
         <m-time-input
           v-model="value2"
-          label="ValidateOnInput"
+          :label="lk.ValidateOnInput"
           :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-time-input
           v-model="value3"
-          label="ValidateOnChange"
+          :label="lk.ValidateOnChange"
           :rules-on-change="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-time-input
           v-model="value4"
-          label="ValidateOnSubmit"
+          :label="lk.ValidateOnSubmit"
           :rules-on-submit="rules"
         />
       </m-form-section>
       <m-form-section>
         <m-time-input
           v-model="value5"
-          label="Placeholder"
+          :label="lk.Placeholder"
           placeholder="##:##"
         />
       </m-form-section>
       <m-form-section>
-        <m-time-input disable label="Disabled" :model-value="undefined" />
+        <m-time-input disable :label="lk.Disabled" :model-value="undefined" />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">Submit</m-form-button>

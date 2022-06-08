@@ -1,5 +1,6 @@
 <script lang="ts">
 import { extras, generic } from "..";
+import { Droppable } from "./Droppable.extras";
 import { json } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
@@ -36,6 +37,7 @@ export default defineComponent({
       dropped: (item: Item, group: string): void => {
         $q.notify(json.encode({ group, item }));
       },
+      lk: Droppable.lang.keys,
       sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },
@@ -51,8 +53,8 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-buttons-group>
-      <m-toggle v-model="disableDropping" label="Disable dropping" />
-      <m-toggle v-model="disableSorting" label="Disable sorting" />
+      <m-toggle v-model="disableDropping" :label="lk.DisableDropping" />
+      <m-toggle v-model="disableSorting" :label="lk.DisableSorting" />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
