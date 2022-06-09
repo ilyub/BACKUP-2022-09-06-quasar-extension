@@ -1,4 +1,5 @@
 import type { GlobalComponent, VNodes, plugins } from "./api";
+import type { lang } from "@skylib/facades";
 import type { Rec, stringU } from "@skylib/functions";
 
 export namespace Group {
@@ -8,7 +9,7 @@ export namespace Group {
   export interface Item<T extends string = string> {
     readonly id: T;
     readonly show: boolean;
-    readonly title: string;
+    readonly title: lang.Key;
   }
 
   export type Items<T extends string = string> = ReadonlyArray<Item<T>>;

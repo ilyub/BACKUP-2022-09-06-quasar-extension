@@ -3,7 +3,7 @@ import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
 import { directives, plugins, prop, validateProps } from "./api";
-import { compare, inlineSearch } from "@skylib/facades";
+import { compare, inlineSearch, lang } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { Group } from "./Group.extras";
@@ -27,7 +27,7 @@ export default defineComponent({
           searchIndex.value.search(props.searchString).map(item => item.id)
         );
 
-        return sortedItems.value.map(item => {
+        return searchIndex.value.search(props.searchString).map(item => {
           return { ...item, show: item.show && ids.has(item.id) };
         });
       }
@@ -35,14 +35,20 @@ export default defineComponent({
       return sortedItems.value;
     });
 
+    const items = computed(() =>
+      props.items.map(item => {
+        return { ...item, title: lang.get(item.title) };
+      })
+    );
+
     const { notFoundLabel } = plugins.langProps(props, "notFoundLabel");
 
     const searchIndex = computed(() =>
-      inlineSearch.create("id", ["title"], props.items)
+      inlineSearch.create("id", ["title"], sortedItems.value)
     );
 
     const sortedItems = computed(() =>
-      a.sort(props.items, (item1, item2) =>
+      a.sort(items.value, (item1, item2) =>
         compare.strings(item1.title, item2.title)
       )
     );

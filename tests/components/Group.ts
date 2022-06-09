@@ -1,5 +1,6 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import { typedef } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import type { extras } from "@";
@@ -47,22 +48,22 @@ test.each([
           {
             id: "section2",
             show: true,
-            title: "Section 2 bbb ccc"
+            title: lang.plain("Section 2 bbb ccc")
           },
           {
             id: "section1",
             show: true,
-            title: "Section 1 aaa bbb"
+            title: lang.plain("Section 1 aaa bbb")
           },
           {
             id: "section3",
             show: true,
-            title: "Section 11 ccc ddd"
+            title: lang.plain("Section 11 ccc ddd")
           },
           {
             id: "section4",
             show: false,
-            title: "Section 12 ddd eee"
+            title: lang.plain("Section 12 ddd eee")
           }
         ]),
         notFoundLabel: "NoResultsFound",

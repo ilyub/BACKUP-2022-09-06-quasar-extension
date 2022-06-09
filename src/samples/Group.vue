@@ -1,6 +1,7 @@
 <script lang="ts">
 import { generic } from "..";
 import { Group } from "./Group.extras";
+import { lang } from "@skylib/facades";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
 
@@ -18,27 +19,35 @@ export default defineComponent({
 
     const showSection4 = ref(true);
 
+    const title1 = lang.plain("Section 1 aaa bbb");
+
+    const title2 = lang.plain("Section 2 bbb ccc");
+
+    const title3 = lang.plain("Section 11 ccc ddd");
+
+    const title4 = lang.plain("Section 12 ddd eee");
+
     return {
       groupItems: computed<extras.Group.Items<Section>>(() => [
         {
           id: "section2",
           show: showSection2.value,
-          title: "Section 2 bbb ccc"
+          title: title2
         },
         {
           id: "section1",
           show: showSection1.value,
-          title: "Section 1 aaa bbb"
+          title: title1
         },
         {
           id: "section3",
           show: showSection3.value,
-          title: "Section 11 ccc ddd"
+          title: title3
         },
         {
           id: "section4",
           show: showSection4.value,
-          title: "Section 12 ddd eee"
+          title: title4
         }
       ]),
       lang: Group.lang,
@@ -47,7 +56,11 @@ export default defineComponent({
       showSection1,
       showSection2,
       showSection3,
-      showSection4
+      showSection4,
+      title1,
+      title2,
+      title3,
+      title4
     };
   }
 });
@@ -73,18 +86,10 @@ export default defineComponent({
     root-element="page-section"
     :search-string="searchString"
   >
-    <template #section2>
-      {{ groupItems.find(item => item.id === "section2")?.title }}
-    </template>
-    <template #section1>
-      {{ groupItems.find(item => item.id === "section1")?.title }}
-    </template>
-    <template #section3>
-      {{ groupItems.find(item => item.id === "section3")?.title }}
-    </template>
-    <template #section4>
-      {{ groupItems.find(item => item.id === "section4")?.title }}
-    </template>
+    <template #section2>{{ lang.get(title2) }}</template>
+    <template #section1>{{ lang.get(title1) }}</template>
+    <template #section3>{{ lang.get(title3) }}</template>
+    <template #section4>{{ lang.get(title4) }}</template>
   </page-sections-group>
 </template>
 
