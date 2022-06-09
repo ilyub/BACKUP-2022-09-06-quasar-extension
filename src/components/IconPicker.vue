@@ -9,10 +9,11 @@ import {
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
-import { assert, is, o } from "@skylib/functions";
+import { assert, is, o, typedef } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
+import type { lang } from "@skylib/facades";
 import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
@@ -21,7 +22,7 @@ interface Button {
   readonly icon?: string;
   readonly placeholder: boolean;
   readonly selected: boolean;
-  readonly tooltip?: string;
+  readonly tooltip?: lang.Key;
 }
 
 type Buttons = readonly Button[];
@@ -117,7 +118,7 @@ export default defineComponent({
               placeholder: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
-                ? item.description
+                ? typedef<lang.Key>(`plain:${item.description}`)
                 : undefined
             });
           });

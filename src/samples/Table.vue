@@ -4,6 +4,7 @@ import { Table } from "./Table.extras";
 import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
+import type { lang } from "@skylib/facades";
 
 interface ColumnWidths extends extras.Table.ColumnWidths {}
 
@@ -15,7 +16,7 @@ interface HiddenColumns extends extras.Table.HiddenColumns {}
 
 interface Item {
   readonly id: number;
-  readonly name: string;
+  readonly name: lang.Key;
 }
 
 type Items = readonly Item[];
@@ -64,7 +65,7 @@ export default defineComponent({
         {
           align: "left",
           field: (row): string => `${row.name}!1!1234567890`,
-          label: "Column name 1",
+          label: Table.lang.keys.Column1,
           maxWidth: 300,
           minWidth: 30,
           name: "name1",
@@ -75,7 +76,7 @@ export default defineComponent({
         {
           align: "left",
           field: (row): string => `${row.name}!2!1234567890`,
-          label: "Column name 2",
+          label: Table.lang.keys.Column2,
           maxWidth: 300,
           minWidth: 30,
           name: "name2",
@@ -104,7 +105,7 @@ export default defineComponent({
         });
 
         return ids.map(id => {
-          return { id, name: `Item ${id}` };
+          return { id, name: `plain:Item ${id}` };
         });
       }),
       selectByCheckbox,

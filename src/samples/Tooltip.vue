@@ -52,7 +52,7 @@ export default defineComponent({
         <m-icon-button :icon="mdiMenu">
           <m-menu>
             <q-list>
-              <m-item caption="Menu item" />
+              <m-item :caption="lk.MenuItem" />
             </q-list>
           </m-menu>
           <m-tooltip>Sample tooltip</m-tooltip>

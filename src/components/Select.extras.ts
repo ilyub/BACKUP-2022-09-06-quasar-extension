@@ -38,7 +38,7 @@ export namespace Select {
     readonly "onUpdate:modelValue"?: (value: T) => void;
     readonly options: Options<T>;
     readonly required?: booleanU;
-    readonly validationLabel?: baseLang.Transform<baseLang.Word> | undefined;
+    readonly validationLabel?: baseLang.Key | undefined;
   }
 
   export interface ParentProps

@@ -1,4 +1,5 @@
 import { extras } from "../..";
+import { lang } from "@skylib/facades";
 import { implementations } from "@skylib/framework";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
@@ -68,12 +69,12 @@ const plugin: useInjections.Plugin = {
         },
         options: [
           {
-            caption: "English (USA)",
+            caption: lang.keys.EnglishUSA,
             flag: us,
             lang: "en-US"
           },
           {
-            caption: "Russian",
+            caption: lang.keys.Russian,
             flag: ru,
             lang: "ru-RU"
           }

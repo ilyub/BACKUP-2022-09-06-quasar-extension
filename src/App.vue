@@ -5,6 +5,7 @@ import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
+import type { lang } from "@skylib/facades";
 
 export default defineComponent({
   name: "app",
@@ -15,8 +16,8 @@ export default defineComponent({
     provide();
 
     return {
-      caption: (name: string): string =>
-        _.startCase(name).replace(/^Sample /u, ""),
+      caption: (name: string): lang.Key =>
+        `plain:${_.startCase(name).replace(/^Sample /u, "")}`,
       components,
       language
     };

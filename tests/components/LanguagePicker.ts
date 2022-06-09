@@ -1,5 +1,6 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
 
 test.each([
@@ -14,12 +15,12 @@ test.each([
         changeLanguageAction,
         options: [
           {
-            caption: "English (USA)",
+            caption: lang.keys.EnglishUSA,
             flag: "us-flag",
             lang: "en-US"
           },
           {
-            caption: "Russian",
+            caption: lang.keys.Russian,
             flag: "ru-flag",
             lang: "ru-RU"
           }

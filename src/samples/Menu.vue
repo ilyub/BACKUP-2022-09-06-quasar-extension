@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Menu } from "./Menu.extras";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -25,6 +26,7 @@ export default defineComponent({
         menuShow.value = true;
         menuTarget.value = direction ? `#${direction}` : "#default";
       },
+      lk: Menu.lang.keys,
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,
@@ -122,8 +124,8 @@ export default defineComponent({
     :target="menuTarget"
   >
     <q-list>
-      <m-item caption="Item 1" :icon="mdiPen" />
-      <m-item caption="Item 2" :icon="mdiPenPlus" />
+      <m-item :caption="lk.Item1" :icon="mdiPen" />
+      <m-item :caption="lk.Item2" :icon="mdiPenPlus" />
     </q-list>
   </m-menu>
 </template>

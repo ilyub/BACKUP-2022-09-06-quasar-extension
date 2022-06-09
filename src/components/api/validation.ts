@@ -201,11 +201,11 @@ export namespace validation {
      * @returns Formatted value.
      */
     readonly format: (value: unknown) => T;
-    readonly label?: lang.Transform<lang.Word>;
+    readonly label?: lang.Key;
     readonly max?: T;
-    readonly maxErrorMessage?: lang.Transform<lang.Word>;
+    readonly maxErrorMessage?: lang.Key;
     readonly min?: T;
-    readonly minErrorMessage?: lang.Transform<lang.Word>;
+    readonly minErrorMessage?: lang.Key;
     /**
      * Formats min/max value.
      *
@@ -215,7 +215,7 @@ export namespace validation {
     readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
     // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly required?: boolean;
-    readonly requiredErrorMessage?: lang.Transform<lang.Word>;
+    readonly requiredErrorMessage?: lang.Key;
   }
 
   export type OptionsProp<T = unknown> = Optional<Options<T>>;

@@ -12,6 +12,8 @@ export namespace Table {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
+    readonly Column1: true;
+    readonly Column2: true;
     readonly ManageColumns: true;
     readonly MultiSelect: true;
     readonly NoData: true;

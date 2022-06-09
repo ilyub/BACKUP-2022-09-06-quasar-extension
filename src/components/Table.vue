@@ -163,6 +163,7 @@ export default defineComponent({
       ),
       icons,
       lang,
+      lk: lang.keys,
       main,
       resizerUpdate: (column: Table.Column, width: number): void => {
         emit(
@@ -350,7 +351,7 @@ export default defineComponent({
                 :toggle-selection-label="toggleSelectionLabel"
               ></slot>
               <m-menu-item
-                :caption="lang.ManageColumns"
+                :caption="lk.ManageColumns"
                 :icon="icons.manageColumns"
                 @click="columnsManagementShow = true"
               />

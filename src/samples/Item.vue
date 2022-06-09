@@ -1,11 +1,17 @@
 <script lang="ts">
+import { Item } from "./Item.extras";
 import { mdiAccount, mdiPen } from "@mdi/js";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-item",
   setup: () => {
-    return { mdiAccount, mdiPen };
+    return {
+      lang: Item.lang,
+      lk: Item.lang.keys,
+      mdiAccount,
+      mdiPen
+    };
   }
 });
 </script>
@@ -14,10 +20,10 @@ export default defineComponent({
   <m-page-section>
     <q-list>
       <q-separator />
-      <m-item caption="Item 1" :icon="mdiAccount" />
+      <m-item :caption="lk.Item1" :icon="mdiAccount" />
       <q-separator />
       <m-item>
-        <template #caption>Item 2</template>
+        <template #caption>{{ lang.Item2 }}</template>
         <template #icon><q-icon :name="mdiPen" /></template>
       </m-item>
       <q-separator />

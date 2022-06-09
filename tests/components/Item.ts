@@ -6,7 +6,7 @@ import { QIcon } from "quasar";
 test("prop: caption", () => {
   const wrapper = vueTestUtils.mount(components.Item, {
     global: testUtils.globalMountOptions(),
-    props: { caption: "sample-caption" }
+    props: { caption: "plain:sample-caption" }
   });
 
   const { comp } = testUtils.findFactory("item", wrapper);

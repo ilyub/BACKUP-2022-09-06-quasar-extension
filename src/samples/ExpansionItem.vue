@@ -21,9 +21,9 @@ export default defineComponent({
       :icon="icon"
       :label="lk.Label"
     >
-      <m-item caption="Menu item 1" :icon="icon" />
+      <m-item :caption="lk.Item1" :icon="icon" />
       <q-separator />
-      <m-item caption="Menu item 2" :icon="icon" />
+      <m-item :caption="lk.Item2" :icon="icon" />
     </m-expansion-item>
   </m-page-section>
 </template>

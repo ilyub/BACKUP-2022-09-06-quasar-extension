@@ -54,7 +54,7 @@ export namespace Table {
      * @returns Formatted field.
      */
     readonly field: (row: T) => string;
-    readonly label: string;
+    readonly label: baseLang.Key;
     readonly maxWidth?: number;
     readonly minWidth?: number;
     readonly name: string;

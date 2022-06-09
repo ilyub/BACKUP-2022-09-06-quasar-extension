@@ -12,7 +12,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "Sample label 1",
+      label: "plain:Sample label 1",
       name: "column1",
       sortable: true,
       width: 100
@@ -21,7 +21,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "Sample label 2",
+      label: "plain:Sample label 2",
       name: "column2",
       width: 100
     },
@@ -29,7 +29,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "Sample label 3",
+      label: "plain:Sample label 3",
       name: "column3"
     }
   ],
@@ -72,7 +72,7 @@ test("prop: columns", () => {
           align: "left",
           // eslint-disable-next-line no-restricted-syntax -- Ok
           field: (row: object): string => o.get(row, "name", is.string),
-          label: "Sample label 1",
+          label: "plain:Sample label 1",
           maxWidth: 300,
           minWidth: 100,
           name: "column1",

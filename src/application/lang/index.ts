@@ -11,6 +11,15 @@ declare global {
       readonly "ru-RU": true;
     }
   }
+
+  namespace facades {
+    namespace lang {
+      interface Word {
+        readonly EnglishUSA: true;
+        readonly Russian: true;
+      }
+    }
+  }
 }
 
 // eslint-disable-next-line @skylib/only-export-name -- Ok

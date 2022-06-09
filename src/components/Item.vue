@@ -12,14 +12,17 @@ export default defineComponent({
   directives: { debugId: directives.debugId("item") },
   props: {
     ...parentProps<Item.ParentProps>(),
-    caption: prop<Item.Props["caption"]>(),
+    ...plugins.langProps.props("caption"),
     icon: prop<Item.Props["icon"]>()
   },
   setup: props => {
     validateProps<Item.OwnProps>(props);
 
+    const { caption } = plugins.langProps(props, "caption");
+
     return {
-      hasCaption: computed(() => is.not.empty(props.caption)),
+      caption,
+      hasCaption: computed(() => is.not.empty(caption.value)),
       hasIcon: computed(() => is.not.empty(props.icon)),
       main: ref<QItem>(),
       slotNames: plugins.slotNames<Item.Slots>()("caption", "default", "icon")

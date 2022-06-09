@@ -1,4 +1,5 @@
 <script lang="ts">
+import { MenuItem } from "./MenuItem.extras";
 import { mdiAccount, mdiPen, mdiPenPlus } from "@mdi/js";
 import { useQuasar } from "quasar";
 import { defineComponent } from "vue";
@@ -15,6 +16,7 @@ export default defineComponent({
       confirmedClick: (): void => {
         $q.notify("Confirmed click");
       },
+      lk: MenuItem.lang.keys,
       mdiAccount,
       mdiPen,
       mdiPenPlus
@@ -28,9 +30,9 @@ export default defineComponent({
     <m-icon-button :icon="mdiAccount">
       <m-menu auto-close>
         <q-list>
-          <m-menu-item caption="Click" :icon="mdiPen" @click="click" />
+          <m-menu-item :caption="lk.Click" :icon="mdiPen" @click="click" />
           <m-menu-item
-            caption="Confirmed click"
+            :caption="lk.ConfirmedClick"
             confirmation="Confirmation message"
             :confirmed-click="confirmedClick"
             :icon="mdiPenPlus"

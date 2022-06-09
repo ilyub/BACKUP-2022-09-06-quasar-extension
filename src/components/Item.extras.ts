@@ -1,4 +1,4 @@
-import type { GlobalComponent, VNodes } from "./api";
+import type { GlobalComponent, VNodes, plugins } from "./api";
 import type { stringU } from "@skylib/functions";
 import type { QItem, QItemProps, QItemSlots } from "quasar";
 
@@ -8,7 +8,6 @@ export namespace Item {
   }
 
   export interface OwnProps {
-    readonly caption?: stringU;
     readonly icon?: stringU;
   }
 
@@ -37,7 +36,9 @@ export namespace Item {
 
   export interface ParentSlots extends Omit<QItemSlots, keyof OwnSlots> {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface PluginProps extends plugins.langProps.Props<"caption"> {}
+
+  export interface Props extends ParentProps, PluginProps, OwnProps {}
 
   export interface Slots extends ParentSlots, OwnSlots {}
 }

@@ -1,6 +1,7 @@
 import { injectableSettings } from "./api";
 import type { IconButton } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
+import type { lang } from "@skylib/facades";
 import type { LocaleName } from "@skylib/functions";
 
 export namespace LanguagePicker {
@@ -12,7 +13,7 @@ export namespace LanguagePicker {
   }
 
   export interface Option {
-    readonly caption: string;
+    readonly caption: lang.Key;
     readonly flag: string;
     readonly lang: LocaleName;
   }

@@ -50,7 +50,7 @@ export const langProps = defineFn(
 
 export namespace langProps {
   export type OwnProps<T extends string> = {
-    readonly [K in T]?: lang.Transform<lang.Word> | undefined;
+    readonly [K in T]?: lang.Key | undefined;
   };
 
   export type Plugin<T extends string> = {
@@ -60,7 +60,7 @@ export namespace langProps {
   };
 
   export type PropOptionsRecord<T extends string> = {
-    readonly [K in T]: PropOptions<lang.Transform<lang.Word> | undefined>;
+    readonly [K in T]: PropOptions<lang.Key | undefined>;
   };
 
   // eslint-disable-next-line no-restricted-syntax -- Ok

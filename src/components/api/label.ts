@@ -30,12 +30,12 @@ export const label = defineFn(
 
 export namespace label {
   export interface OwnProps {
-    readonly label?: lang.Transform<lang.Word> | undefined;
+    readonly label?: lang.Key | undefined;
   }
 
   export interface Plugin {
     readonly label: ComputedRef<stringU>;
-    readonly labelKey: ComputedRef<lang.Transform<lang.Word> | undefined>;
+    readonly labelKey: ComputedRef<lang.Key | undefined>;
   }
 
   export interface Props extends OwnProps {}

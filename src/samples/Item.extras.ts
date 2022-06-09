@@ -3,16 +3,16 @@ import { lang as baseLang } from "@skylib/facades";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends Tooltip.Word {}
+      interface Word extends Item.Word {}
     }
   }
 }
 
-export namespace Tooltip {
+export namespace Item {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly MenuItem: true;
-    readonly ShowTooltips: true;
+    readonly Item1: true;
+    readonly Item2: true;
   }
 }
