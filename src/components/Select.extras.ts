@@ -1,6 +1,6 @@
 import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
+import type { booleanU } from "@skylib/functions";
 import type { QSelect, QSelectProps, QSelectSlots } from "quasar";
 
 declare global {
@@ -38,7 +38,7 @@ export namespace Select {
     readonly "onUpdate:modelValue"?: (value: T) => void;
     readonly options: Options<T>;
     readonly required?: booleanU;
-    readonly validationLabel?: stringU;
+    readonly validationLabel?: baseLang.Transform<baseLang.Word> | undefined;
   }
 
   export interface ParentProps

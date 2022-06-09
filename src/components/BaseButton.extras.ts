@@ -24,7 +24,7 @@ export namespace BaseButton {
   }
 
   export interface ParentProps
-    extends Omit<QBtnProps, keyof OwnProps | keyof plugins.useLabel.Props> {}
+    extends Omit<QBtnProps, keyof OwnProps | keyof PluginProps> {}
 
   export interface ParentSlots extends QBtnSlots {}
 

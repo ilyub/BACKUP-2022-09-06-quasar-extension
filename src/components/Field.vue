@@ -34,7 +34,7 @@ export default defineComponent({
     validateEmit<Field.OwnProps>(emit);
     validateProps<Field.OwnProps>(props);
 
-    const label = plugins.useLabel(props);
+    const { label, labelKey } = plugins.useLabel(props);
 
     const main = ref<QField>();
 
@@ -44,7 +44,7 @@ export default defineComponent({
       computed(() =>
         o.removeUndefinedKeys({
           format: fn.identity,
-          label: label.value,
+          label: labelKey.value,
           required: props.required,
           ...props.validationOptions
         })

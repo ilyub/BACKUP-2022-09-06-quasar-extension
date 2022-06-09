@@ -201,7 +201,7 @@ export namespace useValidation {
      * @returns Formatted value.
      */
     readonly format: (value: unknown) => T;
-    readonly label?: string;
+    readonly label?: lang.Transform<lang.Word>;
     readonly max?: T;
     readonly maxErrorMessage?: lang.Transform<lang.Word>;
     readonly min?: T;

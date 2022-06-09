@@ -13,8 +13,10 @@ export default defineComponent({
     ...plugins.useLabel.props
   },
   setup: props => {
+    const { label } = plugins.useLabel(props);
+
     return {
-      label: plugins.useLabel(props),
+      label,
       main: ref(QExpansionItem),
       slotNames: plugins.useSlotNames<ExpansionItem.Slots>()()
     };
