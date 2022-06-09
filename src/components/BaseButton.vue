@@ -13,15 +13,16 @@ export default defineComponent({
     ...parentProps<BaseButton.ParentProps>(),
     ...plugins.useAsyncClick.props,
     ...plugins.useConfirmedClick.props,
-    ...plugins.useLabel.props,
+    ...plugins.useLangProps.props("label", "tooltip"),
     disable: prop.boolean(),
     loading: prop.boolean(),
-    tooltip: prop<BaseButton.Props["tooltip"]>(),
     tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>(),
     type: prop<BaseButton.Props["type"]>()
   },
   setup: props => {
     validateProps<BaseButton.OwnProps>(props);
+
+    const { label, tooltip } = plugins.useLangProps(props, "label", "tooltip");
 
     const asyncClick = plugins.useAsyncClick(props);
 
@@ -40,23 +41,24 @@ export default defineComponent({
     );
 
     return {
-      hasTooltip: computed(() => is.not.empty(props.tooltip)),
-      main: ref(QBtn),
-      mainClick: (): void => {
+      click: (): void => {
         asyncClick();
         confirmedClick();
       },
+      hasTooltip: computed(() => is.not.empty(tooltip.value)),
+      label,
+      main: ref(QBtn),
       mainDisable: computed(
         () => disable.value || submitting.value || asyncClick.active.value
       ),
-      mainLabel: plugins.useLabel(props),
       mainLoading: computed(
         () =>
           props.loading ||
           (submitting.value && settings.value.animateSubmitting) ||
           (asyncClick.active.value && settings.value.animateAsyncClick)
       ),
-      slotNames: plugins.useSlotNames<BaseButton.Slots>()("default")
+      slotNames: plugins.useSlotNames<BaseButton.Slots>()("default"),
+      tooltip
     };
   }
 });
@@ -67,10 +69,10 @@ export default defineComponent({
     ref="main"
     class="m-base-button"
     :disable="mainDisable"
-    :label="mainLabel"
+    :label="label"
     :loading="mainLoading"
     :type="type"
-    @click="mainClick"
+    @click="click"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

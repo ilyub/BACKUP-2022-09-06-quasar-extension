@@ -71,15 +71,23 @@ export default defineComponent({
   </m-page-section>
   <m-page-section>
     <m-buttons-group>
-      <m-base-button :label="lk.Down" tooltip="Down" />
-      <m-base-button :label="lk.Down" tooltip="Down" tooltip-direction="down" />
-      <m-base-button :label="lk.Left" tooltip="Left" tooltip-direction="left" />
+      <m-base-button :label="lk.Down" :tooltip="lk.Down" />
+      <m-base-button
+        :label="lk.Down"
+        :tooltip="lk.Down"
+        tooltip-direction="down"
+      />
+      <m-base-button
+        :label="lk.Left"
+        :tooltip="lk.Left"
+        tooltip-direction="left"
+      />
       <m-base-button
         :label="lk.Right"
-        tooltip="Right"
+        :tooltip="lk.Right"
         tooltip-direction="right"
       />
-      <m-base-button :label="lk.Up" tooltip="Up" tooltip-direction="up" />
+      <m-base-button :label="lk.Up" :tooltip="lk.Up" tooltip-direction="up" />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>

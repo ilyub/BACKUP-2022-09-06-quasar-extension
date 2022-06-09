@@ -19,7 +19,6 @@ export namespace BaseButton {
   export interface OwnProps {
     readonly disable?: booleanU;
     readonly loading?: booleanU;
-    readonly tooltip?: stringU;
     readonly tooltipDirection?: plugins.useDirection.Direction | undefined;
     readonly type?: stringU;
   }
@@ -32,7 +31,7 @@ export namespace BaseButton {
   export interface PluginProps
     extends plugins.useAsyncClick.Props,
       plugins.useConfirmedClick.Props,
-      plugins.useLabel.Props {}
+      plugins.useLangProps.Props<"label" | "tooltip"> {}
 
   export interface Props extends ParentProps, PluginProps, OwnProps {}
 
