@@ -10,16 +10,13 @@ export namespace TabPanel {
     readonly name?: T | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps extends Omit<QTabPanelProps, keyof OwnProps> {}
 
-  export interface ParentSlots extends Omit<QTabPanelSlots, keyof OwnSlots> {}
+  export interface ParentSlots extends QTabPanelSlots {}
 
   export interface Props<T extends NumStrU = NumStrU>
     extends ParentProps,
       OwnProps<T> {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

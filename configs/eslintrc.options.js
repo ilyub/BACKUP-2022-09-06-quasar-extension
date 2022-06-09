@@ -150,47 +150,82 @@ module.exports = {
         "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
     },
     {
+      message: 'Do not extend "OwnProps" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
+    },
+    {
       message: 'Do not extend "OwnSlots" interface',
       selector:
         "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends"
     },
     {
-      message: 'Prefer "Omit<..., keyof OwnProps>"',
+      message: 'Extend "OwnProps" or "PluginProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=ParentProps] > TSInterfaceHeritage.extends > *.expression[name!=Omit]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnProps][name!=ParentProps][name!=PluginProps]"
     },
     {
-      message: 'Prefer "Omit<..., keyof OwnSlots>"',
+      message: 'Extend "ParentProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=ParentSlots] > TSInterfaceHeritage.extends > *.expression[name!=Omit]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
     },
     {
-      message: 'Extend "ParentProps" interfaces',
+      message: 'Extend "OwnProps" or "PluginProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Props] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps][name!=PluginProps]"
     },
     {
-      message: 'Extend "OwnProps" interfaces',
+      message: 'Extend "ParentProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Props] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
     },
     {
-      message: 'Extend "ParentSlots" interfaces',
+      message: 'Extend "PluginProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Slots] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginProps]"
     },
     {
-      message: 'Extend "OwnSlots" interfaces',
+      message: 'Extend "OwnProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Slots] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnProps]"
     },
     {
-      message: 'Extend "ParentProps" and "OwnProps" interfaces',
-      selector: "TSInterfaceDeclaration[id.name=Props][extends.length!=2]"
+      message: "Too many extends",
+      selector: "TSInterfaceDeclaration[id.name=Props][extends.length>3]"
     },
     {
-      message: 'Extend "ParentSlots" and "OwnSlots" interfaces',
-      selector: "TSInterfaceDeclaration[id.name=Slots][extends.length!=2]"
+      message: 'Extend "OwnSlots" or "PluginSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnSlots][name!=ParentSlots][name!=PluginSlots]"
+    },
+    {
+      message: 'Extend "ParentSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
+    },
+    {
+      message: 'Extend "OwnSlots" or "PluginSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots][name!=PluginSlots]"
+    },
+    {
+      message: 'Extend "ParentSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
+    },
+    {
+      message: 'Extend "PluginSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginSlots]"
+    },
+    {
+      message: 'Extend "OwnSlots" interface',
+      selector:
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnSlots]"
+    },
+    {
+      message: "Too many extends",
+      selector: "TSInterfaceDeclaration[id.name=Slots][extends.length>3]"
     },
     {
       message: "Use interface",

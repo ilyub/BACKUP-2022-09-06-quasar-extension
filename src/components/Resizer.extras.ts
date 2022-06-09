@@ -31,17 +31,11 @@ export namespace Resizer {
     readonly default: () => VNodes;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentSlots {}
-
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends OwnProps {}
 
   export interface Settings {
     readonly disable: boolean;
   }
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends OwnSlots {}
 }

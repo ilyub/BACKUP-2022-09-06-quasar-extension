@@ -17,16 +17,12 @@ export namespace Input {
     readonly "onUpdate:modelValue"?: (value: stringU) => void;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps
     extends Omit<Field.Props<stringU>, keyof OwnProps> {}
 
-  export interface ParentSlots
-    extends Omit<Field.Slots<stringU>, keyof OwnSlots> {}
+  export interface ParentSlots extends Field.Slots<stringU> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

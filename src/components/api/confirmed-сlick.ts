@@ -63,9 +63,6 @@ export namespace useConfirmedClick {
     readonly confirmedClick?: ConfirmedClick | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
   export interface Plugin {
     /**
      * Handles click.
@@ -73,7 +70,7 @@ export namespace useConfirmedClick {
     (): void;
   }
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends OwnProps {}
 
   export interface Word {
     readonly Cancel: true;

@@ -17,16 +17,11 @@ export namespace TimeInput {
     readonly "onUpdate:modelValue"?: (value: numberU) => void;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
+  export interface ParentProps extends NumericInput.Props {}
 
-  export interface ParentProps
-    extends Omit<NumericInput.Props, keyof OwnProps> {}
-
-  export interface ParentSlots
-    extends Omit<NumericInput.Slots, keyof OwnSlots> {}
+  export interface ParentSlots extends NumericInput.Slots {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

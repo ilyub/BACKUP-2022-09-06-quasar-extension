@@ -43,16 +43,12 @@ export namespace NumericInput {
       | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps
     extends Omit<Field.Props<numberU>, keyof OwnProps> {}
 
-  export interface ParentSlots
-    extends Omit<Field.Slots<numberU>, keyof OwnSlots> {}
+  export interface ParentSlots extends Field.Slots<numberU> {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

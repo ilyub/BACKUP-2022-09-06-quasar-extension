@@ -27,9 +27,7 @@ export namespace Select {
 
   export type Options<T = unknown> = ReadonlyArray<Option<T>>;
 
-  export interface OwnProps<T = unknown>
-    extends plugins.useLabel.Props,
-      plugins.useValidation.Props<T> {
+  export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
     readonly initialLabel?: baseLang.Transform<baseLang.Word> | undefined;
     readonly modelValue?: T | undefined;
@@ -44,16 +42,21 @@ export namespace Select {
     readonly validationLabel?: stringU;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
+  export interface ParentProps
+    extends Omit<QSelectProps, keyof OwnProps | keyof PluginProps> {}
 
-  export interface ParentProps extends Omit<QSelectProps, keyof OwnProps> {}
+  export interface ParentSlots extends QSelectSlots {}
 
-  export interface ParentSlots extends Omit<QSelectSlots, keyof OwnSlots> {}
+  export interface PluginProps<T = unknown>
+    extends plugins.useLabel.Props,
+      plugins.useValidation.Props<T> {}
 
-  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
+  export interface Props<T = unknown>
+    extends ParentProps,
+      PluginProps<T>,
+      OwnProps<T> {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 
   export interface Word {
     readonly SelectField: true;

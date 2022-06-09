@@ -226,9 +226,6 @@ export namespace useValidation {
     readonly rulesOnSubmit?: Rules<T> | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
   export interface Plugin<T = unknown> {
     readonly rules: ComputedRef<Writable<ValidationRules>>;
     /**
@@ -240,7 +237,7 @@ export namespace useValidation {
     readonly validate: (value: T, context: Context) => void;
   }
 
-  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
+  export interface Props<T = unknown> extends OwnProps<T> {}
 
   export interface Rule<T = unknown> {
     /**

@@ -10,18 +10,14 @@ export namespace ExpansionItem {
     readonly main: QExpansionItem;
   }
 
-  export interface OwnProps extends plugins.useLabel.Props {}
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps
-    extends Omit<QExpansionItemProps, keyof OwnProps> {}
+    extends Omit<QExpansionItemProps, keyof PluginProps> {}
 
-  export interface ParentSlots
-    extends Omit<QExpansionItemSlots, keyof OwnSlots> {}
+  export interface ParentSlots extends QExpansionItemSlots {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface PluginProps extends plugins.useLabel.Props {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Props extends ParentProps, PluginProps {}
+
+  export interface Slots extends ParentSlots {}
 }

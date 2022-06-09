@@ -16,10 +16,7 @@ export namespace BaseButton {
     readonly main: QBtn;
   }
 
-  export interface OwnProps
-    extends plugins.useAsyncClick.Props,
-      plugins.useConfirmedClick.Props,
-      plugins.useLabel.Props {
+  export interface OwnProps {
     readonly disable?: booleanU;
     readonly loading?: booleanU;
     readonly tooltip?: stringU;
@@ -27,20 +24,22 @@ export namespace BaseButton {
     readonly type?: stringU;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps
     extends Omit<QBtnProps, keyof OwnProps | keyof plugins.useLabel.Props> {}
 
-  export interface ParentSlots extends Omit<QBtnSlots, keyof OwnSlots> {}
+  export interface ParentSlots extends QBtnSlots {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface PluginProps
+    extends plugins.useAsyncClick.Props,
+      plugins.useConfirmedClick.Props,
+      plugins.useLabel.Props {}
+
+  export interface Props extends ParentProps, PluginProps, OwnProps {}
 
   export interface Settings {
     readonly animateAsyncClick: boolean;
     readonly animateSubmitting: boolean;
   }
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

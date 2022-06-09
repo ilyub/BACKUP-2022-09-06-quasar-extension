@@ -15,16 +15,13 @@ export namespace Tooltip {
     readonly main: QTooltip;
   }
 
-  export interface OwnProps extends plugins.useDirection.Props {}
+  export interface ParentProps extends QTooltipProps {}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
+  export interface ParentSlots extends QTooltipSlots {}
 
-  export interface ParentProps extends Omit<QTooltipProps, keyof OwnProps> {}
+  export interface PluginProps extends plugins.useDirection.Props {}
 
-  export interface ParentSlots extends Omit<QTooltipSlots, keyof OwnSlots> {}
-
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends ParentProps, PluginProps {}
 
   export interface Settings {
     readonly delay: number;
@@ -32,7 +29,7 @@ export namespace Tooltip {
     readonly show: boolean;
   }
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 
   /**
    * Use disable tooltips plugin.

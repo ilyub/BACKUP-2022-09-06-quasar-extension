@@ -32,14 +32,11 @@ export namespace Form {
     readonly onSubmit?: (event: Event) => void;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps extends Omit<QFormProps, keyof OwnProps> {}
 
-  export interface ParentSlots extends Omit<QFormSlots, keyof OwnSlots> {}
+  export interface ParentSlots extends QFormSlots {}
 
   export interface Props extends ParentProps, OwnProps {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

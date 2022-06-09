@@ -52,12 +52,9 @@ export namespace IconPicker {
     readonly placeholder: string;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
+  export interface ParentProps extends IconButton.Props {}
 
-  export interface ParentProps extends Omit<IconButton.Props, keyof OwnProps> {}
-
-  export interface ParentSlots extends Omit<IconButton.Slots, keyof OwnSlots> {}
+  export interface ParentSlots extends IconButton.Slots {}
 
   export interface Props extends ParentProps, OwnProps {}
 
@@ -68,7 +65,7 @@ export namespace IconPicker {
     readonly spinnerSize: string;
   }
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 
   export interface Word {
     readonly IconPicker: true;

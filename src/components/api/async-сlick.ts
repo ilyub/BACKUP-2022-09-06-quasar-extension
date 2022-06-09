@@ -55,9 +55,6 @@ export namespace useAsyncClick {
     readonly onAsyncClick?: AsyncClick | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
   export interface Plugin {
     /**
      * Handles click.
@@ -66,5 +63,5 @@ export namespace useAsyncClick {
     readonly active: Ref<boolean>;
   }
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends OwnProps {}
 }

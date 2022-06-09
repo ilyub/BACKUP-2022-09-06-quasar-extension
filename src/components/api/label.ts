@@ -29,8 +29,5 @@ export namespace useLabel {
     readonly label?: lang.Transform<lang.Word> | undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends OwnProps {}
 }

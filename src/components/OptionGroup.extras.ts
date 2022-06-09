@@ -32,16 +32,12 @@ export namespace OptionGroup {
     readonly options: Options<T>;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
-
   export interface ParentProps
     extends Omit<QOptionGroupProps, keyof OwnProps> {}
 
-  export interface ParentSlots
-    extends Omit<QOptionGroupSlots, keyof OwnSlots> {}
+  export interface ParentSlots extends QOptionGroupSlots {}
 
   export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }

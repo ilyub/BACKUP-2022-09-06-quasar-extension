@@ -1,6 +1,6 @@
 import type { GlobalComponent, VNodes } from "./api";
 import type { stringU } from "@skylib/functions";
-import type { QItem, QItemProps } from "quasar";
+import type { QItem, QItemProps, QItemSlots } from "quasar";
 
 export namespace Item {
   export interface Global extends GlobalComponent<Props, Slots> {
@@ -33,10 +33,9 @@ export namespace Item {
     readonly icon: () => VNodes;
   }
 
-  export interface ParentProps extends Omit<QItemProps, keyof OwnProps> {}
+  export interface ParentProps extends QItemProps {}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentSlots {}
+  export interface ParentSlots extends Omit<QItemSlots, keyof OwnSlots> {}
 
   export interface Props extends ParentProps, OwnProps {}
 

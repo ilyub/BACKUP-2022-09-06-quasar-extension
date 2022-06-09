@@ -23,9 +23,7 @@ export namespace Field {
     readonly main: QField;
   }
 
-  export interface OwnProps<T = unknown>
-    extends plugins.useLabel.Props,
-      plugins.useValidation.Props<T> {
+  export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
     readonly focusableElement?: HTMLElement | undefined;
     readonly modelValue: T;
@@ -52,11 +50,19 @@ export namespace Field {
     readonly control: (scope: ControlSlotData<T>) => VNodes;
   }
 
-  export interface ParentProps extends Omit<QFieldProps, keyof OwnProps> {}
+  export interface ParentProps
+    extends Omit<QFieldProps, keyof OwnProps | keyof PluginProps> {}
 
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 
-  export interface Props<T = unknown> extends ParentProps, OwnProps<T> {}
+  export interface PluginProps<T = unknown>
+    extends plugins.useLabel.Props,
+      plugins.useValidation.Props<T> {}
+
+  export interface Props<T = unknown>
+    extends ParentProps,
+      PluginProps<T>,
+      OwnProps<T> {}
 
   export interface Slots<T = unknown> extends ParentSlots, OwnSlots<T> {}
 }

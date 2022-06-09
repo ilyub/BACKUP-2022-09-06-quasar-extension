@@ -20,12 +20,7 @@ export namespace Group {
     readonly searchString?: stringU;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface ParentProps {}
-
-  export interface Props<T extends string = string>
-    extends ParentProps,
-      OwnProps<T> {}
+  export interface Props<T extends string = string> extends OwnProps<T> {}
 
   export type RootElement = "page-section" | "section" | "subsection";
 

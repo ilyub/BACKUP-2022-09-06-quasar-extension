@@ -102,8 +102,7 @@ export namespace Sortable {
   export interface ParentProps
     extends Omit<VueDraggableProps, keyof OwnProps> {}
 
-  export interface ParentSlots
-    extends Omit<VueDraggableProps, keyof OwnSlots> {}
+  export interface ParentSlots extends VueDraggableProps {}
 
   export interface Props<T extends object = object, D extends object = object>
     extends ParentProps,

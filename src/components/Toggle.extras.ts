@@ -7,7 +7,7 @@ export namespace Toggle {
     readonly main: QToggle;
   }
 
-  export interface OwnProps extends plugins.useLabel.Props {
+  export interface OwnProps {
     readonly disable?: booleanU;
     readonly modelValue: boolean;
     /**
@@ -18,14 +18,14 @@ export namespace Toggle {
     readonly "onUpdate:modelValue"?: (value: boolean) => void;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
-  export interface OwnSlots {}
+  export interface ParentProps
+    extends Omit<QToggleProps, keyof OwnProps | keyof PluginProps> {}
 
-  export interface ParentProps extends Omit<QToggleProps, keyof OwnProps> {}
+  export interface ParentSlots extends QToggleSlots {}
 
-  export interface ParentSlots extends Omit<QToggleSlots, keyof OwnSlots> {}
+  export interface PluginProps extends plugins.useLabel.Props {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface Props extends ParentProps, PluginProps, OwnProps {}
 
-  export interface Slots extends ParentSlots, OwnSlots {}
+  export interface Slots extends ParentSlots {}
 }
