@@ -1,4 +1,4 @@
-import type { GlobalComponent, VNodes } from "./api";
+import type { GlobalComponent, VNodes, plugins } from "./api";
 import type { Rec, stringU } from "@skylib/functions";
 
 export namespace Group {
@@ -15,12 +15,16 @@ export namespace Group {
 
   export interface OwnProps<T extends string = string> {
     readonly items: Items<T>;
-    readonly notFoundLabel?: stringU;
     readonly rootElement?: RootElement | undefined;
     readonly searchString?: stringU;
   }
 
-  export interface Props<T extends string = string> extends OwnProps<T> {}
+  export interface PluginProps
+    extends plugins.useLangProps.Props<"notFoundLabel"> {}
+
+  export interface Props<T extends string = string>
+    extends PluginProps,
+      OwnProps<T> {}
 
   export type RootElement = "page-section" | "section" | "subsection";
 

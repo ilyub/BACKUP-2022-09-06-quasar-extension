@@ -65,7 +65,7 @@ test.each([
             title: "Section 12 ddd eee"
           }
         ]),
-        notFoundLabel: "No results found",
+        notFoundLabel: "NoResultsFound",
         rootElement,
         searchString
       },

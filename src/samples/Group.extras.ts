@@ -12,6 +12,7 @@ export namespace Group {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
+    readonly NoResultsFound: true;
     readonly SearchForSettings: true;
   }
 }

@@ -68,7 +68,7 @@ export default defineComponent({
   <page-sections-group
     :class="$style.section"
     :items="groupItems"
-    not-found-label="No results found"
+    :not-found-label="lk.NoResultsFound"
     root-element="page-section"
     :search-string="searchString"
   >

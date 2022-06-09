@@ -56,6 +56,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     MultiSelect: "Мульти-выбор",
     Name: "Имя",
     NoData: "Пустые данные",
+    NoResultsFound: "По вашему запросу ничего не найдено",
     Number: [
       "кто-что-оно",
       { "кого-что-его-ср": "Число", "кто-что-оно": "Число" }

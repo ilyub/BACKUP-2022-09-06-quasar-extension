@@ -167,7 +167,7 @@ module.exports = {
     {
       message: 'Extend "ParentProps" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
+        "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps][name!=PluginProps]"
     },
     {
       message: 'Extend "OwnProps" or "PluginProps" interface',
@@ -201,7 +201,7 @@ module.exports = {
     {
       message: 'Extend "ParentSlots" interface',
       selector:
-        "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
+        "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots][name!=PluginSlots]"
     },
     {
       message: 'Extend "OwnSlots" or "PluginSlots" interface',

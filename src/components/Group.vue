@@ -2,7 +2,7 @@
 import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
-import { directives, prop, validateProps } from "./api";
+import { directives, plugins, prop, validateProps } from "./api";
 import { compare, inlineSearch } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
@@ -13,8 +13,8 @@ export default defineComponent({
   directives: { debugId: directives.debugId("group") },
   inheritAttrs: false,
   props: {
+    ...plugins.useLangProps.props("notFoundLabel"),
     items: prop.required<Group.Props["items"]>(),
-    notFoundLabel: prop<Group.Props["notFoundLabel"]>(),
     rootElement: prop<Group.Props["rootElement"]>(),
     searchString: prop<Group.Props["searchString"]>()
   },
@@ -35,6 +35,8 @@ export default defineComponent({
       return sortedItems.value;
     });
 
+    const { notFoundLabel } = plugins.useLangProps(props, "notFoundLabel");
+
     const searchIndex = computed(() =>
       inlineSearch.create("id", ["title"], props.items)
     );
@@ -47,6 +49,7 @@ export default defineComponent({
 
     return {
       filteredItems,
+      notFoundLabel,
       rootComponent: computed(() => {
         switch (props.rootElement) {
           case "page-section":
@@ -65,7 +68,7 @@ export default defineComponent({
       showNotFoundLabel: computed(() =>
         filteredItems.value.some(item => item.show)
           ? false
-          : is.not.empty(props.notFoundLabel)
+          : is.not.empty(notFoundLabel.value)
       )
     };
   }

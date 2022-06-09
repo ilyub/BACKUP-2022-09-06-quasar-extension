@@ -42,6 +42,7 @@ export const en = new implementations.lang.dictionary.Definitions({
     MultiSelect: "Multi select",
     Name: "Name",
     NoData: "No data",
+    NoResultsFound: "No results found",
     Number: "Number",
     Of: "Of",
     Ok: "Ok",
