@@ -26,7 +26,7 @@ export default defineComponent({
       :class="$style['page-layout']"
       :close-button-off="closeButtonOff"
       :close-button-on="closeButtonOn"
-      :title="title ? 'Title' : undefined"
+      :title="title ? lk.Title : undefined"
     >
       <template #header>
         <div class="bg-green q-pa-md">Header</div>

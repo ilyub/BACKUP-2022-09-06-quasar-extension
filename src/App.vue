@@ -1,11 +1,11 @@
 <script lang="ts">
 import { components, useInjections } from "./samples";
+import { lang } from "@skylib/facades";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import { defineComponent } from "vue";
 import { RouterView } from "vue-router";
-import type { lang } from "@skylib/facades";
 
 export default defineComponent({
   name: "app",
@@ -17,7 +17,7 @@ export default defineComponent({
 
     return {
       caption: (name: string): lang.Key =>
-        `plain:${_.startCase(name).replace(/^Sample /u, "")}`,
+        lang.plain(_.startCase(name).replace(/^Sample /u, "")),
       components,
       language
     };

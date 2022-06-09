@@ -1,5 +1,5 @@
 import { icons as baseIcons } from "@skylib/facades";
-import type { GlobalComponent, VNodes } from "./api";
+import type { GlobalComponent, VNodes, plugins } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QCard, QCardProps } from "quasar";
 
@@ -24,7 +24,6 @@ export namespace Card {
 
   export interface OwnProps {
     readonly minWidth?: stringU;
-    readonly title?: stringU;
     readonly transparentHeader?: booleanU;
   }
 
@@ -51,7 +50,9 @@ export namespace Card {
 
   export interface ParentProps extends QCardProps {}
 
-  export interface Props extends ParentProps, OwnProps {}
+  export interface PluginProps extends plugins.langProps.Props<"title"> {}
+
+  export interface Props extends ParentProps, PluginProps, OwnProps {}
 
   export interface Slots extends OwnSlots {}
 }

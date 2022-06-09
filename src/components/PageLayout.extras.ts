@@ -1,7 +1,7 @@
 import { injectableSettings } from "./api";
 import { icons as baseIcons } from "@skylib/facades";
-import type { GlobalComponent, VNodes } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
+import type { GlobalComponent, VNodes, plugins } from "./api";
+import type { booleanU } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -31,7 +31,6 @@ export namespace PageLayout {
   export interface OwnProps {
     readonly closeButtonOff?: booleanU;
     readonly closeButtonOn?: booleanU;
-    readonly title?: stringU;
   }
 
   export interface OwnSlots {
@@ -79,7 +78,9 @@ export namespace PageLayout {
     readonly "sticky-header": () => VNodes;
   }
 
-  export interface Props extends OwnProps {}
+  export interface PluginProps extends plugins.langProps.Props<"title"> {}
+
+  export interface Props extends PluginProps, OwnProps {}
 
   export interface Settings {
     readonly closeButton: boolean;

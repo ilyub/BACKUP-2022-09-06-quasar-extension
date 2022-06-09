@@ -32,14 +32,14 @@ export default defineComponent({
     validateEmit<Select.OwnProps>(emit);
     validateProps<Select.OwnProps>(props);
 
-    const selectedOption = computed(() =>
-      props.options.find(option => option.value === props.modelValue)
-    );
-
     const { initialLabel, label } = plugins.langProps(
       props,
       "initialLabel",
       "label"
+    );
+
+    const selectedOption = computed(() =>
+      props.options.find(option => option.value === props.modelValue)
     );
 
     const main = ref<QSelect>();

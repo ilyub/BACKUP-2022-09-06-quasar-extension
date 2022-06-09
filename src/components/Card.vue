@@ -11,22 +11,25 @@ export default defineComponent({
   name: "m-card",
   props: {
     ...parentProps<Card.ParentProps>(),
+    ...plugins.langProps.props("title"),
     minWidth: prop<Card.Props["minWidth"]>(),
-    title: prop<Card.Props["title"]>(),
     transparentHeader: prop.boolean()
   },
   setup: props => {
     validateProps<Card.OwnProps>(props);
 
+    const { title } = plugins.langProps(props, "title");
+
     return {
-      hasTitle: computed(() => is.not.empty(props.title)),
+      hasTitle: computed(() => is.not.empty(title.value)),
       icons: Card.icons,
       main: ref(QCard),
       slotNames: plugins.slotNames<Card.Slots>()(
         "default",
         "header-actions",
         "title"
-      )
+      ),
+      title
     };
   }
 });

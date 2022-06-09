@@ -1,12 +1,13 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
 import { QIcon } from "quasar";
 
 test("prop: caption", () => {
   const wrapper = vueTestUtils.mount(components.Item, {
     global: testUtils.globalMountOptions(),
-    props: { caption: "plain:sample-caption" }
+    props: { caption: lang.plain("sample-caption") }
   });
 
   const { comp } = testUtils.findFactory("item", wrapper);

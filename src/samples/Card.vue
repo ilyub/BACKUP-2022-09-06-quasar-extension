@@ -1,7 +1,13 @@
 <script lang="ts">
+import { Card } from "./Card.extras";
 import { defineComponent } from "vue";
 
-export default defineComponent({ name: "sample-card" });
+export default defineComponent({
+  name: "sample-card",
+  setup: () => {
+    return { lk: Card.lang.keys };
+  }
+});
 </script>
 
 <template>
@@ -23,7 +29,7 @@ export default defineComponent({ name: "sample-card" });
       <m-button>
         Title
         <m-menu direction="down-right">
-          <m-card min-width="300px" title="Title">
+          <m-card min-width="300px" :title="lk.Title">
             <m-card-section>Section</m-card-section>
             <m-card-actions>
               <q-space />
@@ -36,7 +42,7 @@ export default defineComponent({ name: "sample-card" });
       <m-button>
         Title - transparent
         <m-menu direction="down-right">
-          <m-card min-width="300px" title="Title" transparent-header>
+          <m-card min-width="300px" :title="lk.Title" transparent-header>
             <m-card-section>Section</m-card-section>
             <m-card-actions>
               <q-space />

@@ -8,14 +8,16 @@ export default defineComponent({
   name: "m-page-layout",
   directives: { debugId: directives.debugId("page-layout") },
   props: {
+    ...plugins.langProps.props("title"),
     closeButtonOff: prop.boolean(),
-    closeButtonOn: prop.boolean(),
-    title: prop<PageLayout.Props["title"]>()
+    closeButtonOn: prop.boolean()
   },
   setup: props => {
     validateProps<PageLayout.OwnProps>(props);
 
     const settings = PageLayout.injectSettings();
+
+    const { title } = plugins.langProps(props, "title");
 
     return {
       closeButton: computed(() =>
@@ -25,7 +27,7 @@ export default defineComponent({
           props.closeButtonOff
         )
       ),
-      hasTitle: computed(() => is.not.empty(props.title)),
+      hasTitle: computed(() => is.not.empty(title.value)),
       icons: PageLayout.icons,
       settings,
       slotNames: plugins.slotNames<PageLayout.Slots>()(
@@ -36,7 +38,8 @@ export default defineComponent({
         "header",
         "sticky-footer",
         "sticky-header"
-      )
+      ),
+      title
     };
   }
 });

@@ -1,5 +1,6 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import { o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 
@@ -8,24 +9,24 @@ test.each([
   {
     closeButton: true,
     expected: true,
-    title: "Sample title"
+    title: lang.plain("Sample title")
   },
   {
     closeButton: true,
     closeButtonOff: true,
     expected: false,
-    title: "Sample title"
+    title: lang.plain("Sample title")
   },
   {
     closeButton: false,
     expected: false,
-    title: "Sample title"
+    title: lang.plain("Sample title")
   },
   {
     closeButton: false,
     closeButtonOn: true,
     expected: true,
-    title: "Sample title"
+    title: lang.plain("Sample title")
   }
 ])(
   "prop: closeButtonOn, closeButtonOff",
@@ -47,16 +48,16 @@ test.each([
   }
 );
 
-test.each([{ expected: false }, { expected: true, title: "Sample title" }])(
-  "prop: title",
-  ({ expected, title }) => {
-    const wrapper = vueTestUtils.mount(components.PageLayout, {
-      global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys({ title })
-    });
+test.each([
+  { expected: false },
+  { expected: true, title: lang.plain("Sample title") }
+])("prop: title", ({ expected, title }) => {
+  const wrapper = vueTestUtils.mount(components.PageLayout, {
+    global: testUtils.globalMountOptions(),
+    props: o.removeUndefinedKeys({ title })
+  });
 
-    const { elem } = testUtils.findFactory("page-layout", wrapper);
+  const { elem } = testUtils.findFactory("page-layout", wrapper);
 
-    expect(elem("title").exists()).toStrictEqual(expected);
-  }
-);
+  expect(elem("title").exists()).toStrictEqual(expected);
+});

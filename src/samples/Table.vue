@@ -1,10 +1,10 @@
 <script lang="ts">
 import { generic } from "..";
 import { Table } from "./Table.extras";
+import { lang } from "@skylib/facades";
 import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
-import type { lang } from "@skylib/facades";
 
 interface ColumnWidths extends extras.Table.ColumnWidths {}
 
@@ -105,7 +105,7 @@ export default defineComponent({
         });
 
         return ids.map(id => {
-          return { id, name: `plain:Item ${id}` };
+          return { id, name: lang.plain(`Item ${id}`) };
         });
       }),
       selectByCheckbox,

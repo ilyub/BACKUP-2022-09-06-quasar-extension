@@ -8,12 +8,11 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
-import { assert, is, o, typedef } from "@skylib/functions";
+import { handlePromise, inlineSearch, lang, testDelay } from "@skylib/facades";
+import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
-import type { lang } from "@skylib/facades";
 import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
@@ -118,7 +117,7 @@ export default defineComponent({
               placeholder: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
-                ? typedef<lang.Key>(`plain:${item.description}`)
+                ? lang.plain(item.description)
                 : undefined
             });
           });
@@ -132,6 +131,7 @@ export default defineComponent({
       icon: computed(() => props.modelValue ?? props.placeholder),
       icons: IconPicker.icons,
       lang: IconPicker.lang,
+      lk: IconPicker.lang.keys,
       loading: computed(() => is.empty(mdi.value)),
       main: ref<IconButton.Global>(),
       nextClick: (): void => {
@@ -180,7 +180,7 @@ export default defineComponent({
     @click="click"
   >
     <q-dialog v-model="show">
-      <m-card v-debug-id="'dialog'" :title="lang.IconPicker" transparent-header>
+      <m-card v-debug-id="'dialog'" :title="lk.IconPicker" transparent-header>
         <m-card-section>
           <m-subsection>
             <m-input v-model="searchString" v-debug-id="'search'" />

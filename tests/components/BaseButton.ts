@@ -1,5 +1,6 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import { wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
@@ -14,7 +15,7 @@ test("prop: confirmation, confirmedClick", async () => {
 
   const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
-    props: { confirmation: "plain:Sample confirmation" }
+    props: { confirmation: lang.plain("Sample confirmation") }
   });
 
   wrapper.vm.$q.dialog = (): DialogChainObject => {

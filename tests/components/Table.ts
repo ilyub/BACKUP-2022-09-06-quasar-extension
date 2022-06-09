@@ -1,5 +1,6 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { lang } from "@skylib/facades";
 import { fn, is, o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
@@ -12,7 +13,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "plain:Sample label 1",
+      label: lang.plain("Sample label 1"),
       name: "column1",
       sortable: true,
       width: 100
@@ -21,7 +22,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "plain:Sample label 2",
+      label: lang.plain("Sample label 2"),
       name: "column2",
       width: 100
     },
@@ -29,7 +30,7 @@ const props = {
       align: "left",
       // eslint-disable-next-line no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
-      label: "plain:Sample label 3",
+      label: lang.plain("Sample label 3"),
       name: "column3"
     }
   ],
@@ -72,10 +73,10 @@ test("prop: columns", () => {
           align: "left",
           // eslint-disable-next-line no-restricted-syntax -- Ok
           field: (row: object): string => o.get(row, "name", is.string),
-          label: "plain:Sample label 1",
+          label: lang.plain("Sample label"),
           maxWidth: 300,
           minWidth: 100,
-          name: "column1",
+          name: "column",
           sortable: true,
           width: 200
         }
