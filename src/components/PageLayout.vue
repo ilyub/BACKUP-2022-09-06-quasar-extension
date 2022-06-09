@@ -28,7 +28,7 @@ export default defineComponent({
       hasTitle: computed(() => is.not.empty(props.title)),
       icons: PageLayout.icons,
       settings,
-      slotNames: plugins.useSlotNames<PageLayout.Slots>()(
+      slotNames: plugins.slotNames<PageLayout.Slots>()(
         "actions",
         "default",
         "fit",

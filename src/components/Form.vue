@@ -36,7 +36,7 @@ export default defineComponent({
 
     const submitting = ref(0);
 
-    const resetValidation = plugins.useValidation.reset.get();
+    const resetValidation = plugins.validation.reset.get();
 
     injections.disable.provide(() => globalDisable.value || disable.value > 0);
     injections.submitting.provide(() => submitting.value > 0);
@@ -48,7 +48,7 @@ export default defineComponent({
         as.not.empty(main.value).resetValidation();
         resetValidation();
       },
-      slotNames: plugins.useSlotNames<Form.Slots>()(),
+      slotNames: plugins.slotNames<Form.Slots>()(),
       submit: (event: Event): void => {
         handlePromise(props.asyncTaskType, submit);
 

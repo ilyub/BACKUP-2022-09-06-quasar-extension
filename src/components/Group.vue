@@ -13,7 +13,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("group") },
   inheritAttrs: false,
   props: {
-    ...plugins.useLangProps.props("notFoundLabel"),
+    ...plugins.langProps.props("notFoundLabel"),
     items: prop.required<Group.Props["items"]>(),
     rootElement: prop<Group.Props["rootElement"]>(),
     searchString: prop<Group.Props["searchString"]>()
@@ -35,7 +35,7 @@ export default defineComponent({
       return sortedItems.value;
     });
 
-    const { notFoundLabel } = plugins.useLangProps(props, "notFoundLabel");
+    const { notFoundLabel } = plugins.langProps(props, "notFoundLabel");
 
     const searchIndex = computed(() =>
       inlineSearch.create("id", ["title"], props.items)

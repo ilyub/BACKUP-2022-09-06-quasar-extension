@@ -1,13 +1,13 @@
-export { useAsyncClick } from "./async-сlick";
+export { asyncClick } from "./async-сlick";
 
-export { useConfirmedClick } from "./confirmed-сlick";
+export { confirmedClick } from "./confirmed-сlick";
 
-export { useDirection } from "./direction";
+export { direction } from "./direction";
 
-export { useLabel } from "./label";
+export { label } from "./label";
 
-export { useLangProps } from "./lang-props";
+export { langProps } from "./lang-props";
 
-export { useSlotNames } from "./slot-names";
+export { slotNames } from "./slot-names";
 
-export { useValidation } from "./validation";
+export { validation } from "./validation";

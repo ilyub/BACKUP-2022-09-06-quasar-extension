@@ -22,7 +22,7 @@ export default defineComponent({
       hasTitle: computed(() => is.not.empty(props.title)),
       icons: Card.icons,
       main: ref(QCard),
-      slotNames: plugins.useSlotNames<Card.Slots>()(
+      slotNames: plugins.slotNames<Card.Slots>()(
         "default",
         "header-actions",
         "title"

@@ -19,7 +19,7 @@ export namespace BaseButton {
   export interface OwnProps {
     readonly disable?: booleanU;
     readonly loading?: booleanU;
-    readonly tooltipDirection?: plugins.useDirection.Direction | undefined;
+    readonly tooltipDirection?: plugins.direction.Direction | undefined;
     readonly type?: stringU;
   }
 
@@ -29,9 +29,9 @@ export namespace BaseButton {
   export interface ParentSlots extends QBtnSlots {}
 
   export interface PluginProps
-    extends plugins.useAsyncClick.Props,
-      plugins.useConfirmedClick.Props,
-      plugins.useLangProps.Props<"label" | "tooltip"> {}
+    extends plugins.asyncClick.Props,
+      plugins.confirmedClick.Props,
+      plugins.langProps.Props<"label" | "tooltip"> {}
 
   export interface Props extends ParentProps, PluginProps, OwnProps {}
 

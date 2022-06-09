@@ -30,7 +30,7 @@ export default defineComponent({
 
     return {
       mainOptions: computed(() => a.clone(props.options)),
-      slotNames: plugins.useSlotNames<OptionGroup.Slots>()()
+      slotNames: plugins.slotNames<OptionGroup.Slots>()()
     };
   }
 });

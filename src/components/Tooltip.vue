@@ -9,12 +9,9 @@ import type { QTooltip } from "quasar";
 
 export default defineComponent({
   name: "m-tooltip",
-  props: {
-    ...parentProps<Tooltip.ParentProps>(),
-    ...plugins.useDirection.props
-  },
+  props: { ...parentProps<Tooltip.ParentProps>(), ...plugins.direction.props },
   setup: props => {
-    const direction = plugins.useDirection(props);
+    const direction = plugins.direction(props);
 
     return {
       anchor: direction.anchor,
@@ -23,7 +20,7 @@ export default defineComponent({
       offset: direction.offset,
       self: direction.self,
       settings: Tooltip.injectSettings(),
-      slotNames: plugins.useSlotNames<Tooltip.Slots>()(),
+      slotNames: plugins.slotNames<Tooltip.Slots>()(),
       transitionHide: direction.transitionHide,
       transitionShow: direction.transitionShow
     };

@@ -12,7 +12,7 @@ export default defineComponent({
   setup: () => {
     return {
       main: ref(QCardSection),
-      slotNames: plugins.useSlotNames<CardSection.Slots>()()
+      slotNames: plugins.slotNames<CardSection.Slots>()()
     };
   }
 });

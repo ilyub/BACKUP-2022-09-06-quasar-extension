@@ -19,7 +19,7 @@ export namespace Tooltip {
 
   export interface ParentSlots extends QTooltipSlots {}
 
-  export interface PluginProps extends plugins.useDirection.Props {}
+  export interface PluginProps extends plugins.direction.Props {}
 
   export interface Props extends ParentProps, PluginProps {}
 

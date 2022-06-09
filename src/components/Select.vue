@@ -19,8 +19,8 @@ export default defineComponent({
   name: "m-select",
   props: {
     ...parentProps<Select.ParentProps>(),
-    ...plugins.useLangProps.props("initialLabel", "label"),
-    ...plugins.useValidation.props,
+    ...plugins.langProps.props("initialLabel", "label"),
+    ...plugins.validation.props,
     disable: prop.boolean(),
     modelValue: prop<Select.Props["modelValue"]>(),
     options: prop.required<Select.Props["options"]>(),
@@ -36,7 +36,7 @@ export default defineComponent({
       props.options.find(option => option.value === props.modelValue)
     );
 
-    const { initialLabel, label } = plugins.useLangProps(
+    const { initialLabel, label } = plugins.langProps(
       props,
       "initialLabel",
       "label"
@@ -44,7 +44,7 @@ export default defineComponent({
 
     const main = ref<QSelect>();
 
-    const validation = plugins.useValidation(
+    const validation = plugins.validation(
       props,
       computed(() => as.not.empty(main.value)),
       computed(() =>
@@ -72,7 +72,7 @@ export default defineComponent({
       label,
       main,
       rules: validation.rules,
-      slotNames: plugins.useSlotNames<Select.Slots>()("label", "selected"),
+      slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
         emit(
           "update:modelValue",

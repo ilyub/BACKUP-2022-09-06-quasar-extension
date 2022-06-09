@@ -5,16 +5,14 @@ import { ref } from "vue";
 import type { SetupProps } from "./core";
 import type { Ref } from "vue";
 
-export const useAsyncClick = defineFn(
+export const asyncClick = defineFn(
   /**
    * Use async click plugin.
    *
    * @param props - Props.
    * @returns Async click plugin.
    */
-  (
-    props: SetupProps<useAsyncClick.Props, "onAsyncClick">
-  ): useAsyncClick.Plugin => {
+  (props: SetupProps<asyncClick.Props, "onAsyncClick">): asyncClick.Plugin => {
     const active = ref(false);
 
     return defineFn(
@@ -37,12 +35,12 @@ export const useAsyncClick = defineFn(
   },
   {
     props: {
-      onAsyncClick: prop<useAsyncClick.Props["onAsyncClick"]>()
+      onAsyncClick: prop<asyncClick.Props["onAsyncClick"]>()
     } as const
   }
 );
 
-export namespace useAsyncClick {
+export namespace asyncClick {
   export interface AsyncClick {
     /**
      * Handles async click.

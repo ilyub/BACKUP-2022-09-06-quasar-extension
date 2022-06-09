@@ -39,7 +39,7 @@ export namespace NumericInput {
     readonly required?: booleanU;
     readonly smallStep?: numberU;
     readonly validationOptions?:
-      | plugins.useValidation.OptionsProp<numberU>
+      | plugins.validation.OptionsProp<numberU>
       | undefined;
   }
 

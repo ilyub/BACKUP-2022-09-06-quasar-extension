@@ -47,8 +47,8 @@ export namespace Select {
   export interface ParentSlots extends QSelectSlots {}
 
   export interface PluginProps<T = unknown>
-    extends plugins.useLangProps.Props<"initialLabel" | "label">,
-      plugins.useValidation.Props<T> {}
+    extends plugins.langProps.Props<"initialLabel" | "label">,
+      plugins.validation.Props<T> {}
 
   export interface Props<T = unknown>
     extends ParentProps,

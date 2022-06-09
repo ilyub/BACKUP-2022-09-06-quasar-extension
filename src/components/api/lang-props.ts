@@ -6,7 +6,7 @@ import type { PropOptions } from "./core";
 import type { Entry, stringU } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 
-export const useLangProps = defineFn(
+export const langProps = defineFn(
   /**
    * Use lang props plugin.
    *
@@ -14,7 +14,7 @@ export const useLangProps = defineFn(
    * @param names - Property names.
    * @returns Lang props plugin.
    */
-  <T extends string>(props: useLangProps.Props<T>, ...names: T[]) => {
+  <T extends string>(props: langProps.Props<T>, ...names: T[]) => {
     const result: Array<Entry<PropertyKey, unknown>> = [];
 
     for (const name of names)
@@ -31,7 +31,7 @@ export const useLangProps = defineFn(
       );
 
     // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
-    return o.fromEntries(result) as useLangProps.Plugin<T>;
+    return o.fromEntries(result) as langProps.Plugin<T>;
   },
   {
     /**
@@ -44,11 +44,11 @@ export const useLangProps = defineFn(
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       o.fromEntries(
         names.map(name => [name, prop()])
-      ) as useLangProps.PropOptionsRecord<T>
+      ) as langProps.PropOptionsRecord<T>
   }
 );
 
-export namespace useLangProps {
+export namespace langProps {
   export type OwnProps<T extends string> = {
     readonly [K in T]?: lang.Transform<lang.Word> | undefined;
   };

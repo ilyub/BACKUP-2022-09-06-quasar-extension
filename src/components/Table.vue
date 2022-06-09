@@ -198,7 +198,7 @@ export default defineComponent({
       showFinalCell: computed(() =>
         props.columns.some(column => is.not.empty(column.width))
       ),
-      slotNames: plugins.useSlotNames<Table.Slots>()(
+      slotNames: plugins.slotNames<Table.Slots>()(
         "body",
         "body-cell",
         "body-cell-context",

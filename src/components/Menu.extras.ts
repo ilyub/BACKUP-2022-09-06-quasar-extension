@@ -10,7 +10,7 @@ export namespace Menu {
 
   export interface ParentSlots extends QMenuSlots {}
 
-  export interface PluginProps extends plugins.useDirection.Props {}
+  export interface PluginProps extends plugins.direction.Props {}
 
   export interface Props extends ParentProps, PluginProps {}
 

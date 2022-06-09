@@ -13,14 +13,14 @@ import type { plugins } from "..";
 export default defineComponent({
   name: "sample-popup-proxy",
   setup: () => {
-    const menuDirection = ref<plugins.useDirection.Direction>();
+    const menuDirection = ref<plugins.direction.Direction>();
 
     const menuShow = ref(false);
 
     const menuTarget = ref("#default");
 
     return {
-      click: (direction: plugins.useDirection.Direction | undefined): void => {
+      click: (direction: plugins.direction.Direction | undefined): void => {
         menuDirection.value = direction;
         menuShow.value = true;
         menuTarget.value = direction ? `#${direction}` : "#default";

@@ -22,11 +22,7 @@ export default defineComponent({
       hasCaption: computed(() => is.not.empty(props.caption)),
       hasIcon: computed(() => is.not.empty(props.icon)),
       main: ref<QItem>(),
-      slotNames: plugins.useSlotNames<Item.Slots>()(
-        "caption",
-        "default",
-        "icon"
-      )
+      slotNames: plugins.slotNames<Item.Slots>()("caption", "default", "icon")
     };
   }
 });

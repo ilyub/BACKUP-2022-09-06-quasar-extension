@@ -10,10 +10,10 @@ import type { ComputedRef } from "vue";
  *
  * @returns Slot names plugin.
  */
-export function useSlotNames<T>() {
+export function slotNames<T>() {
   return function <U extends string & keyof T = never>(
     ...use: U[]
-  ): useSlotNames.Plugin<U> {
+  ): slotNames.Plugin<U> {
     return computed(() => {
       const slots = useSlots();
 
@@ -26,7 +26,7 @@ export function useSlotNames<T>() {
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       const usableSlots = o.fromEntries(
         use.map(name => [_.camelCase(name), name])
-      ) as useSlotNames.UsableSlots<U>;
+      ) as slotNames.UsableSlots<U>;
 
       return {
         has: (name: U): boolean => is.not.empty(slots[name]),
@@ -39,7 +39,7 @@ export function useSlotNames<T>() {
   };
 }
 
-export namespace useSlotNames {
+export namespace slotNames {
   export type Plugin<T extends PropertyKey> = ComputedRef<
     PluginMethods<T> & UsableSlots<T>
   >;

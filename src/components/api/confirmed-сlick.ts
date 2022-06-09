@@ -8,46 +8,46 @@ import type { stringU } from "@skylib/functions";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends useConfirmedClick.Word {}
+      interface Word extends confirmedClick.Word {}
     }
   }
 }
 
-export const useConfirmedClick = defineFn(
+export const confirmedClick = defineFn(
   /**
    * Use confirmed click plugin.
    *
    * @param props - Props.
    * @returns Confirmed click plugin.
    */
-  (props: SetupProps<useConfirmedClick.Props>): useConfirmedClick.Plugin => {
+  (props: SetupProps<confirmedClick.Props>): confirmedClick.Plugin => {
     const $q = useQuasar();
 
-    return confirmedClick;
-
-    function confirmedClick(): void {
+    // eslint-disable-next-line no-warning-comments -- Postponed
+    // fixme -- Without defineFn triggers eslint-plugin-jsdoc warnings
+    return defineFn((): void => {
       if (is.not.empty(props.confirmation))
         $q.dialog({
-          cancel: useConfirmedClick.lang.Cancel,
+          cancel: confirmedClick.lang.Cancel,
           message: props.confirmation,
-          ok: useConfirmedClick.lang.Ok,
+          ok: confirmedClick.lang.Ok,
           persistent: true,
-          title: useConfirmedClick.lang.Confirm
+          title: confirmedClick.lang.Confirm
         }).onOk(() => {
           props.confirmedClick?.();
         });
-    }
+    }, {});
   },
   {
-    lang: typedef<baseLang.Lang<keyof useConfirmedClick.Word, never>>(baseLang),
+    lang: typedef<baseLang.Lang<keyof confirmedClick.Word, never>>(baseLang),
     props: {
-      confirmation: prop<useConfirmedClick.Props["confirmation"]>(),
-      confirmedClick: prop<useConfirmedClick.Props["confirmedClick"]>()
+      confirmation: prop<confirmedClick.Props["confirmation"]>(),
+      confirmedClick: prop<confirmedClick.Props["confirmedClick"]>()
     } as const
   }
 );
 
-export namespace useConfirmedClick {
+export namespace confirmedClick {
   export interface ConfirmedClick {
     /**
      * Handles confirmed click.

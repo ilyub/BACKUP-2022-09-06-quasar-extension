@@ -11,12 +11,12 @@ import type { ComputedRef, Ref } from "vue";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends useValidation.Word {}
+      interface Word extends validation.Word {}
     }
   }
 }
 
-export const useValidation = defineFn(
+export const validation = defineFn(
   /**
    * Use validation plugin.
    *
@@ -26,15 +26,15 @@ export const useValidation = defineFn(
    * @returns Validation plugin.
    */
   <T = unknown>(
-    props: SetupProps<useValidation.Props<T>>,
+    props: SetupProps<validation.Props<T>>,
     target: ComputedRef<QField | QInput>,
-    options: ComputedRef<useValidation.Options<T>>
-  ): useValidation.Plugin<T> => {
-    const contexts = new Map<symbol, useValidation.Context>();
+    options: ComputedRef<validation.Options<T>>
+  ): validation.Plugin<T> => {
+    const contexts = new Map<symbol, validation.Context>();
 
     const label = computed(() =>
       is.not.empty(options.value.label) &&
-      useValidation.lang.has(options.value.label)
+      validation.lang.has(options.value.label)
         ? options.value.label
         : "field"
     );
@@ -65,7 +65,7 @@ export const useValidation = defineFn(
               // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
               // fixme - Use getIfExists
               return is.not.empty(value) && compare(value, min) < 0
-                ? useValidation.lang
+                ? validation.lang
                     .with("field", label.value)
                     .with("min", minMaxFormat(min))
                     .get(message)
@@ -89,7 +89,7 @@ export const useValidation = defineFn(
               // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
               // fixme - Use getIfExists
               return is.not.empty(value) && compare(value, max) > 0
-                ? useValidation.lang
+                ? validation.lang
                     .with("field", label.value)
                     .with("max", minMaxFormat(max))
                     .get(message)
@@ -115,14 +115,14 @@ export const useValidation = defineFn(
               // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
               // fixme - Use getIfExists
               return value === undefined
-                ? useValidation.lang.with("field", label.value).get(message)
+                ? validation.lang.with("field", label.value).get(message)
                 : true;
             }, "submit")
           ]
         : []
     );
 
-    useValidation.reset.watch(() => {
+    validation.reset.watch(() => {
       for (const rule of [...rulesOnChange.value, ...rulesOnSubmit.value])
         rule.state.value = true;
     });
@@ -136,7 +136,7 @@ export const useValidation = defineFn(
         ...rulesOnSubmitRequired.value,
         ...rulesOnSubmit.value
       ]),
-      validate: (value: T, context: useValidation.Context): void => {
+      validate: (value: T, context: validation.Context): void => {
         handlePromise.silent(async () => {
           const key = Symbol("validation-context");
 
@@ -151,13 +151,13 @@ export const useValidation = defineFn(
       }
     };
 
-    interface RuleWrapper extends useValidation.Rule {
+    interface RuleWrapper extends validation.Rule {
       readonly state: Ref<string | true>;
     }
 
     function wrapRule(
-      rule: useValidation.Rule<T>,
-      context: useValidation.Context
+      rule: validation.Rule<T>,
+      context: validation.Context
     ): RuleWrapper {
       const state = ref<string | true>(true);
 
@@ -180,17 +180,17 @@ export const useValidation = defineFn(
     }
   },
   {
-    lang: typedef<lang.Lang<keyof useValidation.Word, never>>(lang),
+    lang: typedef<lang.Lang<keyof validation.Word, never>>(lang),
     props: {
-      rulesOnChange: prop<useValidation.Props["rulesOnChange"]>(),
-      rulesOnInput: prop<useValidation.Props["rulesOnInput"]>(),
-      rulesOnSubmit: prop<useValidation.Props["rulesOnSubmit"]>()
+      rulesOnChange: prop<validation.Props["rulesOnChange"]>(),
+      rulesOnInput: prop<validation.Props["rulesOnInput"]>(),
+      rulesOnSubmit: prop<validation.Props["rulesOnSubmit"]>()
     } as const,
     reset: trigger()
   }
 );
 
-export namespace useValidation {
+export namespace validation {
   export type Context = "change" | "input" | "submit";
 
   export interface Options<T = unknown> {

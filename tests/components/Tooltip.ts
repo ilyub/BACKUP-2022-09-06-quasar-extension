@@ -4,7 +4,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import { QTooltip } from "quasar";
 import type { plugins } from "@";
 
-test.each<plugins.useDirection.Direction | undefined>([
+test.each<plugins.direction.Direction | undefined>([
   undefined,
   "down",
   "down-left",

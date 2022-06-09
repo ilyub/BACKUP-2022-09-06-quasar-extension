@@ -20,8 +20,8 @@ export default defineComponent({
   name: "m-field",
   props: {
     ...parentProps<Field.ParentProps>(),
-    ...plugins.useLabel.props,
-    ...plugins.useValidation.props,
+    ...plugins.label.props,
+    ...plugins.validation.props,
     disable: prop.boolean(),
     focusableElement: prop<Field.Props["focusableElement"]>(),
     modelValue: prop<Field.Props["modelValue"]>(),
@@ -34,11 +34,11 @@ export default defineComponent({
     validateEmit<Field.OwnProps>(emit);
     validateProps<Field.OwnProps>(props);
 
-    const { label, labelKey } = plugins.useLabel(props);
+    const { label, labelKey } = plugins.label(props);
 
     const main = ref<QField>();
 
-    const validation = plugins.useValidation(
+    const validation = plugins.validation(
       props,
       computed(() => as.not.empty(main.value)),
       computed(() =>
@@ -62,7 +62,7 @@ export default defineComponent({
       label,
       main,
       rules: validation.rules,
-      slotNames: plugins.useSlotNames<Field.Slots>()("control", "label"),
+      slotNames: plugins.slotNames<Field.Slots>()("control", "label"),
       update: (value: NumStrE): void => {
         emit("update:modelValue", value);
         validation.validate(value, "input");

@@ -18,7 +18,7 @@ export default defineComponent({
   name: "m-toggle",
   props: {
     ...parentProps<Toggle.ParentProps>(),
-    ...plugins.useLabel.props,
+    ...plugins.label.props,
     disable: prop.boolean(),
     modelValue: prop.boolean()
   },
@@ -27,13 +27,13 @@ export default defineComponent({
     validateEmit<Toggle.OwnProps>(emit);
     validateProps<Toggle.OwnProps>(props);
 
-    const { label } = plugins.useLabel(props);
+    const { label } = plugins.label(props);
 
     return {
       globalDisable: injections.disable.inject(),
       label,
       main: ref<QToggle>(),
-      slotNames: plugins.useSlotNames<Toggle.Slots>()()
+      slotNames: plugins.slotNames<Toggle.Slots>()()
     };
   }
 });

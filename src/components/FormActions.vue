@@ -10,7 +10,7 @@ export default defineComponent({
   setup: () => {
     return {
       main: ref<Switchable.Global>(),
-      slotNames: plugins.useSlotNames<FormActions.Slots>()()
+      slotNames: plugins.slotNames<FormActions.Slots>()()
     };
   }
 });

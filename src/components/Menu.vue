@@ -10,9 +10,9 @@ import type { QMenu } from "quasar";
 
 export default defineComponent({
   name: "m-menu",
-  props: { ...parentProps<Menu.ParentProps>(), ...plugins.useDirection.props },
+  props: { ...parentProps<Menu.ParentProps>(), ...plugins.direction.props },
   setup: props => {
-    const direction = plugins.useDirection(props);
+    const direction = plugins.direction(props);
 
     return {
       anchor: direction.anchor,
@@ -20,7 +20,7 @@ export default defineComponent({
       main: ref<QMenu>(),
       offset: direction.offset,
       self: direction.self,
-      slotNames: plugins.useSlotNames<Button.Slots>()()
+      slotNames: plugins.slotNames<Button.Slots>()()
     };
   }
 });

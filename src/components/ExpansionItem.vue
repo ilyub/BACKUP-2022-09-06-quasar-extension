@@ -10,15 +10,15 @@ export default defineComponent({
   name: "m-expansion-item",
   props: {
     ...parentProps<ExpansionItem.ParentProps>(),
-    ...plugins.useLabel.props
+    ...plugins.label.props
   },
   setup: props => {
-    const { label } = plugins.useLabel(props);
+    const { label } = plugins.label(props);
 
     return {
       label,
       main: ref(QExpansionItem),
-      slotNames: plugins.useSlotNames<ExpansionItem.Slots>()()
+      slotNames: plugins.slotNames<ExpansionItem.Slots>()()
     };
   }
 });

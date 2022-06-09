@@ -11,9 +11,9 @@ export default defineComponent({
   name: "m-base-button",
   props: {
     ...parentProps<BaseButton.ParentProps>(),
-    ...plugins.useAsyncClick.props,
-    ...plugins.useConfirmedClick.props,
-    ...plugins.useLangProps.props("label", "tooltip"),
+    ...plugins.asyncClick.props,
+    ...plugins.confirmedClick.props,
+    ...plugins.langProps.props("label", "tooltip"),
     disable: prop.boolean(),
     loading: prop.boolean(),
     tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>(),
@@ -22,11 +22,11 @@ export default defineComponent({
   setup: props => {
     validateProps<BaseButton.OwnProps>(props);
 
-    const { label, tooltip } = plugins.useLangProps(props, "label", "tooltip");
+    const { label, tooltip } = plugins.langProps(props, "label", "tooltip");
 
-    const asyncClick = plugins.useAsyncClick(props);
+    const asyncClick = plugins.asyncClick(props);
 
-    const confirmedClick = plugins.useConfirmedClick(props);
+    const confirmedClick = plugins.confirmedClick(props);
 
     const disable = computed(() => props.disable && globalDisable.value);
 
@@ -57,7 +57,7 @@ export default defineComponent({
           (submitting.value && settings.value.animateSubmitting) ||
           (asyncClick.active.value && settings.value.animateAsyncClick)
       ),
-      slotNames: plugins.useSlotNames<BaseButton.Slots>()("default"),
+      slotNames: plugins.slotNames<BaseButton.Slots>()("default"),
       tooltip
     };
   }

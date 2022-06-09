@@ -7,13 +7,13 @@ export default defineComponent({
   name: "m-menu-item",
   props: {
     ...parentProps<Item.ParentProps>(),
-    ...plugins.useConfirmedClick.props
+    ...plugins.confirmedClick.props
   },
   setup: props => {
     return {
-      confirmedClick: plugins.useConfirmedClick(props),
+      confirmedClick: plugins.confirmedClick(props),
       main: ref<Item.Global>(),
-      slotNames: plugins.useSlotNames<Item.Slots>()()
+      slotNames: plugins.slotNames<Item.Slots>()()
     };
   }
 });

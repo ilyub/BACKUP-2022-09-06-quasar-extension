@@ -45,8 +45,8 @@ export default defineComponent({
         emitValue(cast.stringU(o.get(as.not.empty(event.target), "value")));
       },
       main,
-      slotNames: plugins.useSlotNames<Input.Slots>()("control"),
-      validationOptions: typedef<plugins.useValidation.Options<stringU>>({
+      slotNames: plugins.slotNames<Input.Slots>()("control"),
+      validationOptions: typedef<plugins.validation.Options<stringU>>({
         format: (value: unknown): stringU => cast.stringU(value)
       })
     };

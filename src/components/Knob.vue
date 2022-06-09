@@ -30,7 +30,7 @@ export default defineComponent({
     return {
       globalDisable: injections.disable.inject(),
       main: ref<QKnob>(),
-      slotNames: plugins.useSlotNames<Knob.Slots>()()
+      slotNames: plugins.slotNames<Knob.Slots>()()
     };
   }
 });

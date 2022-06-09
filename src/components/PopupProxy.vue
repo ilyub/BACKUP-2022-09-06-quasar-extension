@@ -18,17 +18,17 @@ export default defineComponent({
   },
   props: {
     ...parentProps<PopupProxy.ParentProps>(),
-    ...plugins.useDirection.props
+    ...plugins.direction.props
   },
   setup: props => {
-    const direction = plugins.useDirection(props);
+    const direction = plugins.direction(props);
 
     return {
       anchor: direction.anchor,
       main: ref<QPopupProxy>(),
       offset: direction.offset,
       self: direction.self,
-      slotNames: plugins.useSlotNames<PopupProxy.Slots>()()
+      slotNames: plugins.slotNames<PopupProxy.Slots>()()
     };
   }
 });

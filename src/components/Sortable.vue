@@ -98,7 +98,7 @@ export default defineComponent({
         disableTooltips.value = false;
       },
       settings,
-      slotNames: plugins.useSlotNames<Sortable.Slots>()(
+      slotNames: plugins.slotNames<Sortable.Slots>()(
         "footer",
         "header",
         "item"

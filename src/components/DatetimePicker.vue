@@ -137,7 +137,7 @@ export default defineComponent({
       mainUpdate: (value: stringU): void => {
         if (is.empty(value)) emit("update:modelValue", undefined);
       },
-      mainValidationOptions: typedef<plugins.useValidation.Options<stringU>>({
+      mainValidationOptions: typedef<plugins.validation.Options<stringU>>({
         format: (value: unknown): stringU => cast.stringU(value)
       }),
       mainValue: computed(() =>
@@ -173,7 +173,7 @@ export default defineComponent({
         emit("update:modelValue", pickerObject.value?.toString());
       },
       showDialog,
-      slotNames: plugins.useSlotNames<DatetimePicker.Slots>()(
+      slotNames: plugins.slotNames<DatetimePicker.Slots>()(
         "append",
         "control",
         "prepend"

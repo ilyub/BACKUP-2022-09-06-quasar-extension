@@ -4,19 +4,19 @@ import { computed } from "vue";
 import type { SetupProps } from "./core";
 import type { ComputedRef } from "vue";
 
-export const useDirection = defineFn(
+export const direction = defineFn(
   /**
    * Use direction plugin.
    *
    * @param props - Props.
    * @returns Direction plugin.
    */
-  (props: SetupProps<useDirection.Props>): useDirection.Plugin => {
-    const direction = computed(() => props.direction ?? "down-right");
+  (props: SetupProps<direction.Props>): direction.Plugin => {
+    const dir = computed(() => props.direction ?? "down-right");
 
     return {
       anchor: computed(() => {
-        switch (direction.value) {
+        switch (dir.value) {
           case "down":
             return "bottom middle";
 
@@ -55,7 +55,7 @@ export const useDirection = defineFn(
         }
       }),
       offset: computed(() => {
-        switch (direction.value) {
+        switch (dir.value) {
           case "down":
           case "down-left":
           case "down-right":
@@ -78,7 +78,7 @@ export const useDirection = defineFn(
         }
       }),
       self: computed(() => {
-        switch (direction.value) {
+        switch (dir.value) {
           case "down":
             return "top middle";
 
@@ -117,7 +117,7 @@ export const useDirection = defineFn(
         }
       }),
       transitionHide: computed(() => {
-        switch (direction.value) {
+        switch (dir.value) {
           case "down":
           case "down-left":
           case "down-right":
@@ -140,7 +140,7 @@ export const useDirection = defineFn(
         }
       }),
       transitionShow: computed(() => {
-        switch (direction.value) {
+        switch (dir.value) {
           case "down":
           case "down-left":
           case "down-right":
@@ -166,12 +166,12 @@ export const useDirection = defineFn(
   },
   {
     props: {
-      direction: prop<useDirection.Props["direction"]>()
+      direction: prop<direction.Props["direction"]>()
     } as const
   }
 );
 
-export namespace useDirection {
+export namespace direction {
   export type Coupling =
     | "bottom left"
     | "bottom middle"

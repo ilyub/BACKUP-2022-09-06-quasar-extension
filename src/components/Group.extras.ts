@@ -20,7 +20,7 @@ export namespace Group {
   }
 
   export interface PluginProps
-    extends plugins.useLangProps.Props<"notFoundLabel"> {}
+    extends plugins.langProps.Props<"notFoundLabel"> {}
 
   export interface Props<T extends string = string>
     extends PluginProps,

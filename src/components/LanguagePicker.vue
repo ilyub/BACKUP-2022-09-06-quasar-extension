@@ -27,7 +27,7 @@ export default defineComponent({
       ),
       main: ref<IconButton.Global>(),
       settings,
-      slotNames: plugins.useSlotNames<LanguagePicker.Slots>()("default")
+      slotNames: plugins.slotNames<LanguagePicker.Slots>()("default")
     };
   }
 });

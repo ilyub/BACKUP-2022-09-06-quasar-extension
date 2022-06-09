@@ -72,7 +72,7 @@ export default defineComponent({
         emitValue(cast.numberU(o.get(as.not.empty(event.target), "value")));
       },
       main,
-      mainValidationOptions: computed<plugins.useValidation.Options<numberU>>(
+      mainValidationOptions: computed<plugins.validation.Options<numberU>>(
         () => {
           return {
             format: (value: unknown): numberU => cast.numberU(value),
@@ -82,7 +82,7 @@ export default defineComponent({
           };
         }
       ),
-      slotNames: plugins.useSlotNames<NumericInput.Slots>()(
+      slotNames: plugins.slotNames<NumericInput.Slots>()(
         "append",
         "control",
         "prepend"

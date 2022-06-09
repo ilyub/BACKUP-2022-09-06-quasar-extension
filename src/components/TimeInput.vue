@@ -63,8 +63,8 @@ export default defineComponent({
       inputValue,
       main: ref<NumericInput.Global>(),
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
-      slotNames: plugins.useSlotNames<TimeInput.Slots>()("control"),
-      validationOptions: typedef<plugins.useValidation.Options<numberU>>({
+      slotNames: plugins.slotNames<TimeInput.Slots>()("control"),
+      validationOptions: typedef<plugins.validation.Options<numberU>>({
         format: (value: unknown): numberU => cast.numberU(value),
         minMaxFormat: format
       })

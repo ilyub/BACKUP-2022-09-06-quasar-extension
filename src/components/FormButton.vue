@@ -10,7 +10,7 @@ export default defineComponent({
   setup: () => {
     return {
       main: ref<BaseButton.Global>(),
-      slotNames: plugins.useSlotNames<FormButton.Slots>()()
+      slotNames: plugins.slotNames<FormButton.Slots>()()
     };
   }
 });
