@@ -3,7 +3,6 @@ import { lang as baseLang } from "@skylib/facades";
 import { defineFn, is, typedef } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import type { SetupProps } from "./core";
-import type { stringU } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -29,7 +28,7 @@ export const confirmedClick = defineFn(
       if (is.not.empty(props.confirmation))
         $q.dialog({
           cancel: confirmedClick.lang.Cancel,
-          message: props.confirmation,
+          message: baseLang.get(props.confirmation),
           ok: confirmedClick.lang.Ok,
           persistent: true,
           title: confirmedClick.lang.Confirm
@@ -56,7 +55,7 @@ export namespace confirmedClick {
   }
 
   export interface OwnProps {
-    readonly confirmation?: stringU;
+    readonly confirmation?: baseLang.Key | undefined;
     /**
      * Handles confirmed click.
      */

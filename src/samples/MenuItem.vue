@@ -11,10 +11,10 @@ export default defineComponent({
 
     return {
       click: (): void => {
-        $q.notify("Click");
+        $q.notify(MenuItem.lang.Click);
       },
       confirmedClick: (): void => {
-        $q.notify("Confirmed click");
+        $q.notify(MenuItem.lang.ConfirmedClick);
       },
       lk: MenuItem.lang.keys,
       mdiAccount,
@@ -33,7 +33,7 @@ export default defineComponent({
           <m-menu-item :caption="lk.Click" :icon="mdiPen" @click="click" />
           <m-menu-item
             :caption="lk.ConfirmedClick"
-            confirmation="Confirmation message"
+            :confirmation="lk.ConfirmationMessage"
             :confirmed-click="confirmedClick"
             :icon="mdiPenPlus"
           />

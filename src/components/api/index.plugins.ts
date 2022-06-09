@@ -1,6 +1,6 @@
-export { asyncClick } from "./async-сlick";
+export { asyncClick } from "./async-click";
 
-export { confirmedClick } from "./confirmed-сlick";
+export { confirmedClick } from "./confirmed-click";
 
 export { direction } from "./direction";
 

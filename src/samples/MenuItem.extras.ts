@@ -13,6 +13,7 @@ export namespace MenuItem {
 
   export interface Word {
     readonly Click: true;
+    readonly ConfirmationMessage: true;
     readonly ConfirmedClick: true;
   }
 }

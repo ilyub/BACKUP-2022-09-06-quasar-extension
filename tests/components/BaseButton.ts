@@ -14,7 +14,7 @@ test("prop: confirmation, confirmedClick", async () => {
 
   const wrapper = vueTestUtils.mount(components.BaseButton, {
     global: testUtils.globalMountOptions(),
-    props: { confirmation: "Sample confirmation" }
+    props: { confirmation: "plain:Sample confirmation" }
   });
 
   wrapper.vm.$q.dialog = (): DialogChainObject => {

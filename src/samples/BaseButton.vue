@@ -64,7 +64,7 @@ export default defineComponent({
   </m-page-section>
   <m-page-section>
     <m-base-button
-      confirmation="ConfirmationMessage"
+      :confirmation="lk.ConfirmationMessage"
       :confirmed-click="confirmedClick"
       :label="lk.ConfirmedClick"
     />
