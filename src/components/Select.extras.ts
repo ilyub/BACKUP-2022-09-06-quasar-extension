@@ -29,7 +29,6 @@ export namespace Select {
 
   export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
-    readonly initialLabel?: baseLang.Transform<baseLang.Word> | undefined;
     readonly modelValue?: T | undefined;
     /**
      * Emits model value.
@@ -48,7 +47,7 @@ export namespace Select {
   export interface ParentSlots extends QSelectSlots {}
 
   export interface PluginProps<T = unknown>
-    extends plugins.useLabel.Props,
+    extends plugins.useLangProps.Props<"initialLabel" | "label">,
       plugins.useValidation.Props<T> {}
 
   export interface Props<T = unknown>

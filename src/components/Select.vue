@@ -11,7 +11,6 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { lang } from "@skylib/facades";
 import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
@@ -20,10 +19,9 @@ export default defineComponent({
   name: "m-select",
   props: {
     ...parentProps<Select.ParentProps>(),
-    ...plugins.useLabel.props,
+    ...plugins.useLangProps.props("initialLabel", "label"),
     ...plugins.useValidation.props,
     disable: prop.boolean(),
-    initialLabel: prop<Select.Props["initialLabel"]>(),
     modelValue: prop<Select.Props["modelValue"]>(),
     options: prop.required<Select.Props["options"]>(),
     required: prop.boolean(),
@@ -38,7 +36,11 @@ export default defineComponent({
       props.options.find(option => option.value === props.modelValue)
     );
 
-    const label = plugins.useLabel(props);
+    const { initialLabel, label } = plugins.useLangProps(
+      props,
+      "initialLabel",
+      "label"
+    );
 
     const main = ref<QSelect>();
 
@@ -50,8 +52,6 @@ export default defineComponent({
           format: fn.identity,
           label: props.validationLabel,
           required: props.required,
-          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-          // fixme - Use lang.keys.SelectField instead of "SelectField"
           requiredErrorMessage: Select.lang.keys.SelectField
         })
       )
@@ -61,16 +61,9 @@ export default defineComponent({
       blur: (): void => {
         validation.validate(props.modelValue, "change");
       },
-      displayValue: computed(() => {
-        if (selectedOption.value) return selectedOption.value.label;
-
-        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-        // fixme - Use "getIfExists"
-        if (is.not.empty(props.initialLabel))
-          return lang.get(props.initialLabel);
-
-        return undefined;
-      }),
+      displayValue: computed(() =>
+        selectedOption.value ? selectedOption.value.label : initialLabel.value
+      ),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
       displayValueShowRequired: computed(
         () => is.empty(label.value) && is.empty(selectedOption.value)
