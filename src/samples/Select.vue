@@ -24,6 +24,7 @@ export default defineComponent({
 
     return {
       form,
+      lang: Select.lang,
       lk: Select.lang.keys,
       options: typedef<extras.Select.Options<Color>>([
         { label: "Blue", value: "blue" },
@@ -80,9 +81,11 @@ export default defineComponent({
         <m-select__value disable initial-label="Disabled" :options="options" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button type="submit">Submit</m-form-button>
-        <m-form-button @click="reset">Reset</m-form-button>
-        <m-form-button @click="resetValidation">Reset validation</m-form-button>
+        <m-form-button type="submit">{{ lang.Submit }}</m-form-button>
+        <m-form-button @click="reset">{{ lang.Reset }}</m-form-button>
+        <m-form-button @click="resetValidation">
+          {{ lang.ResetValidation }}
+        </m-form-button>
       </m-form-actions>
     </m-form>
   </m-page-section>

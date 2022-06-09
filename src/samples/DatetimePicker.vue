@@ -21,6 +21,7 @@ export default defineComponent({
 
     return {
       form,
+      lang: DatetimePicker.lang,
       lk: DatetimePicker.lang.keys,
       max: datetime
         .create()
@@ -98,9 +99,11 @@ export default defineComponent({
         <m-datetime-picker disable :label="lk.Disabled" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button type="submit">Submit</m-form-button>
-        <m-form-button @click="reset">Reset</m-form-button>
-        <m-form-button @click="resetValidation">Reset validation</m-form-button>
+        <m-form-button type="submit">{{ lang.Submit }}</m-form-button>
+        <m-form-button @click="reset">{{ lang.Reset }}</m-form-button>
+        <m-form-button @click="resetValidation">
+          {{ lang.ResetValidation }}
+        </m-form-button>
       </m-form-actions>
     </m-form>
   </m-page-section>

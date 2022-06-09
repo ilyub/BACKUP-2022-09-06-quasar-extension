@@ -85,6 +85,7 @@ export default defineComponent({
       ]),
       columnsOrder,
       hiddenColumns,
+      lang: Table.lang,
       lk: Table.lang.keys,
       manageColumns,
       multiSelect,
@@ -127,7 +128,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-page-layout :class="$style['page-layout']" title="Title">
+    <m-page-layout :class="$style['page-layout']" :title="lk.Title">
       <template #fit>
         <items-table
           v-model:columnWidths="columnWidths"
@@ -197,10 +198,10 @@ export default defineComponent({
                 :model-value="allSelected"
                 @update:model-value="toggleSelection"
               />
-              {{ selected.length }} selected
+              {{ selected.length }} {{ lang.selected }}
             </template>
             <q-space />
-            {{ rows.length }} out of {{ total }}
+            {{ rows.length }} {{ lang.outOf }} {{ total }}
           </template>
         </items-table>
       </template>

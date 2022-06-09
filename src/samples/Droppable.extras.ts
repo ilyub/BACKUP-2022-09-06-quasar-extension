@@ -14,5 +14,6 @@ export namespace Droppable {
   export interface Word {
     readonly DisableDropping: true;
     readonly DisableSorting: true;
+    readonly SampleTooltip: true;
   }
 }

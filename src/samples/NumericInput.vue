@@ -22,6 +22,7 @@ export default defineComponent({
 
     return {
       form,
+      lang: NumericInput.lang,
       lk: NumericInput.lang.keys,
       reset: (): void => {
         value1.value = undefined;
@@ -97,9 +98,11 @@ export default defineComponent({
         <m-numeric-input :big-step="15" disable :label="lk.Disabled" />
       </m-form-section>
       <m-form-actions>
-        <m-form-button type="submit">Submit</m-form-button>
-        <m-form-button @click="reset">Reset</m-form-button>
-        <m-form-button @click="resetValidation">Reset validation</m-form-button>
+        <m-form-button type="submit">{{ lang.Submit }}</m-form-button>
+        <m-form-button @click="reset">{{ lang.Reset }}</m-form-button>
+        <m-form-button @click="resetValidation">
+          {{ lang.ResetValidation }}
+        </m-form-button>
       </m-form-actions>
     </m-form>
   </m-page-section>

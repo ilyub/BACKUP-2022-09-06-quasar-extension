@@ -15,7 +15,13 @@ export namespace PageLayout {
     readonly CloseButton: true;
     readonly CloseButtonOff: true;
     readonly CloseButtonOn: true;
+    readonly End: true;
+    readonly Footer: true;
+    readonly Header: true;
     readonly Scrollbar: true;
+    readonly Start: true;
+    readonly StickyFooter: true;
+    readonly StickyHeader: true;
     readonly Title: true;
   }
 }

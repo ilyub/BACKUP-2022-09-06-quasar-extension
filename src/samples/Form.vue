@@ -12,13 +12,13 @@ export default defineComponent({
     return {
       asyncSubmit: async (): Promise<void> => {
         await wait(2000);
-        $q.notify("Async submit");
+        $q.notify(Form.lang.AsyncSubmit);
       },
       lk: Form.lang.keys,
       name1: ref<string>(),
       name2: ref<string>(),
       submit: (): void => {
-        $q.notify("Submit");
+        $q.notify(Form.lang.Submit);
       }
     };
   }

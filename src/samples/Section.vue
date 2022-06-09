@@ -1,13 +1,19 @@
 <script lang="ts">
+import { Section } from "./Section.extras";
 import { defineComponent } from "vue";
 
-export default defineComponent({ name: "sample-section" });
+export default defineComponent({
+  name: "sample-section",
+  setup: () => {
+    return { lang: Section.lang };
+  }
+});
 </script>
 
 <template>
   <m-page-section>
-    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
-    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
-    <m-section class="bg-grey-3 q-pa-md">Content</m-section>
+    <m-section class="bg-grey-3 q-pa-md">{{ lang.Content }}</m-section>
+    <m-section class="bg-grey-3 q-pa-md">{{ lang.Content }}</m-section>
+    <m-section class="bg-grey-3 q-pa-md">{{ lang.Content }}</m-section>
   </m-page-section>
 </template>

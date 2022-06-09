@@ -12,6 +12,7 @@ export default defineComponent({
       closeButton: pageLayoutCloseButton,
       closeButtonOff: ref(false),
       closeButtonOn: ref(false),
+      lang: PageLayout.lang,
       lk: PageLayout.lang.keys,
       scrollbar: ref(true),
       title: ref(true)
@@ -29,11 +30,11 @@ export default defineComponent({
       :title="title ? lk.Title : undefined"
     >
       <template #header>
-        <div class="bg-green q-pa-md">Header</div>
+        <div class="bg-green q-pa-md">{{ lang.Header }}</div>
       </template>
       <template #sticky-header>
         <div class="bg-yellow q-pa-md">
-          <m-subsection>Sticky header</m-subsection>
+          <m-subsection>{{ lang.StickyHeader }}</m-subsection>
           <m-subsection>
             <m-toggle v-model="title" :label="lk.Title" />
           </m-subsection>
@@ -52,18 +53,18 @@ export default defineComponent({
         </div>
       </template>
       <template #default>
-        Start
+        {{ lang.Start }}
         <div
           class="q-pa-md"
           :style="{ height: scrollbar ? '1000px' : 'auto' }"
         ></div>
-        End
+        {{ lang.End }}
       </template>
       <template #sticky-footer>
-        <div class="bg-yellow q-pa-md">Sticky footer</div>
+        <div class="bg-yellow q-pa-md">{{ lang.StickyFooter }}</div>
       </template>
       <template #footer>
-        <div class="bg-green q-pa-md">Footer</div>
+        <div class="bg-green q-pa-md">{{ lang.Footer }}</div>
       </template>
     </m-page-layout>
   </m-page-section>

@@ -18,6 +18,7 @@ export default defineComponent({
 
     return {
       disable: ref(false),
+      lang: Switchable.lang,
       lk: Switchable.lang.keys,
       sampleKnob: ref(5),
       sampleToggle: ref(false),
@@ -33,7 +34,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    Transition:
+    {{ lang.Transition }}:
     <value-option-group
       v-model="switchableTransition"
       inline
@@ -47,7 +48,7 @@ export default defineComponent({
     <m-section>
       <m-switchable :disable="disable" indent>
         <m-subsection>
-          Sample knob:
+          {{ lang.SampleKnob }}:
           <m-knob v-model="sampleKnob" inline :max="10" :step="1" />
         </m-subsection>
         <m-subsection>

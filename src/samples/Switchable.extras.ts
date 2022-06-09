@@ -13,6 +13,8 @@ export namespace Switchable {
 
   export interface Word {
     readonly Disable: true;
+    readonly SampleKnob: true;
     readonly SampleToggle: true;
+    readonly Transition: true;
   }
 }

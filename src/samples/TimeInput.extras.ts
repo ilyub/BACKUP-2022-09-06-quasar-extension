@@ -14,6 +14,9 @@ export namespace TimeInput {
   export interface Word {
     readonly Disabled: true;
     readonly Placeholder: true;
+    readonly Reset: true;
+    readonly ResetValidation: true;
+    readonly Submit: true;
     readonly Time: true;
     readonly ValidateOnChange: true;
     readonly ValidateOnInput: true;

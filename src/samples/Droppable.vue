@@ -37,6 +37,7 @@ export default defineComponent({
       dropped: (item: Item, group: string): void => {
         $q.notify(json.encode({ group, item }));
       },
+      lang: Droppable.lang,
       lk: Droppable.lang.keys,
       sortable1: ref([
         { id: "a", name: "A" },
@@ -69,7 +70,7 @@ export default defineComponent({
     >
       <template #item="{ item }">
         {{ sortableName(item) }}
-        <m-tooltip>Sample tooltip</m-tooltip>
+        <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
     </m-sortable-items>
   </m-page-section>
@@ -85,14 +86,12 @@ export default defineComponent({
     >
       <template #item="{ item }">
         {{ sortableName(item) }}
-        <m-tooltip>Sample tooltip</m-tooltip>
+        <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
     </m-sortable-items>
   </m-page-section>
   <m-page-section>
-    <m-droppable-items :class="$style.droppable" @dropped="dropped">
-      D
-    </m-droppable-items>
+    <m-droppable-items :class="$style.droppable" @dropped="dropped" />
   </m-page-section>
 </template>
 

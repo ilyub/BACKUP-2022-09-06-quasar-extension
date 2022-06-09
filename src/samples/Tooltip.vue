@@ -16,6 +16,7 @@ export default defineComponent({
     const { tooltipDelay, tooltipShow } = useInjections();
 
     return {
+      lang: Tooltip.lang,
       lk: Tooltip.lang.keys,
       mdiArrowDown,
       mdiArrowLeft,
@@ -35,7 +36,7 @@ export default defineComponent({
       <m-toggle v-model="tooltipShow" :label="lk.ShowTooltips" />
     </m-subsection>
     <m-subsection indent>
-      with delay of
+      {{ lang.withDelayOf }}
       <m-knob
         v-model="tooltipDelay"
         :disable="!tooltipShow"
@@ -43,7 +44,7 @@ export default defineComponent({
         :max="3000"
         :step="100"
       />
-      ms
+      {{ lang.ms }}
     </m-subsection>
   </m-page-section>
   <m-page-section>
@@ -55,62 +56,70 @@ export default defineComponent({
               <m-item :caption="lk.MenuItem" />
             </q-list>
           </m-menu>
-          <m-tooltip>Sample tooltip</m-tooltip>
+          <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowDown">
-          <m-tooltip>Down tooltip</m-tooltip>
+          <m-tooltip>{{ lang.DownTooltip }}</m-tooltip>
         </m-icon-button>
       </m-icon-buttons-group>
     </m-subsection>
     <m-subsection>
       <m-icon-buttons-group>
         <m-icon-button :icon="mdiArrowDown">
-          <m-tooltip direction="down">Down tooltip</m-tooltip>
+          <m-tooltip direction="down">{{ lang.DownTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowDown">
-          <m-tooltip direction="down-left">Down-left tooltip</m-tooltip>
+          <m-tooltip direction="down-left">
+            {{ lang.DownLeftTooltip }}
+          </m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowDown">
-          <m-tooltip direction="down-right">Down-right tooltip</m-tooltip>
+          <m-tooltip direction="down-right">
+            {{ lang.DownRightTooltip }}
+          </m-tooltip>
         </m-icon-button>
       </m-icon-buttons-group>
     </m-subsection>
     <m-subsection>
       <m-icon-buttons-group>
         <m-icon-button :icon="mdiArrowLeft">
-          <m-tooltip direction="left">Left tooltip</m-tooltip>
+          <m-tooltip direction="left">{{ lang.LeftTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowLeft">
-          <m-tooltip direction="left-down">Left-down tooltip</m-tooltip>
+          <m-tooltip direction="left-down">
+            {{ lang.LeftDownTooltip }}
+          </m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowLeft">
-          <m-tooltip direction="left-up">Left-up tooltip</m-tooltip>
+          <m-tooltip direction="left-up">{{ lang.LeftUpTooltip }}</m-tooltip>
         </m-icon-button>
       </m-icon-buttons-group>
     </m-subsection>
     <m-subsection>
       <m-icon-buttons-group>
         <m-icon-button :icon="mdiArrowRight">
-          <m-tooltip direction="right">Right tooltip</m-tooltip>
+          <m-tooltip direction="right">{{ lang.RightTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowRight">
-          <m-tooltip direction="right-down">Right-down tooltip</m-tooltip>
+          <m-tooltip direction="right-down">
+            {{ lang.RightDownTooltip }}
+          </m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowRight">
-          <m-tooltip direction="right-up">Right-up tooltip</m-tooltip>
+          <m-tooltip direction="right-up">{{ lang.RightUpTooltip }}</m-tooltip>
         </m-icon-button>
       </m-icon-buttons-group>
     </m-subsection>
     <m-subsection>
       <m-icon-buttons-group>
         <m-icon-button :icon="mdiArrowUp">
-          <m-tooltip direction="up">Up tooltip</m-tooltip>
+          <m-tooltip direction="up">{{ lang.UpTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowUp">
-          <m-tooltip direction="up-left">Up-left tooltip</m-tooltip>
+          <m-tooltip direction="up-left">{{ lang.UpLeftTooltip }}</m-tooltip>
         </m-icon-button>
         <m-icon-button :icon="mdiArrowUp">
-          <m-tooltip direction="up-right">Up-right tooltip</m-tooltip>
+          <m-tooltip direction="up-right">{{ lang.UpRightTooltip }}</m-tooltip>
         </m-icon-button>
       </m-icon-buttons-group>
     </m-subsection>

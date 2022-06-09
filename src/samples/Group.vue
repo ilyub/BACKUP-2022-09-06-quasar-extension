@@ -41,6 +41,7 @@ export default defineComponent({
           title: "Section 12 ddd eee"
         }
       ]),
+      lang: Group.lang,
       lk: Group.lang.keys,
       searchString: ref<string>(),
       showSection1,
@@ -58,7 +59,7 @@ export default defineComponent({
       <m-input v-model="searchString" :label="lk.SearchForSettings" />
     </m-subsection>
     <m-subsection>
-      Show
+      {{ lang.Show }}
       <q-checkbox v-model="showSection1" /> 1
       <q-checkbox v-model="showSection2" /> 2
       <q-checkbox v-model="showSection3" /> 3

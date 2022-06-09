@@ -55,6 +55,9 @@ module.exports = {
     ],
     // eslint-disable-next-line no-warning-comments -- Postponed
     // fixme
-    "boundaries/element-types": "off"
+    "boundaries/element-types": "off",
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
+    // fixme
+    "vue/no-bare-strings-in-template": "warn"
   }
 };

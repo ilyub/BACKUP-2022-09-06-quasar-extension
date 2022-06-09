@@ -14,7 +14,8 @@ export default defineComponent({
       iconPickerCompact,
       iconPickerTooltips,
       lk: IconPicker.lang.keys,
-      mdiImageEdit
+      mdiImageEdit,
+      transcript: "d = 30, f = 17"
     };
   }
 });
@@ -29,6 +30,6 @@ export default defineComponent({
   </m-page-section>
   <m-page-section>
     <m-icon-picker v-model="icon" :placeholder="mdiImageEdit" />
-    d = 30, f = 17
+    {{ transcript }}
   </m-page-section>
 </template>

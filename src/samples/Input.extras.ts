@@ -14,7 +14,10 @@ export namespace Input {
   export interface Word {
     readonly Disabled: true;
     readonly Mask: true;
+    readonly Reset: true;
+    readonly ResetValidation: true;
     readonly String: true;
+    readonly Submit: true;
     readonly ValidateOnChange: true;
     readonly ValidateOnInput: true;
     readonly ValidateOnSubmit: true;

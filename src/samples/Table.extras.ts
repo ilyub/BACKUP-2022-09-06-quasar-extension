@@ -17,10 +17,13 @@ export namespace Table {
     readonly ManageColumns: true;
     readonly MultiSelect: true;
     readonly NoData: true;
+    readonly OutOf: true;
     readonly ResizableColumns: true;
     readonly SelectByCheckbox: true;
     readonly SelectByRowClick: true;
+    readonly Selected: true;
     readonly ShortData: true;
     readonly Sticky: true;
+    readonly Title: true;
   }
 }

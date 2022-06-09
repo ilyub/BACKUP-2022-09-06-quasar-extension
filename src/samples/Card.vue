@@ -5,7 +5,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-card",
   setup: () => {
-    return { lk: Card.lang.keys };
+    return { lang: Card.lang, lk: Card.lang.keys };
   }
 });
 </script>
@@ -14,40 +14,40 @@ export default defineComponent({
   <m-page-section>
     <m-buttons-group>
       <m-button>
-        No title
+        {{ lang.NoTitle }}
         <m-menu direction="down-right">
           <m-card min-width="300px">
-            <m-card-section>Section</m-card-section>
+            <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>Submit</m-form-button>
-              <m-form-button>Reset</m-form-button>
+              <m-form-button>{{ lang.Submit }}</m-form-button>
+              <m-form-button>{{ lang.Reset }}</m-form-button>
             </m-card-actions>
           </m-card>
         </m-menu>
       </m-button>
       <m-button>
-        Title
+        {{ lang.Title }}
         <m-menu direction="down-right">
           <m-card min-width="300px" :title="lk.Title">
-            <m-card-section>Section</m-card-section>
+            <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>Submit</m-form-button>
-              <m-form-button>Reset</m-form-button>
+              <m-form-button>{{ lang.Submit }}</m-form-button>
+              <m-form-button>{{ lang.Reset }}</m-form-button>
             </m-card-actions>
           </m-card>
         </m-menu>
       </m-button>
       <m-button>
-        Title - transparent
+        {{ lang.TransparentTitle }}
         <m-menu direction="down-right">
           <m-card min-width="300px" :title="lk.Title" transparent-header>
-            <m-card-section>Section</m-card-section>
+            <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>Submit</m-form-button>
-              <m-form-button>Reset</m-form-button>
+              <m-form-button>{{ lang.Submit }}</m-form-button>
+              <m-form-button>{{ lang.Reset }}</m-form-button>
             </m-card-actions>
           </m-card>
         </m-menu>

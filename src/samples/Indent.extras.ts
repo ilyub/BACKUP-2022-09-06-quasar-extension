@@ -3,17 +3,16 @@ import { lang as baseLang } from "@skylib/facades";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends Group.Word {}
+      interface Word extends Indent.Word {}
     }
   }
 }
 
-export namespace Group {
+export namespace Indent {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly NoResultsFound: true;
-    readonly SearchForSettings: true;
-    readonly Show: true;
+    readonly Inner: true;
+    readonly Outer: true;
   }
 }

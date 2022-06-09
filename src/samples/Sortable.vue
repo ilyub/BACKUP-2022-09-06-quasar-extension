@@ -27,6 +27,7 @@ export default defineComponent({
     return {
       disableDropping,
       disableSorting,
+      lang: Sortable.lang,
       lk: Sortable.lang.keys,
       sortable1: ref([
         { id: "a", name: "A" },
@@ -59,7 +60,7 @@ export default defineComponent({
     >
       <template #item="{ item }">
         {{ sortableName(item) }}
-        <m-tooltip>Sample tooltip</m-tooltip>
+        <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
     </m-sortable-items>
   </m-page-section>
@@ -75,7 +76,7 @@ export default defineComponent({
     >
       <template #item="{ item }">
         {{ sortableName(item) }}
-        <m-tooltip>Sample tooltip</m-tooltip>
+        <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
     </m-sortable-items>
   </m-page-section>
