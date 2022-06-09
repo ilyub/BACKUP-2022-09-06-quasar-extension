@@ -1,4 +1,4 @@
-import { as, o } from "@skylib/functions";
+import { as, defineFn } from "@skylib/functions";
 import { computed, inject, provide, ref, watch } from "vue";
 import type {
   Emits,
@@ -23,12 +23,12 @@ import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
 
-/**
- * Creates Vue property.
- *
- * @returns Vue property.
- */
-export const prop = o.extend(
+export const prop = defineFn(
+  /**
+   * Creates Vue property.
+   *
+   * @returns Vue property.
+   */
   <T>(): PropOptions<T> => {
     return {};
   },
