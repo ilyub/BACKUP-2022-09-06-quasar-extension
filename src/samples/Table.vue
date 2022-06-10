@@ -25,7 +25,7 @@ interface PaginationProp extends extras.Table.PaginationProp {}
 
 export default defineComponent({
   name: "sample-table",
-  components: { "items-table": generic.Table<Item>() },
+  components: { "m-table__items": generic.Table<Item>() },
   setup: () => {
     const columnWidths = ref<ColumnWidths>(new Map());
 
@@ -130,7 +130,7 @@ export default defineComponent({
   <m-page-section>
     <m-page-layout :class="$style['page-layout']" :title="lk.Title">
       <template #fit>
-        <items-table
+        <m-table__items
           v-model:columnWidths="columnWidths"
           v-model:columnsOrder="columnsOrder"
           v-model:hiddenColumns="hiddenColumns"
@@ -203,7 +203,7 @@ export default defineComponent({
             <q-space />
             {{ rows.length }} {{ lang.outOf }} {{ total }}
           </template>
-        </items-table>
+        </m-table__items>
       </template>
     </m-page-layout>
   </m-page-section>

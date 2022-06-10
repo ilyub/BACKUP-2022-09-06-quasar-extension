@@ -13,8 +13,10 @@ interface Item {
 export default defineComponent({
   name: "sample-droppable",
   components: {
-    "m-droppable-items": generic.Droppable<Item, Item>(),
-    "m-sortable-items": generic.Sortable<Item, Item>()
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-droppable__item": generic.Droppable<Item, Item>(),
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-sortable__item": generic.Sortable<Item, Item>()
   },
   setup: () => {
     const $q = useQuasar();
@@ -61,7 +63,7 @@ export default defineComponent({
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
-    <m-sortable-items
+    <m-sortable__item
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
@@ -74,10 +76,10 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable-items>
+    </m-sortable__item>
   </m-page-section>
   <m-page-section>
-    <m-sortable-items
+    <m-sortable__item
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
@@ -90,10 +92,10 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable-items>
+    </m-sortable__item>
   </m-page-section>
   <m-page-section>
-    <m-droppable-items :class="$style.droppable" @dropped="dropped" />
+    <m-droppable__item :class="$style.droppable" @dropped="dropped" />
   </m-page-section>
 </template>
 

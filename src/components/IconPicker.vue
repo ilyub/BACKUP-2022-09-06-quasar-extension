@@ -8,11 +8,12 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { handlePromise, inlineSearch, lang, testDelay } from "@skylib/facades";
+import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
 import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
+import type { lang } from "@skylib/facades";
 import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
@@ -117,7 +118,7 @@ export default defineComponent({
               placeholder: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
-                ? lang.plain(item.description)
+                ? IconPicker.lang.plain(item.description)
                 : undefined
             });
           });

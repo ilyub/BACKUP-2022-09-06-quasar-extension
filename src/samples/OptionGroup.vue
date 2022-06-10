@@ -9,7 +9,10 @@ type Value = "a" | "b" | 1;
 
 export default defineComponent({
   name: "sample-option-group",
-  components: { "value-option-group": generic.OptionGroup<Value>() },
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-option-group__value": generic.OptionGroup<Value>()
+  },
   setup: () => {
     return {
       options: typedef<extras.OptionGroup.Options<Value>>([
@@ -30,9 +33,9 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <value-option-group v-model="value1" :options="options" />
+    <m-option-group__value v-model="value1" :options="options" />
   </m-page-section>
   <m-page-section>
-    <value-option-group v-model="value2" inline :options="options" />
+    <m-option-group__value v-model="value2" inline :options="options" />
   </m-page-section>
 </template>

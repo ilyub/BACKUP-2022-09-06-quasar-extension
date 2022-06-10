@@ -3,12 +3,12 @@ import { lang as baseLang } from "@skylib/facades";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends Knob.Word {}
+      interface Word extends LanguagePicker.Word {}
     }
   }
 }
 
-export namespace Knob {
+export namespace LanguagePicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {

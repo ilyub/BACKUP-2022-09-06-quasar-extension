@@ -11,7 +11,6 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { lang } from "@skylib/facades";
 import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
@@ -64,7 +63,7 @@ export default defineComponent({
       },
       displayValue: computed(() =>
         selectedOption.value
-          ? lang.get(selectedOption.value.label)
+          ? Select.lang.get(selectedOption.value.label)
           : initialLabel.value
       ),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
@@ -76,7 +75,7 @@ export default defineComponent({
       main,
       mainOptions: computed(() =>
         props.options.map(option => {
-          return { ...option, label: lang.get(option.label) };
+          return { ...option, label: Select.lang.get(option.label) };
         })
       ),
       rules: validation.rules,

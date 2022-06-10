@@ -12,7 +12,10 @@ type Transition = extras.Switchable.Transition;
 
 export default defineComponent({
   name: "sample-switchable",
-  components: { "value-option-group": generic.OptionGroup<Transition>() },
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-option-group__transition": generic.OptionGroup<Transition>()
+  },
   setup: () => {
     const { switchableTransition } = useInjections();
 
@@ -35,7 +38,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     {{ lang.Transition }}:
-    <value-option-group
+    <m-option-group__transition
       v-model="switchableTransition"
       inline
       :options="switchableTransitionOptions"

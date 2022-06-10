@@ -10,7 +10,10 @@ interface Item {
 
 export default defineComponent({
   name: "sample-sortable",
-  components: { "m-sortable-items": generic.Sortable<Item, Item>() },
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-sortable__item": generic.Sortable<Item, Item>()
+  },
   setup: () => {
     const disableDropping = ref(false);
 
@@ -49,7 +52,7 @@ export default defineComponent({
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
-    <m-sortable-items
+    <m-sortable__item
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
@@ -62,10 +65,10 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable-items>
+    </m-sortable__item>
   </m-page-section>
   <m-page-section>
-    <m-sortable-items
+    <m-sortable__item
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
@@ -78,7 +81,7 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable-items>
+    </m-sortable__item>
   </m-page-section>
 </template>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
+import { LanguagePicker } from "./LanguagePicker.extras";
 import { useInjections } from "./core";
-import { lang } from "@skylib/facades";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -8,7 +8,7 @@ export default defineComponent({
   setup: () => {
     const { language } = useInjections();
 
-    return { lang, language };
+    return { lang: LanguagePicker.lang, language };
   }
 });
 </script>
