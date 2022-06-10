@@ -53,7 +53,10 @@ export default defineComponent({
         as.not.empty(form.value).resetValidation();
       },
       rules: typedef<plugins.validation.Rules<stringU>>([
-        value => (is.not.empty(value) && value.endsWith("0") ? "Invalid" : true)
+        value =>
+          is.not.empty(value) && value.endsWith("0")
+            ? DatetimePicker.lang.keys.Invalid
+            : true
       ]),
       submit: () => {
         $q.notify(

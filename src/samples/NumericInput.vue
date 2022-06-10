@@ -39,7 +39,10 @@ export default defineComponent({
         as.not.empty(form.value).resetValidation();
       },
       rules: typedef<plugins.validation.Rules<numberU>>([
-        value => (is.not.empty(value) && value % 2 === 1 ? "Invalid" : true)
+        value =>
+          is.not.empty(value) && value % 2 === 1
+            ? NumericInput.lang.keys.Invalid
+            : true
       ]),
       submit: () => {
         $q.notify(
