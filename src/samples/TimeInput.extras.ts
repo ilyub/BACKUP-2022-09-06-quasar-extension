@@ -17,6 +17,7 @@ export namespace TimeInput {
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly Submit: true;
+    readonly Submitted: true;
     readonly Time: true;
     readonly ValidateOnChange: true;
     readonly ValidateOnInput: true;

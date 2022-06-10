@@ -12,8 +12,8 @@ export namespace ExpansionItem {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
+    readonly ExpansionItem: true;
     readonly Item1: true;
     readonly Item2: true;
-    readonly Label: true;
   }
 }

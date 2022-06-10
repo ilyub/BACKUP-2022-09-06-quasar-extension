@@ -54,7 +54,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-form ref="form" @submit="$q.notify('Submitted')">
+    <m-form ref="form" @submit="$q.notify(lang.Submitted)">
       <m-form-section>
         <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
         <!-- fixme - use lang.keys.SelectColor, etc -->

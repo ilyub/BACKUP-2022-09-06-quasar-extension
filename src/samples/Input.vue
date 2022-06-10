@@ -51,7 +51,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-form ref="form" @submit="$q.notify('Submitted')">
+    <m-form ref="form" @submit="$q.notify(lang.Submitted)">
       <m-form-section>
         <m-input v-model="value1" :label="lk.String" required />
       </m-form-section>

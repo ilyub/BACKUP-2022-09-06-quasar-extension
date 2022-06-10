@@ -21,7 +21,7 @@ export default defineComponent({
       },
       asyncSubmit: async (): Promise<void> => {
         await wait(2000);
-        $q.notify(BaseButton.lang.AsyncSubmit);
+        $q.notify(BaseButton.lang.Submitted);
       },
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
@@ -29,6 +29,7 @@ export default defineComponent({
         $q.notify(BaseButton.lang.ConfirmedClick);
       },
       icon: mdiCheck,
+      lang: BaseButton.lang,
       lk: BaseButton.lang.keys,
       name: ref<string>()
     };
@@ -50,7 +51,7 @@ export default defineComponent({
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
-    <m-base-button :label="lk.Click" @click="$q.notify('Click')" />
+    <m-base-button :label="lk.Click" @click="$q.notify(lang.Click)" />
   </m-page-section>
   <m-page-section>
     <m-buttons-group>

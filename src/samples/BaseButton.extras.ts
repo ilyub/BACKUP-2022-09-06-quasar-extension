@@ -24,6 +24,7 @@ export namespace BaseButton {
     readonly Name: true;
     readonly Reset: true;
     readonly Right: true;
+    readonly Submitted: true;
     readonly Up: true;
   }
 }

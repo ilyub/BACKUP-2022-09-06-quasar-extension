@@ -18,6 +18,7 @@ export namespace NumericInput {
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly Submit: true;
+    readonly Submitted: true;
     readonly ValidateOnChange: true;
     readonly ValidateOnInput: true;
     readonly ValidateOnSubmit: true;

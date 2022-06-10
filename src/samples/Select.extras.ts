@@ -16,5 +16,6 @@ export namespace Select {
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly Submit: true;
+    readonly Submitted: true;
   }
 }

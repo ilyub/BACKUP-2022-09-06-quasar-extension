@@ -64,7 +64,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-form ref="form" @submit="$q.notify('Submitted')">
+    <m-form ref="form" @submit="$q.notify(lang.Submitted)">
       <m-form-section>
         <m-datetime-picker
           v-model="value1"

@@ -12,11 +12,12 @@ export namespace Card {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly NoTitle: true;
     readonly Reset: true;
     readonly Section: true;
     readonly Submit: true;
     readonly Title: true;
-    readonly TransparentTitle: true;
+    readonly WithTitle: true;
+    readonly WithTransparentTitle: true;
+    readonly WithoutTitle: true;
   }
 }

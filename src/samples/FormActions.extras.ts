@@ -12,7 +12,6 @@ export namespace FormActions {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly AsyncSubmit: true;
     readonly Name: true;
     readonly Reset: true;
     readonly Submit: true;

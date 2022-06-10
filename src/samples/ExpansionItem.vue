@@ -19,7 +19,7 @@ export default defineComponent({
       :duration="200"
       header-class="bg-primary q-pa-md"
       :icon="icon"
-      :label="lk.Label"
+      :label="lk.ExpansionItem"
     >
       <m-item :caption="lk.Item1" :icon="icon" />
       <q-separator />

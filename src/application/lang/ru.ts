@@ -29,7 +29,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Column2: "Колонка 2",
     Compact: "Компактный",
     Confirm: "Подтверждение",
-    ConfirmationMessage: "Текст подтверждения",
+    ConfirmationMessage: "Вопрос для подтверждения?",
     ConfirmedClick: "Подтвержденный клик",
     Content: "Контент",
     Date: ["кто-что-она", { "кого-что-ее": "Дату", "кто-что-она": "Дата" }],
@@ -52,6 +52,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
         "кого-что-ее": "Равную"
       }
     ],
+    ExpansionItem: "Разворачивающийся список",
     Field: "Поле",
     FieldIsRequired: "Введите <field:кого-что>",
     FieldShouldBeGteMin: "Введите <field:кого-что> больше либо {equal} @min",
@@ -62,7 +63,6 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Inner: "Внутренний блок",
     Item1: "Пункт 1",
     Item2: "Пункт 2",
-    Label: "Метка",
     Leading: "Предшествующий",
     Left: "Влево",
     LeftDownTooltip: "Левая подсказка",
@@ -76,7 +76,6 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Name: "Имя",
     NoData: "Пустые данные",
     NoResultsFound: "По вашему запросу ничего не найдено",
-    NoTitle: "Без заголовка",
     Number: [
       "кто-что-оно",
       { "кого-что-его-ср": "Число", "кто-что-оно": "Число" }
@@ -88,7 +87,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Password: "Пароль",
     Placeholder: "Текст по умолчанию",
     Reset: "Сброс",
-    ResetValidation: "Сбросить проверку",
+    ResetValidation: "Сброс проверки",
     ResizableColumns: "Регулируемый размер колонок",
     Right: "Вправо",
     RightDownTooltip: "Правая подсказка",
@@ -121,6 +120,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
       { "кого-что-ее": "Строку", "кто-что-она": "Строка" }
     ],
     Submit: "Отправить",
+    Submitted: "Отправлено",
     Time: [
       "кто-что-оно",
       { "кого-что-его-ср": "Время", "кто-что-оно": "Время" }
@@ -129,14 +129,16 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Tooltips: "Подсказки",
     TrailingText: "Замыкающий текст",
     Transition: "Переход",
-    TransparentTitle: "Прозрачный заголовок",
     Up: "Вверх",
     UpLeftTooltip: "Верхняя подсказка",
     UpRightTooltip: "Верхняя подсказка",
     UpTooltip: "Верхняя подсказка",
-    ValidateOnChange: "Проверка при изменении",
-    ValidateOnInput: "Проверка при вводе",
-    ValidateOnSubmit: "Проверка при отправке",
-    WithDelayOf: "С задержкой"
+    ValidateOnChange: "Отложенная проверка",
+    ValidateOnInput: "Синхронная проверка",
+    ValidateOnSubmit: "Проверка при отправке формы",
+    WithDelayOf: "С задержкой",
+    WithTitle: "С заголовком",
+    WithTransparentTitle: "С прозрачным заголовком",
+    WithoutTitle: "Без заголовка"
   }
 });

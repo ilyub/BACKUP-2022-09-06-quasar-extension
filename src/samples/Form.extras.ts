@@ -16,5 +16,6 @@ export namespace Form {
     readonly Name: true;
     readonly Reset: true;
     readonly Submit: true;
+    readonly Submitted: true;
   }
 }
