@@ -36,7 +36,7 @@ export default defineComponent({
         as.not.empty(form.value).resetValidation();
       },
       rules: typedef<plugins.validation.Rules<stringU>>([
-        value => (is.not.empty(value) && value.includes("a") ? "Invalid" : true)
+        value => (is.not.empty(value) && value.includes("q") ? "Invalid" : true)
       ]),
       value1,
       value2,
@@ -58,6 +58,7 @@ export default defineComponent({
         <m-input
           v-model="value2"
           :label="lk.ValidateOnInput"
+          :placeholder="lk.StringContaingQForError"
           :rules-on-input="rules"
         />
       </m-form-section>
@@ -65,6 +66,7 @@ export default defineComponent({
         <m-input
           v-model="value3"
           :label="lk.ValidateOnChange"
+          :placeholder="lk.StringContaingQForError"
           :rules-on-change="rules"
         />
       </m-form-section>
@@ -72,6 +74,7 @@ export default defineComponent({
         <m-input
           v-model="value4"
           :label="lk.ValidateOnSubmit"
+          :placeholder="lk.StringContaingQForError"
           :rules-on-submit="rules"
         />
       </m-form-section>
@@ -80,7 +83,7 @@ export default defineComponent({
           v-model="value5"
           :label="lk.Mask"
           mask="###"
-          placeholder="###"
+          :placeholder="lang.plain('###')"
         />
       </m-form-section>
       <m-form-section>

@@ -53,6 +53,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
         "кого-что-ее": "Равную"
       }
     ],
+    EvenSecondsForError: "Четные секунды для ошибки",
     ExpansionItem: "Разворачивающийся список",
     Field: "Поле",
     FieldIsRequired: "Введите <field:кого-что>",
@@ -83,6 +84,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
       "кто-что-оно",
       { "кого-что-его-ср": "Число", "кто-что-оно": "Число" }
     ],
+    OddNumberForError: "Нечетное число для ошибки",
     Of: "Из",
     Ok: "Ок",
     Option1: "Опция 1",
@@ -127,6 +129,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
       "кто-что-она",
       { "кого-что-ее": "Строку", "кто-что-она": "Строка" }
     ],
+    StringContaingQForError: 'Строка содержащая букву "q" для ошибки',
     Submit: "Отправить",
     Submitted: "Отправлено",
     Time: [

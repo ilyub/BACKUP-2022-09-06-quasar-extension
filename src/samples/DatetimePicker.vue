@@ -77,7 +77,7 @@ export default defineComponent({
         <m-datetime-picker
           v-model="value2"
           :label="lk.ValidateOnInput"
-          placeholder=""
+          :placeholder="lk.EvenSecondsForError"
           :rules-on-input="rules"
         />
       </m-form-section>
@@ -85,6 +85,7 @@ export default defineComponent({
         <m-datetime-picker
           v-model="value3"
           :label="lk.ValidateOnChange"
+          :placeholder="lk.EvenSecondsForError"
           :rules-on-change="rules"
         />
       </m-form-section>
@@ -92,6 +93,7 @@ export default defineComponent({
         <m-datetime-picker
           v-model="value4"
           :label="lk.ValidateOnSubmit"
+          :placeholder="lk.EvenSecondsForError"
           :rules-on-submit="rules"
         />
       </m-form-section>

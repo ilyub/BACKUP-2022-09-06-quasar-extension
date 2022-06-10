@@ -15,6 +15,7 @@ export namespace NumericInput {
     readonly Disabled: true;
     readonly Invalid: true;
     readonly Number: true;
+    readonly OddNumberForError: true;
     readonly Placeholder: true;
     readonly Reset: true;
     readonly ResetValidation: true;

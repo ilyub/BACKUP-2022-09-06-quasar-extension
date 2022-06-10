@@ -54,7 +54,7 @@ export namespace langProps {
   };
 
   export type Plugin<T extends string> = {
-    readonly [K in `${T}Key`]: ComputedRef<stringU>;
+    readonly [K in `${T}Key`]: ComputedRef<lang.Key | undefined>;
   } & {
     readonly [K in T]: ComputedRef<stringU>;
   };

@@ -65,6 +65,7 @@ export default defineComponent({
         <m-numeric-input
           v-model="value2"
           :label="lk.ValidateOnInput"
+          :placeholder="lk.OddNumberForError"
           :rules-on-input="rules"
           :small-step="2"
         />
@@ -74,6 +75,7 @@ export default defineComponent({
           v-model="value3"
           :big-step="15"
           :label="lk.ValidateOnChange"
+          :placeholder="lk.OddNumberForError"
           :rules-on-change="rules"
         />
       </m-form-section>
@@ -82,6 +84,7 @@ export default defineComponent({
           v-model="value4"
           :big-step="15"
           :label="lk.ValidateOnSubmit"
+          :placeholder="lk.OddNumberForError"
           :rules-on-submit="rules"
         />
       </m-form-section>
@@ -90,7 +93,7 @@ export default defineComponent({
           v-model="value5"
           :big-step="15"
           :label="lk.Placeholder"
-          placeholder="###"
+          :placeholder="lang.plain('###')"
         />
       </m-form-section>
       <m-form-section>

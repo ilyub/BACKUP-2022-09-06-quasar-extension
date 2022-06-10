@@ -18,6 +18,7 @@ export namespace Input {
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly String: true;
+    readonly StringContaingQForError: true;
     readonly Submit: true;
     readonly Submitted: true;
     readonly ValidateOnChange: true;

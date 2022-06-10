@@ -33,7 +33,6 @@ export namespace Field {
      * @param value - Value.
      */
     readonly "onUpdate:modelValue"?: (value: T) => void;
-    readonly placeholder?: stringU;
     readonly required?: booleanU;
     readonly validationOptions?: plugins.validation.OptionsProp<T> | undefined;
   }
@@ -54,7 +53,7 @@ export namespace Field {
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 
   export interface PluginProps<T = unknown>
-    extends plugins.label.Props,
+    extends plugins.langProps.Props<"label" | "placeholder">,
       plugins.validation.Props<T> {}
 
   export interface Props<T = unknown>

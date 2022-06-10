@@ -20,12 +20,11 @@ export default defineComponent({
   name: "m-field",
   props: {
     ...parentProps<Field.ParentProps>(),
-    ...plugins.label.props,
+    ...plugins.langProps.props("label", "placeholder"),
     ...plugins.validation.props,
     disable: prop.boolean(),
     focusableElement: prop<Field.Props["focusableElement"]>(),
     modelValue: prop<Field.Props["modelValue"]>(),
-    placeholder: prop.default<Field.Props["placeholder"]>(""),
     required: prop.boolean(),
     validationOptions: prop<Field.Props["validationOptions"]>()
   },
@@ -34,7 +33,11 @@ export default defineComponent({
     validateEmit<Field.OwnProps>(emit);
     validateProps<Field.OwnProps>(props);
 
-    const { label, labelKey } = plugins.label(props);
+    const { label, labelKey, placeholder } = plugins.langProps(
+      props,
+      "label",
+      "placeholder"
+    );
 
     const main = ref<QField>();
 
@@ -61,6 +64,7 @@ export default defineComponent({
       globalDisable: injections.disable.inject(),
       label,
       main,
+      placeholder,
       rules: validation.rules,
       slotNames: plugins.slotNames<Field.Slots>()("control", "label"),
       update: (value: NumStrE): void => {
@@ -84,6 +88,7 @@ export default defineComponent({
     :label="label"
     lazy-rules="ondemand"
     :model-value="value"
+    :placeholder="placeholder"
     :rules="rules"
     @blur="blur"
     @focus="focus"
