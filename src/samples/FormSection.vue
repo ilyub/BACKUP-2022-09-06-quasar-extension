@@ -14,7 +14,7 @@ export default defineComponent({
   <m-page-section>
     <m-form :class="$style.form">
       <m-form-section>
-        <m-input v-model="name" :label="lk.Name" />
+        <m-input v-model="name" :label="lk.SampleField" />
       </m-form-section>
       <m-form-actions>
         <m-form-button :label="lk.Submit" type="submit" />

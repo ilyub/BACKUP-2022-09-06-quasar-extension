@@ -27,11 +27,11 @@ export default defineComponent({
       lang: Select.lang,
       lk: Select.lang.keys,
       options: typedef<extras.Select.Options<Color>>([
-        { label: "Blue", value: "blue" },
-        { label: "Green", value: "green" },
+        { label: Select.lang.keys.Blue, value: "blue" },
+        { label: Select.lang.keys.Green, value: "green" },
         {
           disable: true,
-          label: "Red",
+          label: Select.lang.keys.Red,
           value: "red"
         }
       ]),

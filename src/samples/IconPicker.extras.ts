@@ -12,7 +12,7 @@ export namespace IconPicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly Compact: true;
-    readonly Tooltips: true;
+    readonly CompactSize: true;
+    readonly ShowTooltips: true;
   }
 }

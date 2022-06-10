@@ -1,5 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
+import { OptionGroup } from "./OptionGroup.extras";
 import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -12,11 +13,11 @@ export default defineComponent({
   setup: () => {
     return {
       options: typedef<extras.OptionGroup.Options<Value>>([
-        { label: "Option 1", value: 1 },
-        { label: "Option 2", value: "a" },
+        { label: OptionGroup.lang.keys.Option1, value: 1 },
+        { label: OptionGroup.lang.keys.Option2, value: "a" },
         {
           disable: true,
-          label: "Option 3",
+          label: OptionGroup.lang.keys.Option3,
           value: "b"
         }
       ]),

@@ -13,8 +13,8 @@ export namespace Form {
 
   export interface Word {
     readonly AsyncSubmit: true;
-    readonly Name: true;
     readonly Reset: true;
+    readonly SampleField: true;
     readonly Submit: true;
     readonly Submitted: true;
   }

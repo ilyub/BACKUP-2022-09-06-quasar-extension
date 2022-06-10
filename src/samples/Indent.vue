@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <m-page-section class="bg-grey-3">
-    {{ lang.Outer }}
-    <m-indent class="bg-grey-5">{{ lang.Inner }}</m-indent>
+    {{ lang.WithoutIndent }}
+    <m-indent class="bg-grey-5">{{ lang.WithIndent }}</m-indent>
   </m-page-section>
 </template>

@@ -12,7 +12,10 @@ export namespace Select {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
+    readonly Blue: true;
     readonly Color: true;
+    readonly Green: true;
+    readonly Red: true;
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly Submit: true;

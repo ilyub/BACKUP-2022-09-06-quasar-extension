@@ -21,7 +21,7 @@ export namespace Select {
 
   export interface Option<T = unknown> {
     readonly disable?: true;
-    readonly label: string;
+    readonly label: baseLang.Key;
     readonly value: T;
   }
 

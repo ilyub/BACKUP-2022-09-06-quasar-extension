@@ -24,8 +24,8 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-buttons-group>
-      <m-toggle v-model="iconPickerCompact" :label="lk.Compact" />
-      <m-toggle v-model="iconPickerTooltips" :label="lk.Tooltips" />
+      <m-toggle v-model="iconPickerCompact" :label="lk.CompactSize" />
+      <m-toggle v-model="iconPickerTooltips" :label="lk.ShowTooltips" />
     </m-buttons-group>
   </m-page-section>
   <m-page-section>

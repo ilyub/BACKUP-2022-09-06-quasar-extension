@@ -18,7 +18,7 @@ export default defineComponent({
       name1: ref<string>(),
       name2: ref<string>(),
       submit: (): void => {
-        $q.notify(Form.lang.Submit);
+        $q.notify(Form.lang.Submitted);
       }
     };
   }
@@ -29,7 +29,7 @@ export default defineComponent({
   <m-page-section>
     <m-form :class="$style.form" @submit="submit">
       <m-form-section>
-        <m-input v-model="name1" :label="lk.Name" />
+        <m-input v-model="name1" :label="lk.SampleField" />
       </m-form-section>
       <m-form-actions>
         <m-form-button :label="lk.Submit" type="submit" />
@@ -44,7 +44,7 @@ export default defineComponent({
       @async-submit="asyncSubmit"
     >
       <m-form-section>
-        <m-input v-model="name2" :label="lk.Name" />
+        <m-input v-model="name2" :label="lk.SampleField" />
       </m-form-section>
       <m-form-actions>
         <m-form-button :label="lk.AsyncSubmit" type="submit" />

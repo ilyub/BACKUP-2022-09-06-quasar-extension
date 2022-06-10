@@ -15,6 +15,9 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-language-picker :language="language" /> {{ lang.Confirm }}
+    <m-language-picker :language="language" />
+  </m-page-section>
+  <m-page-section>
+    {{ lang.SampleWord }}
   </m-page-section>
 </template>

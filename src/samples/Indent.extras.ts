@@ -12,7 +12,7 @@ export namespace Indent {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Word {
-    readonly Inner: true;
-    readonly Outer: true;
+    readonly WithIndent: true;
+    readonly WithoutIndent: true;
   }
 }

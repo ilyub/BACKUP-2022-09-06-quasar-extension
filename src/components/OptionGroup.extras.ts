@@ -1,4 +1,5 @@
 import type { GlobalComponent } from "./api";
+import type { lang } from "@skylib/facades";
 import type { booleanU } from "@skylib/functions";
 import type {
   QOptionGroup,
@@ -14,7 +15,7 @@ export namespace OptionGroup {
 
   export interface Option<T = unknown> {
     readonly disable?: true;
-    readonly label: string;
+    readonly label: lang.Key;
     readonly value: T;
   }
 

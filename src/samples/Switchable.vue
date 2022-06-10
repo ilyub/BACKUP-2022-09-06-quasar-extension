@@ -24,8 +24,8 @@ export default defineComponent({
       sampleToggle: ref(false),
       switchableTransition,
       switchableTransitionOptions: typedef<Options>([
-        { label: "None", value: "none" },
-        { label: "Slide", value: "slide" }
+        { label: Switchable.lang.keys.None, value: "none" },
+        { label: Switchable.lang.keys.Slide, value: "slide" }
       ])
     };
   }

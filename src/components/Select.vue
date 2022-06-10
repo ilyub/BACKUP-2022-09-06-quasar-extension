@@ -11,6 +11,7 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import { lang } from "@skylib/facades";
 import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
@@ -62,7 +63,9 @@ export default defineComponent({
         validation.validate(props.modelValue, "change");
       },
       displayValue: computed(() =>
-        selectedOption.value ? selectedOption.value.label : initialLabel.value
+        selectedOption.value
+          ? lang.get(selectedOption.value.label)
+          : initialLabel.value
       ),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
       displayValueShowRequired: computed(
@@ -71,6 +74,11 @@ export default defineComponent({
       globalDisable: injections.disable.inject(),
       label,
       main,
+      mainOptions: computed(() =>
+        props.options.map(option => {
+          return { ...option, label: lang.get(option.label) };
+        })
+      ),
       rules: validation.rules,
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
@@ -98,7 +106,7 @@ export default defineComponent({
     :label="label"
     lazy-rules="ondemand"
     :model-value="value"
-    :options="options"
+    :options="mainOptions"
     :rules="rules"
     @blur="blur"
     @update:model-value="update"

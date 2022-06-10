@@ -9,7 +9,7 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { a } from "@skylib/functions";
+import { lang } from "@skylib/facades";
 import { computed, defineComponent, ref } from "vue";
 import type { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
@@ -29,7 +29,11 @@ export default defineComponent({
     validateProps<OptionGroup.OwnProps>(props);
 
     return {
-      mainOptions: computed(() => a.clone(props.options)),
+      mainOptions: computed(() =>
+        props.options.map(option => {
+          return { ...option, label: lang.get(option.label) };
+        })
+      ),
       slotNames: plugins.slotNames<OptionGroup.Slots>()()
     };
   }

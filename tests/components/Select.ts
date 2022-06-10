@@ -8,11 +8,11 @@ test.each([undefined, 1, "a"])("emit: update:modelValue", value => {
   const options: extras.Select.Options = [
     {
       disable: true,
-      label: "Option 1",
+      label: lang.plain("Option 1"),
       value: undefined
     },
-    { label: "Option 2", value: 1 },
-    { label: "Option 3", value: "a" }
+    { label: lang.plain("Option 2"), value: 1 },
+    { label: lang.plain("Option 3"), value: "a" }
   ];
 
   const wrapper = testUtils.mount(components.Select, { props: { options } });
@@ -31,8 +31,8 @@ test.each([
     props: {
       initialLabel,
       options: [
-        { label: "Option 1", value: 1 },
-        { label: "Option 2", value: "a" }
+        { label: lang.plain("Option 1"), value: 1 },
+        { label: lang.plain("Option 2"), value: "a" }
       ]
     }
   });
