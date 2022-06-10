@@ -22,6 +22,10 @@ import type {
 } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
 
+const icons = Table.icons;
+
+const lang = Table.lang;
+
 interface VirtualScrollDetails {
   readonly direction: "decrease" | "increase";
   readonly from: number;
@@ -86,10 +90,6 @@ export default defineComponent({
 
       return undefined;
     });
-
-    const icons = Table.icons;
-
-    const lang = Table.lang;
 
     const main = ref<QTable>();
 
@@ -438,7 +438,7 @@ export default defineComponent({
                   :toggle-selection-icon="toggleSelectionIcon"
                   :toggle-selection-label="toggleSelectionLabel"
                 >
-                  {{ column.label }}
+                  {{ lang.get(column.label) }}
                 </slot>
               </div>
               <div class="m-table__header-cell__right">
@@ -608,7 +608,7 @@ export default defineComponent({
     </template>
   </q-table>
   <q-dialog ref="debugDialog" v-model="columnsManagementShow">
-    <m-card class="m-table__columns-management" :title="lang.ManageColumns">
+    <m-card class="m-table__columns-management" :title="lk.ManageColumns">
       <m-card-section>
         <q-markup-table
           class="m-table__columns-management__table"
