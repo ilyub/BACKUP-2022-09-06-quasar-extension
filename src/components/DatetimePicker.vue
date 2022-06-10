@@ -234,7 +234,8 @@ export default defineComponent({
       <slot :name="slotNames.control" v-bind="data ?? {}">
         <input
           v-debug-id="'control'"
-          class="m-datetime-picker__input"
+          class="m-datetime-picker__input q-field__input"
+          :placeholder="data.placeholder ?? ''"
           readonly
           :value="data.modelValue"
           @click="inputClick"
