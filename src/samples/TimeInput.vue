@@ -86,7 +86,7 @@ export default defineComponent({
         <m-time-input
           v-model="value5"
           :label="lk.Placeholder"
-          placeholder="##:##"
+          placeholder="###:##"
         />
       </m-form-section>
       <m-form-section>
