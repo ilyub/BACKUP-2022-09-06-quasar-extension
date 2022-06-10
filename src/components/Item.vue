@@ -1,8 +1,15 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Item] */
 
-import { directives, parentProps, plugins, prop, validateProps } from "./api";
-import { is } from "@skylib/functions";
+import {
+  directives,
+  parentProps,
+  plugins,
+  prop,
+  validateExpose,
+  validateProps
+} from "./api";
+import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
 import type { QItem } from "quasar";
@@ -15,16 +22,21 @@ export default defineComponent({
     ...plugins.langProps.props("caption"),
     icon: prop<Item.Props["icon"]>()
   },
-  setup: props => {
-    validateProps<Item.OwnProps>(props);
-
+  setup: (props, { expose }) => {
     const { caption } = plugins.langProps(props, "caption");
+
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QItem>();
+
+    validateExpose<Item.Global>(expose, exposed);
+    validateProps<Item.OwnProps>(props);
 
     return {
       caption,
       hasCaption: computed(() => is.not.empty(caption.value)),
       hasIcon: computed(() => is.not.empty(props.icon)),
-      main: ref<QItem>(),
+      main,
       slotNames: plugins.slotNames<Item.Slots>()("caption", "default", "icon")
     };
   }

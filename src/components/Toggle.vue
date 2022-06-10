@@ -8,9 +8,11 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
-import { defineComponent, ref } from "vue";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { Toggle } from "./Toggle.extras";
 import type { QToggle } from "quasar";
 
@@ -23,16 +25,21 @@ export default defineComponent({
     modelValue: prop.boolean()
   },
   emits: { "update:modelValue": (value: boolean) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<Toggle.OwnProps>(emit);
-    validateProps<Toggle.OwnProps>(props);
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const { label } = plugins.label(props);
+
+    const main = ref<QToggle>();
+
+    validateEmit<Toggle.OwnProps>(emit);
+    validateExpose<Toggle.Global>(expose, exposed);
+    validateProps<Toggle.OwnProps>(props);
 
     return {
       globalDisable: injections.disable.inject(),
       label,
-      main: ref<QToggle>(),
+      main,
       slotNames: plugins.slotNames<Toggle.Slots>()()
     };
   }

@@ -13,11 +13,11 @@ export default defineComponent({
     closeButtonOn: prop.boolean()
   },
   setup: props => {
-    validateProps<PageLayout.OwnProps>(props);
-
     const settings = PageLayout.injectSettings();
 
     const { title } = plugins.langProps(props, "title");
+
+    validateProps<PageLayout.OwnProps>(props);
 
     return {
       closeButton: computed(() =>

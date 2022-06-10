@@ -2,7 +2,6 @@ import { prop } from "./misc";
 import { handlePromise } from "@skylib/facades";
 import { defineFn } from "@skylib/functions";
 import { ref } from "vue";
-import type { SetupProps } from "./core";
 import type { Ref } from "vue";
 
 export const asyncClick = defineFn(
@@ -12,7 +11,7 @@ export const asyncClick = defineFn(
    * @param props - Props.
    * @returns Async click plugin.
    */
-  (props: SetupProps<asyncClick.Props, "onAsyncClick">): asyncClick.Plugin => {
+  (props: asyncClick.Props): asyncClick.Plugin => {
     const active = ref(false);
 
     return defineFn(

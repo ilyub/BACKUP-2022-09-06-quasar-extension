@@ -9,6 +9,7 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
@@ -71,10 +72,7 @@ export default defineComponent({
     "update:pagination": (value: Table.PaginationEmit) => skipCheck(value),
     "update:selected": (value: objects) => skipCheck(value)
   },
-  setup: (props, { emit }) => {
-    validateEmit<Table.OwnProps>(emit);
-    validateProps<Table.OwnProps>(props);
-
+  setup: (props, { emit, expose }) => {
     const allSelected = computed(() => {
       if (props.rows.length)
         switch (selected.value.length) {
@@ -91,6 +89,8 @@ export default defineComponent({
       return undefined;
     });
 
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
     const main = ref<QTable>();
 
     const selected = computed(() =>
@@ -98,6 +98,10 @@ export default defineComponent({
     );
 
     const settings = Table.injectSettings();
+
+    validateEmit<Table.OwnProps>(emit);
+    validateExpose<Table.Global>(expose, exposed);
+    validateProps<Table.OwnProps>(props);
 
     return {
       allSelected,

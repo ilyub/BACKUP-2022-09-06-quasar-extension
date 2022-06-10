@@ -25,7 +25,10 @@ interface PaginationProp extends extras.Table.PaginationProp {}
 
 export default defineComponent({
   name: "sample-table",
-  components: { "m-table__items": generic.Table<Item>() },
+  components: {
+    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
+    "m-table__items": generic.Table<Item>()
+  },
   setup: () => {
     const columnWidths = ref<ColumnWidths>(new Map());
 

@@ -1,7 +1,9 @@
 <script lang="ts">
-import { parentProps, plugins } from "./api";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
+import type { MenuItem } from "./MenuItem.extras";
 
 export default defineComponent({
   name: "m-menu-item",
@@ -9,10 +11,16 @@ export default defineComponent({
     ...parentProps<Item.ParentProps>(),
     ...plugins.confirmedClick.props
   },
-  setup: props => {
+  setup: (props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<Item.Global>();
+
+    validateExpose<MenuItem.Global>(expose, exposed);
+
     return {
       confirmedClick: plugins.confirmedClick(props),
-      main: ref<Item.Global>(),
+      main,
       slotNames: plugins.slotNames<Item.Slots>()()
     };
   }

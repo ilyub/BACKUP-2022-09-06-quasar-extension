@@ -1,17 +1,21 @@
 <script lang="ts">
-import { parentProps, plugins } from "./api";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { BaseButton } from "./BaseButton.extras";
 import type { IconButton } from "./IconButton.extras";
 
 export default defineComponent({
   name: "m-icon-button",
   props: parentProps<IconButton.ParentProps>(),
-  setup: () => {
-    return {
-      main: ref<BaseButton.Global>(),
-      slotNames: plugins.slotNames<IconButton.Slots>()()
-    };
+  setup: (_props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<BaseButton.Global>();
+
+    validateExpose<IconButton.Global>(expose, exposed);
+
+    return { main, slotNames: plugins.slotNames<IconButton.Slots>()() };
   }
 });
 </script>

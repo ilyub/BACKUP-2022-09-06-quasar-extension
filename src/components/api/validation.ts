@@ -2,7 +2,6 @@ import { prop, trigger } from "./misc";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { a, cast, defineFn, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
-import type { SetupProps } from "./core";
 import type { Writable, empty } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
 import type { Optional } from "ts-toolbelt/out/Object/Optional";
@@ -26,7 +25,7 @@ export const validation = defineFn(
    * @returns Validation plugin.
    */
   <T = unknown>(
-    props: SetupProps<validation.Props<T>>,
+    props: validation.Props<T>,
     target: ComputedRef<QField | QInput>,
     options: ComputedRef<validation.Options<T>>
   ): validation.Plugin<T> => {

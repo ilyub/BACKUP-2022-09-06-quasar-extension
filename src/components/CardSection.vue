@@ -1,19 +1,23 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.CardSection] */
 
-import { parentProps, plugins } from "./api";
-import { QCardSection } from "quasar";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { CardSection } from "./CardSection.extras";
+import type { QCardSection } from "quasar";
 
 export default defineComponent({
   name: "m-card-section",
   props: parentProps<CardSection.ParentProps>(),
-  setup: () => {
-    return {
-      main: ref(QCardSection),
-      slotNames: plugins.slotNames<CardSection.Slots>()()
-    };
+  setup: (_props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QCardSection>();
+
+    validateExpose<CardSection.Global>(expose, exposed);
+
+    return { main, slotNames: plugins.slotNames<CardSection.Slots>()() };
   }
 });
 </script>

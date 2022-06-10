@@ -6,11 +6,12 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { as, cast, is, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
-import { defineComponent, ref, watch } from "vue";
+import { computed, defineComponent, ref, watch } from "vue";
 import type { Field } from "./Field.extras";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
@@ -24,16 +25,20 @@ export default defineComponent({
     modelValue: prop<TimeInput.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<TimeInput.OwnProps>(emit);
-    validateProps<TimeInput.OwnProps>(props);
-
+  setup: (props, { emit, expose }) => {
     const active = ref(false);
+
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const input = ref<HTMLInputElement>();
 
     const inputValue = ref<string>();
 
+    const main = ref<NumericInput.Global>();
+
+    validateEmit<TimeInput.OwnProps>(emit);
+    validateExpose<TimeInput.Global>(expose, exposed);
+    validateProps<TimeInput.OwnProps>(props);
     watch(() => props.modelValue, updateInputValue, { immediate: true });
 
     return {
@@ -61,7 +66,7 @@ export default defineComponent({
         } else emitValue(cast.numberU(value));
       },
       inputValue,
-      main: ref<NumericInput.Global>(),
+      main,
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
       slotNames: plugins.slotNames<TimeInput.Slots>()("control"),
       validationOptions: typedef<plugins.validation.Options<numberU>>({

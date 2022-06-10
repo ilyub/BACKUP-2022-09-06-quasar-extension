@@ -9,6 +9,7 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { as, fn, is, o } from "@skylib/functions";
@@ -28,21 +29,20 @@ export default defineComponent({
     validationLabel: prop<Select.Props["validationLabel"]>()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<Select.OwnProps>(emit);
-    validateProps<Select.OwnProps>(props);
-
+  setup: (props, { emit, expose }) => {
     const { initialLabel, label } = plugins.langProps(
       props,
       "initialLabel",
       "label"
     );
 
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QSelect>();
+
     const selectedOption = computed(() =>
       props.options.find(option => option.value === props.modelValue)
     );
-
-    const main = ref<QSelect>();
 
     const validation = plugins.validation(
       props,
@@ -56,6 +56,10 @@ export default defineComponent({
         })
       )
     );
+
+    validateEmit<Select.OwnProps>(emit);
+    validateExpose<Select.Global>(expose, exposed);
+    validateProps<Select.OwnProps>(props);
 
     return {
       blur: (): void => {

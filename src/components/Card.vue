@@ -2,10 +2,16 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Card] */
 
 import { Card } from "./Card.extras";
-import { parentProps, plugins, prop, validateProps } from "./api";
-import { is } from "@skylib/functions";
-import { QCard } from "quasar";
+import {
+  parentProps,
+  plugins,
+  prop,
+  validateExpose,
+  validateProps
+} from "./api";
+import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import type { QCard } from "quasar";
 
 export default defineComponent({
   name: "m-card",
@@ -15,15 +21,20 @@ export default defineComponent({
     minWidth: prop<Card.Props["minWidth"]>(),
     transparentHeader: prop.boolean()
   },
-  setup: props => {
-    validateProps<Card.OwnProps>(props);
+  setup: (props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QCard>();
 
     const { title } = plugins.langProps(props, "title");
+
+    validateExpose<Card.Global>(expose, exposed);
+    validateProps<Card.OwnProps>(props);
 
     return {
       hasTitle: computed(() => is.not.empty(title.value)),
       icons: Card.icons,
-      main: ref(QCard),
+      main,
       slotNames: plugins.slotNames<Card.Slots>()(
         "default",
         "header-actions",

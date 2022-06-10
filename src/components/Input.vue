@@ -8,11 +8,12 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { as, cast, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
 import type { stringU } from "@skylib/functions";
@@ -30,13 +31,16 @@ export default defineComponent({
     modelValue: prop<Input.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<Input.OwnProps>(emit);
-    validateProps<Input.OwnProps>(props);
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const input = ref<HTMLInputElement>();
 
     const main = ref<Field.Global<stringU>>();
+
+    validateEmit<Input.OwnProps>(emit);
+    validateExpose<Input.Global>(expose, exposed);
+    validateProps<Input.OwnProps>(props);
 
     return {
       input,

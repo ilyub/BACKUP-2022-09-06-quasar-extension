@@ -6,10 +6,11 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
-import { assert, is, o } from "@skylib/functions";
+import { as, assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
@@ -43,9 +44,8 @@ export default defineComponent({
     placeholder: prop.required<IconPicker.Props["placeholder"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<IconPicker.OwnProps>(emit);
-    validateProps<IconPicker.OwnProps>(props);
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const filteredItems = computed(() =>
       is.not.empty(searchString.value)
@@ -72,6 +72,8 @@ export default defineComponent({
         : []
     );
 
+    const main = ref<IconButton.Global>();
+
     const page = ref(0);
 
     const pageSize = computed(() => settings.value.cols * settings.value.rows);
@@ -86,6 +88,9 @@ export default defineComponent({
 
     const total = computed(() => filteredItems.value.length);
 
+    validateEmit<IconPicker.OwnProps>(emit);
+    validateExpose<IconPicker.Global>(expose, exposed);
+    validateProps<IconPicker.OwnProps>(props);
     watch([mdi, searchString], resetPage);
 
     return {
@@ -134,7 +139,7 @@ export default defineComponent({
       lang: IconPicker.lang,
       lk: IconPicker.lang.keys,
       loading: computed(() => is.empty(mdi.value)),
-      main: ref<IconButton.Global>(),
+      main,
       nextClick: (): void => {
         page.value++;
       },

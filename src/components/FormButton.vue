@@ -1,17 +1,21 @@
 <script lang="ts">
-import { parentProps, plugins } from "./api";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { BaseButton } from "./BaseButton.extras";
 import type { FormButton } from "./FormButton.extras";
 
 export default defineComponent({
   name: "m-form-button",
   props: parentProps<FormButton.ParentProps>(),
-  setup: () => {
-    return {
-      main: ref<BaseButton.Global>(),
-      slotNames: plugins.slotNames<FormButton.Slots>()()
-    };
+  setup: (_props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<BaseButton.Global>();
+
+    validateExpose<FormButton.Global>(expose, exposed);
+
+    return { main, slotNames: plugins.slotNames<FormButton.Slots>()() };
   }
 });
 </script>

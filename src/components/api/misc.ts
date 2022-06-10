@@ -9,6 +9,8 @@ import type {
   PropOptionsDefault,
   PropOptionsRequired,
   SetupEmit,
+  SetupExpose,
+  SetupExposed,
   SetupProps,
   Trigger
 } from "./core";
@@ -218,6 +220,19 @@ export function trigger(): Trigger {
  */
 export function validateEmit<T>(emit: SetupEmit<T>): SetupEmit<T> {
   return emit;
+}
+
+/**
+ * Exposes data.
+ *
+ * @param expose - Expose function.
+ * @param exposed - Exposed data.
+ */
+export function validateExpose<T>(
+  expose: SetupExpose,
+  exposed: SetupExposed<T>
+): void {
+  expose(exposed);
 }
 
 /**

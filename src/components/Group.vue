@@ -19,8 +19,6 @@ export default defineComponent({
     searchString: prop<Group.Props["searchString"]>()
   },
   setup: props => {
-    validateProps<Group.OwnProps>(props);
-
     const filteredItems = computed(() => {
       if (is.not.empty(props.searchString)) {
         const ids = new Set(
@@ -52,6 +50,8 @@ export default defineComponent({
         compare.strings(item1.title, item2.title)
       )
     );
+
+    validateProps<Group.OwnProps>(props);
 
     return {
       filteredItems,

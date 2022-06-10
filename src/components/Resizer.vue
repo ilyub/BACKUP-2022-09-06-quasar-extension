@@ -36,12 +36,12 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit }) => {
-    validateEmit<Resizer.OwnProps>(emit);
-    validateProps<Resizer.OwnProps>(props);
-
     let initialValue: numberU;
 
     const settings = Resizer.injectSettings();
+
+    validateEmit<Resizer.OwnProps>(emit);
+    validateProps<Resizer.OwnProps>(props);
 
     return {
       handlePan: (event: unknown): void => {

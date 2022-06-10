@@ -8,6 +8,7 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
@@ -30,9 +31,13 @@ export default defineComponent({
     modelValue: prop<DatetimePicker.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
-  setup: (props, { emit }) => {
+  setup: (props, { emit, expose }) => {
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateProps<DatetimePicker.OwnProps>(props);
+
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<Field.Global<stringU>>();
 
     const showDialog = ref(false);
 
@@ -100,7 +105,9 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
-    const main = ref<Field.Global<stringU>>();
+    validateEmit<DatetimePicker.OwnProps>(emit);
+    validateExpose<DatetimePicker.Global>(expose, exposed);
+    validateProps<DatetimePicker.OwnProps>(props);
 
     return {
       date: computed(() =>

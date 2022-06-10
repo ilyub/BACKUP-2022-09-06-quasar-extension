@@ -2,10 +2,17 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.BaseButton] */
 
 import { BaseButton } from "./BaseButton.extras";
-import { injections, parentProps, plugins, prop, validateProps } from "./api";
-import { is } from "@skylib/functions";
-import { QBtn } from "quasar";
+import {
+  injections,
+  parentProps,
+  plugins,
+  prop,
+  validateExpose,
+  validateProps
+} from "./api";
+import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import type { QBtn } from "quasar";
 
 export default defineComponent({
   name: "m-base-button",
@@ -19,20 +26,25 @@ export default defineComponent({
     tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>(),
     type: prop<BaseButton.Props["type"]>()
   },
-  setup: props => {
-    validateProps<BaseButton.OwnProps>(props);
-
+  setup: (props, { expose }) => {
     const { label, tooltip } = plugins.langProps(props, "label", "tooltip");
 
     const asyncClick = plugins.asyncClick(props);
 
     const confirmedClick = plugins.confirmedClick(props);
 
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
     const globalDisable = injections.disable.inject();
 
     const globalSubmitting = injections.submitting.inject();
 
+    const main = ref<QBtn>();
+
     const settings = BaseButton.injectSettings();
+
+    validateExpose<BaseButton.Global>(expose, exposed);
+    validateProps<BaseButton.OwnProps>(props);
 
     return {
       click: (): void => {
@@ -41,7 +53,7 @@ export default defineComponent({
       },
       hasTooltip: computed(() => is.not.empty(tooltip.value)),
       label,
-      main: ref(QBtn),
+      main,
       mainDisable: computed(
         () => props.disable || globalDisable.value || asyncClick.active.value
       ),

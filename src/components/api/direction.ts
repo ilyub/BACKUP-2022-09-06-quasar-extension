@@ -1,7 +1,6 @@
 import { prop } from "./misc";
 import { defineFn } from "@skylib/functions";
 import { computed } from "vue";
-import type { SetupProps } from "./core";
 import type { ComputedRef } from "vue";
 
 export const direction = defineFn(
@@ -11,7 +10,7 @@ export const direction = defineFn(
    * @param props - Props.
    * @returns Direction plugin.
    */
-  (props: SetupProps<direction.Props>): direction.Plugin => {
+  (props: direction.Props): direction.Plugin => {
     const dir = computed(() => props.direction ?? "down-right");
 
     return {

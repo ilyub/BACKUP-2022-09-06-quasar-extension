@@ -1,10 +1,11 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.ExpansionItem] */
 
-import { parentProps, plugins } from "./api";
-import { QExpansionItem } from "quasar";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { ExpansionItem } from "./ExpansionItem.extras";
+import type { QExpansionItem } from "quasar";
 
 export default defineComponent({
   name: "m-expansion-item",
@@ -12,12 +13,18 @@ export default defineComponent({
     ...parentProps<ExpansionItem.ParentProps>(),
     ...plugins.label.props
   },
-  setup: props => {
+  setup: (props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
     const { label } = plugins.label(props);
+
+    const main = ref<QExpansionItem>();
+
+    validateExpose<ExpansionItem.Global>(expose, exposed);
 
     return {
       label,
-      main: ref(QExpansionItem),
+      main,
       slotNames: plugins.slotNames<ExpansionItem.Slots>()()
     };
   }

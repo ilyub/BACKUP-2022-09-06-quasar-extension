@@ -2,7 +2,6 @@ import { prop } from "./misc";
 import { lang } from "@skylib/facades";
 import { defineFn, is } from "@skylib/functions";
 import { computed } from "vue";
-import type { SetupProps } from "./core";
 import type { stringU } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 
@@ -13,7 +12,7 @@ export const label = defineFn(
    * @param props - Props.
    * @returns Label plugin.
    */
-  (props: SetupProps<label.Props>): label.Plugin => {
+  (props: label.Props): label.Plugin => {
     return {
       label: computed(() =>
         is.not.empty(props.label) ? lang.get(props.label) : undefined

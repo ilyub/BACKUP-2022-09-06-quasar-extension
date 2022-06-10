@@ -1,6 +1,13 @@
 <script lang="ts">
 import { LanguagePicker } from "./LanguagePicker.extras";
-import { directives, parentProps, plugins, prop, validateProps } from "./api";
+import {
+  directives,
+  parentProps,
+  plugins,
+  prop,
+  validateExpose,
+  validateProps
+} from "./api";
 import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { IconButton } from "./IconButton.extras";
@@ -12,10 +19,15 @@ export default defineComponent({
     ...parentProps<LanguagePicker.ParentProps>(),
     language: prop.required<LanguagePicker.Props["language"]>()
   },
-  setup: props => {
-    validateProps<LanguagePicker.OwnProps>(props);
+  setup: (props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<IconButton.Global>();
 
     const settings = LanguagePicker.injectSettings();
+
+    validateExpose<LanguagePicker.Global>(expose, exposed);
+    validateProps<LanguagePicker.OwnProps>(props);
 
     return {
       activeOption: computed(() =>
@@ -25,7 +37,7 @@ export default defineComponent({
           )
         )
       ),
-      main: ref<IconButton.Global>(),
+      main,
       settings,
       slotNames: plugins.slotNames<LanguagePicker.Slots>()("default")
     };

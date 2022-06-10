@@ -8,11 +8,12 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { handlePromise } from "@skylib/facades";
 import { as } from "@skylib/functions";
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import type { Form } from "./Form.extras";
 import type { QForm } from "quasar";
 
@@ -24,11 +25,16 @@ export default defineComponent({
     onAsyncSubmit: prop<Form.Props["onAsyncSubmit"]>()
   },
   emits: { submit: (event: Event) => skipCheck(event) },
-  setup: (props, { emit }) => {
-    validateEmit<Form.OwnProps>(emit);
-    validateProps<Form.OwnProps, "onAsyncSubmit">(props);
-
+  setup: (props, { emit, expose }) => {
     const disable = ref(0);
+
+    const exposed = {
+      main: computed(() => as.not.empty(main.value)),
+      resetValidation: (): void => {
+        as.not.empty(main.value).resetValidation();
+        resetValidation();
+      }
+    };
 
     const globalDisable = injections.disable.inject();
 
@@ -38,16 +44,14 @@ export default defineComponent({
 
     const resetValidation = plugins.validation.reset.get();
 
+    validateEmit<Form.OwnProps>(emit);
+    validateExpose<Form.Global>(expose, exposed);
+    validateProps<Form.OwnProps, "onAsyncSubmit">(props);
     injections.disable.provide(() => globalDisable.value || disable.value > 0);
     injections.submitting.provide(() => submitting.value > 0);
 
     return {
       main,
-      // eslint-disable-next-line vue/no-unused-properties -- Ok
-      resetValidation: (): void => {
-        as.not.empty(main.value).resetValidation();
-        resetValidation();
-      },
       slotNames: plugins.slotNames<Form.Slots>()(),
       submit: (event: Event): void => {
         handlePromise(props.asyncTaskType, submit);

@@ -7,10 +7,9 @@ export default defineComponent({
   name: "m-switchable",
   props: { disable: prop.boolean(), indent: prop.boolean() },
   setup: props => {
-    validateProps<Switchable.OwnProps>(props);
-
     const globalDisable = injections.disable.inject();
 
+    validateProps<Switchable.OwnProps>(props);
     injections.disable.provide(() => props.disable || globalDisable.value);
 
     return { settings: Switchable.injectSettings() };

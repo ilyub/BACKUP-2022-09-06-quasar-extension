@@ -8,6 +8,7 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { as, cast, fn, o } from "@skylib/functions";
@@ -29,15 +30,14 @@ export default defineComponent({
     validationOptions: prop<Field.Props["validationOptions"]>()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<Field.OwnProps>(emit);
-    validateProps<Field.OwnProps>(props);
-
+  setup: (props, { emit, expose }) => {
     const { label, labelKey, placeholder } = plugins.langProps(
       props,
       "label",
       "placeholder"
     );
+
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const main = ref<QField>();
 
@@ -53,6 +53,10 @@ export default defineComponent({
         })
       )
     );
+
+    validateEmit<Field.OwnProps>(emit);
+    validateExpose<Field.Global>(expose, exposed);
+    validateProps<Field.OwnProps>(props);
 
     return {
       blur: (): void => {

@@ -2,7 +2,6 @@ import { prop } from "./misc";
 import { lang as baseLang } from "@skylib/facades";
 import { defineFn, is, typedef } from "@skylib/functions";
 import { useQuasar } from "quasar";
-import type { SetupProps } from "./core";
 
 declare global {
   namespace facades {
@@ -19,7 +18,7 @@ export const confirmedClick = defineFn(
    * @param props - Props.
    * @returns Confirmed click plugin.
    */
-  (props: SetupProps<confirmedClick.Props>): confirmedClick.Plugin => {
+  (props: confirmedClick.Props): confirmedClick.Plugin => {
     const $q = useQuasar();
 
     // eslint-disable-next-line no-warning-comments -- Postponed

@@ -1,17 +1,20 @@
 <script lang="ts">
-import { parentProps, plugins } from "./api";
-import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { Subsection } from "./Subsection.extras";
-import type { Switchable } from "./Switchable.extras";
 
 export default defineComponent({
   name: "m-subsection",
   props: parentProps<Subsection.ParentProps>(),
-  setup: () => {
-    return {
-      main: ref<Switchable.Global>(),
-      slotNames: plugins.slotNames<Subsection.Slots>()()
-    };
+  setup: (_props, { expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<Subsection.Global>();
+
+    validateExpose<Subsection.Global>(expose, exposed);
+
+    return { main, slotNames: plugins.slotNames<Subsection.Slots>()() };
   }
 });
 </script>

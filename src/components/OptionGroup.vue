@@ -7,9 +7,11 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { lang } from "@skylib/facades";
+import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
@@ -23,12 +25,17 @@ export default defineComponent({
     options: prop.required<OptionGroup.Props["options"]>()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
-  main: ref<QOptionGroup>(),
-  setup: (props, { emit }) => {
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QOptionGroup>();
+
     validateEmit<OptionGroup.OwnProps>(emit);
+    validateExpose<OptionGroup.Global>(expose, exposed);
     validateProps<OptionGroup.OwnProps>(props);
 
     return {
+      main,
       mainOptions: computed(() =>
         props.options.map(option => {
           return { ...option, label: lang.get(option.label) };
@@ -42,6 +49,7 @@ export default defineComponent({
 
 <template>
   <q-option-group
+    ref="main"
     class="m-option-group"
     :class="{ 'm-option-group__inline': inline }"
     :inline="inline"

@@ -8,6 +8,7 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
 import { as, cast, is, num, o } from "@skylib/functions";
@@ -34,13 +35,16 @@ export default defineComponent({
     validationOptions: prop<NumericInput.Props["validationOptions"]>()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
-  setup: (props, { emit }) => {
-    validateEmit<NumericInput.OwnProps>(emit);
-    validateProps<NumericInput.OwnProps>(props);
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const input = ref<HTMLInputElement>();
 
     const main = ref<Field.Global<numberU>>();
+
+    validateEmit<NumericInput.OwnProps>(emit);
+    validateExpose<NumericInput.Global>(expose, exposed);
+    validateProps<NumericInput.OwnProps>(props);
 
     return {
       downClick: (step: number): void => {

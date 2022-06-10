@@ -8,9 +8,11 @@ import {
   prop,
   skipCheck,
   validateEmit,
+  validateExpose,
   validateProps
 } from "./api";
-import { defineComponent, ref } from "vue";
+import { as } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
 
@@ -23,13 +25,18 @@ export default defineComponent({
     modelValue: prop.required<Knob.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
-  setup: (props, { emit }) => {
+  setup: (props, { emit, expose }) => {
+    const exposed = { main: computed(() => as.not.empty(main.value)) };
+
+    const main = ref<QKnob>();
+
     validateEmit<Knob.OwnProps>(emit);
+    validateExpose<Knob.Global>(expose, exposed);
     validateProps<Knob.OwnProps>(props);
 
     return {
       globalDisable: injections.disable.inject(),
-      main: ref<QKnob>(),
+      main,
       slotNames: plugins.slotNames<Knob.Slots>()()
     };
   }

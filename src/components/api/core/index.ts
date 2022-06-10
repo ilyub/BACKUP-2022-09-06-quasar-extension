@@ -1,11 +1,12 @@
 import type {
   Callable,
   IndexedObject,
+  IndexedRecord,
   UppercaseLetter,
   is
 } from "@skylib/functions";
 import type { ValueOf } from "type-fest";
-import type { ComputedRef, PropType } from "vue";
+import type { ComputedRef, PropType, Ref } from "vue";
 
 export type Emits = {
   readonly [K in `on${UppercaseLetter}${string}`]: () => void;
@@ -87,6 +88,19 @@ export type SetupEmitAux<K, V> = V extends Callable
       : never
     : never
   : never;
+
+export interface SetupExpose {
+  /**
+   * Exposes data.
+   *
+   * @param exposed - Exposed data.
+   */
+  (exposed?: IndexedRecord | undefined): void;
+}
+
+export type SetupExposed<T> = {
+  readonly [K in keyof T]: ComputedRef<T[K]> | Ref<T[K]> | T[K];
+};
 
 export type SetupProps<
   T,
