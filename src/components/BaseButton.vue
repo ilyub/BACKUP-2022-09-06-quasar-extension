@@ -28,17 +28,11 @@ export default defineComponent({
 
     const confirmedClick = plugins.confirmedClick(props);
 
-    const disable = computed(() => props.disable && globalDisable.value);
-
     const globalDisable = injections.disable.inject();
 
     const globalSubmitting = injections.submitting.inject();
 
     const settings = BaseButton.injectSettings();
-
-    const submitting = computed(
-      () => globalSubmitting.value && props.type === "submit"
-    );
 
     return {
       click: (): void => {
@@ -49,14 +43,23 @@ export default defineComponent({
       label,
       main: ref(QBtn),
       mainDisable: computed(
-        () => disable.value || submitting.value || asyncClick.active.value
+        () => props.disable || globalDisable.value || asyncClick.active.value
       ),
-      mainLoading: computed(
-        () =>
-          props.loading ||
-          (submitting.value && settings.value.animateSubmitting) ||
-          (asyncClick.active.value && settings.value.animateAsyncClick)
-      ),
+      mainLoading: computed(() => {
+        if (props.loading) return true;
+
+        if (asyncClick.active.value && settings.value.animateAsyncClick)
+          return true;
+
+        if (
+          props.type === "submit" &&
+          globalSubmitting.value &&
+          settings.value.animateSubmitting
+        )
+          return true;
+
+        return false;
+      }),
       slotNames: plugins.slotNames<BaseButton.Slots>()("default"),
       tooltip
     };
