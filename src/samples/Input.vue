@@ -29,7 +29,7 @@ export default defineComponent({
         value2.value = undefined;
         value3.value = undefined;
         value4.value = undefined;
-        value5.value = "1";
+        value5.value = undefined;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {

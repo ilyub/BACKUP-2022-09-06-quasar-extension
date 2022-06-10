@@ -11,6 +11,7 @@ import {
   validateProps
 } from "./api";
 import { as, cast, o, typedef } from "@skylib/functions";
+import { maska } from "maska";
 import { defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
@@ -18,12 +19,14 @@ import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "m-input",
+  directives: { maska },
   components: {
     // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
     "m-field__string": genericField<stringU>()
   },
   props: {
     ...parentProps<Input.ParentProps>(),
+    mask: prop<Input.Props["mask"]>(),
     modelValue: prop<Input.Props["modelValue"]>()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
@@ -70,6 +73,7 @@ export default defineComponent({
       <slot v-bind="data ?? {}" :name="slotNames.control">
         <input
           ref="input"
+          v-maska="mask"
           class="q-field__input"
           :placeholder="data.placeholder ?? ''"
           :value="data.modelValue"

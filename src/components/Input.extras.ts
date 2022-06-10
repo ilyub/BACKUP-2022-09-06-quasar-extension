@@ -8,6 +8,7 @@ export namespace Input {
   }
 
   export interface OwnProps {
+    readonly mask?: stringU;
     readonly modelValue?: stringU;
     /**
      * Emits model value.
