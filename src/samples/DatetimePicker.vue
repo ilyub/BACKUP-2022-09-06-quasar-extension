@@ -1,7 +1,8 @@
 <script lang="ts">
 import { DatetimePicker } from "./DatetimePicker.extras";
 import { datetime } from "@skylib/facades";
-import { as, is, typedef } from "@skylib/functions";
+import { as, is, json, typedef } from "@skylib/functions";
+import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
 import type { stringU } from "@skylib/functions";
@@ -9,6 +10,8 @@ import type { stringU } from "@skylib/functions";
 export default defineComponent({
   name: "sample-datetime-picker",
   setup: () => {
+    const $q = useQuasar();
+
     const form = ref<extras.Form.Global>();
 
     const value1 = ref<string>();
@@ -52,6 +55,13 @@ export default defineComponent({
       rules: typedef<plugins.validation.Rules<stringU>>([
         value => (is.not.empty(value) && value.endsWith("0") ? "Invalid" : true)
       ]),
+      submit: () => {
+        $q.notify(
+          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+          // fixme - Use dumper
+          json.encode([value1.value, value2.value, value3.value, value4.value])
+        );
+      },
       value1,
       value2,
       value3,
@@ -63,7 +73,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-form ref="form" @submit="$q.notify(lang.Submitted)">
+    <m-form ref="form" @submit="submit">
       <m-form-section>
         <m-datetime-picker
           v-model="value1"

@@ -35,6 +35,8 @@ export default defineComponent({
       disableDropping,
       disableSorting,
       dropped: (item: Item, group: string): void => {
+        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+        // fixme - Use dumper
         $q.notify(json.encode({ group, item }));
       },
       lang: Droppable.lang,

@@ -20,7 +20,6 @@ export namespace Input {
     readonly String: true;
     readonly StringContaingQForError: true;
     readonly Submit: true;
-    readonly Submitted: true;
     readonly ValidateOnChange: true;
     readonly ValidateOnInput: true;
     readonly ValidateOnSubmit: true;

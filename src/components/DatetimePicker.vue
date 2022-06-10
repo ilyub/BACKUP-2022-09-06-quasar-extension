@@ -132,17 +132,11 @@ export default defineComponent({
         step.value = is.not.empty(props.modelValue) ? "time" : "date";
         pickerValue.value = modelObject.value?.toString();
       },
-      lk: DatetimePicker.lang.keys,
-      main,
-      mainUpdate: (value: stringU): void => {
-        if (is.empty(value)) emit("update:modelValue", undefined);
-      },
-      mainValidationOptions: typedef<plugins.validation.Options<stringU>>({
-        format: (value: unknown): stringU => cast.stringU(value)
-      }),
-      mainValue: computed(() =>
+      inputValue: computed(() =>
         modelObject.value?.format("E, d MMM yyyy HHH:mm A")
       ),
+      lk: DatetimePicker.lang.keys,
+      main,
       nextClick: (): void => {
         step.value = "time";
       },
@@ -169,8 +163,8 @@ export default defineComponent({
       prevClick: (): void => {
         step.value = "date";
       },
-      save: (): void => {
-        emit("update:modelValue", pickerObject.value?.toString());
+      save: (emitValue: Field.ControlSlotData<stringU>["emitValue"]): void => {
+        emitValue(pickerObject.value?.toString());
       },
       showDialog,
       slotNames: plugins.slotNames<DatetimePicker.Slots>()(
@@ -210,6 +204,9 @@ export default defineComponent({
       timeUpdate: (value: string | null): void => {
         pickerValue.value = as.not.empty(value);
       },
+      validationOptions: typedef<plugins.validation.Options<stringU>>({
+        format: (value: unknown): stringU => cast.stringU(value)
+      }),
       year: computed(() =>
         pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
       )
@@ -222,22 +219,23 @@ export default defineComponent({
   <m-field__string
     ref="main"
     class="m-datetime-picker"
-    :model-value="mainValue"
+    :model-value="modelValue"
     :stack-label="showDialog"
-    :validation-options="mainValidationOptions"
-    @update:model-value="mainUpdate"
+    :validation-options="validationOptions"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>
     </template>
     <template #control="data">
       <slot :name="slotNames.control" v-bind="data ?? {}">
+        <input class="hidden" readonly :value="data.modelValue" />
         <input
           v-debug-id="'control'"
           class="m-datetime-picker__input q-field__input"
           :placeholder="data.placeholder ?? ''"
           readonly
-          :value="data.modelValue"
+          :value="inputValue"
           @click="inputClick"
         />
         <q-dialog v-model="showDialog">
@@ -299,7 +297,7 @@ export default defineComponent({
                       color="primary"
                       :disable="pickerEmpty"
                       :label="lk.Save"
-                      @click="save"
+                      @click="save(data.emitValue)"
                     />
                   </div>
                 </q-date>
@@ -320,7 +318,7 @@ export default defineComponent({
                       color="primary"
                       :disable="pickerEmpty"
                       :label="lk.Save"
-                      @click="save"
+                      @click="save(data.emitValue)"
                     />
                   </div>
                 </q-time>

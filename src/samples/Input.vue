@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Input } from "./Input.extras";
-import { as, is, typedef } from "@skylib/functions";
+import { as, is, json, typedef } from "@skylib/functions";
+import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
 import type { stringU } from "@skylib/functions";
@@ -8,6 +9,8 @@ import type { stringU } from "@skylib/functions";
 export default defineComponent({
   name: "sample-input",
   setup: () => {
+    const $q = useQuasar();
+
     const form = ref<extras.Form.Global>();
 
     const value1 = ref<string>();
@@ -38,6 +41,19 @@ export default defineComponent({
       rules: typedef<plugins.validation.Rules<stringU>>([
         value => (is.not.empty(value) && value.includes("q") ? "Invalid" : true)
       ]),
+      submit: () => {
+        $q.notify(
+          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
+          // fixme - Use dumper
+          json.encode([
+            value1.value,
+            value2.value,
+            value3.value,
+            value4.value,
+            value5.value
+          ])
+        );
+      },
       value1,
       value2,
       value3,
@@ -50,7 +66,7 @@ export default defineComponent({
 
 <template>
   <m-page-section>
-    <m-form ref="form" @submit="$q.notify(lang.Submitted)">
+    <m-form ref="form" @submit="submit">
       <m-form-section>
         <m-input v-model="value1" :label="lk.String" required />
       </m-form-section>
