@@ -140,6 +140,11 @@ module.exports = {
         "CallExpression[callee.name=ref][arguments.0.type=Literal] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword).params"
     },
     {
+      message: "Missing type parameter",
+      selector:
+        "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:validateEmit|validateExpose|validateProps)$/u]"
+    },
+    {
       message: 'Use "OwnProps" interface',
       selector:
         "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body"
