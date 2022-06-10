@@ -1,9 +1,9 @@
 <script lang="ts">
 import { DatetimePicker } from "./DatetimePicker.extras";
 import { datetime } from "@skylib/facades";
-import { as, is } from "@skylib/functions";
+import { as, is, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { extras } from "..";
+import type { extras, plugins } from "..";
 import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
@@ -49,10 +49,9 @@ export default defineComponent({
       resetValidation: (): void => {
         as.not.empty(form.value).resetValidation();
       },
-      rules: [
-        (value: stringU): string | true =>
-          is.not.empty(value) && value.endsWith("0") ? "Invalid" : true
-      ],
+      rules: typedef<plugins.validation.Rules<stringU>>([
+        value => (is.not.empty(value) && value.endsWith("0") ? "Invalid" : true)
+      ]),
       value1,
       value2,
       value3,
@@ -78,6 +77,7 @@ export default defineComponent({
         <m-datetime-picker
           v-model="value2"
           :label="lk.ValidateOnInput"
+          placeholder=""
           :rules-on-input="rules"
         />
       </m-form-section>

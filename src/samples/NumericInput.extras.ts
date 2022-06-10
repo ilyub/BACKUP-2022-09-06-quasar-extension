@@ -13,6 +13,7 @@ export namespace NumericInput {
 
   export interface Word {
     readonly Disabled: true;
+    readonly Invalid: true;
     readonly Number: true;
     readonly Placeholder: true;
     readonly Reset: true;

@@ -56,19 +56,19 @@ export const validation = defineFn(
 
       return is.not.empty(min)
         ? [
-            wrapRule((value: T): string | true => {
+            wrapRule(value => {
               const message =
                 options.value.minErrorMessage ?? "FieldShouldBeGteMin";
 
               const minMaxFormat = options.value.minMaxFormat ?? cast.string;
 
-              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-              // fixme - Use getIfExists
               return is.not.empty(value) && compare(value, min) < 0
-                ? validation.lang
-                    .with("field", label.value)
-                    .with("min", minMaxFormat(min))
-                    .get(message)
+                ? lang.plain(
+                    validation.lang
+                      .with("field", label.value)
+                      .with("min", minMaxFormat(min))
+                      .get(message)
+                  )
                 : true;
             }, "change")
           ]
@@ -80,19 +80,19 @@ export const validation = defineFn(
 
       return is.not.empty(max)
         ? [
-            wrapRule((value: T): string | true => {
+            wrapRule(value => {
               const message =
                 options.value.maxErrorMessage ?? "FieldShouldBeLteMax";
 
               const minMaxFormat = options.value.minMaxFormat ?? cast.string;
 
-              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-              // fixme - Use getIfExists
               return is.not.empty(value) && compare(value, max) > 0
-                ? validation.lang
-                    .with("field", label.value)
-                    .with("max", minMaxFormat(max))
-                    .get(message)
+                ? lang.plain(
+                    validation.lang
+                      .with("field", label.value)
+                      .with("max", minMaxFormat(max))
+                      .get(message)
+                  )
                 : true;
             }, "change")
           ]
@@ -108,14 +108,14 @@ export const validation = defineFn(
     const rulesOnSubmitRequired = computed(() =>
       options.value.required ?? false
         ? [
-            wrapRule((value: T): string | true => {
+            wrapRule(value => {
               const message =
                 options.value.requiredErrorMessage ?? "FieldIsRequired";
 
-              // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-              // fixme - Use getIfExists
               return value === undefined
-                ? validation.lang.with("field", label.value).get(message)
+                ? lang.plain(
+                    validation.lang.with("field", label.value).get(message)
+                  )
                 : true;
             }, "submit")
           ]
@@ -151,15 +151,22 @@ export const validation = defineFn(
       }
     };
 
-    interface RuleWrapper extends validation.Rule {
-      readonly state: Ref<string | true>;
+    interface RuleWrapper {
+      readonly state: Ref<lang.Key | true>;
+      /**
+       * Validates value.
+       *
+       * @param value - Value.
+       * @returns Validation result.
+       */
+      (value: unknown): Promise<string | true> | string | true;
     }
 
     function wrapRule(
       rule: validation.Rule<T>,
       context: validation.Context
     ): RuleWrapper {
-      const state = ref<string | true>(true);
+      const state = ref<lang.Key | true>(true);
 
       return defineFn(
         async (value: unknown) => {
@@ -173,7 +180,7 @@ export const validation = defineFn(
             // eslint-disable-next-line require-atomic-updates -- Ok
             state.value = await rule(options.value.format(value));
 
-          return state.value;
+          return state.value === true ? true : lang.get(state.value);
         },
         { state }
       );
@@ -246,7 +253,7 @@ export namespace validation {
      * @param value - Value.
      * @returns Validation result.
      */
-    (value: T): Promise<string | true> | string | true;
+    (value: T): lang.Key | Promise<lang.Key | true> | true;
   }
 
   export type Rules<T = unknown> = ReadonlyArray<Rule<T>>;

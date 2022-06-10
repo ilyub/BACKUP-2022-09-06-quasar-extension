@@ -13,6 +13,7 @@ export namespace Input {
 
   export interface Word {
     readonly Disabled: true;
+    readonly Invalid: true;
     readonly Mask: true;
     readonly Reset: true;
     readonly ResetValidation: true;

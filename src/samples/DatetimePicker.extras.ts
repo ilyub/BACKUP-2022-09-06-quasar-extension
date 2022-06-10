@@ -14,6 +14,7 @@ export namespace DatetimePicker {
   export interface Word {
     readonly Date: true;
     readonly Disabled: true;
+    readonly Invalid: true;
     readonly Reset: true;
     readonly ResetValidation: true;
     readonly Submit: true;

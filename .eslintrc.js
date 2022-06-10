@@ -53,6 +53,12 @@ module.exports = {
         ]
       }
     ],
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
+    // fixme
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      { allowExpressions: true }
+    ],
     // eslint-disable-next-line no-warning-comments -- Postponed
     // fixme
     "boundaries/element-types": "off",

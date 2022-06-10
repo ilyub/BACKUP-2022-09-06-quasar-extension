@@ -48,6 +48,7 @@ export const en = new implementations.lang.dictionary.Definitions({
     Green: "Green",
     Header: "Header",
     IconPicker: "Icon picker",
+    Invalid: "Invalid",
     Item1: "Item 1",
     Item2: "Item 2",
     Leading: "Leading",

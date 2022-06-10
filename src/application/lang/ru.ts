@@ -62,6 +62,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     Green: "Зеленый",
     Header: "Нижняя секция",
     IconPicker: "Выбор иконки",
+    Invalid: "Неверное значение",
     Item1: "Пункт 1",
     Item2: "Пункт 2",
     Leading: "Предшествующий",

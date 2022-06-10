@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Input } from "./Input.extras";
-import { as, is } from "@skylib/functions";
+import { as, is, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { extras } from "..";
+import type { extras, plugins } from "..";
 import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
@@ -35,10 +35,9 @@ export default defineComponent({
       resetValidation: (): void => {
         as.not.empty(form.value).resetValidation();
       },
-      rules: [
-        (value: stringU): string | true =>
-          is.not.empty(value) && value.includes("a") ? "Invalid" : true
-      ],
+      rules: typedef<plugins.validation.Rules<stringU>>([
+        value => (is.not.empty(value) && value.includes("a") ? "Invalid" : true)
+      ]),
       value1,
       value2,
       value3,

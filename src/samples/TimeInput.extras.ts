@@ -13,6 +13,7 @@ export namespace TimeInput {
 
   export interface Word {
     readonly Disabled: true;
+    readonly Invalid: true;
     readonly Placeholder: true;
     readonly Reset: true;
     readonly ResetValidation: true;
