@@ -18,20 +18,20 @@ export interface Injectable<T> {
    *
    * @returns Settings.
    */
-  readonly inject: () => ComputedRef<T>;
+  readonly inject: () => T;
   /**
-   * Provides settings.
+   * Provides value.
    *
-   * @param settings - Default settings.
+   * @param value - Default value.
    */
-  readonly provide: (settings: () => T) => void;
+  readonly provide: (value: T) => void;
   /**
-   * Returns provide object.
+   * Returns provide value.
    *
-   * @param settings - Settings.
+   * @param value - Value.
    * @returns Provide object.
    */
-  readonly testProvide: (settings: T) => IndexedObject;
+  readonly testProvide: (value: T) => IndexedObject;
 }
 
 export interface InjectableSettings<T> {

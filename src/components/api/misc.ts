@@ -112,17 +112,17 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
  * @returns Injectable.
  */
 export function injectable<T>(createDefault?: () => T): Injectable<T> {
-  const id: InjectionKey<ComputedRef<T>> = Symbol("injectable-id");
+  const id: InjectionKey<T> = Symbol("injectable-id");
 
   return {
     inject: () =>
-      createDefault ? inject(id, computed(createDefault)) : injectRequire(id),
-    provide: (settings): void => {
-      provide(id, computed(settings));
+      createDefault ? inject(id, createDefault()) : injectRequire(id),
+    provide: (value): void => {
+      provide(id, value);
     },
-    testProvide: (settings): IndexedObject => {
+    testProvide: (value): IndexedObject => {
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
-      return { [id as symbol]: computed(() => settings) };
+      return { [id as symbol]: computed(() => value) };
     }
   };
 }
@@ -136,12 +136,18 @@ export function injectable<T>(createDefault?: () => T): Injectable<T> {
 export function injectableSettings<T>(
   createDefault?: () => T
 ): InjectableSettings<T> {
-  const result = injectable(createDefault);
+  const id: InjectionKey<ComputedRef<T>> = Symbol("injectable-id");
 
   return {
-    injectSettings: result.inject,
-    provideSettings: result.provide,
-    testProvideSettings: result.testProvide
+    injectSettings: () =>
+      createDefault ? inject(id, computed(createDefault)) : injectRequire(id),
+    provideSettings: (settings): void => {
+      provide(id, computed(settings));
+    },
+    testProvideSettings: (settings): IndexedObject => {
+      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
+      return { [id as symbol]: computed(() => settings) };
+    }
   };
 }
 

@@ -1,17 +1,21 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Menu] */
 
+import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins, prop, validateExpose } from "./api";
 import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Button } from "./Button.extras";
-import type { Menu } from "./Menu.extras";
 import type { QMenu } from "quasar";
 
 export default defineComponent({
   name: "m-menu",
-  props: { ...parentProps<Menu.ParentProps>(), ...plugins.direction.props },
+  props: {
+    ...parentProps<Menu.ParentProps>(),
+    ...plugins.direction.props,
+    autoClose: prop.boolean()
+  },
   setup: (props, { expose }) => {
     const direction = plugins.direction(props);
 
@@ -20,6 +24,12 @@ export default defineComponent({
     const main = ref<QMenu>();
 
     validateExpose<Menu.Global>(expose, exposed);
+
+    Menu.provideMenu({
+      autoClose: () => {
+        if (props.autoClose) as.not.empty(main.value).hide();
+      }
+    });
 
     return {
       anchor: direction.anchor,
@@ -37,6 +47,7 @@ export default defineComponent({
   <q-menu
     ref="main"
     :anchor="anchor"
+    :auto-close="autoClose"
     class="m-menu"
     :offset="offset"
     :self="self"

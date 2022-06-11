@@ -47,8 +47,10 @@ export default defineComponent({
     validateEmit<Form.OwnProps>(emit);
     validateExpose<Form.Global>(expose, exposed);
     validateProps<Form.OwnProps, "onAsyncSubmit">(props);
-    injections.disable.provide(() => globalDisable.value || disable.value > 0);
-    injections.submitting.provide(() => submitting.value > 0);
+    injections.disable.provide(
+      computed(() => globalDisable.value || disable.value > 0)
+    );
+    injections.submitting.provide(computed(() => submitting.value > 0));
 
     return {
       main,

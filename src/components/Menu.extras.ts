@@ -1,18 +1,35 @@
+import { injectable } from "./api";
 import type { GlobalComponent, plugins } from "./api";
+import type { booleanU } from "@skylib/functions";
 import type { QMenu, QMenuProps, QMenuSlots } from "quasar";
 
 export namespace Menu {
+  export const { inject: injectMenu, provide: provideMenu } =
+    injectable<ExposeToChildren>();
+
+  export interface ExposeToChildren {
+    /**
+     * Auto-closes menu.
+     */
+    readonly autoClose: () => void;
+  }
+
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main: QMenu;
   }
 
-  export interface ParentProps extends Omit<QMenuProps, keyof PluginProps> {}
+  export interface OwnProps {
+    readonly autoClose?: booleanU;
+  }
+
+  export interface ParentProps
+    extends Omit<QMenuProps, keyof OwnProps | keyof PluginProps> {}
 
   export interface ParentSlots extends QMenuSlots {}
 
   export interface PluginProps extends plugins.direction.Props {}
 
-  export interface Props extends ParentProps, PluginProps {}
+  export interface Props extends ParentProps, PluginProps, OwnProps {}
 
   export interface Slots extends ParentSlots {}
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Switchable } from "./Switchable.extras";
 import { injections, prop, validateProps } from "./api";
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 
 export default defineComponent({
   name: "m-switchable",
@@ -10,7 +10,9 @@ export default defineComponent({
     const globalDisable = injections.disable.inject();
 
     validateProps<Switchable.OwnProps>(props);
-    injections.disable.provide(() => props.disable || globalDisable.value);
+    injections.disable.provide(
+      computed(() => props.disable || globalDisable.value)
+    );
 
     return { settings: Switchable.injectSettings() };
   }
