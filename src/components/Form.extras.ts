@@ -1,4 +1,5 @@
 import { injectable } from "./api";
+import { computed } from "vue";
 import type { GlobalComponent } from "./api";
 import type { handlePromise } from "@skylib/facades";
 import type { QForm, QFormProps, QFormSlots } from "quasar";
@@ -6,7 +7,7 @@ import type { ComputedRef } from "vue";
 
 export namespace Form {
   export const { inject: injectForm, provide: provideForm } =
-    injectable<ExposeToChildren>();
+    injectable<ExposeToChildren>({ submitting: computed(() => false) });
 
   export interface AsyncSubmit {
     /**

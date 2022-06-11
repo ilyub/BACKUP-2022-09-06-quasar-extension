@@ -1,11 +1,12 @@
 import { injectable } from "./api";
+import { fn } from "@skylib/functions";
 import type { GlobalComponent, plugins } from "./api";
 import type { booleanU } from "@skylib/functions";
 import type { QMenu, QMenuProps, QMenuSlots } from "quasar";
 
 export namespace Menu {
   export const { inject: injectMenu, provide: provideMenu } =
-    injectable<ExposeToChildren>();
+    injectable<ExposeToChildren>({ autoClose: fn.noop });
 
   export interface ExposeToChildren {
     /**

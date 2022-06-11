@@ -108,15 +108,14 @@ export function injectRequire<T>(key: InjectionKey<T> | string): T {
 /**
  * Creates injectable.
  *
- * @param createDefault - Creates default value.
+ * @param defVal - Default value.
  * @returns Injectable.
  */
-export function injectable<T>(createDefault?: () => T): Injectable<T> {
+export function injectable<T>(defVal: T): Injectable<T> {
   const id: InjectionKey<T> = Symbol("injectable-id");
 
   return {
-    inject: () =>
-      createDefault ? inject(id, createDefault()) : injectRequire(id),
+    inject: () => inject(id, defVal),
     provide: (value): void => {
       provide(id, value);
     },
