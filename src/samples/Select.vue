@@ -63,13 +63,13 @@ export default defineComponent({
           :label="lk.Color"
           :options="options"
           required
-          validation-label="Color"
+          :validation-label="lk.Color"
         />
       </m-form-section>
       <m-form-section>
         <m-select__value
           v-model="value2"
-          initial-label="SelectColor"
+          :initial-label="lk.SelectColor"
           :options="options"
           required
         />
@@ -78,7 +78,11 @@ export default defineComponent({
         <m-select__value v-model="value3" :options="options" />
       </m-form-section>
       <m-form-section>
-        <m-select__value disable initial-label="Disabled" :options="options" />
+        <m-select__value
+          disable
+          :initial-label="lk.Disabled"
+          :options="options"
+        />
       </m-form-section>
       <m-form-actions>
         <m-form-button type="submit">{{ lang.Submit }}</m-form-button>

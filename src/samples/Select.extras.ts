@@ -14,10 +14,12 @@ export namespace Select {
   export interface Word {
     readonly Blue: true;
     readonly Color: true;
+    readonly Disabled: true;
     readonly Green: true;
     readonly Red: true;
     readonly Reset: true;
     readonly ResetValidation: true;
+    readonly SelectColor: true;
     readonly Submit: true;
     readonly Submitted: true;
   }
