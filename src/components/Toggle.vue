@@ -20,7 +20,7 @@ export default defineComponent({
   name: "m-toggle",
   props: {
     ...parentProps<Toggle.ParentProps>(),
-    ...plugins.label.props,
+    ...plugins.langProps.props("label"),
     disable: prop.boolean(),
     modelValue: prop.boolean()
   },
@@ -28,7 +28,7 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const exposed = { main: computed(() => as.not.empty(main.value)) };
 
-    const { label } = plugins.label(props);
+    const { label } = plugins.langProps(props, "label");
 
     const main = ref<QToggle>();
 

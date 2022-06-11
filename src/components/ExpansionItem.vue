@@ -11,12 +11,12 @@ export default defineComponent({
   name: "m-expansion-item",
   props: {
     ...parentProps<ExpansionItem.ParentProps>(),
-    ...plugins.label.props
+    ...plugins.langProps.props("label")
   },
   setup: (props, { expose }) => {
     const exposed = { main: computed(() => as.not.empty(main.value)) };
 
-    const { label } = plugins.label(props);
+    const { label } = plugins.langProps(props, "label");
 
     const main = ref<QExpansionItem>();
 

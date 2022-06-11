@@ -23,7 +23,7 @@ export namespace Toggle {
 
   export interface ParentSlots extends QToggleSlots {}
 
-  export interface PluginProps extends plugins.label.Props {}
+  export interface PluginProps extends plugins.langProps.Props<"Label"> {}
 
   export interface Props extends ParentProps, PluginProps, OwnProps {}
 
