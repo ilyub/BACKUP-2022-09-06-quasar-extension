@@ -154,6 +154,11 @@ module.exports = {
         "CallExpression[typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=/^(?:boolean|default|required)$/u]"
     },
     {
+      message: "Missing type parameter",
+      selector:
+        "CallExpression[typeParameters=undefined][arguments.length=0] > Identifier.callee[name=ref]"
+    },
+    {
       message: 'Use "OwnProps" interface',
       selector:
         "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body"

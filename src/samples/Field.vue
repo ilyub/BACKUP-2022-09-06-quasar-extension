@@ -22,7 +22,7 @@ export default defineComponent({
         emitValue(cast.stringU(o.get(as.not.empty(event.target), "value")));
       },
       lk: Field.lang.keys,
-      value: ref()
+      value: ref<string>()
     };
   }
 });
