@@ -2,9 +2,14 @@ import type {
   Callable,
   IndexedObject,
   IndexedRecord,
+  PickKeys,
   UppercaseLetter,
+  booleanU,
   is
 } from "@skylib/functions";
+import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
+import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
+import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ValueOf } from "type-fest";
 import type { ComputedRef, PropType, Ref } from "vue";
 
@@ -54,6 +59,45 @@ export interface InjectableSettings<T> {
    * @returns Provide object.
    */
   readonly testProvideSettings: (settings: T) => IndexedObject;
+}
+
+export interface Prop<T extends object> {
+  /**
+   * Creates Vue property.
+   *
+   * @returns Vue property.
+   */
+  <
+    K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
+  >(): PropOptions<T[K]>;
+  /**
+   * Creates Vue property.
+   *
+   * @param defVal - Default value.
+   * @returns Vue property.
+   */
+  readonly boolean: <_K extends PickKeys<T, booleanU, "extends->">>(
+    defVal?: boolean
+  ) => PropOptionsBoolean;
+  /**
+   * Creates Vue property.
+   *
+   * @param defVal - Default value.
+   * @returns Vue property.
+   */
+  readonly default: <
+    K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
+  >(
+    defVal: Exclude<T[K], undefined>
+  ) => PropOptionsDefault<T[K]>;
+  /**
+   * Creates Vue property.
+   *
+   * @returns Vue property.
+   */
+  readonly required: <
+    K extends FilterKeys<T, booleanU, "extends->"> & RequiredKeys<T>
+  >() => PropOptionsRequired<T[K]>;
 }
 
 export interface PropOptions<T> {

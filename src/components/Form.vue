@@ -6,7 +6,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,12 +17,14 @@ import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QForm } from "quasar";
 
+const prop = propFactory<Form.OwnProps>();
+
 export default defineComponent({
   name: "m-form",
   props: {
     ...parentProps<Form.ParentProps>(),
-    asyncTaskType: prop<Form.Props["asyncTaskType"]>(),
-    onAsyncSubmit: prop<Form.Props["onAsyncSubmit"]>()
+    asyncTaskType: prop<"asyncTaskType">(),
+    onAsyncSubmit: prop<"onAsyncSubmit">()
   },
   emits: { submit: (event: Event) => skipCheck(event) },
   setup: (props, { emit, expose }) => {

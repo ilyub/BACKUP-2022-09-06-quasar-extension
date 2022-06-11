@@ -6,7 +6,7 @@ import {
   override,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -27,6 +27,8 @@ const icons = Table.icons;
 
 const lang = Table.lang;
 
+const prop = propFactory<Table.OwnProps>();
+
 interface VirtualScrollDetails {
   readonly direction: "decrease" | "increase";
   readonly from: number;
@@ -43,24 +45,24 @@ export default defineComponent({
     ...parentProps<Table.ParentProps>(),
     binaryStateSortOff: prop.boolean(),
     binaryStateSortOn: prop.boolean(),
-    columnWidths: prop.default<Table.Props["columnWidths"]>(new Map()),
-    columns: prop.default<Table.Props["columns"]>([]),
-    columnsOrder: prop.default<Table.Props["columnsOrder"]>(new Map()),
+    columnWidths: prop.default<"columnWidths">(new Map()),
+    columns: prop.default<"columns">([]),
+    columnsOrder: prop.default<"columnsOrder">(new Map()),
     externalSorting: prop.boolean(),
     flatOff: prop.boolean(),
     flatOn: prop.boolean(),
     headerSeparatorOff: prop.boolean(),
     headerSeparatorOn: prop.boolean(),
-    hiddenColumns: prop.default<Table.Props["hiddenColumns"]>(new Set()),
+    hiddenColumns: prop.default<"hiddenColumns">(new Set()),
     manageColumns: prop.boolean(),
     multiSelect: prop.boolean(),
-    pagination: prop.default<Table.Props["pagination"]>({}),
+    pagination: prop.default<"pagination">({}),
     resizableColumns: prop.boolean(),
-    rowKey: prop<Table.Props["rowKey"]>(),
-    rows: prop.default<Table.Props["rows"]>([]),
+    rowKey: prop<"rowKey">(),
+    rows: prop.default<"rows">([]),
     selectByCheckbox: prop.boolean(),
     selectByRowClick: prop.boolean(),
-    selected: prop.default<Table.Props["selected"]>([]),
+    selected: prop.default<"selected">([]),
     squareOff: prop.boolean(),
     squareOn: prop.boolean(),
     sticky: prop.boolean()

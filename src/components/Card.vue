@@ -5,7 +5,7 @@ import { Card } from "./Card.extras";
 import {
   parentProps,
   plugins,
-  prop,
+  propFactory,
   validateExpose,
   validateProps
 } from "./api";
@@ -13,13 +13,15 @@ import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QCard } from "quasar";
 
+const prop = propFactory<Card.OwnProps>();
+
 export default defineComponent({
   name: "m-card",
   props: {
     ...parentProps<Card.ParentProps>(),
     ...plugins.langProps.props("title"),
-    minWidth: prop<Card.Props["minWidth"]>(),
-    transparentHeader: prop.boolean()
+    minWidth: prop<"minWidth">(),
+    transparentHeader: prop.boolean<"transparentHeader">()
   },
   setup: (props, { expose }) => {
     const exposed = { main: computed(() => as.not.empty(main.value)) };

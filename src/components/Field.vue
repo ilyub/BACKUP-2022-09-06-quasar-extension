@@ -5,7 +5,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,17 +17,19 @@ import type { Field } from "./Field.extras";
 import type { NumStrE } from "@skylib/functions";
 import type { QField } from "quasar";
 
+const prop = propFactory<Field.OwnProps>();
+
 export default defineComponent({
   name: "m-field",
   props: {
     ...parentProps<Field.ParentProps>(),
     ...plugins.langProps.props("label", "placeholder"),
     ...plugins.validation.props,
-    disable: prop.boolean(),
-    focusableElement: prop<Field.Props["focusableElement"]>(),
-    modelValue: prop<Field.Props["modelValue"]>(),
-    required: prop.boolean(),
-    validationOptions: prop<Field.Props["validationOptions"]>()
+    disable: prop.boolean<"disable">(),
+    focusableElement: prop<"focusableElement">(),
+    modelValue: prop.required<"modelValue">(),
+    required: prop.boolean<"required">(),
+    validationOptions: prop<"validationOptions">()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

@@ -5,7 +5,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -15,6 +15,8 @@ import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Toggle } from "./Toggle.extras";
 import type { QToggle } from "quasar";
+
+const prop = propFactory<Toggle.OwnProps>();
 
 export default defineComponent({
   name: "m-toggle",

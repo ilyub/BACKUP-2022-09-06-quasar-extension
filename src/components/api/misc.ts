@@ -4,6 +4,7 @@ import type {
   Emits,
   Injectable,
   InjectableSettings,
+  Prop,
   PropOptions,
   PropOptionsBoolean,
   PropOptionsDefault,
@@ -17,52 +18,16 @@ import type {
 import type {
   IndexedObject,
   Join2,
+  PickKeys,
   UppercaseLetter,
+  booleanU,
   unknowns
 } from "@skylib/functions";
 import type { PublicProps } from "quasar";
+import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
-
-export const prop = defineFn(
-  /**
-   * Creates Vue property.
-   *
-   * @returns Vue property.
-   */
-  <T>(): PropOptions<T> => {
-    return {};
-  },
-  {
-    /**
-     * Creates Vue property.
-     *
-     * @param defVal - Default value.
-     * @returns Vue property.
-     */
-    boolean: (defVal = false): PropOptionsBoolean => {
-      return { default: defVal, type: Boolean };
-    },
-    /**
-     * Creates Vue property.
-     *
-     * @param defVal - Default value.
-     * @returns Vue property.
-     */
-    default: <T>(defVal: Exclude<T, undefined>): PropOptionsDefault<T> => {
-      return { default: defVal };
-    },
-    /**
-     * Creates Vue property.
-     *
-     * @returns Vue property.
-     */
-    required: <T>(): PropOptionsRequired<T> => {
-      return { required: true };
-    }
-  }
-);
 
 export interface GlobalComponent<P, S> {
   /**
@@ -169,6 +134,40 @@ export function override(setting: boolean, on: boolean, off: boolean): boolean {
 export function parentProps<T extends object>(): ParentProps<T> {
   // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
   return {} as ParentProps<T>;
+}
+
+/**
+ * Creates prop function.
+ *
+ * @returns Prop function.
+ */
+export function propFactory<T extends object>(): Prop<T> {
+  return defineFn(
+    <
+      K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
+    >(): PropOptions<T[K]> => {
+      return {};
+    },
+    {
+      boolean: <_K extends PickKeys<T, booleanU, "extends->">>(
+        defVal = false
+      ): PropOptionsBoolean => {
+        return { default: defVal, type: Boolean };
+      },
+      default: <
+        K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
+      >(
+        defVal: Exclude<T[K], undefined>
+      ): PropOptionsDefault<T[K]> => {
+        return { default: defVal };
+      },
+      required: <
+        K extends FilterKeys<T, booleanU, "extends->"> & RequiredKeys<T>
+      >(): PropOptionsRequired<T[K]> => {
+        return { required: true };
+      }
+    }
+  );
 }
 
 /**

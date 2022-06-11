@@ -2,12 +2,20 @@
 import { buildElements, isElements, isMoveData } from "./Sortable.core";
 import { Sortable } from "./Sortable.extras";
 import { Tooltip } from "./Tooltip.extras";
-import { plugins, prop, skipCheck, validateEmit, validateProps } from "./api";
+import {
+  plugins,
+  propFactory,
+  skipCheck,
+  validateEmit,
+  validateProps
+} from "./api";
 import { as, assert, is, o } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import VueDraggable from "vuedraggable";
 import type { GlobalComponent } from "./api";
 import type { objects } from "@skylib/functions";
+
+const prop = propFactory<Sortable.OwnProps>();
 
 export default defineComponent({
   name: "m-sortable",
@@ -19,12 +27,12 @@ export default defineComponent({
     >
   },
   props: {
-    group: prop.required<Sortable.Props["group"]>(),
-    itemClass: prop<Sortable.Props["itemClass"]>(),
-    itemKey: prop.required<Sortable.Props["itemKey"]>(),
-    itemTag: prop.default<Sortable.Props["itemTag"]>("div"),
-    modelValue: prop.required<Sortable.Props["modelValue"]>(),
-    move: prop<Sortable.Props["move"]>(),
+    group: prop.required<"group">(),
+    itemClass: prop<"itemClass">(),
+    itemKey: prop.required<"itemKey">(),
+    itemTag: prop.default<"itemTag">("div"),
+    modelValue: prop.required<"modelValue">(),
+    move: prop<"move">(),
     pull: prop.boolean(),
     put: prop.boolean(),
     sort: prop.boolean()

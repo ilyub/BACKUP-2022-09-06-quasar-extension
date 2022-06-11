@@ -3,7 +3,7 @@ import { IconPicker } from "./IconPicker.extras";
 import {
   directives,
   parentProps,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -18,6 +18,8 @@ import type { lang } from "@skylib/facades";
 import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
+
+const prop = propFactory<IconPicker.OwnProps>();
 
 interface Button {
   readonly icon?: string;
@@ -40,8 +42,8 @@ export default defineComponent({
   directives: { debugId: directives.debugId("icon-picker") },
   props: {
     ...parentProps<IconPicker.ParentProps>(),
-    modelValue: prop<IconPicker.Props["modelValue"]>(),
-    placeholder: prop.required<IconPicker.Props["placeholder"]>()
+    modelValue: prop<"modelValue">(),
+    placeholder: prop.required<"placeholder">()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

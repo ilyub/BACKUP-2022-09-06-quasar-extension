@@ -1,6 +1,6 @@
-import { prop, trigger } from "./misc";
+import { propFactory, trigger } from "./misc";
 import { compare, handlePromise, lang } from "@skylib/facades";
-import { a, cast, defineFn, is, typedef } from "@skylib/functions";
+import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
 import type { Writable, empty } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
@@ -187,11 +187,15 @@ export const validation = defineFn(
   },
   {
     lang: typedef<lang.Lang<keyof validation.Word, never>>(lang),
-    props: {
-      rulesOnChange: prop<validation.Props["rulesOnChange"]>(),
-      rulesOnInput: prop<validation.Props["rulesOnInput"]>(),
-      rulesOnSubmit: prop<validation.Props["rulesOnSubmit"]>()
-    } as const,
+    props: evaluate(() => {
+      const prop = propFactory<validation.OwnProps>();
+
+      return {
+        rulesOnChange: prop<"rulesOnChange">(),
+        rulesOnInput: prop<"rulesOnInput">(),
+        rulesOnSubmit: prop<"rulesOnSubmit">()
+      } as const;
+    }),
     reset: trigger()
   }
 );

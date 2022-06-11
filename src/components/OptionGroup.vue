@@ -5,7 +5,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,14 +17,16 @@ import { computed, defineComponent, ref } from "vue";
 import type { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
 
+const prop = propFactory<OptionGroup.OwnProps>();
+
 export default defineComponent({
   name: "m-option-group",
   props: {
     ...parentProps<OptionGroup.ParentProps>(),
     disable: prop.boolean(),
     inline: prop.boolean(),
-    modelValue: prop<OptionGroup.Props["modelValue"]>(),
-    options: prop.required<OptionGroup.Props["options"]>()
+    modelValue: prop<"modelValue">(),
+    options: prop.required<"options">()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

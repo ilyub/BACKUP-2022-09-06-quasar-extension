@@ -1,5 +1,5 @@
-import { prop } from "./misc";
-import { defineFn } from "@skylib/functions";
+import { propFactory } from "./misc";
+import { defineFn, evaluate } from "@skylib/functions";
 import { computed } from "vue";
 import type { ComputedRef } from "vue";
 
@@ -164,9 +164,13 @@ export const direction = defineFn(
     };
   },
   {
-    props: {
-      direction: prop<direction.Props["direction"]>()
-    } as const
+    props: evaluate(() => {
+      const prop = propFactory<direction.OwnProps>();
+
+      return {
+        direction: prop<"direction">()
+      } as const;
+    })
   }
 );
 

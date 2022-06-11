@@ -1,16 +1,24 @@
 <script lang="ts">
 import { PageLayout } from "./PageLayout.extras";
-import { directives, override, plugins, prop, validateProps } from "./api";
+import {
+  directives,
+  override,
+  plugins,
+  propFactory,
+  validateProps
+} from "./api";
 import { is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
+
+const prop = propFactory<PageLayout.OwnProps>();
 
 export default defineComponent({
   name: "m-page-layout",
   directives: { debugId: directives.debugId("page-layout") },
   props: {
     ...plugins.langProps.props("title"),
-    closeButtonOff: prop.boolean(),
-    closeButtonOn: prop.boolean()
+    closeButtonOff: prop.boolean<"closeButtonOff">(),
+    closeButtonOn: prop.boolean<"closeButtonOn">()
   },
   setup: props => {
     const settings = PageLayout.injectSettings();

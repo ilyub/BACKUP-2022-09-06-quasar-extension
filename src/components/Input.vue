@@ -5,7 +5,7 @@ import { genericField } from "./Field.generic";
 import {
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -18,6 +18,8 @@ import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
 import type { stringU } from "@skylib/functions";
 
+const prop = propFactory<Input.OwnProps>();
+
 export default defineComponent({
   name: "m-input",
   directives: { maska },
@@ -27,8 +29,8 @@ export default defineComponent({
   },
   props: {
     ...parentProps<Input.ParentProps>(),
-    mask: prop<Input.Props["mask"]>(),
-    modelValue: prop<Input.Props["modelValue"]>()
+    mask: prop<"mask">(),
+    modelValue: prop<"modelValue">()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

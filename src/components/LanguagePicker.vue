@@ -4,7 +4,7 @@ import {
   directives,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   validateExpose,
   validateProps
 } from "./api";
@@ -12,12 +12,14 @@ import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { IconButton } from "./IconButton.extras";
 
+const prop = propFactory<LanguagePicker.OwnProps>();
+
 export default defineComponent({
   name: "m-language-picker",
   directives: { debugId: directives.debugId("language-picker") },
   props: {
     ...parentProps<LanguagePicker.ParentProps>(),
-    language: prop.required<LanguagePicker.Props["language"]>()
+    language: prop.required<"language">()
   },
   setup: (props, { expose }) => {
     const exposed = { main: computed(() => as.not.empty(main.value)) };

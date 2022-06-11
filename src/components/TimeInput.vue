@@ -3,7 +3,7 @@ import {
   directives,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,12 +17,14 @@ import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
 import type { numberU } from "@skylib/functions";
 
+const prop = propFactory<TimeInput.OwnProps>();
+
 export default defineComponent({
   name: "m-time-input",
   directives: { debugId: directives.debugId("time-input"), maska },
   props: {
     ...parentProps<TimeInput.ParentProps>(),
-    modelValue: prop<TimeInput.Props["modelValue"]>()
+    modelValue: prop<"modelValue">()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

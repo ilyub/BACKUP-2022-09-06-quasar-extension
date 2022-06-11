@@ -3,18 +3,20 @@
 
 import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";
-import { parentProps, plugins, prop, validateExpose } from "./api";
+import { parentProps, plugins, propFactory, validateExpose } from "./api";
 import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Button } from "./Button.extras";
 import type { QMenu } from "quasar";
+
+const prop = propFactory<Menu.OwnProps>();
 
 export default defineComponent({
   name: "m-menu",
   props: {
     ...parentProps<Menu.ParentProps>(),
     ...plugins.direction.props,
-    autoClose: prop.boolean()
+    autoClose: prop.boolean<"autoClose">()
   },
   setup: (props, { expose }) => {
     const direction = plugins.direction(props);

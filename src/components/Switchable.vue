@@ -1,7 +1,9 @@
 <script lang="ts">
 import { Switchable } from "./Switchable.extras";
-import { injections, prop, validateProps } from "./api";
+import { injections, propFactory, validateProps } from "./api";
 import { computed, defineComponent } from "vue";
+
+const prop = propFactory<Switchable.OwnProps>();
 
 export default defineComponent({
   name: "m-switchable",

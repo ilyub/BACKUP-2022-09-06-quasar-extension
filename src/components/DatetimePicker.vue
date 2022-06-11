@@ -5,7 +5,7 @@ import {
   directives,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,6 +17,8 @@ import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { stringU } from "@skylib/functions";
 
+const prop = propFactory<DatetimePicker.OwnProps>();
+
 export default defineComponent({
   name: "m-datetime-picker",
   components: {
@@ -26,9 +28,9 @@ export default defineComponent({
   directives: { debugId: directives.debugId("datetime-picker") },
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),
-    max: prop<DatetimePicker.Props["max"]>(),
-    min: prop<DatetimePicker.Props["min"]>(),
-    modelValue: prop<DatetimePicker.Props["modelValue"]>()
+    max: prop<"max">(),
+    min: prop<"min">(),
+    modelValue: prop<"modelValue">()
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

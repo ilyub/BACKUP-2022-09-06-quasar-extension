@@ -5,7 +5,7 @@ import {
   directives,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -17,6 +17,8 @@ import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { numberU } from "@skylib/functions";
 
+const prop = propFactory<NumericInput.OwnProps>();
+
 export default defineComponent({
   name: "m-numeric-input",
   components: {
@@ -26,13 +28,13 @@ export default defineComponent({
   directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
     ...parentProps<NumericInput.ParentProps>(),
-    bigStep: prop.default<NumericInput.Props["bigStep"]>(1),
-    max: prop.default<NumericInput.Props["max"]>(Number.MAX_VALUE),
-    min: prop.default<NumericInput.Props["min"]>(0),
-    modelValue: prop<NumericInput.Props["modelValue"]>(),
+    bigStep: prop.default<"bigStep">(1),
+    max: prop.default<"max">(Number.MAX_VALUE),
+    min: prop.default<"min">(0),
+    modelValue: prop<"modelValue">(),
     required: prop.boolean(),
-    smallStep: prop.default<NumericInput.Props["smallStep"]>(1),
-    validationOptions: prop<NumericInput.Props["validationOptions"]>()
+    smallStep: prop.default<"smallStep">(1),
+    validationOptions: prop<"validationOptions">()
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

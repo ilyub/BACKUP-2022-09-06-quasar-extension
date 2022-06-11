@@ -6,7 +6,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -16,6 +16,8 @@ import { as, fn, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
 
+const prop = propFactory<Select.OwnProps>();
+
 export default defineComponent({
   name: "m-select",
   props: {
@@ -23,10 +25,10 @@ export default defineComponent({
     ...plugins.langProps.props("initialLabel", "label"),
     ...plugins.validation.props,
     disable: prop.boolean(),
-    modelValue: prop<Select.Props["modelValue"]>(),
-    options: prop.required<Select.Props["options"]>(),
+    modelValue: prop<"modelValue">(),
+    options: prop.required<"options">(),
     required: prop.boolean(),
-    validationLabel: prop<Select.Props["validationLabel"]>()
+    validationLabel: prop<"validationLabel">()
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

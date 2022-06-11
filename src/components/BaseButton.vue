@@ -7,13 +7,15 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   validateExpose,
   validateProps
 } from "./api";
 import { as, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QBtn } from "quasar";
+
+const prop = propFactory<BaseButton.OwnProps>();
 
 export default defineComponent({
   name: "m-base-button",
@@ -22,10 +24,10 @@ export default defineComponent({
     ...plugins.asyncClick.props,
     ...plugins.confirmedClick.props,
     ...plugins.langProps.props("label", "tooltip"),
-    disable: prop.boolean(),
-    loading: prop.boolean(),
-    tooltipDirection: prop<BaseButton.Props["tooltipDirection"]>(),
-    type: prop<BaseButton.Props["type"]>()
+    disable: prop.boolean<"disable">(),
+    loading: prop.boolean<"loading">(),
+    tooltipDirection: prop<"tooltipDirection">(),
+    type: prop<"type">()
   },
   setup: (props, { expose }) => {
     const { label, tooltip } = plugins.langProps(props, "label", "tooltip");

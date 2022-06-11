@@ -5,7 +5,7 @@ import {
   directives,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   validateExpose,
   validateProps
 } from "./api";
@@ -14,13 +14,15 @@ import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
 import type { QItem } from "quasar";
 
+const prop = propFactory<Item.OwnProps>();
+
 export default defineComponent({
   name: "m-item",
   directives: { debugId: directives.debugId("item") },
   props: {
     ...parentProps<Item.ParentProps>(),
     ...plugins.langProps.props("caption"),
-    icon: prop<Item.Props["icon"]>()
+    icon: prop<"icon">()
   },
   setup: (props, { expose }) => {
     const { caption } = plugins.langProps(props, "caption");

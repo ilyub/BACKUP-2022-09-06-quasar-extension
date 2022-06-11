@@ -5,7 +5,7 @@ import {
   injections,
   parentProps,
   plugins,
-  prop,
+  propFactory,
   skipCheck,
   validateEmit,
   validateExpose,
@@ -16,13 +16,15 @@ import { computed, defineComponent, ref } from "vue";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
 
+const prop = propFactory<Knob.OwnProps>();
+
 export default defineComponent({
   name: "m-knob",
   props: {
     ...parentProps<Knob.ParentProps>(),
     disable: prop.boolean(),
     inline: prop.boolean(),
-    modelValue: prop.required<Knob.Props["modelValue"]>()
+    modelValue: prop.required<"modelValue">()
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

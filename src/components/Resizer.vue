@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Resizer } from "./Resizer.extras";
-import { prop, skipCheck, validateEmit, validateProps } from "./api";
+import { propFactory, skipCheck, validateEmit, validateProps } from "./api";
 import { as, assert, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { numberU } from "@skylib/functions";
@@ -16,6 +16,8 @@ const isResizerEvent = is.object.factory<ResizerEvent>(
   {}
 );
 
+const prop = propFactory<Resizer.OwnProps>();
+
 interface Offset {
   readonly x: number;
   readonly y: number;
@@ -30,9 +32,9 @@ interface ResizerEvent {
 export default defineComponent({
   name: "m-resizer",
   props: {
-    max: prop<Resizer.Props["max"]>(),
-    min: prop.default<Resizer.Props["min"]>(0),
-    modelValue: prop<Resizer.Props["modelValue"]>()
+    max: prop<"max">(),
+    min: prop.default<"min">(0),
+    modelValue: prop<"modelValue">()
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit }) => {

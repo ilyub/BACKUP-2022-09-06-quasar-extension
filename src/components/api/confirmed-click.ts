@@ -1,6 +1,6 @@
-import { prop } from "./misc";
+import { propFactory } from "./misc";
 import { lang as baseLang } from "@skylib/facades";
-import { defineFn, is, typedef } from "@skylib/functions";
+import { defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { useQuasar } from "quasar";
 
 declare global {
@@ -38,10 +38,14 @@ export const confirmedClick = defineFn(
   },
   {
     lang: typedef<baseLang.Lang<keyof confirmedClick.Word, never>>(baseLang),
-    props: {
-      confirmation: prop<confirmedClick.Props["confirmation"]>(),
-      confirmedClick: prop<confirmedClick.Props["confirmedClick"]>()
-    } as const
+    props: evaluate(() => {
+      const prop = propFactory<confirmedClick.OwnProps>();
+
+      return {
+        confirmation: prop<"confirmation">(),
+        confirmedClick: prop<"confirmedClick">()
+      } as const;
+    })
   }
 );
 

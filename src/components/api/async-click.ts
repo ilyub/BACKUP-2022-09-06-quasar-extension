@@ -1,6 +1,6 @@
-import { prop } from "./misc";
+import { propFactory } from "./misc";
 import { handlePromise } from "@skylib/facades";
-import { defineFn } from "@skylib/functions";
+import { defineFn, evaluate } from "@skylib/functions";
 import { ref } from "vue";
 import type { Ref } from "vue";
 
@@ -33,9 +33,13 @@ export const asyncClick = defineFn(
     );
   },
   {
-    props: {
-      onAsyncClick: prop<asyncClick.Props["onAsyncClick"]>()
-    } as const
+    props: evaluate(() => {
+      const prop = propFactory<asyncClick.OwnProps>();
+
+      return {
+        onAsyncClick: prop<"onAsyncClick">()
+      } as const;
+    })
   }
 );
 

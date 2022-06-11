@@ -2,11 +2,13 @@
 import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
-import { directives, plugins, prop, validateProps } from "./api";
+import { directives, plugins, propFactory, validateProps } from "./api";
 import { compare, inlineSearch, lang } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
 import type { Group } from "./Group.extras";
+
+const prop = propFactory<Group.OwnProps>();
 
 export default defineComponent({
   name: "m-group",
@@ -14,9 +16,9 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...plugins.langProps.props("notFoundLabel"),
-    items: prop.required<Group.Props["items"]>(),
-    rootElement: prop<Group.Props["rootElement"]>(),
-    searchString: prop<Group.Props["searchString"]>()
+    items: prop.required<"items">(),
+    rootElement: prop<"rootElement">(),
+    searchString: prop<"searchString">()
   },
   setup: props => {
     const filteredItems = computed(() => {
