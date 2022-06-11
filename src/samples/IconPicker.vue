@@ -1,13 +1,13 @@
 <script lang="ts">
 import { IconPicker } from "./IconPicker.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { mdiImageEdit } from "@mdi/js";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-icon-picker",
   setup: () => {
-    const { iconPickerCompact, iconPickerTooltips } = useInjections();
+    const { iconPickerCompact, iconPickerTooltips } = settings;
 
     return {
       icon: ref<string>(),

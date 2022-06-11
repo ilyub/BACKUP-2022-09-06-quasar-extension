@@ -1,5 +1,5 @@
 <script lang="ts">
-import { components, useInjections } from "./samples";
+import { components, settings } from "./samples";
 import { lang } from "@skylib/facades";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";
@@ -11,7 +11,7 @@ export default defineComponent({
   name: "app",
   components: { "router-view": RouterView },
   setup: () => {
-    const { language, provide } = useInjections();
+    const { language, provide } = settings;
 
     provide();
 

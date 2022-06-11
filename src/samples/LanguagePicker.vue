@@ -1,12 +1,12 @@
 <script lang="ts">
 import { LanguagePicker } from "./LanguagePicker.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-language-picker",
   setup: () => {
-    const { language } = useInjections();
+    const { language } = settings;
 
     return { lang: LanguagePicker.lang, language };
   }

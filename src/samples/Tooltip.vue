@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Tooltip } from "./Tooltip.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -13,7 +13,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-tooltip",
   setup: () => {
-    const { tooltipDelay, tooltipShow } = useInjections();
+    const { tooltipDelay, tooltipShow } = settings;
 
     return {
       lang: Tooltip.lang,

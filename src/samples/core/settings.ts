@@ -1,70 +1,70 @@
 import { extras } from "../..";
 import { lang } from "@skylib/facades";
 import { implementations } from "@skylib/framework";
+// eslint-disable-next-line import/no-duplicates -- Ok
+import enGB from "date-fns/locale/en-GB";
+// eslint-disable-next-line import/no-duplicates -- Ok
+import enUS from "date-fns/locale/en-US";
+// eslint-disable-next-line @skylib/consistent-import, import/no-duplicates -- Ok
+import ruRu from "date-fns/locale/ru";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import { ref } from "vue";
-import type { LocaleName } from "@skylib/functions";
-import type { Ref } from "vue";
+import type { LocaleName, Writable } from "@skylib/functions";
 
-/**
- * Use injections plugin.
- *
- * @returns Injections plugin.
- */
-export function useInjections(): useInjections.Plugin {
-  return plugin;
-}
-
-export namespace useInjections {
-  export interface Plugin {
-    readonly baseButtonAnimateAsyncClick: Ref<boolean>;
-    readonly baseButtonAnimateSubmitting: Ref<boolean>;
-    readonly iconPickerCompact: Ref<boolean>;
-    readonly iconPickerTooltips: Ref<boolean>;
-    readonly language: Ref<LocaleName>;
-    readonly pageLayoutCloseButton: Ref<boolean>;
-    /**
-     * Provides all.
-     */
-    readonly provide: () => void;
-    readonly resizerDisable: Ref<boolean>;
-    readonly switchableTransition: Ref<extras.Switchable.Transition>;
-    readonly tooltipDelay: Ref<number>;
-    readonly tooltipShow: Ref<boolean>;
-  }
-}
-
-const plugin: useInjections.Plugin = {
+export const settings = {
   baseButtonAnimateAsyncClick: ref(true),
   baseButtonAnimateSubmitting: ref(true),
   iconPickerCompact: ref(false),
   iconPickerTooltips: ref(false),
-  language: ref("en-US"),
+  language: ref<LocaleName>("en-US"),
   pageLayoutCloseButton: ref(true),
   provide: () => {
     extras.BaseButton.provideSettings(() => {
       return {
-        animateAsyncClick: plugin.baseButtonAnimateAsyncClick.value,
-        animateSubmitting: plugin.baseButtonAnimateSubmitting.value
+        animateAsyncClick: settings.baseButtonAnimateAsyncClick.value,
+        animateSubmitting: settings.baseButtonAnimateSubmitting.value
       };
     });
 
     extras.IconPicker.provideSettings(() => {
       return {
-        cols: plugin.iconPickerCompact.value ? 5 : 7,
-        iconTooltips: plugin.iconPickerTooltips.value,
-        rows: plugin.iconPickerCompact.value ? 3 : 5,
-        spinnerSize: plugin.iconPickerCompact.value ? "30px" : "70px"
+        cols: settings.iconPickerCompact.value ? 5 : 7,
+        iconTooltips: settings.iconPickerTooltips.value,
+        rows: settings.iconPickerCompact.value ? 3 : 5,
+        spinnerSize: settings.iconPickerCompact.value ? "30px" : "70px"
       };
     });
 
     extras.LanguagePicker.provideSettings(() => {
       return {
         changeLanguageAction: (value): void => {
-          plugin.language.value = value;
+          const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
+            {
+              firstDayOfWeek: 0,
+              locale: enUS,
+              pm: true
+            };
+
+          switch (value) {
+            case "en-GB":
+              config.locale = enGB;
+
+              break;
+
+            case "en-US":
+              break;
+
+            case "ru-RU":
+              config.firstDayOfWeek = 1;
+              config.locale = ruRu;
+              config.pm = false;
+          }
+
+          settings.language.value = value;
+          implementations.datetime.dateFnsWrapper.configure(config);
           implementations.lang.dictionary.configure({ localeName: value });
         },
         options: [
@@ -84,13 +84,13 @@ const plugin: useInjections.Plugin = {
 
     extras.PageLayout.provideSettings(() => {
       return {
-        closeButton: plugin.pageLayoutCloseButton.value,
+        closeButton: settings.pageLayoutCloseButton.value,
         height: "calc(100vh - 48px)"
       };
     });
 
     extras.Resizer.provideSettings(() => {
-      return { disable: plugin.resizerDisable.value };
+      return { disable: settings.resizerDisable.value };
     });
 
     extras.Sortable.provideSettings(() => {
@@ -103,7 +103,7 @@ const plugin: useInjections.Plugin = {
 
     extras.Switchable.provideSettings(() => {
       return {
-        transition: plugin.switchableTransition.value,
+        transition: settings.switchableTransition.value,
         transitionDuration: 500
       };
     });
@@ -120,13 +120,13 @@ const plugin: useInjections.Plugin = {
 
     extras.Tooltip.provideSettings(() => {
       return {
-        delay: plugin.tooltipDelay.value,
-        show: plugin.tooltipShow.value
+        delay: settings.tooltipDelay.value,
+        show: settings.tooltipShow.value
       };
     });
   },
   resizerDisable: ref(false),
-  switchableTransition: ref("none"),
+  switchableTransition: ref<extras.Switchable.Transition>("none"),
   tooltipDelay: ref(1000),
   tooltipShow: ref(true)
-};
+} as const;

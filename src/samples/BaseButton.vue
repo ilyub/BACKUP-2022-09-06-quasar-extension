@@ -1,6 +1,6 @@
 <script lang="ts">
 import { BaseButton } from "./BaseButton.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { mdiCheck } from "@mdi/js";
 import { wait } from "@skylib/functions";
 import { useQuasar } from "quasar";
@@ -12,7 +12,7 @@ export default defineComponent({
     const $q = useQuasar();
 
     const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
-      useInjections();
+      settings;
 
     return {
       asyncClick: async (): Promise<void> => {

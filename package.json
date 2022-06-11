@@ -53,6 +53,7 @@
     "@skylib/eslint-plugin": "^0.1.28",
     "autoprefixer": "^10.4.7",
     "core-js": "^3.22.8",
+    "date-fns": "^2.28.0",
     "flag-icon-css": "^4.1.7",
     "typeface-roboto-multilang": "^1.0.0",
     "vue-router": "^4.0.16",

@@ -1,12 +1,12 @@
 <script lang="ts">
 import { Resizer } from "./Resizer.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-resizer",
   setup: () => {
-    const { resizerDisable } = useInjections();
+    const { resizerDisable } = settings;
 
     return {
       lk: Resizer.lang.keys,

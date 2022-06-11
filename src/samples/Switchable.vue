@@ -1,7 +1,7 @@
 <script lang="ts">
 import { generic } from "..";
 import { Switchable } from "./Switchable.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -17,7 +17,7 @@ export default defineComponent({
     "m-option-group__transition": generic.OptionGroup<Transition>()
   },
   setup: () => {
-    const { switchableTransition } = useInjections();
+    const { switchableTransition } = settings;
 
     return {
       disable: ref(false),

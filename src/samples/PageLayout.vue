@@ -1,12 +1,12 @@
 <script lang="ts">
 import { PageLayout } from "./PageLayout.extras";
-import { useInjections } from "./core";
+import { settings } from "./core";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-page-layout",
   setup: () => {
-    const { pageLayoutCloseButton } = useInjections();
+    const { pageLayoutCloseButton } = settings;
 
     return {
       closeButton: pageLayoutCloseButton,
