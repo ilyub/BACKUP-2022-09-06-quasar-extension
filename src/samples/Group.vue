@@ -11,7 +11,7 @@ export default defineComponent({
   name: "sample-group",
   components: {
     // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-group__page-section": generic.Group<Section>()
+    "m-group__page-sections": generic.Group<Section>()
   },
   setup: () => {
     const showSection1 = ref(true);
@@ -82,7 +82,7 @@ export default defineComponent({
       <q-checkbox v-model="showSection4" /> 4
     </m-subsection>
   </m-page-section>
-  <m-group__page-section
+  <m-group__page-sections
     :class="$style.section"
     :items="groupItems"
     :not-found-label="lk.NoResultsFound"
@@ -93,7 +93,7 @@ export default defineComponent({
     <template #section1>{{ lang.get(title1) }}</template>
     <template #section3>{{ lang.get(title3) }}</template>
     <template #section4>{{ lang.get(title4) }}</template>
-  </m-group__page-section>
+  </m-group__page-sections>
 </template>
 
 <style lang="scss" module>

@@ -28,7 +28,7 @@ export default defineComponent({
 <template>
   <div class="q-pa-lg">
     <div id="progressBar" :class="$style['progress-bar']"></div>
-    <div class="row">
+    <div class="no-wrap row">
       <div>
         <q-list :class="$style.list" dense>
           <m-item
@@ -40,10 +40,11 @@ export default defineComponent({
           />
         </q-list>
       </div>
-      <div :class="$style.component">
-        <router-view />
+      <div class="flex-grow-1">
+        <div :class="$style.component">
+          <router-view />
+        </div>
       </div>
-      <q-space />
       <div>
         <m-language-picker :language="language" />
       </div>
@@ -55,9 +56,8 @@ export default defineComponent({
 @use "sass:map";
 
 .component {
-  flex-grow: 1;
   max-width: 600px;
-  margin-left: map.get($space-md, "x");
+  padding: 0 map.get($space-xl, "x") 0 map.get($space-md, "x");
 }
 
 .list {

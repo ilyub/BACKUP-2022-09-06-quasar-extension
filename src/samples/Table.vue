@@ -1,7 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
 import { Table } from "./Table.extras";
-import { lang } from "@skylib/facades";
 import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
@@ -16,7 +15,7 @@ interface HiddenColumns extends extras.Table.HiddenColumns {}
 
 interface Item {
   readonly id: number;
-  readonly name: lang.Key;
+  readonly name: string;
 }
 
 type Items = readonly Item[];
@@ -44,7 +43,7 @@ export default defineComponent({
 
     const pagination = ref<PaginationProp>({
       descending: false,
-      limit: 10,
+      limit: 50,
       sortBy: "name"
     });
 
@@ -109,7 +108,7 @@ export default defineComponent({
         });
 
         return ids.map(id => {
-          return { id, name: lang.plain(`Item ${id}`) };
+          return { id, name: `Item ${id}` };
         });
       }),
       selectByCheckbox,
@@ -174,7 +173,10 @@ export default defineComponent({
           <template #body-context="{ row }">
             <m-menu auto-close context-menu>
               <q-list>
-                <m-menu-item :caption="row.name" @click="$q.notify(row.name)" />
+                <m-menu-item
+                  :caption="lang.plain(row.name)"
+                  @click="$q.notify(row.name)"
+                />
               </q-list>
             </m-menu>
           </template>

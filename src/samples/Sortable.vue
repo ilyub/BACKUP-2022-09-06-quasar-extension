@@ -12,7 +12,7 @@ export default defineComponent({
   name: "sample-sortable",
   components: {
     // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-sortable__item": generic.Sortable<Item, Item>()
+    "m-sortable__items": generic.Sortable<Item, Item>()
   },
   setup: () => {
     const disableDropping = ref(false);
@@ -52,7 +52,7 @@ export default defineComponent({
     </m-buttons-group>
   </m-page-section>
   <m-page-section>
-    <m-sortable__item
+    <m-sortable__items
       v-model="sortable1"
       :class="$style.sortable"
       group="sortable"
@@ -65,10 +65,10 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable__item>
+    </m-sortable__items>
   </m-page-section>
   <m-page-section>
-    <m-sortable__item
+    <m-sortable__items
       v-model="sortable2"
       :class="$style.sortable"
       group="sortable"
@@ -81,7 +81,7 @@ export default defineComponent({
         {{ sortableName(item) }}
         <m-tooltip>{{ lang.SampleTooltip }}</m-tooltip>
       </template>
-    </m-sortable__item>
+    </m-sortable__items>
   </m-page-section>
 </template>
 
