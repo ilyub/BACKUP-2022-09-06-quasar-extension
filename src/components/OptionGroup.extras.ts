@@ -22,6 +22,7 @@ export namespace OptionGroup {
   export type Options<T = unknown> = ReadonlyArray<Option<T>>;
 
   export interface OwnProps<T = unknown> {
+    readonly disable?: booleanU;
     readonly inline?: booleanU;
     readonly modelValue?: T | undefined;
     /**

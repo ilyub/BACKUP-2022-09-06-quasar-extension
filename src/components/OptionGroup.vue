@@ -2,6 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.OptionGroup] */
 
 import {
+  injections,
   parentProps,
   plugins,
   prop,
@@ -20,6 +21,7 @@ export default defineComponent({
   name: "m-option-group",
   props: {
     ...parentProps<OptionGroup.ParentProps>(),
+    disable: prop.boolean(),
     inline: prop.boolean(),
     modelValue: prop<OptionGroup.Props["modelValue"]>(),
     options: prop.required<OptionGroup.Props["options"]>()
@@ -35,6 +37,7 @@ export default defineComponent({
     validateProps<OptionGroup.OwnProps>(props);
 
     return {
+      globalDisable: injections.disable.inject(),
       main,
       mainOptions: computed(() =>
         props.options.map(option => {
@@ -52,6 +55,8 @@ export default defineComponent({
     ref="main"
     class="m-option-group"
     :class="{ 'm-option-group__inline': inline }"
+    dense
+    :disable="disable || globalDisable"
     :inline="inline"
     :model-value="modelValue"
     :options="mainOptions"
