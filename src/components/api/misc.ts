@@ -129,17 +129,16 @@ export function injectable<T>(defVal: T): Injectable<T> {
 /**
  * Creates injectable settings.
  *
- * @param createDefault - Creates default value.
+ * @param defaultSettings - Default settings.
  * @returns Injectable settings.
  */
 export function injectableSettings<T>(
-  createDefault?: () => T
+  defaultSettings: ComputedRef<T>
 ): InjectableSettings<T> {
   const id: InjectionKey<ComputedRef<T>> = Symbol("injectable-id");
 
   return {
-    injectSettings: () =>
-      createDefault ? inject(id, computed(createDefault)) : injectRequire(id),
+    injectSettings: () => inject(id, defaultSettings),
     provideSettings: (settings): void => {
       provide(id, computed(settings));
     },

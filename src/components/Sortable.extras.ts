@@ -1,4 +1,5 @@
 import { injectableSettings } from "./api";
+import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
 import type {
   booleanU,
@@ -10,7 +11,7 @@ import type {
 
 export namespace Sortable {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = {
     animationDuration: 500,

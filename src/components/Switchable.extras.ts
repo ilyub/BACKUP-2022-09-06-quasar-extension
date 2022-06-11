@@ -1,10 +1,11 @@
 import { injectableSettings } from "./api";
+import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU } from "@skylib/functions";
 
 export namespace Switchable {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = {
     transition: "none",

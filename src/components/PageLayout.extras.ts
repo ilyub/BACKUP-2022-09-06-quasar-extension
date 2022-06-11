@@ -1,5 +1,6 @@
 import { injectableSettings } from "./api";
 import { icons as baseIcons } from "@skylib/facades";
+import { computed } from "vue";
 import type { GlobalComponent, VNodes, plugins } from "./api";
 import type { booleanU } from "@skylib/functions";
 
@@ -13,7 +14,7 @@ declare global {
 
 export namespace PageLayout {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = {
     closeButton: true,

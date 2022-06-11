@@ -1,5 +1,6 @@
 import { injectableSettings } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
+import { computed } from "vue";
 import type { IconButton } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
 import type { stringU } from "@skylib/functions";
@@ -18,7 +19,7 @@ declare global {
 
 export namespace IconPicker {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = {
     cols: 7,

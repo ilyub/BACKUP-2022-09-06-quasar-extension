@@ -1,11 +1,12 @@
 import { injectableSettings } from "./api";
+import { computed } from "vue";
 import type { GlobalComponent, plugins } from "./api";
 import type { booleanU, stringU } from "@skylib/functions";
 import type { QBtn, QBtnProps, QBtnSlots } from "quasar";
 
 export namespace BaseButton {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = {
     animateAsyncClick: true,

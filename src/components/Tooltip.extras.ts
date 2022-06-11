@@ -1,13 +1,13 @@
 import { disableCounter } from "./Tooltip.core";
 import { injectableSettings } from "./api";
-import { onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import type { GlobalComponent, plugins } from "./api";
 import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 
 export namespace Tooltip {
   export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(() => defaultSettings);
+    injectableSettings(computed(() => defaultSettings));
 
   export const defaultSettings: Settings = { delay: 0, show: true };
 
