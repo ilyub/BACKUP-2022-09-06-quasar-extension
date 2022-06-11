@@ -6,9 +6,7 @@ import type { QSelect, QSelectProps, QSelectSlots } from "quasar";
 declare global {
   namespace facades {
     namespace lang {
-      interface Word extends Select.Word {
-        readonly main: QSelect;
-      }
+      interface Word extends Select.Word {}
     }
   }
 }
@@ -17,7 +15,9 @@ export namespace Select {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Global<T = unknown>
-    extends GlobalComponent<Props<T>, Slots> {}
+    extends GlobalComponent<Props<T>, Slots> {
+    readonly main: QSelect;
+  }
 
   export interface Option<T = unknown> {
     readonly disable?: true;
