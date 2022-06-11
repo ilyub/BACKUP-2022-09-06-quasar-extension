@@ -2,6 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.BaseButton] */
 
 import { BaseButton } from "./BaseButton.extras";
+import { Form } from "./Form.extras";
 import {
   injections,
   parentProps,
@@ -35,9 +36,9 @@ export default defineComponent({
 
     const exposed = { main: computed(() => as.not.empty(main.value)) };
 
-    const globalDisable = injections.disable.inject();
+    const form = Form.injectForm();
 
-    const globalSubmitting = injections.submitting.inject();
+    const globalDisable = injections.disable.inject();
 
     const main = ref<QBtn>();
 
@@ -65,7 +66,7 @@ export default defineComponent({
 
         if (
           props.type === "submit" &&
-          globalSubmitting.value &&
+          form.submitting.value &&
           settings.value.animateSubmitting
         )
           return true;

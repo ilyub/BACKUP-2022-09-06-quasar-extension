@@ -1,6 +1,7 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Form] */
 
+import { Form } from "./Form.extras";
 import {
   injections,
   parentProps,
@@ -14,7 +15,6 @@ import {
 import { handlePromise } from "@skylib/facades";
 import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
-import type { Form } from "./Form.extras";
 import type { QForm } from "quasar";
 
 export default defineComponent({
@@ -47,10 +47,10 @@ export default defineComponent({
     validateEmit<Form.OwnProps>(emit);
     validateExpose<Form.Global>(expose, exposed);
     validateProps<Form.OwnProps, "onAsyncSubmit">(props);
+    Form.provideForm({ submitting: computed(() => submitting.value > 0) });
     injections.disable.provide(
       computed(() => globalDisable.value || disable.value > 0)
     );
-    injections.submitting.provide(computed(() => submitting.value > 0));
 
     return {
       main,
