@@ -23,8 +23,8 @@ export default defineComponent({
   name: "m-option-group",
   props: {
     ...parentProps<OptionGroup.ParentProps>(),
-    disable: prop.boolean(),
-    inline: prop.boolean(),
+    disable: prop.boolean<"disable">(),
+    inline: prop.boolean<"inline">(),
     modelValue: prop<"modelValue">(),
     options: prop.required<"options">()
   },

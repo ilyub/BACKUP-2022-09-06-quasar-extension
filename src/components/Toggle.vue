@@ -23,8 +23,8 @@ export default defineComponent({
   props: {
     ...parentProps<Toggle.ParentProps>(),
     ...plugins.langProps.props("label"),
-    disable: prop.boolean(),
-    modelValue: prop.boolean()
+    disable: prop.boolean<"disable">(),
+    modelValue: prop.boolean<"modelValue">()
   },
   emits: { "update:modelValue": (value: boolean) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

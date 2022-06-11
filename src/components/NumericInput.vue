@@ -32,7 +32,7 @@ export default defineComponent({
     max: prop.default<"max">(Number.MAX_VALUE),
     min: prop.default<"min">(0),
     modelValue: prop<"modelValue">(),
-    required: prop.boolean(),
+    required: prop.boolean<"required">(),
     smallStep: prop.default<"smallStep">(1),
     validationOptions: prop<"validationOptions">()
   },

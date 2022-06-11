@@ -146,7 +146,12 @@ module.exports = {
     {
       message: "Missing type parameter",
       selector:
-        "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:validateEmit|validateExpose|validateProps)$/u]"
+        "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:prop|validateEmit|validateExpose|validateProps)$/u]"
+    },
+    {
+      message: "Missing type parameter",
+      selector:
+        "CallExpression[typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=/^(?:boolean|default|required)$/u]"
     },
     {
       message: 'Use "OwnProps" interface',

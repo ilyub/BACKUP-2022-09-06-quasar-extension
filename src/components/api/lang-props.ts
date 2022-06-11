@@ -45,7 +45,7 @@ export const langProps = defineFn(
 
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       return o.fromEntries(
-        names.map(name => [name, prop()])
+        names.map(name => [name, prop<never>()])
       ) as langProps.PropOptionsRecord<T>;
     }
   }

@@ -33,9 +33,9 @@ export default defineComponent({
     itemTag: prop.default<"itemTag">("div"),
     modelValue: prop.required<"modelValue">(),
     move: prop<"move">(),
-    pull: prop.boolean(),
-    put: prop.boolean(),
-    sort: prop.boolean()
+    pull: prop.boolean<"pull">(),
+    put: prop.boolean<"put">(),
+    sort: prop.boolean<"sort">()
   },
   emits: {
     "dropped": (item: object, group: string) => skipCheck(item, group),
