@@ -110,6 +110,11 @@ module.exports = {
         "CallExpression[callee.name=computed] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)"
     },
     {
+      message: "Invalid generic component name",
+      selector:
+        "CallExpression[callee.name=defineComponent] > ObjectExpression.arguments:first-child > Property.properties[key.name=components] > ObjectExpression.value > Property.properties[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]"
+    },
+    {
       message: 'Use "Props" interface',
       selector:
         "CallExpression[callee.name=prop] > TSTypeParameterInstantiation.typeParameters > TSIndexedAccessType.params > TSTypeReference.objectType > TSQualifiedName.typeName > Identifier.right[name=OwnProps]"
