@@ -10,7 +10,6 @@ module.exports = {
     {
       contexts: ["code"],
       patterns: [
-        / label="/u.source,
         /<!--\s*(fixme|todo|x{3})\s*-->/u.source,
         /<[^<>]+>(?![\n\r])\s[^\n\r<>]+<\/[^<>]+>/u.source,
         /<[^<>]+>[^\n\r<>]+(?![\n\r])\s<\/[^<>]+>/u.source
