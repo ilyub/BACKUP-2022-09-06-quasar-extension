@@ -15,7 +15,7 @@ import { computed, defineComponent, ref, watch } from "vue";
 import type { Field } from "./Field.extras";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
-import type { numberU } from "@skylib/functions";
+import type { numberU, stringU } from "@skylib/functions";
 
 const prop = propFactory<TimeInput.OwnProps>();
 
@@ -28,8 +28,6 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const active = ref(false);
-
     const exposed = { main: computed(() => as.not.empty(main.value)) };
 
     const input = ref<HTMLInputElement>();
@@ -41,31 +39,25 @@ export default defineComponent({
     validateEmit<TimeInput.OwnProps>(emit);
     validateExpose<TimeInput.Global>(expose, exposed);
     validateProps<TimeInput.OwnProps>(props);
-    watch(() => props.modelValue, updateInputValue, { immediate: true });
+    watch(() => props.modelValue, valueChanged, { immediate: true });
 
     return {
+      blur: () => {
+        inputValue.value = format(props.modelValue);
+      },
+      focus: () => {
+        inputValue.value = format(props.modelValue);
+      },
       input,
-      inputBlur: (): void => {
-        active.value = false;
-        updateInputValue();
-      },
-      inputFocus: (): void => {
-        active.value = true;
-      },
       inputInput: (
         event: Event,
         emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
-        const value = o.get(as.not.empty(event.target), "value", is.string);
+        const value = cast.stringU(o.get(as.not.empty(event.target), "value"));
 
+        emitValue(parse(value));
         inputValue.value = value;
-
-        if (value.includes(":")) {
-          const [hours, minutes] = value.split(":").map(cast.number);
-
-          emitValue(60 * as.not.empty(hours) + as.not.empty(minutes));
-        } else emitValue(cast.numberU(value));
       },
       inputValue,
       main,
@@ -77,7 +69,11 @@ export default defineComponent({
       })
     };
 
-    function format(value: number): string {
+    function format(value: number): string;
+
+    function format(value: numberU): stringU;
+
+    function format(value: numberU): stringU {
       if (is.not.empty(value)) {
         const hours = Math.floor(value / 60);
 
@@ -90,16 +86,23 @@ export default defineComponent({
         return `${hours}:${minutes1}${minutes2}`;
       }
 
-      return cast.string(value);
+      return undefined;
     }
 
-    function updateInputValue(): void {
-      if (active.value) {
-        // Do not format while editing
-      } else
-        inputValue.value = is.not.empty(props.modelValue)
-          ? format(props.modelValue)
-          : undefined;
+    function parse(value: stringU): numberU {
+      if (is.not.empty(value) && value.includes(":")) {
+        const [hours, minutes] = value.split(":").map(cast.number);
+
+        return 60 * as.not.empty(hours) + as.not.empty(minutes);
+      }
+
+      return cast.numberU(value);
+    }
+
+    function valueChanged(): void {
+      if (props.modelValue === parse(inputValue.value)) {
+        // Keep formatting
+      } else inputValue.value = format(props.modelValue);
     }
   }
 });
@@ -114,6 +117,8 @@ export default defineComponent({
     :model-value="modelValue"
     :small-step="15"
     :validation-options="validationOptions"
+    @blur="blur"
+    @focus="focus"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
@@ -128,8 +133,6 @@ export default defineComponent({
           class="q-field__input"
           :placeholder="data.placeholder ?? ''"
           :value="inputValue"
-          @blur="inputBlur"
-          @focus="inputFocus"
           @input="inputInput($event, data.emitValue)"
         />
       </slot>
