@@ -64,7 +64,7 @@
     font-size: map.get($h6, "size");
     font-weight: map.get($h6, "weight");
     letter-spacing: map.get($h6, "letter-spacing");
-    line-height: map.get($h6, "line-height");
+    line-height: 1em;
   }
 
   .m-card__header__actions {
