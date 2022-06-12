@@ -15,6 +15,7 @@ declare global {
   namespace facades {
     namespace lang {
       interface Word {
+        readonly EnglishGB: true;
         readonly EnglishUSA: true;
         readonly Russian: true;
       }

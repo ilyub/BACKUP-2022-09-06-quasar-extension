@@ -20,6 +20,11 @@ test.each([
             lang: "en-US"
           },
           {
+            caption: lang.keys.EnglishGB,
+            flag: "gb-flag",
+            lang: "en-GB"
+          },
+          {
             caption: lang.keys.Russian,
             flag: "ru-flag",
             lang: "ru-RU"

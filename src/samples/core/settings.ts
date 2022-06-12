@@ -7,6 +7,7 @@ import enGB from "date-fns/locale/en-GB";
 import enUS from "date-fns/locale/en-US";
 // eslint-disable-next-line @skylib/consistent-import, import/no-duplicates -- Ok
 import ruRu from "date-fns/locale/ru";
+import gb from "flag-icon-css/flags/1x1/gb.svg";
 import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
@@ -72,6 +73,11 @@ export const settings = {
             caption: lang.keys.EnglishUSA,
             flag: us,
             lang: "en-US"
+          },
+          {
+            caption: lang.keys.EnglishGB,
+            flag: gb,
+            lang: "en-GB"
           },
           {
             caption: lang.keys.Russian,

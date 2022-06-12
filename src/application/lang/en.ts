@@ -37,6 +37,7 @@ export const en = new implementations.lang.dictionary.Definitions({
     DownRightTooltip: "Down-right tooltip",
     DownTooltip: "Down tooltip",
     End: "End",
+    EnglishGB: "English (GB)",
     EnglishUSA: "English (USA)",
     Equal: "Equal",
     EvenSecondsForError: "Even seconds for error",
