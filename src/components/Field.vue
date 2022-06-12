@@ -105,9 +105,9 @@ export default defineComponent({
     </template>
     <template #control="data">
       <slot
-        v-bind="data ?? {}"
         :name="slotNames.control"
         :placeholder="placeholder"
+        v-bind="data ?? {}"
       >
       </slot>
     </template>

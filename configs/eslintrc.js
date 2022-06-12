@@ -70,6 +70,11 @@ module.exports = {
     "vue/no-restricted-syntax": [
       "warn",
       {
+        message: 'Move "v-bind" directive to the end',
+        selector:
+          "VElement[name=slot] > VStartTag.startTag > VAttribute.attributes:not(:last-child) > VDirectiveKey.key[argument=null] > VIdentifier.name[name=bind]"
+      },
+      {
         message: "Use lang variable",
         selector:
           "VAttribute > VIdentifier.key[name=/^(?:alt|aria-label|aria-placeholder|aria-roledescription|aria-valuetext|caption|confirmation|label|placeholder|title|tooltip|validation-label)$/u]"
