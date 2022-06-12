@@ -185,7 +185,9 @@ export default defineComponent({
         if (props.selectByRowClick)
           emit(
             "update:selected",
-            a.toggleBy(selected.value, row, as.not.empty(props.rowKey))
+            props.multiSelect
+              ? a.toggleBy(selected.value, row, as.not.empty(props.rowKey))
+              : [row]
           );
       },
       selectAll: (): void => {
