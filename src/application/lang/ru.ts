@@ -44,7 +44,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     DownRightTooltip: "Нижняя право-направленная подсказка",
     DownTooltip: "Нижняя подсказка",
     End: "Конец",
-    EnglishGB: "Английский (Великобритания)",
+    EnglishUK: "Английский (Великобритания)",
     EnglishUSA: "Английский (США)",
     Equal: [
       "кого-что-его",

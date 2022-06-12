@@ -75,7 +75,7 @@ export const settings = {
             lang: "en-US"
           },
           {
-            caption: lang.keys.EnglishGB,
+            caption: lang.keys.EnglishUK,
             flag: gb,
             lang: "en-GB"
           },
