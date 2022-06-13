@@ -11,8 +11,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
 
@@ -28,9 +27,9 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QKnob>();
+
+    const exposed = { main };
 
     validateEmit<Knob.OwnProps>(emit);
     validateExpose<Knob.Global>(expose, exposed);

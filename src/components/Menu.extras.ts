@@ -16,7 +16,7 @@ export namespace Menu {
   }
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QMenu;
+    readonly main?: QMenu;
   }
 
   export interface OwnProps {

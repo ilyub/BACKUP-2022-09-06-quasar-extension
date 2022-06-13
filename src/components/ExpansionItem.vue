@@ -2,8 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.ExpansionItem] */
 
 import { parentProps, plugins, validateExpose } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { ExpansionItem } from "./ExpansionItem.extras";
 import type { QExpansionItem } from "quasar";
 
@@ -14,11 +13,11 @@ export default defineComponent({
     ...plugins.langProps.props("label")
   },
   setup: (props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const { label } = plugins.langProps(props, "label");
 
     const main = ref<QExpansionItem>();
+
+    const exposed = { main };
 
     validateExpose<ExpansionItem.Global>(expose, exposed);
 

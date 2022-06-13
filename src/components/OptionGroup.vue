@@ -12,7 +12,6 @@ import {
   validateProps
 } from "./api";
 import { lang } from "@skylib/facades";
-import { as } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
@@ -30,9 +29,9 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QOptionGroup>();
+
+    const exposed = { main };
 
     validateEmit<OptionGroup.OwnProps>(emit);
     validateExpose<OptionGroup.Global>(expose, exposed);

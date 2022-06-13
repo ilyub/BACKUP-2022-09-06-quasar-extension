@@ -3,7 +3,7 @@ import type { GlobalComponent } from "./api";
 
 export namespace FormSection {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: Switchable.Global;
+    readonly main?: Switchable.Global;
   }
 
   export interface ParentProps extends Switchable.Props {}

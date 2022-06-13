@@ -4,7 +4,7 @@ import type { QToggle, QToggleProps, QToggleSlots } from "quasar";
 
 export namespace Toggle {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QToggle;
+    readonly main?: QToggle;
   }
 
   export interface OwnProps {

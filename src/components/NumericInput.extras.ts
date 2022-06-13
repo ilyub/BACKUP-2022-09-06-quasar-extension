@@ -15,7 +15,7 @@ export namespace NumericInput {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: Field.Global<numberU>;
+    readonly main?: Field.Global<numberU>;
   }
 
   export interface Icon {

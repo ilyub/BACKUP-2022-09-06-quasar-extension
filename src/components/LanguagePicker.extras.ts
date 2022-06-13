@@ -16,7 +16,7 @@ export namespace LanguagePicker {
   };
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: IconButton.Global;
+    readonly main?: IconButton.Global;
   }
 
   export interface Option {

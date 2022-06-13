@@ -37,8 +37,6 @@ export default defineComponent({
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateProps<DatetimePicker.OwnProps>(props);
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<Field.Global<stringU>>();
 
     const showDialog = ref(false);
@@ -106,6 +104,8 @@ export default defineComponent({
     );
 
     const step = ref<"date" | "time">("date");
+
+    const exposed = { main };
 
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateExpose<DatetimePicker.Global>(expose, exposed);

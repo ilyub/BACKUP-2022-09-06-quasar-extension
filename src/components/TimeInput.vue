@@ -11,7 +11,7 @@ import {
 } from "./api";
 import { as, cast, is, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
-import { computed, defineComponent, ref, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import type { Field } from "./Field.extras";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
@@ -28,13 +28,13 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const input = ref<HTMLInputElement>();
 
     const inputValue = ref<string>();
 
     const main = ref<NumericInput.Global>();
+
+    const exposed = { main };
 
     validateEmit<TimeInput.OwnProps>(emit);
     validateExpose<TimeInput.Global>(expose, exposed);

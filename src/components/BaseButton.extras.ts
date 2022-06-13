@@ -14,7 +14,7 @@ export namespace BaseButton {
   };
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QBtn;
+    readonly main?: QBtn;
   }
 
   export interface OwnProps {

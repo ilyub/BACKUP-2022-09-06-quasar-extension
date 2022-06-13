@@ -1,7 +1,6 @@
 <script lang="ts">
 import { parentProps, plugins, validateExpose } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { FormActions } from "./FormActions.extras";
 import type { Switchable } from "./Switchable.extras";
 
@@ -9,9 +8,9 @@ export default defineComponent({
   name: "m-form-actions",
   props: parentProps<FormActions.ParentProps>(),
   setup: (_props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<Switchable.Global>();
+
+    const exposed = { main };
 
     validateExpose<FormActions.Global>(expose, exposed);
 

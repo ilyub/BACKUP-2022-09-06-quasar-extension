@@ -4,7 +4,7 @@ import type { numberU } from "@skylib/functions";
 
 export namespace TimeInput {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: NumericInput.Global;
+    readonly main?: NumericInput.Global;
   }
 
   export interface OwnProps {

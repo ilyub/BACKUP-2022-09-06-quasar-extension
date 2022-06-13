@@ -91,8 +91,6 @@ export default defineComponent({
       return undefined;
     });
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QTable>();
 
     const selected = computed(() =>
@@ -100,6 +98,8 @@ export default defineComponent({
     );
 
     const settings = Table.injectSettings();
+
+    const exposed = { main };
 
     validateEmit<Table.OwnProps>(emit);
     validateExpose<Table.Global>(expose, exposed);

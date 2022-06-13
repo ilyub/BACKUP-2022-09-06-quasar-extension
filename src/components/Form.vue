@@ -30,14 +30,6 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const disable = ref(0);
 
-    const exposed = {
-      main: computed(() => as.not.empty(main.value)),
-      resetValidation: (): void => {
-        as.not.empty(main.value).resetValidation();
-        resetValidation();
-      }
-    };
-
     const globalDisable = injections.disable.inject();
 
     const main = ref<QForm>();
@@ -45,6 +37,14 @@ export default defineComponent({
     const submitting = ref(0);
 
     const resetValidation = plugins.validation.reset.get();
+
+    const exposed = {
+      main,
+      resetValidation: (): void => {
+        as.not.empty(main.value).resetValidation();
+        resetValidation();
+      }
+    };
 
     validateEmit<Form.OwnProps>(emit);
     validateExpose<Form.Global>(expose, exposed);

@@ -11,8 +11,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Toggle } from "./Toggle.extras";
 import type { QToggle } from "quasar";
 
@@ -28,11 +27,11 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: boolean) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const { label } = plugins.langProps(props, "label");
 
     const main = ref<QToggle>();
+
+    const exposed = { main };
 
     validateEmit<Toggle.OwnProps>(emit);
     validateExpose<Toggle.Global>(expose, exposed);

@@ -4,7 +4,7 @@ import type { GlobalComponent, VNodes } from "./api";
 export namespace Droppable {
   export interface Global<T extends object = object, D extends object = object>
     extends GlobalComponent<Props<T, D>, Slots> {
-    readonly main: Sortable.Global;
+    readonly main?: Sortable.Global;
   }
 
   export interface OwnSlots {

@@ -39,8 +39,6 @@ export default defineComponent({
       "placeholder"
     );
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QField>();
 
     const validation = plugins.validation(
@@ -55,6 +53,8 @@ export default defineComponent({
         })
       )
     );
+
+    const exposed = { main };
 
     validateEmit<Field.OwnProps>(emit);
     validateExpose<Field.Global>(expose, exposed);

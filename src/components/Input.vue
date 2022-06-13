@@ -14,7 +14,7 @@ import {
 } from "./api";
 import { as, cast, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
 import type { stringU } from "@skylib/functions";
@@ -35,11 +35,11 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const input = ref<HTMLInputElement>();
 
     const main = ref<Field.Global<stringU>>();
+
+    const exposed = { main };
 
     validateEmit<Input.OwnProps>(emit);
     validateExpose<Input.Global>(expose, exposed);

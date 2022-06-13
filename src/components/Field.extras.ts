@@ -30,7 +30,7 @@ export namespace Field {
 
   export interface Global<T = unknown>
     extends GlobalComponent<Props<T>, Slots<T>> {
-    readonly main: QField;
+    readonly main?: QField;
   }
 
   export interface OwnProps<T = unknown> {

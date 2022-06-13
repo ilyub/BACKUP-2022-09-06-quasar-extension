@@ -23,7 +23,7 @@ export namespace Form {
   }
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QForm;
+    readonly main?: QForm;
     /**
      * Resets validation.
      */

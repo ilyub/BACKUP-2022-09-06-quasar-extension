@@ -9,7 +9,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, is } from "@skylib/functions";
+import { is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QCard } from "quasar";
 
@@ -24,9 +24,9 @@ export default defineComponent({
     transparentHeader: prop.boolean<"transparentHeader">()
   },
   setup: (props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QCard>();
+
+    const exposed = { main };
 
     const { title } = plugins.langProps(props, "title");
 

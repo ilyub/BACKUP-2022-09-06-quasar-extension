@@ -15,7 +15,7 @@ export namespace Card {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QCard;
+    readonly main?: QCard;
   }
 
   export interface Icon {

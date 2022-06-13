@@ -22,11 +22,11 @@ export default defineComponent({
     language: prop.required<"language">()
   },
   setup: (props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<IconButton.Global>();
 
     const settings = LanguagePicker.injectSettings();
+
+    const exposed = { main };
 
     validateExpose<LanguagePicker.Global>(expose, exposed);
     validateProps<LanguagePicker.OwnProps>(props);

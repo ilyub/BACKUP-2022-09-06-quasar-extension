@@ -9,7 +9,7 @@ import type {
 
 export namespace PopupProxy {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QPopupProxy;
+    readonly main?: QPopupProxy;
   }
 
   export interface ParentProps

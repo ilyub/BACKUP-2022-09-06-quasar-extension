@@ -38,11 +38,11 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const input = ref<HTMLInputElement>();
 
     const main = ref<Field.Global<numberU>>();
+
+    const exposed = { main };
 
     validateEmit<NumericInput.OwnProps>(emit);
     validateExpose<NumericInput.Global>(expose, exposed);

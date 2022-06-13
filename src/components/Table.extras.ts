@@ -87,7 +87,7 @@ export namespace Table {
 
   export interface Global<T extends object = object>
     extends GlobalComponent<Props<T>, Slots<T>> {
-    readonly main: QTable;
+    readonly main?: QTable;
   }
 
   export interface HeaderCellSlotData<T extends object = object>

@@ -3,7 +3,7 @@ import type { GlobalComponent } from "./api";
 
 export namespace IconButton {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: BaseButton.Global;
+    readonly main?: BaseButton.Global;
   }
 
   export interface ParentProps extends BaseButton.Props {}

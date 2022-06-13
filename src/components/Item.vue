@@ -9,7 +9,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, is } from "@skylib/functions";
+import { is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
 import type { QItem } from "quasar";
@@ -27,9 +27,9 @@ export default defineComponent({
   setup: (props, { expose }) => {
     const { caption } = plugins.langProps(props, "caption");
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QItem>();
+
+    const exposed = { main };
 
     validateExpose<Item.Global>(expose, exposed);
     validateProps<Item.OwnProps>(props);

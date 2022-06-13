@@ -38,8 +38,6 @@ export default defineComponent({
       "label"
     );
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QSelect>();
 
     const selectedOption = computed(() =>
@@ -58,6 +56,8 @@ export default defineComponent({
         })
       )
     );
+
+    const exposed = { main };
 
     validateEmit<Select.OwnProps>(emit);
     validateExpose<Select.Global>(expose, exposed);

@@ -5,7 +5,7 @@ import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";
 import { parentProps, plugins, propFactory, validateExpose } from "./api";
 import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Button } from "./Button.extras";
 import type { QMenu } from "quasar";
 
@@ -21,9 +21,9 @@ export default defineComponent({
   setup: (props, { expose }) => {
     const direction = plugins.direction(props);
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QMenu>();
+
+    const exposed = { main };
 
     validateExpose<Menu.Global>(expose, exposed);
 

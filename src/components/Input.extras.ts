@@ -4,7 +4,7 @@ import type { stringU } from "@skylib/functions";
 
 export namespace Input {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: Field.Global<stringU>;
+    readonly main?: Field.Global<stringU>;
   }
 
   export interface OwnProps {

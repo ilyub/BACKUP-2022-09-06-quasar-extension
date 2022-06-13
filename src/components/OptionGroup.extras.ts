@@ -10,7 +10,7 @@ import type {
 export namespace OptionGroup {
   export interface Global<T = unknown>
     extends GlobalComponent<Props<T>, Slots> {
-    readonly main: QOptionGroup;
+    readonly main?: QOptionGroup;
   }
 
   export interface Option<T = unknown> {

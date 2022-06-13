@@ -7,7 +7,7 @@ import type {
 
 export namespace CardSection {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QCardSection;
+    readonly main?: QCardSection;
   }
 
   export interface ParentProps extends QCardSectionProps {}

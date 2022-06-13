@@ -2,8 +2,7 @@
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.CardActions] */
 
 import { parentProps, plugins, validateExpose } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { CardActions } from "./CardActions.extras";
 import type { QCardActions } from "quasar";
 
@@ -11,9 +10,9 @@ export default defineComponent({
   name: "m-card-actions",
   props: parentProps<CardActions.ParentProps>(),
   setup: (_props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<QCardActions>();
+
+    const exposed = { main };
 
     validateExpose<CardActions.Global>(expose, exposed);
 

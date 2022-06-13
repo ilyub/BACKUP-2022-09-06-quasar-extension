@@ -11,7 +11,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, is } from "@skylib/functions";
+import { is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QBtn } from "quasar";
 
@@ -36,8 +36,6 @@ export default defineComponent({
 
     const confirmedClick = plugins.confirmedClick(props);
 
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const form = Form.injectForm();
 
     const globalDisable = injections.disable.inject();
@@ -45,6 +43,8 @@ export default defineComponent({
     const main = ref<QBtn>();
 
     const settings = BaseButton.injectSettings();
+
+    const exposed = { main };
 
     validateExpose<BaseButton.Global>(expose, exposed);
     validateProps<BaseButton.OwnProps>(props);

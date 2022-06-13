@@ -33,7 +33,7 @@ export namespace IconPicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: IconButton.Global;
+    readonly main?: IconButton.Global;
   }
 
   export interface Icon {

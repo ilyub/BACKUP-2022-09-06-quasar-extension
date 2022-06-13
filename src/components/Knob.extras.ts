@@ -4,7 +4,7 @@ import type { QKnob, QKnobProps, QKnobSlots } from "quasar";
 
 export namespace Knob {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QKnob;
+    readonly main?: QKnob;
   }
 
   export interface OwnProps {

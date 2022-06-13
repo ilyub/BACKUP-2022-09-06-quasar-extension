@@ -4,7 +4,7 @@ import type { QItem, QItemProps, QItemSlots } from "quasar";
 
 export namespace Item {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QItem;
+    readonly main?: QItem;
   }
 
   export interface OwnProps {

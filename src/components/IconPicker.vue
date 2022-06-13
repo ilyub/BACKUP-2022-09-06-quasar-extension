@@ -10,7 +10,7 @@ import {
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
-import { as, assert, is, o } from "@skylib/functions";
+import { assert, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
@@ -47,8 +47,6 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const filteredItems = computed(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)
@@ -89,6 +87,8 @@ export default defineComponent({
     );
 
     const total = computed(() => filteredItems.value.length);
+
+    const exposed = { main };
 
     validateEmit<IconPicker.OwnProps>(emit);
     validateExpose<IconPicker.Global>(expose, exposed);

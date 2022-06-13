@@ -1,7 +1,6 @@
 <script lang="ts">
 import { parentProps, validateExpose } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import type { Droppable } from "./Droppable.extras";
 import type { Sortable } from "./Sortable.extras";
 
@@ -9,9 +8,9 @@ export default defineComponent({
   name: "m-droppable",
   props: parentProps<Droppable.ParentProps>(),
   setup: (_props, { expose }) => {
-    const exposed = { main: computed(() => as.not.empty(main.value)) };
-
     const main = ref<Sortable.Global>();
+
+    const exposed = { main };
 
     validateExpose<Sortable.Global>(expose, exposed);
 

@@ -7,7 +7,7 @@ import type {
 
 export namespace ExpansionItem {
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QExpansionItem;
+    readonly main?: QExpansionItem;
   }
 
   export interface ParentProps

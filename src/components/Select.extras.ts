@@ -16,7 +16,7 @@ export namespace Select {
 
   export interface Global<T = unknown>
     extends GlobalComponent<Props<T>, Slots> {
-    readonly main: QSelect;
+    readonly main?: QSelect;
   }
 
   export interface Option<T = unknown> {

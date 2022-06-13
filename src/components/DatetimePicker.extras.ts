@@ -21,7 +21,7 @@ export namespace DatetimePicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: Field.Global<stringU>;
+    readonly main?: Field.Global<stringU>;
   }
 
   export interface Icon {

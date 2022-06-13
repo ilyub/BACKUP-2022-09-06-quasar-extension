@@ -12,7 +12,7 @@ export namespace Tooltip {
   export const defaultSettings: Settings = { delay: 0, show: true };
 
   export interface Global extends GlobalComponent<Props, Slots> {
-    readonly main: QTooltip;
+    readonly main?: QTooltip;
   }
 
   export interface ParentProps extends QTooltipProps {}
