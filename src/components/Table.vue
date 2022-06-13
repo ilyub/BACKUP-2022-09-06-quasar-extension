@@ -639,7 +639,7 @@ export default defineComponent({
                   v-debug-id="'dialog-label'"
                   class="m-table__columns-management__label"
                 >
-                  {{ column.label }}
+                  {{ lang.get(column.label) }}
                 </q-td>
                 <q-td class="text-right">
                   <q-checkbox
