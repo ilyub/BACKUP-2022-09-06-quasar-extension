@@ -114,13 +114,13 @@ ___
 
 ### getThis
 
-▸ **getThis**(): `any`
+▸ **getThis**(): `unknown`
 
 Value of "this"
 
 #### Returns
 
-`any`
+`unknown`
 
 ___
 

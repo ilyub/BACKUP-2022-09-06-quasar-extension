@@ -12,7 +12,7 @@
 
 ### genericSelect
 
-▸ **genericSelect**<`T`\>(): [`GlobalSelect`](components_Select_extras.md#globalselect)<`T`\>
+▸ **genericSelect**<`T`\>(): [`Global`](../interfaces/components_Select_extras.Select.Global.md)<`T`\>
 
 Generic Select component.
 
@@ -24,6 +24,6 @@ Generic Select component.
 
 #### Returns
 
-[`GlobalSelect`](components_Select_extras.md#globalselect)<`T`\>
+[`Global`](../interfaces/components_Select_extras.Select.Global.md)<`T`\>
 
 Select component.

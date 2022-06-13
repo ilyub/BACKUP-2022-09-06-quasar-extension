@@ -4,17 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [IndentProps](../interfaces/components_Indent_extras.IndentProps.md)
-- [IndentSlots](../interfaces/components_Indent_extras.IndentSlots.md)
-
-### Type aliases
-
-- [GlobalIndent](components_Indent_extras.md#globalindent)
-
-## Type aliases
-
-### GlobalIndent
-
-Ƭ **GlobalIndent**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`IndentProps`](../interfaces/components_Indent_extras.IndentProps.md), [`IndentSlots`](../interfaces/components_Indent_extras.IndentSlots.md)\>
+- [Indent](components_Indent_extras.Indent.md)

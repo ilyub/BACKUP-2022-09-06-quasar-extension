@@ -4,26 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [AsyncClick](../interfaces/components_BaseButton_extras.AsyncClick.md)
-- [BaseButtonOwnProps](../interfaces/components_BaseButton_extras.BaseButtonOwnProps.md)
-- [BaseButtonParentProps](../interfaces/components_BaseButton_extras.BaseButtonParentProps.md)
-- [BaseButtonProps](../interfaces/components_BaseButton_extras.BaseButtonProps.md)
-
-### Type aliases
-
-- [BaseButtonSlots](components_BaseButton_extras.md#basebuttonslots)
-- [GlobalBaseButton](components_BaseButton_extras.md#globalbasebutton)
-
-## Type aliases
-
-### BaseButtonSlots
-
-Ƭ **BaseButtonSlots**: `Readonly`<`QBtnSlots`\>
-
-___
-
-### GlobalBaseButton
-
-Ƭ **GlobalBaseButton**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`BaseButtonProps`](../interfaces/components_BaseButton_extras.BaseButtonProps.md), [`BaseButtonSlots`](components_BaseButton_extras.md#basebuttonslots)\>
+- [BaseButton](components_BaseButton_extras.BaseButton.md)

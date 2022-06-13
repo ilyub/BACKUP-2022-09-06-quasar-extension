@@ -12,4 +12,4 @@
 
 ### reactiveStorage
 
-Renames and re-exports [facade-implementations/reactiveStorage](facade_implementations_reactiveStorage.md)
+Renames and re-exports [facade-implementations/reactive-storage](facade_implementations_reactive_storage.md)

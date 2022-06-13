@@ -4,31 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [CardSectionOwnProps](../interfaces/components_CardSection_extras.CardSectionOwnProps.md)
-- [CardSectionProps](../interfaces/components_CardSection_extras.CardSectionProps.md)
-
-### Type aliases
-
-- [CardSectionParentProps](components_CardSection_extras.md#cardsectionparentprops)
-- [CardSectionSlots](components_CardSection_extras.md#cardsectionslots)
-- [GlobalCardSection](components_CardSection_extras.md#globalcardsection)
-
-## Type aliases
-
-### CardSectionParentProps
-
-Ƭ **CardSectionParentProps**: `QCardSectionProps`
-
-___
-
-### CardSectionSlots
-
-Ƭ **CardSectionSlots**: `QCardSectionSlots`
-
-___
-
-### GlobalCardSection
-
-Ƭ **GlobalCardSection**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`CardSectionProps`](../interfaces/components_CardSection_extras.CardSectionProps.md), [`CardSectionSlots`](components_CardSection_extras.md#cardsectionslots)\>
+- [CardSection](components_CardSection_extras.CardSection.md)

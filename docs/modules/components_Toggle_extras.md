@@ -4,25 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [ToggleOwnProps](../interfaces/components_Toggle_extras.ToggleOwnProps.md)
-- [ToggleParentProps](../interfaces/components_Toggle_extras.ToggleParentProps.md)
-- [ToggleProps](../interfaces/components_Toggle_extras.ToggleProps.md)
-
-### Type aliases
-
-- [GlobalToggle](components_Toggle_extras.md#globaltoggle)
-- [ToggleSlots](components_Toggle_extras.md#toggleslots)
-
-## Type aliases
-
-### GlobalToggle
-
-Ƭ **GlobalToggle**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ToggleProps`](../interfaces/components_Toggle_extras.ToggleProps.md), [`ToggleSlots`](components_Toggle_extras.md#toggleslots)\>
-
-___
-
-### ToggleSlots
-
-Ƭ **ToggleSlots**: `QToggleSlots`
+- [Toggle](components_Toggle_extras.Toggle.md)

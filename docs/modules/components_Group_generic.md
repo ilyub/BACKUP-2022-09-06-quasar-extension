@@ -12,7 +12,7 @@
 
 ### genericGroup
 
-▸ **genericGroup**<`T`\>(): [`GlobalGroup`](components_Group_extras.md#globalgroup)<`T`\>
+▸ **genericGroup**<`T`\>(): [`Global`](../interfaces/components_Group_extras.Group.Global.md)<`T`\>
 
 Generic Group component.
 
@@ -20,10 +20,10 @@ Generic Group component.
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends `string` = `string` |
+| `T` | extends `string` |
 
 #### Returns
 
-[`GlobalGroup`](components_Group_extras.md#globalgroup)<`T`\>
+[`Global`](../interfaces/components_Group_extras.Group.Global.md)<`T`\>
 
-Group component.
+Generic Group component.

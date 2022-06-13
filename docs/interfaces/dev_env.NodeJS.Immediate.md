@@ -34,6 +34,10 @@
 
 ▸ **hasRef**(): `boolean`
 
+If true, the `Immediate` object will keep the Node.js event loop active.
+
+**`since`** v11.0.0
+
 #### Returns
 
 `boolean`

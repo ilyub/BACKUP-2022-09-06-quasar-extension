@@ -4,31 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [PageSectionOwnProps](../interfaces/components_PageSection_extras.PageSectionOwnProps.md)
-- [PageSectionProps](../interfaces/components_PageSection_extras.PageSectionProps.md)
-
-### Type aliases
-
-- [GlobalPageSection](components_PageSection_extras.md#globalpagesection)
-- [PageSectionParentProps](components_PageSection_extras.md#pagesectionparentprops)
-- [PageSectionSlots](components_PageSection_extras.md#pagesectionslots)
-
-## Type aliases
-
-### GlobalPageSection
-
-Ƭ **GlobalPageSection**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`PageSectionProps`](../interfaces/components_PageSection_extras.PageSectionProps.md), [`PageSectionSlots`](components_PageSection_extras.md#pagesectionslots)\>
-
-___
-
-### PageSectionParentProps
-
-Ƭ **PageSectionParentProps**: [`SwitchableProps`](../interfaces/components_Switchable_extras.SwitchableProps.md)
-
-___
-
-### PageSectionSlots
-
-Ƭ **PageSectionSlots**: [`SwitchableSlots`](../interfaces/components_Switchable_extras.SwitchableSlots.md)
+- [PageSection](components_PageSection_extras.PageSection.md)

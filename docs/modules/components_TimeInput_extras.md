@@ -4,36 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [ModuleIcons](../interfaces/components_TimeInput_extras.ModuleIcons.md)
-- [TimeInputOwnProps](../interfaces/components_TimeInput_extras.TimeInputOwnProps.md)
-- [TimeInputParentProps](../interfaces/components_TimeInput_extras.TimeInputParentProps.md)
-- [TimeInputProps](../interfaces/components_TimeInput_extras.TimeInputProps.md)
-
-### Type aliases
-
-- [GlobalTimeInput](components_TimeInput_extras.md#globaltimeinput)
-- [TimeInputSlots](components_TimeInput_extras.md#timeinputslots)
-
-### Variables
-
-- [icons](components_TimeInput_extras.md#icons)
-
-## Type aliases
-
-### GlobalTimeInput
-
-Ƭ **GlobalTimeInput**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TimeInputProps`](../interfaces/components_TimeInput_extras.TimeInputProps.md), [`TimeInputSlots`](components_TimeInput_extras.md#timeinputslots)\>
-
-___
-
-### TimeInputSlots
-
-Ƭ **TimeInputSlots**: `QFieldSlots`
-
-## Variables
-
-### icons
-
-• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_TimeInput_extras.ModuleIcons.md)\> = `baseIcons`
+- [TimeInput](components_TimeInput_extras.TimeInput.md)

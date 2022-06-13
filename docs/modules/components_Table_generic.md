@@ -12,7 +12,7 @@
 
 ### genericTable
 
-▸ **genericTable**<`T`\>(): [`GlobalTable`](components_Table_extras.md#globaltable)<`T`\>
+▸ **genericTable**<`T`\>(): [`Global`](../interfaces/components_Table_extras.Table.Global.md)<`T`\>
 
 Generic Table component.
 
@@ -24,6 +24,6 @@ Generic Table component.
 
 #### Returns
 
-[`GlobalTable`](components_Table_extras.md#globaltable)<`T`\>
+[`Global`](../interfaces/components_Table_extras.Table.Global.md)<`T`\>
 
 Table component.

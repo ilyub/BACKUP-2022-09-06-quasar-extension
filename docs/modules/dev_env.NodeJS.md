@@ -9,22 +9,18 @@
 ### Interfaces
 
 - [CallSite](../interfaces/dev_env.NodeJS.CallSite.md)
-- [ConsoleConstructor](../interfaces/dev_env.NodeJS.ConsoleConstructor.md)
-- [ConsoleConstructorOptions](../interfaces/dev_env.NodeJS.ConsoleConstructorOptions.md)
 - [CpuUsage](../interfaces/dev_env.NodeJS.CpuUsage.md)
 - [Dict](../interfaces/dev_env.NodeJS.Dict.md)
-- [Domain](../interfaces/dev_env.NodeJS.Domain.md)
 - [EmitWarningOptions](../interfaces/dev_env.NodeJS.EmitWarningOptions.md)
 - [ErrnoException](../interfaces/dev_env.NodeJS.ErrnoException.md)
 - [EventEmitter](../interfaces/dev_env.NodeJS.EventEmitter.md)
-- [Global](../interfaces/dev_env.NodeJS.Global.md)
 - [HRTime](../interfaces/dev_env.NodeJS.HRTime.md)
 - [Immediate](../interfaces/dev_env.NodeJS.Immediate.md)
-- [InspectOptions](../interfaces/dev_env.NodeJS.InspectOptions.md)
 - [MemoryUsage](../interfaces/dev_env.NodeJS.MemoryUsage.md)
 - [MemoryUsageFn](../interfaces/dev_env.NodeJS.MemoryUsageFn.md)
 - [Module](../interfaces/dev_env.NodeJS.Module.md)
 - [Process](../interfaces/dev_env.NodeJS.Process.md)
+- [ProcessConfig](../interfaces/dev_env.NodeJS.ProcessConfig.md)
 - [ProcessEnv](../interfaces/dev_env.NodeJS.ProcessEnv.md)
 - [ProcessRelease](../interfaces/dev_env.NodeJS.ProcessRelease.md)
 - [ProcessReport](../interfaces/dev_env.NodeJS.ProcessReport.md)
@@ -53,10 +49,8 @@
 - [MessageListener](dev_env.NodeJS.md#messagelistener)
 - [MultipleResolveListener](dev_env.NodeJS.md#multipleresolvelistener)
 - [MultipleResolveType](dev_env.NodeJS.md#multipleresolvetype)
-- [NewListenerListener](dev_env.NodeJS.md#newlistenerlistener)
 - [Platform](dev_env.NodeJS.md#platform)
 - [RejectionHandledListener](dev_env.NodeJS.md#rejectionhandledlistener)
-- [RemoveListenerListener](dev_env.NodeJS.md#removelistenerlistener)
 - [Signals](dev_env.NodeJS.md#signals)
 - [SignalsListener](dev_env.NodeJS.md#signalslistener)
 - [TypedArray](dev_env.NodeJS.md#typedarray)
@@ -64,6 +58,7 @@
 - [UncaughtExceptionOrigin](dev_env.NodeJS.md#uncaughtexceptionorigin)
 - [UnhandledRejectionListener](dev_env.NodeJS.md#unhandledrejectionlistener)
 - [WarningListener](dev_env.NodeJS.md#warninglistener)
+- [WorkerListener](dev_env.NodeJS.md#workerlistener)
 
 ## Type aliases
 
@@ -129,7 +124,7 @@ ___
 
 ### MessageListener
 
-Ƭ **MessageListener**: (`message`: `any`, `sendHandle`: `any`) => `void`
+Ƭ **MessageListener**: (`message`: `unknown`, `sendHandle`: `unknown`) => `void`
 
 #### Type declaration
 
@@ -139,8 +134,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `message` | `any` |
-| `sendHandle` | `any` |
+| `message` | `unknown` |
+| `sendHandle` | `unknown` |
 
 ##### Returns
 
@@ -150,7 +145,7 @@ ___
 
 ### MultipleResolveListener
 
-Ƭ **MultipleResolveListener**: (`type`: [`MultipleResolveType`](dev_env.NodeJS.md#multipleresolvetype), `promise`: `Promise`<`any`\>, `value`: `any`) => `void`
+Ƭ **MultipleResolveListener**: (`type`: [`MultipleResolveType`](dev_env.NodeJS.md#multipleresolvetype), `promise`: `Promise`<`unknown`\>, `value`: `unknown`) => `void`
 
 #### Type declaration
 
@@ -161,8 +156,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `type` | [`MultipleResolveType`](dev_env.NodeJS.md#multipleresolvetype) |
-| `promise` | `Promise`<`any`\> |
-| `value` | `any` |
+| `promise` | `Promise`<`unknown`\> |
+| `value` | `unknown` |
 
 ##### Returns
 
@@ -176,36 +171,15 @@ ___
 
 ___
 
-### NewListenerListener
-
-Ƭ **NewListenerListener**: (`type`: `string` \| `symbol`, `listener`: (...`args`: `any`[]) => `void`) => `void`
-
-#### Type declaration
-
-▸ (`type`, `listener`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `type` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
-
-##### Returns
-
-`void`
-
-___
-
 ### Platform
 
-Ƭ **Platform**: ``"aix"`` \| ``"android"`` \| ``"darwin"`` \| ``"freebsd"`` \| ``"linux"`` \| ``"openbsd"`` \| ``"sunos"`` \| ``"win32"`` \| ``"cygwin"`` \| ``"netbsd"``
+Ƭ **Platform**: ``"aix"`` \| ``"android"`` \| ``"darwin"`` \| ``"freebsd"`` \| ``"haiku"`` \| ``"linux"`` \| ``"openbsd"`` \| ``"sunos"`` \| ``"win32"`` \| ``"cygwin"`` \| ``"netbsd"``
 
 ___
 
 ### RejectionHandledListener
 
-Ƭ **RejectionHandledListener**: (`promise`: `Promise`<`any`\>) => `void`
+Ƭ **RejectionHandledListener**: (`promise`: `Promise`<`unknown`\>) => `void`
 
 #### Type declaration
 
@@ -215,28 +189,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `promise` | `Promise`<`any`\> |
-
-##### Returns
-
-`void`
-
-___
-
-### RemoveListenerListener
-
-Ƭ **RemoveListenerListener**: (`type`: `string` \| `symbol`, `listener`: (...`args`: `any`[]) => `void`) => `void`
-
-#### Type declaration
-
-▸ (`type`, `listener`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `type` | `string` \| `symbol` |
-| `listener` | (...`args`: `any`[]) => `void` |
+| `promise` | `Promise`<`unknown`\> |
 
 ##### Returns
 
@@ -305,18 +258,21 @@ ___
 
 ### UnhandledRejectionListener
 
-Ƭ **UnhandledRejectionListener**: (`reason`: {} \| ``null`` \| `undefined`, `promise`: `Promise`<`any`\>) => `void`
+Ƭ **UnhandledRejectionListener**: (`reason`: `unknown`, `promise`: `Promise`<`unknown`\>) => `void`
 
 #### Type declaration
 
 ▸ (`reason`, `promise`): `void`
 
+Most of the time the unhandledRejection will be an Error, but this should not be relied upon
+as *anything* can be thrown/rejected, it is therefore unsafe to assume the the value is an Error.
+
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `reason` | {} \| ``null`` \| `undefined` |
-| `promise` | `Promise`<`any`\> |
+| `reason` | `unknown` |
+| `promise` | `Promise`<`unknown`\> |
 
 ##### Returns
 
@@ -337,6 +293,26 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `warning` | `Error` |
+
+##### Returns
+
+`void`
+
+___
+
+### WorkerListener
+
+Ƭ **WorkerListener**: (`worker`: `Worker`) => `void`
+
+#### Type declaration
+
+▸ (`worker`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `worker` | `Worker` |
 
 ##### Returns
 

@@ -4,44 +4,15 @@
 
 ## Table of contents
 
-### Interfaces
-
-- [TabsOwnProps](../interfaces/components_Tabs_generic.TabsOwnProps.md)
-- [TabsParentProps](../interfaces/components_Tabs_generic.TabsParentProps.md)
-- [TabsProps](../interfaces/components_Tabs_generic.TabsProps.md)
-
-### Type aliases
-
-- [GlobalTabs](components_Tabs_generic.md#globaltabs)
-- [TabsSlots](components_Tabs_generic.md#tabsslots)
-
 ### Functions
 
 - [genericTabs](components_Tabs_generic.md#generictabs)
-
-## Type aliases
-
-### GlobalTabs
-
-Ƭ **GlobalTabs**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TabsProps`](../interfaces/components_Tabs_generic.TabsProps.md)<`T`\>, [`TabsSlots`](components_Tabs_generic.md#tabsslots)\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `NumStrU` = `NumStrU` |
-
-___
-
-### TabsSlots
-
-Ƭ **TabsSlots**: `QTabsSlots`
 
 ## Functions
 
 ### genericTabs
 
-▸ **genericTabs**<`T`\>(): [`GlobalTabs`](components_Tabs_generic.md#globaltabs)<`T`\>
+▸ **genericTabs**<`T`\>(): [`Global`](../interfaces/components_Tabs_extras.Tabs.Global.md)<`T`\>
 
 Generic Tabs component.
 
@@ -53,6 +24,6 @@ Generic Tabs component.
 
 #### Returns
 
-[`GlobalTabs`](components_Tabs_generic.md#globaltabs)<`T`\>
+[`Global`](../interfaces/components_Tabs_extras.Tabs.Global.md)<`T`\>
 
 Tabs component.

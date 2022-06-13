@@ -4,25 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [ExpansionItemOwnProps](../interfaces/components_ExpansionItem_extras.ExpansionItemOwnProps.md)
-- [ExpansionItemParentProps](../interfaces/components_ExpansionItem_extras.ExpansionItemParentProps.md)
-- [ExpansionItemProps](../interfaces/components_ExpansionItem_extras.ExpansionItemProps.md)
-
-### Type aliases
-
-- [ExpansionItemSlots](components_ExpansionItem_extras.md#expansionitemslots)
-- [GlobalExpansionItem](components_ExpansionItem_extras.md#globalexpansionitem)
-
-## Type aliases
-
-### ExpansionItemSlots
-
-Ƭ **ExpansionItemSlots**: `QExpansionItemSlots`
-
-___
-
-### GlobalExpansionItem
-
-Ƭ **GlobalExpansionItem**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`ExpansionItemProps`](../interfaces/components_ExpansionItem_extras.ExpansionItemProps.md), [`ExpansionItemSlots`](components_ExpansionItem_extras.md#expansionitemslots)\>
+- [ExpansionItem](components_ExpansionItem_extras.ExpansionItem.md)

@@ -6,27 +6,24 @@
 
 ### References
 
-- [Index](samples.md#index)
-- [useProvide](samples.md#useprovide)
-
-### Variables
-
+- [Overview](samples.md#overview)
 - [components](samples.md#components)
+- [settings](samples.md#settings)
 
 ## References
 
-### Index
+### Overview
 
 Renames and re-exports [default](dev_vue.md#default)
 
 ___
 
-### useProvide
-
-Re-exports [useProvide](samples_useProvide.md#useprovide)
-
-## Variables
-
 ### components
 
-• `Const` **components**: readonly `DefineComponent`<`object`, `object`, `unknown`, `ComputedOptions`, `MethodOptions`, `ComponentOptionsMixin`, `ComponentOptionsMixin`, {}, `string`, `PublicProps`, `object` & {}, {}\>[]
+Renames and re-exports [samples/index.components](samples_index_components.md)
+
+___
+
+### settings
+
+Re-exports [settings](samples_core_settings.md#settings)

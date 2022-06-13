@@ -63,7 +63,7 @@ ___
 
 • **parent**: `undefined` \| ``null`` \| [`Module`](dev_env.NodeJS.Module.md)
 
-**`deprecated`** since 14.6.0 Please use `require.main` and `module.children` instead.
+**`deprecated`** since v14.6.0 Please use `require.main` and `module.children` instead.
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **path**: `string`
 
-**`since`** 11.14.0
+**`since`** v11.14.0
 
 The directory name of the module. This is usually the same as the path.dirname() of the module.id.
 

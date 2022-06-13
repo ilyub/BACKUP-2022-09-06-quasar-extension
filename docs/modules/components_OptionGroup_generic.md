@@ -12,7 +12,7 @@
 
 ### genericOptionGroup
 
-▸ **genericOptionGroup**<`T`\>(): [`GlobalOptionGroup`](components_OptionGroup_extras.md#globaloptiongroup)<`T`\>
+▸ **genericOptionGroup**<`T`\>(): [`Global`](../interfaces/components_OptionGroup_extras.OptionGroup.Global.md)<`T`\>
 
 Generic OptionGroup component.
 
@@ -24,6 +24,6 @@ Generic OptionGroup component.
 
 #### Returns
 
-[`GlobalOptionGroup`](components_OptionGroup_extras.md#globaloptiongroup)<`T`\>
+[`Global`](../interfaces/components_OptionGroup_extras.OptionGroup.Global.md)<`T`\>
 
 OptionGroup component.

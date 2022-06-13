@@ -15,9 +15,39 @@
 ### Properties
 
 - [DEBUGGING](dev_env.NodeJS.ProcessEnv.md#debugging)
+- [MODE](dev_env.NodeJS.ProcessEnv.md#mode)
+- [TZ](dev_env.NodeJS.ProcessEnv.md#tz)
+- [VUE\_ROUTER\_BASE](dev_env.NodeJS.ProcessEnv.md#vue_router_base)
+- [VUE\_ROUTER\_MODE](dev_env.NodeJS.ProcessEnv.md#vue_router_mode)
 
 ## Properties
 
 ### DEBUGGING
 
 • `Readonly` **DEBUGGING**: `boolean`
+
+___
+
+### MODE
+
+• `Readonly` **MODE**: `string`
+
+___
+
+### TZ
+
+• `Optional` **TZ**: `string`
+
+Can be used to change the default timezone at runtime
+
+___
+
+### VUE\_ROUTER\_BASE
+
+• `Readonly` **VUE\_ROUTER\_BASE**: `string`
+
+___
+
+### VUE\_ROUTER\_MODE
+
+• `Readonly` **VUE\_ROUTER\_MODE**: `string`

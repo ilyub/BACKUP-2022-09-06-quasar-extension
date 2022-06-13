@@ -4,44 +4,6 @@
 
 ## Table of contents
 
-### Interfaces
+### Namespaces
 
-- [DatetimePickerOwnProps](../interfaces/components_DatetimePicker_extras.DatetimePickerOwnProps.md)
-- [DatetimePickerParentProps](../interfaces/components_DatetimePicker_extras.DatetimePickerParentProps.md)
-- [DatetimePickerProps](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md)
-- [ModuleIcons](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)
-- [ModuleWord](../interfaces/components_DatetimePicker_extras.ModuleWord.md)
-
-### Type aliases
-
-- [DatetimePickerSlots](components_DatetimePicker_extras.md#datetimepickerslots)
-- [GlobalDatetimePicker](components_DatetimePicker_extras.md#globaldatetimepicker)
-
-### Variables
-
-- [icons](components_DatetimePicker_extras.md#icons)
-- [lang](components_DatetimePicker_extras.md#lang)
-
-## Type aliases
-
-### DatetimePickerSlots
-
-Ƭ **DatetimePickerSlots**: `QFieldSlots`
-
-___
-
-### GlobalDatetimePicker
-
-Ƭ **GlobalDatetimePicker**: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`DatetimePickerProps`](../interfaces/components_DatetimePicker_extras.DatetimePickerProps.md), [`DatetimePickerSlots`](components_DatetimePicker_extras.md#datetimepickerslots)\>
-
-## Variables
-
-### icons
-
-• `Const` **icons**: `baseIcons.Icons`<keyof [`ModuleIcons`](../interfaces/components_DatetimePicker_extras.ModuleIcons.md)\> = `baseIcons`
-
-___
-
-### lang
-
-• `Const` **lang**: `baseLang.Lang`<keyof [`ModuleWord`](../interfaces/components_DatetimePicker_extras.ModuleWord.md), `never`\> = `baseLang`
+- [DatetimePicker](components_DatetimePicker_extras.DatetimePicker.md)

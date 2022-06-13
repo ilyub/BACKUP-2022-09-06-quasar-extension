@@ -6,199 +6,136 @@
 
 ### References
 
-- [Capital](components_api.md#capital)
-- [ConfirmedClickProps](components_api.md#confirmedclickprops)
-- [Emits](components_api.md#emits)
-- [ExtendQuasarProps](components_api.md#extendquasarprops)
 - [GlobalComponent](components_api.md#globalcomponent)
-- [Injectable](components_api.md#injectable)
-- [LooseRequired](components_api.md#looserequired)
-- [NonCapital](components_api.md#noncapital)
-- [PropOptions](components_api.md#propoptions)
-- [PropOptionsBoolean](components_api.md#propoptionsboolean)
-- [PropOptionsDefault](components_api.md#propoptionsdefault)
-- [PropOptionsRequired](components_api.md#propoptionsrequired)
-- [SetupProps](components_api.md#setupprops)
-- [ValidateEmit](components_api.md#validateemit)
-- [ValidateEmit1](components_api.md#validateemit1)
-- [ValidateEmit2](components_api.md#validateemit2)
-- [ValidateProps](components_api.md#validateprops)
+- [GlobalComponentInstance](components_api.md#globalcomponentinstance)
+- [ParentProps](components_api.md#parentprops)
+- [VNodes](components_api.md#vnodes)
 - [classRef](components_api.md#classref)
-- [confirmedClickEmits](components_api.md#confirmedclickemits)
-- [confirmedClickProps](components_api.md#confirmedclickprops-1)
-- [createInjectable](components_api.md#createinjectable)
+- [directives](components_api.md#directives)
 - [injectRequire](components_api.md#injectrequire)
-- [prop](components_api.md#prop)
-- [propsToPropDefinitions](components_api.md#propstopropdefinitions)
-- [useConfirmedClick](components_api.md#useconfirmedclick)
-- [useSlotsNames](components_api.md#useslotsnames)
-- [validateEmit](components_api.md#validateemit-1)
-- [validateProps](components_api.md#validateprops-1)
+- [injectable](components_api.md#injectable)
+- [injectableSettings](components_api.md#injectablesettings)
+- [injections](components_api.md#injections)
+- [override](components_api.md#override)
+- [parentProps](components_api.md#parentprops-1)
+- [plugins](components_api.md#plugins)
+- [propFactory](components_api.md#propfactory)
+- [skipCheck](components_api.md#skipcheck)
+- [trigger](components_api.md#trigger)
+- [validateEmit](components_api.md#validateemit)
+- [validateExpose](components_api.md#validateexpose)
+- [validateProps](components_api.md#validateprops)
 
 ## References
 
-### Capital
-
-Re-exports [Capital](components_api_core.md#capital)
-
-___
-
-### ConfirmedClickProps
-
-Re-exports [ConfirmedClickProps](../interfaces/components_api_confirmedClickModule.ConfirmedClickProps.md)
-
-___
-
-### Emits
-
-Re-exports [Emits](components_api_core.md#emits)
-
-___
-
-### ExtendQuasarProps
-
-Re-exports [ExtendQuasarProps](components_api_core.md#extendquasarprops)
-
-___
-
 ### GlobalComponent
 
-Re-exports [GlobalComponent](../interfaces/components_api_core.GlobalComponent.md)
+Re-exports [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
 
 ___
 
-### Injectable
+### GlobalComponentInstance
 
-Re-exports [Injectable](../interfaces/components_api_core.Injectable.md)
-
-___
-
-### LooseRequired
-
-Re-exports [LooseRequired](components_api_core.md#looserequired)
+Re-exports [GlobalComponentInstance](../interfaces/components_api_misc.GlobalComponentInstance.md)
 
 ___
 
-### NonCapital
+### ParentProps
 
-Re-exports [NonCapital](components_api_core.md#noncapital)
-
-___
-
-### PropOptions
-
-Re-exports [PropOptions](../interfaces/components_api_core.PropOptions.md)
+Re-exports [ParentProps](components_api_misc.md#parentprops)
 
 ___
 
-### PropOptionsBoolean
+### VNodes
 
-Re-exports [PropOptionsBoolean](../interfaces/components_api_core.PropOptionsBoolean.md)
-
-___
-
-### PropOptionsDefault
-
-Re-exports [PropOptionsDefault](../interfaces/components_api_core.PropOptionsDefault.md)
-
-___
-
-### PropOptionsRequired
-
-Re-exports [PropOptionsRequired](../interfaces/components_api_core.PropOptionsRequired.md)
-
-___
-
-### SetupProps
-
-Re-exports [SetupProps](components_api_core.md#setupprops)
-
-___
-
-### ValidateEmit
-
-Re-exports [ValidateEmit](components_api_core.md#validateemit)
-
-___
-
-### ValidateEmit1
-
-Re-exports [ValidateEmit1](components_api_core.md#validateemit1)
-
-___
-
-### ValidateEmit2
-
-Re-exports [ValidateEmit2](../interfaces/components_api_core.ValidateEmit2.md)
-
-___
-
-### ValidateProps
-
-Re-exports [ValidateProps](components_api_core.md#validateprops)
+Re-exports [VNodes](components_api_misc.md#vnodes)
 
 ___
 
 ### classRef
 
-Re-exports [classRef](components_api_core.md#classref)
+Re-exports [classRef](components_api_misc.md#classref)
 
 ___
 
-### confirmedClickEmits
+### directives
 
-Re-exports [confirmedClickEmits](components_api_confirmedClickModule.md#confirmedclickemits)
-
-___
-
-### confirmedClickProps
-
-Re-exports [confirmedClickProps](components_api_confirmedClickModule.md#confirmedclickprops)
-
-___
-
-### createInjectable
-
-Re-exports [createInjectable](components_api_core.md#createinjectable)
+Renames and re-exports [components/api/index.directives](components_api_index_directives.md)
 
 ___
 
 ### injectRequire
 
-Re-exports [injectRequire](components_api_core.md#injectrequire)
+Re-exports [injectRequire](components_api_misc.md#injectrequire)
 
 ___
 
-### prop
+### injectable
 
-Re-exports [prop](components_api_core.md#prop)
-
-___
-
-### propsToPropDefinitions
-
-Re-exports [propsToPropDefinitions](components_api_core.md#propstopropdefinitions)
+Re-exports [injectable](components_api_misc.md#injectable)
 
 ___
 
-### useConfirmedClick
+### injectableSettings
 
-Re-exports [useConfirmedClick](components_api_confirmedClickModule.md#useconfirmedclick)
+Re-exports [injectableSettings](components_api_misc.md#injectablesettings)
 
 ___
 
-### useSlotsNames
+### injections
 
-Re-exports [useSlotsNames](components_api_slotNames.md#useslotsnames)
+Renames and re-exports [components/api/injections](components_api_injections.md)
+
+___
+
+### override
+
+Re-exports [override](components_api_misc.md#override)
+
+___
+
+### parentProps
+
+Re-exports [parentProps](components_api_misc.md#parentprops-1)
+
+___
+
+### plugins
+
+Renames and re-exports [components/api/index.plugins](components_api_index_plugins.md)
+
+___
+
+### propFactory
+
+Re-exports [propFactory](components_api_misc.md#propfactory)
+
+___
+
+### skipCheck
+
+Re-exports [skipCheck](components_api_misc.md#skipcheck)
+
+___
+
+### trigger
+
+Re-exports [trigger](components_api_misc.md#trigger)
 
 ___
 
 ### validateEmit
 
-Re-exports [validateEmit](components_api_core.md#validateemit-1)
+Re-exports [validateEmit](components_api_misc.md#validateemit)
+
+___
+
+### validateExpose
+
+Re-exports [validateExpose](components_api_misc.md#validateexpose)
 
 ___
 
 ### validateProps
 
-Re-exports [validateProps](components_api_core.md#validateprops-1)
+Re-exports [validateProps](components_api_misc.md#validateprops)

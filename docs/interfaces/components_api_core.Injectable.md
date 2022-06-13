@@ -16,19 +16,19 @@
 
 - [inject](components_api_core.Injectable.md#inject)
 - [provide](components_api_core.Injectable.md#provide)
-- [test](components_api_core.Injectable.md#test)
+- [testProvide](components_api_core.Injectable.md#testprovide)
 
 ## Methods
 
 ### inject
 
-▸ `Readonly` **inject**(): `ComputedRef`<`T`\>
+▸ `Readonly` **inject**(): `T`
 
 Injects settings.
 
 #### Returns
 
-`ComputedRef`<`T`\>
+`T`
 
 Settings.
 
@@ -36,15 +36,15 @@ ___
 
 ### provide
 
-▸ `Readonly` **provide**(`settings`): `void`
+▸ `Readonly` **provide**(`value`): `void`
 
-Provide settings.
+Provides value.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `settings` | () => `T` | Settings. |
+| `value` | `T` | Default value. |
 
 #### Returns
 
@@ -52,19 +52,20 @@ Provide settings.
 
 ___
 
-### test
+### testProvide
 
-▸ `Readonly` **test**(`mutableProvide`, `settings`): `void`
+▸ `Readonly` **testProvide**(`value`): `IndexedObject`<`unknown`\>
 
-Provide settings.
+Returns provide value.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `mutableProvide` | `Rec`<`symbol`, `unknown`\> | Provide option. |
-| `settings` | `T` | Settings. |
+| `value` | `T` | Value. |
 
 #### Returns
 
-`void`
+`IndexedObject`<`unknown`\>
+
+Provide object.

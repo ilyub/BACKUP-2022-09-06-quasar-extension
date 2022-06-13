@@ -1,0 +1,86 @@
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/BaseButton.extras](components_BaseButton_extras.md) / BaseButton
+
+# Namespace: BaseButton
+
+[components/BaseButton.extras](components_BaseButton_extras.md).BaseButton
+
+## Table of contents
+
+### Interfaces
+
+- [Global](../interfaces/components_BaseButton_extras.BaseButton.Global.md)
+- [OwnProps](../interfaces/components_BaseButton_extras.BaseButton.OwnProps.md)
+- [ParentProps](../interfaces/components_BaseButton_extras.BaseButton.ParentProps.md)
+- [ParentSlots](../interfaces/components_BaseButton_extras.BaseButton.ParentSlots.md)
+- [PluginProps](../interfaces/components_BaseButton_extras.BaseButton.PluginProps.md)
+- [Props](../interfaces/components_BaseButton_extras.BaseButton.Props.md)
+- [Settings](../interfaces/components_BaseButton_extras.BaseButton.Settings.md)
+- [Slots](../interfaces/components_BaseButton_extras.BaseButton.Slots.md)
+
+### Variables
+
+- [defaultSettings](components_BaseButton_extras.BaseButton.md#defaultsettings)
+
+### Functions
+
+- [injectSettings](components_BaseButton_extras.BaseButton.md#injectsettings)
+- [provideSettings](components_BaseButton_extras.BaseButton.md#providesettings)
+- [testProvideSettings](components_BaseButton_extras.BaseButton.md#testprovidesettings)
+
+## Variables
+
+### defaultSettings
+
+• `Const` **defaultSettings**: [`Settings`](../interfaces/components_BaseButton_extras.BaseButton.Settings.md)
+
+## Functions
+
+### injectSettings
+
+▸ **injectSettings**(): `ComputedRef`<[`Settings`](../interfaces/components_BaseButton_extras.BaseButton.Settings.md)\>
+
+Injects settings.
+
+#### Returns
+
+`ComputedRef`<[`Settings`](../interfaces/components_BaseButton_extras.BaseButton.Settings.md)\>
+
+Settings.
+
+___
+
+### provideSettings
+
+▸ **provideSettings**(`settings`): `void`
+
+Provides settings.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `settings` | () => [`Settings`](../interfaces/components_BaseButton_extras.BaseButton.Settings.md) | Default settings. |
+
+#### Returns
+
+`void`
+
+___
+
+### testProvideSettings
+
+▸ **testProvideSettings**(`settings`): `IndexedObject`<`unknown`\>
+
+Returns provide object.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `settings` | [`Settings`](../interfaces/components_BaseButton_extras.BaseButton.Settings.md) | Settings. |
+
+#### Returns
+
+`IndexedObject`<`unknown`\>
+
+Provide object.

@@ -12,7 +12,7 @@
 
 ### genericSortable
 
-▸ **genericSortable**<`T`\>(): [`GlobalSortable`](components_Sortable_extras.md#globalsortable)<`T`\>
+▸ **genericSortable**<`T`, `D`\>(): [`Global`](../interfaces/components_Sortable_extras.Sortable.Global.md)<`T`, `D`\>
 
 Generic Sortable component.
 
@@ -21,9 +21,10 @@ Generic Sortable component.
 | Name | Type |
 | :------ | :------ |
 | `T` | extends `object` |
+| `D` | extends `object` = `object` |
 
 #### Returns
 
-[`GlobalSortable`](components_Sortable_extras.md#globalsortable)<`T`\>
+[`Global`](../interfaces/components_Sortable_extras.Sortable.Global.md)<`T`, `D`\>
 
 Sortable component.

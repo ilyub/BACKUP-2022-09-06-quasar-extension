@@ -4,44 +4,15 @@
 
 ## Table of contents
 
-### Interfaces
-
-- [TabPanelsOwnProps](../interfaces/components_TabPanels_generic.TabPanelsOwnProps.md)
-- [TabPanelsParentProps](../interfaces/components_TabPanels_generic.TabPanelsParentProps.md)
-- [TabPanelsProps](../interfaces/components_TabPanels_generic.TabPanelsProps.md)
-
-### Type aliases
-
-- [GlobalTabPanels](components_TabPanels_generic.md#globaltabpanels)
-- [TabPanelsSlots](components_TabPanels_generic.md#tabpanelsslots)
-
 ### Functions
 
 - [genericTabPanels](components_TabPanels_generic.md#generictabpanels)
-
-## Type aliases
-
-### GlobalTabPanels
-
-Ƭ **GlobalTabPanels**<`T`\>: [`GlobalComponent`](../interfaces/components_api_core.GlobalComponent.md)<[`TabPanelsProps`](../interfaces/components_TabPanels_generic.TabPanelsProps.md)<`T`\>, [`TabPanelsSlots`](components_TabPanels_generic.md#tabpanelsslots)\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `NumStrU` = `NumStrU` |
-
-___
-
-### TabPanelsSlots
-
-Ƭ **TabPanelsSlots**: `QTabPanelsSlots`
 
 ## Functions
 
 ### genericTabPanels
 
-▸ **genericTabPanels**<`T`\>(): [`GlobalTabPanels`](components_TabPanels_generic.md#globaltabpanels)<`T`\>
+▸ **genericTabPanels**<`T`\>(): [`Global`](../interfaces/components_TabPanels_extras.TabPanels.Global.md)<`T`\>
 
 Generic TabPanels component.
 
@@ -53,6 +24,6 @@ Generic TabPanels component.
 
 #### Returns
 
-[`GlobalTabPanels`](components_TabPanels_generic.md#globaltabpanels)<`T`\>
+[`Global`](../interfaces/components_TabPanels_extras.TabPanels.Global.md)<`T`\>
 
 TabPanels component.

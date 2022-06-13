@@ -12,7 +12,7 @@
 
 ## Hierarchy
 
-- [`PropOptions`](components_api_core.PropOptions.md)<`T`\>
+- [`PropOptions`](components_api_core.PropOptions.md)<`Exclude`<`T`, `undefined`\>\>
 
   ↳ **`PropOptionsDefault`**
 
@@ -31,7 +31,7 @@
 
 ### default
 
-• `Readonly` **default**: `T`
+• `Readonly` **default**: `Exclude`<`T`, `undefined`\>
 
 #### Overrides
 
@@ -51,7 +51,7 @@ ___
 
 ### type
 
-• `Optional` `Readonly` **type**: `PropType`<`T`\>
+• `Optional` `Readonly` **type**: `PropType`<`Exclude`<`T`, `undefined`\>\>
 
 #### Inherited from
 
@@ -61,7 +61,7 @@ ___
 
 ### validator
 
-• `Optional` `Readonly` **validator**: `Guard`<`T`\>
+• `Optional` `Readonly` **validator**: `Guard`<`Exclude`<`T`, `undefined`\>\>
 
 #### Inherited from
 

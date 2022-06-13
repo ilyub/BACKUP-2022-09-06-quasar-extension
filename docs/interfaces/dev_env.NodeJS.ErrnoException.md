@@ -66,7 +66,7 @@ ___
 
 • `Optional` **stack**: `string`
 
-#### Overrides
+#### Inherited from
 
 Error.stack
 
