@@ -5,7 +5,8 @@ import * as vueTestUtils from "@vue/test-utils";
 
 test.each([
   { expected: "en-US", index: 0 },
-  { expected: "ru-RU", index: 1 }
+  { expected: "en-GB", index: 1 },
+  { expected: "ru-RU", index: 2 }
 ])("languagePicker", async ({ expected, index }) => {
   const changeLanguageAction = jest.fn();
 

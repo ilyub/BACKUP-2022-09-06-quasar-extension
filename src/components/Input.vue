@@ -3,6 +3,7 @@
 
 import { genericField } from "./Field.generic";
 import {
+  directives,
   parentProps,
   plugins,
   propFactory,
@@ -22,7 +23,7 @@ const prop = propFactory<Input.OwnProps>();
 
 export default defineComponent({
   name: "m-input",
-  directives: { maska },
+  directives: { debugId: directives.debugId("input"), maska },
   components: {
     // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
     "m-field__string": genericField<stringU>()
@@ -45,13 +46,14 @@ export default defineComponent({
     validateProps<Input.OwnProps>(props);
 
     return {
+      format: cast.stringU,
       input,
       inputInput: (
         event: Event,
         emitValue: Field.ControlSlotData<stringU>["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
-        emitValue(cast.stringU(o.get(as.not.empty(event.target), "value")));
+        emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
       slotNames: plugins.slotNames<Input.Slots>()("control"),
@@ -68,6 +70,7 @@ export default defineComponent({
     ref="main"
     class="m-input"
     :focusable-element="input"
+    :format="format"
     :model-value="modelValue"
     :validation-options="validationOptions"
     @update:model-value="$emit('update:modelValue', $event)"
@@ -79,6 +82,7 @@ export default defineComponent({
       <slot :name="slotNames.control" v-bind="data ?? {}">
         <input
           ref="input"
+          v-debug-id="'input'"
           v-maska="mask"
           class="q-field__input"
           :placeholder="data.placeholder ?? ''"

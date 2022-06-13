@@ -12,10 +12,20 @@ export namespace Field {
      *
      * @param value - Value.
      */
-    readonly emitValue: (value: T) => void;
+    readonly emitValue: (value: unknown) => void;
     readonly modelValue: T;
     // eslint-disable-next-line @skylib/optional-property-style -- Ok
     readonly placeholder: stringU;
+  }
+
+  export interface Format<T> {
+    /**
+     * Formats value.
+     *
+     * @param value - Value.
+     * @returns Formatted value.
+     */
+    (value: unknown): T;
   }
 
   export interface Global<T = unknown>
@@ -26,6 +36,13 @@ export namespace Field {
   export interface OwnProps<T = unknown> {
     readonly disable?: booleanU;
     readonly focusableElement?: HTMLElement | undefined;
+    /**
+     * Formats value.
+     *
+     * @param value - Value.
+     * @returns Formatted value.
+     */
+    readonly format?: Format<T> | undefined;
     readonly modelValue: T;
     /**
      * Emits model value.

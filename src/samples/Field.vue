@@ -14,12 +14,13 @@ export default defineComponent({
   },
   setup: () => {
     return {
+      format: cast.stringU,
       input: (
         event: Event,
         emitValue: extras.Field.ControlSlotData<stringU>["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
-        emitValue(cast.stringU(o.get(as.not.empty(event.target), "value")));
+        emitValue(o.get(as.not.empty(event.target), "value"));
       },
       lk: Field.lang.keys,
       value: ref<string>()
@@ -34,6 +35,7 @@ export default defineComponent({
       <template #control="data">
         <input
           class="q-field__input"
+          :format="format"
           :value="data.modelValue"
           @input="input($event, data.emitValue)"
         />

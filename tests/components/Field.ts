@@ -1,14 +1,16 @@
 import { components } from "@";
 import * as testUtils from "@/test-utils";
+import { cast } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { QField } from "quasar";
 
 test.each([
-  { expected: [[""]], value: "" },
+  { expected: [[undefined]], value: "" },
   { expected: [["sample-value"]], value: "sample-value" }
 ])("field", ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.Field, {
-    global: testUtils.globalMountOptions()
+    global: testUtils.globalMountOptions(),
+    props: { format: cast.stringU, modelValue: "" }
   });
 
   const main = wrapper.findComponent(QField);

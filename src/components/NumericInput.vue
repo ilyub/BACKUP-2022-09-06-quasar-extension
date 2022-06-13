@@ -68,6 +68,7 @@ export default defineComponent({
           ? props.modelValue <= props.min && props.required
           : true
       ),
+      format: cast.numberU,
       icons: NumericInput.icons,
       input,
       inputInput: (
@@ -75,7 +76,7 @@ export default defineComponent({
         emitValue: Field.ControlSlotData<numberU>["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
-        emitValue(cast.numberU(o.get(as.not.empty(event.target), "value")));
+        emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
       mainValidationOptions: computed<plugins.validation.Options<numberU>>(
@@ -121,6 +122,7 @@ export default defineComponent({
     ref="main"
     class="m-numeric-input"
     :focusable-element="input"
+    :format="format"
     :model-value="modelValue"
     :required="required"
     :validation-options="mainValidationOptions"

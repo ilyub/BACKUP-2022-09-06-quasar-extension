@@ -135,6 +135,7 @@ export default defineComponent({
 
         if (is.not.empty(pickerValue.value)) step.value = "time";
       },
+      format: cast.stringU,
       icons: DatetimePicker.icons,
       inputClick: (): void => {
         showDialog.value = true;
@@ -228,6 +229,7 @@ export default defineComponent({
   <m-field__string
     ref="main"
     class="m-datetime-picker"
+    :format="format"
     :model-value="modelValue"
     :stack-label="showDialog"
     :validation-options="validationOptions"

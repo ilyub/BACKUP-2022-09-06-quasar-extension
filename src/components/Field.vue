@@ -14,7 +14,6 @@ import {
 import { as, cast, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
-import type { NumStrE } from "@skylib/functions";
 import type { QField } from "quasar";
 
 const prop = propFactory<Field.OwnProps>();
@@ -27,6 +26,7 @@ export default defineComponent({
     ...plugins.validation.props,
     disable: prop.boolean<"disable">(),
     focusableElement: prop<"focusableElement">(),
+    format: prop.default<"format">(fn.identity),
     modelValue: prop.required<"modelValue">(),
     required: prop.boolean<"required">(),
     validationOptions: prop<"validationOptions">()
@@ -48,7 +48,7 @@ export default defineComponent({
       computed(() => as.not.empty(main.value)),
       computed(() =>
         o.removeUndefinedKeys({
-          format: fn.identity,
+          format: props.format,
           label: labelKey.value,
           required: props.required,
           ...props.validationOptions
@@ -73,7 +73,8 @@ export default defineComponent({
       placeholder,
       rules: validation.rules,
       slotNames: plugins.slotNames<Field.Slots>()("control", "label"),
-      update: (value: NumStrE): void => {
+      update: (value: unknown): void => {
+        value = props.format(value);
         emit("update:modelValue", value);
         validation.validate(value, "input");
       },
