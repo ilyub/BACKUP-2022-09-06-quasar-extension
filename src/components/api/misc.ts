@@ -84,9 +84,9 @@ export function injectable<T>(defVal: T): Injectable<T> {
     provide: (value): void => {
       provide(id, value);
     },
-    testProvide: (value): IndexedObject => {
+    testProvide: (value): IndexedObject<T> => {
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
-      return { [id as symbol]: computed(() => value) };
+      return { [id as symbol]: value };
     }
   };
 }
@@ -107,7 +107,7 @@ export function injectableSettings<T>(
     provideSettings: (settings): void => {
       provide(id, computed(settings));
     },
-    testProvideSettings: (settings): IndexedObject => {
+    testProvideSettings: (settings): IndexedObject<ComputedRef<T>> => {
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       return { [id as symbol]: computed(() => settings) };
     }

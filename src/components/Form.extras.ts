@@ -6,8 +6,11 @@ import type { QForm, QFormProps, QFormSlots } from "quasar";
 import type { ComputedRef } from "vue";
 
 export namespace Form {
-  export const { inject: injectForm, provide: provideForm } =
-    injectable<ExposeToChildren>({ submitting: computed(() => false) });
+  export const {
+    inject: injectForm,
+    provide: provideForm,
+    testProvide: testProvideForm
+  } = injectable<ExposeToChildren>({ submitting: computed(() => false) });
 
   export interface AsyncSubmit {
     /**

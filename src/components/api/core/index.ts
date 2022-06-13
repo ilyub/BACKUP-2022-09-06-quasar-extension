@@ -36,7 +36,7 @@ export interface Injectable<T> {
    * @param value - Value.
    * @returns Provide object.
    */
-  readonly testProvide: (value: T) => IndexedObject;
+  readonly testProvide: (value: T) => IndexedObject<T>;
 }
 
 export interface InjectableSettings<T> {
@@ -58,7 +58,7 @@ export interface InjectableSettings<T> {
    * @param settings - Settings.
    * @returns Provide object.
    */
-  readonly testProvideSettings: (settings: T) => IndexedObject;
+  readonly testProvideSettings: (settings: T) => IndexedObject<ComputedRef<T>>;
 }
 
 export interface Prop<T extends object> {

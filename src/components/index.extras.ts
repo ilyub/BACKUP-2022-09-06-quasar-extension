@@ -18,7 +18,7 @@ export type { ExpansionItem } from "./ExpansionItem.extras";
 
 export { Field } from "./Field.extras";
 
-export type { Form } from "./Form.extras";
+export { Form } from "./Form.extras";
 
 export type { FormActions } from "./FormActions.extras";
 
@@ -44,7 +44,7 @@ export type { Knob } from "./Knob.extras";
 
 export { LanguagePicker } from "./LanguagePicker.extras";
 
-export type { Menu } from "./Menu.extras";
+export { Menu } from "./Menu.extras";
 
 export type { MenuItem } from "./MenuItem.extras";
 
