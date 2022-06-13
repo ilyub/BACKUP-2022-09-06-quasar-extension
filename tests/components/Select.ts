@@ -6,11 +6,7 @@ import type { extras } from "@";
 
 test.each([undefined, 1, "a"])("emit: update:modelValue", value => {
   const options: extras.Select.Options = [
-    {
-      disable: true,
-      label: lang.plain("Option 1"),
-      value: undefined
-    },
+    { label: lang.plain("Option 1"), value: undefined },
     { label: lang.plain("Option 2"), value: 1 },
     { label: lang.plain("Option 3"), value: "a" }
   ];
@@ -24,7 +20,7 @@ test.each([undefined, 1, "a"])("emit: update:modelValue", value => {
 });
 
 test.each([
-  { expected: "Select" },
+  { expected: "" },
   { expected: "Select color", initialLabel: lang.keys.SelectColor }
 ])("prop: initialLabel", ({ expected, initialLabel }) => {
   const wrapper = testUtils.mount(components.Select, {

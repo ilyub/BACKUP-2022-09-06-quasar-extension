@@ -87,10 +87,7 @@ export default defineComponent({
       rules: validation.rules,
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
-        emit(
-          "update:modelValue",
-          is.indexedObject(value) ? value["value"] : undefined
-        );
+        emit("update:modelValue", value);
         validation.validate(value, "input");
       },
       value: computed(() => selectedOption.value)
