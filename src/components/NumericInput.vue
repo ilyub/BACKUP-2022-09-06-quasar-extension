@@ -79,10 +79,9 @@ export default defineComponent({
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
-      mainValidationOptions: computed<plugins.validation.Options<numberU>>(
+      mainValidationOptions: computed<plugins.validation.OptionsProp<numberU>>(
         () => {
           return {
-            format: (value: unknown): numberU => cast.numberU(value),
             max: props.max,
             min: props.min,
             ...props.validationOptions

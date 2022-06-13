@@ -12,7 +12,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, cast, o, typedef } from "@skylib/functions";
+import { as, cast, o } from "@skylib/functions";
 import { maska } from "maska";
 import { defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
@@ -56,10 +56,7 @@ export default defineComponent({
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
-      slotNames: plugins.slotNames<Input.Slots>()("control"),
-      validationOptions: typedef<plugins.validation.Options<stringU>>({
-        format: (value: unknown): stringU => cast.stringU(value)
-      })
+      slotNames: plugins.slotNames<Input.Slots>()("control")
     };
   }
 });
@@ -72,7 +69,6 @@ export default defineComponent({
     :focusable-element="input"
     :format="format"
     :model-value="modelValue"
-    :validation-options="validationOptions"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">

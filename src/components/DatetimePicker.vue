@@ -12,7 +12,7 @@ import {
   validateProps
 } from "./api";
 import { compare, datetime } from "@skylib/facades";
-import { as, cast, is, typedef } from "@skylib/functions";
+import { as, cast, is } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { stringU } from "@skylib/functions";
@@ -214,9 +214,6 @@ export default defineComponent({
       timeUpdate: (value: string | null): void => {
         pickerValue.value = as.not.empty(value);
       },
-      validationOptions: typedef<plugins.validation.Options<stringU>>({
-        format: (value: unknown): stringU => cast.stringU(value)
-      }),
       year: computed(() =>
         pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
       )
@@ -232,7 +229,6 @@ export default defineComponent({
     :format="format"
     :model-value="modelValue"
     :stack-label="showDialog"
-    :validation-options="validationOptions"
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
