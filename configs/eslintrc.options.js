@@ -144,6 +144,11 @@ module.exports = {
         "CallExpression[callee.name=ref][arguments.0.type=Literal] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword).params"
     },
     {
+      message: 'Use "testComponents" instead',
+      selector:
+        "CallExpression[callee.object.name=wrapper][callee.property.name=findComponent] > MemberExpression.arguments:first-child > Identifier.object[name=components]"
+    },
+    {
       message: "Missing type parameter",
       selector:
         "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:prop|validateEmit|validateExpose|validateProps)$/u]"

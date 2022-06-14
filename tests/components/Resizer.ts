@@ -92,6 +92,5 @@ test.each([
     touchPan.trigger(event);
     expect(document.documentElement.style.cursor).toBe("");
     expect(wrapper).toHaveEmitted("update:modelValue", expectedEmitted);
-
   }
 });
