@@ -4,10 +4,10 @@ import type * as testUtils from "@vue/test-utils";
 // eslint-disable-next-line no-restricted-syntax -- Ok
 export * from "./jest";
 
-// eslint-disable-next-line no-restricted-syntax -- Ok
-export * from "./misc";
-
 export * as mocks from "./mocks";
+
+// eslint-disable-next-line no-restricted-syntax -- Ok
+export * from "./wrapper";
 
 export { findFactory } from "./find-factory";
 
