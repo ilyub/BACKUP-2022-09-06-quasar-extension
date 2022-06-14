@@ -204,6 +204,16 @@ export function skipCheck(..._args: unknowns): boolean {
 }
 
 /**
+ * Converts value to computed value.
+ *
+ * @param value - Value.
+ * @returns Computed value.
+ */
+export function toComputed<T>(value: T): ComputedRef<T> {
+  return computed(() => value);
+}
+
+/**
  * Validates emit function.
  *
  * @param emit - Emit function.

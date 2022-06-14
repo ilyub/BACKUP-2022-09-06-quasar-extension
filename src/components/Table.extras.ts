@@ -18,16 +18,18 @@ declare global {
 }
 
 export namespace Table {
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(computed(() => defaultSettings));
+  export const defaultSettings = computed<Settings>(() => {
+    return {
+      binaryStateSort: false,
+      flat: false,
+      growPageBy: 10,
+      headerSeparator: false,
+      square: false
+    };
+  });
 
-  export const defaultSettings: Settings = {
-    binaryStateSort: false,
-    flat: false,
-    growPageBy: 10,
-    headerSeparator: false,
-    square: false
-  };
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(defaultSettings);
 
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 

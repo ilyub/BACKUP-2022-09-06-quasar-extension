@@ -13,13 +13,12 @@ declare global {
 }
 
 export namespace PageLayout {
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(computed(() => defaultSettings));
+  export const defaultSettings = computed<Settings>(() => {
+    return { closeButton: true, height: "auto" };
+  });
 
-  export const defaultSettings: Settings = {
-    closeButton: true,
-    height: "auto"
-  };
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(defaultSettings);
 
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 

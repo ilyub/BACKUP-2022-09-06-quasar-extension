@@ -135,19 +135,8 @@ export const validation = defineFn(
         ...rulesOnSubmitRequired.value,
         ...rulesOnSubmit.value
       ]),
-      validate: (value: T, context: validation.Context): void => {
-        handlePromise.silent(async () => {
-          const key = Symbol("validation-context");
-
-          contexts.set(key, context);
-
-          try {
-            await target.value.validate(() => value);
-          } finally {
-            contexts.delete(key);
-          }
-        });
-      }
+      validate,
+      validateAsync
     };
 
     interface RuleWrapper {
@@ -159,6 +148,25 @@ export const validation = defineFn(
        * @returns Validation result.
        */
       (value: unknown): Promise<string | true> | string | true;
+    }
+
+    function validate(value: T, context: validation.Context): void {
+      handlePromise.silent(validateAsync(value, context));
+    }
+
+    async function validateAsync(
+      value: T,
+      context: validation.Context
+    ): Promise<boolean> {
+      const key = Symbol("validation-context");
+
+      contexts.set(key, context);
+
+      try {
+        return await target.value.validate(() => value);
+      } finally {
+        contexts.delete(key);
+      }
     }
 
     function wrapRule(
@@ -245,6 +253,14 @@ export namespace validation {
      * @param context - Context.
      */
     readonly validate: (value: T, context: Context) => void;
+    /**
+     * Validates field.
+     *
+     * @param value - Value.
+     * @param context - Context.
+     * @returns Promise.
+     */
+    readonly validateAsync: (value: T, context: Context) => Promise<boolean>;
   }
 
   export interface Props<T = unknown> extends OwnProps<T> {}

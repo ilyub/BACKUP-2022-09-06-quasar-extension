@@ -10,14 +10,16 @@ import type {
 } from "@skylib/functions";
 
 export namespace Sortable {
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(computed(() => defaultSettings));
+  export const defaultSettings = computed<Settings>(() => {
+    return {
+      animationDuration: 500,
+      disableDropping: false,
+      disableSorting: false
+    };
+  });
 
-  export const defaultSettings: Settings = {
-    animationDuration: 500,
-    disableDropping: false,
-    disableSorting: false
-  };
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(defaultSettings);
 
   export interface Global<T extends object = object, D extends object = object>
     extends GlobalComponent<Props<T, D>, Slots<T>> {}

@@ -5,13 +5,12 @@ import type { booleanU, stringU } from "@skylib/functions";
 import type { QBtn, QBtnProps, QBtnSlots } from "quasar";
 
 export namespace BaseButton {
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(computed(() => defaultSettings));
+  export const defaultSettings = computed<Settings>(() => {
+    return { animateAsyncClick: true, animateSubmitting: true };
+  });
 
-  export const defaultSettings: Settings = {
-    animateAsyncClick: true,
-    animateSubmitting: true
-  };
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(defaultSettings);
 
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main?: QBtn;

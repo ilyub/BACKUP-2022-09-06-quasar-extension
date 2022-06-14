@@ -7,13 +7,12 @@ import type { lang } from "@skylib/facades";
 import type { LocaleName } from "@skylib/functions";
 
 export namespace LanguagePicker {
-  export const { injectSettings, provideSettings, testProvideSettings } =
-    injectableSettings(computed(() => defaultSettings));
+  export const defaultSettings = computed<Settings>(() => {
+    return { changeLanguageAction: fn.noop, options: [] };
+  });
 
-  export const defaultSettings: Settings = {
-    changeLanguageAction: fn.noop,
-    options: []
-  };
+  export const { injectSettings, provideSettings, testProvideSettings } =
+    injectableSettings(defaultSettings);
 
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main?: IconButton.Global;
