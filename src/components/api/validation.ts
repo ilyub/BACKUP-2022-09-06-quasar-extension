@@ -1,4 +1,4 @@
-import { propFactory, trigger } from "./misc";
+import { injectableTrigger, propFactory } from "./misc";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { computed, ref } from "vue";
@@ -196,7 +196,7 @@ export const validation = defineFn(
         rulesOnSubmit: prop<"rulesOnSubmit">()
       } as const;
     }),
-    reset: trigger()
+    reset: injectableTrigger()
   }
 );
 

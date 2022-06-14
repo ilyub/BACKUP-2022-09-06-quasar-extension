@@ -36,7 +36,7 @@ export default defineComponent({
 
     const submitting = ref(0);
 
-    const resetValidation = plugins.validation.reset.get();
+    const resetValidation = plugins.validation.reset.provide();
 
     const exposed = {
       main,

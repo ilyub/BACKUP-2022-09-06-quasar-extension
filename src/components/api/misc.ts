@@ -4,6 +4,7 @@ import type {
   Emits,
   Injectable,
   InjectableSettings,
+  InjectableTrigger,
   Prop,
   PropOptions,
   PropOptionsBoolean,
@@ -12,8 +13,7 @@ import type {
   SetupEmit,
   SetupExpose,
   SetupExposed,
-  SetupProps,
-  Trigger
+  SetupProps
 } from "./core";
 import type {
   IndexedObject,
@@ -103,6 +103,41 @@ export function injectableSettings<T>(
 }
 
 /**
+ * Creates trigger.
+ *
+ * @returns Trigger.
+ */
+export function injectableTrigger(): InjectableTrigger {
+  const id: InjectionKey<ComputedRef<number>> = Symbol("trigger-id");
+
+  return {
+    provide: () => {
+      const counter = ref(0);
+
+      provide(
+        id,
+        computed(() => counter.value)
+      );
+
+      return () => {
+        counter.value++;
+      };
+    },
+    watch: handler => {
+      watch(
+        inject(
+          id,
+          computed(() => 0)
+        ),
+        () => {
+          handler();
+        }
+      );
+    }
+  };
+}
+
+/**
  * Overrides setting.
  *
  * @param setting - Setting.
@@ -166,41 +201,6 @@ export function propFactory<T extends object>(): Prop<T> {
  */
 export function skipCheck(..._args: unknowns): boolean {
   return true;
-}
-
-/**
- * Creates trigger.
- *
- * @returns Trigger.
- */
-export function trigger(): Trigger {
-  const id: InjectionKey<ComputedRef<number>> = Symbol("trigger-id");
-
-  const result: Trigger = {
-    get: () => {
-      const counter = ref(0);
-
-      provide(
-        id,
-        computed(() => counter.value)
-      );
-
-      return () => {
-        counter.value++;
-      };
-    },
-    watch: handler => {
-      watch(
-        inject(
-          id,
-          computed(() => 0)
-        ),
-        handler
-      );
-    }
-  };
-
-  return result;
 }
 
 /**

@@ -61,6 +61,21 @@ export interface InjectableSettings<T> {
   readonly testProvideSettings: (settings: T) => IndexedObject<T>;
 }
 
+export interface InjectableTrigger {
+  /**
+   * Provides trigger.
+   *
+   * @returns Trigger.
+   */
+  readonly provide: () => () => void;
+  /**
+   * Watches trigger.
+   *
+   * @param handler - Handler.
+   */
+  readonly watch: (handler: () => void) => void;
+}
+
 export interface Prop<T extends object> {
   /**
    * Creates Vue property.
@@ -150,18 +165,3 @@ export type SetupProps<
   T,
   K extends keyof T & `on${UppercaseLetter}${string}` = never
 > = Omit<T, Exclude<keyof T & `on${UppercaseLetter}${string}`, K>>;
-
-export interface Trigger {
-  /**
-   * Creates trigger.
-   *
-   * @returns Trigger.
-   */
-  readonly get: () => () => void;
-  /**
-   * Watches trigger.
-   *
-   * @param handler - Handler.
-   */
-  readonly watch: (handler: () => void) => void;
-}
