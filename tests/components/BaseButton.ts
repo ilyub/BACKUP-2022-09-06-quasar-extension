@@ -92,7 +92,7 @@ test.each([
     const wrapper = vueTestUtils.mount(components.BaseButton, {
       global: testUtils.globalMountOptions({
         baseButtonSettings: { animateAsyncClick: false, animateSubmitting },
-        formExpose: { submitting: computed(() => submitting) }
+        formExposeDown: { submitting: computed(() => submitting) }
       }),
       props: { type }
     });

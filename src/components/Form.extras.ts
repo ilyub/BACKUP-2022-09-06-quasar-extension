@@ -6,11 +6,15 @@ import type { QForm, QFormProps, QFormSlots } from "quasar";
 import type { ComputedRef } from "vue";
 
 export namespace Form {
+  export const defaultExposeDown: ExposeDown = {
+    submitting: computed(() => false)
+  };
+
   export const {
     inject: injectForm,
     provide: provideForm,
     testProvide: testProvideForm
-  } = injectable<ExposeToChildren>({ submitting: computed(() => false) });
+  } = injectable(defaultExposeDown);
 
   export interface AsyncSubmit {
     /**
@@ -21,7 +25,7 @@ export namespace Form {
     (event: Event): Promise<void>;
   }
 
-  export interface ExposeToChildren {
+  export interface ExposeDown {
     readonly submitting: ComputedRef<boolean>;
   }
 

@@ -5,10 +5,15 @@ import type { booleanU } from "@skylib/functions";
 import type { QMenu, QMenuProps, QMenuSlots } from "quasar";
 
 export namespace Menu {
-  export const { inject: injectMenu, provide: provideMenu } =
-    injectable<ExposeToChildren>({ autoClose: fn.noop });
+  export const defaultExposeDown: ExposeDown = { autoClose: fn.noop };
 
-  export interface ExposeToChildren {
+  export const {
+    inject: injectMenu,
+    provide: provideMenu,
+    testProvide: testProvideMenu
+  } = injectable(defaultExposeDown);
+
+  export interface ExposeDown {
     /**
      * Auto-closes menu.
      */

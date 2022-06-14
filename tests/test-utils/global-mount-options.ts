@@ -4,8 +4,10 @@ import * as testUtils from "@/test-utils";
 test("globalMountOptions", () => {
   const options = testUtils.globalMountOptions({
     baseButtonSettings: extras.BaseButton.defaultSettings.value,
+    formExposeDown: extras.Form.defaultExposeDown,
     iconPickerSettings: extras.IconPicker.defaultSettings.value,
     languagePickerSettings: extras.LanguagePicker.defaultSettings.value,
+    menuExposeDown: extras.Menu.defaultExposeDown,
     pageLayoutSettings: extras.PageLayout.defaultSettings.value,
     resizerSettings: extras.Resizer.defaultSettings.value,
     sortableSettings: extras.Sortable.defaultSettings.value,

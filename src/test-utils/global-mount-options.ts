@@ -25,6 +25,7 @@ export function globalMountOptions(
         Form,
         IconPicker,
         LanguagePicker,
+        Menu,
         PageLayout,
         Resizer,
         Sortable,
@@ -35,9 +36,10 @@ export function globalMountOptions(
 
       const {
         baseButtonSettings,
-        formExpose,
+        formExposeDown,
         iconPickerSettings,
         languagePickerSettings,
+        menuExposeDown,
         pageLayoutSettings,
         resizerSettings,
         sortableSettings,
@@ -54,7 +56,8 @@ export function globalMountOptions(
           BaseButton.testProvideSettings(toComputed(baseButtonSettings))
         );
 
-      if (formExpose) o.assign(provide, Form.testProvideForm(formExpose));
+      if (formExposeDown)
+        o.assign(provide, Form.testProvideForm(formExposeDown));
 
       if (iconPickerSettings)
         o.assign(
@@ -67,6 +70,9 @@ export function globalMountOptions(
           provide,
           LanguagePicker.testProvideSettings(toComputed(languagePickerSettings))
         );
+
+      if (menuExposeDown)
+        o.assign(provide, Menu.testProvideMenu(menuExposeDown));
 
       if (pageLayoutSettings)
         o.assign(
@@ -109,9 +115,10 @@ export function globalMountOptions(
 export namespace globalMountOptions {
   export interface CustomOptions {
     readonly baseButtonSettings?: extras.BaseButton.Settings;
-    readonly formExpose?: extras.Form.ExposeToChildren;
+    readonly formExposeDown?: extras.Form.ExposeDown;
     readonly iconPickerSettings?: extras.IconPicker.Settings;
     readonly languagePickerSettings?: extras.LanguagePicker.Settings;
+    readonly menuExposeDown?: extras.Menu.ExposeDown;
     readonly pageLayoutSettings?: extras.PageLayout.Settings;
     readonly resizerSettings?: extras.Resizer.Settings;
     readonly sortableSettings?: extras.Sortable.Settings;
