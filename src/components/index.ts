@@ -12,3 +12,6 @@ export * as extras from "./index.extras";
 
 // eslint-disable-next-line @skylib/export-all-name -- Ok
 export * as generic from "./index.generic";
+
+// eslint-disable-next-line @skylib/export-all-name -- Ok
+export * as testComponents from "./index.test";
