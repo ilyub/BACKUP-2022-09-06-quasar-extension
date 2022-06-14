@@ -16,11 +16,14 @@ export namespace Select {
     readonly Color: true;
     readonly Disabled: true;
     readonly Green: true;
+    readonly Invalid: true;
     readonly Red: true;
     readonly Reset: true;
     readonly ResetValidation: true;
-    readonly SelectColor: true;
     readonly Submit: true;
     readonly Submitted: true;
+    readonly ValidateOnChange: true;
+    readonly ValidateOnInput: true;
+    readonly ValidateOnSubmit: true;
   }
 }

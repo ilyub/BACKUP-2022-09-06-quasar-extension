@@ -5,7 +5,7 @@ import { as, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
 import type { extras } from "..";
 
-type Color = "blue" | "green" | "red";
+type Color = "blue" | "green" | "invalid" | "red";
 
 export default defineComponent({
   name: "sample-select",
@@ -20,7 +20,11 @@ export default defineComponent({
 
     const value2 = ref<Color>();
 
-    const value3 = ref<Color | undefined>("blue");
+    const value3 = ref<Color>();
+
+    const value4 = ref<Color>();
+
+    const value5 = ref<Color | undefined>("blue");
 
     return {
       form,
@@ -33,20 +37,29 @@ export default defineComponent({
           disable: true,
           label: Select.lang.keys.Red,
           value: "red"
-        }
+        },
+        { label: Select.lang.keys.Invalid, value: "invalid" }
       ]),
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
-        value3.value = "blue";
+        value3.value = undefined;
+        value4.value = undefined;
+        value5.value = "blue";
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
         as.not.empty(form.value).resetValidation();
       },
+      rules: [
+        (value: Color) =>
+          value === "invalid" ? Select.lang.keys.Invalid : true
+      ],
       value1,
       value2,
-      value3
+      value3,
+      value4,
+      value5
     };
   }
 });
@@ -56,8 +69,6 @@ export default defineComponent({
   <m-page-section>
     <m-form ref="form" @submit="$q.notify(lang.Submitted)">
       <m-form-section>
-        <!-- eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/framework update -->
-        <!-- fixme - use lang.keys.SelectColor, etc -->
         <m-select__value
           v-model="value1"
           :label="lk.Color"
@@ -69,13 +80,29 @@ export default defineComponent({
       <m-form-section>
         <m-select__value
           v-model="value2"
-          :initial-label="lk.SelectColor"
+          :initial-label="lk.ValidateOnInput"
           :options="options"
-          required
+          :rules-on-input="rules"
         />
       </m-form-section>
       <m-form-section>
-        <m-select__value v-model="value3" :options="options" />
+        <m-select__value
+          v-model="value3"
+          :initial-label="lk.ValidateOnChange"
+          :options="options"
+          :rules-on-change="rules"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-select__value
+          v-model="value4"
+          :initial-label="lk.ValidateOnSubmit"
+          :options="options"
+          :rules-on-submit="rules"
+        />
+      </m-form-section>
+      <m-form-section>
+        <m-select__value v-model="value5" :options="options" />
       </m-form-section>
       <m-form-section>
         <m-select__value
