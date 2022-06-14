@@ -408,21 +408,27 @@ test.each([
   }
 );
 
-test("prop: selected", async () => {
+test.each([
+  { expected: [[[props.rows[0], props.rows[1]]]], multiSelect: true },
+  { expected: [[[props.rows[1]]]], multiSelect: false }
+])("prop: selected", async ({ expected, multiSelect }) => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: { ...props, selectByRowClick: true }
+      props: {
+        ...props,
+        multiSelect,
+        selectByRowClick: true,
+        selected: [props.rows[0]]
+      }
     });
 
     const { comp } = testUtils.findFactory("table", wrapper);
 
-    const expected = [[[props.rows[0]]]];
-
     await wait(1000);
-    await comp("body-row", 0).trigger("click");
+    await comp("body-row", 1).trigger("click");
     expect(wrapper.emitted("update:selected")).toStrictEqual(expected);
   });
 });

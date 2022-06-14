@@ -20,38 +20,6 @@ const props = {
   ]
 } as const;
 
-test("disableTooltips", async () => {
-  const wrapper = vueTestUtils.mount(components.Sortable, {
-    global: testUtils.globalMountOptions(),
-    props
-  });
-
-  const main = wrapper.findComponent(VueDraggable);
-
-  {
-    main.vm.$emit("start");
-    await nextTick();
-    expect(disableCounter.value).toBe(1);
-  }
-
-  {
-    main.vm.$emit("end");
-    await nextTick();
-    expect(disableCounter.value).toBe(0);
-  }
-
-  {
-    main.vm.$emit("start");
-    await nextTick();
-    expect(disableCounter.value).toBe(1);
-  }
-
-  {
-    wrapper.unmount();
-    expect(disableCounter.value).toBe(0);
-  }
-});
-
 test("emit: dropped", () => {
   const wrapper = vueTestUtils.mount(components.Sortable, {
     global: testUtils.globalMountOptions(),
@@ -112,6 +80,38 @@ test("emit: update:modelValue", () => {
   main.vm.$emit("update:modelValue", elements);
   expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
   expect(wrapper.emitted("dropped")).toStrictEqual(expectedDropped);
+});
+
+test("main: start, end", async () => {
+  const wrapper = vueTestUtils.mount(components.Sortable, {
+    global: testUtils.globalMountOptions(),
+    props
+  });
+
+  const main = wrapper.findComponent(VueDraggable);
+
+  {
+    main.vm.$emit("start");
+    await nextTick();
+    expect(disableCounter.value).toBe(1);
+  }
+
+  {
+    main.vm.$emit("end");
+    await nextTick();
+    expect(disableCounter.value).toBe(0);
+  }
+
+  {
+    main.vm.$emit("start");
+    await nextTick();
+    expect(disableCounter.value).toBe(1);
+  }
+
+  {
+    wrapper.unmount();
+    expect(disableCounter.value).toBe(0);
+  }
 });
 
 test.each([

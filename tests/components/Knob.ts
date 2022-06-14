@@ -2,7 +2,7 @@ import { components } from "@";
 import * as testUtils from "@vue/test-utils";
 import { QKnob } from "quasar";
 
-test("knob", () => {
+test("Knob", () => {
   const wrapper = testUtils.mount(components.Knob, {
     props: { modelValue: 50 }
   });

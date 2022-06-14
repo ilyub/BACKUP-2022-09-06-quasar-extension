@@ -6,7 +6,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
 import { nextTick } from "vue";
 
-test("menu", async () => {
+test("Menu", async () => {
   const wrapper = vueTestUtils.mount(components.Menu, {
     global: testUtils.globalMountOptions()
   });

@@ -1,6 +1,6 @@
 import { generic } from "@";
 import { o } from "@skylib/functions";
 
-test("extras", () => {
+test("generic", () => {
   expect(o.values(generic)).toBeDefined();
 });

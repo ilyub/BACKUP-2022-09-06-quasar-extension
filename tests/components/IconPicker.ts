@@ -1,4 +1,4 @@
-import { components } from "@";
+import { components, testComponents } from "@";
 import * as testUtils from "@/test-utils";
 import * as mdi from "@mdi/js-dynamic";
 import { o, wait } from "@skylib/functions";
@@ -33,7 +33,7 @@ test.each([
       props: { modelValue, placeholder: "" }
     });
 
-    const main = wrapper.findComponent(components.IconButton);
+    const main = wrapper.findComponent(testComponents.IconButton);
 
     const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
 
@@ -49,7 +49,6 @@ test.each([
     {
       await comp("pick-icon", index).trigger("click");
       expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-      testUtils.clearEmitted(wrapper);
     }
   });
 });
@@ -63,7 +62,7 @@ test("prev, next", async () => {
       props: { placeholder: "" }
     });
 
-    const main = wrapper.findComponent(components.IconButton);
+    const main = wrapper.findComponent(testComponents.IconButton);
 
     const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
 
@@ -101,7 +100,7 @@ test("search", async () => {
       props: { placeholder: "" }
     });
 
-    const main = wrapper.findComponent(components.IconButton);
+    const main = wrapper.findComponent(testComponents.IconButton);
 
     const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
 
@@ -143,7 +142,7 @@ test.each([true, false])("setting: tooltip", async iconTooltips => {
       props: { placeholder: "" }
     });
 
-    const main = wrapper.findComponent(components.IconButton);
+    const main = wrapper.findComponent(testComponents.IconButton);
 
     const { comp, compElem } = testUtils.findFactory("icon-picker", wrapper);
 

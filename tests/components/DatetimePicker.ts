@@ -76,7 +76,7 @@ test.each([null, undefined])("field", value => {
   expect(wrapper.emitted("update:modelValue")).toStrictEqual([[undefined]]);
 });
 
-test("min, max", async () => {
+test("prop: min, max", async () => {
   const wrapper = vueTestUtils.mount(components.DatetimePicker, {
     global: testUtils.globalMountOptions(),
     props: {

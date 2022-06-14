@@ -1,4 +1,4 @@
-import { components } from "@";
+import { components, testComponents } from "@";
 import * as testUtils from "@/test-utils";
 import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
@@ -7,7 +7,7 @@ test.each([
   { expected: "en-US", index: 0 },
   { expected: "en-GB", index: 1 },
   { expected: "ru-RU", index: 2 }
-])("languagePicker", async ({ expected, index }) => {
+])("LanguagePicker", async ({ expected, index }) => {
   const changeLanguageAction = jest.fn();
 
   const wrapper = vueTestUtils.mount(components.LanguagePicker, {
@@ -36,7 +36,7 @@ test.each([
     props: { language: "en-US" }
   });
 
-  const main = wrapper.findComponent(components.IconButton);
+  const main = wrapper.findComponent(testComponents.IconButton);
 
   const { comp } = testUtils.findFactory("language-picker", wrapper);
 

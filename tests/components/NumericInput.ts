@@ -34,7 +34,7 @@ test.each([
 
   const { elem } = testUtils.findFactory("numeric-input", wrapper);
 
-  elem("input").element.setAttribute("value", value);
+  $(elem("input").element).val(value);
   await elem("input").trigger("input");
   expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
 });

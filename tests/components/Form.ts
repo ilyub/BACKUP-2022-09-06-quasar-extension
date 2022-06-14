@@ -1,14 +1,57 @@
-import { components, injections } from "@";
+import { components, extras, injections } from "@";
 import * as testUtils from "@/test-utils";
-import { wait } from "@skylib/functions";
+import { as, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QForm } from "quasar";
-import { watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import type { handlePromise } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 
 functionsTestUtils.installFakeTimer();
+
+test("emit: submit", () => {
+  const onSubmit = jest.fn();
+
+  const wrapper = vueTestUtils.mount(components.Form, {
+    global: testUtils.globalMountOptions(),
+    props: { onSubmit }
+  });
+
+  const main = wrapper.findComponent(QForm);
+
+  main.vm.$emit("submit", { value: 1 });
+  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
+});
+
+test("expose: resetValidation", () => {
+  const callback = jest.fn();
+
+  const wrapper = vueTestUtils.mount(
+    {
+      setup: () => {
+        const main = ref<extras.Form.Global>();
+
+        onMounted(() => {
+          as.not.empty(main.value).resetValidation();
+          callback();
+        });
+
+        return { main, rules: [() => true] };
+      },
+      template: `
+        <m-form ref="main">
+          <m-field :rules-on-change="[rules]" model-value="" />
+        </m-form>
+      `
+    },
+    { global: testUtils.globalMountOptions() }
+  );
+
+  expect(wrapper).toBeDefined();
+  expect(callback).toHaveBeenCalledTimes(1);
+  expect(callback).toHaveBeenCalledWith();
+});
 
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
   "prop: onAsyncSubmit",
@@ -40,25 +83,13 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
   }
 );
 
-test("prop: onSubmit", () => {
-  const onSubmit = jest.fn();
-
-  const wrapper = vueTestUtils.mount(components.Form, {
-    global: testUtils.globalMountOptions(),
-    props: { onSubmit }
-  });
-
-  const main = wrapper.findComponent(QForm);
-
-  main.vm.$emit("submit", { value: 1 });
-  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
-});
-
-test("provideDisable", async () => {
+test("prop: onAsyncSubmit", async () => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
-    const callback = jest.fn();
+    const disable = jest.fn();
+
+    const submitting = jest.fn();
 
     const wrapper = vueTestUtils.mount(components.Form, {
       global: testUtils.globalMountOptions(),
@@ -71,7 +102,11 @@ test("provideDisable", async () => {
         default: {
           setup: () => {
             watch(injections.disable.inject(), value => {
-              callback(value);
+              disable(value);
+            });
+
+            watch(extras.Form.injectForm().submitting, value => {
+              submitting(value);
             });
           },
           template: "<div></div>"
@@ -84,16 +119,22 @@ test("provideDisable", async () => {
     {
       main.vm.$emit("submit", { value: 1 });
       await wait(1000);
-      expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith(true);
-      callback.mockClear();
+      expect(disable).toHaveBeenCalledTimes(1);
+      expect(disable).toHaveBeenCalledWith(true);
+      expect(submitting).toHaveBeenCalledTimes(1);
+      expect(submitting).toHaveBeenCalledWith(true);
+      disable.mockClear();
+      submitting.mockClear();
     }
 
     {
       await wait(1000);
-      expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith(false);
-      callback.mockClear();
+      expect(disable).toHaveBeenCalledTimes(1);
+      expect(disable).toHaveBeenCalledWith(false);
+      expect(submitting).toHaveBeenCalledTimes(1);
+      expect(submitting).toHaveBeenCalledWith(false);
+      disable.mockClear();
+      submitting.mockClear();
     }
   });
 });

@@ -2,10 +2,10 @@ import { components } from "@";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 
-test("Indent", () => {
-  const wrapper = vueTestUtils.mount(components.Indent, {
+test("FormSection", () => {
+  const wrapper = vueTestUtils.mount(components.FormSection, {
     global: testUtils.globalMountOptions()
   });
 
-  expect(wrapper).toHaveClass("m-indent");
+  expect(wrapper).toHaveClass("m-form-section");
 });
