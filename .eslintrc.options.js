@@ -11,13 +11,21 @@ module.exports = {
       type: "default"
     },
     {
-      autoImportSource: "./application",
       localName: "app",
       sourcePattern: "@skylib/quasar-extension/src/application",
       type: "wildcard"
     },
     {
-      autoImportSource: "./test-utils",
+      localName: "components",
+      sourcePattern: "@skylib/quasar-extension/src/components/index.components",
+      type: "wildcard"
+    },
+    {
+      localName: "extras",
+      sourcePattern: "@skylib/quasar-extension/src/components/index.extras",
+      type: "wildcard"
+    },
+    {
       sourcePattern: "@skylib/quasar-extension/src/test-utils",
       type: "wildcard"
     }
