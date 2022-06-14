@@ -3,6 +3,7 @@
 
 import { Select } from "./Select.extras";
 import {
+  directives,
   injections,
   parentProps,
   plugins,
@@ -12,7 +13,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, fn, is, o } from "@skylib/functions";
+import { as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
 
@@ -20,6 +21,7 @@ const prop = propFactory<Select.OwnProps>();
 
 export default defineComponent({
   name: "m-select",
+  directives: { debugId: directives.debugId("select") },
   props: {
     ...parentProps<Select.ParentProps>(),
     ...plugins.langProps.props("initialLabel", "label"),
@@ -49,7 +51,7 @@ export default defineComponent({
       computed(() => as.not.empty(main.value)),
       computed(() =>
         o.removeUndefinedKeys({
-          format: fn.identity,
+          format,
           label: props.validationLabel,
           required: props.required,
           requiredErrorMessage: Select.lang.keys.SelectField
@@ -65,7 +67,7 @@ export default defineComponent({
 
     return {
       blur: (): void => {
-        validation.validate(props.modelValue, "change");
+        validation.validate(selectedOption.value, "change");
       },
       displayValue: computed(() =>
         selectedOption.value
@@ -73,8 +75,11 @@ export default defineComponent({
           : initialLabel.value
       ),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
-      displayValueShowRequired: computed(
-        () => is.empty(label.value) && is.empty(selectedOption.value)
+      displayValueRequired: computed(
+        () =>
+          props.required &&
+          is.empty(label.value) &&
+          is.empty(selectedOption.value)
       ),
       globalDisable: injections.disable.inject(),
       label,
@@ -85,13 +90,17 @@ export default defineComponent({
         })
       ),
       rules: validation.rules,
+      selectedOption,
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
-        emit("update:modelValue", value);
+        emit("update:modelValue", format(value));
         validation.validate(value, "input");
-      },
-      value: computed(() => selectedOption.value)
+      }
     };
+
+    function format(value: unknown): unknown {
+      return is.not.empty(value) ? as.indexedObject(value)["value"] : undefined;
+    }
   }
 });
 </script>
@@ -107,7 +116,7 @@ export default defineComponent({
     hide-bottom-space
     :label="label"
     lazy-rules="ondemand"
-    :model-value="value"
+    :model-value="selectedOption"
     :options="mainOptions"
     :rules="rules"
     @blur="blur"
@@ -132,7 +141,8 @@ export default defineComponent({
           {{ displayValue }}
         </span>
         <span
-          v-if="required && displayValueShowRequired"
+          v-if="displayValueRequired"
+          v-debug-id="'display-value-required'"
           class="m-select__display-value__required"
         >
           *
