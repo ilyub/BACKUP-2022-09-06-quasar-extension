@@ -18,9 +18,9 @@ const icons = o
 functionsTestUtils.installFakeTimer();
 
 test.each([
-  { expected: [[icons[0]]], index: 0 },
+  { expected: [icons[0]], index: 0 },
   {
-    expected: [[undefined]],
+    expected: [undefined],
     index: 1,
     modelValue: icons[1]
   }
@@ -48,7 +48,7 @@ test.each([
 
     {
       await comp("pick-icon", index).trigger("click");
-      expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+      expect(wrapper).toHaveEmitted("update:modelValue", expected);
     }
   });
 });

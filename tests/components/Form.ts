@@ -21,7 +21,7 @@ test("emit: submit", () => {
   const main = wrapper.findComponent(QForm);
 
   main.vm.$emit("submit", { value: 1 });
-  expect(main.emitted("submit")).toStrictEqual([[{ value: 1 }]]);
+  expect(main).toHaveEmitted("submit", [{ value: 1 }]);
 });
 
 test("expose: resetValidation", () => {

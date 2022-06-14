@@ -5,9 +5,9 @@ import $ from "jquery";
 import { nextTick } from "vue";
 
 test.each([
-  { expected: [[undefined]], value: "" },
-  { expected: [[30]], value: "30" },
-  { expected: [[90]], value: "1:30" }
+  { expected: [undefined], value: "" },
+  { expected: [30], value: "30" },
+  { expected: [90], value: "1:30" }
 ])("emit: update:modelValue", async ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.TimeInput, {
     global: testUtils.globalMountOptions()
@@ -17,7 +17,7 @@ test.each([
 
   $(elem("input").element).val(value);
   await elem("input").trigger("input");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
 });
 
 test.each([{}, { expected: "1:30", modelValue: 90 }])(

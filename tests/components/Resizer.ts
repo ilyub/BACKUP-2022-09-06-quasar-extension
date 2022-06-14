@@ -5,53 +5,53 @@ import * as vueTestUtils from "@vue/test-utils";
 test.each([
   {
     expectedCursor: "not-allowed",
-    expectedEmitted: [[100]],
+    expectedEmitted: [100],
     max: 300,
     min: 100,
     x: -110
   },
   {
     expectedCursor: "ew-resize",
-    expectedEmitted: [[190]],
+    expectedEmitted: [190],
     max: 300,
     min: 100,
     x: -10
   },
   {
     expectedCursor: "ew-resize",
-    expectedEmitted: [[210]],
+    expectedEmitted: [210],
     max: 300,
     min: 100,
     x: 10
   },
   {
     expectedCursor: "not-allowed",
-    expectedEmitted: [[300]],
+    expectedEmitted: [300],
     max: 300,
     min: 100,
     x: 110
   },
   {
     expectedCursor: "not-allowed",
-    expectedEmitted: [[100]],
+    expectedEmitted: [100],
     min: 100,
     x: -110
   },
   {
     expectedCursor: "ew-resize",
-    expectedEmitted: [[190]],
+    expectedEmitted: [190],
     min: 100,
     x: -10
   },
   {
     expectedCursor: "ew-resize",
-    expectedEmitted: [[210]],
+    expectedEmitted: [210],
     min: 100,
     x: 10
   },
   {
     expectedCursor: "ew-resize",
-    expectedEmitted: [[310]],
+    expectedEmitted: [310],
     min: 100,
     x: 110
   }
@@ -78,8 +78,7 @@ test.each([
     document.documentElement.style.cursor = "";
     touchPan.trigger(event);
     expect(document.documentElement.style.cursor).toStrictEqual(expectedCursor);
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expectedEmitted);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expectedEmitted);
   }
 
   {
@@ -92,7 +91,7 @@ test.each([
     document.documentElement.style.cursor = "";
     touchPan.trigger(event);
     expect(document.documentElement.style.cursor).toBe("");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expectedEmitted);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expectedEmitted);
+
   }
 });

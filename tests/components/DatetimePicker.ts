@@ -31,30 +31,27 @@ test.each([undefined, "2001-02-03 10:30"])("date", async modelValue => {
   );
 
   {
-    const expected = [[modelValue]];
+    const expected = [modelValue];
 
     await elem("show-date").trigger("click");
     comp("date-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {
-    const expected = [["2001-02-04 23:30"]];
+    const expected = ["2001-02-04 23:30"];
 
     comp("date").vm.$emit("update:modelValue", "2001-02-04 23:30");
     comp("date-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {
-    const expected = [["2001-02-04 11:30"]];
+    const expected = ["2001-02-04 11:30"];
 
     comp("pm").vm.$emit("click");
     comp("date-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {
@@ -73,7 +70,7 @@ test.each([null, undefined])("field", value => {
   const main = wrapper.findComponent(QField);
 
   main.vm.$emit("update:modelValue", value);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[undefined]]);
+  expect(wrapper).toHaveEmitted("update:modelValue", [undefined]);
 });
 
 test("prop: min, max", async () => {
@@ -160,30 +157,27 @@ test.each([undefined, "2001-02-03 10:30"])("time", async modelValue => {
   );
 
   {
-    const expected = [[modelValue]];
+    const expected = [modelValue];
 
     await elem("show-time").trigger("click");
     comp("time-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {
-    const expected = [["2001-02-04 23:30"]];
+    const expected = ["2001-02-04 23:30"];
 
     comp("time").vm.$emit("update:modelValue", "2001-02-04 23:30");
     comp("time-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {
-    const expected = [["2001-02-04 11:30"]];
+    const expected = ["2001-02-04 11:30"];
 
     comp("pm").vm.$emit("click");
     comp("time-save").vm.$emit("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:modelValue", expected);
   }
 
   {

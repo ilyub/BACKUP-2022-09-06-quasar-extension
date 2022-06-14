@@ -7,7 +7,7 @@ test.each([true, false])("main", value => {
 
   const main = wrapper.findComponent(QToggle);
 
-  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  expect(wrapper).toHaveEmitted("update:modelValue");
   main.vm.$emit("update:modelValue", value);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[value]]);
+  expect(wrapper).toHaveEmitted("update:modelValue", [value]);
 });

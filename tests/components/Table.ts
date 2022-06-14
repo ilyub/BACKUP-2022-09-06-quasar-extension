@@ -56,11 +56,11 @@ test("prop: columnWidths", () => {
 
   const { comp } = testUtils.findFactory("table", wrapper);
 
-  const expected = [[new Map([["column1", 200]])]];
+  const expected = [new Map([["column1", 200]])];
 
   expect(comp("resizer").props("modelValue")).toBe(100);
   comp("resizer").vm.$emit("update:modelValue", 200);
-  expect(wrapper.emitted("update:columnWidths")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:columnWidths", expected);
 });
 
 test("prop: columns", () => {
@@ -108,12 +108,12 @@ test("prop: columnsOrder (update)", async () => {
     ["column1", 1]
   ]);
 
-  const expected = [[columnsOrder]];
+  const expected = [columnsOrder];
 
   compByRef("debugDialog").vm.$emit("update:modelValue", true);
   await nextTick();
   comp("dialog-sortable").vm.$emit("update:modelValue", value);
-  expect(wrapper.emitted("update:columnsOrder")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:columnsOrder", expected);
 });
 
 test("prop: columnsOrder", async () => {
@@ -159,8 +159,8 @@ test.each([
 });
 
 test.each([
-  { expected: [[new Set(["column1"])]] },
-  { expected: [[new Set([])]], hiddenColumns: new Set(["column1"]) }
+  { expected: [new Set(["column1"])] },
+  { expected: [new Set([])], hiddenColumns: new Set(["column1"]) }
 ])("prop: hiddenColumns", async ({ expected, hiddenColumns }) => {
   const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
@@ -172,7 +172,7 @@ test.each([
   compByRef("debugDialog").vm.$emit("update:modelValue", true);
   await nextTick();
   await comp("dialog-hidden").trigger("click");
-  expect(wrapper.emitted("update:hiddenColumns")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:hiddenColumns", expected);
 });
 
 test.each([
@@ -227,10 +227,9 @@ test.each([
   });
 
   {
-    const expected = [[{ ...pagination, descending: false }]];
+    const expected = [{ ...pagination, descending: false }];
 
-    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:pagination", expected);
   }
 
   {
@@ -244,18 +243,15 @@ test.each([
     };
 
     const expected = [
-      [
-        {
-          ...pagination,
-          descending: false,
-          limit: 25
-        }
-      ]
+      {
+        ...pagination,
+        descending: false,
+        limit: 25
+      }
     ];
 
     main.vm.$emit("virtual-scroll", rawEvent);
-    expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-    testUtils.clearEmitted(wrapper);
+    expect(wrapper).toHaveEmitted("update:pagination", expected);
   }
 });
 
@@ -319,18 +315,16 @@ test.each([
     const { elem } = testUtils.findFactory("table", wrapper);
 
     {
-      const expected = [[pagination]];
+      const expected = [pagination];
 
-      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-      testUtils.clearEmitted(wrapper);
+      expect(wrapper).toHaveEmitted("update:pagination", expected);
     }
 
     {
-      const expected = [[paginationNext]];
+      const expected = [paginationNext];
 
       await elem("header-cell").trigger("click");
-      expect(wrapper.emitted("update:pagination")).toStrictEqual(expected);
-      testUtils.clearEmitted(wrapper);
+      expect(wrapper).toHaveEmitted("update:pagination", expected);
     }
   }
 );
@@ -353,21 +347,21 @@ test("prop: rows", () => {
 
 test.each([
   {
-    deselectAll: [[[]]],
-    selectAll: [[props.rows]],
-    toggleSelection: [[props.rows]]
+    deselectAll: [[]],
+    selectAll: [props.rows],
+    toggleSelection: [props.rows]
   },
   {
-    deselectAll: [[[]]],
-    selectAll: [[props.rows]],
+    deselectAll: [[]],
+    selectAll: [props.rows],
     selected: props.rows,
-    toggleSelection: [[[]]]
+    toggleSelection: [[]]
   },
   {
-    deselectAll: [[[]]],
-    selectAll: [[props.rows]],
+    deselectAll: [[]],
+    selectAll: [props.rows],
     selected: [props.rows[0]],
-    toggleSelection: [[[]]]
+    toggleSelection: [[]]
   }
 ])(
   "prop: selected (multi-select)",
@@ -390,27 +384,24 @@ test.each([
 
     {
       await elem("sample-deselect-all").trigger("click");
-      expect(wrapper.emitted("update:selected")).toStrictEqual(deselectAll);
-      testUtils.clearEmitted(wrapper);
+      expect(wrapper).toHaveEmitted("update:selected", deselectAll);
     }
 
     {
       await elem("sample-select-all").trigger("click");
-      expect(wrapper.emitted("update:selected")).toStrictEqual(selectAll);
-      testUtils.clearEmitted(wrapper);
+      expect(wrapper).toHaveEmitted("update:selected", selectAll);
     }
 
     {
       await elem("sample-toggle-selection").trigger("click");
-      expect(wrapper.emitted("update:selected")).toStrictEqual(toggleSelection);
-      testUtils.clearEmitted(wrapper);
+      expect(wrapper).toHaveEmitted("update:selected", toggleSelection);
     }
   }
 );
 
 test.each([
-  { expected: [[[props.rows[0], props.rows[1]]]], multiSelect: true },
-  { expected: [[[props.rows[1]]]], multiSelect: false }
+  { expected: [[props.rows[0], props.rows[1]]], multiSelect: true },
+  { expected: [[props.rows[1]]], multiSelect: false }
 ])("prop: selected", async ({ expected, multiSelect }) => {
   expect.hasAssertions();
 
@@ -429,6 +420,6 @@ test.each([
 
     await wait(1000);
     await comp("body-row", 1).trigger("click");
-    expect(wrapper.emitted("update:selected")).toStrictEqual(expected);
+    expect(wrapper).toHaveEmitted("update:selected", expected);
   });
 });

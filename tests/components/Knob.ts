@@ -9,7 +9,7 @@ test("Knob", () => {
 
   const main = wrapper.findComponent(QKnob);
 
-  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  expect(wrapper).toHaveEmitted("update:modelValue");
   main.vm.$emit("update:modelValue", 75);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([[75]]);
+  expect(wrapper).toHaveEmitted("update:modelValue", [75]);
 });

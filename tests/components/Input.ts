@@ -4,8 +4,8 @@ import * as vueTestUtils from "@vue/test-utils";
 import $ from "jquery";
 
 test.each([
-  { expected: [[undefined]], value: "" },
-  { expected: [["sample-value"]], value: "sample-value" }
+  { expected: [undefined], value: "" },
+  { expected: ["sample-value"], value: "sample-value" }
 ])("input", async ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.Input, {
     global: testUtils.globalMountOptions()
@@ -13,8 +13,8 @@ test.each([
 
   const { elem } = testUtils.findFactory("input", wrapper);
 
-  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  expect(wrapper).toHaveEmitted("update:modelValue");
   $(elem("input").element).val(value);
   await elem("input").trigger("input");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
 });

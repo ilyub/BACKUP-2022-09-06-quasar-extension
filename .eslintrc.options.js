@@ -6,6 +6,11 @@ module.exports = {
       type: "wildcard"
     },
     {
+      localName: "expectMatchers",
+      sourcePattern: "expect/build/matchers",
+      type: "default"
+    },
+    {
       localName: "VueDraggable",
       sourcePattern: "vuedraggable",
       type: "default"

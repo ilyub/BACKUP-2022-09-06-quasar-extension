@@ -21,7 +21,7 @@ test("emit: update:modelValue", () => {
   const main = wrapper.findComponent(QSelect);
 
   main.vm.$emit("update:modelValue", props.options[1]);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual([["a"]]);
+  expect(wrapper).toHaveEmitted("update:modelValue", ["a"]);
 });
 
 test("main: blur", async () => {

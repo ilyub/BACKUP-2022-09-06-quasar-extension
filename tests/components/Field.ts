@@ -5,8 +5,8 @@ import * as vueTestUtils from "@vue/test-utils";
 import { QField } from "quasar";
 
 test.each([
-  { expected: [[undefined]], value: "" },
-  { expected: [["sample-value"]], value: "sample-value" }
+  { expected: [undefined], value: "" },
+  { expected: ["sample-value"], value: "sample-value" }
 ])("emit: update:modelValue", ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.Field, {
     global: testUtils.globalMountOptions(),
@@ -15,9 +15,9 @@ test.each([
 
   const main = wrapper.findComponent(QField);
 
-  expect(wrapper.emitted("update:modelValue")).toBeUndefined();
+  expect(wrapper).toHaveEmitted("update:modelValue");
   main.vm.$emit("update:modelValue", value);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
 });
 
 test.each([undefined, "a"])("main: blur", modelValue => {

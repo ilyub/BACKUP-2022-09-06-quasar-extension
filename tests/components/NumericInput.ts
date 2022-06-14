@@ -4,7 +4,7 @@ import * as vueTestUtils from "@vue/test-utils";
 import $ from "jquery";
 
 test.each([
-  {},
+  { expected: [] },
   { expected: [[undefined]], modelValue: 1 },
   { expected: [[1]], modelValue: 2 }
 ])("emit: update:modelValue (down)", async ({ expected, modelValue }) => {
@@ -20,13 +20,13 @@ test.each([
   const { comp } = testUtils.findFactory("numeric-input", wrapper);
 
   await comp("down").trigger("click");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", ...expected);
 });
 
 test.each([
-  { expected: [[undefined]], value: "" },
-  { expected: [[30]], value: "30" },
-  { expected: [[90]], value: "90" }
+  { expected: [undefined], value: "" },
+  { expected: [30], value: "30" },
+  { expected: [90], value: "90" }
 ])("emit: update:modelValue (input)", async ({ expected, value }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions()
@@ -36,13 +36,13 @@ test.each([
 
   $(elem("input").element).val(value);
   await elem("input").trigger("input");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
 });
 
 test.each([
   { expected: [[1]] },
   { expected: [[2]], modelValue: 1 },
-  { modelValue: 2 }
+  { expected: [], modelValue: 2 }
 ])("emit: update:modelValue, up", async ({ expected, modelValue }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
@@ -56,7 +56,7 @@ test.each([
   const { comp } = testUtils.findFactory("numeric-input", wrapper);
 
   await comp("up").trigger("click");
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", ...expected);
 });
 
 test.each([
@@ -74,17 +74,17 @@ test.each([
   expect($(elem("input").element).val()).toStrictEqual(expected);
 });
 
-test.each([{ required: true }, { expected: [[undefined]], required: false }])(
-  "prop: required",
-  async ({ expected, required }) => {
-    const wrapper = vueTestUtils.mount(components.NumericInput, {
-      global: testUtils.globalMountOptions(),
-      props: { modelValue: 0, required }
-    });
+test.each([
+  { expected: [], required: true },
+  { expected: [[undefined]], required: false }
+])("prop: required", async ({ expected, required }) => {
+  const wrapper = vueTestUtils.mount(components.NumericInput, {
+    global: testUtils.globalMountOptions(),
+    props: { modelValue: 0, required }
+  });
 
-    const { comp } = testUtils.findFactory("numeric-input", wrapper);
+  const { comp } = testUtils.findFactory("numeric-input", wrapper);
 
-    await comp("down").trigger("click");
-    expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-  }
-);
+  await comp("down").trigger("click");
+  expect(wrapper).toHaveEmitted("update:modelValue", ...expected);
+});

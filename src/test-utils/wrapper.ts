@@ -1,17 +1,5 @@
-import { o, reflect } from "@skylib/functions";
+import { reflect } from "@skylib/functions";
 import type * as testUtils from "@vue/test-utils";
-
-/**
- * Clears emitted events.
- *
- * @param wrapper - Wrapper.
- */
-export function clearEmitted(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
-  wrapper: testUtils.VueWrapper<any>
-): void {
-  for (const events of o.values(wrapper.emitted())) events.length = 0;
-}
 
 /**
  * Sets data.
@@ -20,6 +8,7 @@ export function clearEmitted(
  * @param key - Key.
  * @param value - Value.
  */
+// eslint-disable-next-line @skylib/only-export-name -- Ok
 export function setData(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
   wrapper: testUtils.VueWrapper<any>,

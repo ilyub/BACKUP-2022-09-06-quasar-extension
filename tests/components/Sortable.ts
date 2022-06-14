@@ -36,10 +36,10 @@ test("emit: dropped", () => {
 
   const elements = buildElements(items, props.group, props.itemKey);
 
-  const expected = [[items]];
+  const expected = [items];
 
   main.vm.$emit("update:modelValue", elements);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
 });
 
 test("emit: itemClick", async () => {
@@ -53,7 +53,7 @@ test("emit: itemClick", async () => {
   await wrapper.find(".sample-item:nth-child(1)").trigger("click");
   await wrapper.find(".sample-item:nth-child(2)").trigger("click");
   await wrapper.find(".sample-item:nth-child(3)").trigger("click");
-  expect(wrapper.emitted("itemClick")).toStrictEqual(expected);
+  expect(wrapper).toHaveEmitted("itemClick", ...expected);
 });
 
 test("emit: update:modelValue", () => {
@@ -73,13 +73,13 @@ test("emit: update:modelValue", () => {
     ...buildElements([item], sourceGroup, props.itemKey)
   ];
 
-  const expected = [[[...props.modelValue, item]]];
+  const expected = [[...props.modelValue, item]];
 
-  const expectedDropped = [[item, sourceGroup]];
+  const expectedDropped = [item, sourceGroup];
 
   main.vm.$emit("update:modelValue", elements);
-  expect(wrapper.emitted("update:modelValue")).toStrictEqual(expected);
-  expect(wrapper.emitted("dropped")).toStrictEqual(expectedDropped);
+  expect(wrapper).toHaveEmitted("update:modelValue", expected);
+  expect(wrapper).toHaveEmitted("dropped", expectedDropped);
 });
 
 test("main: start, end", async () => {
