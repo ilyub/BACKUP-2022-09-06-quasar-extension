@@ -45,20 +45,20 @@ export interface InjectableSettings<T> {
    *
    * @returns Settings.
    */
-  readonly injectSettings: () => ComputedRef<T>;
+  readonly injectSettings: () => T;
   /**
    * Provides settings.
    *
    * @param settings - Default settings.
    */
-  readonly provideSettings: (settings: () => T) => void;
+  readonly provideSettings: (settings: T) => void;
   /**
    * Returns provide object.
    *
    * @param settings - Settings.
    * @returns Provide object.
    */
-  readonly testProvideSettings: (settings: T) => IndexedObject<ComputedRef<T>>;
+  readonly testProvideSettings: (settings: T) => IndexedObject<T>;
 }
 
 export interface Prop<T extends object> {

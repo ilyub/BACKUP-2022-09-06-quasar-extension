@@ -1,5 +1,6 @@
 import { components, extras } from "..";
 import { evaluate, o } from "@skylib/functions";
+import { computed } from "vue";
 import type { WritableRecord } from "@skylib/functions";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 
@@ -49,36 +50,62 @@ export function globalMountOptions(
       const provide: WritableRecord<symbol, unknown> = {};
 
       if (baseButtonSettings)
-        o.assign(provide, BaseButton.testProvideSettings(baseButtonSettings));
+        o.assign(
+          provide,
+          BaseButton.testProvideSettings(computed(() => baseButtonSettings))
+        );
 
       if (formExpose) o.assign(provide, Form.testProvideForm(formExpose));
 
       if (iconPickerSettings)
-        o.assign(provide, IconPicker.testProvideSettings(iconPickerSettings));
+        o.assign(
+          provide,
+          IconPicker.testProvideSettings(computed(() => iconPickerSettings))
+        );
 
       if (languagePickerSettings)
         o.assign(
           provide,
-          LanguagePicker.testProvideSettings(languagePickerSettings)
+          LanguagePicker.testProvideSettings(
+            computed(() => languagePickerSettings)
+          )
         );
 
       if (pageLayoutSettings)
-        o.assign(provide, PageLayout.testProvideSettings(pageLayoutSettings));
+        o.assign(
+          provide,
+          PageLayout.testProvideSettings(computed(() => pageLayoutSettings))
+        );
 
       if (resizerSettings)
-        o.assign(provide, Resizer.testProvideSettings(resizerSettings));
+        o.assign(
+          provide,
+          Resizer.testProvideSettings(computed(() => resizerSettings))
+        );
 
       if (sortableSettings)
-        o.assign(provide, Sortable.testProvideSettings(sortableSettings));
+        o.assign(
+          provide,
+          Sortable.testProvideSettings(computed(() => sortableSettings))
+        );
 
       if (switchableSettings)
-        o.assign(provide, Switchable.testProvideSettings(switchableSettings));
+        o.assign(
+          provide,
+          Switchable.testProvideSettings(computed(() => switchableSettings))
+        );
 
       if (tableSettings)
-        o.assign(provide, Table.testProvideSettings(tableSettings));
+        o.assign(
+          provide,
+          Table.testProvideSettings(computed(() => tableSettings))
+        );
 
       if (tooltipSettings)
-        o.assign(provide, Tooltip.testProvideSettings(tooltipSettings));
+        o.assign(
+          provide,
+          Tooltip.testProvideSettings(computed(() => tooltipSettings))
+        );
 
       return provide;
     })

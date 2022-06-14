@@ -12,7 +12,7 @@ import ru from "flag-icon-css/flags/1x1/ru.svg";
 import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type { LocaleName, Writable } from "@skylib/functions";
 
 export const settings = {
@@ -23,113 +23,131 @@ export const settings = {
   language: ref<LocaleName>("en-US"),
   pageLayoutCloseButton: ref(true),
   provide: () => {
-    extras.BaseButton.provideSettings(() => {
-      return {
-        animateAsyncClick: settings.baseButtonAnimateAsyncClick.value,
-        animateSubmitting: settings.baseButtonAnimateSubmitting.value
-      };
-    });
+    extras.BaseButton.provideSettings(
+      computed(() => {
+        return {
+          animateAsyncClick: settings.baseButtonAnimateAsyncClick.value,
+          animateSubmitting: settings.baseButtonAnimateSubmitting.value
+        };
+      })
+    );
 
-    extras.IconPicker.provideSettings(() => {
-      return {
-        cols: settings.iconPickerCompact.value ? 5 : 7,
-        iconTooltips: settings.iconPickerTooltips.value,
-        rows: settings.iconPickerCompact.value ? 3 : 5,
-        spinnerSize: settings.iconPickerCompact.value ? "30px" : "70px"
-      };
-    });
+    extras.IconPicker.provideSettings(
+      computed(() => {
+        return {
+          cols: settings.iconPickerCompact.value ? 5 : 7,
+          iconTooltips: settings.iconPickerTooltips.value,
+          rows: settings.iconPickerCompact.value ? 3 : 5,
+          spinnerSize: settings.iconPickerCompact.value ? "30px" : "70px"
+        };
+      })
+    );
 
-    extras.LanguagePicker.provideSettings(() => {
-      return {
-        changeLanguageAction: (value): void => {
-          const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
+    extras.LanguagePicker.provideSettings(
+      computed(() => {
+        return {
+          changeLanguageAction: (value): void => {
+            const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
+              {
+                firstDayOfWeek: 0,
+                locale: enUS,
+                pm: true
+              };
+
+            switch (value) {
+              case "en-GB":
+                config.locale = enGB;
+
+                break;
+
+              case "en-US":
+                break;
+
+              case "ru-RU":
+                config.firstDayOfWeek = 1;
+                config.locale = ruRu;
+                config.pm = false;
+            }
+
+            settings.language.value = value;
+            implementations.datetime.dateFnsWrapper.configure(config);
+            implementations.lang.dictionary.configure({ localeName: value });
+          },
+          options: [
             {
-              firstDayOfWeek: 0,
-              locale: enUS,
-              pm: true
-            };
+              caption: lang.keys.EnglishUSA,
+              flag: us,
+              lang: "en-US"
+            },
+            {
+              caption: lang.keys.EnglishUK,
+              flag: gb,
+              lang: "en-GB"
+            },
+            {
+              caption: lang.keys.Russian,
+              flag: ru,
+              lang: "ru-RU"
+            }
+          ]
+        };
+      })
+    );
 
-          switch (value) {
-            case "en-GB":
-              config.locale = enGB;
+    extras.PageLayout.provideSettings(
+      computed(() => {
+        return {
+          closeButton: settings.pageLayoutCloseButton.value,
+          height: "calc(100vh - 48px)"
+        };
+      })
+    );
 
-              break;
+    extras.Resizer.provideSettings(
+      computed(() => {
+        return { disable: settings.resizerDisable.value };
+      })
+    );
 
-            case "en-US":
-              break;
+    extras.Sortable.provideSettings(
+      computed(() => {
+        return {
+          animationDuration: 500,
+          disableDropping: false,
+          disableSorting: false
+        };
+      })
+    );
 
-            case "ru-RU":
-              config.firstDayOfWeek = 1;
-              config.locale = ruRu;
-              config.pm = false;
-          }
+    extras.Switchable.provideSettings(
+      computed(() => {
+        return {
+          transition: settings.switchableTransition.value,
+          transitionDuration: 500
+        };
+      })
+    );
 
-          settings.language.value = value;
-          implementations.datetime.dateFnsWrapper.configure(config);
-          implementations.lang.dictionary.configure({ localeName: value });
-        },
-        options: [
-          {
-            caption: lang.keys.EnglishUSA,
-            flag: us,
-            lang: "en-US"
-          },
-          {
-            caption: lang.keys.EnglishUK,
-            flag: gb,
-            lang: "en-GB"
-          },
-          {
-            caption: lang.keys.Russian,
-            flag: ru,
-            lang: "ru-RU"
-          }
-        ]
-      };
-    });
+    extras.Table.provideSettings(
+      computed(() => {
+        return {
+          binaryStateSort: true,
+          flat: true,
+          growPageBy: 10,
+          headerSeparator: true,
+          square: true
+        };
+      })
+    );
 
-    extras.PageLayout.provideSettings(() => {
-      return {
-        closeButton: settings.pageLayoutCloseButton.value,
-        height: "calc(100vh - 48px)"
-      };
-    });
-
-    extras.Resizer.provideSettings(() => {
-      return { disable: settings.resizerDisable.value };
-    });
-
-    extras.Sortable.provideSettings(() => {
-      return {
-        animationDuration: 500,
-        disableDropping: false,
-        disableSorting: false
-      };
-    });
-
-    extras.Switchable.provideSettings(() => {
-      return {
-        transition: settings.switchableTransition.value,
-        transitionDuration: 500
-      };
-    });
-
-    extras.Table.provideSettings(() => {
-      return {
-        binaryStateSort: true,
-        flat: true,
-        growPageBy: 10,
-        headerSeparator: true,
-        square: true
-      };
-    });
-
-    extras.Tooltip.provideSettings(() => {
-      return {
-        delay: settings.tooltipDelay.value,
-        show: settings.tooltipShow.value
-      };
-    });
+    extras.Tooltip.provideSettings(
+      computed(() => {
+        return {
+          delay: settings.tooltipDelay.value,
+          show: settings.tooltipShow.value
+        };
+      })
+    );
   },
   resizerDisable: ref(false),
   switchableTransition: ref<extras.Switchable.Transition>("none"),

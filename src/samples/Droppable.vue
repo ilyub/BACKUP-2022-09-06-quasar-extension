@@ -3,7 +3,7 @@ import { extras, generic } from "..";
 import { Droppable } from "./Droppable.extras";
 import { json } from "@skylib/functions";
 import { useQuasar } from "quasar";
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 
 interface Item {
   readonly id: string;
@@ -25,13 +25,15 @@ export default defineComponent({
 
     const disableSorting = ref(false);
 
-    extras.Sortable.provideSettings(() => {
-      return {
-        animationDuration: 500,
-        disableDropping: disableDropping.value,
-        disableSorting: disableSorting.value
-      };
-    });
+    extras.Sortable.provideSettings(
+      computed(() => {
+        return {
+          animationDuration: 500,
+          disableDropping: disableDropping.value,
+          disableSorting: disableSorting.value
+        };
+      })
+    );
 
     return {
       disableDropping,

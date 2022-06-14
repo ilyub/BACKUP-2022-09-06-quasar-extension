@@ -1,4 +1,4 @@
-import { as, defineFn } from "@skylib/functions";
+import { defineFn } from "@skylib/functions";
 import { computed, inject, provide, ref, watch } from "vue";
 import type {
   Emits,
@@ -60,17 +60,6 @@ export function classRef<T>(value: T): Ref<T> {
 }
 
 /**
- * Injects required value.
- *
- * @param key - Key.
- * @returns Value.
- */
-// eslint-disable-next-line @skylib/prefer-readonly -- Ok
-export function injectRequire<T>(key: InjectionKey<T> | string): T {
-  return as.not.empty(inject(key));
-}
-
-/**
  * Creates injectable.
  *
  * @param defVal - Default value.
@@ -99,18 +88,17 @@ export function injectable<T>(defVal: T): Injectable<T> {
  */
 export function injectableSettings<T>(
   defaultSettings: ComputedRef<T>
-): InjectableSettings<T> {
-  const id: InjectionKey<ComputedRef<T>> = Symbol("injectable-id");
+): InjectableSettings<ComputedRef<T>> {
+  const {
+    inject: injectSettings,
+    provide: provideSettings,
+    testProvide: testProvideSettings
+  } = injectable(defaultSettings);
 
   return {
-    injectSettings: () => inject(id, defaultSettings),
-    provideSettings: (settings): void => {
-      provide(id, computed(settings));
-    },
-    testProvideSettings: (settings): IndexedObject<ComputedRef<T>> => {
-      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
-      return { [id as symbol]: computed(() => settings) };
-    }
+    injectSettings,
+    provideSettings,
+    testProvideSettings
   };
 }
 
