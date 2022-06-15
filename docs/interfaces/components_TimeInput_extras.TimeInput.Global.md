@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_NumericInput_extras.NumericInput.Global.md)
+• `Optional` `Readonly` **main**: [`Global`](components_NumericInput_extras.NumericInput.Global.md)

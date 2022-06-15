@@ -7,8 +7,6 @@
 ### References
 
 - [GlobalComponent](index.md#globalcomponent)
-- [GlobalComponentInstance](index.md#globalcomponentinstance)
-- [ParentProps](index.md#parentprops)
 - [VNodes](index.md#vnodes)
 - [classRef](index.md#classref)
 - [components](index.md#components)
@@ -16,17 +14,18 @@
 - [extras](index.md#extras)
 - [generic](index.md#generic)
 - [implementations](index.md#implementations)
-- [injectRequire](index.md#injectrequire)
 - [injectable](index.md#injectable)
 - [injectableSettings](index.md#injectablesettings)
+- [injectableTrigger](index.md#injectabletrigger)
 - [injections](index.md#injections)
 - [override](index.md#override)
-- [parentProps](index.md#parentprops-1)
+- [parentProps](index.md#parentprops)
 - [plugin](index.md#plugin)
 - [plugins](index.md#plugins)
 - [propFactory](index.md#propfactory)
 - [skipCheck](index.md#skipcheck)
-- [trigger](index.md#trigger)
+- [testComponents](index.md#testcomponents)
+- [toComputed](index.md#tocomputed)
 - [validateEmit](index.md#validateemit)
 - [validateExpose](index.md#validateexpose)
 - [validateProps](index.md#validateprops)
@@ -36,18 +35,6 @@
 ### GlobalComponent
 
 Re-exports [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
-
-___
-
-### GlobalComponentInstance
-
-Re-exports [GlobalComponentInstance](../interfaces/components_api_misc.GlobalComponentInstance.md)
-
-___
-
-### ParentProps
-
-Re-exports [ParentProps](components_api_misc.md#parentprops)
 
 ___
 
@@ -93,12 +80,6 @@ Renames and re-exports [facade-implementations](facade_implementations.md)
 
 ___
 
-### injectRequire
-
-Re-exports [injectRequire](components_api_misc.md#injectrequire)
-
-___
-
 ### injectable
 
 Re-exports [injectable](components_api_misc.md#injectable)
@@ -108,6 +89,12 @@ ___
 ### injectableSettings
 
 Re-exports [injectableSettings](components_api_misc.md#injectablesettings)
+
+___
+
+### injectableTrigger
+
+Re-exports [injectableTrigger](components_api_misc.md#injectabletrigger)
 
 ___
 
@@ -125,7 +112,7 @@ ___
 
 ### parentProps
 
-Re-exports [parentProps](components_api_misc.md#parentprops-1)
+Re-exports [parentProps](components_api_misc.md#parentprops)
 
 ___
 
@@ -153,9 +140,15 @@ Re-exports [skipCheck](components_api_misc.md#skipcheck)
 
 ___
 
-### trigger
+### testComponents
 
-Re-exports [trigger](components_api_misc.md#trigger)
+Renames and re-exports [components/index.test](components_index_test.md)
+
+___
+
+### toComputed
+
+Re-exports [toComputed](components_api_misc.md#tocomputed)
 
 ___
 

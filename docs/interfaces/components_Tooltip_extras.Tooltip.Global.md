@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QTooltip`
+• `Optional` `Readonly` **main**: `QTooltip`

@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QPopupProxy`
+• `Optional` `Readonly` **main**: `QPopupProxy`

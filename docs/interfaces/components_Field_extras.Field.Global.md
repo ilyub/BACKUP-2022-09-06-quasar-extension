@@ -42,4 +42,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QField`
+• `Optional` `Readonly` **main**: `QField`

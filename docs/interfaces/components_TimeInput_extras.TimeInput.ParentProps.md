@@ -33,6 +33,7 @@
 - [filled](components_TimeInput_extras.TimeInput.ParentProps.md#filled)
 - [focusableElement](components_TimeInput_extras.TimeInput.ParentProps.md#focusableelement)
 - [for](components_TimeInput_extras.TimeInput.ParentProps.md#for)
+- [format](components_TimeInput_extras.TimeInput.ParentProps.md#format)
 - [hideBottomSpace](components_TimeInput_extras.TimeInput.ParentProps.md#hidebottomspace)
 - [hideHint](components_TimeInput_extras.TimeInput.ParentProps.md#hidehint)
 - [hint](components_TimeInput_extras.TimeInput.ParentProps.md#hint)
@@ -270,6 +271,22 @@ Used to specify the 'id' of the control and also the 'for' attribute of the labe
 #### Inherited from
 
 [Props](components_NumericInput_extras.NumericInput.Props.md).[for](components_NumericInput_extras.NumericInput.Props.md#for)
+
+___
+
+### format
+
+• `Optional` `Readonly` **format**: [`Format`](components_Field_extras.Field.Format.md)<`numberU`\>
+
+Formats value.
+
+**`param`** Value.
+
+**`returns`** Formatted value.
+
+#### Inherited from
+
+[Props](components_NumericInput_extras.NumericInput.Props.md).[format](components_NumericInput_extras.NumericInput.Props.md#format)
 
 ___
 

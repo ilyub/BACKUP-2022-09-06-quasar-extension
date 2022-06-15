@@ -42,4 +42,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QTable`
+• `Optional` `Readonly` **main**: `QTable`

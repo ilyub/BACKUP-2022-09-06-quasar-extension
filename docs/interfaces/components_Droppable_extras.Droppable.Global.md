@@ -43,4 +43,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_Sortable_extras.Sortable.Global.md)<`object`, `object`\>
+• `Optional` `Readonly` **main**: [`Global`](components_Sortable_extras.Sortable.Global.md)<`object`, `object`\>

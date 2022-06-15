@@ -40,7 +40,7 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QForm`
+• `Optional` `Readonly` **main**: `QForm`
 
 ## Methods
 

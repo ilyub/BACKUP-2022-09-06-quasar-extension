@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QBtn`
+• `Optional` `Readonly` **main**: `QBtn`

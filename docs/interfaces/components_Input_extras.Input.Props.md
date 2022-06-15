@@ -32,6 +32,7 @@
 - [filled](components_Input_extras.Input.Props.md#filled)
 - [focusableElement](components_Input_extras.Input.Props.md#focusableelement)
 - [for](components_Input_extras.Input.Props.md#for)
+- [format](components_Input_extras.Input.Props.md#format)
 - [hideBottomSpace](components_Input_extras.Input.Props.md#hidebottomspace)
 - [hideHint](components_Input_extras.Input.Props.md#hidehint)
 - [hint](components_Input_extras.Input.Props.md#hint)
@@ -257,6 +258,22 @@ Used to specify the 'id' of the control and also the 'for' attribute of the labe
 #### Inherited from
 
 [ParentProps](components_Input_extras.Input.ParentProps.md).[for](components_Input_extras.Input.ParentProps.md#for)
+
+___
+
+### format
+
+• `Optional` `Readonly` **format**: [`Format`](components_Field_extras.Field.Format.md)<`stringU`\>
+
+Formats value.
+
+**`param`** Value.
+
+**`returns`** Formatted value.
+
+#### Inherited from
+
+[ParentProps](components_Input_extras.Input.ParentProps.md).[format](components_Input_extras.Input.ParentProps.md#format)
 
 ___
 

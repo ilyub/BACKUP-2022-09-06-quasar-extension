@@ -16,4 +16,4 @@
 
 ### direction
 
-• `Const` **direction**: (`props`: [`Props`](../interfaces/components_api_direction.direction.Props.md)) => [`Plugin`](../interfaces/components_api_direction.direction.Plugin.md) & `Readonly`<{ `props`: { `direction`: [`PropOptions`](../interfaces/components_api_core.PropOptions.md)<`undefined` \| [`Direction`](components_api_direction.direction.md#direction)\>  }  }\>
+• `Const` **direction**: (`props`: [`Props`](../interfaces/components_api_direction.direction.Props.md)) => [`Plugin`](../interfaces/components_api_direction.direction.Plugin.md) & `Readonly`<{ `props`: { `direction`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`Direction`](components_api_direction.direction.md#direction)\>  }  }\>

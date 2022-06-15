@@ -532,7 +532,7 @@ tty.ReadStream.writableObjectMode
 
 #### Inherited from
 
-tty.ReadStream.\_\_@asyncIterator@13444
+tty.ReadStream.\_\_@asyncIterator@13624
 
 ___
 

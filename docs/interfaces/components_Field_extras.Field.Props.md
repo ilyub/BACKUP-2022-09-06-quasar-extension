@@ -40,6 +40,7 @@
 - [filled](components_Field_extras.Field.Props.md#filled)
 - [focusableElement](components_Field_extras.Field.Props.md#focusableelement)
 - [for](components_Field_extras.Field.Props.md#for)
+- [format](components_Field_extras.Field.Props.md#format)
 - [hideBottomSpace](components_Field_extras.Field.Props.md#hidebottomspace)
 - [hideHint](components_Field_extras.Field.Props.md#hidehint)
 - [hint](components_Field_extras.Field.Props.md#hint)
@@ -264,6 +265,22 @@ Used to specify the 'id' of the control and also the 'for' attribute of the labe
 #### Inherited from
 
 [ParentProps](components_Field_extras.Field.ParentProps.md).[for](components_Field_extras.Field.ParentProps.md#for)
+
+___
+
+### format
+
+• `Optional` `Readonly` **format**: [`Format`](components_Field_extras.Field.Format.md)<`T`\>
+
+Formats value.
+
+**`param`** Value.
+
+**`returns`** Formatted value.
+
+#### Inherited from
+
+[OwnProps](components_Field_extras.Field.OwnProps.md).[format](components_Field_extras.Field.OwnProps.md#format)
 
 ___
 

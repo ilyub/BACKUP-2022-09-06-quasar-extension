@@ -41,7 +41,7 @@
 
 ### defaultSettings
 
-• `Const` **defaultSettings**: [`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)
+• `Const` **defaultSettings**: `ComputedRef`<[`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)\>
 
 ## Functions
 
@@ -69,7 +69,7 @@ Provides settings.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `settings` | () => [`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md) | Default settings. |
+| `settings` | `ComputedRef`<[`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)\> | Default settings. |
 
 #### Returns
 
@@ -79,7 +79,7 @@ ___
 
 ### testProvideSettings
 
-▸ **testProvideSettings**(`settings`): `IndexedObject`<`unknown`\>
+▸ **testProvideSettings**(`settings`): `IndexedObject`<`ComputedRef`<[`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)\>\>
 
 Returns provide object.
 
@@ -87,10 +87,10 @@ Returns provide object.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `settings` | [`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md) | Settings. |
+| `settings` | `ComputedRef`<[`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)\> | Settings. |
 
 #### Returns
 
-`IndexedObject`<`unknown`\>
+`IndexedObject`<`ComputedRef`<[`Settings`](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)\>\>
 
 Provide object.

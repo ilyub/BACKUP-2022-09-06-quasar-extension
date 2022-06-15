@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QToggle`
+• `Optional` `Readonly` **main**: `QToggle`

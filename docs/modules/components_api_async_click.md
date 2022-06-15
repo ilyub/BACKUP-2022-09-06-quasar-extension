@@ -16,4 +16,4 @@
 
 ### asyncClick
 
-• `Const` **asyncClick**: (`props`: [`Props`](../interfaces/components_api_async_click.asyncClick.Props.md)) => [`Plugin`](../interfaces/components_api_async_click.asyncClick.Plugin.md) & `Readonly`<{ `props`: { `onAsyncClick`: [`PropOptions`](../interfaces/components_api_core.PropOptions.md)<`undefined` \| [`AsyncClick`](../interfaces/components_api_async_click.asyncClick.AsyncClick.md)\>  }  }\>
+• `Const` **asyncClick**: (`props`: [`Props`](../interfaces/components_api_async_click.asyncClick.Props.md)) => [`Plugin`](../interfaces/components_api_async_click.asyncClick.Plugin.md) & `Readonly`<{ `props`: { `onAsyncClick`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`AsyncClick`](../interfaces/components_api_async_click.asyncClick.AsyncClick.md)\>  }  }\>

@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QMenu`
+• `Optional` `Readonly` **main**: `QMenu`

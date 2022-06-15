@@ -42,4 +42,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QOptionGroup`
+• `Optional` `Readonly` **main**: `QOptionGroup`

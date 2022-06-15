@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_Item_extras.Item.Global.md)
+• `Optional` `Readonly` **main**: [`Global`](components_Item_extras.Item.Global.md)

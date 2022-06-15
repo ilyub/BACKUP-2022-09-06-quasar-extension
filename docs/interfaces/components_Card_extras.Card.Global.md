@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QCard`
+• `Optional` `Readonly` **main**: `QCard`

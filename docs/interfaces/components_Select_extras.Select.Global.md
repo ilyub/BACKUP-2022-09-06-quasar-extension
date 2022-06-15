@@ -42,4 +42,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QSelect`
+• `Optional` `Readonly` **main**: `QSelect`

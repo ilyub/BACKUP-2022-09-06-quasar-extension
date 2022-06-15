@@ -7,41 +7,27 @@
 ### Interfaces
 
 - [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
-- [GlobalComponentInstance](../interfaces/components_api_misc.GlobalComponentInstance.md)
 
 ### Type aliases
 
-- [ParentProps](components_api_misc.md#parentprops)
 - [VNodes](components_api_misc.md#vnodes)
 
 ### Functions
 
 - [classRef](components_api_misc.md#classref)
-- [injectRequire](components_api_misc.md#injectrequire)
 - [injectable](components_api_misc.md#injectable)
 - [injectableSettings](components_api_misc.md#injectablesettings)
+- [injectableTrigger](components_api_misc.md#injectabletrigger)
 - [override](components_api_misc.md#override)
-- [parentProps](components_api_misc.md#parentprops-1)
+- [parentProps](components_api_misc.md#parentprops)
 - [propFactory](components_api_misc.md#propfactory)
 - [skipCheck](components_api_misc.md#skipcheck)
-- [trigger](components_api_misc.md#trigger)
+- [toComputed](components_api_misc.md#tocomputed)
 - [validateEmit](components_api_misc.md#validateemit)
 - [validateExpose](components_api_misc.md#validateexpose)
 - [validateProps](components_api_misc.md#validateprops)
 
 ## Type aliases
-
-### ParentProps
-
-Ƭ **ParentProps**<`T`\>: `Join2`<{ readonly [K in OptionalKeys<T\>]: PropOptions<T[K]\> }, { readonly [K in RequiredKeys<T\>]: PropOptionsRequired<T[K]\> }\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `object` |
-
-___
 
 ### VNodes
 
@@ -75,35 +61,9 @@ Vue ref.
 
 ___
 
-### injectRequire
-
-▸ **injectRequire**<`T`\>(`key`): `T`
-
-Injects required value.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `string` \| `InjectionKey`<`T`\> | Key. |
-
-#### Returns
-
-`T`
-
-Value.
-
-___
-
 ### injectable
 
-▸ **injectable**<`T`\>(`defVal`): [`Injectable`](../interfaces/components_api_core.Injectable.md)<`T`\>
+▸ **injectable**<`T`\>(`defVal`): [`Injectable`](../interfaces/components_api_misc_internal.Injectable.md)<`T`\>
 
 Creates injectable.
 
@@ -121,7 +81,7 @@ Creates injectable.
 
 #### Returns
 
-[`Injectable`](../interfaces/components_api_core.Injectable.md)<`T`\>
+[`Injectable`](../interfaces/components_api_misc_internal.Injectable.md)<`T`\>
 
 Injectable.
 
@@ -129,7 +89,7 @@ ___
 
 ### injectableSettings
 
-▸ **injectableSettings**<`T`\>(`defaultSettings`): [`InjectableSettings`](../interfaces/components_api_core.InjectableSettings.md)<`T`\>
+▸ **injectableSettings**<`T`\>(`defaultSettings`): [`InjectableSettings`](../interfaces/components_api_misc_internal.InjectableSettings.md)<`ComputedRef`<`T`\>\>
 
 Creates injectable settings.
 
@@ -147,9 +107,23 @@ Creates injectable settings.
 
 #### Returns
 
-[`InjectableSettings`](../interfaces/components_api_core.InjectableSettings.md)<`T`\>
+[`InjectableSettings`](../interfaces/components_api_misc_internal.InjectableSettings.md)<`ComputedRef`<`T`\>\>
 
 Injectable settings.
+
+___
+
+### injectableTrigger
+
+▸ **injectableTrigger**(): [`InjectableTrigger`](../interfaces/components_api_misc_internal.InjectableTrigger.md)
+
+Creates trigger.
+
+#### Returns
+
+[`InjectableTrigger`](../interfaces/components_api_misc_internal.InjectableTrigger.md)
+
+Trigger.
 
 ___
 
@@ -177,7 +151,7 @@ ___
 
 ### parentProps
 
-▸ **parentProps**<`T`\>(): [`ParentProps`](components_api_misc.md#parentprops)<`T`\>
+▸ **parentProps**<`T`\>(): [`ParentProps`](components_api_misc_internal.md#parentprops)<`T`\>
 
 Returns parent props.
 
@@ -189,7 +163,7 @@ Returns parent props.
 
 #### Returns
 
-[`ParentProps`](components_api_misc.md#parentprops)<`T`\>
+[`ParentProps`](components_api_misc_internal.md#parentprops)<`T`\>
 
 Parent props.
 
@@ -197,7 +171,7 @@ ___
 
 ### propFactory
 
-▸ **propFactory**<`T`\>(): [`Prop`](../interfaces/components_api_core.Prop.md)<`T`\>
+▸ **propFactory**<`T`\>(): [`Prop`](../interfaces/components_api_misc_internal.Prop.md)<`T`\>
 
 Creates prop function.
 
@@ -209,7 +183,7 @@ Creates prop function.
 
 #### Returns
 
-[`Prop`](../interfaces/components_api_core.Prop.md)<`T`\>
+[`Prop`](../interfaces/components_api_misc_internal.Prop.md)<`T`\>
 
 Prop function.
 
@@ -235,23 +209,35 @@ _True_.
 
 ___
 
-### trigger
+### toComputed
 
-▸ **trigger**(): [`Trigger`](../interfaces/components_api_core.Trigger.md)
+▸ **toComputed**<`T`\>(`value`): `ComputedRef`<`T`\>
 
-Creates trigger.
+Converts value to computed value.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
 
 #### Returns
 
-[`Trigger`](../interfaces/components_api_core.Trigger.md)
+`ComputedRef`<`T`\>
 
-Trigger.
+Computed value.
 
 ___
 
 ### validateEmit
 
-▸ **validateEmit**<`T`\>(`emit`): [`SetupEmit`](components_api_core.md#setupemit)<`T`\>
+▸ **validateEmit**<`T`\>(`_emit`): `void`
 
 Validates emit function.
 
@@ -265,13 +251,11 @@ Validates emit function.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `emit` | [`SetupEmit`](components_api_core.md#setupemit)<`T`\> | Emit function. |
+| `_emit` | [`SetupEmit`](components_api_misc_internal.md#setupemit)<`T`\> | Emit function. |
 
 #### Returns
 
-[`SetupEmit`](components_api_core.md#setupemit)<`T`\>
-
-Emit function.
+`void`
 
 ___
 
@@ -291,8 +275,8 @@ Exposes data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `expose` | [`SetupExpose`](../interfaces/components_api_core.SetupExpose.md) | Expose function. |
-| `exposed` | [`SetupExposed`](components_api_core.md#setupexposed)<`T`\> | Exposed data. |
+| `expose` | [`SetupExpose`](../interfaces/components_api_misc_internal.SetupExpose.md) | Expose function. |
+| `exposed` | [`SetupExposed`](components_api_misc_internal.md#setupexposed)<`T`\> | Exposed data. |
 
 #### Returns
 
@@ -302,7 +286,7 @@ ___
 
 ### validateProps
 
-▸ **validateProps**<`T`, `K`\>(`props`): [`SetupProps`](components_api_core.md#setupprops)<`T`, `K`\>
+▸ **validateProps**<`T`, `K`\>(`_props`): `void`
 
 Validates props.
 
@@ -317,10 +301,8 @@ Validates props.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `props` | [`SetupProps`](components_api_core.md#setupprops)<`T`, `K`\> | Props. |
+| `_props` | [`SetupProps`](components_api_misc_internal.md#setupprops)<`T`, `K`\> | Props. |
 
 #### Returns
 
-[`SetupProps`](components_api_core.md#setupprops)<`T`, `K`\>
-
-Props.
+`void`

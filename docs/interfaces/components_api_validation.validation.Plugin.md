@@ -19,6 +19,7 @@
 ### Methods
 
 - [validate](components_api_validation.validation.Plugin.md#validate)
+- [validateAsync](components_api_validation.validation.Plugin.md#validateasync)
 
 ## Properties
 
@@ -44,3 +45,24 @@ Validates field.
 #### Returns
 
 `void`
+
+___
+
+### validateAsync
+
+▸ `Readonly` **validateAsync**(`value`, `context`): `Promise`<`boolean`\>
+
+Validates field.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+| `context` | [`Context`](../modules/components_api_validation.validation.md#context) | Context. |
+
+#### Returns
+
+`Promise`<`boolean`\>
+
+Promise.

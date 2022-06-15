@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_Field_extras.Field.Global.md)<`stringU`\>
+• `Optional` `Readonly` **main**: [`Global`](components_Field_extras.Field.Global.md)<`stringU`\>

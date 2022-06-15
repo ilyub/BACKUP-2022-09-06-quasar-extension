@@ -1,37 +1,37 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / components/Sortable.core
+[Quasar extension](../index.md) / [Exports](../modules.md) / components/Sortable.internal
 
-# Module: components/Sortable.core
+# Module: components/Sortable.internal
 
 ## Table of contents
 
 ### Interfaces
 
-- [Element](../interfaces/components_Sortable_core.Element.md)
-- [MoveData](../interfaces/components_Sortable_core.MoveData.md)
+- [Element](../interfaces/components_Sortable_internal.Element.md)
+- [MoveData](../interfaces/components_Sortable_internal.MoveData.md)
 
 ### Type aliases
 
-- [Elements](components_Sortable_core.md#elements)
+- [Elements](components_Sortable_internal.md#elements)
 
 ### Functions
 
-- [buildElements](components_Sortable_core.md#buildelements)
-- [isElement](components_Sortable_core.md#iselement)
-- [isElements](components_Sortable_core.md#iselements)
-- [isHtmlElement](components_Sortable_core.md#ishtmlelement)
-- [isMoveData](components_Sortable_core.md#ismovedata)
+- [buildElements](components_Sortable_internal.md#buildelements)
+- [isElement](components_Sortable_internal.md#iselement)
+- [isElements](components_Sortable_internal.md#iselements)
+- [isHtmlElement](components_Sortable_internal.md#ishtmlelement)
+- [isMoveData](components_Sortable_internal.md#ismovedata)
 
 ## Type aliases
 
 ### Elements
 
-Ƭ **Elements**: readonly [`Element`](../interfaces/components_Sortable_core.Element.md)[]
+Ƭ **Elements**: readonly [`Element`](../interfaces/components_Sortable_internal.Element.md)[]
 
 ## Functions
 
 ### buildElements
 
-▸ **buildElements**(`items`, `group`, `key`): `Writable`<[`Elements`](components_Sortable_core.md#elements)\>
+▸ **buildElements**(`items`, `group`, `key`): `Writable`<[`Elements`](components_Sortable_internal.md#elements)\>
 
 Builds vuedraggable elements.
 
@@ -45,7 +45,7 @@ Builds vuedraggable elements.
 
 #### Returns
 
-`Writable`<[`Elements`](components_Sortable_core.md#elements)\>
+`Writable`<[`Elements`](components_Sortable_internal.md#elements)\>
 
 Elements.
 

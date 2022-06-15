@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_IconButton_extras.IconButton.Global.md)
+• `Optional` `Readonly` **main**: [`Global`](components_IconButton_extras.IconButton.Global.md)

@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QExpansionItem`
+• `Optional` `Readonly` **main**: `QExpansionItem`

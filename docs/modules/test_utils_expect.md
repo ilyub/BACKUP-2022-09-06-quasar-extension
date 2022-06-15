@@ -15,6 +15,7 @@
 - [toBeVisible](test_utils_expect.md#tobevisible)
 - [toExist](test_utils_expect.md#toexist)
 - [toHaveClass](test_utils_expect.md#tohaveclass)
+- [toHaveEmitted](test_utils_expect.md#tohaveemitted)
 
 ## Variables
 
@@ -31,6 +32,7 @@
 | `toBeVisible` | `ExpectFromMatcher`<``"toBeVisible"``\> |
 | `toExist` | `ExpectFromMatcher`<``"toExist"``\> |
 | `toHaveClass` | `ExpectFromMatcher`<``"toHaveClass"``\> |
+| `toHaveEmitted` | `ExpectFromMatcher`<``"toHaveEmitted"``\> |
 
 ## Functions
 
@@ -112,6 +114,23 @@ ___
 | :------ | :------ |
 | `got` | `unknown` |
 | `...args` | [expected: string] |
+
+#### Returns
+
+`ExpectReturnType`
+
+___
+
+### toHaveEmitted
+
+▸ **toHaveEmitted**(`got`, ...`args`): `ExpectReturnType`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `got` | `unknown` |
+| `...args` | [name: string, ...expected: unknown[]] |
 
 #### Returns
 

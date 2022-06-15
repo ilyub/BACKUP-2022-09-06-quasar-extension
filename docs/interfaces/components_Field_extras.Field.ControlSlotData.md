@@ -45,7 +45,7 @@ Emits value.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | `T` | Value. |
+| `value` | `unknown` | Value. |
 
 #### Returns
 

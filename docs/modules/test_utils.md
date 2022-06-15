@@ -8,13 +8,10 @@
 
 - [findFactory](test_utils.md#findfactory)
 - [globalMountOptions](test_utils.md#globalmountoptions)
-- [mocks](test_utils.md#mocks)
-
-### Functions
-
-- [clearEmitted](test_utils.md#clearemitted)
 - [jestReset](test_utils.md#jestreset)
 - [jestSetup](test_utils.md#jestsetup)
+- [mocks](test_utils.md#mocks)
+- [setData](test_utils.md#setdata)
 
 ## References
 
@@ -30,48 +27,24 @@ Re-exports [globalMountOptions](test_utils_global_mount_options.md#globalmountop
 
 ___
 
-### mocks
-
-Renames and re-exports [test-utils/mocks](test_utils_mocks.md)
-
-## Functions
-
-### clearEmitted
-
-▸ **clearEmitted**(`wrapper`): `void`
-
-Clears emitted events.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
-
-#### Returns
-
-`void`
-
-___
-
 ### jestReset
 
-▸ **jestReset**(): `void`
-
-Jest reset.
-
-#### Returns
-
-`void`
+Re-exports [jestReset](test_utils_jest.md#jestreset)
 
 ___
 
 ### jestSetup
 
-▸ **jestSetup**(): `void`
+Re-exports [jestSetup](test_utils_jest.md#jestsetup)
 
-Jest setup.
+___
 
-#### Returns
+### mocks
 
-`void`
+Renames and re-exports [test-utils/mocks](test_utils_mocks.md)
+
+___
+
+### setData
+
+Re-exports [setData](test_utils_wrapper.md#setdata)

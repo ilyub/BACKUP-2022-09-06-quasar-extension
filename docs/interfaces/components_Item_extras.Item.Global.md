@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QItem`
+• `Optional` `Readonly` **main**: `QItem`

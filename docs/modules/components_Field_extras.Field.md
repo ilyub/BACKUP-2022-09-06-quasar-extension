@@ -9,6 +9,7 @@
 ### Interfaces
 
 - [ControlSlotData](../interfaces/components_Field_extras.Field.ControlSlotData.md)
+- [Format](../interfaces/components_Field_extras.Field.Format.md)
 - [Global](../interfaces/components_Field_extras.Field.Global.md)
 - [OwnProps](../interfaces/components_Field_extras.Field.OwnProps.md)
 - [OwnSlots](../interfaces/components_Field_extras.Field.OwnSlots.md)

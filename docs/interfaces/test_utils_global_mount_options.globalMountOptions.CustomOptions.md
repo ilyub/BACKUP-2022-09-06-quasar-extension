@@ -9,8 +9,10 @@
 ### Properties
 
 - [baseButtonSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#basebuttonsettings)
+- [formExposeDown](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#formexposedown)
 - [iconPickerSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#iconpickersettings)
 - [languagePickerSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#languagepickersettings)
+- [menuExposeDown](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#menuexposedown)
 - [pageLayoutSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#pagelayoutsettings)
 - [resizerSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#resizersettings)
 - [sortableSettings](test_utils_global_mount_options.globalMountOptions.CustomOptions.md#sortablesettings)
@@ -26,6 +28,12 @@
 
 ___
 
+### formExposeDown
+
+• `Optional` `Readonly` **formExposeDown**: [`ExposeDown`](components_Form_extras.Form.ExposeDown.md)
+
+___
+
 ### iconPickerSettings
 
 • `Optional` `Readonly` **iconPickerSettings**: [`Settings`](components_IconPicker_extras.IconPicker.Settings.md)
@@ -35,6 +43,12 @@ ___
 ### languagePickerSettings
 
 • `Optional` `Readonly` **languagePickerSettings**: [`Settings`](components_LanguagePicker_extras.LanguagePicker.Settings.md)
+
+___
+
+### menuExposeDown
+
+• `Optional` `Readonly` **menuExposeDown**: [`ExposeDown`](components_Menu_extras.Menu.ExposeDown.md)
 
 ___
 

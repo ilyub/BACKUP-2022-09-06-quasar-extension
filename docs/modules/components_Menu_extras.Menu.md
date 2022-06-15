@@ -8,7 +8,7 @@
 
 ### Interfaces
 
-- [ExposeToChildren](../interfaces/components_Menu_extras.Menu.ExposeToChildren.md)
+- [ExposeDown](../interfaces/components_Menu_extras.Menu.ExposeDown.md)
 - [Global](../interfaces/components_Menu_extras.Menu.Global.md)
 - [OwnProps](../interfaces/components_Menu_extras.Menu.OwnProps.md)
 - [ParentProps](../interfaces/components_Menu_extras.Menu.ParentProps.md)
@@ -17,22 +17,33 @@
 - [Props](../interfaces/components_Menu_extras.Menu.Props.md)
 - [Slots](../interfaces/components_Menu_extras.Menu.Slots.md)
 
+### Variables
+
+- [defaultExposeDown](components_Menu_extras.Menu.md#defaultexposedown)
+
 ### Functions
 
 - [injectMenu](components_Menu_extras.Menu.md#injectmenu)
 - [provideMenu](components_Menu_extras.Menu.md#providemenu)
+- [testProvideMenu](components_Menu_extras.Menu.md#testprovidemenu)
+
+## Variables
+
+### defaultExposeDown
+
+• `Const` **defaultExposeDown**: [`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md)
 
 ## Functions
 
 ### injectMenu
 
-▸ **injectMenu**(): [`ExposeToChildren`](../interfaces/components_Menu_extras.Menu.ExposeToChildren.md)
+▸ **injectMenu**(): [`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md)
 
 Injects settings.
 
 #### Returns
 
-[`ExposeToChildren`](../interfaces/components_Menu_extras.Menu.ExposeToChildren.md)
+[`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md)
 
 Settings.
 
@@ -48,8 +59,28 @@ Provides value.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `value` | [`ExposeToChildren`](../interfaces/components_Menu_extras.Menu.ExposeToChildren.md) | Default value. |
+| `value` | [`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md) | Default value. |
 
 #### Returns
 
 `void`
+
+___
+
+### testProvideMenu
+
+▸ **testProvideMenu**(`value`): `IndexedObject`<[`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md)\>
+
+Returns provide value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md) | Value. |
+
+#### Returns
+
+`IndexedObject`<[`ExposeDown`](../interfaces/components_Menu_extras.Menu.ExposeDown.md)\>
+
+Provide object.

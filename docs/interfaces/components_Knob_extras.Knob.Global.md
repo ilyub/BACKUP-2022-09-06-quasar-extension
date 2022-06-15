@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: `QKnob`
+• `Optional` `Readonly` **main**: `QKnob`

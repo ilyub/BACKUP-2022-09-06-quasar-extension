@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/core](../modules/components_api_core.md) / Injectable
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/misc.internal](../modules/components_api_misc_internal.md) / Injectable
 
 # Interface: Injectable<T\>
 
-[components/api/core](../modules/components_api_core.md).Injectable
+[components/api/misc.internal](../modules/components_api_misc_internal.md).Injectable
 
 ## Type parameters
 
@@ -14,9 +14,9 @@
 
 ### Methods
 
-- [inject](components_api_core.Injectable.md#inject)
-- [provide](components_api_core.Injectable.md#provide)
-- [testProvide](components_api_core.Injectable.md#testprovide)
+- [inject](components_api_misc_internal.Injectable.md#inject)
+- [provide](components_api_misc_internal.Injectable.md#provide)
+- [testProvide](components_api_misc_internal.Injectable.md#testprovide)
 
 ## Methods
 
@@ -54,7 +54,7 @@ ___
 
 ### testProvide
 
-▸ `Readonly` **testProvide**(`value`): `IndexedObject`<`unknown`\>
+▸ `Readonly` **testProvide**(`value`): `IndexedObject`<`T`\>
 
 Returns provide value.
 
@@ -66,6 +66,6 @@ Returns provide value.
 
 #### Returns
 
-`IndexedObject`<`unknown`\>
+`IndexedObject`<`T`\>
 
 Provide object.

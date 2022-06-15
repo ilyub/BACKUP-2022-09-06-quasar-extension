@@ -32,6 +32,7 @@
 - [filled](components_DatetimePicker_extras.DatetimePicker.Props.md#filled)
 - [focusableElement](components_DatetimePicker_extras.DatetimePicker.Props.md#focusableelement)
 - [for](components_DatetimePicker_extras.DatetimePicker.Props.md#for)
+- [format](components_DatetimePicker_extras.DatetimePicker.Props.md#format)
 - [hideBottomSpace](components_DatetimePicker_extras.DatetimePicker.Props.md#hidebottomspace)
 - [hideHint](components_DatetimePicker_extras.DatetimePicker.Props.md#hidehint)
 - [hint](components_DatetimePicker_extras.DatetimePicker.Props.md#hint)
@@ -258,6 +259,22 @@ Used to specify the 'id' of the control and also the 'for' attribute of the labe
 #### Inherited from
 
 [ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[for](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#for)
+
+___
+
+### format
+
+• `Optional` `Readonly` **format**: [`Format`](components_Field_extras.Field.Format.md)<`stringU`\>
+
+Formats value.
+
+**`param`** Value.
+
+**`returns`** Formatted value.
+
+#### Inherited from
+
+[ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[format](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#format)
 
 ___
 

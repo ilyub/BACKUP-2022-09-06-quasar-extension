@@ -36,4 +36,4 @@ Constructor.
 
 ### main
 
-• `Readonly` **main**: [`Global`](components_Switchable_extras.Switchable.Global.md)
+• `Optional` `Readonly` **main**: [`Global`](components_Switchable_extras.Switchable.Global.md)

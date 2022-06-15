@@ -22,6 +22,7 @@
 
 - [disable](components_Field_extras.Field.OwnProps.md#disable)
 - [focusableElement](components_Field_extras.Field.OwnProps.md#focusableelement)
+- [format](components_Field_extras.Field.OwnProps.md#format)
 - [modelValue](components_Field_extras.Field.OwnProps.md#modelvalue)
 - [required](components_Field_extras.Field.OwnProps.md#required)
 - [validationOptions](components_Field_extras.Field.OwnProps.md#validationoptions)
@@ -41,6 +42,18 @@ ___
 ### focusableElement
 
 • `Optional` `Readonly` **focusableElement**: `HTMLElement`
+
+___
+
+### format
+
+• `Optional` `Readonly` **format**: [`Format`](components_Field_extras.Field.Format.md)<`T`\>
+
+Formats value.
+
+**`param`** Value.
+
+**`returns`** Formatted value.
 
 ___
 
