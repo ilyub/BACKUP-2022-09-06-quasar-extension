@@ -1,8 +1,8 @@
 <script lang="ts">
 /* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Tooltip] */
 
-import { disableCounter } from "./Tooltip.core";
 import { Tooltip } from "./Tooltip.extras";
+import { disableCounter } from "./Tooltip.internal";
 import { parentProps, plugins, validateExpose } from "./api";
 import { computed, defineComponent, ref } from "vue";
 import type { QTooltip } from "quasar";

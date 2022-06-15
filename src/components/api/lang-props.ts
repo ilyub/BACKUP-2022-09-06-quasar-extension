@@ -2,7 +2,7 @@ import { propFactory } from "./misc";
 import { lang } from "@skylib/facades";
 import { defineFn, is, o } from "@skylib/functions";
 import { computed } from "vue";
-import type { PropOptions } from "./core";
+import type { PropOptions } from "./types";
 import type { Entry, stringU } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 

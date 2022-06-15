@@ -12,7 +12,6 @@ import {
 import { as, cast, is, o, typedef } from "@skylib/functions";
 import { maska } from "maska";
 import { defineComponent, ref, watch } from "vue";
-import type { Field } from "./Field.extras";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
 import type { numberU, stringU } from "@skylib/functions";
@@ -51,7 +50,7 @@ export default defineComponent({
       input,
       inputInput: (
         event: Event,
-        emitValue: Field.ControlSlotData<numberU>["emitValue"]
+        emitValue: Parameters<TimeInput.Slots["control"]>[0]["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
         const value = cast.stringU(o.get(as.not.empty(event.target), "value"));

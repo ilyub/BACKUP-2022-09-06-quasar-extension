@@ -173,7 +173,9 @@ export default defineComponent({
       prevClick: (): void => {
         step.value = "date";
       },
-      save: (emitValue: Field.ControlSlotData<stringU>["emitValue"]): void => {
+      save: (
+        emitValue: Parameters<DatetimePicker.Slots["control"]>[0]["emitValue"]
+      ): void => {
         emitValue(pickerObject.value?.toString());
       },
       showDialog,

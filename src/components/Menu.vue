@@ -6,7 +6,6 @@ import { Tooltip } from "./Tooltip.extras";
 import { parentProps, plugins, propFactory, validateExpose } from "./api";
 import { as } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
-import type { Button } from "./Button.extras";
 import type { QMenu } from "quasar";
 
 const prop = propFactory<Menu.OwnProps>();
@@ -39,7 +38,7 @@ export default defineComponent({
       main,
       offset: direction.offset,
       self: direction.self,
-      slotNames: plugins.slotNames<Button.Slots>()()
+      slotNames: plugins.slotNames<Menu.Slots>()()
     };
   }
 });

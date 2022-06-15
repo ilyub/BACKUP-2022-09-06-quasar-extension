@@ -1,6 +1,6 @@
 import { components } from "@";
 // eslint-disable-next-line import/no-internal-modules -- Ok
-import { disableCounter } from "@/components/Tooltip.core";
+import { disableCounter } from "@/components/Tooltip.internal";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";

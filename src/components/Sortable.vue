@@ -1,6 +1,6 @@
 <script lang="ts">
-import { buildElements, isElements, isMoveData } from "./Sortable.core";
 import { Sortable } from "./Sortable.extras";
+import { buildElements, isElements, isMoveData } from "./Sortable.internal";
 import { Tooltip } from "./Tooltip.extras";
 import {
   plugins,

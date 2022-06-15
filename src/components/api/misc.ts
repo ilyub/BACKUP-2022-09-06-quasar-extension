@@ -1,32 +1,26 @@
 import { defineFn } from "@skylib/functions";
 import { computed, inject, provide, ref, watch } from "vue";
 import type {
-  Emits,
+  GlobalComponentInstance,
   Injectable,
   InjectableSettings,
   InjectableTrigger,
+  ParentProps,
   Prop,
-  PropOptions,
-  PropOptionsBoolean,
-  PropOptionsDefault,
-  PropOptionsRequired,
   SetupEmit,
   SetupExpose,
   SetupExposed,
   SetupProps
-} from "./core";
+} from "./misc.internal";
 import type {
   IndexedObject,
-  Join2,
   PickKeys,
   UppercaseLetter,
   booleanU,
   unknowns
 } from "@skylib/functions";
-import type { PublicProps } from "quasar";
 import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
-import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
 
 export interface GlobalComponent<P, S> {
@@ -35,16 +29,6 @@ export interface GlobalComponent<P, S> {
    */
   new (): GlobalComponentInstance<P, S>;
 }
-
-export interface GlobalComponentInstance<P, S> {
-  readonly $props: Emits & P & PublicProps;
-  readonly $slots: S;
-}
-
-export type ParentProps<T extends object> = Join2<
-  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
-  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
->;
 
 export type VNodes = readonly VNode[];
 
@@ -166,27 +150,23 @@ export function parentProps<T extends object>(): ParentProps<T> {
  */
 export function propFactory<T extends object>(): Prop<T> {
   return defineFn(
-    <
-      K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
-    >(): PropOptions<T[K]> => {
+    () => {
       return {};
     },
     {
       boolean: <_K extends PickKeys<T, booleanU, "extends->">>(
         defVal = false
-      ): PropOptionsBoolean => {
+      ) => {
         return { default: defVal, type: Boolean };
       },
       default: <
         K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
       >(
         defVal: Exclude<T[K], undefined>
-      ): PropOptionsDefault<T[K]> => {
+      ) => {
         return { default: defVal };
       },
-      required: <
-        K extends FilterKeys<T, booleanU, "extends->"> & RequiredKeys<T>
-      >(): PropOptionsRequired<T[K]> => {
+      required: () => {
         return { required: true };
       }
     }
@@ -216,11 +196,10 @@ export function toComputed<T>(value: T): ComputedRef<T> {
 /**
  * Validates emit function.
  *
- * @param emit - Emit function.
- * @returns Emit function.
+ * @param _emit - Emit function.
  */
-export function validateEmit<T>(emit: SetupEmit<T>): SetupEmit<T> {
-  return emit;
+export function validateEmit<T>(_emit: SetupEmit<T>): void {
+  // Nothing to do
 }
 
 /**
@@ -239,12 +218,11 @@ export function validateExpose<T>(
 /**
  * Validates props.
  *
- * @param props - Props.
- * @returns Props.
+ * @param _props - Props.
  */
 export function validateProps<
   T,
   K extends keyof T & `on${UppercaseLetter}${string}` = never
->(props: SetupProps<T, K>): SetupProps<T, K> {
-  return props;
+>(_props: SetupProps<T, K>): void {
+  // Nothing to do
 }

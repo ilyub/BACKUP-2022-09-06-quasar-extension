@@ -50,7 +50,7 @@ export default defineComponent({
       input,
       inputInput: (
         event: Event,
-        emitValue: Field.ControlSlotData<stringU>["emitValue"]
+        emitValue: Parameters<Input.Slots["control"]>[0]["emitValue"]
       ): void => {
         // eslint-disable-next-line no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value"));

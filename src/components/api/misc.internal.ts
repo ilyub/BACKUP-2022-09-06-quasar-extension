@@ -1,21 +1,33 @@
 import type {
+  PropOptions,
+  PropOptionsBoolean,
+  PropOptionsDefault,
+  PropOptionsRequired
+} from "./types";
+import type {
   Callable,
   IndexedObject,
   IndexedRecord,
+  Join2,
   PickKeys,
   UppercaseLetter,
-  booleanU,
-  is
+  booleanU
 } from "@skylib/functions";
+import type { PublicProps } from "quasar";
 import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ValueOf } from "type-fest";
-import type { ComputedRef, PropType, Ref } from "vue";
+import type { ComputedRef, Ref } from "vue";
 
 export type Emits = {
   readonly [K in `on${UppercaseLetter}${string}`]: () => void;
 };
+
+export interface GlobalComponentInstance<P, S> {
+  readonly $props: Emits & P & PublicProps;
+  readonly $slots: S;
+}
 
 export interface Injectable<T> {
   /**
@@ -76,6 +88,11 @@ export interface InjectableTrigger {
   readonly watch: (handler: () => void) => void;
 }
 
+export type ParentProps<T extends object> = Join2<
+  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
+  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
+>;
+
 export interface Prop<T extends object> {
   /**
    * Creates Vue property.
@@ -113,24 +130,6 @@ export interface Prop<T extends object> {
   readonly required: <
     K extends FilterKeys<T, booleanU, "extends->"> & RequiredKeys<T>
   >() => PropOptionsRequired<T[K]>;
-}
-
-export interface PropOptions<T> {
-  readonly default?: T;
-  readonly required?: true;
-  readonly type?: PropType<T>;
-  readonly validator?: is.Guard<T>;
-}
-
-export interface PropOptionsBoolean extends PropOptionsDefault<boolean> {}
-
-export interface PropOptionsDefault<T>
-  extends PropOptions<Exclude<T, undefined>> {
-  readonly default: Exclude<T, undefined>;
-}
-
-export interface PropOptionsRequired<T> extends PropOptions<T> {
-  readonly required: true;
 }
 
 export type SetupEmit<T> = ValueOf<{
