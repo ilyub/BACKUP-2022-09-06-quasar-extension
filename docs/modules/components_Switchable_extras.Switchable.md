@@ -15,7 +15,7 @@
 - [Settings](../interfaces/components_Switchable_extras.Switchable.Settings.md)
 - [Slots](../interfaces/components_Switchable_extras.Switchable.Slots.md)
 
-### Type aliases
+### Type Aliases
 
 - [Transition](components_Switchable_extras.Switchable.md#transition)
 
@@ -29,7 +29,7 @@
 - [provideSettings](components_Switchable_extras.Switchable.md#providesettings)
 - [testProvideSettings](components_Switchable_extras.Switchable.md#testprovidesettings)
 
-## Type aliases
+## Type Aliases
 
 ### Transition
 

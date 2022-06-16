@@ -6,11 +6,11 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [RouteRecordRaws](routes.routes-1.md#routerecordraws)
 
-## Type aliases
+## Type Aliases
 
 ### RouteRecordRaws
 

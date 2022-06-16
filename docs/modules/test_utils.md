@@ -7,6 +7,7 @@
 ### References
 
 - [findFactory](test_utils.md#findfactory)
+- [findQuasarComponent](test_utils.md#findquasarcomponent)
 - [globalMountOptions](test_utils.md#globalmountoptions)
 - [jestReset](test_utils.md#jestreset)
 - [jestSetup](test_utils.md#jestsetup)
@@ -18,6 +19,12 @@
 ### findFactory
 
 Re-exports [findFactory](test_utils_find_factory.md#findfactory)
+
+___
+
+### findQuasarComponent
+
+Re-exports [findQuasarComponent](test_utils_wrapper.md#findquasarcomponent)
 
 ___
 

@@ -26,7 +26,6 @@
 - [indeterminateIcon](components_Toggle_extras.Toggle.ParentProps.md#indeterminateicon)
 - [indeterminateValue](components_Toggle_extras.Toggle.ParentProps.md#indeterminatevalue)
 - [keepColor](components_Toggle_extras.Toggle.ParentProps.md#keepcolor)
-- [label](components_Toggle_extras.Toggle.ParentProps.md#label)
 - [leftLabel](components_Toggle_extras.Toggle.ParentProps.md#leftlabel)
 - [name](components_Toggle_extras.Toggle.ParentProps.md#name)
 - [size](components_Toggle_extras.Toggle.ParentProps.md#size)
@@ -156,18 +155,6 @@ Should the color (if specified any) be kept when the component is unticked/ off?
 #### Inherited from
 
 Omit.keepColor
-
-___
-
-### label
-
-• `Optional` **label**: `string`
-
-Label to display along the component (or use the default slot instead of this prop)
-
-#### Inherited from
-
-Omit.label
 
 ___
 

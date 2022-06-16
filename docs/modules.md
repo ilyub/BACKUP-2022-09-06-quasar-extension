@@ -156,3 +156,4 @@
 - [test-utils/mocks](modules/test_utils_mocks.md)
 - [test-utils/mocks/touch-pan](modules/test_utils_mocks_touch_pan.md)
 - [test-utils/wrapper](modules/test_utils_wrapper.md)
+- [test-utils/wrapper.internal](modules/test_utils_wrapper_internal.md)

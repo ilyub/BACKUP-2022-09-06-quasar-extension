@@ -40,8 +40,9 @@
 - [WritableStream](../interfaces/dev_env.NodeJS.WritableStream.md)
 - [WriteStream](../interfaces/dev_env.NodeJS.WriteStream.md)
 
-### Type aliases
+### Type Aliases
 
+- [Architecture](dev_env.NodeJS.md#architecture)
 - [ArrayBufferView](dev_env.NodeJS.md#arraybufferview)
 - [BeforeExitListener](dev_env.NodeJS.md#beforeexitlistener)
 - [DisconnectListener](dev_env.NodeJS.md#disconnectlistener)
@@ -60,7 +61,13 @@
 - [WarningListener](dev_env.NodeJS.md#warninglistener)
 - [WorkerListener](dev_env.NodeJS.md#workerlistener)
 
-## Type aliases
+## Type Aliases
+
+### Architecture
+
+Ƭ **Architecture**: ``"arm"`` \| ``"arm64"`` \| ``"ia32"`` \| ``"mips"`` \| ``"mipsel"`` \| ``"ppc"`` \| ``"ppc64"`` \| ``"s390"`` \| ``"s390x"`` \| ``"x64"``
+
+___
 
 ### ArrayBufferView
 

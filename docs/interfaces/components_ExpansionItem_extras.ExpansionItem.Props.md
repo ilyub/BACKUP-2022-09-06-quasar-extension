@@ -16,7 +16,6 @@
 
 ### Properties
 
-- [Label](components_ExpansionItem_extras.ExpansionItem.Props.md#label)
 - [activeClass](components_ExpansionItem_extras.ExpansionItem.Props.md#activeclass)
 - [caption](components_ExpansionItem_extras.ExpansionItem.Props.md#caption)
 - [captionLines](components_ExpansionItem_extras.ExpansionItem.Props.md#captionlines)
@@ -40,7 +39,7 @@
 - [headerStyle](components_ExpansionItem_extras.ExpansionItem.Props.md#headerstyle)
 - [href](components_ExpansionItem_extras.ExpansionItem.Props.md#href)
 - [icon](components_ExpansionItem_extras.ExpansionItem.Props.md#icon)
-- [label](components_ExpansionItem_extras.ExpansionItem.Props.md#label-1)
+- [label](components_ExpansionItem_extras.ExpansionItem.Props.md#label)
 - [labelLines](components_ExpansionItem_extras.ExpansionItem.Props.md#labellines)
 - [modelValue](components_ExpansionItem_extras.ExpansionItem.Props.md#modelvalue)
 - [popup](components_ExpansionItem_extras.ExpansionItem.Props.md#popup)
@@ -60,16 +59,6 @@
 - [onUpdate:modelValue](components_ExpansionItem_extras.ExpansionItem.Props.md#onupdate:modelvalue)
 
 ## Properties
-
-### Label
-
-• **Label**: `undefined` \| `Key`<`Word`\>
-
-#### Inherited from
-
-[PluginProps](components_ExpansionItem_extras.ExpansionItem.PluginProps.md).[Label](components_ExpansionItem_extras.ExpansionItem.PluginProps.md#label)
-
-___
 
 ### activeClass
 
@@ -350,13 +339,11 @@ ___
 
 ### label
 
-• `Optional` **label**: `string`
-
-Header label (unless using 'header' slot)
+• **label**: `undefined` \| `Key`<`Word`\>
 
 #### Inherited from
 
-[ParentProps](components_ExpansionItem_extras.ExpansionItem.ParentProps.md).[label](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#label)
+[PluginProps](components_ExpansionItem_extras.ExpansionItem.PluginProps.md).[label](components_ExpansionItem_extras.ExpansionItem.PluginProps.md#label)
 
 ___
 

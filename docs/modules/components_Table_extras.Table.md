@@ -26,7 +26,7 @@
 - [Slots](../interfaces/components_Table_extras.Table.Slots.md)
 - [Word](../interfaces/components_Table_extras.Table.Word.md)
 
-### Type aliases
+### Type Aliases
 
 - [Align](components_Table_extras.Table.md#align)
 - [ColumnWidths](components_Table_extras.Table.md#columnwidths)
@@ -46,7 +46,7 @@
 - [provideSettings](components_Table_extras.Table.md#providesettings)
 - [testProvideSettings](components_Table_extras.Table.md#testprovidesettings)
 
-## Type aliases
+## Type Aliases
 
 ### Align
 

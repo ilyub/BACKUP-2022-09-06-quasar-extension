@@ -578,7 +578,7 @@ ___
 
 ### separator
 
-• `Optional` **separator**: ``"none"`` \| ``"horizontal"`` \| ``"vertical"`` \| ``"cell"``
+• `Optional` **separator**: ``"none"`` \| ``"vertical"`` \| ``"horizontal"`` \| ``"cell"``
 
 Use a separator/border between rows, columns or all cells
 Default value: horizontal

@@ -18,7 +18,7 @@
 - [Slots](../interfaces/components_Select_extras.Select.Slots.md)
 - [Word](../interfaces/components_Select_extras.Select.Word.md)
 
-### Type aliases
+### Type Aliases
 
 - [Options](components_Select_extras.Select.md#options)
 
@@ -26,7 +26,7 @@
 
 - [lang](components_Select_extras.Select.md#lang)
 
-## Type aliases
+## Type Aliases
 
 ### Options
 

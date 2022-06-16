@@ -415,7 +415,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `string` \| `RefSelector` \| `DefinedComponent` \| `NameSelector` \| `T` |
+| `selector` | `string` \| `DefinedComponent` \| `NameSelector` \| `RefSelector` \| `T` |
 
 #### Returns
 
@@ -451,7 +451,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `RefSelector` \| `NameSelector` |
+| `selector` | `NameSelector` \| `RefSelector` |
 
 #### Returns
 
@@ -597,7 +597,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `string` \| `RefSelector` \| `DefinedComponent` \| `NameSelector` \| `T` |
+| `selector` | `string` \| `DefinedComponent` \| `NameSelector` \| `RefSelector` \| `T` |
 
 #### Returns
 

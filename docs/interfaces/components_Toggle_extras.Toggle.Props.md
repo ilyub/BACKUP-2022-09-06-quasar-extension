@@ -18,7 +18,6 @@
 
 ### Properties
 
-- [Label](components_Toggle_extras.Toggle.Props.md#label)
 - [checkedIcon](components_Toggle_extras.Toggle.Props.md#checkedicon)
 - [color](components_Toggle_extras.Toggle.Props.md#color)
 - [dark](components_Toggle_extras.Toggle.Props.md#dark)
@@ -30,7 +29,7 @@
 - [indeterminateIcon](components_Toggle_extras.Toggle.Props.md#indeterminateicon)
 - [indeterminateValue](components_Toggle_extras.Toggle.Props.md#indeterminatevalue)
 - [keepColor](components_Toggle_extras.Toggle.Props.md#keepcolor)
-- [label](components_Toggle_extras.Toggle.Props.md#label-1)
+- [label](components_Toggle_extras.Toggle.Props.md#label)
 - [leftLabel](components_Toggle_extras.Toggle.Props.md#leftlabel)
 - [modelValue](components_Toggle_extras.Toggle.Props.md#modelvalue)
 - [name](components_Toggle_extras.Toggle.Props.md#name)
@@ -47,16 +46,6 @@
 - [onUpdate:modelValue](components_Toggle_extras.Toggle.Props.md#onupdate:modelvalue)
 
 ## Properties
-
-### Label
-
-• **Label**: `undefined` \| `Key`<`Word`\>
-
-#### Inherited from
-
-[PluginProps](components_Toggle_extras.Toggle.PluginProps.md).[Label](components_Toggle_extras.Toggle.PluginProps.md#label)
-
-___
 
 ### checkedIcon
 
@@ -190,13 +179,11 @@ ___
 
 ### label
 
-• `Optional` **label**: `string`
-
-Label to display along the component (or use the default slot instead of this prop)
+• **label**: `undefined` \| `Key`<`Word`\>
 
 #### Inherited from
 
-[ParentProps](components_Toggle_extras.Toggle.ParentProps.md).[label](components_Toggle_extras.Toggle.ParentProps.md#label)
+[PluginProps](components_Toggle_extras.Toggle.PluginProps.md).[label](components_Toggle_extras.Toggle.PluginProps.md#label)
 
 ___
 

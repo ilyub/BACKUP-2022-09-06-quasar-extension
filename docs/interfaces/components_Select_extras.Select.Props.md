@@ -155,7 +155,7 @@ ___
 
 ### behavior
 
-• `Optional` **behavior**: ``"default"`` \| ``"menu"`` \| ``"dialog"``
+• `Optional` **behavior**: ``"default"`` \| ``"dialog"`` \| ``"menu"``
 
 Overrides the default dynamic mode of showing as menu on desktop and dialog on mobiles
 Default value: default

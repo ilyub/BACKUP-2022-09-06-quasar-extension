@@ -15,14 +15,14 @@
 - [Rule](../interfaces/components_api_validation.validation.Rule.md)
 - [Word](../interfaces/components_api_validation.validation.Word.md)
 
-### Type aliases
+### Type Aliases
 
 - [Context](components_api_validation.validation.md#context)
 - [OptionsProp](components_api_validation.validation.md#optionsprop)
 - [Rules](components_api_validation.validation.md#rules)
 - [ValidationRules](components_api_validation.validation.md#validationrules)
 
-## Type aliases
+## Type Aliases
 
 ### Context
 

@@ -9,7 +9,7 @@
 - [Element](../interfaces/components_Sortable_internal.Element.md)
 - [MoveData](../interfaces/components_Sortable_internal.MoveData.md)
 
-### Type aliases
+### Type Aliases
 
 - [Elements](components_Sortable_internal.md#elements)
 
@@ -21,7 +21,7 @@
 - [isHtmlElement](components_Sortable_internal.md#ishtmlelement)
 - [isMoveData](components_Sortable_internal.md#ismovedata)
 
-## Type aliases
+## Type Aliases
 
 ### Elements
 

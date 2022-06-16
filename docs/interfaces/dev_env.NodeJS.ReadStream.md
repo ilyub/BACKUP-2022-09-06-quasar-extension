@@ -37,6 +37,7 @@
 - [remoteAddress](dev_env.NodeJS.ReadStream.md#remoteaddress)
 - [remoteFamily](dev_env.NodeJS.ReadStream.md#remotefamily)
 - [remotePort](dev_env.NodeJS.ReadStream.md#remoteport)
+- [timeout](dev_env.NodeJS.ReadStream.md#timeout)
 - [writable](dev_env.NodeJS.ReadStream.md#writable)
 - [writableCorked](dev_env.NodeJS.ReadStream.md#writablecorked)
 - [writableEnded](dev_env.NodeJS.ReadStream.md#writableended)
@@ -452,6 +453,20 @@ tty.ReadStream.remotePort
 
 ___
 
+### timeout
+
+• `Optional` `Readonly` **timeout**: `number`
+
+The socket timeout in milliseconds as set by socket.setTimeout(). It is undefined if a timeout has not been set.
+
+**`since`** v10.7.0
+
+#### Inherited from
+
+tty.ReadStream.timeout
+
+___
+
 ### writable
 
 • `Readonly` **writable**: `boolean`
@@ -532,7 +547,7 @@ tty.ReadStream.writableObjectMode
 
 #### Inherited from
 
-tty.ReadStream.\_\_@asyncIterator@13624
+tty.ReadStream.\_\_@asyncIterator@13633
 
 ___
 

@@ -13,6 +13,7 @@
 - [directives](components.md#directives)
 - [extras](components.md#extras)
 - [generic](components.md#generic)
+- [injectRequire](components.md#injectrequire)
 - [injectable](components.md#injectable)
 - [injectableSettings](components.md#injectablesettings)
 - [injectableTrigger](components.md#injectabletrigger)
@@ -20,6 +21,7 @@
 - [override](components.md#override)
 - [parentProps](components.md#parentprops)
 - [plugins](components.md#plugins)
+- [prop](components.md#prop)
 - [propFactory](components.md#propfactory)
 - [skipCheck](components.md#skipcheck)
 - [testComponents](components.md#testcomponents)
@@ -72,6 +74,12 @@ Renames and re-exports [components/index.generic](components_index_generic.md)
 
 ___
 
+### injectRequire
+
+Re-exports [injectRequire](components_api_misc.md#injectrequire)
+
+___
+
 ### injectable
 
 Re-exports [injectable](components_api_misc.md#injectable)
@@ -111,6 +119,12 @@ ___
 ### plugins
 
 Renames and re-exports [components/api/index.plugins](components_api_index_plugins.md)
+
+___
+
+### prop
+
+Re-exports [prop](components_api_misc.md#prop)
 
 ___
 

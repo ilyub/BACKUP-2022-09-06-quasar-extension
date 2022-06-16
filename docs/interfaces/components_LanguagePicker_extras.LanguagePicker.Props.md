@@ -17,6 +17,7 @@
 ### Properties
 
 - [align](components_LanguagePicker_extras.LanguagePicker.Props.md#align)
+- [asyncClick](components_LanguagePicker_extras.LanguagePicker.Props.md#asyncclick)
 - [color](components_LanguagePicker_extras.LanguagePicker.Props.md#color)
 - [confirmation](components_LanguagePicker_extras.LanguagePicker.Props.md#confirmation)
 - [confirmedClick](components_LanguagePicker_extras.LanguagePicker.Props.md#confirmedclick)
@@ -35,7 +36,6 @@
 - [loading](components_LanguagePicker_extras.LanguagePicker.Props.md#loading)
 - [noCaps](components_LanguagePicker_extras.LanguagePicker.Props.md#nocaps)
 - [noWrap](components_LanguagePicker_extras.LanguagePicker.Props.md#nowrap)
-- [onAsyncClick](components_LanguagePicker_extras.LanguagePicker.Props.md#onasyncclick)
 - [outline](components_LanguagePicker_extras.LanguagePicker.Props.md#outline)
 - [padding](components_LanguagePicker_extras.LanguagePicker.Props.md#padding)
 - [percentage](components_LanguagePicker_extras.LanguagePicker.Props.md#percentage)
@@ -72,6 +72,16 @@ Default value: center
 #### Inherited from
 
 [ParentProps](components_LanguagePicker_extras.LanguagePicker.ParentProps.md).[align](components_LanguagePicker_extras.LanguagePicker.ParentProps.md#align)
+
+___
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
+
+#### Inherited from
+
+[ParentProps](components_LanguagePicker_extras.LanguagePicker.ParentProps.md).[asyncClick](components_LanguagePicker_extras.LanguagePicker.ParentProps.md#asyncclick)
 
 ___
 
@@ -278,16 +288,6 @@ Avoid label text wrapping
 #### Inherited from
 
 [ParentProps](components_LanguagePicker_extras.LanguagePicker.ParentProps.md).[noWrap](components_LanguagePicker_extras.LanguagePicker.ParentProps.md#nowrap)
-
-___
-
-### onAsyncClick
-
-• `Optional` `Readonly` **onAsyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
-
-#### Inherited from
-
-[ParentProps](components_LanguagePicker_extras.LanguagePicker.ParentProps.md).[onAsyncClick](components_LanguagePicker_extras.LanguagePicker.ParentProps.md#onasyncclick)
 
 ___
 

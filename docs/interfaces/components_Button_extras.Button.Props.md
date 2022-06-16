@@ -15,6 +15,7 @@
 ### Properties
 
 - [align](components_Button_extras.Button.Props.md#align)
+- [asyncClick](components_Button_extras.Button.Props.md#asyncclick)
 - [color](components_Button_extras.Button.Props.md#color)
 - [confirmation](components_Button_extras.Button.Props.md#confirmation)
 - [confirmedClick](components_Button_extras.Button.Props.md#confirmedclick)
@@ -32,7 +33,6 @@
 - [loading](components_Button_extras.Button.Props.md#loading)
 - [noCaps](components_Button_extras.Button.Props.md#nocaps)
 - [noWrap](components_Button_extras.Button.Props.md#nowrap)
-- [onAsyncClick](components_Button_extras.Button.Props.md#onasyncclick)
 - [outline](components_Button_extras.Button.Props.md#outline)
 - [padding](components_Button_extras.Button.Props.md#padding)
 - [percentage](components_Button_extras.Button.Props.md#percentage)
@@ -69,6 +69,16 @@ Default value: center
 #### Inherited from
 
 [ParentProps](components_Button_extras.Button.ParentProps.md).[align](components_Button_extras.Button.ParentProps.md#align)
+
+___
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
+
+#### Inherited from
+
+[ParentProps](components_Button_extras.Button.ParentProps.md).[asyncClick](components_Button_extras.Button.ParentProps.md#asyncclick)
 
 ___
 
@@ -265,16 +275,6 @@ Avoid label text wrapping
 #### Inherited from
 
 [ParentProps](components_Button_extras.Button.ParentProps.md).[noWrap](components_Button_extras.Button.ParentProps.md#nowrap)
-
-___
-
-### onAsyncClick
-
-• `Optional` `Readonly` **onAsyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
-
-#### Inherited from
-
-[ParentProps](components_Button_extras.Button.ParentProps.md).[onAsyncClick](components_Button_extras.Button.ParentProps.md#onasyncclick)
 
 ___
 

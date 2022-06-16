@@ -20,13 +20,23 @@
 
 ### Properties
 
+- [asyncClick](components_BaseButton_extras.BaseButton.PluginProps.md#asyncclick)
 - [confirmation](components_BaseButton_extras.BaseButton.PluginProps.md#confirmation)
 - [confirmedClick](components_BaseButton_extras.BaseButton.PluginProps.md#confirmedclick)
 - [label](components_BaseButton_extras.BaseButton.PluginProps.md#label)
-- [onAsyncClick](components_BaseButton_extras.BaseButton.PluginProps.md#onasyncclick)
 - [tooltip](components_BaseButton_extras.BaseButton.PluginProps.md#tooltip)
 
 ## Properties
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
+
+#### Inherited from
+
+[Props](components_api_async_click.asyncClick.Props.md).[asyncClick](components_api_async_click.asyncClick.Props.md#asyncclick)
+
+___
 
 ### confirmation
 
@@ -57,16 +67,6 @@ ___
 #### Inherited from
 
 plugins.langProps.Props.label
-
-___
-
-### onAsyncClick
-
-• `Optional` `Readonly` **onAsyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
-
-#### Inherited from
-
-[Props](components_api_async_click.asyncClick.Props.md).[onAsyncClick](components_api_async_click.asyncClick.Props.md#onasyncclick)
 
 ___
 

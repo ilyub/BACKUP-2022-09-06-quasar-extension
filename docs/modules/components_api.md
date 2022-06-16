@@ -10,6 +10,7 @@
 - [VNodes](components_api.md#vnodes)
 - [classRef](components_api.md#classref)
 - [directives](components_api.md#directives)
+- [injectRequire](components_api.md#injectrequire)
 - [injectable](components_api.md#injectable)
 - [injectableSettings](components_api.md#injectablesettings)
 - [injectableTrigger](components_api.md#injectabletrigger)
@@ -17,6 +18,7 @@
 - [override](components_api.md#override)
 - [parentProps](components_api.md#parentprops)
 - [plugins](components_api.md#plugins)
+- [prop](components_api.md#prop)
 - [propFactory](components_api.md#propfactory)
 - [skipCheck](components_api.md#skipcheck)
 - [toComputed](components_api.md#tocomputed)
@@ -47,6 +49,12 @@ ___
 ### directives
 
 Renames and re-exports [components/api/index.directives](components_api_index_directives.md)
+
+___
+
+### injectRequire
+
+Re-exports [injectRequire](components_api_misc.md#injectrequire)
 
 ___
 
@@ -89,6 +97,12 @@ ___
 ### plugins
 
 Renames and re-exports [components/api/index.plugins](components_api_index_plugins.md)
+
+___
+
+### prop
+
+Re-exports [prop](components_api_misc.md#prop)
 
 ___
 

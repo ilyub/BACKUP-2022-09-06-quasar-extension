@@ -10,12 +10,12 @@
 
 - [PluginMethods](../interfaces/components_api_slot_names.slotNames.PluginMethods.md)
 
-### Type aliases
+### Type Aliases
 
 - [Plugin](components_api_slot_names.slotNames.md#plugin)
 - [UsableSlots](components_api_slot_names.slotNames.md#usableslots)
 
-## Type aliases
+## Type Aliases
 
 ### Plugin
 

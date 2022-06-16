@@ -25,6 +25,7 @@
 - [\_\_isFragment](samples_core_types.DefineComponent.md#__isfragment)
 - [\_\_isSuspense](samples_core_types.DefineComponent.md#__issuspense)
 - [\_\_isTeleport](samples_core_types.DefineComponent.md#__isteleport)
+- [\_\_name](samples_core_types.DefineComponent.md#__name)
 - [beforeRouteEnter](samples_core_types.DefineComponent.md#beforerouteenter)
 - [beforeRouteLeave](samples_core_types.DefineComponent.md#beforerouteleave)
 - [beforeRouteUpdate](samples_core_types.DefineComponent.md#beforerouteupdate)
@@ -119,8 +120,8 @@ ___
 
 type-only, used to assist Mixin's type inference,
 typescript will try to simplify the inferred `Mixin` type,
-with the `__differenciator`, typescript won't be able to combine different mixins,
-because the `__differenciator` will be different
+with the `__differentiator`, typescript won't be able to combine different mixins,
+because the `__differentiator` will be different
 
 #### Inherited from
 
@@ -179,6 +180,18 @@ ___
 #### Inherited from
 
 Base.\_\_isTeleport
+
+___
+
+### \_\_name
+
+• `Optional` **\_\_name**: `string`
+
+name inferred from filename
+
+#### Inherited from
+
+Base.\_\_name
 
 ___
 
@@ -514,7 +527,7 @@ ___
 
 ### provide
 
-• `Optional` **provide**: `Function` \| `Data`
+• `Optional` **provide**: `ComponentProvideOptions`
 
 #### Inherited from
 
@@ -793,7 +806,7 @@ ___
 
 ### setup
 
-▸ `Optional` **setup**(`this`, `props`, `ctx`): `void` \| `RawBindings` \| `Promise`<`RawBindings`\> \| `RenderFunction`
+▸ `Optional` **setup**(`this`, `props`, `ctx`): `void` \| `RawBindings` \| `RenderFunction` \| `Promise`<`RawBindings`\>
 
 #### Parameters
 
@@ -805,7 +818,7 @@ ___
 
 #### Returns
 
-`void` \| `RawBindings` \| `Promise`<`RawBindings`\> \| `RenderFunction`
+`void` \| `RawBindings` \| `RenderFunction` \| `Promise`<`RawBindings`\>
 
 #### Inherited from
 

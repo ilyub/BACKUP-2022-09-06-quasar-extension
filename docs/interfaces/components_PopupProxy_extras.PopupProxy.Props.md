@@ -340,7 +340,7 @@ ___
 
 ### position
 
-• `Optional` **position**: ``"left"`` \| ``"right"`` \| ``"standard"`` \| ``"top"`` \| ``"bottom"``
+• `Optional` **position**: ``"left"`` \| ``"right"`` \| ``"top"`` \| ``"bottom"`` \| ``"standard"``
 
 Stick dialog to one of the sides (top, right, bottom or left)
 Default value: standard

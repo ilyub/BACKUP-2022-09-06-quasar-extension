@@ -397,7 +397,7 @@ testUtils.DOMWrapper.findComponent
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `string` \| `RefSelector` \| `DefinedComponent` \| `T` \| `NameSelector` |
+| `selector` | `string` \| `DefinedComponent` \| `NameSelector` \| `T` \| `RefSelector` |
 
 #### Returns
 
@@ -463,7 +463,7 @@ testUtils.DOMWrapper.findComponent
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `RefSelector` \| `NameSelector` |
+| `selector` | `NameSelector` \| `RefSelector` |
 
 #### Returns
 
@@ -647,7 +647,7 @@ testUtils.DOMWrapper.getComponent
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `string` \| `RefSelector` \| `DefinedComponent` \| `NameSelector` \| `T` |
+| `selector` | `string` \| `DefinedComponent` \| `NameSelector` \| `RefSelector` \| `T` |
 
 #### Returns
 
@@ -691,7 +691,7 @@ testUtils.DOMWrapper.getComponent
 
 | Name | Type |
 | :------ | :------ |
-| `selector` | `RefSelector` \| `NameSelector` |
+| `selector` | `NameSelector` \| `RefSelector` |
 
 #### Returns
 

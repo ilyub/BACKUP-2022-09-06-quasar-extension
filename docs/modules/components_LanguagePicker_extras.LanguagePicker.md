@@ -17,7 +17,7 @@
 - [Settings](../interfaces/components_LanguagePicker_extras.LanguagePicker.Settings.md)
 - [Slots](../interfaces/components_LanguagePicker_extras.LanguagePicker.Slots.md)
 
-### Type aliases
+### Type Aliases
 
 - [Options](components_LanguagePicker_extras.LanguagePicker.md#options)
 
@@ -31,7 +31,7 @@
 - [provideSettings](components_LanguagePicker_extras.LanguagePicker.md#providesettings)
 - [testProvideSettings](components_LanguagePicker_extras.LanguagePicker.md#testprovidesettings)
 
-## Type aliases
+## Type Aliases
 
 ### Options
 

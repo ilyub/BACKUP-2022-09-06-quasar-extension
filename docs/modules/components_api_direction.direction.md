@@ -12,13 +12,13 @@
 - [Plugin](../interfaces/components_api_direction.direction.Plugin.md)
 - [Props](../interfaces/components_api_direction.direction.Props.md)
 
-### Type aliases
+### Type Aliases
 
 - [Coupling](components_api_direction.direction.md#coupling)
 - [Direction](components_api_direction.direction.md#direction)
 - [Transition](components_api_direction.direction.md#transition)
 
-## Type aliases
+## Type Aliases
 
 ### Coupling
 

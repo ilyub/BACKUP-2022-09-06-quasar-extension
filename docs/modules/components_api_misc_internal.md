@@ -13,7 +13,7 @@
 - [Prop](../interfaces/components_api_misc_internal.Prop.md)
 - [SetupExpose](../interfaces/components_api_misc_internal.SetupExpose.md)
 
-### Type aliases
+### Type Aliases
 
 - [Emits](components_api_misc_internal.md#emits)
 - [ParentProps](components_api_misc_internal.md#parentprops)
@@ -22,7 +22,7 @@
 - [SetupExposed](components_api_misc_internal.md#setupexposed)
 - [SetupProps](components_api_misc_internal.md#setupprops)
 
-## Type aliases
+## Type Aliases
 
 ### Emits
 

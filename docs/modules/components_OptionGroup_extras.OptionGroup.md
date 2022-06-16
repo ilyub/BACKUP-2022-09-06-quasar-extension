@@ -16,11 +16,11 @@
 - [Props](../interfaces/components_OptionGroup_extras.OptionGroup.Props.md)
 - [Slots](../interfaces/components_OptionGroup_extras.OptionGroup.Slots.md)
 
-### Type aliases
+### Type Aliases
 
 - [Options](components_OptionGroup_extras.OptionGroup.md#options)
 
-## Type aliases
+## Type Aliases
 
 ### Options
 

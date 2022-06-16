@@ -14,10 +14,10 @@
 
 ### Properties
 
-- [onAsyncClick](components_api_async_click.asyncClick.OwnProps.md#onasyncclick)
+- [asyncClick](components_api_async_click.asyncClick.OwnProps.md#asyncclick)
 
 ## Properties
 
-### onAsyncClick
+### asyncClick
 
-• `Optional` `Readonly` **onAsyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)

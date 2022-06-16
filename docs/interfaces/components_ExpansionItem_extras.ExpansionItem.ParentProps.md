@@ -39,7 +39,6 @@
 - [headerStyle](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#headerstyle)
 - [href](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#href)
 - [icon](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#icon)
-- [label](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#label)
 - [labelLines](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#labellines)
 - [modelValue](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#modelvalue)
 - [popup](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#popup)
@@ -334,18 +333,6 @@ Icon name following Quasar convention; Make sure you have the icon library insta
 #### Inherited from
 
 Omit.icon
-
-___
-
-### label
-
-• `Optional` **label**: `string`
-
-Header label (unless using 'header' slot)
-
-#### Inherited from
-
-Omit.label
 
 ___
 

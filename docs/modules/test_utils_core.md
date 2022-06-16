@@ -9,12 +9,12 @@
 - [DOMWrapper](../interfaces/test_utils_core.DOMWrapper.md)
 - [WrapperLike](../interfaces/test_utils_core.WrapperLike.md)
 
-### Type aliases
+### Type Aliases
 
 - [DOMWrappers](test_utils_core.md#domwrappers)
 - [WrapperLikes](test_utils_core.md#wrapperlikes)
 
-## Type aliases
+## Type Aliases
 
 ### DOMWrappers
 

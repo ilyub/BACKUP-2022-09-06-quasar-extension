@@ -6,14 +6,14 @@
 
 ## Table of contents
 
-### Type aliases
+### Type Aliases
 
 - [OwnProps](components_api_lang_props.langProps.md#ownprops)
 - [Plugin](components_api_lang_props.langProps.md#plugin)
 - [PropOptionsRecord](components_api_lang_props.langProps.md#propoptionsrecord)
 - [Props](components_api_lang_props.langProps.md#props)
 
-## Type aliases
+## Type Aliases
 
 ### OwnProps
 

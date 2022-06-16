@@ -68,7 +68,7 @@ ___
 
 ### default
 
-▸ `Readonly` **default**<`K`\>(`defVal`): [`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`T`[`K`]\>
+▸ `Readonly` **default**<`K`\>(`defVal`): [`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`[`K`], `undefined`\>\>
 
 Creates Vue property.
 
@@ -86,7 +86,7 @@ Creates Vue property.
 
 #### Returns
 
-[`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`T`[`K`]\>
+[`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`[`K`], `undefined`\>\>
 
 Vue property.
 

@@ -17,6 +17,7 @@
 ### Properties
 
 - [align](components_IconPicker_extras.IconPicker.Props.md#align)
+- [asyncClick](components_IconPicker_extras.IconPicker.Props.md#asyncclick)
 - [color](components_IconPicker_extras.IconPicker.Props.md#color)
 - [confirmation](components_IconPicker_extras.IconPicker.Props.md#confirmation)
 - [confirmedClick](components_IconPicker_extras.IconPicker.Props.md#confirmedclick)
@@ -35,7 +36,6 @@
 - [modelValue](components_IconPicker_extras.IconPicker.Props.md#modelvalue)
 - [noCaps](components_IconPicker_extras.IconPicker.Props.md#nocaps)
 - [noWrap](components_IconPicker_extras.IconPicker.Props.md#nowrap)
-- [onAsyncClick](components_IconPicker_extras.IconPicker.Props.md#onasyncclick)
 - [outline](components_IconPicker_extras.IconPicker.Props.md#outline)
 - [padding](components_IconPicker_extras.IconPicker.Props.md#padding)
 - [percentage](components_IconPicker_extras.IconPicker.Props.md#percentage)
@@ -74,6 +74,16 @@ Default value: center
 #### Inherited from
 
 [ParentProps](components_IconPicker_extras.IconPicker.ParentProps.md).[align](components_IconPicker_extras.IconPicker.ParentProps.md#align)
+
+___
+
+### asyncClick
+
+• `Optional` `Readonly` **asyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
+
+#### Inherited from
+
+[ParentProps](components_IconPicker_extras.IconPicker.ParentProps.md).[asyncClick](components_IconPicker_extras.IconPicker.ParentProps.md#asyncclick)
 
 ___
 
@@ -280,16 +290,6 @@ Avoid label text wrapping
 #### Inherited from
 
 [ParentProps](components_IconPicker_extras.IconPicker.ParentProps.md).[noWrap](components_IconPicker_extras.IconPicker.ParentProps.md#nowrap)
-
-___
-
-### onAsyncClick
-
-• `Optional` `Readonly` **onAsyncClick**: [`AsyncClick`](components_api_async_click.asyncClick.AsyncClick.md)
-
-#### Inherited from
-
-[ParentProps](components_IconPicker_extras.IconPicker.ParentProps.md).[onAsyncClick](components_IconPicker_extras.IconPicker.ParentProps.md#onasyncclick)
 
 ___
 

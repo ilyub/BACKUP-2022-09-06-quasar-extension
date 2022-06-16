@@ -8,13 +8,18 @@
 
 - [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
 
-### Type aliases
+### Type Aliases
 
 - [VNodes](components_api_misc.md#vnodes)
+
+### Variables
+
+- [prop](components_api_misc.md#prop)
 
 ### Functions
 
 - [classRef](components_api_misc.md#classref)
+- [injectRequire](components_api_misc.md#injectrequire)
 - [injectable](components_api_misc.md#injectable)
 - [injectableSettings](components_api_misc.md#injectablesettings)
 - [injectableTrigger](components_api_misc.md#injectabletrigger)
@@ -27,11 +32,17 @@
 - [validateExpose](components_api_misc.md#validateexpose)
 - [validateProps](components_api_misc.md#validateprops)
 
-## Type aliases
+## Type Aliases
 
 ### VNodes
 
 Ƭ **VNodes**: readonly `VNode`[]
+
+## Variables
+
+### prop
+
+• `Const` **prop**: <T\>() => [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`T`\> & `Readonly`<{ `boolean`: (`defVal`: `boolean`) => [`PropOptionsBoolean`](../interfaces/components_api_types_prop_options.PropOptionsBoolean.md) ; `default`: <T\>(`defVal`: `Exclude`<`T`, `undefined`\>) => [`PropOptionsDefault`](../interfaces/components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`, `undefined`\>\> ; `required`: <T\>() => [`PropOptionsRequired`](../interfaces/components_api_types_prop_options.PropOptionsRequired.md)<`T`\>  }\>
 
 ## Functions
 
@@ -58,6 +69,32 @@ Creates Vue ref compatible with non-public class methods.
 `Ref`<`T`\>
 
 Vue ref.
+
+___
+
+### injectRequire
+
+▸ **injectRequire**<`T`\>(`key`): `T`
+
+Injects required value.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `string` \| `InjectionKey`<`T`\> | Key. |
+
+#### Returns
+
+`T`
+
+Value.
 
 ___
 
@@ -295,7 +332,7 @@ Validates props.
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
-| `K` | extends `string` & \`onA${string}\` \| `string` & \`onB${string}\` \| `string` & \`onC${string}\` \| `string` & \`onD${string}\` \| `string` & \`onE${string}\` \| `string` & \`onF${string}\` \| `string` & \`onG${string}\` \| `string` & \`onH${string}\` \| `string` & \`onI${string}\` \| `string` & \`onJ${string}\` \| `string` & \`onK${string}\` \| `string` & \`onL${string}\` \| `string` & \`onM${string}\` \| `string` & \`onN${string}\` \| `string` & \`onO${string}\` \| `string` & \`onP${string}\` \| `string` & \`onQ${string}\` \| `string` & \`onR${string}\` \| `string` & \`onS${string}\` \| `string` & \`onT${string}\` \| `string` & \`onU${string}\` \| `string` & \`onV${string}\` \| `string` & \`onW${string}\` \| `string` & \`onX${string}\` \| `string` & \`onY${string}\` \| `string` & \`onZ${string}\` = `never` |
+| `K` | extends \`onA${string}\` \| \`onB${string}\` \| \`onC${string}\` \| \`onD${string}\` \| \`onE${string}\` \| \`onF${string}\` \| \`onG${string}\` \| \`onH${string}\` \| \`onI${string}\` \| \`onJ${string}\` \| \`onK${string}\` \| \`onL${string}\` \| \`onM${string}\` \| \`onN${string}\` \| \`onO${string}\` \| \`onP${string}\` \| \`onQ${string}\` \| \`onR${string}\` \| \`onS${string}\` \| \`onT${string}\` \| \`onU${string}\` \| \`onV${string}\` \| \`onW${string}\` \| \`onX${string}\` \| \`onY${string}\` \| \`onZ${string}\` = `never` |
 
 #### Parameters
 

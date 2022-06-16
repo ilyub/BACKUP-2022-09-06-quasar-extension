@@ -38,6 +38,7 @@
 - [remoteFamily](dev_env.NodeJS.WriteStream.md#remotefamily)
 - [remotePort](dev_env.NodeJS.WriteStream.md#remoteport)
 - [rows](dev_env.NodeJS.WriteStream.md#rows)
+- [timeout](dev_env.NodeJS.WriteStream.md#timeout)
 - [writable](dev_env.NodeJS.WriteStream.md#writable)
 - [writableCorked](dev_env.NodeJS.WriteStream.md#writablecorked)
 - [writableEnded](dev_env.NodeJS.WriteStream.md#writableended)
@@ -474,6 +475,20 @@ tty.WriteStream.rows
 
 ___
 
+### timeout
+
+• `Optional` `Readonly` **timeout**: `number`
+
+The socket timeout in milliseconds as set by socket.setTimeout(). It is undefined if a timeout has not been set.
+
+**`since`** v10.7.0
+
+#### Inherited from
+
+tty.WriteStream.timeout
+
+___
+
 ### writable
 
 • `Readonly` **writable**: `boolean`
@@ -554,7 +569,7 @@ tty.WriteStream.writableObjectMode
 
 #### Inherited from
 
-tty.WriteStream.\_\_@asyncIterator@13624
+tty.WriteStream.\_\_@asyncIterator@13633
 
 ___
 

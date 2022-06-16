@@ -8,11 +8,11 @@
 
 - [DefineComponent](../interfaces/samples_core_types.DefineComponent.md)
 
-### Type aliases
+### Type Aliases
 
 - [DefineComponents](samples_core_types.md#definecomponents)
 
-## Type aliases
+## Type Aliases
 
 ### DefineComponents
 

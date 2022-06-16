@@ -14,13 +14,13 @@
 - [PluginProps](../interfaces/components_Group_extras.Group.PluginProps.md)
 - [Props](../interfaces/components_Group_extras.Group.Props.md)
 
-### Type aliases
+### Type Aliases
 
 - [Items](components_Group_extras.Group.md#items)
 - [RootElement](components_Group_extras.Group.md#rootelement)
 - [Slots](components_Group_extras.Group.md#slots)
 
-## Type aliases
+## Type Aliases
 
 ### Items
 

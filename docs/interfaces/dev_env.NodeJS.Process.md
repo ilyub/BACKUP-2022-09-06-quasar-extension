@@ -137,7 +137,7 @@ ___
 
 ### arch
 
-• `Readonly` **arch**: `string`
+• `Readonly` **arch**: [`Architecture`](../modules/dev_env.NodeJS.md#architecture)
 
 The operating system CPU architecture for which the Node.js binary was compiled.
 Possible values are: `'arm'`, `'arm64'`, `'ia32'`, `'mips'`,`'mipsel'`, `'ppc'`,`'ppc64'`, `'s390'`, `'s390x'`, `'x32'`, and `'x64'`.
@@ -1556,7 +1556,7 @@ ___
 
 ### getegid
 
-▸ **getegid**(): `number`
+▸ `Optional` **getegid**(): `number`
 
 The `process.getegid()` method returns the numerical effective group identity
 of the Node.js process. (See [`getegid(2)`](http://man7.org/linux/man-pages/man2/getegid.2.html).)
@@ -1582,7 +1582,7 @@ ___
 
 ### geteuid
 
-▸ **geteuid**(): `number`
+▸ `Optional` **geteuid**(): `number`
 
 The `process.geteuid()` method returns the numerical effective user identity of
 the process. (See [`geteuid(2)`](http://man7.org/linux/man-pages/man2/geteuid.2.html).)
@@ -1608,7 +1608,7 @@ ___
 
 ### getgid
 
-▸ **getgid**(): `number`
+▸ `Optional` **getgid**(): `number`
 
 The `process.getgid()` method returns the numerical group identity of the
 process. (See [`getgid(2)`](http://man7.org/linux/man-pages/man2/getgid.2.html).)
@@ -1634,7 +1634,7 @@ ___
 
 ### getgroups
 
-▸ **getgroups**(): `number`[]
+▸ `Optional` **getgroups**(): `number`[]
 
 The `process.getgroups()` method returns an array with the supplementary group
 IDs. POSIX leaves it unspecified if the effective group ID is included but
@@ -1661,7 +1661,7 @@ ___
 
 ### getuid
 
-▸ **getuid**(): `number`
+▸ `Optional` **getuid**(): `number`
 
 The `process.getuid()` method returns the numeric user identity of the process.
 (See [`getuid(2)`](http://man7.org/linux/man-pages/man2/getuid.2.html).)
@@ -3373,7 +3373,7 @@ ___
 
 ### setegid
 
-▸ **setegid**(`id`): `void`
+▸ `Optional` **setegid**(`id`): `void`
 
 The `process.setegid()` method sets the effective group identity of the process.
 (See [`setegid(2)`](http://man7.org/linux/man-pages/man2/setegid.2.html).) The `id` can be passed as either a numeric ID or a group
@@ -3414,7 +3414,7 @@ ___
 
 ### seteuid
 
-▸ **seteuid**(`id`): `void`
+▸ `Optional` **seteuid**(`id`): `void`
 
 The `process.seteuid()` method sets the effective user identity of the process.
 (See [`seteuid(2)`](http://man7.org/linux/man-pages/man2/seteuid.2.html).) The `id` can be passed as either a numeric ID or a username
@@ -3455,7 +3455,7 @@ ___
 
 ### setgid
 
-▸ **setgid**(`id`): `void`
+▸ `Optional` **setgid**(`id`): `void`
 
 The `process.setgid()` method sets the group identity of the process. (See [`setgid(2)`](http://man7.org/linux/man-pages/man2/setgid.2.html).) The `id` can be passed as either a
 numeric ID or a group name
@@ -3496,7 +3496,7 @@ ___
 
 ### setgroups
 
-▸ **setgroups**(`groups`): `void`
+▸ `Optional` **setgroups**(`groups`): `void`
 
 The `process.setgroups()` method sets the supplementary group IDs for the
 Node.js process. This is a privileged operation that requires the Node.js
@@ -3537,7 +3537,7 @@ ___
 
 ### setuid
 
-▸ **setuid**(`id`): `void`
+▸ `Optional` **setuid**(`id`): `void`
 
 The `process.setuid(id)` method sets the user identity of the process. (See [`setuid(2)`](http://man7.org/linux/man-pages/man2/setuid.2.html).) The `id` can be passed as either a
 numeric ID or a username string.
