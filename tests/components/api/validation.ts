@@ -158,7 +158,7 @@ test.each([
         `
       });
 
-      const main = wrapper.findComponent(QField);
+      const main = testUtils.findQuasarComponent(wrapper, QField);
 
       await nextTick();
       main.vm.$emit(event);

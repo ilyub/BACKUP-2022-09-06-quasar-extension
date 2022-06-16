@@ -1,6 +1,7 @@
 import { components } from "@";
+import * as testUtils from "@/test-utils";
 import { lang } from "@skylib/facades";
-import * as testUtils from "@vue/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
 import { QOptionGroup } from "quasar";
 import type { extras } from "@";
 
@@ -15,11 +16,12 @@ test.each([undefined, 1, "a"])("OptionGroup", value => {
     { label: lang.plain("Option 3"), value: "a" }
   ];
 
-  const wrapper = testUtils.mount(components.OptionGroup, {
+  const wrapper = vueTestUtils.mount(components.OptionGroup, {
+    global: testUtils.globalMountOptions(),
     props: { options }
   });
 
-  const main = wrapper.findComponent(QOptionGroup);
+  const main = testUtils.findQuasarComponent(wrapper, QOptionGroup);
 
   main.vm.$emit("update:modelValue", value);
   expect(wrapper).toHaveEmitted("update:modelValue", [value]);

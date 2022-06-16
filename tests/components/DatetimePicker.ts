@@ -67,7 +67,7 @@ test.each([null, undefined])("field", value => {
     props: { modelValue: "2001-02-03 10:30" }
   });
 
-  const main = wrapper.findComponent(QField);
+  const main = testUtils.findQuasarComponent(wrapper, QField);
 
   main.vm.$emit("update:modelValue", value);
   expect(wrapper).toHaveEmitted("update:modelValue", [undefined]);

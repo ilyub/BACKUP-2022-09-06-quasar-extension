@@ -11,7 +11,7 @@ test("Menu", async () => {
     global: testUtils.globalMountOptions()
   });
 
-  const main = wrapper.findComponent(QMenu);
+  const main = testUtils.findQuasarComponent(wrapper, QMenu);
 
   {
     main.vm.$emit("update:modelValue", true);

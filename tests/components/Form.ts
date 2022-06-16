@@ -18,7 +18,7 @@ test("emit: submit", () => {
     props: { onSubmit }
   });
 
-  const main = wrapper.findComponent(QForm);
+  const main = testUtils.findQuasarComponent(wrapper, QForm);
 
   main.vm.$emit("submit", { value: 1 });
   expect(main).toHaveEmitted("submit", [{ value: 1 }]);
@@ -72,7 +72,7 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
         }
       });
 
-      const main = wrapper.findComponent(QForm);
+      const main = testUtils.findQuasarComponent(wrapper, QForm);
 
       main.vm.$emit("submit", { value: 1 });
       expect(callback).not.toHaveBeenCalled();
@@ -114,7 +114,7 @@ test("prop: onAsyncSubmit", async () => {
       }
     });
 
-    const main = wrapper.findComponent(QForm);
+    const main = testUtils.findQuasarComponent(wrapper, QForm);
 
     {
       main.vm.$emit("submit", { value: 1 });

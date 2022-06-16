@@ -13,7 +13,7 @@ test.each([
     props: { format: cast.stringU, modelValue: undefined }
   });
 
-  const main = wrapper.findComponent(QField);
+  const main = testUtils.findQuasarComponent(wrapper, QField);
 
   expect(wrapper).toHaveEmitted("update:modelValue");
   main.vm.$emit("update:modelValue", value);
@@ -32,7 +32,7 @@ test.each([undefined, "a"])("main: blur", modelValue => {
     }
   });
 
-  const main = wrapper.findComponent(QField);
+  const main = testUtils.findQuasarComponent(wrapper, QField);
 
   callback.mockImplementationOnce(() => true);
   main.vm.$emit("blur");
@@ -48,7 +48,7 @@ test("main: focus", async () => {
     props: { format: cast.stringU, modelValue: undefined }
   });
 
-  const main = wrapper.findComponent(QField);
+  const main = testUtils.findQuasarComponent(wrapper, QField);
 
   {
     main.vm.$emit("focus");

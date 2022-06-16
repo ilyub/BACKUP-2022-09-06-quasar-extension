@@ -152,7 +152,7 @@ test.each([
     props: { ...props, externalSorting }
   });
 
-  const main = wrapper.findComponent(QTable);
+  const main = testUtils.findQuasarComponent(wrapper, QTable);
 
   // eslint-disable-next-line no-restricted-syntax -- Ok
   expect(main.props("sortMethod")).toBe(expected);
@@ -200,7 +200,7 @@ test.each([
       })
     });
 
-    const main = wrapper.findComponent(QTable);
+    const main = testUtils.findQuasarComponent(wrapper, QTable);
 
     expect(main.props("selection")).toStrictEqual(expected);
   }
@@ -233,7 +233,7 @@ test.each([
   }
 
   {
-    const main = wrapper.findComponent(QTable);
+    const main = testUtils.findQuasarComponent(wrapper, QTable);
 
     const rawEvent = {
       direction: "increase",

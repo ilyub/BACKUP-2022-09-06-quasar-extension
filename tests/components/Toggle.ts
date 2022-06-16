@@ -1,11 +1,14 @@
 import { components } from "@";
-import * as testUtils from "@vue/test-utils";
+import * as testUtils from "@/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
 import { QToggle } from "quasar";
 
 test.each([true, false])("main", value => {
-  const wrapper = testUtils.mount(components.Toggle);
+  const wrapper = vueTestUtils.mount(components.Toggle, {
+    global: testUtils.globalMountOptions()
+  });
 
-  const main = wrapper.findComponent(QToggle);
+  const main = testUtils.findQuasarComponent(wrapper, QToggle);
 
   expect(wrapper).toHaveEmitted("update:modelValue");
   main.vm.$emit("update:modelValue", value);

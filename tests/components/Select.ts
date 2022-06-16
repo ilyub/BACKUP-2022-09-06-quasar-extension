@@ -18,7 +18,7 @@ test("emit: update:modelValue", () => {
     props
   });
 
-  const main = wrapper.findComponent(QSelect);
+  const main = testUtils.findQuasarComponent(wrapper, QSelect);
 
   main.vm.$emit("update:modelValue", props.options[1]);
   expect(wrapper).toHaveEmitted("update:modelValue", ["a"]);
@@ -36,7 +36,7 @@ test("main: blur", async () => {
     }
   });
 
-  const main = wrapper.findComponent(QSelect);
+  const main = testUtils.findQuasarComponent(wrapper, QSelect);
 
   callback.mockImplementationOnce(() => true);
   main.vm.$emit("blur");

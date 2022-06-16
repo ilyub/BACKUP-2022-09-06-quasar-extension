@@ -99,6 +99,11 @@ module.exports = {
   extraDefaultExportLocations: ["./src/boot/*", "./src/router/index.ts"],
   noRestrictedSyntax: [
     {
+      message: 'Use "findQuasarComponent" function',
+      selector:
+        "CallExpression[arguments.0.name=/^Q/u] > MemberExpression.callee[object.name=wrapper][property.name=findComponent]"
+    },
+    {
       message: 'Use "OwnProps" interface',
       selector:
         "CallExpression[callee.name=/^(?:validateEmit|validateProps)$/u] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]"

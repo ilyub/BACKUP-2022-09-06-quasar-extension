@@ -24,7 +24,7 @@ test.each<plugins.direction.Direction | undefined>([
     props: { direction }
   });
 
-  const main = wrapper.findComponent(QTooltip);
+  const main = testUtils.findQuasarComponent(wrapper, QTooltip);
 
   expect(main).toExist();
 });

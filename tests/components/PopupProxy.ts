@@ -8,7 +8,7 @@ test("PopupProxy", () => {
     global: testUtils.globalMountOptions()
   });
 
-  const main = wrapper.findComponent(QPopupProxy);
+  const main = testUtils.findQuasarComponent(wrapper, QPopupProxy);
 
   expect(main).toExist();
 });

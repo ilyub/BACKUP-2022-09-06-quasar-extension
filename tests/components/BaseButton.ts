@@ -11,6 +11,30 @@ import type { DialogChainObject } from "quasar";
 
 functionsTestUtils.installFakeTimer();
 
+test("prop: asyncClick", async () => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const callback = jest.fn();
+
+    const wrapper = vueTestUtils.mount(components.BaseButton, {
+      global: testUtils.globalMountOptions(),
+      props: {
+        asyncClick: async (...args: unknowns) => {
+          await wait(1000);
+          callback(...args);
+        }
+      }
+    });
+
+    await wrapper.trigger("click");
+    expect(callback).not.toHaveBeenCalled();
+    await wait(1000);
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith();
+  });
+});
+
 test("prop: confirmation", async () => {
   const confirmedClick = jest.fn();
 
@@ -29,7 +53,7 @@ test("prop: confirmation", async () => {
     return result as DialogChainObject;
   };
 
-  const main = wrapper.findComponent(QBtn);
+  const main = testUtils.findQuasarComponent(wrapper, QBtn);
 
   main.vm.$emit("click");
   await wrapper.setProps({ confirmedClick });
@@ -45,33 +69,9 @@ test.each([true, false])("prop: loading", loading => {
     props: { loading }
   });
 
-  const main = wrapper.findComponent(QBtn);
+  const main = testUtils.findQuasarComponent(wrapper, QBtn);
 
   expect(main.props("loading")).toStrictEqual(loading);
-});
-
-test("prop: onAsyncClick", async () => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const callback = jest.fn();
-
-    const wrapper = vueTestUtils.mount(components.BaseButton, {
-      global: testUtils.globalMountOptions(),
-      props: {
-        onAsyncClick: async (...args: unknowns) => {
-          await wait(1000);
-          callback(...args);
-        }
-      }
-    });
-
-    await wrapper.trigger("click");
-    expect(callback).not.toHaveBeenCalled();
-    await wait(1000);
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith();
-  });
 });
 
 test.each([
@@ -97,7 +97,7 @@ test.each([
       props: { type }
     });
 
-    const main = wrapper.findComponent(QBtn);
+    const main = testUtils.findQuasarComponent(wrapper, QBtn);
 
     expect(main.props("loading")).toStrictEqual(expected);
   }
