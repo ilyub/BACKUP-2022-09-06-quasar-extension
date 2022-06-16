@@ -12,9 +12,8 @@ export interface PropOptions<T> {
 
 export interface PropOptionsBoolean extends PropOptionsDefault<boolean> {}
 
-export interface PropOptionsDefault<T>
-  extends PropOptions<Exclude<T, undefined>> {
-  readonly default: Exclude<T, undefined>;
+export interface PropOptionsDefault<T> extends PropOptions<T> {
+  readonly default: T;
 }
 
 export interface PropOptionsRequired<T> extends PropOptions<T> {

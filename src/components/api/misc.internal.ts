@@ -121,7 +121,7 @@ export interface Prop<T extends object> {
     K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
   >(
     defVal: Exclude<T[K], undefined>
-  ) => PropOptionsDefault<T[K]>;
+  ) => PropOptionsDefault<Exclude<T[K], undefined>>;
   /**
    * Creates Vue property.
    *

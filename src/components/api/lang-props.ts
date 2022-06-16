@@ -1,4 +1,4 @@
-import { propFactory } from "./misc";
+import { prop } from "./misc";
 import { lang } from "@skylib/facades";
 import { defineFn, is, o } from "@skylib/functions";
 import { computed } from "vue";
@@ -40,14 +40,11 @@ export const langProps = defineFn(
      * @param names - Property names.
      * @returns Vue properties.
      */
-    props: <T extends string>(...names: T[]) => {
-      const prop = propFactory();
-
+    props: <T extends string>(...names: T[]) =>
       // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
-      return o.fromEntries(
-        names.map(name => [name, prop<never>()])
-      ) as langProps.PropOptionsRecord<T>;
-    }
+      o.fromEntries(
+        names.map(name => [name, prop<lang.Key | undefined>()])
+      ) as langProps.PropOptionsRecord<T>
   }
 );
 
