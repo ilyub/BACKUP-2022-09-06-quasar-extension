@@ -158,7 +158,8 @@ export default defineComponent({
         override(settings.value.flat, props.flatOn, props.flatOff)
       ),
       headerCellClick: (column: Table.Column): void => {
-        if (column.sortable) as.not.empty(main.value).sort(column.name);
+        if (column.sortable ?? false)
+          as.not.empty(main.value).sort(column.name);
       },
       headerSeparator: computed(() =>
         override(
