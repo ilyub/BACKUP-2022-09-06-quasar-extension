@@ -14,6 +14,7 @@ import type {
 } from "./misc.internal";
 import type {
   PropOptions,
+  PropOptionsBoolean,
   PropOptionsDefault,
   PropOptionsRequired
 } from "./types";
@@ -44,7 +45,7 @@ export const prop = defineFn(
      * @param defVal - Default value.
      * @returns Vue property.
      */
-    boolean: (defVal = false) => {
+    boolean: (defVal = false): PropOptionsBoolean => {
       return { default: defVal, type: Boolean };
     },
     /**
