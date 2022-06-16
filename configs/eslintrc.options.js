@@ -119,16 +119,6 @@ module.exports = {
         "CallExpression[callee.name=defineComponent] > ObjectExpression.arguments:first-child > Property.properties[key.name=components] > ObjectExpression.value > Property.properties[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]"
     },
     {
-      message: 'Use "Props" interface',
-      selector:
-        "CallExpression[callee.name=prop] > TSTypeParameterInstantiation.typeParameters > TSIndexedAccessType.params > TSTypeReference.objectType > TSQualifiedName.typeName > Identifier.right[name=OwnProps]"
-    },
-    {
-      message: 'Use "Props" interface',
-      selector:
-        "CallExpression[callee.object.name=prop][callee.property.name=/^(?:default|required)$/u] > TSTypeParameterInstantiation.typeParameters > TSIndexedAccessType.params > TSTypeReference.objectType > TSQualifiedName.typeName > Identifier.right[name=OwnProps]"
-    },
-    {
       message: 'Unnecessary "undefined"',
       selector:
         "CallExpression[callee.name=ref] > Identifier.arguments[name=undefined]"

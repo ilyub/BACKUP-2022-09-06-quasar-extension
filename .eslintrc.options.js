@@ -53,18 +53,6 @@ module.exports = {
     "__mocks__/flag-icon-css/*",
     "__mocks__/typeface-roboto-multilang/*"
   ],
-  noRestrictedSyntax: [
-    {
-      message: 'Use "Props" interface',
-      selector:
-        "CallExpression[callee.name=prop] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword, TSTypeReference).params"
-    },
-    {
-      message: 'Use "Props" interface',
-      selector:
-        "CallExpression[callee.object.name=prop][callee.property.name=/^(?:default|required)$/u] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword, TSTypeReference).params"
-    }
-  ],
   quasar: true,
   quasarGlobalComponents: [/^[mq]-/u.source]
 };
