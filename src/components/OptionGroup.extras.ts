@@ -14,7 +14,8 @@ export namespace OptionGroup {
   }
 
   export interface Option<T = unknown> {
-    readonly disable?: true;
+    // eslint-disable-next-line no-restricted-syntax -- Ok
+    readonly disable?: boolean;
     readonly label: lang.Key;
     readonly value: T;
   }

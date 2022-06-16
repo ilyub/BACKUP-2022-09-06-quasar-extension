@@ -77,7 +77,8 @@ export namespace Table {
       row2: T
     ) => number;
     readonly sortOrder?: "ad" | "da";
-    readonly sortable?: true;
+    // eslint-disable-next-line no-restricted-syntax -- Ok
+    readonly sortable?: boolean;
     readonly width?: number;
   }
 

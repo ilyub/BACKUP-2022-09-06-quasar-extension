@@ -20,7 +20,8 @@ export namespace Select {
   }
 
   export interface Option<T = unknown> {
-    readonly disable?: true;
+    // eslint-disable-next-line no-restricted-syntax -- Ok
+    readonly disable?: boolean;
     readonly label: baseLang.Key;
     readonly value: T;
   }
