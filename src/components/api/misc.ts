@@ -1,4 +1,4 @@
-import { defineFn } from "@skylib/functions";
+import { as, defineFn } from "@skylib/functions";
 import { computed, inject, provide, ref, watch } from "vue";
 import type {
   GlobalComponentInstance,
@@ -13,6 +13,11 @@ import type {
   SetupProps
 } from "./misc.internal";
 import type {
+  PropOptions,
+  PropOptionsDefault,
+  PropOptionsRequired
+} from "./types";
+import type {
   IndexedObject,
   PickKeys,
   UppercaseLetter,
@@ -22,6 +27,47 @@ import type {
 import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
+
+export const prop = defineFn(
+  /**
+   * Creates Vue property.
+   *
+   * @returns Vue property.
+   */
+  <T>(): PropOptions<T> => {
+    return {};
+  },
+  {
+    /**
+     * Creates Vue property.
+     *
+     * @param defVal - Default value.
+     * @returns Vue property.
+     */
+    boolean: (defVal = false) => {
+      return { default: defVal, type: Boolean };
+    },
+    /**
+     * Creates Vue property.
+     *
+     * @param defVal - Default value.
+     * @returns Vue property.
+     */
+    default: <T>(
+      defVal: Exclude<T, undefined>
+    ): PropOptionsDefault<Exclude<T, undefined>> => {
+      return { default: defVal };
+    },
+    /**
+     * Creates Vue property.
+     *
+     * @returns Vue property.
+     */
+    required: <T>(): PropOptionsRequired<T> => {
+      return { required: true };
+    }
+  }
+);
 
 export interface GlobalComponent<P, S> {
   /**
@@ -41,6 +87,17 @@ export type VNodes = readonly VNode[];
 export function classRef<T>(value: T): Ref<T> {
   // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
   return ref(value) as Ref<T>;
+}
+
+/**
+ * Injects required value.
+ *
+ * @param key - Key.
+ * @returns Value.
+ */
+// eslint-disable-next-line @skylib/prefer-readonly -- Ok
+export function injectRequire<T>(key: InjectionKey<T> | string): T {
+  return as.not.empty(inject(key));
 }
 
 /**
