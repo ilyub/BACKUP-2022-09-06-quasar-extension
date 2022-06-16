@@ -1,11 +1,48 @@
-import { classRef, injectableTrigger } from "@";
+import { classRef, injectRequire, injectableTrigger, prop } from "@";
 import * as testUtils from "@/test-utils";
 import { wait } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
-import { onMounted } from "vue";
+import { onMounted, provide } from "vue";
 
 test("classRef", () => {
   expect(classRef(1).value).toBe(1);
+});
+
+test("injectRequire", async () => {
+  expect.hasAssertions();
+
+  const callback = jest.fn();
+
+  const key = Symbol("sample-injection-key");
+
+  const wrapper = vueTestUtils.mount({
+    components: {
+      subcomponent: {
+        setup: () => {
+          callback(injectRequire(key));
+        },
+        template: "<div></div>"
+      }
+    },
+    global: testUtils.globalMountOptions(),
+    setup: (): void => {
+      provide(key, 1);
+    },
+    template: "<subcomponent />"
+  });
+
+  await wait(1000);
+  expect(wrapper).toBeDefined();
+  expect(callback).toHaveBeenCalledTimes(1);
+  expect(callback).toHaveBeenCalledWith(1);
+});
+
+test("prop", () => {
+  expect(prop<unknown>()).toStrictEqual({});
+  // eslint-disable-next-line no-restricted-syntax -- Postponed
+  expect(prop.boolean()).toStrictEqual({ default: false, type: Boolean });
+  expect(prop.default<unknown>(1)).toStrictEqual({ default: 1 });
+  expect(prop.required<unknown>()).toStrictEqual({ required: true });
 });
 
 test("trigger", async () => {
