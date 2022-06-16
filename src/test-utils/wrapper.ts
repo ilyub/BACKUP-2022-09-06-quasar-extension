@@ -1,7 +1,6 @@
 import { reflect } from "@skylib/functions";
-import type * as testUtils from "@vue/test-utils";
+import type { Wrapper } from "./wrapper.internal";
 import type { ComponentConstructor } from "quasar";
-import type { ComponentPublicInstance } from "vue";
 
 /**
  * Finds quasar component.
@@ -10,12 +9,11 @@ import type { ComponentPublicInstance } from "vue";
  * @param ctor - Component constructor.
  * @returns Quasar component.
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/explicit-module-boundary-types -- Ok
 export function findQuasarComponent<T>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
-  wrapper: testUtils.VueWrapper<any>,
+  wrapper: Wrapper,
   ctor: ComponentConstructor<T>
-): testUtils.VueWrapper<ComponentPublicInstance<T>> {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- Ok
+) {
   return wrapper.findComponent(ctor);
 }
 
@@ -26,12 +24,7 @@ export function findQuasarComponent<T>(
  * @param key - Key.
  * @param value - Value.
  */
-export function setData(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
-  wrapper: testUtils.VueWrapper<any>,
-  key: string,
-  value: unknown
-): void {
+export function setData(wrapper: Wrapper, key: string, value: unknown): void {
   // eslint-disable-next-line no-warning-comments -- Wait for @skylib/functions update
   // fixme - Use o.set
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- Ok
