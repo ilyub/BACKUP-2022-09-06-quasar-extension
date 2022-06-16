@@ -16,7 +16,7 @@ export const asyncClick = defineFn(
 
     return defineFn(
       (): void => {
-        const callback = props.onAsyncClick;
+        const callback = props.asyncClick;
 
         if (callback)
           handlePromise.silent(async () => {
@@ -37,7 +37,7 @@ export const asyncClick = defineFn(
       const prop = propFactory<asyncClick.OwnProps>();
 
       return {
-        onAsyncClick: prop<"onAsyncClick">()
+        asyncClick: prop<"asyncClick">()
       } as const;
     })
   }
@@ -52,8 +52,7 @@ export namespace asyncClick {
   }
 
   export interface OwnProps {
-    // eslint-disable-next-line @skylib/optional-property-style -- Ok
-    readonly onAsyncClick?: AsyncClick | undefined;
+    readonly asyncClick?: AsyncClick | undefined;
   }
 
   export interface Plugin {
