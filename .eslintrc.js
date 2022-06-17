@@ -165,10 +165,7 @@ module.exports = {
           }
         ]
       }
-    ],
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
-    // fixme
-    "vue/no-bare-strings-in-template": "warn"
+    ]
   },
   settings: {
     "boundaries/elements": [
