@@ -14,8 +14,7 @@ module.exports = {
     "XInput",
     "XNumericInput",
     "XTooltip",
-    // eslint-disable-next-line no-warning-comments -- Postponed
-    // fixme - Do not use Russian "c"
+    // eslint-disable-next-line no-restricted-syntax -- Postponed
     "async-сlick",
     "components.api",
     "components.api.index",

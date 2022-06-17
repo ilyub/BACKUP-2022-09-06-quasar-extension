@@ -5,7 +5,6 @@ import type { PropType } from "vue";
 
 export interface PropOptions<T> {
   readonly default?: T;
-  // eslint-disable-next-line no-restricted-syntax -- Ok
   readonly required?: boolean;
   readonly type?: PropType<T>;
   readonly validator?: is.Guard<T>;

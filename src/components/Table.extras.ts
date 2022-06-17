@@ -77,7 +77,6 @@ export namespace Table {
       row2: T
     ) => number;
     readonly sortOrder?: "ad" | "da";
-    // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly sortable?: boolean;
     readonly width?: number;
   }
@@ -266,7 +265,6 @@ export namespace Table {
   }
 
   export interface PaginationProp {
-    // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly descending?: boolean;
     readonly limit?: number;
     readonly page?: number;

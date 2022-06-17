@@ -1,5 +1,4 @@
 declare module "expect/build/matchers" {
-  // eslint-disable-next-line import/no-default-export -- Wait for @skylib/config update
   export default matchers;
 
   export interface ExpectReturnType {

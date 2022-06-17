@@ -1,5 +1,5 @@
 import { assert, is } from "@skylib/functions";
-// eslint-disable-next-line import/no-internal-modules -- Wait for @skylib/config update
+// eslint-disable-next-line @skylib/consistent-import -- Postponed
 import expectMatchers from "expect/build/matchers";
 import type { WrapperLike } from "./core";
 import type { unknowns } from "@skylib/functions";

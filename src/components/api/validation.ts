@@ -231,7 +231,6 @@ export namespace validation {
      * @returns Formatted value.l.
      */
     readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
-    // eslint-disable-next-line no-restricted-syntax -- Ok
     readonly required?: boolean;
     readonly requiredErrorMessage?: lang.Key;
   }
