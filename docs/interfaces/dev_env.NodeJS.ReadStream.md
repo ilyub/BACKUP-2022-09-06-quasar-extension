@@ -547,7 +547,7 @@ tty.ReadStream.writableObjectMode
 
 #### Inherited from
 
-tty.ReadStream.\_\_@asyncIterator@13633
+tty.ReadStream.\_\_@asyncIterator@13602
 
 ___
 
@@ -2228,9 +2228,9 @@ ___
 
 ▸ **read**(`size?`): `any`
 
-The `readable.read()` method pulls some data out of the internal buffer and
-returns it. If no data available to be read, `null` is returned. By default,
-the data will be returned as a `Buffer` object unless an encoding has been
+The `readable.read()` method reads data out of the internal buffer and
+returns it. If no data is available to be read, `null` is returned. By default,
+the data is returned as a `Buffer` object unless an encoding has been
 specified using the `readable.setEncoding()` method or the stream is operating
 in object mode.
 
@@ -2685,7 +2685,9 @@ Allows configuration of `tty.ReadStream` so that it operates as a raw device.
 
 When in raw mode, input is always available character-by-character, not
 including modifiers. Additionally, all special processing of characters by the
-terminal is disabled, including echoing input characters.Ctrl+C will no longer cause a `SIGINT` when in this mode.
+terminal is disabled, including echoing input
+characters. Ctrl+C will no longer cause a `SIGINT` when
+in this mode.
 
 **`since`** v0.7.7
 
@@ -2864,7 +2866,7 @@ function parseHeader(stream, callback) {
     let chunk;
     while (null !== (chunk = stream.read())) {
       const str = decoder.write(chunk);
-      if (str.match(/\n\n/)) {
+      if (str.includes('\n\n')) {
         // Found the header boundary.
         const split = str.split(/\n\n/);
         header += split.shift();
@@ -2877,10 +2879,10 @@ function parseHeader(stream, callback) {
           stream.unshift(buf);
         // Now the body of the message can be read from the stream.
         callback(null, header, stream);
-      } else {
-        // Still reading the header.
-        header += str;
+        return;
       }
+      // Still reading the header.
+      header += str;
     }
   }
 }

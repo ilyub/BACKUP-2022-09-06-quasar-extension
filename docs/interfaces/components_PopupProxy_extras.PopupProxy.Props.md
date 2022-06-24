@@ -16,6 +16,7 @@
 
 ### Properties
 
+- [allowFocusOutside](components_PopupProxy_extras.PopupProxy.Props.md#allowfocusoutside)
 - [anchor](components_PopupProxy_extras.PopupProxy.Props.md#anchor)
 - [autoClose](components_PopupProxy_extras.PopupProxy.Props.md#autoclose)
 - [breakpoint](components_PopupProxy_extras.PopupProxy.Props.md#breakpoint)
@@ -62,6 +63,18 @@
 - [onUpdate:modelValue](components_PopupProxy_extras.PopupProxy.Props.md#onupdate:modelvalue)
 
 ## Properties
+
+### allowFocusOutside
+
+• `Optional` **allowFocusOutside**: `boolean`
+
+Allow elements outside of the Dialog to be focusable; By default, for accessibility reasons, QDialog does not allow outer focus
+
+#### Inherited from
+
+[ParentProps](components_PopupProxy_extras.PopupProxy.ParentProps.md).[allowFocusOutside](components_PopupProxy_extras.PopupProxy.ParentProps.md#allowfocusoutside)
+
+___
 
 ### anchor
 

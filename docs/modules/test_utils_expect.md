@@ -38,7 +38,7 @@
 
 ### htmlToEqual
 
-▸ **htmlToEqual**(`got`, ...`args`): `ExpectReturnType`
+▸ **htmlToEqual**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -49,13 +49,13 @@
 
 #### Returns
 
-`ExpectReturnType`
+`Result`
 
 ___
 
 ### textToEqual
 
-▸ **textToEqual**(`got`, ...`args`): `ExpectReturnType`
+▸ **textToEqual**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -66,13 +66,13 @@ ___
 
 #### Returns
 
-`ExpectReturnType`
+`Result`
 
 ___
 
 ### toBeVisible
 
-▸ **toBeVisible**(`got`, ...`args`): `ExpectReturnType`
+▸ **toBeVisible**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -83,13 +83,13 @@ ___
 
 #### Returns
 
-`ExpectReturnType`
+`Result`
 
 ___
 
 ### toExist
 
-▸ **toExist**(`got`, ...`args`): `ExpectReturnType`
+▸ **toExist**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -100,13 +100,13 @@ ___
 
 #### Returns
 
-`ExpectReturnType`
+`Result`
 
 ___
 
 ### toHaveClass
 
-▸ **toHaveClass**(`got`, ...`args`): `ExpectReturnType`
+▸ **toHaveClass**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -117,13 +117,13 @@ ___
 
 #### Returns
 
-`ExpectReturnType`
+`Result`
 
 ___
 
 ### toHaveEmitted
 
-▸ **toHaveEmitted**(`got`, ...`args`): `ExpectReturnType`
+▸ **toHaveEmitted**(`got`, ...`args`): `Result`
 
 #### Parameters
 
@@ -134,4 +134,4 @@ ___
 
 #### Returns
 
-`ExpectReturnType`
+`Result`

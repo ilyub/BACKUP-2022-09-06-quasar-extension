@@ -22,7 +22,7 @@
 
 ### disable
 
-• `Optional` `Readonly` **disable**: ``true``
+• `Optional` `Readonly` **disable**: `boolean`
 
 ___
 

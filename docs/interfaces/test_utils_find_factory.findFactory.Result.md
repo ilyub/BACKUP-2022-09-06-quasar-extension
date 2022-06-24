@@ -101,7 +101,7 @@ ___
 
 ### elem
 
-▸ `Readonly` **elem**(`ref`): [`DOMWrapper`](test_utils_core.DOMWrapper.md)
+▸ `Readonly` **elem**(`ref`, `index?`): [`DOMWrapper`](test_utils_core.DOMWrapper.md)
 
 Finds element.
 
@@ -110,6 +110,7 @@ Finds element.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `ref` | `string` | Reference. |
+| `index?` | `number` | Index. |
 
 #### Returns
 

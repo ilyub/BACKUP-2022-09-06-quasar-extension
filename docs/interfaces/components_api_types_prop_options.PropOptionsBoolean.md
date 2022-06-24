@@ -33,7 +33,7 @@ ___
 
 ### required
 
-• `Optional` `Readonly` **required**: ``true``
+• `Optional` `Readonly` **required**: `boolean`
 
 #### Inherited from
 

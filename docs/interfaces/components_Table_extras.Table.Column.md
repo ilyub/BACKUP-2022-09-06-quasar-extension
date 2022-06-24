@@ -68,7 +68,7 @@ ___
 
 ### sortable
 
-• `Optional` `Readonly` **sortable**: ``true``
+• `Optional` `Readonly` **sortable**: `boolean`
 
 ___
 
