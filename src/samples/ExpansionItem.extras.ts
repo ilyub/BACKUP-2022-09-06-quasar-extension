@@ -15,5 +15,6 @@ export namespace ExpansionItem {
     readonly ExpansionItem: true;
     readonly Item1: true;
     readonly Item2: true;
+    readonly Subtitle: true;
   }
 }

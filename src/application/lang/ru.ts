@@ -133,6 +133,7 @@ export const ru = new implementations.lang.dictionary.Definitions({
     StringContaingQForError: 'Строка содержащая букву "q" для ошибки',
     Submit: "Отправить",
     Submitted: "Отправлено",
+    Subtitle: "Подзаголовок",
     Time: [
       "кто-что-оно",
       { "кого-что-его-ср": "Время", "кто-что-оно": "Время" }

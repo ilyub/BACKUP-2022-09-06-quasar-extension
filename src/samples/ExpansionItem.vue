@@ -14,6 +14,7 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-expansion-item
+      :caption="lk.Subtitle"
       dark
       default-opened
       :duration="200"

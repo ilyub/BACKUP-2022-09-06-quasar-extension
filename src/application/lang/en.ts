@@ -113,6 +113,7 @@ export const en = new implementations.lang.dictionary.Definitions({
     StringContaingQForError: 'String containging "q" letter for error',
     Submit: "Submit",
     Submitted: "Submitted",
+    Subtitle: "Subtitle",
     Time: "Time",
     Title: "Title",
     TrailingText: "Trailing text",

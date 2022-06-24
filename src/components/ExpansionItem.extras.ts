@@ -15,7 +15,8 @@ export namespace ExpansionItem {
 
   export interface ParentSlots extends QExpansionItemSlots {}
 
-  export interface PluginProps extends plugins.langProps.Props<"label"> {}
+  export interface PluginProps
+    extends plugins.langProps.Props<"caption" | "label"> {}
 
   export interface Props extends ParentProps, PluginProps {}
 
