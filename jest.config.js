@@ -1,8 +1,8 @@
-const config = require("@skylib/config/src/jest-preset");
+const { jest } = require("@skylib/config");
 
 module.exports = {
   collectCoverageFrom: [
-    ...config.collectCoverageFrom,
+    ...jest.preset.collectCoverageFrom,
     "!src/App.vue",
     "!src/application/**",
     "!src/boot/**",
@@ -11,16 +11,18 @@ module.exports = {
     "!src/samples/**"
   ],
   moduleNameMapper: {
-    ...config.moduleNameMapper,
+    ...jest.preset.moduleNameMapper,
     [/^flag-icon-css\/flags\/1x1\/(\w+)\.svg$/u.source]:
       "<rootDir>/__mocks__/flag-icon-css/$1.js",
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
-    // fixme
-    [/^lodash-es$/u.source]: "lodash",
     [/^typeface-roboto-multilang\/(\w+)\.css$/u.source]:
       "<rootDir>/__mocks__/typeface-roboto-multilang/$1.js"
   },
   preset: "@skylib/config/src",
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
-  testEnvironment: "@skylib/config/src/jest-env-jsdom"
+  testEnvironment: "@skylib/config/src/jest-env-jsdom",
+  // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
+  // fixme
+  transformIgnorePatterns: [
+    "node_modules/(?!@skylib/quasar-extension|is-obj|is-regexp|quasar|stringify-object)"
+  ]
 };

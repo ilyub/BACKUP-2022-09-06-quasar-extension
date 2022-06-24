@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Form] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Form] */
 
 import { Form } from "./Form.extras";
 import {

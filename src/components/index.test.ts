@@ -1,5 +1,3 @@
-/* eslint-disable no-type-assertion/no-type-assertion -- Ok */
-
 import * as components from "./index.components";
 import type * as extras from "./index.extras";
 import type { ComponentPublicInstance } from "vue";

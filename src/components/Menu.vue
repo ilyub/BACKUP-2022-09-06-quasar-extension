@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Menu] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Menu] */
 
 import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";

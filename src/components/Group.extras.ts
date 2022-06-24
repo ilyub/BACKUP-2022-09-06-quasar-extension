@@ -29,6 +29,6 @@ export namespace Group {
 
   export type RootElement = "page-section" | "section" | "subsection";
 
-  // eslint-disable-next-line no-restricted-syntax -- Ok
+  // eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
   export type Slots<T extends string = string> = Rec<T, () => VNodes>;
 }

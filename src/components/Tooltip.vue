@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Tooltip] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Tooltip] */
 
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";

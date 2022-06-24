@@ -9,10 +9,7 @@ type Section = "section1" | "section2" | "section3" | "section4";
 
 export default defineComponent({
   name: "sample-group",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-group__page-sections": generic.Group<Section>()
-  },
+  components: { "m-group__page-sections": generic.Group<Section>() },
   setup: () => {
     const showSection1 = ref(true);
 

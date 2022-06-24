@@ -1,10 +1,12 @@
-const api = require("@skylib/config/src/api");
-
-// eslint-disable-next-line import/no-internal-modules -- Ok
-const boundaries = require("@skylib/config/src/eslint/boundaries");
+const { eslint } = require("@skylib/config");
 
 module.exports = {
   overrides: [
+    {
+      files: "./src/components/api/types/prop-options.ts",
+      // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
+      rules: { "@skylib/primary-export-only": "off" }
+    },
     {
       files: [
         "./src/components/*.generic.ts",
@@ -17,22 +19,25 @@ module.exports = {
       rules: {
         // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
         // fixme
+        // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
         "@skylib/consistent-filename": "off",
         // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
         // fixme
+        // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
         "@skylib/only-export-name": "off"
       }
     },
     {
-      files: ["./src/components/*.vue"],
+      files: "./src/components/*.vue",
       rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
     },
     {
-      files: ["./src/facade-implementations/*/index.ts"],
+      files: "./src/facade-implementations/*/index.ts",
+      // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
       rules: { "@skylib/only-export-name": "off" }
     },
     {
-      files: ["./src/samples/*.vue"],
+      files: "./src/samples/*.vue",
       rules: { "@skylib/vue-component-name": ["warn", { prefix: "sample-" }] }
     }
   ],
@@ -61,10 +66,15 @@ module.exports = {
       "warn",
       {
         default: "disallow",
-        // eslint-disable-next-line @skylib/disallow-by-regexp -- Wait for @skylib/config update
         rules: [
-          ...boundaries.rules["boundaries/element-types"][1].rules,
-          ...api.eslint.boundaries.elementTypes.createRules(
+          ...eslint.boundaries.elementTypes.rules,
+          {
+            allow: "{src1,src2,src3,src4,src5,src6,src7}",
+            from: [
+              ["{src2,src3,src4,src5,src6,src7}", { dir1: "{boot,samples}" }]
+            ]
+          },
+          ...eslint.boundaries.elementTypes.createRules(
             filename => ["src2", { dir1: "components", filename }],
             ["Form", "Tooltip"],
             ["BaseButton", "Field", "Item", "Menu", "Sortable", "Switchable"],
@@ -86,7 +96,7 @@ module.exports = {
             ],
             ["Group", "IconPicker", "LanguagePicker", "TimeInput"]
           ),
-          ...api.eslint.boundaries.elementTypes.createRules(
+          ...eslint.boundaries.elementTypes.createRules(
             filename => [
               "src3",
               {

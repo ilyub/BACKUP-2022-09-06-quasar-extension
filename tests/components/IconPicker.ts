@@ -1,5 +1,6 @@
 import { components, testComponents } from "@";
 import * as testUtils from "@/test-utils";
+// eslint-disable-next-line @skylib/consistent-import -- Ok
 import * as mdi from "@mdi/js-dynamic";
 import { o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";

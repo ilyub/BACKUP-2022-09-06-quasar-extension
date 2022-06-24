@@ -18,12 +18,12 @@ const rules = [
 test.each([
   {
     event: "change-2",
-    expected: false,
+    expected: [false],
     min: 3
   },
   {
     event: "change-2",
-    expected: false,
+    expected: [false],
     label: lang.keys.Field,
     min: 3,
     minErrorMessage: lang.keys.FieldShouldBeGteMin,
@@ -31,12 +31,12 @@ test.each([
   },
   {
     event: "change-2",
-    expected: false,
+    expected: [false],
     max: 1
   },
   {
     event: "change2",
-    expected: false,
+    expected: [false],
     label: lang.keys.Field,
     max: 1,
     maxErrorMessage: lang.keys.FieldShouldBeLteMax,
@@ -44,43 +44,43 @@ test.each([
   },
   {
     event: "change-undefined",
-    expected: true,
+    expected: [true],
     min: 3
   },
   {
     event: "change-undefined",
-    expected: true,
+    expected: [true],
     max: 3
   },
   {
     event: "change-undefined",
-    expected: false,
+    expected: [false],
     rulesOnChange: rules
   },
   {
     event: "input-undefined",
-    expected: false,
+    expected: [false],
     rulesOnInput: rules
   },
   {
     event: "submit-2",
-    expected: true,
+    expected: [true],
     required: true,
     requiredErrorMessage: lang.keys.FieldIsRequired
   },
   {
     event: "submit-undefined",
-    expected: false,
+    expected: [false],
     required: true
   },
   {
     event: "submit-undefined",
-    expected: false,
+    expected: [false],
     required: true
   },
   {
     event: "submit-undefined",
-    expected: false,
+    expected: [false],
     rulesOnSubmit: rules
   }
 ])(
@@ -163,8 +163,7 @@ test.each([
       await nextTick();
       main.vm.$emit(event);
       await wait(1000);
-      expect(callback).toHaveBeenCalledOnce();
-      expect(callback).toHaveBeenCalledWith(expected);
+      expect(callback).mockCallsToBe(expected);
     });
   }
 );

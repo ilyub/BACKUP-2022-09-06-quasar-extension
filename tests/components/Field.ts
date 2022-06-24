@@ -36,8 +36,7 @@ test.each([undefined, "a"])("main: blur", modelValue => {
 
   callback.mockImplementationOnce(() => true);
   main.vm.$emit("blur");
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith(modelValue);
+  expect(callback).mockCallsToBe([modelValue]);
 });
 
 test("main: focus", async () => {
@@ -52,13 +51,12 @@ test("main: focus", async () => {
 
   {
     main.vm.$emit("focus");
-    expect(callback).not.toHaveBeenCalled();
+    expect(callback).mockCallsToBe();
   }
 
   {
     await wrapper.setProps({ focusableElement: { focus: callback } });
     main.vm.$emit("focus");
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith();
+    expect(callback).mockCallsToBe([]);
   }
 });

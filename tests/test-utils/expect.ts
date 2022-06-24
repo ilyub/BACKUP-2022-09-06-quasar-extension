@@ -5,7 +5,6 @@ import {
   toBeVisible,
   toExist,
   toHaveClass
-  // eslint-disable-next-line import/no-internal-modules -- Ok
 } from "@/test-utils/expect";
 import * as vueTestUtils from "@vue/test-utils";
 

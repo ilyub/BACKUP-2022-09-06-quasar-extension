@@ -21,10 +21,7 @@ const prop = propFactory<DatetimePicker.OwnProps>();
 
 export default defineComponent({
   name: "m-datetime-picker",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-field__string": genericField<stringU>()
-  },
+  components: { "m-field__string": genericField<stringU>() },
   directives: { debugId: directives.debugId("datetime-picker") },
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),

@@ -76,7 +76,7 @@ export default defineComponent({
   },
   setup: (props, { emit, expose }) => {
     const allSelected = computed(() => {
-      if (props.rows.length)
+      if (props.rows.length > 0)
         switch (selected.value.length) {
           case 0:
             return false;

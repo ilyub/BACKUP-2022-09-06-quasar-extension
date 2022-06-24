@@ -28,10 +28,9 @@ test("prop: asyncClick", async () => {
     });
 
     await wrapper.trigger("click");
-    expect(callback).not.toHaveBeenCalled();
+    expect(callback).mockCallsToBe();
     await wait(1000);
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith();
+    expect(callback).mockCallsToBe([]);
   });
 });
 
@@ -58,9 +57,7 @@ test("prop: confirmation", async () => {
   main.vm.$emit("click");
   await wrapper.setProps({ confirmedClick });
   main.vm.$emit("click");
-  expect(confirmedClick).toHaveBeenCalledTimes(1);
-  expect(confirmedClick).toHaveBeenCalledWith();
-  confirmedClick.mockClear();
+  expect(confirmedClick).mockCallsToBe([]);
 });
 
 test.each([true, false])("prop: loading", loading => {

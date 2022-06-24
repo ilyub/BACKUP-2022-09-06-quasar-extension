@@ -8,10 +8,7 @@ import type { stringU } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-field",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-field__string": generic.Field<stringU>()
-  },
+  components: { "m-field__string": generic.Field<stringU>() },
   setup: () => {
     return {
       format: cast.stringU,
@@ -19,7 +16,7 @@ export default defineComponent({
         event: Event,
         emitValue: Parameters<extras.Field.Slots["control"]>[0]["emitValue"]
       ): void => {
-        // eslint-disable-next-line no-restricted-syntax -- Ok
+        // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       lk: Field.lang.keys,

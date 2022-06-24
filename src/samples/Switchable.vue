@@ -13,7 +13,6 @@ type Transition = extras.Switchable.Transition;
 export default defineComponent({
   name: "sample-switchable",
   components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
     "m-option-group__transition": generic.OptionGroup<Transition>()
   },
   setup: () => {

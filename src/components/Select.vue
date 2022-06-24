@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Select] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Select] */
 
 import { Select } from "./Select.extras";
 import {

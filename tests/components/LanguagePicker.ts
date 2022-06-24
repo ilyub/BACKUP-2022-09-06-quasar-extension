@@ -4,9 +4,9 @@ import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
 
 test.each([
-  { expected: "en-US", index: 0 },
-  { expected: "en-GB", index: 1 },
-  { expected: "ru-RU", index: 2 }
+  { expected: ["en-US"], index: 0 },
+  { expected: ["en-GB"], index: 1 },
+  { expected: ["ru-RU"], index: 2 }
 ])("LanguagePicker", async ({ expected, index }) => {
   const changeLanguageAction = jest.fn();
 
@@ -42,6 +42,5 @@ test.each([
 
   await main.trigger("click");
   await comp("menu-item", index).trigger("click");
-  expect(changeLanguageAction).toHaveBeenCalledTimes(1);
-  expect(changeLanguageAction).toHaveBeenCalledWith(expected);
+  expect(changeLanguageAction).mockCallsToBe(expected);
 });

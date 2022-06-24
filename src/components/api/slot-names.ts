@@ -17,13 +17,11 @@ export function slotNames<T>() {
     return computed(() => {
       const slots = useSlots();
 
-      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       const passThroughSlots = _.difference(
         o.keys(slots),
         use
       ) as unknown as nevers;
 
-      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       const usableSlots = o.fromEntries(
         use.map(name => [_.camelCase(name), name])
       ) as slotNames.UsableSlots<U>;

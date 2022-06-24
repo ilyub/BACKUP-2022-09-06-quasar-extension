@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.CardSection] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[CardSection] */
 
 import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";

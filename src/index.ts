@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-syntax -- Ok
 export * from "./components";
 
 // eslint-disable-next-line @skylib/export-all-name -- Ok

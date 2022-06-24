@@ -1,7 +1,5 @@
 import { components } from "@";
-// eslint-disable-next-line import/no-internal-modules -- Ok
 import { buildElements } from "@/components/Sortable.internal";
-// eslint-disable-next-line import/no-internal-modules -- Ok
 import { disableCounter } from "@/components/Tooltip.internal";
 import * as testUtils from "@/test-utils";
 import { as, evaluate, o, typedef } from "@skylib/functions";
@@ -154,8 +152,7 @@ test.each([
   baseMove(moveData);
   await wrapper.setProps({ move });
   baseMove(moveData);
-  expect(move).toHaveBeenCalledTimes(1);
-  expect(move).toHaveBeenCalledWith(...expected);
+  expect(move).mockCallsToBe(expected);
 });
 
 test.each([

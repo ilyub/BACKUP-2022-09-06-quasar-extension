@@ -30,7 +30,6 @@ export const langProps = defineFn(
         [`${name}Key`, computed(() => props[name])]
       );
 
-    // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
     return o.fromEntries(result) as langProps.Plugin<T>;
   },
   {
@@ -41,7 +40,6 @@ export const langProps = defineFn(
      * @returns Vue properties.
      */
     props: <T extends string>(...names: T[]) =>
-      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       o.fromEntries(
         names.map(name => [name, prop<lang.Key | undefined>()])
       ) as langProps.PropOptionsRecord<T>
@@ -63,6 +61,6 @@ export namespace langProps {
     readonly [K in T]: PropOptions<lang.Key | undefined>;
   };
 
-  // eslint-disable-next-line no-restricted-syntax -- Ok
+  // eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
   export type Props<T extends string> = OwnProps<T>;
 }

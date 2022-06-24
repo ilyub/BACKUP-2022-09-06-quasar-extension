@@ -11,15 +11,13 @@ test("reducer", async () => {
   {
     obj.x = 1;
     await nextTick();
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 0 } });
-    callback.mockClear();
+    expect(callback).mockCallsToBe([{ x: 1, y: { z: 0 } }]);
   }
 
   {
     obj.y.z = 1;
     await nextTick();
-    expect(callback).not.toHaveBeenCalled();
+    expect(callback).mockCallsToBe();
   }
 
   {
@@ -27,7 +25,7 @@ test("reducer", async () => {
     obj.x = 2;
     obj.y.z = 2;
     await nextTick();
-    expect(callback).not.toHaveBeenCalled();
+    expect(callback).mockCallsToBe();
   }
 });
 
@@ -41,17 +39,13 @@ test("watch, unwatch", async () => {
   {
     obj.x = 1;
     await nextTick();
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 0 } });
-    callback.mockClear();
+    expect(callback).mockCallsToBe([{ x: 1, y: { z: 0 } }]);
   }
 
   {
     obj.y.z = 1;
     await nextTick();
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith({ x: 1, y: { z: 1 } });
-    callback.mockClear();
+    expect(callback).mockCallsToBe([{ x: 1, y: { z: 1 } }]);
   }
 
   {
@@ -59,6 +53,6 @@ test("watch, unwatch", async () => {
     obj.x = 2;
     obj.y.z = 2;
     await nextTick();
-    expect(callback).not.toHaveBeenCalled();
+    expect(callback).mockCallsToBe();
   }
 });

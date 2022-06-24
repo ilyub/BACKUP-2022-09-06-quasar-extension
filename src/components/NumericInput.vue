@@ -21,10 +21,7 @@ const prop = propFactory<NumericInput.OwnProps>();
 
 export default defineComponent({
   name: "m-numeric-input",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-field__number": genericField<numberU>()
-  },
+  components: { "m-field__number": genericField<numberU>() },
   directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
     ...parentProps<NumericInput.ParentProps>(),
@@ -75,7 +72,7 @@ export default defineComponent({
         event: Event,
         emitValue: Parameters<Field.Slots["control"]>[0]["emitValue"]
       ): void => {
-        // eslint-disable-next-line no-restricted-syntax -- Ok
+        // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,

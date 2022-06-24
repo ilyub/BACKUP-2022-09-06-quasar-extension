@@ -20,7 +20,6 @@ const prop = propFactory<Sortable.OwnProps>();
 export default defineComponent({
   name: "m-sortable",
   components: {
-    // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
     "vue-draggable": VueDraggable as unknown as GlobalComponent<
       Sortable.VueDraggableProps,
       Sortable.VueDraggableSlots
@@ -63,7 +62,7 @@ export default defineComponent({
     const ids = computed(
       () =>
         new Set(
-          // eslint-disable-next-line no-restricted-syntax -- Ok
+          // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
           props.modelValue.map(item => o.get(item, props.itemKey, is.string))
         )
     );

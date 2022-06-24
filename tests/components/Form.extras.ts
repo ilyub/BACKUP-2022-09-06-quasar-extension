@@ -14,6 +14,5 @@ test("injectSettings", () => {
   });
 
   expect(wrapper).toBeDefined();
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith(false);
+  expect(callback).mockCallsToBe([false]);
 });

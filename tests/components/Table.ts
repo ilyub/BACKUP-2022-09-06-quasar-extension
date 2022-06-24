@@ -11,7 +11,7 @@ const props = {
   columns: [
     {
       align: "left",
-      // eslint-disable-next-line no-restricted-syntax -- Ok
+      // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 1"),
       name: "column1",
@@ -20,7 +20,7 @@ const props = {
     },
     {
       align: "left",
-      // eslint-disable-next-line no-restricted-syntax -- Ok
+      // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 2"),
       name: "column2",
@@ -28,7 +28,7 @@ const props = {
     },
     {
       align: "left",
-      // eslint-disable-next-line no-restricted-syntax -- Ok
+      // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 3"),
       name: "column3"
@@ -71,7 +71,7 @@ test("prop: columns", () => {
       columns: [
         {
           align: "left",
-          // eslint-disable-next-line no-restricted-syntax -- Ok
+          // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
           field: (row: object): string => o.get(row, "name", is.string),
           label: lang.plain("Sample label"),
           maxWidth: 300,
@@ -154,8 +154,7 @@ test.each([
 
   const main = testUtils.findQuasarComponent(wrapper, QTable);
 
-  // eslint-disable-next-line no-restricted-syntax -- Ok
-  expect(main.props("sortMethod")).toBe(expected);
+  expect(main.props("sortMethod")).toStrictEqual(expected);
 });
 
 test.each([

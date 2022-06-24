@@ -9,10 +9,7 @@ type Color = "blue" | "green" | "invalid" | "red";
 
 export default defineComponent({
   name: "sample-select",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Ok
-    "m-select__value": generic.Select<Color>()
-  },
+  components: { "m-select__value": generic.Select<Color>() },
   setup: () => {
     const form = ref<extras.Form.Global>();
 

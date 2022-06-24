@@ -29,17 +29,8 @@ test.each<extras.Switchable.Transition>(["none", "slide"])(
       }
     });
 
-    {
-      expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith(false);
-      callback.mockClear();
-    }
-
-    {
-      await wrapper.setProps({ disable: true });
-      expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith(true);
-      callback.mockClear();
-    }
+    expect(callback).mockCallsToBe([false]);
+    await wrapper.setProps({ disable: true });
+    expect(callback).mockCallsToBe([true]);
   }
 );

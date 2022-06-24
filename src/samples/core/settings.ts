@@ -22,6 +22,9 @@ export const settings = {
   iconPickerTooltips: ref(false),
   language: ref<LocaleName>("en-US"),
   pageLayoutCloseButton: ref(true),
+  /**
+   * Provides settings.
+   */
   provide: () => {
     extras.BaseButton.provideSettings(
       computed(() => {

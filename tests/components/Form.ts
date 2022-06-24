@@ -49,8 +49,7 @@ test("expose: resetValidation", () => {
   );
 
   expect(wrapper).toBeDefined();
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith();
+  expect(callback).mockCallsToBe([]);
 });
 
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
@@ -75,10 +74,9 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
       const main = testUtils.findQuasarComponent(wrapper, QForm);
 
       main.vm.$emit("submit", { value: 1 });
-      expect(callback).not.toHaveBeenCalled();
+      expect(callback).mockCallsToBe();
       await wait(1500);
-      expect(callback).toHaveBeenCalledTimes(1);
-      expect(callback).toHaveBeenCalledWith({ value: 1 });
+      expect(callback).mockCallsToBe([{ value: 1 }]);
     });
   }
 );
@@ -119,22 +117,14 @@ test("prop: onAsyncSubmit", async () => {
     {
       main.vm.$emit("submit", { value: 1 });
       await wait(1000);
-      expect(disable).toHaveBeenCalledTimes(1);
-      expect(disable).toHaveBeenCalledWith(true);
-      expect(submitting).toHaveBeenCalledTimes(1);
-      expect(submitting).toHaveBeenCalledWith(true);
-      disable.mockClear();
-      submitting.mockClear();
+      expect(disable).mockCallsToBe([true]);
+      expect(submitting).mockCallsToBe([true]);
     }
 
     {
       await wait(1000);
-      expect(disable).toHaveBeenCalledTimes(1);
-      expect(disable).toHaveBeenCalledWith(false);
-      expect(submitting).toHaveBeenCalledTimes(1);
-      expect(submitting).toHaveBeenCalledWith(false);
-      disable.mockClear();
-      submitting.mockClear();
+      expect(disable).mockCallsToBe([false]);
+      expect(submitting).mockCallsToBe([false]);
     }
   });
 });

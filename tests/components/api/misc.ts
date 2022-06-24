@@ -33,13 +33,12 @@ test("injectRequire", async () => {
 
   await wait(1000);
   expect(wrapper).toBeDefined();
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith(1);
+  expect(callback).mockCallsToBe([1]);
 });
 
 test("prop", () => {
   expect(prop<unknown>()).toStrictEqual({});
-  // eslint-disable-next-line no-restricted-syntax -- Postponed
+  // eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
   expect(prop.boolean()).toStrictEqual({ default: false, type: Boolean });
   expect(prop.default<unknown>(1)).toStrictEqual({ default: 1 });
   expect(prop.required<unknown>()).toStrictEqual({ required: true });
@@ -70,6 +69,5 @@ test("trigger", async () => {
 
   await wait(1000);
   expect(wrapper).toBeDefined();
-  expect(callback).toHaveBeenCalledTimes(1);
-  expect(callback).toHaveBeenCalledWith();
+  expect(callback).mockCallsToBe([]);
 });

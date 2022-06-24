@@ -14,7 +14,7 @@ module.exports = {
     "XInput",
     "XNumericInput",
     "XTooltip",
-    // eslint-disable-next-line no-restricted-syntax -- Postponed
+    // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
     "async-сlick",
     "components.api",
     "components.api.index",

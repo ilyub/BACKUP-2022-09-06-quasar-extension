@@ -1,5 +1,5 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.BaseButton] */
+/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[BaseButton] */
 
 import { BaseButton } from "./BaseButton.extras";
 import { Form } from "./Form.extras";

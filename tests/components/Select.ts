@@ -41,7 +41,7 @@ test("main: blur", async () => {
   callback.mockImplementationOnce(() => true);
   main.vm.$emit("blur");
   await wait(1000);
-  expect(callback).toHaveBeenCalledTimes(1);
+  expect(callback).mockCallsToBe([]);
 });
 
 test.each([

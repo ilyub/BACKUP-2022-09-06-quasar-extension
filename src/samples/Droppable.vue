@@ -13,9 +13,7 @@ interface Item {
 export default defineComponent({
   name: "sample-droppable",
   components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
     "m-droppable__items": generic.Droppable<Item, Item>(),
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
     "m-sortable__items": generic.Sortable<Item, Item>()
   },
   setup: () => {

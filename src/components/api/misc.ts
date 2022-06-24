@@ -86,7 +86,6 @@ export type VNodes = readonly VNode[];
  * @returns Vue ref.
  */
 export function classRef<T>(value: T): Ref<T> {
-  // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
   return ref(value) as Ref<T>;
 }
 
@@ -116,7 +115,6 @@ export function injectable<T>(defVal: T): Injectable<T> {
       provide(id, value);
     },
     testProvide: (value): IndexedObject<T> => {
-      // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
       return { [id as symbol]: value };
     }
   };
@@ -197,7 +195,6 @@ export function override(setting: boolean, on: boolean, off: boolean): boolean {
  * @returns Parent props.
  */
 export function parentProps<T extends object>(): ParentProps<T> {
-  // eslint-disable-next-line no-type-assertion/no-type-assertion -- Ok
   return {} as ParentProps<T>;
 }
 

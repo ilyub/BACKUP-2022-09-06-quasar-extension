@@ -10,10 +10,7 @@ interface Item {
 
 export default defineComponent({
   name: "sample-sortable",
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-sortable__items": generic.Sortable<Item, Item>()
-  },
+  components: { "m-sortable__items": generic.Sortable<Item, Item>() },
   setup: () => {
     const disableDropping = ref(false);
 

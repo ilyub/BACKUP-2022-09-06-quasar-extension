@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/disallow-by-regexp[quasar-extension.Input] */
-
 import { genericField } from "./Field.generic";
 import {
   directives,
@@ -24,10 +22,7 @@ const prop = propFactory<Input.OwnProps>();
 export default defineComponent({
   name: "m-input",
   directives: { debugId: directives.debugId("input"), maska },
-  components: {
-    // eslint-disable-next-line vue/component-options-name-casing -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1908
-    "m-field__string": genericField<stringU>()
-  },
+  components: { "m-field__string": genericField<stringU>() },
   props: {
     ...parentProps<Input.ParentProps>(),
     mask: prop<"mask">(),
@@ -52,7 +47,7 @@ export default defineComponent({
         event: Event,
         emitValue: Parameters<Input.Slots["control"]>[0]["emitValue"]
       ): void => {
-        // eslint-disable-next-line no-restricted-syntax -- Ok
+        // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
