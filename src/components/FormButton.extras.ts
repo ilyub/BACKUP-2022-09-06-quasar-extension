@@ -6,7 +6,7 @@ export namespace FormButton {
     readonly main?: BaseButton.Global;
   }
 
-  export interface ParentProps extends BaseButton.OwnProps {}
+  export interface ParentProps extends BaseButton.Props {}
 
   export interface ParentSlots extends BaseButton.Slots {}
 
