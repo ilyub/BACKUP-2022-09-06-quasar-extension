@@ -65,7 +65,14 @@ export namespace Field {
   }
 
   export interface ParentProps
-    extends Omit<QFieldProps, keyof OwnProps | keyof PluginProps> {}
+    extends Omit<
+      QFieldProps,
+      | keyof OwnProps
+      | keyof PluginProps
+      | "lazyRules"
+      | "reactiveRules"
+      | "rules"
+    > {}
 
   export interface ParentSlots extends Omit<QFieldSlots, keyof OwnSlots> {}
 

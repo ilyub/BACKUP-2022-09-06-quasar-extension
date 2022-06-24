@@ -42,7 +42,14 @@ export namespace Select {
   }
 
   export interface ParentProps
-    extends Omit<QSelectProps, keyof OwnProps | keyof PluginProps> {}
+    extends Omit<
+      QSelectProps,
+      | keyof OwnProps
+      | keyof PluginProps
+      | "lazyRules"
+      | "reactiveRules"
+      | "rules"
+    > {}
 
   export interface ParentSlots extends QSelectSlots {}
 
