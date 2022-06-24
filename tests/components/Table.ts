@@ -325,6 +325,11 @@ test.each([
       await elem("header-cell").trigger("click");
       expect(wrapper).toHaveEmitted("update:pagination", expected);
     }
+
+    {
+      await elem("header-cell", 1).trigger("click");
+      expect(wrapper).toHaveEmitted("update:pagination");
+    }
   }
 );
 
