@@ -338,6 +338,16 @@ module.exports = {
     "vue/no-restricted-syntax": [
       "warn",
       {
+        message: 'Prefer "label" prop',
+        selector:
+          "VElement[name=/^(?:m-button|m-form-button|m-icon-button|q-btn)$/u][children.length=1] > VExpressionContainer.children"
+      },
+      {
+        message: 'Prefer "label" prop',
+        selector:
+          "VElement[name=/^(?:m-button|m-form-button|m-icon-button|q-btn)$/u][children.length=3][children.0.value=/^\\s+$/u][children.2.value=/^\\s+$/u] > VExpressionContainer.children"
+      },
+      {
         message: 'Move "v-bind" directive to the end',
         selector:
           "VElement[name=slot] > VStartTag.startTag > VAttribute.attributes:not(:last-child) > VDirectiveKey.key[argument=null] > VIdentifier.name[name=bind]"
@@ -347,8 +357,6 @@ module.exports = {
         selector:
           "VAttribute > VIdentifier.key[name=/^(?:alt|aria-label|aria-placeholder|aria-roledescription|aria-valuetext|caption|confirmation|label|placeholder|title|tooltip|validation-label)$/u]"
       },
-      // eslint-disable-next-line no-warning-comments -- Postponed
-      // fixme
       {
         message: "Unexpected empty line",
         selector: "VElement[name=template] VText[value=/^\n\n/u]"

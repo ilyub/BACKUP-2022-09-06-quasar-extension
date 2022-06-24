@@ -109,11 +109,9 @@ export default defineComponent({
         />
       </m-form-section>
       <m-form-actions>
-        <m-form-button type="submit">{{ lang.Submit }}</m-form-button>
-        <m-form-button @click="reset">{{ lang.Reset }}</m-form-button>
-        <m-form-button @click="resetValidation">
-          {{ lang.ResetValidation }}
-        </m-form-button>
+        <m-form-button :label="lk.Submit" type="submit" />
+        <m-form-button :label="lk.Reset" @click="reset" />
+        <m-form-button :label="lk.ResetValidation" @click="resetValidation" />
       </m-form-actions>
     </m-form>
   </m-page-section>

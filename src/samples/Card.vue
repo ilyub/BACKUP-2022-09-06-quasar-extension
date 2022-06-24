@@ -13,41 +13,38 @@ export default defineComponent({
 <template>
   <m-page-section>
     <m-buttons-group>
-      <m-button>
-        {{ lang.WithTitle }}
+      <m-button :label="lk.WithTitle">
         <m-menu direction="down-right">
           <m-card min-width="300px" :title="lk.Title">
             <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>{{ lang.Submit }}</m-form-button>
-              <m-form-button>{{ lang.Reset }}</m-form-button>
+              <m-form-button :label="lk.Submit" />
+              <m-form-button :label="lk.Reset" />
             </m-card-actions>
           </m-card>
         </m-menu>
       </m-button>
-      <m-button>
-        {{ lang.WithTransparentTitle }}
+      <m-button :label="lk.WithTransparentTitle">
         <m-menu direction="down-right">
           <m-card min-width="300px" :title="lk.Title" transparent-header>
             <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>{{ lang.Submit }}</m-form-button>
-              <m-form-button>{{ lang.Reset }}</m-form-button>
+              <m-form-button :label="lk.Submit" />
+              <m-form-button :label="lk.Reset" />
             </m-card-actions>
           </m-card>
         </m-menu>
       </m-button>
-      <m-button>
-        {{ lang.WithoutTitle }}
+      <m-button :label="lk.WithoutTitle">
         <m-menu direction="down-right">
           <m-card min-width="300px">
             <m-card-section>{{ lang.Section }}</m-card-section>
             <m-card-actions>
               <q-space />
-              <m-form-button>{{ lang.Submit }}</m-form-button>
-              <m-form-button>{{ lang.Reset }}</m-form-button>
+              <m-form-button :label="lk.Submit" />
+              <m-form-button :label="lk.Reset" />
             </m-card-actions>
           </m-card>
         </m-menu>

@@ -5,7 +5,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-card-actions",
   setup: () => {
-    return { lang: CardActions.lang };
+    return { lang: CardActions.lang, lk: CardActions.lang.keys };
   }
 });
 </script>
@@ -16,8 +16,8 @@ export default defineComponent({
       <m-card-section>{{ lang.Section }}</m-card-section>
       <m-card-actions>
         <q-space />
-        <m-form-button>{{ lang.Submit }}</m-form-button>
-        <m-form-button>{{ lang.Reset }}</m-form-button>
+        <m-form-button :label="lk.Submit" />
+        <m-form-button :label="lk.Reset" />
       </m-card-actions>
     </m-card>
   </m-page-section>
