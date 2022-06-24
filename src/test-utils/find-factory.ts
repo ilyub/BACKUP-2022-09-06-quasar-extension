@@ -27,7 +27,10 @@ export function findFactory(
     compElem: (ref, ref2) =>
       wrapper.findComponent(selector(ref)).find(selector(ref2)),
     comps: ref => wrapper.findAllComponents(selector(ref)),
-    elem: ref => wrapper.find(selector(ref)),
+    elem: (ref, index = 0) =>
+      index
+        ? a.get(wrapper.findAll(selector(ref)), index)
+        : wrapper.find(selector(ref)),
     elems: ref => wrapper.findAll(selector(ref))
   };
 
@@ -72,9 +75,10 @@ export namespace findFactory {
      * Finds element.
      *
      * @param ref - Reference.
+     * @param index - Index.
      * @returns Wrapper.
      */
-    readonly elem: (ref: string) => DOMWrapper;
+    readonly elem: (ref: string, index?: number) => DOMWrapper;
     /**
      * Finds elements.
      *
