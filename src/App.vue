@@ -1,5 +1,6 @@
 <script lang="ts">
 import { components, settings } from "./samples";
+// eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
 import { lang } from "@skylib/facades";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";

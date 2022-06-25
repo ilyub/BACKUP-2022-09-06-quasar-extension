@@ -1,4 +1,4 @@
-import { reflect } from "@skylib/functions";
+import { o } from "@skylib/functions";
 import type { Wrapper } from "./wrapper.internal";
 import type { ComponentConstructor } from "quasar";
 
@@ -28,5 +28,5 @@ export function setData(wrapper: Wrapper, key: string, value: unknown): void {
   // eslint-disable-next-line no-warning-comments -- Wait for @skylib/functions update
   // fixme - Use o.set
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- Ok
-  reflect.set(wrapper.vm, key, value);
+  o.set(wrapper.vm, key, value);
 }

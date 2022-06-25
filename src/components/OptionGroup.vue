@@ -1,4 +1,5 @@
 <script lang="ts">
+import { OptionGroup } from "./OptionGroup.extras";
 import {
   injections,
   parentProps,
@@ -9,9 +10,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { lang } from "@skylib/facades";
 import { computed, defineComponent, ref } from "vue";
-import type { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
 
 const prop = propFactory<OptionGroup.OwnProps>();
@@ -40,7 +39,7 @@ export default defineComponent({
       main,
       mainOptions: computed(() =>
         props.options.map(option => {
-          return { ...option, label: lang.get(option.label) };
+          return { ...option, label: OptionGroup.lang.get(option.label) };
         })
       ),
       slotNames: plugins.slotNames<OptionGroup.Slots>()()
@@ -50,7 +49,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-option-group
     ref="main"
     class="m-option-group"

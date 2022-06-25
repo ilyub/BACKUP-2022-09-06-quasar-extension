@@ -1,15 +1,17 @@
+import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
-import type { lang } from "@skylib/facades";
 import type { Rec, stringU } from "@skylib/functions";
 
 export namespace Group {
+  export const lang: baseLang.Lang<never, never> = baseLang;
+
   export interface Global<T extends string = string>
     extends GlobalComponent<Props<T>, Slots<T>> {}
 
   export interface Item<T extends string = string> {
     readonly id: T;
     readonly show: boolean;
-    readonly title: lang.Key;
+    readonly title: baseLang.Key;
   }
 
   export type Items<T extends string = string> = ReadonlyArray<Item<T>>;

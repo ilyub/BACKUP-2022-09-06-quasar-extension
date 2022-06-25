@@ -14,6 +14,26 @@ module.exports = {
     {
       files: "./src/samples/**",
       rules: { "import/no-relative-parent-imports": "off" }
+    },
+    {
+      files: [
+        "./src/components/BaseButton.vue",
+        "./src/components/Card.vue",
+        "./src/components/CardActions.vue",
+        "./src/components/CardSection.vue",
+        "./src/components/ExpansionItem.vue",
+        "./src/components/Field.vue",
+        "./src/components/Form.vue",
+        "./src/components/Item.vue",
+        "./src/components/Knob.vue",
+        "./src/components/Menu.vue",
+        "./src/components/OptionGroup.vue",
+        "./src/components/PopupProxy.vue",
+        "./src/components/Select.vue",
+        "./src/components/Toggle.vue",
+        "./src/components/Tooltip.vue"
+      ],
+      rules: { "vue/no-restricted-syntax": "off" }
     }
   ],
   rules: {
@@ -40,6 +60,7 @@ module.exports = {
     ],
     "github/unescaped-html-literal": "off",
     "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
     "vue/no-undef-components": ["warn", { ignorePatterns: [/^[mq]-/u.source] }],
     "vue/require-expose": "off",
     "xss/no-mixed-html": "off"

@@ -43,7 +43,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-knob
     ref="main"
     class="m-knob"

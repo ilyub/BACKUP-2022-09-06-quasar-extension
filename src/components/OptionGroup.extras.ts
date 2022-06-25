@@ -1,5 +1,5 @@
+import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent } from "./api";
-import type { lang } from "@skylib/facades";
 import type { booleanU } from "@skylib/functions";
 import type {
   QOptionGroup,
@@ -8,6 +8,8 @@ import type {
 } from "quasar";
 
 export namespace OptionGroup {
+  export const lang: baseLang.Lang<never, never> = baseLang;
+
   export interface Global<T = unknown>
     extends GlobalComponent<Props<T>, Slots> {
     readonly main?: QOptionGroup;
@@ -15,7 +17,7 @@ export namespace OptionGroup {
 
   export interface Option<T = unknown> {
     readonly disable?: boolean;
-    readonly label: lang.Key;
+    readonly label: baseLang.Key;
     readonly value: T;
   }
 

@@ -17,55 +17,113 @@ module.exports = {
       {
         rules: [
           {
+            filesToLint: ["*.vue"],
+            message: "No global icons",
+            selector:
+              "ImportDeclaration[source.value=@skylib/facades] > ImportSpecifier[imported.name=icons]",
+            subOptionsId: "no-global-icons"
+          },
+          {
+            filesToLint: ["*.vue"],
+            message: "No global lang",
+            selector:
+              "ImportDeclaration[source.value=@skylib/facades] > ImportSpecifier[imported.name=lang]",
+            subOptionsId: "no-global-lang"
+          },
+          {
+            message: "Incorrect extends",
+            selector: [
+              "TSInterfaceDeclaration[id.name=Props][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnProps][name!=ParentProps][name!=PluginProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps][name!=PluginProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps][name!=PluginProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnProps]",
+              "TSInterfaceDeclaration[id.name=Props][extends.length>3]"
+            ],
+            subOptionsId: "check-Props-extends"
+          },
+          {
+            message: 'Extend "OwnSlots" or "PluginSlots" interface',
+            selector: [
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnSlots][name!=ParentSlots][name!=PluginSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots][name!=PluginSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots][name!=PluginSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnSlots]",
+              "TSInterfaceDeclaration[id.name=Slots][extends.length>3]"
+            ],
+            subOptionsId: "check-Slots-extends"
+          },
+          {
+            message: "Invalid generic component name",
+            selector:
+              "CallExpression[callee.name=defineComponent] > ObjectExpression.arguments:first-child > Property.properties[key.name=components] > ObjectExpression.value > Property.properties[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]",
+            subOptionsId: "check-generic-component-name"
+          },
+          {
+            message: 'Use "OwnProps" interface',
+            selector:
+              "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]",
+            subOptionsId: "prefer-validateEmit-OwnProps"
+          },
+          {
+            message: 'Use "OwnProps" interface',
+            selector:
+              "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]",
+            subOptionsId: "prefer-validateProps-OwnProps"
+          },
+          {
             message: 'Use "findQuasarComponent" function',
             selector:
               "CallExpression[arguments.0.name=/^Q/u] > MemberExpression.callee[object.name=wrapper][property.name=findComponent]",
             subOptionsId: "prefer-findQuasarComponent"
           },
           {
-            message: 'Use "OwnProps" interface',
-            selector:
-              "CallExpression[callee.name=/^(?:validateEmit|validateProps)$/u] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]"
-          },
-          {
             message: "Unnecessary type parameter",
             selector:
-              "CallExpression[callee.name=computed] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)"
-          },
-          {
-            message: "Invalid generic component name",
-            selector:
-              "CallExpression[callee.name=defineComponent] > ObjectExpression.arguments:first-child > Property.properties[key.name=components] > ObjectExpression.value > Property.properties[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]"
+              "CallExpression[callee.name=computed] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)",
+            subOptionsId: "require-computed-type-parameter"
           },
           {
             message: 'Unnecessary "undefined"',
-            selector:
-              "CallExpression[callee.name=ref] > Identifier.arguments[name=undefined]"
-          },
-          {
-            message: 'Unnecessary "undefined"',
-            selector:
-              "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > Identifier.typeName[name=/U$/u]"
-          },
-          {
-            message: 'Unnecessary "undefined"',
-            selector:
+            selector: [
+              "CallExpression[callee.name=ref] > Identifier.arguments[name=undefined]",
+              "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > Identifier.typeName[name=/U$/u]",
               "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSUnionType.params > TSUndefinedKeyword.types"
+            ],
+            subOptionsId: "no-ref-undefined"
           },
           {
             message: "Unnecessary type parameter",
             selector:
-              "CallExpression[callee.name=ref][arguments.0.type=Literal] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword).params"
+              "CallExpression[callee.name=ref][arguments.0.type=Literal] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword).params",
+            subOptionsId: "no-ref-type-parameter"
           },
           {
-            message: 'Use "testComponents" instead',
+            message: 'Prefer "testComponents"',
             selector:
-              "CallExpression[callee.object.name=wrapper][callee.property.name=findComponent] > MemberExpression.arguments:first-child > Identifier.object[name=components]"
+              "CallExpression[callee.object.name=wrapper][callee.property.name=findComponent] > MemberExpression.arguments:first-child > Identifier.object[name=components]",
+            subOptionsId: "prefer-testComponents"
           },
           {
             message: "Missing type parameter",
             selector:
-              "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:validateEmit|validateExpose|validateProps)$/u]"
+              "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateEmit]",
+            subOptionsId: "require-validateEmit-type-parameter"
+          },
+          {
+            message: "Missing type parameter",
+            selector:
+              "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateExpose]",
+            subOptionsId: "require-validateExpose-type-parameter"
+          },
+          {
+            message: "Missing type parameter",
+            selector:
+              "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateProps]",
+            subOptionsId: "require-validateProps-type-parameter"
           },
           {
             message: "Missing type parameter",
@@ -73,105 +131,44 @@ module.exports = {
               "CallExpression[arguments.length=0][typeParameters=undefined] > Identifier.callee[name=prop]",
               "CallExpression[arguments.length=1][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=default]",
               "CallExpression[arguments.length=0][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=required]"
-            ]
+            ],
+            subOptionsId: "require-prop-type-parameter"
           },
           {
             message: "Missing type parameter",
             selector:
-              "CallExpression[typeParameters=undefined][arguments.length=0] > Identifier.callee[name=ref]"
+              "CallExpression[typeParameters=undefined][arguments.length=0] > Identifier.callee[name=ref]",
+            subOptionsId: "require-ref-type-parameter"
           },
           {
             message: 'Use "OwnProps" interface',
             selector:
-              "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body"
+              "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body",
+            subOptionsId: "prefer-OwnProps"
           },
           {
             message: 'Use "OwnSlots" interface',
             selector:
-              "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
+              "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body",
+            subOptionsId: "prefer-OwnSlots"
           },
           {
             message: 'Do not extend "OwnProps" interface',
             selector:
-              "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
+              "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends",
+            subOptionsId: "no-OwnProps-extends"
           },
           {
             message: 'Do not extend "OwnSlots" interface',
             selector:
-              "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends"
-          },
-          {
-            message: 'Extend "OwnProps" or "PluginProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnProps][name!=ParentProps][name!=PluginProps]"
-          },
-          {
-            message: 'Extend "ParentProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps][name!=PluginProps]"
-          },
-          {
-            message: 'Extend "OwnProps" or "PluginProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps][name!=PluginProps]"
-          },
-          {
-            message: 'Extend "ParentProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]"
-          },
-          {
-            message: 'Extend "PluginProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginProps]"
-          },
-          {
-            message: 'Extend "OwnProps" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnProps]"
-          },
-          {
-            message: "Too many extends",
-            selector: "TSInterfaceDeclaration[id.name=Props][extends.length>3]"
-          },
-          {
-            message: 'Extend "OwnSlots" or "PluginSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnSlots][name!=ParentSlots][name!=PluginSlots]"
-          },
-          {
-            message: 'Extend "ParentSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots][name!=PluginSlots]"
-          },
-          {
-            message: 'Extend "OwnSlots" or "PluginSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots][name!=PluginSlots]"
-          },
-          {
-            message: 'Extend "ParentSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]"
-          },
-          {
-            message: 'Extend "PluginSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginSlots]"
-          },
-          {
-            message: 'Extend "OwnSlots" interface',
-            selector:
-              "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnSlots]"
-          },
-          {
-            message: "Too many extends",
-            selector: "TSInterfaceDeclaration[id.name=Slots][extends.length>3]"
+              "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends",
+            subOptionsId: "no-OwnSlots-extends"
           },
           {
             message: "Use interface",
             selector:
-              "TSTypeAliasDeclaration > Identifier.id[name=/^(?:Props|Slots)$/u]"
+              "TSTypeAliasDeclaration > Identifier.id[name=/^(?:Props|Slots)$/u]",
+            subOptionsId: "prefer-interface"
           }
         ]
       }

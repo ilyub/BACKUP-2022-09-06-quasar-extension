@@ -20,7 +20,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-card-section ref="main" class="m-card-section">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

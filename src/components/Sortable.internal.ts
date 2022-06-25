@@ -1,7 +1,7 @@
 import { is, json, o } from "@skylib/functions";
 import type { Writable, objects } from "@skylib/functions";
 
-export const isHtmlElement = is.factory(is.instance, HTMLElement);
+export const isHtmlElement = is.factory(is.instanceOf, HTMLElement);
 
 export const isMoveData = is.object.factory<MoveData>(
   { dragged: isHtmlElement, related: isHtmlElement },

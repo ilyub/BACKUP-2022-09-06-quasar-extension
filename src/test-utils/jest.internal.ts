@@ -18,7 +18,7 @@ export const matchers: {
   htmlToEqual: (got, expected) => {
     got = as.byGuard(got, isWrapperLike).html();
 
-    return testUtils.buildEqualsMatcherResult(
+    return testUtils.buildEqualsResult(
       got === expected,
       "Unexpected html",
       got,
@@ -28,7 +28,7 @@ export const matchers: {
   textToEqual: (got, expected) => {
     got = as.byGuard(got, isWrapperLike).text();
 
-    return testUtils.buildEqualsMatcherResult(
+    return testUtils.buildEqualsResult(
       got === expected,
       "Unexpected text",
       got,
@@ -36,19 +36,19 @@ export const matchers: {
     );
   },
   toBeVisible: got =>
-    testUtils.buildMatcherResult(
+    testUtils.buildResult(
       as.byGuard(got, isWrapperLike).isVisible(),
       "Expected Vue wrapper to be visible",
       "Expected Vue wrapper not to be visible"
     ),
   toExist: got =>
-    testUtils.buildMatcherResult(
+    testUtils.buildResult(
       as.byGuard(got, isWrapperLike).exists(),
       "Expected Vue wrapper to exist",
       "Expected Vue wrapper not to exist"
     ),
   toHaveClass: (got, expected) =>
-    testUtils.buildMatcherResult(
+    testUtils.buildResult(
       as.byGuard(got, isWrapperLike).classes().includes(expected),
       `Expected Vue wrapper to have "${expected}" class`,
       `Expected Vue wrapper not to have "${expected}" class`
@@ -56,7 +56,7 @@ export const matchers: {
   toHaveEmitted: (got, name, ...expected) => {
     const emitted = as.byGuard(got, isVueWrapper).emitted(name) ?? [];
 
-    const result = testUtils.buildEqualsMatcherResult(
+    const result = testUtils.buildEqualsResult(
       equals(emitted, expected),
       "Unexpected mock calls",
       emitted,

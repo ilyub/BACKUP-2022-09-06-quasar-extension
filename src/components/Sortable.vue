@@ -68,7 +68,7 @@ export default defineComponent({
 
     return {
       baseMove: (data: unknown): boolean => {
-        assert.byGuard(data, isMoveData);
+        assert.byGuard(data, isMoveData, "Expecting move data");
 
         const destAttrs = data.related.attributes;
 
@@ -113,7 +113,7 @@ export default defineComponent({
         disableTooltips.value = true;
       },
       update: (elements: unknown): void => {
-        assert.byGuard(elements, isElements);
+        assert.byGuard(elements, isElements, "Expecting elements");
 
         for (const element of elements)
           if (element.group === props.group && ids.value.has(element.id)) {

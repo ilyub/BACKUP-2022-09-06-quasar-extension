@@ -97,7 +97,7 @@ export default defineComponent({
         const ids = evaluate(() => {
           if (shortData.value) return a.fromRange(1, 5);
 
-          assert.not.empty(pagination.value.limit);
+          assert.not.empty(pagination.value.limit, "Missing limit");
 
           return pagination.value.descending ?? false
             ? a.fromRange(1001 - pagination.value.limit, 1000)

@@ -10,32 +10,16 @@ import {
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
-import { assert, is, o } from "@skylib/functions";
+import { as, is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, defineComponent, ref, watch } from "vue";
 import type { IconButton } from "./IconButton.extras";
-import type { lang } from "@skylib/facades";
+import type { Buttons, Item, Mdi } from "./IconPicker.internal";
 import type { Writable, stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
 
 const prop = propFactory<IconPicker.OwnProps>();
-
-interface Button {
-  readonly icon?: string;
-  readonly placeholder: boolean;
-  readonly selected: boolean;
-  readonly tooltip?: lang.Key;
-}
-
-type Buttons = readonly Button[];
-
-interface Item {
-  readonly description: string;
-  readonly id: keyof Mdi;
-}
-
-type Mdi = typeof import("@mdi/js-dynamic");
 
 export default defineComponent({
   name: "m-icon-picker",
@@ -116,9 +100,7 @@ export default defineComponent({
             page.value * pageSize.value + pageSize.value
           )
           .map(item => {
-            assert.not.empty(mdi.value);
-
-            const icon = mdi.value[item.id];
+            const icon = as.not.empty(mdi.value)[item.id];
 
             return o.removeUndefinedKeys({
               icon,

@@ -1,7 +1,6 @@
 <script lang="ts">
 import { generic } from "..";
 import { Group } from "./Group.extras";
-import { lang } from "@skylib/facades";
 import { computed, defineComponent, ref } from "vue";
 import type { extras } from "..";
 
@@ -19,13 +18,13 @@ export default defineComponent({
 
     const showSection4 = ref(true);
 
-    const title1 = lang.plain("Section 1 aaa bbb");
+    const title1 = Group.lang.plain("Section 1 aaa bbb");
 
-    const title2 = lang.plain("Section 2 bbb ccc");
+    const title2 = Group.lang.plain("Section 2 bbb ccc");
 
-    const title3 = lang.plain("Section 11 ccc ddd");
+    const title3 = Group.lang.plain("Section 11 ccc ddd");
 
-    const title4 = lang.plain("Section 12 ddd eee");
+    const title4 = Group.lang.plain("Section 12 ddd eee");
 
     return {
       groupItems: computed<extras.Group.Items<Section>>(() => [

@@ -38,7 +38,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-popup-proxy
     ref="main"
     :anchor="anchor"

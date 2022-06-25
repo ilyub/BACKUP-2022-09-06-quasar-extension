@@ -1,12 +1,12 @@
 <script lang="ts">
+import { Group } from "./Group.extras";
 import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
 import { directives, plugins, propFactory, validateProps } from "./api";
-import { compare, inlineSearch, lang } from "@skylib/facades";
+import { compare, inlineSearch } from "@skylib/facades";
 import { a, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
-import type { Group } from "./Group.extras";
 
 const prop = propFactory<Group.OwnProps>();
 
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const items = computed(() =>
       props.items.map(item => {
-        return { ...item, title: lang.get(item.title) };
+        return { ...item, title: Group.lang.get(item.title) };
       })
     );
 

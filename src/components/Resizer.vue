@@ -47,7 +47,7 @@ export default defineComponent({
 
     return {
       handlePan: (event: unknown): void => {
-        assert.byGuard(event, isResizerEvent);
+        assert.byGuard(event, isResizerEvent, "Expecting resizer event");
 
         if (event.isFirst) initialValue = props.modelValue;
 
