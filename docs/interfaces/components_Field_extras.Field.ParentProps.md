@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QFieldProps`, keyof [`OwnProps`](components_Field_extras.Field.OwnProps.md) \| keyof [`PluginProps`](components_Field_extras.Field.PluginProps.md)\>
+- `Omit`<`QFieldProps`, keyof [`OwnProps`](components_Field_extras.Field.OwnProps.md) \| keyof [`PluginProps`](components_Field_extras.Field.PluginProps.md) \| ``"lazyRules"`` \| ``"reactiveRules"`` \| ``"rules"``\>
 
   ↳ **`ParentProps`**
 
@@ -36,17 +36,14 @@
 - [itemAligned](components_Field_extras.Field.ParentProps.md#itemaligned)
 - [labelColor](components_Field_extras.Field.ParentProps.md#labelcolor)
 - [labelSlot](components_Field_extras.Field.ParentProps.md#labelslot)
-- [lazyRules](components_Field_extras.Field.ParentProps.md#lazyrules)
 - [loading](components_Field_extras.Field.ParentProps.md#loading)
 - [maxlength](components_Field_extras.Field.ParentProps.md#maxlength)
 - [name](components_Field_extras.Field.ParentProps.md#name)
 - [noErrorIcon](components_Field_extras.Field.ParentProps.md#noerroricon)
 - [outlined](components_Field_extras.Field.ParentProps.md#outlined)
 - [prefix](components_Field_extras.Field.ParentProps.md#prefix)
-- [reactiveRules](components_Field_extras.Field.ParentProps.md#reactiverules)
 - [readonly](components_Field_extras.Field.ParentProps.md#readonly)
 - [rounded](components_Field_extras.Field.ParentProps.md#rounded)
-- [rules](components_Field_extras.Field.ParentProps.md#rules)
 - [square](components_Field_extras.Field.ParentProps.md#square)
 - [stackLabel](components_Field_extras.Field.ParentProps.md#stacklabel)
 - [standout](components_Field_extras.Field.ParentProps.md#standout)
@@ -300,18 +297,6 @@ Omit.labelSlot
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-Omit.lazyRules
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -384,18 +369,6 @@ Omit.prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-Omit.reactiveRules
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -417,18 +390,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 Omit.rounded
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-Omit.rules
 
 ___
 

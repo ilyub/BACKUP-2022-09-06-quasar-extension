@@ -20,6 +20,10 @@
 
 - [Options](components_OptionGroup_extras.OptionGroup.md#options)
 
+### Variables
+
+- [lang](components_OptionGroup_extras.OptionGroup.md#lang)
+
 ## Type Aliases
 
 ### Options
@@ -31,3 +35,9 @@
 | Name | Type |
 | :------ | :------ |
 | `T` | `unknown` |
+
+## Variables
+
+### lang
+
+• `Const` **lang**: `baseLang.Lang`<`never`, `never`\> = `baseLang`

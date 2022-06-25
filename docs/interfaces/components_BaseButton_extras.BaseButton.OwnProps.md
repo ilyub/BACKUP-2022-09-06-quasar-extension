@@ -10,8 +10,6 @@
 
   ↳ [`Props`](components_BaseButton_extras.BaseButton.Props.md)
 
-  ↳ [`ParentProps`](components_FormButton_extras.FormButton.ParentProps.md)
-
 ## Table of contents
 
 ### Properties

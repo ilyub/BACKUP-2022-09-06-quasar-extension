@@ -72,7 +72,7 @@ ___
 
 ### deselectAllLabel
 
-• `Readonly` **deselectAllLabel**: `string`
+• `Readonly` **deselectAllLabel**: `Key`<`Word`\>
 
 #### Inherited from
 
@@ -108,7 +108,7 @@ ___
 
 ### selectAllLabel
 
-• `Readonly` **selectAllLabel**: `string`
+• `Readonly` **selectAllLabel**: `Key`<`Word`\>
 
 #### Inherited from
 
@@ -138,7 +138,7 @@ ___
 
 ### toggleSelectionLabel
 
-• `Readonly` **toggleSelectionLabel**: `string`
+• `Readonly` **toggleSelectionLabel**: `Key`<`Word`\>
 
 #### Inherited from
 

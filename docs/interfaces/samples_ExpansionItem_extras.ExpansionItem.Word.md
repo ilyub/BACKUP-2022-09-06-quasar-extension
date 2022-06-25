@@ -11,6 +11,7 @@
 - [ExpansionItem](samples_ExpansionItem_extras.ExpansionItem.Word.md#expansionitem)
 - [Item1](samples_ExpansionItem_extras.ExpansionItem.Word.md#item1)
 - [Item2](samples_ExpansionItem_extras.ExpansionItem.Word.md#item2)
+- [Subtitle](samples_ExpansionItem_extras.ExpansionItem.Word.md#subtitle)
 
 ## Properties
 
@@ -29,3 +30,9 @@ ___
 ### Item2
 
 • `Readonly` **Item2**: ``true``
+
+___
+
+### Subtitle
+
+• `Readonly` **Subtitle**: ``true``

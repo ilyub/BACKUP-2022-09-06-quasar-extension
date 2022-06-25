@@ -17,6 +17,9 @@
 
 - [Emits](components_api_misc_internal.md#emits)
 - [ParentProps](components_api_misc_internal.md#parentprops)
+- [PropBooleanKeys](components_api_misc_internal.md#propbooleankeys)
+- [PropOptionalKeys](components_api_misc_internal.md#propoptionalkeys)
+- [PropRequiredKeys](components_api_misc_internal.md#proprequiredkeys)
 - [SetupEmit](components_api_misc_internal.md#setupemit)
 - [SetupEmitAux](components_api_misc_internal.md#setupemitaux)
 - [SetupExposed](components_api_misc_internal.md#setupexposed)
@@ -33,6 +36,42 @@ ___
 ### ParentProps
 
 Ƭ **ParentProps**<`T`\>: `Join2`<{ readonly [K in OptionalKeys<T\>]: PropOptions<T[K]\> }, { readonly [K in RequiredKeys<T\>]: PropOptionsRequired<T[K]\> }\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+___
+
+### PropBooleanKeys
+
+Ƭ **PropBooleanKeys**<`T`\>: `PickKeys`<`T`, `booleanU`, ``"extends->"``\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+___
+
+### PropOptionalKeys
+
+Ƭ **PropOptionalKeys**<`T`\>: `FilterKeys`<`T`, `booleanU`, ``"extends->"``\> & `OptionalKeys`<`T`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+___
+
+### PropRequiredKeys
+
+Ƭ **PropRequiredKeys**<`T`\>: `FilterKeys`<`T`, `booleanU`, ``"extends->"``\> & `RequiredKeys`<`T`\>
 
 #### Type parameters
 

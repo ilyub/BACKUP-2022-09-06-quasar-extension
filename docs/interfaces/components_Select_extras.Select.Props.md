@@ -59,7 +59,6 @@
 - [label](components_Select_extras.Select.Props.md#label)
 - [labelColor](components_Select_extras.Select.Props.md#labelcolor)
 - [labelSlot](components_Select_extras.Select.Props.md#labelslot)
-- [lazyRules](components_Select_extras.Select.Props.md#lazyrules)
 - [loading](components_Select_extras.Select.Props.md#loading)
 - [mapOptions](components_Select_extras.Select.Props.md#mapoptions)
 - [maxValues](components_Select_extras.Select.Props.md#maxvalues)
@@ -85,11 +84,9 @@
 - [popupContentClass](components_Select_extras.Select.Props.md#popupcontentclass)
 - [popupContentStyle](components_Select_extras.Select.Props.md#popupcontentstyle)
 - [prefix](components_Select_extras.Select.Props.md#prefix)
-- [reactiveRules](components_Select_extras.Select.Props.md#reactiverules)
 - [readonly](components_Select_extras.Select.Props.md#readonly)
 - [required](components_Select_extras.Select.Props.md#required)
 - [rounded](components_Select_extras.Select.Props.md#rounded)
-- [rules](components_Select_extras.Select.Props.md#rules)
 - [rulesOnChange](components_Select_extras.Select.Props.md#rulesonchange)
 - [rulesOnInput](components_Select_extras.Select.Props.md#rulesoninput)
 - [rulesOnSubmit](components_Select_extras.Select.Props.md#rulesonsubmit)
@@ -545,18 +542,6 @@ Enables label slot; You need to set it to force use of the 'label' slot if the '
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-[ParentProps](components_Select_extras.Select.ParentProps.md).[lazyRules](components_Select_extras.Select.ParentProps.md#lazyrules)
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -868,18 +853,6 @@ Prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-[ParentProps](components_Select_extras.Select.ParentProps.md).[reactiveRules](components_Select_extras.Select.ParentProps.md#reactiverules)
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -911,18 +884,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 [ParentProps](components_Select_extras.Select.ParentProps.md).[rounded](components_Select_extras.Select.ParentProps.md#rounded)
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-[ParentProps](components_Select_extras.Select.ParentProps.md).[rules](components_Select_extras.Select.ParentProps.md#rules)
 
 ___
 

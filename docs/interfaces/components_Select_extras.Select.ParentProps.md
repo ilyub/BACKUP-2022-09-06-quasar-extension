@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- `Omit`<`QSelectProps`, keyof [`OwnProps`](components_Select_extras.Select.OwnProps.md) \| keyof [`PluginProps`](components_Select_extras.Select.PluginProps.md)\>
+- `Omit`<`QSelectProps`, keyof [`OwnProps`](components_Select_extras.Select.OwnProps.md) \| keyof [`PluginProps`](components_Select_extras.Select.PluginProps.md) \| ``"lazyRules"`` \| ``"reactiveRules"`` \| ``"rules"``\>
 
   ↳ **`ParentProps`**
 
@@ -48,7 +48,6 @@
 - [itemAligned](components_Select_extras.Select.ParentProps.md#itemaligned)
 - [labelColor](components_Select_extras.Select.ParentProps.md#labelcolor)
 - [labelSlot](components_Select_extras.Select.ParentProps.md#labelslot)
-- [lazyRules](components_Select_extras.Select.ParentProps.md#lazyrules)
 - [loading](components_Select_extras.Select.ParentProps.md#loading)
 - [mapOptions](components_Select_extras.Select.ParentProps.md#mapoptions)
 - [maxValues](components_Select_extras.Select.ParentProps.md#maxvalues)
@@ -72,10 +71,8 @@
 - [popupContentClass](components_Select_extras.Select.ParentProps.md#popupcontentclass)
 - [popupContentStyle](components_Select_extras.Select.ParentProps.md#popupcontentstyle)
 - [prefix](components_Select_extras.Select.ParentProps.md#prefix)
-- [reactiveRules](components_Select_extras.Select.ParentProps.md#reactiverules)
 - [readonly](components_Select_extras.Select.ParentProps.md#readonly)
 - [rounded](components_Select_extras.Select.ParentProps.md#rounded)
-- [rules](components_Select_extras.Select.ParentProps.md#rules)
 - [square](components_Select_extras.Select.ParentProps.md#square)
 - [stackLabel](components_Select_extras.Select.ParentProps.md#stacklabel)
 - [standout](components_Select_extras.Select.ParentProps.md#standout)
@@ -496,18 +493,6 @@ Omit.labelSlot
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-Omit.lazyRules
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -799,18 +784,6 @@ Omit.prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-Omit.reactiveRules
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -832,18 +805,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 Omit.rounded
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-Omit.rules
 
 ___
 

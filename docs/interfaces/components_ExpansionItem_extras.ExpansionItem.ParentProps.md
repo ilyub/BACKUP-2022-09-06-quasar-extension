@@ -17,7 +17,6 @@
 ### Properties
 
 - [activeClass](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#activeclass)
-- [caption](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#caption)
 - [captionLines](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#captionlines)
 - [contentInsetLevel](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#contentinsetlevel)
 - [dark](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#dark)
@@ -68,18 +67,6 @@ Equivalent to Vue Router <router-link> 'active-class' property; Superseded by 'h
 #### Inherited from
 
 Omit.activeClass
-
-___
-
-### caption
-
-• `Optional` **caption**: `string`
-
-Header sub-label (unless using 'header' slot)
-
-#### Inherited from
-
-Omit.caption
 
 ___
 

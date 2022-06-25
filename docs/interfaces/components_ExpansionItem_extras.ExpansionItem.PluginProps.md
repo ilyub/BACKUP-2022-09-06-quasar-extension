@@ -6,7 +6,7 @@
 
 ## Hierarchy
 
-- [`Props`](../modules/components_api_lang_props.langProps.md#props)<``"label"``\>
+- [`Props`](../modules/components_api_lang_props.langProps.md#props)<``"caption"`` \| ``"label"``\>
 
   ↳ **`PluginProps`**
 
@@ -16,9 +16,20 @@
 
 ### Properties
 
+- [caption](components_ExpansionItem_extras.ExpansionItem.PluginProps.md#caption)
 - [label](components_ExpansionItem_extras.ExpansionItem.PluginProps.md#label)
 
 ## Properties
+
+### caption
+
+• **caption**: `undefined` \| `Key`<`Word`\>
+
+#### Inherited from
+
+plugins.langProps.Props.caption
+
+___
 
 ### label
 

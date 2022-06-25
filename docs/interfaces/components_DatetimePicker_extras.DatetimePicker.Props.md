@@ -40,7 +40,6 @@
 - [label](components_DatetimePicker_extras.DatetimePicker.Props.md#label)
 - [labelColor](components_DatetimePicker_extras.DatetimePicker.Props.md#labelcolor)
 - [labelSlot](components_DatetimePicker_extras.DatetimePicker.Props.md#labelslot)
-- [lazyRules](components_DatetimePicker_extras.DatetimePicker.Props.md#lazyrules)
 - [loading](components_DatetimePicker_extras.DatetimePicker.Props.md#loading)
 - [max](components_DatetimePicker_extras.DatetimePicker.Props.md#max)
 - [maxlength](components_DatetimePicker_extras.DatetimePicker.Props.md#maxlength)
@@ -51,11 +50,9 @@
 - [outlined](components_DatetimePicker_extras.DatetimePicker.Props.md#outlined)
 - [placeholder](components_DatetimePicker_extras.DatetimePicker.Props.md#placeholder)
 - [prefix](components_DatetimePicker_extras.DatetimePicker.Props.md#prefix)
-- [reactiveRules](components_DatetimePicker_extras.DatetimePicker.Props.md#reactiverules)
 - [readonly](components_DatetimePicker_extras.DatetimePicker.Props.md#readonly)
 - [required](components_DatetimePicker_extras.DatetimePicker.Props.md#required)
 - [rounded](components_DatetimePicker_extras.DatetimePicker.Props.md#rounded)
-- [rules](components_DatetimePicker_extras.DatetimePicker.Props.md#rules)
 - [rulesOnChange](components_DatetimePicker_extras.DatetimePicker.Props.md#rulesonchange)
 - [rulesOnInput](components_DatetimePicker_extras.DatetimePicker.Props.md#rulesoninput)
 - [rulesOnSubmit](components_DatetimePicker_extras.DatetimePicker.Props.md#rulesonsubmit)
@@ -360,18 +357,6 @@ Enables label slot; You need to set it to force use of the 'label' slot if the '
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-[ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[lazyRules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#lazyrules)
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -484,18 +469,6 @@ Prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-[ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[reactiveRules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#reactiverules)
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -527,18 +500,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 [ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[rounded](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rounded)
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-[ParentProps](components_DatetimePicker_extras.DatetimePicker.ParentProps.md).[rules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rules)
 
 ___
 

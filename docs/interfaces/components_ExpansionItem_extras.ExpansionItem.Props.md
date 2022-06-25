@@ -74,13 +74,11 @@ ___
 
 ### caption
 
-• `Optional` **caption**: `string`
-
-Header sub-label (unless using 'header' slot)
+• **caption**: `undefined` \| `Key`<`Word`\>
 
 #### Inherited from
 
-[ParentProps](components_ExpansionItem_extras.ExpansionItem.ParentProps.md).[caption](components_ExpansionItem_extras.ExpansionItem.ParentProps.md#caption)
+[PluginProps](components_ExpansionItem_extras.ExpansionItem.PluginProps.md).[caption](components_ExpansionItem_extras.ExpansionItem.PluginProps.md#caption)
 
 ___
 

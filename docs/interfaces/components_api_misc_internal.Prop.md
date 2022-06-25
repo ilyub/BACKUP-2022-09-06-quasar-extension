@@ -14,7 +14,7 @@
 
 ### Prop
 
-▸ **Prop**<`K`\>(): [`PropOptions`](components_api_types_prop_options.PropOptions.md)<`T`[`K`]\>
+▸ **Prop**<`K`\>(`key`): [`PropOptions`](components_api_types_prop_options.PropOptions.md)<`T`[`K`]\>
 
 Creates Vue property.
 
@@ -23,6 +23,12 @@ Creates Vue property.
 | Name | Type |
 | :------ | :------ |
 | `K` | extends `string` \| `number` \| `symbol` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `K` | Key. |
 
 #### Returns
 
@@ -42,7 +48,7 @@ Vue property.
 
 ### boolean
 
-▸ `Readonly` **boolean**<`_K`\>(`defVal?`): [`PropOptionsBoolean`](components_api_types_prop_options.PropOptionsBoolean.md)
+▸ `Readonly` **boolean**<`K`\>(`key`, `defVal?`): [`PropOptionsBoolean`](components_api_types_prop_options.PropOptionsBoolean.md)
 
 Creates Vue property.
 
@@ -50,12 +56,13 @@ Creates Vue property.
 
 | Name | Type |
 | :------ | :------ |
-| `_K` | extends `string` \| `number` \| `symbol` |
+| `K` | extends `string` \| `number` \| `symbol` |
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `key` | `K` | Key. |
 | `defVal?` | `boolean` | Default value. |
 
 #### Returns
@@ -68,7 +75,7 @@ ___
 
 ### default
 
-▸ `Readonly` **default**<`K`\>(`defVal`): [`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`[`K`], `undefined`\>\>
+▸ `Readonly` **default**<`K`\>(`key`, `defVal`): [`PropOptionsDefault`](components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`[`K`], `undefined`\>\>
 
 Creates Vue property.
 
@@ -82,6 +89,7 @@ Creates Vue property.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `key` | `K` | Key. |
 | `defVal` | `Exclude`<`T`[`K`], `undefined`\> | Default value. |
 
 #### Returns
@@ -94,7 +102,7 @@ ___
 
 ### required
 
-▸ `Readonly` **required**<`K`\>(): [`PropOptionsRequired`](components_api_types_prop_options.PropOptionsRequired.md)<`T`[`K`]\>
+▸ `Readonly` **required**<`K`\>(`key`): [`PropOptionsRequired`](components_api_types_prop_options.PropOptionsRequired.md)<`T`[`K`]\>
 
 Creates Vue property.
 
@@ -103,6 +111,12 @@ Creates Vue property.
 | Name | Type |
 | :------ | :------ |
 | `K` | extends `string` \| `number` \| `symbol` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `key` | `K` | Key. |
 
 #### Returns
 

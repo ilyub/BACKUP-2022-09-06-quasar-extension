@@ -16,6 +16,8 @@
 
   ↳↳ [`ParentProps`](components_Button_extras.Button.ParentProps.md)
 
+  ↳↳ [`ParentProps`](components_FormButton_extras.FormButton.ParentProps.md)
+
   ↳↳ [`ParentProps`](components_IconButton_extras.IconButton.ParentProps.md)
 
 ## Table of contents

@@ -20,6 +20,10 @@
 - [RootElement](components_Group_extras.Group.md#rootelement)
 - [Slots](components_Group_extras.Group.md#slots)
 
+### Variables
+
+- [lang](components_Group_extras.Group.md#lang)
+
 ## Type Aliases
 
 ### Items
@@ -49,3 +53,9 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `T` | extends `string` = `string` |
+
+## Variables
+
+### lang
+
+• `Const` **lang**: `baseLang.Lang`<`never`, `never`\> = `baseLang`

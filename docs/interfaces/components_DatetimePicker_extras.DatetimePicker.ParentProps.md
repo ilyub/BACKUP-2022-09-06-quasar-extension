@@ -40,7 +40,6 @@
 - [label](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#label)
 - [labelColor](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#labelcolor)
 - [labelSlot](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#labelslot)
-- [lazyRules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#lazyrules)
 - [loading](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#loading)
 - [maxlength](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#maxlength)
 - [name](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#name)
@@ -48,11 +47,9 @@
 - [outlined](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#outlined)
 - [placeholder](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#placeholder)
 - [prefix](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#prefix)
-- [reactiveRules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#reactiverules)
 - [readonly](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#readonly)
 - [required](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#required)
 - [rounded](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rounded)
-- [rules](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rules)
 - [rulesOnChange](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rulesonchange)
 - [rulesOnInput](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rulesoninput)
 - [rulesOnSubmit](components_DatetimePicker_extras.DatetimePicker.ParentProps.md#rulesonsubmit)
@@ -356,18 +353,6 @@ Omit.labelSlot
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-Omit.lazyRules
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -450,18 +435,6 @@ Omit.prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-Omit.reactiveRules
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -493,18 +466,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 Omit.rounded
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-Omit.rules
 
 ___
 

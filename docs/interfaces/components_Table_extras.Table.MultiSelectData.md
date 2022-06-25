@@ -57,7 +57,7 @@ ___
 
 ### deselectAllLabel
 
-• `Readonly` **deselectAllLabel**: `string`
+• `Readonly` **deselectAllLabel**: `Key`<`Word`\>
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 ### selectAllLabel
 
-• `Readonly` **selectAllLabel**: `string`
+• `Readonly` **selectAllLabel**: `Key`<`Word`\>
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 ### toggleSelectionLabel
 
-• `Readonly` **toggleSelectionLabel**: `string`
+• `Readonly` **toggleSelectionLabel**: `Key`<`Word`\>
 
 ## Methods
 

@@ -41,7 +41,6 @@
 - [label](components_TimeInput_extras.TimeInput.Props.md#label)
 - [labelColor](components_TimeInput_extras.TimeInput.Props.md#labelcolor)
 - [labelSlot](components_TimeInput_extras.TimeInput.Props.md#labelslot)
-- [lazyRules](components_TimeInput_extras.TimeInput.Props.md#lazyrules)
 - [loading](components_TimeInput_extras.TimeInput.Props.md#loading)
 - [max](components_TimeInput_extras.TimeInput.Props.md#max)
 - [maxlength](components_TimeInput_extras.TimeInput.Props.md#maxlength)
@@ -52,11 +51,9 @@
 - [outlined](components_TimeInput_extras.TimeInput.Props.md#outlined)
 - [placeholder](components_TimeInput_extras.TimeInput.Props.md#placeholder)
 - [prefix](components_TimeInput_extras.TimeInput.Props.md#prefix)
-- [reactiveRules](components_TimeInput_extras.TimeInput.Props.md#reactiverules)
 - [readonly](components_TimeInput_extras.TimeInput.Props.md#readonly)
 - [required](components_TimeInput_extras.TimeInput.Props.md#required)
 - [rounded](components_TimeInput_extras.TimeInput.Props.md#rounded)
-- [rules](components_TimeInput_extras.TimeInput.Props.md#rules)
 - [rulesOnChange](components_TimeInput_extras.TimeInput.Props.md#rulesonchange)
 - [rulesOnInput](components_TimeInput_extras.TimeInput.Props.md#rulesoninput)
 - [rulesOnSubmit](components_TimeInput_extras.TimeInput.Props.md#rulesonsubmit)
@@ -372,18 +369,6 @@ Enables label slot; You need to set it to force use of the 'label' slot if the '
 
 ___
 
-### lazyRules
-
-• `Optional` **lazyRules**: `boolean` \| ``"ondemand"``
-
-If set to boolean true then it checks validation status against the 'rules' only after field loses focus for first time; If set to 'ondemand' then it will trigger only when component's validate() method is manually called or when the wrapper QForm submits itself
-
-#### Inherited from
-
-[ParentProps](components_TimeInput_extras.TimeInput.ParentProps.md).[lazyRules](components_TimeInput_extras.TimeInput.ParentProps.md#lazyrules)
-
-___
-
 ### loading
 
 • `Optional` **loading**: `boolean`
@@ -496,18 +481,6 @@ Prefix
 
 ___
 
-### reactiveRules
-
-• `Optional` **reactiveRules**: `boolean`
-
-By default a change in the rules does not trigger a new validation until the model changes; If set to true then a change in the rules will trigger a validation; Has a performance penalty, so use it only when you really need it
-
-#### Inherited from
-
-[ParentProps](components_TimeInput_extras.TimeInput.ParentProps.md).[reactiveRules](components_TimeInput_extras.TimeInput.ParentProps.md#reactiverules)
-
-___
-
 ### readonly
 
 • `Optional` **readonly**: `boolean`
@@ -539,18 +512,6 @@ Applies a small standard border-radius for a squared shape of the component
 #### Inherited from
 
 [ParentProps](components_TimeInput_extras.TimeInput.ParentProps.md).[rounded](components_TimeInput_extras.TimeInput.ParentProps.md#rounded)
-
-___
-
-### rules
-
-• `Optional` **rules**: `ValidationRule`<`any`\>[]
-
-Array of Functions/Strings; If String, then it must be a name of one of the embedded validation rules
-
-#### Inherited from
-
-[ParentProps](components_TimeInput_extras.TimeInput.ParentProps.md).[rules](components_TimeInput_extras.TimeInput.ParentProps.md#rules)
 
 ___
 
