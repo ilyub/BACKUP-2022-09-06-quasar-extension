@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Item] */
-
 import {
   directives,
   parentProps,
@@ -46,6 +44,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-item ref="main" class="m-item">
     <q-item-section
       v-if="hasIcon || slotNames.has('icon')"

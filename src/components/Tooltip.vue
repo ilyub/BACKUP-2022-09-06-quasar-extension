@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Tooltip] */
-
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";
 import { parentProps, plugins, validateExpose } from "./api";
@@ -35,6 +33,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-tooltip
     v-if="settings.show && !disabled"
     ref="main"

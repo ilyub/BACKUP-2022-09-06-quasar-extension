@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Toggle] */
-
 import {
   injections,
   parentProps,
@@ -48,6 +46,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-toggle
     ref="main"
     class="m-toggle"

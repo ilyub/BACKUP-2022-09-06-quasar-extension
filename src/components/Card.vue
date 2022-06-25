@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Card] */
-
 import { Card } from "./Card.extras";
 import {
   parentProps,
@@ -49,6 +47,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-card ref="main" class="m-card" :style="{ minWidth: minWidth }">
     <template #default="data">
       <m-card-section

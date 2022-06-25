@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[ExpansionItem] */
-
 import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
 import type { ExpansionItem } from "./ExpansionItem.extras";
@@ -32,6 +30,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-expansion-item
     ref="main"
     :caption="caption"

@@ -12,101 +12,6 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/quasar-extension/disallow-by-regexp": [
-      "warn",
-      {
-        rules: [
-          {
-            contexts: ["code"],
-            patterns: [
-              /<!--\s*(fixme|todo|x{3})\s*-->/u.source,
-              /<[^<>]+>(?![\n\r])\s[^\n\r<>]+<\/[^<>]+>/u.source,
-              /<[^<>]+>[^\n\r<>]+(?![\n\r])\s<\/[^<>]+>/u.source
-            ]
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-btn(?![\w-])/u.source],
-            subOptionsId: "BaseButton"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-card(?![\w-])/u.source],
-            subOptionsId: "Card"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-card-actions(?![\w-])/u.source],
-            subOptionsId: "CardActions"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-card-section(?![\w-])/u.source],
-            subOptionsId: "CardSection"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-expansion-item(?![\w-])/u.source],
-            subOptionsId: "ExpansionItem"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-field(?![\w-])/u.source],
-            subOptionsId: "Field"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-form(?![\w-])/u.source],
-            subOptionsId: "Form"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-input(?![\w-])/u.source],
-            subOptionsId: "Input"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-item(?![\w-])/u.source],
-            subOptionsId: "Item"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-knob(?![\w-])/u.source],
-            subOptionsId: "Knob"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-menu(?![\w-])/u.source],
-            subOptionsId: "Menu"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-option-group(?![\w-])/u.source],
-            subOptionsId: "OptionGroup"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-popup-proxy(?![\w-])/u.source],
-            subOptionsId: "PopupProxy"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-select(?![\w-])/u.source],
-            subOptionsId: "Select"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-toggle(?![\w-])/u.source],
-            subOptionsId: "Toggle"
-          },
-          {
-            contexts: ["code"],
-            patterns: [/<q-tooltip(?![\w-])/u.source],
-            subOptionsId: "Tooltip"
-          }
-        ]
-      }
-    ],
     "@skylib/quasar-extension/no-restricted-syntax": [
       "warn",
       {
@@ -340,6 +245,71 @@ module.exports = {
     ],
     "vue/no-restricted-syntax": [
       "warn",
+      { message: 'Prefer "m-btn" component', selector: "VElement[name=q-btn]" },
+      {
+        message: 'Prefer "m-card" component',
+        selector: "VElement[name=q-card]"
+      },
+      {
+        message: 'Prefer "m-card-actions" component',
+        selector: "VElement[name=q-card-actions]"
+      },
+      {
+        message: 'Prefer "m-card-section" component',
+        selector: "VElement[name=q-card-section]"
+      },
+      {
+        message: 'Prefer "m-expansion-item" component',
+        selector: "VElement[name=q-expansion-item]"
+      },
+      {
+        message: 'Prefer "m-field" component',
+        selector: "VElement[name=q-field]"
+      },
+      {
+        message: 'Prefer "m-form" component',
+        selector: "VElement[name=q-form]"
+      },
+      {
+        message: 'Prefer "m-input" component',
+        selector: "VElement[name=q-input]"
+      },
+      {
+        message: 'Prefer "m-item" component',
+        selector: "VElement[name=q-item]"
+      },
+      {
+        message: 'Prefer "m-knob" component',
+        selector: "VElement[name=q-knob]"
+      },
+      {
+        message: 'Prefer "m-menu" component',
+        selector: "VElement[name=q-menu]"
+      },
+      {
+        message: 'Prefer "m-option-group" component',
+        selector: "VElement[name=q-option-group]"
+      },
+      {
+        message: 'Prefer "m-popup-proxy" component',
+        selector: "VElement[name=q-popup-proxy]"
+      },
+      {
+        message: 'Prefer "m-select" component',
+        selector: "VElement[name=q-select]"
+      },
+      {
+        message: 'Prefer "m-toggle" component',
+        selector: "VElement[name=q-toggle]"
+      },
+      {
+        message: 'Prefer "m-zzzzz" component',
+        selector: "VElement[name=q-zzzzz]"
+      },
+      {
+        message: 'Prefer "m-tooltip" component',
+        selector: "VElement[name=q-tooltip]"
+      },
       {
         message: 'Prefer "label" prop',
         selector:

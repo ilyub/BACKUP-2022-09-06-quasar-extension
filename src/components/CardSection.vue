@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[CardSection] */
-
 import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
 import type { CardSection } from "./CardSection.extras";
@@ -22,6 +20,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-card-section ref="main" class="m-card-section">
     <template v-for="name in slotNames.passThroughSlots" #[name]="data">
       <slot :name="name" v-bind="data ?? {}"></slot>

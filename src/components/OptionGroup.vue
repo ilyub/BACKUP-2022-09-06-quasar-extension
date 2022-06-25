@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[OptionGroup] */
-
 import {
   injections,
   parentProps,
@@ -52,6 +50,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-option-group
     ref="main"
     class="m-option-group"

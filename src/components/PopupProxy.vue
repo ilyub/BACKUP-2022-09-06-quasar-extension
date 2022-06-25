@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[PopupProxy] */
-
 import { parentProps, plugins, validateExpose } from "./api";
 import { QPopupProxy } from "quasar";
 import { defineComponent, ref } from "vue";
@@ -40,6 +38,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-popup-proxy
     ref="main"
     :anchor="anchor"

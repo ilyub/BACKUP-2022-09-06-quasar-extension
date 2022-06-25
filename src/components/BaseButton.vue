@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[BaseButton] */
-
 import { BaseButton } from "./BaseButton.extras";
 import { Form } from "./Form.extras";
 import {
@@ -83,6 +81,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-btn
     ref="main"
     class="m-base-button"

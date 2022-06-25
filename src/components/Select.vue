@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Select] */
-
 import { Select } from "./Select.extras";
 import {
   directives,
@@ -106,6 +104,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-select
     ref="main"
     class="m-select"

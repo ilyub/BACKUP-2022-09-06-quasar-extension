@@ -1,6 +1,4 @@
 <script lang="ts">
-/* skylib/eslint-plugin disable @skylib/quasar-extension/disallow-by-regexp[Menu] */
-
 import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";
 import { parentProps, plugins, propFactory, validateExpose } from "./api";
@@ -45,6 +43,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vue/no-restricted-syntax -->
   <q-menu
     ref="main"
     :anchor="anchor"
