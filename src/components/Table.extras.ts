@@ -116,21 +116,21 @@ export namespace Table {
     readonly deselectAll: () => void;
     readonly deselectAllDisable: boolean;
     readonly deselectAllIcon: string;
-    readonly deselectAllLabel: string;
+    readonly deselectAllLabel: baseLang.Key;
     /**
      * Selects all.
      */
     readonly selectAll: () => void;
     readonly selectAllDisable: boolean;
     readonly selectAllIcon: string;
-    readonly selectAllLabel: string;
+    readonly selectAllLabel: baseLang.Key;
     /**
      * Toggles selection.
      */
     readonly toggleSelection: () => void;
     readonly toggleSelectionDisable: boolean;
     readonly toggleSelectionIcon: string;
-    readonly toggleSelectionLabel: string;
+    readonly toggleSelectionLabel: baseLang.Key;
   }
 
   export interface OwnProps<T extends object = object> {

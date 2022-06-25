@@ -152,7 +152,7 @@ export default defineComponent({
         () => props.rows.length === 0 || allSelected.value === false
       ),
       deselectAllIcon: computed(() => icons.deselectAll),
-      deselectAllLabel: computed(() => lang.DeselectAll),
+      deselectAllLabel: computed(() => lang.keys.DeselectAll),
       empty: computed(() => props.rows.length === 0),
       flat: computed(() =>
         override(settings.value.flat, props.flatOn, props.flatOff)
@@ -198,7 +198,7 @@ export default defineComponent({
         () => props.rows.length === 0 || allSelected.value === true
       ),
       selectAllIcon: computed(() => icons.selectAll),
-      selectAllLabel: computed(() => lang.SelectAll),
+      selectAllLabel: computed(() => lang.keys.SelectAll),
       selection: computed(() => {
         if (props.selectByCheckbox || props.selectByRowClick)
           return props.multiSelect ? "multiple" : "single";
@@ -248,7 +248,9 @@ export default defineComponent({
         allSelected.value === false ? icons.selectAll : icons.deselectAll
       ),
       toggleSelectionLabel: computed(() =>
-        allSelected.value === false ? lang.SelectAll : lang.DeselectAll
+        allSelected.value === false
+          ? lang.keys.SelectAll
+          : lang.keys.DeselectAll
       ),
       updateColumnsOrder: (columns: Table.Columns): void => {
         emit(

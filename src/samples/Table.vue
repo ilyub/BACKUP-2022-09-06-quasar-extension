@@ -191,7 +191,8 @@ export default defineComponent({
             #steady-bottom="{
               allSelected,
               toggleSelection,
-              toggleSelectionDisable
+              toggleSelectionDisable,
+              toggleSelectionLabel
             }"
           >
             <template v-if="multiSelect">
@@ -199,7 +200,11 @@ export default defineComponent({
                 :disable="toggleSelectionDisable"
                 :model-value="allSelected"
                 @update:model-value="toggleSelection"
-              />
+              >
+                <m-tooltip direction="up">
+                  {{ lang.get(toggleSelectionLabel) }}
+                </m-tooltip>
+              </q-checkbox>
               {{ selected.length }} {{ lang.selected }}
             </template>
             <q-space />
