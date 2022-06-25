@@ -62,7 +62,6 @@ export default defineComponent({
     const ids = computed(
       () =>
         new Set(
-          // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
           props.modelValue.map(item => o.get(item, props.itemKey, is.string))
         )
     );

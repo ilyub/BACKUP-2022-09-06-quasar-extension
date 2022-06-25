@@ -48,7 +48,6 @@ export function buildElements(
   key: string
 ): Writable<Elements> {
   return items.map(item => {
-    // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
     const id = o.get(item, key, is.string);
 
     return {

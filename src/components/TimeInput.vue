@@ -52,7 +52,6 @@ export default defineComponent({
         event: Event,
         emitValue: Parameters<TimeInput.Slots["control"]>[0]["emitValue"]
       ): void => {
-        // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
         const value = cast.stringU(o.get(as.not.empty(event.target), "value"));
 
         emitValue(parse(value));

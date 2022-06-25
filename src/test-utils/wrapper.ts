@@ -27,6 +27,6 @@ export function findQuasarComponent<T>(
 export function setData(wrapper: Wrapper, key: string, value: unknown): void {
   // eslint-disable-next-line no-warning-comments -- Wait for @skylib/functions update
   // fixme - Use o.set
-  // eslint-disable-next-line @skylib/functions/no-restricted-syntax, @typescript-eslint/no-unsafe-argument -- Ok
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- Ok
   reflect.set(wrapper.vm, key, value);
 }

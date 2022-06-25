@@ -72,7 +72,6 @@ export default defineComponent({
         event: Event,
         emitValue: Parameters<Field.Slots["control"]>[0]["emitValue"]
       ): void => {
-        // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
