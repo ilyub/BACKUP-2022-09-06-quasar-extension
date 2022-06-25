@@ -7,6 +7,9 @@ import type {
   InjectableTrigger,
   ParentProps,
   Prop,
+  PropBooleanKeys,
+  PropOptionalKeys,
+  PropRequiredKeys,
   SetupEmit,
   SetupExpose,
   SetupExposed,
@@ -20,13 +23,9 @@ import type {
 } from "./types";
 import type {
   IndexedObject,
-  PickKeys,
   UppercaseLetter,
-  booleanU,
   unknowns
 } from "@skylib/functions";
-import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
-import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
 
 export const prop = defineFn(
@@ -205,23 +204,20 @@ export function parentProps<T extends object>(): ParentProps<T> {
  */
 export function propFactory<T extends object>(): Prop<T> {
   return defineFn(
-    () => {
+    <K extends PropOptionalKeys<T>>(_key: K) => {
       return {};
     },
     {
-      boolean: <_K extends PickKeys<T, booleanU, "extends->">>(
-        defVal = false
-      ) => {
+      boolean: <K extends PropBooleanKeys<T>>(_key: K, defVal = false) => {
         return { default: defVal, type: Boolean };
       },
-      default: <
-        K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
-      >(
+      default: <K extends PropOptionalKeys<T>>(
+        _key: K,
         defVal: Exclude<T[K], undefined>
       ) => {
         return { default: defVal };
       },
-      required: () => {
+      required: <K extends PropRequiredKeys<T>>(_key: K) => {
         return { required: true };
       }
     }

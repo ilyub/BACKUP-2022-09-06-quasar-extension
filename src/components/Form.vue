@@ -23,8 +23,8 @@ export default defineComponent({
   name: "m-form",
   props: {
     ...parentProps<Form.ParentProps>(),
-    asyncTaskType: prop<"asyncTaskType">(),
-    onAsyncSubmit: prop<"onAsyncSubmit">()
+    asyncTaskType: prop("asyncTaskType"),
+    onAsyncSubmit: prop("onAsyncSubmit")
   },
   emits: { submit: (event: Event) => skipCheck(event) },
   setup: (props, { emit, expose }) => {

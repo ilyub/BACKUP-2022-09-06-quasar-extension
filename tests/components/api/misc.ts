@@ -38,7 +38,6 @@ test("injectRequire", async () => {
 
 test("prop", () => {
   expect(prop<unknown>()).toStrictEqual({});
-  // eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
   expect(prop.boolean()).toStrictEqual({ default: false, type: Boolean });
   expect(prop.default<unknown>(1)).toStrictEqual({ default: 1 });
   expect(prop.required<unknown>()).toStrictEqual({ required: true });

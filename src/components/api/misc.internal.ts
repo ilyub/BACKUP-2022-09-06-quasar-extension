@@ -97,40 +97,62 @@ export interface Prop<T extends object> {
   /**
    * Creates Vue property.
    *
+   * @param key - Key.
    * @returns Vue property.
    */
-  <
-    K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
-  >(): PropOptions<T[K]>;
+  <K extends PropOptionalKeys<T>>(key: K): PropOptions<T[K]>;
   /**
    * Creates Vue property.
    *
+   * @param key - Key.
    * @param defVal - Default value.
    * @returns Vue property.
    */
-  readonly boolean: <_K extends PickKeys<T, booleanU, "extends->">>(
+  readonly boolean: <K extends PropBooleanKeys<T>>(
+    key: K,
     defVal?: boolean
   ) => PropOptionsBoolean;
   /**
    * Creates Vue property.
    *
+   * @param key - Key.
    * @param defVal - Default value.
    * @returns Vue property.
    */
-  readonly default: <
-    K extends FilterKeys<T, booleanU, "extends->"> & OptionalKeys<T>
-  >(
+  readonly default: <K extends PropOptionalKeys<T>>(
+    key: K,
     defVal: Exclude<T[K], undefined>
   ) => PropOptionsDefault<Exclude<T[K], undefined>>;
   /**
    * Creates Vue property.
    *
+   * @param key - Key.
    * @returns Vue property.
    */
-  readonly required: <
-    K extends FilterKeys<T, booleanU, "extends->"> & RequiredKeys<T>
-  >() => PropOptionsRequired<T[K]>;
+  readonly required: <K extends PropRequiredKeys<T>>(
+    key: K
+  ) => PropOptionsRequired<T[K]>;
 }
+
+export type PropBooleanKeys<T extends object> = PickKeys<
+  T,
+  booleanU,
+  "extends->"
+>;
+
+export type PropOptionalKeys<T extends object> = FilterKeys<
+  T,
+  booleanU,
+  "extends->"
+> &
+  OptionalKeys<T>;
+
+export type PropRequiredKeys<T extends object> = FilterKeys<
+  T,
+  booleanU,
+  "extends->"
+> &
+  RequiredKeys<T>;
 
 export type SetupEmit<T> = ValueOf<{
   [K in keyof T]: SetupEmitAux<K, Exclude<T[K], undefined>>;

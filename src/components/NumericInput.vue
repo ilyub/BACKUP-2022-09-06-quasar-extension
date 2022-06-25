@@ -25,13 +25,13 @@ export default defineComponent({
   directives: { debugId: directives.debugId("numeric-input"), maska },
   props: {
     ...parentProps<NumericInput.ParentProps>(),
-    bigStep: prop.default<"bigStep">(1),
-    max: prop.default<"max">(Number.MAX_VALUE),
-    min: prop.default<"min">(0),
-    modelValue: prop<"modelValue">(),
-    required: prop.boolean<"required">(),
-    smallStep: prop.default<"smallStep">(1),
-    validationOptions: prop<"validationOptions">()
+    bigStep: prop.default("bigStep", 1),
+    max: prop.default("max", Number.MAX_VALUE),
+    min: prop.default("min", 0),
+    modelValue: prop("modelValue"),
+    required: prop.boolean("required"),
+    smallStep: prop.default("smallStep", 1),
+    validationOptions: prop("validationOptions")
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

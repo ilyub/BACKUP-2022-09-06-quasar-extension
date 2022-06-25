@@ -17,8 +17,8 @@ export default defineComponent({
   directives: { debugId: directives.debugId("page-layout") },
   props: {
     ...plugins.langProps.props("title"),
-    closeButtonOff: prop.boolean<"closeButtonOff">(),
-    closeButtonOn: prop.boolean<"closeButtonOn">()
+    closeButtonOff: prop.boolean("closeButtonOff"),
+    closeButtonOn: prop.boolean("closeButtonOn")
   },
   setup: props => {
     const settings = PageLayout.injectSettings();

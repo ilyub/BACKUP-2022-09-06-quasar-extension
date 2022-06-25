@@ -24,10 +24,10 @@ export default defineComponent({
     ...plugins.asyncClick.props,
     ...plugins.confirmedClick.props,
     ...plugins.langProps.props("label", "tooltip"),
-    disable: prop.boolean<"disable">(),
-    loading: prop.boolean<"loading">(),
-    tooltipDirection: prop<"tooltipDirection">(),
-    type: prop<"type">()
+    disable: prop.boolean("disable"),
+    loading: prop.boolean("loading"),
+    tooltipDirection: prop("tooltipDirection"),
+    type: prop("type")
   },
   setup: (props, { expose }) => {
     const { label, tooltip } = plugins.langProps(props, "label", "tooltip");

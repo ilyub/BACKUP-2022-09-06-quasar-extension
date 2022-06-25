@@ -25,9 +25,9 @@ export default defineComponent({
   directives: { debugId: directives.debugId("datetime-picker") },
   props: {
     ...parentProps<DatetimePicker.ParentProps>(),
-    max: prop<"max">(),
-    min: prop<"min">(),
-    modelValue: prop<"modelValue">()
+    max: prop("max"),
+    min: prop("min"),
+    modelValue: prop("modelValue")
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

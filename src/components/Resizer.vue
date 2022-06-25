@@ -32,9 +32,9 @@ interface ResizerEvent {
 export default defineComponent({
   name: "m-resizer",
   props: {
-    max: prop<"max">(),
-    min: prop.default<"min">(0),
-    modelValue: prop<"modelValue">()
+    max: prop("max"),
+    min: prop.default("min", 0),
+    modelValue: prop("modelValue")
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit }) => {

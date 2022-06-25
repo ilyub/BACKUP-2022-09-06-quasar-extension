@@ -21,9 +21,9 @@ export default defineComponent({
   name: "m-knob",
   props: {
     ...parentProps<Knob.ParentProps>(),
-    disable: prop.boolean<"disable">(),
-    inline: prop.boolean<"inline">(),
-    modelValue: prop.required<"modelValue">()
+    disable: prop.boolean("disable"),
+    inline: prop.boolean("inline"),
+    modelValue: prop.required("modelValue")
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

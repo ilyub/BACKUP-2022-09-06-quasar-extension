@@ -24,12 +24,12 @@ export default defineComponent({
     ...parentProps<Field.ParentProps>(),
     ...plugins.langProps.props("label", "placeholder"),
     ...plugins.validation.props,
-    disable: prop.boolean<"disable">(),
-    focusableElement: prop<"focusableElement">(),
-    format: prop.default<"format">(fn.identity),
-    modelValue: prop.required<"modelValue">(),
-    required: prop.boolean<"required">(),
-    validationOptions: prop<"validationOptions">()
+    disable: prop.boolean("disable"),
+    focusableElement: prop("focusableElement"),
+    format: prop.default("format", fn.identity),
+    modelValue: prop.required("modelValue"),
+    required: prop.boolean("required"),
+    validationOptions: prop("validationOptions")
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

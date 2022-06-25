@@ -199,9 +199,9 @@ export const validation = defineFn(
       const prop = propFactory<validation.OwnProps>();
 
       return {
-        rulesOnChange: prop<"rulesOnChange">(),
-        rulesOnInput: prop<"rulesOnInput">(),
-        rulesOnSubmit: prop<"rulesOnSubmit">()
+        rulesOnChange: prop("rulesOnChange"),
+        rulesOnInput: prop("rulesOnInput"),
+        rulesOnSubmit: prop("rulesOnSubmit")
       } as const;
     }),
     reset: injectableTrigger()

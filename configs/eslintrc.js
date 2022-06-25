@@ -160,12 +160,15 @@ module.exports = {
           {
             message: "Missing type parameter",
             selector:
-              "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:prop|validateEmit|validateExpose|validateProps)$/u]"
+              "CallExpression[typeParameters=undefined] > Identifier.callee[name=/^(?:validateEmit|validateExpose|validateProps)$/u]"
           },
           {
             message: "Missing type parameter",
-            selector:
-              "CallExpression[typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=/^(?:boolean|default|required)$/u]"
+            selector: [
+              "CallExpression[arguments.length=0][typeParameters=undefined] > Identifier.callee[name=prop]",
+              "CallExpression[arguments.length=1][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=default]",
+              "CallExpression[arguments.length=0][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=required]"
+            ]
           },
           {
             message: "Missing type parameter",

@@ -168,7 +168,7 @@ export const direction = defineFn(
       const prop = propFactory<direction.OwnProps>();
 
       return {
-        direction: prop<"direction">()
+        direction: prop("direction")
       } as const;
     })
   }

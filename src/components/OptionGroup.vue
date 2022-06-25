@@ -22,10 +22,10 @@ export default defineComponent({
   name: "m-option-group",
   props: {
     ...parentProps<OptionGroup.ParentProps>(),
-    disable: prop.boolean<"disable">(),
-    inline: prop.boolean<"inline">(),
-    modelValue: prop<"modelValue">(),
-    options: prop.required<"options">()
+    disable: prop.boolean("disable"),
+    inline: prop.boolean("inline"),
+    modelValue: prop("modelValue"),
+    options: prop.required("options")
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

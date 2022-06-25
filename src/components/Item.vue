@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     ...parentProps<Item.ParentProps>(),
     ...plugins.langProps.props("caption"),
-    icon: prop<"icon">()
+    icon: prop("icon")
   },
   setup: (props, { expose }) => {
     const { caption } = plugins.langProps(props, "caption");

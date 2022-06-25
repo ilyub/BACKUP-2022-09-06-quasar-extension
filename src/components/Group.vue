@@ -16,9 +16,9 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...plugins.langProps.props("notFoundLabel"),
-    items: prop.required<"items">(),
-    rootElement: prop<"rootElement">(),
-    searchString: prop<"searchString">()
+    items: prop.required("items"),
+    rootElement: prop("rootElement"),
+    searchString: prop("searchString")
   },
   setup: props => {
     const filteredItems = computed(() => {

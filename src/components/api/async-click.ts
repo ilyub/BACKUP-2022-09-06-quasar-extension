@@ -37,7 +37,7 @@ export const asyncClick = defineFn(
       const prop = propFactory<asyncClick.OwnProps>();
 
       return {
-        asyncClick: prop<"asyncClick">()
+        asyncClick: prop("asyncClick")
       } as const;
     })
   }

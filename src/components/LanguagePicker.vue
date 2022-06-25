@@ -19,7 +19,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("language-picker") },
   props: {
     ...parentProps<LanguagePicker.ParentProps>(),
-    language: prop.required<"language">()
+    language: prop.required("language")
   },
   setup: (props, { expose }) => {
     const main = ref<IconButton.Global>();

@@ -15,7 +15,7 @@ export default defineComponent({
   props: {
     ...parentProps<Menu.ParentProps>(),
     ...plugins.direction.props,
-    autoClose: prop.boolean<"autoClose">()
+    autoClose: prop.boolean("autoClose")
   },
   setup: (props, { expose }) => {
     const direction = plugins.direction(props);

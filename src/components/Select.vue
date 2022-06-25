@@ -26,11 +26,11 @@ export default defineComponent({
     ...parentProps<Select.ParentProps>(),
     ...plugins.langProps.props("initialLabel", "label"),
     ...plugins.validation.props,
-    disable: prop.boolean<"disable">(),
-    modelValue: prop<"modelValue">(),
-    options: prop.required<"options">(),
-    required: prop.boolean<"required">(),
-    validationLabel: prop<"validationLabel">()
+    disable: prop.boolean("disable"),
+    modelValue: prop("modelValue"),
+    options: prop.required("options"),
+    required: prop.boolean("required"),
+    validationLabel: prop("validationLabel")
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

@@ -25,8 +25,8 @@ export default defineComponent({
   components: { "m-field__string": genericField<stringU>() },
   props: {
     ...parentProps<Input.ParentProps>(),
-    mask: prop<"mask">(),
-    modelValue: prop<"modelValue">()
+    mask: prop("mask"),
+    modelValue: prop("modelValue")
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {

@@ -26,15 +26,15 @@ export default defineComponent({
     >
   },
   props: {
-    group: prop.required<"group">(),
-    itemClass: prop<"itemClass">(),
-    itemKey: prop.required<"itemKey">(),
-    itemTag: prop.default<"itemTag">("div"),
-    modelValue: prop.required<"modelValue">(),
-    move: prop<"move">(),
-    pull: prop.boolean<"pull">(),
-    put: prop.boolean<"put">(),
-    sort: prop.boolean<"sort">()
+    group: prop.required("group"),
+    itemClass: prop("itemClass"),
+    itemKey: prop.required("itemKey"),
+    itemTag: prop.default("itemTag", "div"),
+    modelValue: prop.required("modelValue"),
+    move: prop("move"),
+    pull: prop.boolean("pull"),
+    put: prop.boolean("put"),
+    sort: prop.boolean("sort")
   },
   emits: {
     "dropped": (item: object, group: string) => skipCheck(item, group),

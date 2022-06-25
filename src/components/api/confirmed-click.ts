@@ -42,8 +42,8 @@ export const confirmedClick = defineFn(
       const prop = propFactory<confirmedClick.OwnProps>();
 
       return {
-        confirmation: prop<"confirmation">(),
-        confirmedClick: prop<"confirmedClick">()
+        confirmation: prop("confirmation"),
+        confirmedClick: prop("confirmedClick")
       } as const;
     })
   }

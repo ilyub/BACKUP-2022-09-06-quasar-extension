@@ -20,8 +20,8 @@ export default defineComponent({
   props: {
     ...parentProps<Card.ParentProps>(),
     ...plugins.langProps.props("title"),
-    minWidth: prop<"minWidth">(),
-    transparentHeader: prop.boolean<"transparentHeader">()
+    minWidth: prop("minWidth"),
+    transparentHeader: prop.boolean("transparentHeader")
   },
   setup: (props, { expose }) => {
     const main = ref<QCard>();

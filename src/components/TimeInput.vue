@@ -23,7 +23,7 @@ export default defineComponent({
   directives: { debugId: directives.debugId("time-input"), maska },
   props: {
     ...parentProps<TimeInput.ParentProps>(),
-    modelValue: prop<"modelValue">()
+    modelValue: prop("modelValue")
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
