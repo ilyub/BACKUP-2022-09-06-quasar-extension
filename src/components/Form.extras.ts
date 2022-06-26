@@ -38,9 +38,8 @@ export namespace Form {
   }
 
   export interface OwnProps {
+    readonly asyncSubmit?: AsyncSubmit | undefined;
     readonly asyncTaskType?: handlePromise.Type | undefined;
-    // eslint-disable-next-line @skylib/optional-property-style -- Ok
-    readonly onAsyncSubmit?: AsyncSubmit | undefined;
     /**
      * Form submission event.
      *

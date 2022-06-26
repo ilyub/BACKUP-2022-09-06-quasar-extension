@@ -21,8 +21,8 @@ export default defineComponent({
   name: "m-form",
   props: {
     ...parentProps<Form.ParentProps>(),
-    asyncTaskType: prop("asyncTaskType"),
-    onAsyncSubmit: prop("onAsyncSubmit")
+    asyncSubmit: prop("asyncSubmit"),
+    asyncTaskType: prop("asyncTaskType")
   },
   emits: { submit: (event: Event) => skipCheck(event) },
   setup: (props, { emit, expose }) => {
@@ -46,7 +46,7 @@ export default defineComponent({
 
     validateEmit<Form.OwnProps>(emit);
     validateExpose<Form.Global>(expose, exposed);
-    validateProps<Form.OwnProps, "onAsyncSubmit">(props);
+    validateProps<Form.OwnProps>(props);
     Form.provideForm({ submitting: computed(() => submitting.value > 0) });
     injections.disable.provide(
       computed(() => globalDisable.value || disable.value > 0)
@@ -64,11 +64,11 @@ export default defineComponent({
           try {
             emit("submit", event);
 
-            if (props.onAsyncSubmit) {
+            if (props.asyncSubmit) {
               disable.value++;
 
               try {
-                await props.onAsyncSubmit(event);
+                await props.asyncSubmit(event);
               } finally {
                 disable.value--;
               }

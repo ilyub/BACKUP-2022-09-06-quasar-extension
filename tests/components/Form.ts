@@ -53,7 +53,7 @@ test("expose: resetValidation", () => {
 });
 
 test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
-  "prop: onAsyncSubmit",
+  "prop: asyncSubmit",
   async asyncTaskType => {
     expect.hasAssertions();
 
@@ -63,11 +63,11 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
       const wrapper = vueTestUtils.mount(components.Form, {
         global: testUtils.globalMountOptions(),
         props: {
-          asyncTaskType,
-          onAsyncSubmit: async (...args: unknowns): Promise<void> => {
+          asyncSubmit: async (...args: unknowns): Promise<void> => {
             await wait(1000);
             callback(...args);
-          }
+          },
+          asyncTaskType
         }
       });
 
@@ -81,7 +81,7 @@ test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
   }
 );
 
-test("prop: onAsyncSubmit", async () => {
+test("prop: asyncSubmit", async () => {
   expect.hasAssertions();
 
   await functionsTestUtils.run(async () => {
@@ -92,7 +92,7 @@ test("prop: onAsyncSubmit", async () => {
     const wrapper = vueTestUtils.mount(components.Form, {
       global: testUtils.globalMountOptions(),
       props: {
-        onAsyncSubmit: async (): Promise<void> => {
+        asyncSubmit: async (): Promise<void> => {
           await wait(2000);
         }
       },

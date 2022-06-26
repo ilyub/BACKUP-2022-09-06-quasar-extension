@@ -93,9 +93,9 @@ export default defineComponent({
   </m-page-section>
   <m-page-section>
     <m-form
+      :async-submit="asyncSubmit"
       async-task-type="httpRequest"
       :class="$style.form"
-      @async-submit="asyncSubmit"
     >
       <m-form-section>
         <m-input v-model="name" :label="lk.Name" />
