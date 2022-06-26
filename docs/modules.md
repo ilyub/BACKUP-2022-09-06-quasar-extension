@@ -6,6 +6,7 @@
 
 ### Modules
 
+- [App.extras](modules/App_extras.md)
 - [application](modules/application.md)
 - [application/icons](modules/application_icons.md)
 - [application/lang](modules/application_lang.md)
@@ -90,7 +91,7 @@
 - [components/index.components](modules/components_index_components.md)
 - [components/index.extras](modules/components_index_extras.md)
 - [components/index.generic](modules/components_index_generic.md)
-- [components/index.test](modules/components_index_test.md)
+- [components/index.test-components](modules/components_index_test_components.md)
 - [dev/env](modules/dev_env.md)
 - [dev/svg](modules/dev_svg.md)
 - [dev/vue](modules/dev_vue.md)
@@ -142,7 +143,6 @@
 - [samples/Tooltip.extras](modules/samples_Tooltip_extras.md)
 - [samples/core](modules/samples_core.md)
 - [samples/core/index.plugins](modules/samples_core_index_plugins.md)
-- [samples/core/lang](modules/samples_core_lang.md)
 - [samples/core/settings](modules/samples_core_settings.md)
 - [samples/core/types](modules/samples_core_types.md)
 - [samples/index.components](modules/samples_index_components.md)
@@ -155,4 +155,3 @@
 - [test-utils/mocks](modules/test_utils_mocks.md)
 - [test-utils/mocks/touch-pan](modules/test_utils_mocks_touch_pan.md)
 - [test-utils/wrapper](modules/test_utils_wrapper.md)
-- [test-utils/wrapper.internal](modules/test_utils_wrapper_internal.md)

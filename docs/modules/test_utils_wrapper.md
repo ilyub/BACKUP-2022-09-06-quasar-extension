@@ -27,7 +27,7 @@ Finds quasar component.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `wrapper` | [`Wrapper`](test_utils_wrapper_internal.md#wrapper) | Wrapper. |
+| `wrapper` | [`Wrapper`](test_utils_core.md#wrapper) | Wrapper. |
 | `ctor` | `ComponentConstructor`<`T`, `any`, `any`, `any`, `ComputedOptions`, `MethodOptions`\> | Component constructor. |
 
 #### Returns
@@ -48,7 +48,7 @@ Sets data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `wrapper` | [`Wrapper`](test_utils_wrapper_internal.md#wrapper) | Wrapper. |
+| `wrapper` | [`Wrapper`](test_utils_core.md#wrapper) | Wrapper. |
 | `key` | `string` | Key. |
 | `value` | `unknown` | Value. |
 

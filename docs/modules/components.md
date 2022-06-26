@@ -142,7 +142,7 @@ ___
 
 ### testComponents
 
-Renames and re-exports [components/index.test](components_index_test.md)
+Renames and re-exports [components/index.test-components](components_index_test_components.md)
 
 ___
 

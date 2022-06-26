@@ -12,6 +12,7 @@
 ### Type Aliases
 
 - [DOMWrappers](test_utils_core.md#domwrappers)
+- [Wrapper](test_utils_core.md#wrapper)
 - [WrapperLikes](test_utils_core.md#wrapperlikes)
 
 ## Type Aliases
@@ -19,6 +20,12 @@
 ### DOMWrappers
 
 Ƭ **DOMWrappers**: readonly [`DOMWrapper`](../interfaces/test_utils_core.DOMWrapper.md)[]
+
+___
+
+### Wrapper
+
+Ƭ **Wrapper**: `testUtils.VueWrapper`<`any`\>
 
 ___
 

@@ -42,7 +42,7 @@
 
 ### allSelected
 
-• `Readonly` **allSelected**: `booleanU`
+• `Optional` `Readonly` **allSelected**: `boolean`
 
 #### Inherited from
 

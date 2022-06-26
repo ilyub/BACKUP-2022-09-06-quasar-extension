@@ -31,7 +31,7 @@ ___
 
 ### placeholder
 
-• `Readonly` **placeholder**: `stringU`
+• `Optional` `Readonly` **placeholder**: `string`
 
 ## Methods
 

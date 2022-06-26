@@ -8,7 +8,6 @@
 
 - [DefineComponent](samples_core.md#definecomponent)
 - [DefineComponents](samples_core.md#definecomponents)
-- [lang](samples_core.md#lang)
 - [settings](samples_core.md#settings)
 
 ## References
@@ -22,12 +21,6 @@ ___
 ### DefineComponents
 
 Re-exports [DefineComponents](samples_core_types.md#definecomponents)
-
-___
-
-### lang
-
-Re-exports [lang](samples_core_lang.md#lang)
 
 ___
 

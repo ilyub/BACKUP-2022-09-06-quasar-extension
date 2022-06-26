@@ -16,12 +16,12 @@
 
 ### Properties
 
+- [asyncSubmit](components_Form_extras.Form.Props.md#asyncsubmit)
 - [asyncTaskType](components_Form_extras.Form.Props.md#asynctasktype)
 - [autofocus](components_Form_extras.Form.Props.md#autofocus)
 - [greedy](components_Form_extras.Form.Props.md#greedy)
 - [noErrorFocus](components_Form_extras.Form.Props.md#noerrorfocus)
 - [noResetFocus](components_Form_extras.Form.Props.md#noresetfocus)
-- [onAsyncSubmit](components_Form_extras.Form.Props.md#onasyncsubmit)
 
 ### Methods
 
@@ -31,6 +31,16 @@
 - [onValidationSuccess](components_Form_extras.Form.Props.md#onvalidationsuccess)
 
 ## Properties
+
+### asyncSubmit
+
+• `Optional` `Readonly` **asyncSubmit**: [`AsyncSubmit`](components_Form_extras.Form.AsyncSubmit.md)
+
+#### Inherited from
+
+[OwnProps](components_Form_extras.Form.OwnProps.md).[asyncSubmit](components_Form_extras.Form.OwnProps.md#asyncsubmit)
+
+___
 
 ### asyncTaskType
 
@@ -87,16 +97,6 @@ Do not try to focus on first component when resetting form
 #### Inherited from
 
 [ParentProps](components_Form_extras.Form.ParentProps.md).[noResetFocus](components_Form_extras.Form.ParentProps.md#noresetfocus)
-
-___
-
-### onAsyncSubmit
-
-• `Optional` `Readonly` **onAsyncSubmit**: [`AsyncSubmit`](components_Form_extras.Form.AsyncSubmit.md)
-
-#### Inherited from
-
-[OwnProps](components_Form_extras.Form.OwnProps.md).[onAsyncSubmit](components_Form_extras.Form.OwnProps.md#onasyncsubmit)
 
 ## Methods
 

@@ -25,7 +25,7 @@ Find factory.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `prefix` | `string` | Prefix. |
-| `wrapper` | `VueWrapper`<`any`\> | Wrapper. |
+| `wrapper` | [`Wrapper`](test_utils_core.md#wrapper) | Wrapper. |
 
 #### Returns
 

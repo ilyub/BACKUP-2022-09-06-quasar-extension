@@ -14,8 +14,8 @@
 
 ### Properties
 
+- [asyncSubmit](components_Form_extras.Form.OwnProps.md#asyncsubmit)
 - [asyncTaskType](components_Form_extras.Form.OwnProps.md#asynctasktype)
-- [onAsyncSubmit](components_Form_extras.Form.OwnProps.md#onasyncsubmit)
 
 ### Methods
 
@@ -23,15 +23,15 @@
 
 ## Properties
 
-### asyncTaskType
+### asyncSubmit
 
-• `Optional` `Readonly` **asyncTaskType**: `Type`
+• `Optional` `Readonly` **asyncSubmit**: [`AsyncSubmit`](components_Form_extras.Form.AsyncSubmit.md)
 
 ___
 
-### onAsyncSubmit
+### asyncTaskType
 
-• `Optional` `Readonly` **onAsyncSubmit**: [`AsyncSubmit`](components_Form_extras.Form.AsyncSubmit.md)
+• `Optional` `Readonly` **asyncTaskType**: `Type`
 
 ## Methods
 

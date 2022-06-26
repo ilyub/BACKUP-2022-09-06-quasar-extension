@@ -569,7 +569,7 @@ tty.WriteStream.writableObjectMode
 
 #### Inherited from
 
-tty.WriteStream.\_\_@asyncIterator@20386
+tty.WriteStream.\_\_@asyncIterator@20352
 
 ___
 
