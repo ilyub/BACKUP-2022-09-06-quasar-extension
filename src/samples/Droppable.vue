@@ -1,7 +1,7 @@
 <script lang="ts">
 import { extras, generic } from "..";
 import { Droppable } from "./Droppable.extras";
-import { json } from "@skylib/functions";
+import { dump } from "@skylib/facades";
 import { useQuasar } from "quasar";
 import { computed, defineComponent, ref } from "vue";
 
@@ -37,9 +37,7 @@ export default defineComponent({
       disableDropping,
       disableSorting,
       dropped: (item: Item, group: string): void => {
-        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-        // fixme - Use dumper
-        $q.notify(json.encode({ group, item }));
+        $q.notify(dump({ group, item }));
       },
       lang: Droppable.lang,
       lk: Droppable.lang.keys,

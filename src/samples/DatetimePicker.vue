@@ -1,7 +1,7 @@
 <script lang="ts">
 import { DatetimePicker } from "./DatetimePicker.extras";
-import { datetime } from "@skylib/facades";
-import { as, is, json, typedef } from "@skylib/functions";
+import { datetime, dump } from "@skylib/facades";
+import { as, is, typedef } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
@@ -59,9 +59,7 @@ export default defineComponent({
       ]),
       submit: () => {
         $q.notify(
-          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-          // fixme - Use dumper
-          json.encode([value1.value, value2.value, value3.value, value4.value])
+          dump([value1.value, value2.value, value3.value, value4.value])
         );
       },
       value1,

@@ -21,9 +21,9 @@ export const confirmedClick = defineFn(
   (props: confirmedClick.Props): confirmedClick.Plugin => {
     const $q = useQuasar();
 
-    // eslint-disable-next-line no-warning-comments -- Postponed
-    // fixme -- Without defineFn triggers eslint-plugin-jsdoc warnings
-    return defineFn((): void => {
+    return plugin;
+
+    function plugin(): void {
       if (is.not.empty(props.confirmation))
         $q.dialog({
           cancel: confirmedClick.lang.Cancel,
@@ -34,7 +34,7 @@ export const confirmedClick = defineFn(
         }).onOk(() => {
           props.confirmedClick?.();
         });
-    }, {});
+    }
   },
   {
     lang: typedef<baseLang.Lang<keyof confirmedClick.Word, never>>(baseLang),

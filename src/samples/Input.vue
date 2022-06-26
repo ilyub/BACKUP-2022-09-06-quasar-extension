@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Input } from "./Input.extras";
-import { as, is, json, typedef } from "@skylib/functions";
+import { dump } from "@skylib/facades";
+import { as, is, typedef } from "@skylib/functions";
 import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
@@ -46,9 +47,7 @@ export default defineComponent({
       ]),
       submit: () => {
         $q.notify(
-          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-          // fixme - Use dumper
-          json.encode([
+          dump([
             value1.value,
             value2.value,
             value3.value,

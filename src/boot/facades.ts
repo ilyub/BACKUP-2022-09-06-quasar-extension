@@ -3,6 +3,7 @@ import * as app from "../application";
 import {
   compare,
   datetime,
+  dump,
   handlePromise,
   icons,
   inlineSearch,
@@ -19,6 +20,8 @@ export default boot(() => {
 
   const { dateFnsWrapper } = frameworkImplementations.datetime;
 
+  const { stringifyObjectWrapper } = frameworkImplementations.dump;
+
   const { promiseHandler } = frameworkImplementations.handlePromise;
 
   const { lunrWrapper } = frameworkImplementations.inlineSearch;
@@ -33,6 +36,7 @@ export default boot(() => {
 
   compare.setImplementation(naturalCompareWrapper);
   datetime.setImplementation(dateFnsWrapper);
+  dump.setImplementation(stringifyObjectWrapper);
   handlePromise.setImplementation(promiseHandler);
   icons.setImplementation(app.icons);
   inlineSearch.setImplementation(lunrWrapper);
@@ -40,8 +44,5 @@ export default boot(() => {
   progressReporter.setImplementation(progressBar);
   reactiveStorage.setImplementation(vueStorage);
   testDelay.setImplementation(configurableTestDelay);
-  // eslint-disable-next-line no-warning-comments -- Wait for @skylib/framework update
-  // fixme
-  progressBar.configure({ enabled: true, finalEasing: true });
   configurableTestDelay.configure({ enabled: true, timeout: 1000 });
 });

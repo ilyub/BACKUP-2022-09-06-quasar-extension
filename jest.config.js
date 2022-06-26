@@ -19,10 +19,5 @@ module.exports = {
   },
   preset: "@skylib/config/src",
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
-  testEnvironment: "@skylib/config/src/jest-env-jsdom",
-  // eslint-disable-next-line no-warning-comments -- Wait for @skylib/config update
-  // fixme
-  transformIgnorePatterns: [
-    "node_modules/(?!@skylib/quasar-extension|is-obj|is-regexp|quasar|stringify-object)"
-  ]
+  testEnvironment: "@skylib/config/src/jest-env-jsdom"
 };

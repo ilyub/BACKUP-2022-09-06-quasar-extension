@@ -1,7 +1,6 @@
 <script lang="ts">
+import { App } from "./App.extras";
 import { components, settings } from "./samples";
-// eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
-import { lang } from "@skylib/facades";
 import * as _ from "@skylib/lodash-commonjs-es";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
@@ -17,8 +16,8 @@ export default defineComponent({
     provide();
 
     return {
-      caption: (name: string): lang.Key =>
-        lang.plain(_.startCase(name).replace(/^Sample /u, "")),
+      caption: (name: string) =>
+        App.lang.plain(_.startCase(name).replace(/^Sample /u, "")),
       components,
       language
     };

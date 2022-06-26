@@ -4,11 +4,19 @@ const ignoreTypes = [
   ...eslint.skylib.readonliness.ignoreTypes,
   "^ComponentOptionsBase$",
   "^ComputedRef$",
+  "^InjectionKey$",
   "^VueWrapper$"
 ];
 
 module.exports = {
   overrides: [
+    {
+      files: "./src/boot/main.ts",
+      rules: {
+        // eslint-disable-next-line @skylib/no-restricted-syntax -- Ok
+        "no-console": "off"
+      }
+    },
     {
       files: "./src/components/*.vue",
       rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }

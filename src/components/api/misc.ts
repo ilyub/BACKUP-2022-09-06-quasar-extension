@@ -94,7 +94,6 @@ export function classRef<T>(value: T): Ref<T> {
  * @param key - Key.
  * @returns Value.
  */
-// eslint-disable-next-line @skylib/prefer-readonly -- Ok
 export function injectRequire<T>(key: InjectionKey<T> | string): T {
   return as.not.empty(inject(key));
 }

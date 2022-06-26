@@ -23,7 +23,6 @@ declare global {
   }
 }
 
-// eslint-disable-next-line @skylib/only-export-name -- Ok
 export const definitions: Rec<
   LocaleName,
   implementations.lang.dictionary.Definitions
