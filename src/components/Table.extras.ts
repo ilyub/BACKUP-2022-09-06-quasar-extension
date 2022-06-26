@@ -108,8 +108,7 @@ export namespace Table {
   }
 
   export interface MultiSelectData {
-    // eslint-disable-next-line @skylib/optional-property-style -- Ok
-    readonly allSelected: booleanU;
+    readonly allSelected?: boolean;
     /**
      * Deselects all.
      */

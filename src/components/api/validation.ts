@@ -184,7 +184,7 @@ export const validation = defineFn(
             contexts.size === 0 ||
             state.value !== true
           )
-            // eslint-disable-next-line require-atomic-updates -- Ok
+            // eslint-disable-next-line require-atomic-updates -- Postponed
             state.value = await rule(options.value.format(value));
 
           return state.value === true ? true : lang.get(state.value);

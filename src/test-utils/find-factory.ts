@@ -1,5 +1,5 @@
 import { a } from "@skylib/functions";
-import type { DOMWrapper, DOMWrappers, WrapperLikes } from "./core";
+import type { DOMWrapper, DOMWrappers, Wrapper, WrapperLikes } from "./core";
 import type * as testUtils from "@vue/test-utils";
 import type { ComponentPublicInstance } from "vue";
 
@@ -12,8 +12,7 @@ import type { ComponentPublicInstance } from "vue";
  */
 export function findFactory(
   prefix: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
-  wrapper: testUtils.VueWrapper<any>
+  wrapper: Wrapper
 ): findFactory.Result {
   return {
     comp: (ref, index = 0) =>

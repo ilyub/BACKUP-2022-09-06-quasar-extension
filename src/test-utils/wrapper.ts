@@ -1,5 +1,5 @@
 import { o } from "@skylib/functions";
-import type { Wrapper } from "./wrapper.internal";
+import type { Wrapper } from "./core";
 import type { ComponentConstructor } from "quasar";
 
 /**

@@ -8,4 +8,7 @@ export interface DOMWrapper extends testUtils.DOMWrapper<Element> {}
 
 export type DOMWrappers = readonly DOMWrapper[];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
+export type Wrapper = testUtils.VueWrapper<any>;
+
 export type WrapperLikes = readonly WrapperLike[];

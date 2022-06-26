@@ -4,6 +4,7 @@ module.exports = {
   collectCoverageFrom: [
     ...jest.preset.collectCoverageFrom,
     "!src/App.vue",
+    "!src/App.extras.ts",
     "!src/application/**",
     "!src/boot/**",
     "!src/router/**",

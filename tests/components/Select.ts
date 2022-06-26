@@ -46,7 +46,7 @@ test("main: blur", async () => {
 
 test.each([
   { expected: "" },
-  { expected: "Select color", initialLabel: lang.keys.SelectColor }
+  { expected: "Sample word", initialLabel: lang.keys.SampleWord }
 ])("prop: initialLabel", ({ expected, initialLabel }) => {
   const wrapper = vueTestUtils.mount(components.Select, {
     global: testUtils.globalMountOptions(),
@@ -57,7 +57,7 @@ test.each([
 });
 
 test.each([
-  { expected: "Select color" },
+  { expected: "Sample word" },
   { expected: "Option 1", modelValue: 1 },
   { expected: "Option 2", modelValue: "a" }
 ])("prop: modelValue", ({ expected, modelValue }) => {
@@ -65,7 +65,7 @@ test.each([
     global: testUtils.globalMountOptions(),
     props: {
       ...props,
-      initialLabel: lang.keys.SelectColor,
+      initialLabel: lang.keys.SampleWord,
       modelValue
     }
   });

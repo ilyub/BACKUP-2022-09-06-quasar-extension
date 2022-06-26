@@ -1,6 +1,6 @@
 import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
+import type { booleanU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 
 export namespace Field {
@@ -14,8 +14,7 @@ export namespace Field {
      */
     readonly emitValue: (value: unknown) => void;
     readonly modelValue: T;
-    // eslint-disable-next-line @skylib/optional-property-style -- Ok
-    readonly placeholder: stringU;
+    readonly placeholder?: string;
   }
 
   export interface Format<T> {
