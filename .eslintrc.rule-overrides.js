@@ -1,40 +1,17 @@
 const { eslint } = require("@skylib/config");
 
+const ignoreTypes = [
+  ...eslint.skylib.readonliness.ignoreTypes,
+  "^ComponentOptionsBase$",
+  "^ComputedRef$",
+  "^VueWrapper$"
+];
+
 module.exports = {
   overrides: [
     {
-      files: "./src/components/api/types/prop-options.ts",
-      // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
-      rules: { "@skylib/primary-export-only": "off" }
-    },
-    {
-      files: [
-        "./src/components/*.generic.ts",
-        "./src/components/*.internal.ts",
-        "./src/components/*.extras.ts",
-        "./src/samples/*.generic.ts",
-        "./src/samples/*.internal.ts",
-        "./src/samples/*.extras.ts"
-      ],
-      rules: {
-        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
-        // fixme
-        // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
-        "@skylib/consistent-filename": "off",
-        // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
-        // fixme
-        // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
-        "@skylib/only-export-name": "off"
-      }
-    },
-    {
       files: "./src/components/*.vue",
       rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
-    },
-    {
-      files: "./src/facade-implementations/*/index.ts",
-      // eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
-      rules: { "@skylib/only-export-name": "off" }
     },
     {
       files: "./src/samples/*.vue",
@@ -42,6 +19,17 @@ module.exports = {
     }
   ],
   rules: {
+    "@skylib/no-mutable-signature": [
+      "warn",
+      {
+        ignoreClasses: true,
+        ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInferredTypes: true,
+        ignoreInterfaces: true,
+        ignoreNumberSignature: true,
+        ignoreTypes
+      }
+    ],
     "@skylib/optional-property-style": [
       "warn",
       {
@@ -60,6 +48,16 @@ module.exports = {
             target: "interfaces"
           }
         ]
+      }
+    ],
+    "@skylib/prefer-readonly": [
+      "warn",
+      {
+        ignoreClasses: true,
+        ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInferredTypes: true,
+        ignoreInterfaces: true,
+        ignoreTypes
       }
     ],
     "boundaries/element-types": [
@@ -110,6 +108,7 @@ module.exports = {
           )
         ]
       }
-    ]
+    ],
+    "vue/no-undef-components": ["warn", { ignorePatterns: [/^[mq]-/u.source] }]
   }
 };

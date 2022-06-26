@@ -1,20 +1,16 @@
-const ignoreTypes = [
-  "^ComponentOptionsBase$",
-  "^ComputedRef$",
-  "^Promise$",
-  "^Readonly",
-  "^VueWrapper$",
-  "^Writable"
-];
-
-// eslint-disable-next-line @skylib/no-restricted-syntax -- Postponed
+// eslint-disable-next-line @skylib/no-restricted-syntax -- Wait for @skylib/eslint-plugin update
 module.exports = {
   overrides: [
-    { files: "*.vue", rules: { "@skylib/consistent-filename": "off" } },
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
+    // fixme - Test filenames should match src filenames
     {
-      files: "./src/samples/**",
-      rules: { "import/no-relative-parent-imports": "off" }
+      extends: require.resolve(
+        "@skylib/config/src/eslintrc.skip-filename-check"
+      ),
+      files: "*.vue"
     },
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
+    // fixme - Disable individual suboptions
     {
       files: [
         "./src/components/BaseButton.vue",
@@ -36,33 +32,5 @@ module.exports = {
       rules: { "vue/no-restricted-syntax": "off" }
     }
   ],
-  rules: {
-    "@skylib/no-mutable-signature": [
-      "warn",
-      {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreNumberSignature: true,
-        ignoreTypes
-      }
-    ],
-    "@skylib/prefer-readonly": [
-      "warn",
-      {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreTypes
-      }
-    ],
-    "github/unescaped-html-literal": "off",
-    "import/no-extraneous-dependencies": "off",
-    "import/no-unresolved": "off",
-    "vue/no-undef-components": ["warn", { ignorePatterns: [/^[mq]-/u.source] }],
-    "vue/require-expose": "off",
-    "xss/no-mixed-html": "off"
-  }
+  rules: { "import/no-extraneous-dependencies": "off" }
 };
