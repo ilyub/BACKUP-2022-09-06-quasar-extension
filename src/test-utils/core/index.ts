@@ -1,5 +1,4 @@
 import type * as testUtils from "@vue/test-utils";
-// eslint-disable-next-line @skylib/consistent-import -- Wait for @skylib/config update
 import type WrapperLike from "@vue/test-utils/dist/interfaces/wrapperLike";
 
 export type { default as WrapperLike } from "@vue/test-utils/dist/interfaces/wrapperLike";
