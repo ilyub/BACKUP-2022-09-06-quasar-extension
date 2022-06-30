@@ -59,7 +59,7 @@ module.exports = {
           {
             message: "Invalid generic component name",
             selector:
-              "CallExpression[callee.name=defineComponent] > ObjectExpression.arguments:first-child > Property.properties[key.name=components] > ObjectExpression.value > Property.properties[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]",
+              "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=components] > ObjectExpression > Property[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]",
             subOptionsId: "check-generic-component-name"
           },
           {
@@ -298,10 +298,6 @@ module.exports = {
       {
         message: 'Prefer "m-toggle" component',
         selector: "VElement[name=q-toggle]"
-      },
-      {
-        message: 'Prefer "m-zzzzz" component',
-        selector: "VElement[name=q-zzzzz]"
       },
       {
         message: 'Prefer "m-tooltip" component',

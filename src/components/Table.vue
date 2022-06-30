@@ -23,9 +23,7 @@ import type {
 } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
 
-const icons = Table.icons;
-
-const lang = Table.lang;
+const { icons, lang } = Table;
 
 const prop = propFactory<Table.OwnProps>();
 
