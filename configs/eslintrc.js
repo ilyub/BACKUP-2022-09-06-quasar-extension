@@ -21,14 +21,14 @@ module.exports = {
             message: "No global icons",
             selector:
               "ImportDeclaration[source.value=@skylib/facades] > ImportSpecifier[imported.name=icons]",
-            subOptionsId: "no-global-icons"
+            _id: "no-global-icons"
           },
           {
             filesToLint: ["*.vue"],
             message: "No global lang",
             selector:
               "ImportDeclaration[source.value=@skylib/facades] > ImportSpecifier[imported.name=lang]",
-            subOptionsId: "no-global-lang"
+            _id: "no-global-lang"
           },
           {
             message: "Incorrect extends",
@@ -41,7 +41,7 @@ module.exports = {
               "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnProps]",
               "TSInterfaceDeclaration[id.name=Props][extends.length>3]"
             ],
-            subOptionsId: "check-Props-extends"
+            _id: "check-Props-extends"
           },
           {
             message: 'Extend "OwnSlots" or "PluginSlots" interface',
@@ -54,37 +54,37 @@ module.exports = {
               "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnSlots]",
               "TSInterfaceDeclaration[id.name=Slots][extends.length>3]"
             ],
-            subOptionsId: "check-Slots-extends"
+            _id: "check-Slots-extends"
           },
           {
             message: "Invalid generic component name",
             selector:
               "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=components] > ObjectExpression > Property[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]",
-            subOptionsId: "check-generic-component-name"
+            _id: "check-generic-component-name"
           },
           {
             message: 'Use "OwnProps" interface',
             selector:
               "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]",
-            subOptionsId: "prefer-validateEmit-OwnProps"
+            _id: "prefer-validateEmit-OwnProps"
           },
           {
             message: 'Use "OwnProps" interface',
             selector:
               "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]",
-            subOptionsId: "prefer-validateProps-OwnProps"
+            _id: "prefer-validateProps-OwnProps"
           },
           {
             message: 'Use "findQuasarComponent" function',
             selector:
               "CallExpression[arguments.0.name=/^Q/u] > MemberExpression.callee[object.name=wrapper][property.name=findComponent]",
-            subOptionsId: "prefer-findQuasarComponent"
+            _id: "prefer-findQuasarComponent"
           },
           {
             message: "Unnecessary type parameter",
             selector:
               "CallExpression[callee.name=computed] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)",
-            subOptionsId: "require-computed-type-parameter"
+            _id: "require-computed-type-parameter"
           },
           {
             message: 'Unnecessary "undefined"',
@@ -93,37 +93,37 @@ module.exports = {
               "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > Identifier.typeName[name=/U$/u]",
               "CallExpression[callee.name=ref][arguments.length=0] > TSTypeParameterInstantiation.typeParameters > TSUnionType.params > TSUndefinedKeyword.types"
             ],
-            subOptionsId: "no-ref-undefined"
+            _id: "no-ref-undefined"
           },
           {
             message: "Unnecessary type parameter",
             selector:
               "CallExpression[callee.name=ref][arguments.0.type=Literal] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword).params",
-            subOptionsId: "no-ref-type-parameter"
+            _id: "no-ref-type-parameter"
           },
           {
             message: 'Prefer "testComponents"',
             selector:
               "CallExpression[callee.object.name=wrapper][callee.property.name=findComponent] > MemberExpression.arguments:first-child > Identifier.object[name=components]",
-            subOptionsId: "prefer-testComponents"
+            _id: "prefer-testComponents"
           },
           {
             message: "Missing type parameter",
             selector:
               "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateEmit]",
-            subOptionsId: "require-validateEmit-type-parameter"
+            _id: "require-validateEmit-type-parameter"
           },
           {
             message: "Missing type parameter",
             selector:
               "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateExpose]",
-            subOptionsId: "require-validateExpose-type-parameter"
+            _id: "require-validateExpose-type-parameter"
           },
           {
             message: "Missing type parameter",
             selector:
               "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateProps]",
-            subOptionsId: "require-validateProps-type-parameter"
+            _id: "require-validateProps-type-parameter"
           },
           {
             message: "Missing type parameter",
@@ -132,43 +132,43 @@ module.exports = {
               "CallExpression[arguments.length=1][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=default]",
               "CallExpression[arguments.length=0][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=required]"
             ],
-            subOptionsId: "require-prop-type-parameter"
+            _id: "require-prop-type-parameter"
           },
           {
             message: "Missing type parameter",
             selector:
               "CallExpression[typeParameters=undefined][arguments.length=0] > Identifier.callee[name=ref]",
-            subOptionsId: "require-ref-type-parameter"
+            _id: "require-ref-type-parameter"
           },
           {
             message: 'Use "OwnProps" interface',
             selector:
               "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body",
-            subOptionsId: "prefer-OwnProps"
+            _id: "prefer-OwnProps"
           },
           {
             message: 'Use "OwnSlots" interface',
             selector:
               "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body",
-            subOptionsId: "prefer-OwnSlots"
+            _id: "prefer-OwnSlots"
           },
           {
             message: 'Do not extend "OwnProps" interface',
             selector:
               "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends",
-            subOptionsId: "no-OwnProps-extends"
+            _id: "no-OwnProps-extends"
           },
           {
             message: 'Do not extend "OwnSlots" interface',
             selector:
               "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends",
-            subOptionsId: "no-OwnSlots-extends"
+            _id: "no-OwnSlots-extends"
           },
           {
             message: "Use interface",
             selector:
               "TSTypeAliasDeclaration > Identifier.id[name=/^(?:Props|Slots)$/u]",
-            subOptionsId: "prefer-interface"
+            _id: "prefer-interface"
           }
         ]
       }
