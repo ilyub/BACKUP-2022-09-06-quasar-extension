@@ -89,29 +89,6 @@ test("prop: columns", () => {
   );
 });
 
-test("prop: columnsOrder (update)", async () => {
-  const wrapper = vueTestUtils.mount(components.Table, {
-    global: testUtils.globalMountOptions(),
-    props
-  });
-
-  const { comp, compByRef } = testUtils.findFactory("table", wrapper);
-
-  const value = [{ name: "column2" }, { name: "column1" }];
-
-  const columnsOrder = new Map([
-    ["column2", 0],
-    ["column1", 1]
-  ]);
-
-  const expected = [columnsOrder];
-
-  compByRef("debugDialog").vm.$emit("update:modelValue", true);
-  await nextTick();
-  comp("dialog-sortable").vm.$emit("update:modelValue", value);
-  expect(wrapper).toHaveEmitted("update:columnsOrder", expected);
-});
-
 test("prop: columnsOrder", async () => {
   const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
@@ -137,6 +114,29 @@ test("prop: columnsOrder", async () => {
 
   expect(texts1).toStrictEqual(expected);
   expect(texts2).toStrictEqual(expected);
+});
+
+test("prop: columnsOrder (update)", async () => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props
+  });
+
+  const { comp, compByRef } = testUtils.findFactory("table", wrapper);
+
+  const value = [{ name: "column2" }, { name: "column1" }];
+
+  const columnsOrder = new Map([
+    ["column2", 0],
+    ["column1", 1]
+  ]);
+
+  const expected = [columnsOrder];
+
+  compByRef("debugDialog").vm.$emit("update:modelValue", true);
+  await nextTick();
+  comp("dialog-sortable").vm.$emit("update:modelValue", value);
+  expect(wrapper).toHaveEmitted("update:columnsOrder", expected);
 });
 
 test.each([
@@ -200,55 +200,6 @@ test.each([
     expect(main.props("selection")).toStrictEqual(expected);
   }
 );
-
-test.each([
-  {
-    limit: 15,
-    page: 1,
-    rowsPerPage: 0,
-    sortBy: "column1"
-  },
-  {
-    descending: false,
-    limit: 15,
-    page: 1,
-    rowsPerPage: 0,
-    sortBy: "column1"
-  }
-])("prop: pagination (virtual-scroll)", pagination => {
-  const wrapper = vueTestUtils.mount(components.Table, {
-    global: testUtils.globalMountOptions(),
-    props: { ...props, pagination }
-  });
-
-  {
-    const expected = [{ ...pagination, descending: false }];
-
-    expect(wrapper).toHaveEmitted("update:pagination", expected);
-  }
-
-  {
-    const main = testUtils.findQuasarComponent(wrapper, QTable);
-
-    const rawEvent = {
-      direction: "increase",
-      from: 0,
-      index: 0,
-      to: 14
-    };
-
-    const expected = [
-      {
-        ...pagination,
-        descending: false,
-        limit: 25
-      }
-    ];
-
-    main.vm.$emit("virtual-scroll", rawEvent);
-    expect(wrapper).toHaveEmitted("update:pagination", expected);
-  }
-});
 
 test.each([
   {
@@ -329,6 +280,55 @@ test.each([
   }
 );
 
+test.each([
+  {
+    limit: 15,
+    page: 1,
+    rowsPerPage: 0,
+    sortBy: "column1"
+  },
+  {
+    descending: false,
+    limit: 15,
+    page: 1,
+    rowsPerPage: 0,
+    sortBy: "column1"
+  }
+])("prop: pagination (virtual-scroll)", pagination => {
+  const wrapper = vueTestUtils.mount(components.Table, {
+    global: testUtils.globalMountOptions(),
+    props: { ...props, pagination }
+  });
+
+  {
+    const expected = [{ ...pagination, descending: false }];
+
+    expect(wrapper).toHaveEmitted("update:pagination", expected);
+  }
+
+  {
+    const main = testUtils.findQuasarComponent(wrapper, QTable);
+
+    const rawEvent = {
+      direction: "increase",
+      from: 0,
+      index: 0,
+      to: 14
+    };
+
+    const expected = [
+      {
+        ...pagination,
+        descending: false,
+        limit: 25
+      }
+    ];
+
+    main.vm.$emit("virtual-scroll", rawEvent);
+    expect(wrapper).toHaveEmitted("update:pagination", expected);
+  }
+});
+
 test("prop: rows", () => {
   const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
@@ -343,6 +343,31 @@ test("prop: rows", () => {
   const { comp } = testUtils.findFactory("table", wrapper);
 
   expect(comp("header-select").props("disable")).toBeTrue();
+});
+
+test.each([
+  { expected: [[props.rows[0], props.rows[1]]], multiSelect: true },
+  { expected: [[props.rows[1]]], multiSelect: false }
+])("prop: selected", async ({ expected, multiSelect }) => {
+  expect.hasAssertions();
+
+  await functionsTestUtils.run(async () => {
+    const wrapper = vueTestUtils.mount(components.Table, {
+      global: testUtils.globalMountOptions(),
+      props: {
+        ...props,
+        multiSelect,
+        selectByRowClick: true,
+        selected: [props.rows[0]]
+      }
+    });
+
+    const { comp } = testUtils.findFactory("table", wrapper);
+
+    await wait(1000);
+    await comp("body-row", 1).trigger("click");
+    expect(wrapper).toHaveEmitted("update:selected", expected);
+  });
 });
 
 test.each([
@@ -398,28 +423,3 @@ test.each([
     }
   }
 );
-
-test.each([
-  { expected: [[props.rows[0], props.rows[1]]], multiSelect: true },
-  { expected: [[props.rows[1]]], multiSelect: false }
-])("prop: selected", async ({ expected, multiSelect }) => {
-  expect.hasAssertions();
-
-  await functionsTestUtils.run(async () => {
-    const wrapper = vueTestUtils.mount(components.Table, {
-      global: testUtils.globalMountOptions(),
-      props: {
-        ...props,
-        multiSelect,
-        selectByRowClick: true,
-        selected: [props.rows[0]]
-      }
-    });
-
-    const { comp } = testUtils.findFactory("table", wrapper);
-
-    await wait(1000);
-    await comp("body-row", 1).trigger("click");
-    expect(wrapper).toHaveEmitted("update:selected", expected);
-  });
-});

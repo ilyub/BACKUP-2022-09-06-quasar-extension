@@ -132,9 +132,7 @@ export default defineComponent({
     <template #selected="data">
       <slot :name="slotNames.selected" v-bind="data ?? {}">
         <span
-          :class="{
-            'm-select__display-value__initial': displayValueInitial
-          }"
+          :class="{ 'm-select__display-value__initial': displayValueInitial }"
         >
           {{ displayValue }}
         </span>
