@@ -5,8 +5,9 @@ module.exports = {
       {
         sources: [
           {
+            _id: "test-utils",
             altLocalNames: ["quasarTestUtils"],
-            sourcePattern: "@skylib/quasar-extension/src/test-utils",
+            source: "@skylib/quasar-extension/src/test-utils",
             type: "wildcard"
           }
         ]

@@ -45,11 +45,13 @@ module.exports = {
         interfaces: "optional",
         overrides: [
           {
+            _id: "props",
             patterns: ["Props$"],
             style: "combined",
             target: "interfaces"
           },
           {
+            _id: "props-emit",
             patterns: ["Props$"],
             propertyPatterns: ["^on[A-Z]"],
             style: "optional",
