@@ -211,6 +211,14 @@ module.exports = {
           "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateProps]"
       }
     ],
+    "@skylib/no-restricted-syntax/vue-no-mixed-classes": [
+      "warn",
+      {
+        message: "Do not mix module and static classes",
+        selector:
+          "VExpressionContainer > TemplateLiteral > MemberExpression > Identifier[name=$style]"
+      }
+    ],
     "@skylib/no-restricted-syntax/vue-prefer-label-prop": [
       "warn",
       {

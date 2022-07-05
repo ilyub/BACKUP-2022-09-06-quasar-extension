@@ -22,6 +22,7 @@ module.exports = [
   "no-restricted-syntax/require-validateEmit-type-parameter",
   "no-restricted-syntax/require-validateExpose-type-parameter",
   "no-restricted-syntax/require-validateProps-type-parameter",
+  "no-restricted-syntax/vue-no-mixed-classes",
   "no-restricted-syntax/vue-prefer-label-prop",
   "no-restricted-syntax/vue-prefer-lang-var",
   "no-restricted-syntax/vue-prefer-m-btn",
