@@ -38,28 +38,6 @@ module.exports = {
         ignoreTypes
       }
     ],
-    "@skylib/optional-property-style": [
-      "warn",
-      {
-        classes: "undefined",
-        interfaces: "optional",
-        overrides: [
-          {
-            _id: "props",
-            patterns: ["Props$"],
-            style: "combined",
-            target: "interfaces"
-          },
-          {
-            _id: "props-emit",
-            patterns: ["Props$"],
-            propertyPatterns: ["^on[A-Z]"],
-            style: "optional",
-            target: "interfaces"
-          }
-        ]
-      }
-    ],
     "@skylib/prefer-readonly": [
       "warn",
       {

@@ -346,6 +346,28 @@ module.exports = {
           "VElement[name=slot] > VStartTag.startTag > VAttribute.attributes:not(:last-child) > VDirectiveKey.key[argument=null] > VIdentifier.name[name=bind]"
       }
     ],
+    "@skylib/optional-property-style": [
+      "warn",
+      {
+        classes: "undefined",
+        interfaces: "optional",
+        overrides: [
+          {
+            _id: "props",
+            patterns: ["Props$"],
+            style: "combined",
+            target: "interfaces"
+          },
+          {
+            _id: "props-emit",
+            patterns: ["Props$"],
+            propertyPatterns: ["^on[A-Z]"],
+            style: "optional",
+            target: "interfaces"
+          }
+        ]
+      }
+    ],
     "vue/no-bare-strings-in-template": [
       "warn",
       {
