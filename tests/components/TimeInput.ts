@@ -60,5 +60,5 @@ test.each([
 
   const { elem } = testUtils.findFactory("time-input", wrapper);
 
-  expect($(elem("input").element).val()).toStrictEqual(expected);
+  expect($(elem("input").element).val()).toBe(expected);
 });

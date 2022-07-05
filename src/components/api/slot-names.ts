@@ -12,7 +12,7 @@ import type { ComputedRef } from "vue";
  */
 export function slotNames<T>() {
   return function <U extends string & keyof T = never>(
-    ...use: U[]
+    ...use: readonly U[]
   ): slotNames.Plugin<U> {
     return computed(() => {
       const slots = useSlots();
@@ -28,7 +28,7 @@ export function slotNames<T>() {
 
       return {
         has: (name: U): boolean => is.not.empty(slots[name]),
-        hasSome: (...names: U[]): boolean =>
+        hasSome: (...names: readonly U[]): boolean =>
           names.some(name => is.not.empty(slots[name])),
         passThroughSlots,
         ...usableSlots
@@ -56,7 +56,7 @@ export namespace slotNames {
      * @param names - Slot names.
      * @returns _True_ if slot exists, _false_ otherwise.
      */
-    readonly hasSome: (...names: T[]) => boolean;
+    readonly hasSome: (...names: readonly T[]) => boolean;
     readonly passThroughSlots: nevers;
   }
 

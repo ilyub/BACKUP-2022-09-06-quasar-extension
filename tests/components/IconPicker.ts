@@ -41,7 +41,7 @@ test.each([
     {
       expect(comp("dialog")).not.toExist();
       await main.trigger("click");
-      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      expect(compElem("dialog", "loading").exists()).toBe(!counter);
       await wait(1000);
       expect(compElem("dialog", "loading")).not.toExist();
       counter++;
@@ -70,7 +70,7 @@ test("prev, next", async () => {
     {
       expect(comp("dialog")).not.toExist();
       await main.trigger("click");
-      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      expect(compElem("dialog", "loading").exists()).toBe(!counter);
       await wait(1000);
       expect(compElem("dialog", "loading")).not.toExist();
       counter++;
@@ -108,7 +108,7 @@ test("search", async () => {
     {
       expect(comp("dialog")).not.toExist();
       await main.trigger("click");
-      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      expect(compElem("dialog", "loading").exists()).toBe(!counter);
       await wait(1000);
       expect(compElem("dialog", "loading")).not.toExist();
       counter++;
@@ -150,7 +150,7 @@ test.each([true, false])("setting: tooltip", async iconTooltips => {
     {
       expect(comp("dialog")).not.toExist();
       await main.trigger("click");
-      expect(compElem("dialog", "loading").exists()).toStrictEqual(!counter);
+      expect(compElem("dialog", "loading").exists()).toBe(!counter);
       await wait(1000);
       expect(compElem("dialog", "loading")).not.toExist();
       counter++;
@@ -159,7 +159,7 @@ test.each([true, false])("setting: tooltip", async iconTooltips => {
     {
       const tooltop = comp("pick-icon").findComponent(QTooltip);
 
-      expect(tooltop.exists()).toStrictEqual(iconTooltips);
+      expect(tooltop.exists()).toBe(iconTooltips);
     }
   });
 });

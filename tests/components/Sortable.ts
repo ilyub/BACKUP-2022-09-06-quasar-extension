@@ -196,6 +196,6 @@ test.each([
 
     const main = wrapper.findComponent(VueDraggable);
 
-    expect(main.vm.$attrs["disabled"]).toStrictEqual(expected);
+    expect(main.vm.$attrs["disabled"]).toBe(expected);
   }
 );

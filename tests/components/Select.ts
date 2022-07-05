@@ -10,7 +10,7 @@ const props = {
     { label: lang.plain("Option 1"), value: 1 },
     { label: lang.plain("Option 2"), value: "a" }
   ]
-};
+} as const;
 
 test("emit: update:modelValue", () => {
   const wrapper = vueTestUtils.mount(components.Select, {
@@ -53,7 +53,7 @@ test.each([
     props: { ...props, initialLabel }
   });
 
-  expect(wrapper.find(".q-field__native").text()).toStrictEqual(expected);
+  expect(wrapper.find(".q-field__native").text()).toBe(expected);
 });
 
 test.each([
@@ -70,7 +70,7 @@ test.each([
     }
   });
 
-  expect(wrapper.find(".q-field__native").text()).toStrictEqual(expected);
+  expect(wrapper.find(".q-field__native").text()).toBe(expected);
 });
 
 test.each([true, false])("prop: required", required => {
@@ -81,5 +81,5 @@ test.each([true, false])("prop: required", required => {
 
   const { elem } = testUtils.findFactory("select", wrapper);
 
-  expect(elem("display-value-required").exists()).toStrictEqual(required);
+  expect(elem("display-value-required").exists()).toBe(required);
 });

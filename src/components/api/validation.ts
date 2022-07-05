@@ -140,7 +140,6 @@ export const validation = defineFn(
     };
 
     interface RuleWrapper {
-      readonly state: Ref<lang.Key | true>;
       /**
        * Validates value.
        *
@@ -148,6 +147,7 @@ export const validation = defineFn(
        * @returns Validation result.
        */
       (value: unknown): Promise<string | true> | string | true;
+      readonly state: Ref<lang.Key | true>;
     }
 
     function validate(value: T, context: validation.Context): void {

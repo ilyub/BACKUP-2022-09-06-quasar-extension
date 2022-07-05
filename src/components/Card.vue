@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-card -- Ok */
+
 import { Card } from "./Card.extras";
 import {
   parentProps,

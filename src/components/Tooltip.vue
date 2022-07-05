@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-tooltip -- Ok */
+
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";
 import { parentProps, plugins, validateExpose } from "./api";

@@ -7,6 +7,7 @@ export default boot(({ app }) => {
   app.config.errorHandler = function (err, _vm, info): void {
     console.error(err, info);
 
+    // eslint-disable-next-line @skylib/no-restricted-syntax/guard-arg-not-empty -- Postponed
     if (is.not.empty(Notify.create))
       Notify.create({ color: "negative", message: cast.string(err) });
     else console.error('Missing "Notify.create"');
@@ -15,6 +16,7 @@ export default boot(({ app }) => {
   app.config.warnHandler = function (err, _vm, info): void {
     console.warn(err, info);
 
+    // eslint-disable-next-line @skylib/no-restricted-syntax/guard-arg-not-empty -- Postponed
     if (is.not.empty(Notify.create))
       Notify.create({ color: "negative", message: cast.string(err) });
     else console.error('Missing "Notify.create"');

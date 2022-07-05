@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-toggle -- Ok */
+
 import {
   injections,
   parentProps,

@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-option-group -- Ok */
+
 import { OptionGroup } from "./OptionGroup.extras";
 import {
   injections,

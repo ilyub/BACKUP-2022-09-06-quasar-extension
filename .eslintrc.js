@@ -44,7 +44,7 @@ module.exports = {
         pattern: "./tests/**",
         type: "tests"
       },
-      // eslint-disable-next-line @skylib/functions/no-restricted-syntax -- Ok
+      // eslint-disable-next-line @skylib/no-restricted-syntax/prefer-evaluate -- Wait for @skylib/functions update
       ...(() => {
         const capture = [];
 

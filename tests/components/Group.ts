@@ -82,6 +82,6 @@ test.each([
 
     expect(wrapper.find(selector)).toExist();
     expect(elems("slot").map(slot => slot.text())).toStrictEqual(expectedSlots);
-    expect(elem("not-found").exists()).toStrictEqual(expectedNotFound);
+    expect(elem("not-found").exists()).toBe(expectedNotFound);
   }
 );

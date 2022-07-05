@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-popup-proxy -- Ok */
+
 import { parentProps, plugins, validateExpose } from "./api";
 import { QPopupProxy } from "quasar";
 import { defineComponent, ref } from "vue";

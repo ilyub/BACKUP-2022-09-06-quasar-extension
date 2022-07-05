@@ -71,7 +71,7 @@ test.each([
 
   const { elem } = testUtils.findFactory("numeric-input", wrapper);
 
-  expect($(elem("input").element).val()).toStrictEqual(expected);
+  expect($(elem("input").element).val()).toBe(expected);
 });
 
 test.each([

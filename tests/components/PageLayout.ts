@@ -44,7 +44,7 @@ test.each([
 
     const { comp } = testUtils.findFactory("page-layout", wrapper);
 
-    expect(comp("close").exists()).toStrictEqual(expected);
+    expect(comp("close").exists()).toBe(expected);
   }
 );
 
@@ -59,5 +59,5 @@ test.each([
 
   const { elem } = testUtils.findFactory("page-layout", wrapper);
 
-  expect(elem("title").exists()).toStrictEqual(expected);
+  expect(elem("title").exists()).toBe(expected);
 });

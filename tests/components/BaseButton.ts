@@ -68,7 +68,7 @@ test.each([true, false])("prop: loading", loading => {
 
   const main = testUtils.findQuasarComponent(wrapper, QBtn);
 
-  expect(main.props("loading")).toStrictEqual(loading);
+  expect(main.props("loading")).toBe(loading);
 });
 
 test.each([
@@ -96,7 +96,7 @@ test.each([
 
     const main = testUtils.findQuasarComponent(wrapper, QBtn);
 
-    expect(main.props("loading")).toStrictEqual(expected);
+    expect(main.props("loading")).toBe(expected);
   }
 );
 

@@ -1,4 +1,4 @@
-// eslint-disable-next-line @skylib/no-restricted-syntax -- Wait for @skylib/eslint-plugin update
+// eslint-disable-next-line @skylib/no-restricted-syntax/eslintrc-no-temp -- Postponed
 module.exports = {
   overrides: [
     // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update

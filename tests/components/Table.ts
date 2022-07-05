@@ -84,9 +84,7 @@ test("prop: columns", () => {
 
   const expected = "max-width: 300px; min-width: 100px; width: 200px;";
 
-  expect(elem("header-cell-wrapper").attributes("style")).toStrictEqual(
-    expected
-  );
+  expect(elem("header-cell-wrapper").attributes("style")).toBe(expected);
 });
 
 test("prop: columnsOrder", async () => {
@@ -197,7 +195,7 @@ test.each([
 
     const main = testUtils.findQuasarComponent(wrapper, QTable);
 
-    expect(main.props("selection")).toStrictEqual(expected);
+    expect(main.props("selection")).toBe(expected);
   }
 );
 

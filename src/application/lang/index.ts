@@ -30,4 +30,4 @@ export const definitions: Rec<
   "en-GB": en,
   "en-US": en,
   "ru-RU": ru
-};
+} as const;

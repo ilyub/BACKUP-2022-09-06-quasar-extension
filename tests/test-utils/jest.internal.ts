@@ -13,7 +13,7 @@ test.each([
 
   const result = matchers.htmlToEqual(wrapper, expected);
 
-  expect(result.pass).toStrictEqual(pass);
+  expect(result.pass).toBe(pass);
   expect(result.message()).toStartWith("Unexpected html:\n");
 });
 
@@ -28,7 +28,7 @@ test.each([
 
   const result = matchers.textToEqual(wrapper, expected);
 
-  expect(result.pass).toStrictEqual(pass);
+  expect(result.pass).toBe(pass);
   expect(result.message()).toStartWith("Unexpected text:\n");
 });
 
@@ -56,6 +56,6 @@ test.each([
 
   const result = matchers.toBeVisible(wrapper.find(selector));
 
-  expect(result.pass).toStrictEqual(pass);
-  expect(result.message()).toStrictEqual(message);
+  expect(result.pass).toBe(pass);
+  expect(result.message()).toBe(message);
 });

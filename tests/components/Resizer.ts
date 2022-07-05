@@ -77,7 +77,7 @@ test.each([
 
     document.documentElement.style.cursor = "";
     touchPan.trigger(event);
-    expect(document.documentElement.style.cursor).toStrictEqual(expectedCursor);
+    expect(document.documentElement.style.cursor).toBe(expectedCursor);
     expect(wrapper).toHaveEmitted("update:modelValue", expectedEmitted);
   }
 

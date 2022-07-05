@@ -15,8 +15,8 @@ test.each([undefined, "2001-02-03 10:30"])("control", async modelValue => {
   expect(comp("date")).not.toExist();
   expect(comp("time")).not.toExist();
   await elem("control").trigger("click");
-  expect(comp("date").exists()).toStrictEqual(is.empty(modelValue));
-  expect(comp("time").exists()).toStrictEqual(is.not.empty(modelValue));
+  expect(comp("date").exists()).toBe(is.empty(modelValue));
+  expect(comp("time").exists()).toBe(is.not.empty(modelValue));
 });
 
 test.each([undefined, "2001-02-03 10:30"])("date", async modelValue => {

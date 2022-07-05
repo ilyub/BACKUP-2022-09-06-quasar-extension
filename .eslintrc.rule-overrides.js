@@ -13,7 +13,7 @@ module.exports = {
     {
       files: "./src/boot/main.ts",
       rules: {
-        // eslint-disable-next-line @skylib/no-restricted-syntax -- Ok
+        // eslint-disable-next-line @skylib/no-restricted-syntax/eslintrc-no-disable -- Ok
         "no-console": "off"
       }
     },

@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-expansion-item -- Ok */
+
 import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
 import type { ExpansionItem } from "./ExpansionItem.extras";

@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-btn -- Ok */
+
 import { BaseButton } from "./BaseButton.extras";
 import { Form } from "./Form.extras";
 import {

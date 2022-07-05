@@ -5,7 +5,7 @@ import type { booleanU } from "@skylib/functions";
 import type { QMenu, QMenuProps, QMenuSlots } from "quasar";
 
 export namespace Menu {
-  export const defaultExposeDown: ExposeDown = { autoClose: fn.noop };
+  export const defaultExposeDown: ExposeDown = { autoClose: fn.noop } as const;
 
   export const {
     inject: injectMenu,

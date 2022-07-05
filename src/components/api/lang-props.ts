@@ -14,7 +14,7 @@ export const langProps = defineFn(
    * @param names - Property names.
    * @returns Lang props plugin.
    */
-  <T extends string>(props: langProps.Props<T>, ...names: T[]) => {
+  <T extends string>(props: langProps.Props<T>, ...names: readonly T[]) => {
     const result: Array<Entry<PropertyKey, unknown>> = [];
 
     for (const name of names)
@@ -22,7 +22,7 @@ export const langProps = defineFn(
         [
           name,
           computed(() => {
-            const value = props[name];
+            const value: lang.Key | undefined = props[name];
 
             return is.not.empty(value) ? lang.get(value) : undefined;
           })
@@ -39,7 +39,7 @@ export const langProps = defineFn(
      * @param names - Property names.
      * @returns Vue properties.
      */
-    props: <T extends string>(...names: T[]) =>
+    props: <T extends string>(...names: readonly T[]) =>
       o.fromEntries(
         names.map(name => [name, prop<lang.Key | undefined>()])
       ) as langProps.PropOptionsRecord<T>
@@ -61,6 +61,6 @@ export namespace langProps {
     readonly [K in T]: PropOptions<lang.Key | undefined>;
   };
 
-  // eslint-disable-next-line @skylib/quasar-extension/no-restricted-syntax -- Ok
+  // eslint-disable-next-line @skylib/no-restricted-syntax/prefer-interface -- Ok
   export type Props<T extends string> = OwnProps<T>;
 }

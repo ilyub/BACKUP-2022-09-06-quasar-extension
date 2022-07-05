@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-field -- Ok */
+
 import {
   injections,
   parentProps,

@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-form -- Ok */
+
 import { Form } from "./Form.extras";
 import {
   injections,
