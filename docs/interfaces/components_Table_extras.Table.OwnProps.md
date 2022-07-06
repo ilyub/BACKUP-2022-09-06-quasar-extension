@@ -33,6 +33,11 @@
 - [hiddenColumns](components_Table_extras.Table.OwnProps.md#hiddencolumns)
 - [manageColumns](components_Table_extras.Table.OwnProps.md#managecolumns)
 - [multiSelect](components_Table_extras.Table.OwnProps.md#multiselect)
+- [onUpdate:columnWidths](components_Table_extras.Table.OwnProps.md#onupdate:columnwidths)
+- [onUpdate:columnsOrder](components_Table_extras.Table.OwnProps.md#onupdate:columnsorder)
+- [onUpdate:hiddenColumns](components_Table_extras.Table.OwnProps.md#onupdate:hiddencolumns)
+- [onUpdate:pagination](components_Table_extras.Table.OwnProps.md#onupdate:pagination)
+- [onUpdate:selected](components_Table_extras.Table.OwnProps.md#onupdate:selected)
 - [pagination](components_Table_extras.Table.OwnProps.md#pagination)
 - [resizableColumns](components_Table_extras.Table.OwnProps.md#resizablecolumns)
 - [rowKey](components_Table_extras.Table.OwnProps.md#rowkey)
@@ -43,14 +48,6 @@
 - [squareOff](components_Table_extras.Table.OwnProps.md#squareoff)
 - [squareOn](components_Table_extras.Table.OwnProps.md#squareon)
 - [sticky](components_Table_extras.Table.OwnProps.md#sticky)
-
-### Methods
-
-- [onUpdate:columnWidths](components_Table_extras.Table.OwnProps.md#onupdate:columnwidths)
-- [onUpdate:columnsOrder](components_Table_extras.Table.OwnProps.md#onupdate:columnsorder)
-- [onUpdate:hiddenColumns](components_Table_extras.Table.OwnProps.md#onupdate:hiddencolumns)
-- [onUpdate:pagination](components_Table_extras.Table.OwnProps.md#onupdate:pagination)
-- [onUpdate:selected](components_Table_extras.Table.OwnProps.md#onupdate:selected)
 
 ## Properties
 
@@ -132,6 +129,116 @@ ___
 
 ___
 
+### onUpdate:columnWidths
+
+• `Optional` `Readonly` **onUpdate:columnWidths**: (`value`: [`ColumnWidths`](../modules/components_Table_extras.Table.md#columnwidths)) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits column widths.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`ColumnWidths`](../modules/components_Table_extras.Table.md#columnwidths) | Column widths. |
+
+##### Returns
+
+`void`
+
+___
+
+### onUpdate:columnsOrder
+
+• `Optional` `Readonly` **onUpdate:columnsOrder**: (`value`: [`ColumnsOrder`](../modules/components_Table_extras.Table.md#columnsorder)) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits columns order.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`ColumnsOrder`](../modules/components_Table_extras.Table.md#columnsorder) | Columns order. |
+
+##### Returns
+
+`void`
+
+___
+
+### onUpdate:hiddenColumns
+
+• `Optional` `Readonly` **onUpdate:hiddenColumns**: (`value`: [`HiddenColumns`](../modules/components_Table_extras.Table.md#hiddencolumns)) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits hidden columns.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`HiddenColumns`](../modules/components_Table_extras.Table.md#hiddencolumns) | Hidden columns. |
+
+##### Returns
+
+`void`
+
+___
+
+### onUpdate:pagination
+
+• `Optional` `Readonly` **onUpdate:pagination**: (`value`: [`PaginationEmit`](components_Table_extras.Table.PaginationEmit.md)) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits pagination.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | [`PaginationEmit`](components_Table_extras.Table.PaginationEmit.md) | Pagination. |
+
+##### Returns
+
+`void`
+
+___
+
+### onUpdate:selected
+
+• `Optional` `Readonly` **onUpdate:selected**: (`value`: `objects`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits selected.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `objects` | Selected. |
+
+##### Returns
+
+`void`
+
+___
+
 ### pagination
 
 • `Optional` `Readonly` **pagination**: [`PaginationProp`](components_Table_extras.Table.PaginationProp.md)
@@ -189,93 +296,3 @@ ___
 ### sticky
 
 • `Optional` `Readonly` **sticky**: `booleanU`
-
-## Methods
-
-### onUpdate:columnWidths
-
-▸ `Optional` `Readonly` **onUpdate:columnWidths**(`value`): `void`
-
-Emits column widths.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`ColumnWidths`](../modules/components_Table_extras.Table.md#columnwidths) | Column widths. |
-
-#### Returns
-
-`void`
-
-___
-
-### onUpdate:columnsOrder
-
-▸ `Optional` `Readonly` **onUpdate:columnsOrder**(`value`): `void`
-
-Emits columns order.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`ColumnsOrder`](../modules/components_Table_extras.Table.md#columnsorder) | Columns order. |
-
-#### Returns
-
-`void`
-
-___
-
-### onUpdate:hiddenColumns
-
-▸ `Optional` `Readonly` **onUpdate:hiddenColumns**(`value`): `void`
-
-Emits hidden columns.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`HiddenColumns`](../modules/components_Table_extras.Table.md#hiddencolumns) | Hidden columns. |
-
-#### Returns
-
-`void`
-
-___
-
-### onUpdate:pagination
-
-▸ `Optional` `Readonly` **onUpdate:pagination**(`value`): `void`
-
-Emits pagination.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | [`PaginationEmit`](components_Table_extras.Table.PaginationEmit.md) | Pagination. |
-
-#### Returns
-
-`void`
-
-___
-
-### onUpdate:selected
-
-▸ `Optional` `Readonly` **onUpdate:selected**(`value`): `void`
-
-Emits selected.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `objects` | Selected. |
-
-#### Returns
-
-`void`

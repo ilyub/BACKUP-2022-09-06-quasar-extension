@@ -19,27 +19,40 @@
 ### Properties
 
 - [allSelected](components_Table_extras.Table.MultiSelectData.md#allselected)
+- [deselectAll](components_Table_extras.Table.MultiSelectData.md#deselectall)
 - [deselectAllDisable](components_Table_extras.Table.MultiSelectData.md#deselectalldisable)
 - [deselectAllIcon](components_Table_extras.Table.MultiSelectData.md#deselectallicon)
 - [deselectAllLabel](components_Table_extras.Table.MultiSelectData.md#deselectalllabel)
+- [selectAll](components_Table_extras.Table.MultiSelectData.md#selectall)
 - [selectAllDisable](components_Table_extras.Table.MultiSelectData.md#selectalldisable)
 - [selectAllIcon](components_Table_extras.Table.MultiSelectData.md#selectallicon)
 - [selectAllLabel](components_Table_extras.Table.MultiSelectData.md#selectalllabel)
+- [toggleSelection](components_Table_extras.Table.MultiSelectData.md#toggleselection)
 - [toggleSelectionDisable](components_Table_extras.Table.MultiSelectData.md#toggleselectiondisable)
 - [toggleSelectionIcon](components_Table_extras.Table.MultiSelectData.md#toggleselectionicon)
 - [toggleSelectionLabel](components_Table_extras.Table.MultiSelectData.md#toggleselectionlabel)
-
-### Methods
-
-- [deselectAll](components_Table_extras.Table.MultiSelectData.md#deselectall)
-- [selectAll](components_Table_extras.Table.MultiSelectData.md#selectall)
-- [toggleSelection](components_Table_extras.Table.MultiSelectData.md#toggleselection)
 
 ## Properties
 
 ### allSelected
 
 • `Optional` `Readonly` **allSelected**: `boolean`
+
+___
+
+### deselectAll
+
+• `Readonly` **deselectAll**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Deselects all.
+
+##### Returns
+
+`void`
 
 ___
 
@@ -61,6 +74,22 @@ ___
 
 ___
 
+### selectAll
+
+• `Readonly` **selectAll**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Selects all.
+
+##### Returns
+
+`void`
+
+___
+
 ### selectAllDisable
 
 • `Readonly` **selectAllDisable**: `boolean`
@@ -79,6 +108,22 @@ ___
 
 ___
 
+### toggleSelection
+
+• `Readonly` **toggleSelection**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Toggles selection.
+
+##### Returns
+
+`void`
+
+___
+
 ### toggleSelectionDisable
 
 • `Readonly` **toggleSelectionDisable**: `boolean`
@@ -94,39 +139,3 @@ ___
 ### toggleSelectionLabel
 
 • `Readonly` **toggleSelectionLabel**: `Key`<`Word`\>
-
-## Methods
-
-### deselectAll
-
-▸ `Readonly` **deselectAll**(): `void`
-
-Deselects all.
-
-#### Returns
-
-`void`
-
-___
-
-### selectAll
-
-▸ `Readonly` **selectAll**(): `void`
-
-Selects all.
-
-#### Returns
-
-`void`
-
-___
-
-### toggleSelection
-
-▸ `Readonly` **toggleSelection**(): `void`
-
-Toggles selection.
-
-#### Returns
-
-`void`

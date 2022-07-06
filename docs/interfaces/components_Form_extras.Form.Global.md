@@ -19,9 +19,6 @@
 ### Properties
 
 - [main](components_Form_extras.Form.Global.md#main)
-
-### Methods
-
 - [resetValidation](components_Form_extras.Form.Global.md#resetvalidation)
 
 ## Constructors
@@ -42,14 +39,18 @@ Constructor.
 
 • `Optional` `Readonly` **main**: `QForm`
 
-## Methods
+___
 
 ### resetValidation
 
-▸ `Readonly` **resetValidation**(): `void`
+• `Readonly` **resetValidation**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
 
 Resets validation.
 
-#### Returns
+##### Returns
 
 `void`

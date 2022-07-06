@@ -8,7 +8,7 @@
 
 ### Type Aliases
 
-- [RouteRecordRaws](routes.routes-1.md#routerecordraws)
+- [RouteRecordRaws](routes.routes.md#routerecordraws)
 
 ## Type Aliases
 

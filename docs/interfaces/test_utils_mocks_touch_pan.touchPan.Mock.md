@@ -9,9 +9,6 @@
 ### Properties
 
 - [directive](test_utils_mocks_touch_pan.touchPan.Mock.md#directive)
-
-### Methods
-
 - [trigger](test_utils_mocks_touch_pan.touchPan.Mock.md#trigger)
 
 ## Properties
@@ -20,20 +17,24 @@
 
 • `Readonly` **directive**: `Directive`<`any`, `any`\>
 
-## Methods
+___
 
 ### trigger
 
-▸ `Readonly` **trigger**(...`args`): `void`
+• `Readonly` **trigger**: (...`args`: `unknowns`) => `void`
+
+#### Type declaration
+
+▸ (...`args`): `void`
 
 Triggers v-touch-pan directive.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `...args` | `unknowns` | Arguments. |
 
-#### Returns
+##### Returns
 
 `void`

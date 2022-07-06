@@ -33,16 +33,13 @@
 - [itemTag](components_Sortable_extras.Sortable.Props.md#itemtag)
 - [modelValue](components_Sortable_extras.Sortable.Props.md#modelvalue)
 - [move](components_Sortable_extras.Sortable.Props.md#move)
+- [onDropped](components_Sortable_extras.Sortable.Props.md#ondropped)
+- [onItemClick](components_Sortable_extras.Sortable.Props.md#onitemclick)
+- [onUpdate:modelValue](components_Sortable_extras.Sortable.Props.md#onupdate:modelvalue)
 - [pull](components_Sortable_extras.Sortable.Props.md#pull)
 - [put](components_Sortable_extras.Sortable.Props.md#put)
 - [sort](components_Sortable_extras.Sortable.Props.md#sort)
 - [tag](components_Sortable_extras.Sortable.Props.md#tag)
-
-### Methods
-
-- [onDropped](components_Sortable_extras.Sortable.Props.md#ondropped)
-- [onItemClick](components_Sortable_extras.Sortable.Props.md#onitemclick)
-- [onUpdate:modelValue](components_Sortable_extras.Sortable.Props.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -146,6 +143,85 @@ ___
 
 ___
 
+### onDropped
+
+• `Optional` `Readonly` **onDropped**: (`item`: `D`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
+
+Dropped event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `D` | Item. |
+| `group` | `string` | Group. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onDropped](components_Sortable_extras.Sortable.OwnProps.md#ondropped)
+
+___
+
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: (`item`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`item`): `void`
+
+Item click event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `T` | Item. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onItemClick](components_Sortable_extras.Sortable.OwnProps.md#onitemclick)
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `T`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | readonly `T`[] | Value. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onUpdate:modelValue](components_Sortable_extras.Sortable.OwnProps.md#onupdate:modelvalue)
+
+___
+
 ### pull
 
 • `Optional` `Readonly` **pull**: `booleanU`
@@ -183,70 +259,3 @@ ___
 #### Inherited from
 
 [ParentProps](components_Sortable_extras.Sortable.ParentProps.md).[tag](components_Sortable_extras.Sortable.ParentProps.md#tag)
-
-## Methods
-
-### onDropped
-
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
-
-Dropped event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `D` | Item. |
-| `group` | `string` | Group. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onDropped](components_Sortable_extras.Sortable.OwnProps.md#ondropped)
-
-___
-
-### onItemClick
-
-▸ `Optional` `Readonly` **onItemClick**(`item`): `void`
-
-Item click event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `T` | Item. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onItemClick](components_Sortable_extras.Sortable.OwnProps.md#onitemclick)
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | readonly `T`[] | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[OwnProps](components_Sortable_extras.Sortable.OwnProps.md).[onUpdate:modelValue](components_Sortable_extras.Sortable.OwnProps.md#onupdate:modelvalue)

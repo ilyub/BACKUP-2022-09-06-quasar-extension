@@ -15,9 +15,6 @@
 ### Properties
 
 - [rules](components_api_validation.validation.Plugin.md#rules)
-
-### Methods
-
 - [validate](components_api_validation.validation.Plugin.md#validate)
 - [validateAsync](components_api_validation.validation.Plugin.md#validateasync)
 
@@ -27,22 +24,26 @@
 
 • `Readonly` **rules**: `ComputedRef`<`ValidationRule`<`unknown`\>[]\>
 
-## Methods
+___
 
 ### validate
 
-▸ `Readonly` **validate**(`value`, `context`): `void`
+• `Readonly` **validate**: (`value`: `T`, `context`: [`Context`](../modules/components_api_validation.validation.md#context)) => `void`
+
+#### Type declaration
+
+▸ (`value`, `context`): `void`
 
 Validates field.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Value. |
 | `context` | [`Context`](../modules/components_api_validation.validation.md#context) | Context. |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -50,18 +51,22 @@ ___
 
 ### validateAsync
 
-▸ `Readonly` **validateAsync**(`value`, `context`): `Promise`<`boolean`\>
+• `Readonly` **validateAsync**: (`value`: `T`, `context`: [`Context`](../modules/components_api_validation.validation.md#context)) => `Promise`<`boolean`\>
+
+#### Type declaration
+
+▸ (`value`, `context`): `Promise`<`boolean`\>
 
 Validates field.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Value. |
 | `context` | [`Context`](../modules/components_api_validation.validation.md#context) | Context. |
 
-#### Returns
+##### Returns
 
 `Promise`<`boolean`\>
 

@@ -12,10 +12,6 @@
 
 - [VNodes](components_api_misc.md#vnodes)
 
-### Variables
-
-- [prop](components_api_misc.md#prop)
-
 ### Functions
 
 - [classRef](components_api_misc.md#classref)
@@ -25,6 +21,7 @@
 - [injectableTrigger](components_api_misc.md#injectabletrigger)
 - [override](components_api_misc.md#override)
 - [parentProps](components_api_misc.md#parentprops)
+- [prop](components_api_misc.md#prop)
 - [propFactory](components_api_misc.md#propfactory)
 - [skipCheck](components_api_misc.md#skipcheck)
 - [toComputed](components_api_misc.md#tocomputed)
@@ -37,12 +34,6 @@
 ### VNodes
 
 Ƭ **VNodes**: readonly `VNode`[]
-
-## Variables
-
-### prop
-
-• `Const` **prop**: <T\>() => [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`T`\> & `Readonly`<{ `boolean`: (`defVal`: `boolean`) => [`PropOptionsBoolean`](../interfaces/components_api_types_prop_options.PropOptionsBoolean.md) ; `default`: <T\>(`defVal`: `Exclude`<`T`, `undefined`\>) => [`PropOptionsDefault`](../interfaces/components_api_types_prop_options.PropOptionsDefault.md)<`Exclude`<`T`, `undefined`\>\> ; `required`: <T\>() => [`PropOptionsRequired`](../interfaces/components_api_types_prop_options.PropOptionsRequired.md)<`T`\>  }\>
 
 ## Functions
 
@@ -203,6 +194,26 @@ Returns parent props.
 [`ParentProps`](components_api_misc_internal.md#parentprops)<`T`\>
 
 Parent props.
+
+___
+
+### prop
+
+▸ **prop**<`T`\>(): [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`T`\>
+
+Creates Vue property.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Returns
+
+[`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`T`\>
+
+Vue property.
 
 ___
 

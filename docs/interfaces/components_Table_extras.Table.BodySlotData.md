@@ -21,22 +21,19 @@
 ### Properties
 
 - [allSelected](components_Table_extras.Table.BodySlotData.md#allselected)
+- [deselectAll](components_Table_extras.Table.BodySlotData.md#deselectall)
 - [deselectAllDisable](components_Table_extras.Table.BodySlotData.md#deselectalldisable)
 - [deselectAllIcon](components_Table_extras.Table.BodySlotData.md#deselectallicon)
 - [deselectAllLabel](components_Table_extras.Table.BodySlotData.md#deselectalllabel)
 - [row](components_Table_extras.Table.BodySlotData.md#row)
+- [selectAll](components_Table_extras.Table.BodySlotData.md#selectall)
 - [selectAllDisable](components_Table_extras.Table.BodySlotData.md#selectalldisable)
 - [selectAllIcon](components_Table_extras.Table.BodySlotData.md#selectallicon)
 - [selectAllLabel](components_Table_extras.Table.BodySlotData.md#selectalllabel)
+- [toggleSelection](components_Table_extras.Table.BodySlotData.md#toggleselection)
 - [toggleSelectionDisable](components_Table_extras.Table.BodySlotData.md#toggleselectiondisable)
 - [toggleSelectionIcon](components_Table_extras.Table.BodySlotData.md#toggleselectionicon)
 - [toggleSelectionLabel](components_Table_extras.Table.BodySlotData.md#toggleselectionlabel)
-
-### Methods
-
-- [deselectAll](components_Table_extras.Table.BodySlotData.md#deselectall)
-- [selectAll](components_Table_extras.Table.BodySlotData.md#selectall)
-- [toggleSelection](components_Table_extras.Table.BodySlotData.md#toggleselection)
 
 ## Properties
 
@@ -47,6 +44,26 @@
 #### Inherited from
 
 [MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[allSelected](components_Table_extras.Table.MultiSelectData.md#allselected)
+
+___
+
+### deselectAll
+
+• `Readonly` **deselectAll**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Deselects all.
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[deselectAll](components_Table_extras.Table.MultiSelectData.md#deselectall)
 
 ___
 
@@ -86,6 +103,26 @@ ___
 
 ___
 
+### selectAll
+
+• `Readonly` **selectAll**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Selects all.
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[selectAll](components_Table_extras.Table.MultiSelectData.md#selectall)
+
+___
+
 ### selectAllDisable
 
 • `Readonly` **selectAllDisable**: `boolean`
@@ -116,6 +153,26 @@ ___
 
 ___
 
+### toggleSelection
+
+• `Readonly` **toggleSelection**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
+
+Toggles selection.
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[toggleSelection](components_Table_extras.Table.MultiSelectData.md#toggleselection)
+
+___
+
 ### toggleSelectionDisable
 
 • `Readonly` **toggleSelectionDisable**: `boolean`
@@ -143,51 +200,3 @@ ___
 #### Inherited from
 
 [MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[toggleSelectionLabel](components_Table_extras.Table.MultiSelectData.md#toggleselectionlabel)
-
-## Methods
-
-### deselectAll
-
-▸ `Readonly` **deselectAll**(): `void`
-
-Deselects all.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[deselectAll](components_Table_extras.Table.MultiSelectData.md#deselectall)
-
-___
-
-### selectAll
-
-▸ `Readonly` **selectAll**(): `void`
-
-Selects all.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[selectAll](components_Table_extras.Table.MultiSelectData.md#selectall)
-
-___
-
-### toggleSelection
-
-▸ `Readonly` **toggleSelection**(): `void`
-
-Toggles selection.
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[MultiSelectData](components_Table_extras.Table.MultiSelectData.md).[toggleSelection](components_Table_extras.Table.MultiSelectData.md#toggleselection)

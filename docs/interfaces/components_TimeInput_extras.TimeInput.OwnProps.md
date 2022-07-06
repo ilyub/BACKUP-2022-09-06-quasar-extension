@@ -15,9 +15,6 @@
 ### Properties
 
 - [modelValue](components_TimeInput_extras.TimeInput.OwnProps.md#modelvalue)
-
-### Methods
-
 - [onUpdate:modelValue](components_TimeInput_extras.TimeInput.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
@@ -26,20 +23,24 @@
 
 • `Optional` `Readonly` **modelValue**: `numberU`
 
-## Methods
+___
 
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `numberU`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `numberU` | Value. |
 
-#### Returns
+##### Returns
 
 `void`

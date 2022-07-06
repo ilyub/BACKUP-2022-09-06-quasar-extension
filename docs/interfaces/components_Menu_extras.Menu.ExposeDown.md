@@ -6,18 +6,22 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [autoClose](components_Menu_extras.Menu.ExposeDown.md#autoclose)
 
-## Methods
+## Properties
 
 ### autoClose
 
-▸ `Readonly` **autoClose**(): `void`
+• `Readonly` **autoClose**: () => `void`
+
+#### Type declaration
+
+▸ (): `void`
 
 Auto-closes menu.
 
-#### Returns
+##### Returns
 
 `void`

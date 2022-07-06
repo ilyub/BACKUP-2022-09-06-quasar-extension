@@ -17,9 +17,6 @@
 - [max](components_Resizer_extras.Resizer.OwnProps.md#max)
 - [min](components_Resizer_extras.Resizer.OwnProps.md#min)
 - [modelValue](components_Resizer_extras.Resizer.OwnProps.md#modelvalue)
-
-### Methods
-
 - [onUpdate:modelValue](components_Resizer_extras.Resizer.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
@@ -40,20 +37,24 @@ ___
 
 • `Optional` `Readonly` **modelValue**: `numberU`
 
-## Methods
+___
 
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `number`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `number` | Value. |
 
-#### Returns
+##### Returns
 
 `void`

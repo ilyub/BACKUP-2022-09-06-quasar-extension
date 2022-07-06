@@ -21,9 +21,6 @@
 ### Properties
 
 - [modelValue](components_Tabs_extras.Tabs.OwnProps.md#modelvalue)
-
-### Methods
-
 - [onUpdate:modelValue](components_Tabs_extras.Tabs.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
@@ -32,20 +29,24 @@
 
 • `Optional` `Readonly` **modelValue**: `T`
 
-## Methods
+___
 
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Value. |
 
-#### Returns
+##### Returns
 
 `void`

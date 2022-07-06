@@ -7,7 +7,6 @@
 ### Interfaces
 
 - [DOMWrapper](../interfaces/test_utils_core.DOMWrapper.md)
-- [WrapperLike](../interfaces/test_utils_core.WrapperLike.md)
 
 ### Type Aliases
 
@@ -31,4 +30,4 @@ ___
 
 ### WrapperLikes
 
-Ƭ **WrapperLikes**: readonly [`WrapperLike`](../interfaces/test_utils_core.WrapperLike.md)[]
+Ƭ **WrapperLikes**: readonly `WrapperLike`[]

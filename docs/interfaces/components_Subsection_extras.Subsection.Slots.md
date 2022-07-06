@@ -12,19 +12,23 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [default](components_Subsection_extras.Subsection.Slots.md#default)
 
-## Methods
+## Properties
 
 ### default
 
-▸ `Readonly` **default**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **default**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Default slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 

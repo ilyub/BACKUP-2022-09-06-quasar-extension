@@ -9,25 +9,3 @@
 - [`ParentSlots`](components_CardActions_extras.CardActions.ParentSlots.md)
 
   ↳ **`Slots`**
-
-## Table of contents
-
-### Methods
-
-- [default](components_CardActions_extras.CardActions.Slots.md#default)
-
-## Methods
-
-### default
-
-▸ **default**(): `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
-
-Suggestions: QBtn
-
-#### Returns
-
-`VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
-
-#### Inherited from
-
-[ParentSlots](components_CardActions_extras.CardActions.ParentSlots.md).[default](components_CardActions_extras.CardActions.ParentSlots.md#default)

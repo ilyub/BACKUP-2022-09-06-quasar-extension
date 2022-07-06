@@ -55,15 +55,19 @@ ___
 
 ▸ **isElement**(`value`): value is Element
 
+Checks if value type is T.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `unknown` | Value. |
 
 #### Returns
 
 value is Element
+
+_True_ if value type is T, _false_ otherwise.
 
 ___
 
@@ -71,15 +75,19 @@ ___
 
 ▸ **isElements**(`value`): value is readonly Element[]
 
+Checks if value type is T.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `unknown` | Value. |
 
 #### Returns
 
 value is readonly Element[]
+
+_True_ if value type is T, _false_ otherwise.
 
 ___
 
@@ -87,15 +95,19 @@ ___
 
 ▸ **isHtmlElement**(`value`): value is HTMLElement
 
+Checks if value type is T.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `unknown` | Value. |
 
 #### Returns
 
 value is HTMLElement
+
+_True_ if value type is T, _false_ otherwise.
 
 ___
 
@@ -103,12 +115,16 @@ ___
 
 ▸ **isMoveData**(`value`): value is MoveData
 
+Checks if value type is T.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `value` | `unknown` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `unknown` | Value. |
 
 #### Returns
 
 value is MoveData
+
+_True_ if value type is T, _false_ otherwise.

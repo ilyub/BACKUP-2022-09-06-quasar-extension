@@ -16,9 +16,6 @@
 
 - [asyncSubmit](components_Form_extras.Form.OwnProps.md#asyncsubmit)
 - [asyncTaskType](components_Form_extras.Form.OwnProps.md#asynctasktype)
-
-### Methods
-
 - [onSubmit](components_Form_extras.Form.OwnProps.md#onsubmit)
 
 ## Properties
@@ -33,20 +30,24 @@ ___
 
 • `Optional` `Readonly` **asyncTaskType**: `Type`
 
-## Methods
+___
 
 ### onSubmit
 
-▸ `Optional` `Readonly` **onSubmit**(`event`): `void`
+• `Optional` `Readonly` **onSubmit**: (`event`: `Event`) => `void`
+
+#### Type declaration
+
+▸ (`event`): `void`
 
 Form submission event.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `event` | `Event` | DOM event. |
 
-#### Returns
+##### Returns
 
 `void`

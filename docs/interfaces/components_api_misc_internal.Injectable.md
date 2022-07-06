@@ -12,21 +12,25 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [inject](components_api_misc_internal.Injectable.md#inject)
 - [provide](components_api_misc_internal.Injectable.md#provide)
 - [testProvide](components_api_misc_internal.Injectable.md#testprovide)
 
-## Methods
+## Properties
 
 ### inject
 
-▸ `Readonly` **inject**(): `T`
+• `Readonly` **inject**: () => `T`
+
+#### Type declaration
+
+▸ (): `T`
 
 Injects settings.
 
-#### Returns
+##### Returns
 
 `T`
 
@@ -36,17 +40,21 @@ ___
 
 ### provide
 
-▸ `Readonly` **provide**(`value`): `void`
+• `Readonly` **provide**: (`value`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Provides value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Default value. |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -54,17 +62,21 @@ ___
 
 ### testProvide
 
-▸ `Readonly` **testProvide**(`value`): `IndexedObject`<`T`\>
+• `Readonly` **testProvide**: (`value`: `T`) => `IndexedObject`<`T`\>
+
+#### Type declaration
+
+▸ (`value`): `IndexedObject`<`T`\>
 
 Returns provide value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Value. |
 
-#### Returns
+##### Returns
 
 `IndexedObject`<`T`\>
 

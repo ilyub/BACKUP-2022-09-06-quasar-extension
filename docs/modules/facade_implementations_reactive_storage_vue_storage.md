@@ -4,12 +4,32 @@
 
 ## Table of contents
 
-### Variables
+### Functions
 
 - [vueStorage](facade_implementations_reactive_storage_vue_storage.md#vuestorage)
 
-## Variables
+## Functions
 
 ### vueStorage
 
-• `Const` **vueStorage**: `reactiveStorage.Facade`
+▸ **vueStorage**<`T`\>(`obj`): `T`
+
+Creates reactive object.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `obj` | `T` | Object. |
+
+#### Returns
+
+`T`
+
+Reactive object.

@@ -14,34 +14,29 @@
 
 ### Properties
 
-- [passThroughSlots](components_api_slot_names.slotNames.PluginMethods.md#passthroughslots)
-
-### Methods
-
 - [has](components_api_slot_names.slotNames.PluginMethods.md#has)
 - [hasSome](components_api_slot_names.slotNames.PluginMethods.md#hassome)
+- [passThroughSlots](components_api_slot_names.slotNames.PluginMethods.md#passthroughslots)
 
 ## Properties
 
-### passThroughSlots
-
-• `Readonly` **passThroughSlots**: `nevers`
-
-## Methods
-
 ### has
 
-▸ `Readonly` **has**(`name`): `boolean`
+• `Readonly` **has**: (`name`: `T`) => `boolean`
+
+#### Type declaration
+
+▸ (`name`): `boolean`
 
 Checks if slot exists.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `name` | `T` | Slot name. |
 
-#### Returns
+##### Returns
 
 `boolean`
 
@@ -51,18 +46,28 @@ ___
 
 ### hasSome
 
-▸ `Readonly` **hasSome**(...`names`): `boolean`
+• `Readonly` **hasSome**: (...`names`: readonly `T`[]) => `boolean`
+
+#### Type declaration
+
+▸ (...`names`): `boolean`
 
 Checks if some slot exists.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `...names` | `T`[] | Slot names. |
+| `...names` | readonly `T`[] | Slot names. |
 
-#### Returns
+##### Returns
 
 `boolean`
 
 _True_ if slot exists, _false_ otherwise.
+
+___
+
+### passThroughSlots
+
+• `Readonly` **passThroughSlots**: `nevers`

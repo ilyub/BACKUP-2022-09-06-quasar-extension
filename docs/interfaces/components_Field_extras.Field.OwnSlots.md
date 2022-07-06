@@ -18,25 +18,29 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [control](components_Field_extras.Field.OwnSlots.md#control)
 
-## Methods
+## Properties
 
 ### control
 
-▸ `Readonly` **control**(`scope`): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **control**: (`scope`: [`ControlSlotData`](components_Field_extras.Field.ControlSlotData.md)<`T`\>) => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (`scope`): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Control slot.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `scope` | [`ControlSlotData`](components_Field_extras.Field.ControlSlotData.md)<`T`\> | Scope. |
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 

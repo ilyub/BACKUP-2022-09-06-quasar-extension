@@ -18,13 +18,10 @@
 - [max](components_NumericInput_extras.NumericInput.OwnProps.md#max)
 - [min](components_NumericInput_extras.NumericInput.OwnProps.md#min)
 - [modelValue](components_NumericInput_extras.NumericInput.OwnProps.md#modelvalue)
+- [onUpdate:modelValue](components_NumericInput_extras.NumericInput.OwnProps.md#onupdate:modelvalue)
 - [required](components_NumericInput_extras.NumericInput.OwnProps.md#required)
 - [smallStep](components_NumericInput_extras.NumericInput.OwnProps.md#smallstep)
 - [validationOptions](components_NumericInput_extras.NumericInput.OwnProps.md#validationoptions)
-
-### Methods
-
-- [onUpdate:modelValue](components_NumericInput_extras.NumericInput.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -52,6 +49,28 @@ ___
 
 ___
 
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `numberU`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `numberU` | Value. |
+
+##### Returns
+
+`void`
+
+___
+
 ### required
 
 • `Optional` `Readonly` **required**: `booleanU`
@@ -72,30 +91,12 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `format?` | (`value`: `unknown`) => `numberU` |
 | `label?` | `Key`<`Word`\> |
 | `max?` | `numberU` |
 | `maxErrorMessage?` | `Key`<`Word`\> |
 | `min?` | `numberU` |
 | `minErrorMessage?` | `Key`<`Word`\> |
+| `minMaxFormat?` | (`value`: `number`) => `string` |
 | `required?` | `boolean` |
 | `requiredErrorMessage?` | `Key`<`Word`\> |
-| `format?` | (`value`: `unknown`) => `T` |
-| `minMaxFormat?` | (`value`: `Exclude`<`T`, `empty`\>) => `string` |
-
-## Methods
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `numberU` | Value. |
-
-#### Returns
-
-`void`

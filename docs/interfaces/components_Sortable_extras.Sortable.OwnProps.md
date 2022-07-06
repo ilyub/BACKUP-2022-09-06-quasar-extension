@@ -27,15 +27,12 @@
 - [itemTag](components_Sortable_extras.Sortable.OwnProps.md#itemtag)
 - [modelValue](components_Sortable_extras.Sortable.OwnProps.md#modelvalue)
 - [move](components_Sortable_extras.Sortable.OwnProps.md#move)
-- [pull](components_Sortable_extras.Sortable.OwnProps.md#pull)
-- [put](components_Sortable_extras.Sortable.OwnProps.md#put)
-- [sort](components_Sortable_extras.Sortable.OwnProps.md#sort)
-
-### Methods
-
 - [onDropped](components_Sortable_extras.Sortable.OwnProps.md#ondropped)
 - [onItemClick](components_Sortable_extras.Sortable.OwnProps.md#onitemclick)
 - [onUpdate:modelValue](components_Sortable_extras.Sortable.OwnProps.md#onupdate:modelvalue)
+- [pull](components_Sortable_extras.Sortable.OwnProps.md#pull)
+- [put](components_Sortable_extras.Sortable.OwnProps.md#put)
+- [sort](components_Sortable_extras.Sortable.OwnProps.md#sort)
 
 ## Properties
 
@@ -75,6 +72,73 @@ ___
 
 ___
 
+### onDropped
+
+• `Optional` `Readonly` **onDropped**: (`item`: `D`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
+
+Dropped event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `D` | Item. |
+| `group` | `string` | Group. |
+
+##### Returns
+
+`void`
+
+___
+
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: (`item`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`item`): `void`
+
+Item click event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `T` | Item. |
+
+##### Returns
+
+`void`
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `T`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | readonly `T`[] | Value. |
+
+##### Returns
+
+`void`
+
+___
+
 ### pull
 
 • `Optional` `Readonly` **pull**: `booleanU`
@@ -90,58 +154,3 @@ ___
 ### sort
 
 • `Optional` `Readonly` **sort**: `booleanU`
-
-## Methods
-
-### onDropped
-
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
-
-Dropped event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `D` | Item. |
-| `group` | `string` | Group. |
-
-#### Returns
-
-`void`
-
-___
-
-### onItemClick
-
-▸ `Optional` `Readonly` **onItemClick**(`item`): `void`
-
-Item click event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `T` | Item. |
-
-#### Returns
-
-`void`
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | readonly `T`[] | Value. |
-
-#### Returns
-
-`void`

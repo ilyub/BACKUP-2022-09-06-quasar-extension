@@ -12,21 +12,25 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [caption](components_Item_extras.Item.OwnSlots.md#caption)
 - [default](components_Item_extras.Item.OwnSlots.md#default)
 - [icon](components_Item_extras.Item.OwnSlots.md#icon)
 
-## Methods
+## Properties
 
 ### caption
 
-▸ `Readonly` **caption**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **caption**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Caption slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -36,11 +40,15 @@ ___
 
 ### default
 
-▸ `Readonly` **default**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **default**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Default slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -50,11 +58,15 @@ ___
 
 ### icon
 
-▸ `Readonly` **icon**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **icon**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Icon slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 

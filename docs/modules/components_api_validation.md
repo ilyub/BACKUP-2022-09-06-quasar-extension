@@ -8,12 +8,34 @@
 
 - [validation](components_api_validation.validation.md)
 
-### Variables
+### Functions
 
 - [validation](components_api_validation.md#validation)
 
-## Variables
+## Functions
 
 ### validation
 
-• `Const` **validation**: <T\>(`props`: [`Props`](../interfaces/components_api_validation.validation.Props.md)<`T`\>, `target`: `ComputedRef`<`QField` \| `QInput`\>, `options`: `ComputedRef`<[`Options`](../interfaces/components_api_validation.validation.Options.md)<`T`\>\>) => [`Plugin`](../interfaces/components_api_validation.validation.Plugin.md)<`T`\> & `Readonly`<{ `lang`: `Lang`<keyof [`Word`](../interfaces/components_api_validation.validation.Word.md), `never`\> ; `props`: { `rulesOnChange`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`Rules`](components_api_validation.validation.md#rules)<`unknown`\>\> ; `rulesOnInput`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`Rules`](components_api_validation.validation.md#rules)<`unknown`\>\> ; `rulesOnSubmit`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`Rules`](components_api_validation.validation.md#rules)<`unknown`\>\>  } ; `reset`: [`InjectableTrigger`](../interfaces/components_api_misc_internal.InjectableTrigger.md)  }\>
+▸ **validation**<`T`\>(`props`, `target`, `options`): [`Plugin`](../interfaces/components_api_validation.validation.Plugin.md)<`T`\>
+
+Use validation plugin.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`Props`](../interfaces/components_api_validation.validation.Props.md)<`T`\> | Props. |
+| `target` | `ComputedRef`<`QField` \| `QInput`\> | Target. |
+| `options` | `ComputedRef`<[`Options`](../interfaces/components_api_validation.validation.Options.md)<`T`\>\> | Options. |
+
+#### Returns
+
+[`Plugin`](../interfaces/components_api_validation.validation.Plugin.md)<`T`\>
+
+Validation plugin.

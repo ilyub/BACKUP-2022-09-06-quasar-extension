@@ -33,27 +33,18 @@
 
 ### warn
 
-▸ **warn**(...`data`): `void`
+▸ **warn**(...`args`): `any`
+
+Function.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...data` | `any`[] |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `...args` | readonly `any`[] | Arguments. |
 
 #### Returns
 
-`void`
+`any`
 
-▸ **warn**(`message?`, ...`optionalParams`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message?` | `any` |
-| `...optionalParams` | `any`[] |
-
-#### Returns
-
-`void`
+Result.

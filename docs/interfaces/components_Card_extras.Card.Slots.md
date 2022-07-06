@@ -12,21 +12,25 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [default](components_Card_extras.Card.Slots.md#default)
 - [header-actions](components_Card_extras.Card.Slots.md#header-actions)
 - [title](components_Card_extras.Card.Slots.md#title)
 
-## Methods
+## Properties
 
 ### default
 
-▸ `Readonly` **default**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **default**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Default slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -40,11 +44,15 @@ ___
 
 ### header-actions
 
-▸ `Readonly` **header-actions**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **header-actions**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Header actions slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -58,11 +66,15 @@ ___
 
 ### title
 
-▸ `Readonly` **title**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **title**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Title slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 

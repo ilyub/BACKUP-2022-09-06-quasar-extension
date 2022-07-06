@@ -23,11 +23,8 @@
 - [disable](components_OptionGroup_extras.OptionGroup.OwnProps.md#disable)
 - [inline](components_OptionGroup_extras.OptionGroup.OwnProps.md#inline)
 - [modelValue](components_OptionGroup_extras.OptionGroup.OwnProps.md#modelvalue)
-- [options](components_OptionGroup_extras.OptionGroup.OwnProps.md#options)
-
-### Methods
-
 - [onUpdate:modelValue](components_OptionGroup_extras.OptionGroup.OwnProps.md#onupdate:modelvalue)
+- [options](components_OptionGroup_extras.OptionGroup.OwnProps.md#options)
 
 ## Properties
 
@@ -49,24 +46,28 @@ ___
 
 ___
 
-### options
-
-• `Readonly` **options**: [`Options`](../modules/components_OptionGroup_extras.OptionGroup.md#options)<`T`\>
-
-## Methods
-
 ### onUpdate:modelValue
 
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
 
 Emits model value.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `value` | `T` | Value. |
 
-#### Returns
+##### Returns
 
 `void`
+
+___
+
+### options
+
+• `Readonly` **options**: [`Options`](../modules/components_OptionGroup_extras.OptionGroup.md#options)<`T`\>

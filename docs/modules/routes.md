@@ -6,7 +6,7 @@
 
 ### Namespaces
 
-- [routes](routes.routes-1.md)
+- [routes](routes.routes.md)
 
 ### Variables
 
@@ -16,4 +16,4 @@
 
 ### routes
 
-• `Const` **routes**: [`RouteRecordRaws`](routes.routes-1.md#routerecordraws)
+• `Const` **routes**: [`RouteRecordRaws`](routes.routes.md#routerecordraws)

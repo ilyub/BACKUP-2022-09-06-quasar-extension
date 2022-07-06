@@ -11,25 +11,3 @@
   ↳ **`ParentSlots`**
 
   ↳↳ [`Slots`](components_CardActions_extras.CardActions.Slots.md)
-
-## Table of contents
-
-### Methods
-
-- [default](components_CardActions_extras.CardActions.ParentSlots.md#default)
-
-## Methods
-
-### default
-
-▸ **default**(): `VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
-
-Suggestions: QBtn
-
-#### Returns
-
-`VNode`<`RendererNode`, `RendererElement`, { `[key: string]`: `any`;  }\>[]
-
-#### Inherited from
-
-QCardActionsSlots.default

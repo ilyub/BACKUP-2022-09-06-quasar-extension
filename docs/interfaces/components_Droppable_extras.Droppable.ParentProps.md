@@ -30,16 +30,13 @@
 - [itemClass](components_Droppable_extras.Droppable.ParentProps.md#itemclass)
 - [itemTag](components_Droppable_extras.Droppable.ParentProps.md#itemtag)
 - [move](components_Droppable_extras.Droppable.ParentProps.md#move)
+- [onDropped](components_Droppable_extras.Droppable.ParentProps.md#ondropped)
+- [onItemClick](components_Droppable_extras.Droppable.ParentProps.md#onitemclick)
+- [onUpdate:modelValue](components_Droppable_extras.Droppable.ParentProps.md#onupdate:modelvalue)
 - [pull](components_Droppable_extras.Droppable.ParentProps.md#pull)
 - [put](components_Droppable_extras.Droppable.ParentProps.md#put)
 - [sort](components_Droppable_extras.Droppable.ParentProps.md#sort)
 - [tag](components_Droppable_extras.Droppable.ParentProps.md#tag)
-
-### Methods
-
-- [onDropped](components_Droppable_extras.Droppable.ParentProps.md#ondropped)
-- [onItemClick](components_Droppable_extras.Droppable.ParentProps.md#onitemclick)
-- [onUpdate:modelValue](components_Droppable_extras.Droppable.ParentProps.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -113,6 +110,85 @@ Omit.move
 
 ___
 
+### onDropped
+
+• `Optional` `Readonly` **onDropped**: (`item`: `D`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
+
+Dropped event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `D` | Item. |
+| `group` | `string` | Group. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+Omit.onDropped
+
+___
+
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: (`item`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`item`): `void`
+
+Item click event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `T` | Item. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+Omit.onItemClick
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `T`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | readonly `T`[] | Value. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+Omit.onUpdate:modelValue
+
+___
+
 ### pull
 
 • `Optional` `Readonly` **pull**: `booleanU`
@@ -150,70 +226,3 @@ ___
 #### Inherited from
 
 Omit.tag
-
-## Methods
-
-### onDropped
-
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
-
-Dropped event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `D` | Item. |
-| `group` | `string` | Group. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Omit.onDropped
-
-___
-
-### onItemClick
-
-▸ `Optional` `Readonly` **onItemClick**(`item`): `void`
-
-Item click event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `T` | Item. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Omit.onItemClick
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | readonly `T`[] | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-Omit.onUpdate:modelValue

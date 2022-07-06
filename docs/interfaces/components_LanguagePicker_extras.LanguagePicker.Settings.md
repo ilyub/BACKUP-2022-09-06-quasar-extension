@@ -8,32 +8,33 @@
 
 ### Properties
 
-- [options](components_LanguagePicker_extras.LanguagePicker.Settings.md#options)
-
-### Methods
-
 - [changeLanguageAction](components_LanguagePicker_extras.LanguagePicker.Settings.md#changelanguageaction)
+- [options](components_LanguagePicker_extras.LanguagePicker.Settings.md#options)
 
 ## Properties
 
-### options
-
-• `Readonly` **options**: [`Options`](../modules/components_LanguagePicker_extras.LanguagePicker.md#options)
-
-## Methods
-
 ### changeLanguageAction
 
-▸ `Readonly` **changeLanguageAction**(`language`): `void`
+• `Readonly` **changeLanguageAction**: (`language`: `LocaleName`) => `void`
+
+#### Type declaration
+
+▸ (`language`): `void`
 
 Change language action.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `language` | `LocaleName` | Language. |
 
-#### Returns
+##### Returns
 
 `void`
+
+___
+
+### options
+
+• `Readonly` **options**: [`Options`](../modules/components_LanguagePicker_extras.LanguagePicker.md#options)

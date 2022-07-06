@@ -8,12 +8,33 @@
 
 - [langProps](components_api_lang_props.langProps.md)
 
-### Variables
+### Functions
 
 - [langProps](components_api_lang_props.md#langprops)
 
-## Variables
+## Functions
 
 ### langProps
 
-• `Const` **langProps**: <T\>(`props`: [`Props`](components_api_lang_props.langProps.md#props)<`T`\>, ...`names`: `T`[]) => [`Plugin`](components_api_lang_props.langProps.md#plugin)<`T`\> & `Readonly`<{ `props`: <T\>(...`names`: `T`[]) => [`PropOptionsRecord`](components_api_lang_props.langProps.md#propoptionsrecord)<`T`\>  }\>
+▸ **langProps**<`T`\>(`props`, ...`names`): [`Plugin`](components_api_lang_props.langProps.md#plugin)<`T`\>
+
+Use lang props plugin.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`Props`](components_api_lang_props.langProps.md#props)<`T`\> | Props. |
+| `...names` | readonly `T`[] | Property names. |
+
+#### Returns
+
+[`Plugin`](components_api_lang_props.langProps.md#plugin)<`T`\>
+
+Lang props plugin.

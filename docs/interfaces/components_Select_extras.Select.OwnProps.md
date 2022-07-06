@@ -22,13 +22,10 @@
 
 - [disable](components_Select_extras.Select.OwnProps.md#disable)
 - [modelValue](components_Select_extras.Select.OwnProps.md#modelvalue)
+- [onUpdate:modelValue](components_Select_extras.Select.OwnProps.md#onupdate:modelvalue)
 - [options](components_Select_extras.Select.OwnProps.md#options)
 - [required](components_Select_extras.Select.OwnProps.md#required)
 - [validationLabel](components_Select_extras.Select.OwnProps.md#validationlabel)
-
-### Methods
-
-- [onUpdate:modelValue](components_Select_extras.Select.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -41,6 +38,28 @@ ___
 ### modelValue
 
 • `Optional` `Readonly` **modelValue**: `T`
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+
+##### Returns
+
+`void`
 
 ___
 
@@ -59,21 +78,3 @@ ___
 ### validationLabel
 
 • `Optional` `Readonly` **validationLabel**: `Key`<`Word`\>
-
-## Methods
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `T` | Value. |
-
-#### Returns
-
-`void`

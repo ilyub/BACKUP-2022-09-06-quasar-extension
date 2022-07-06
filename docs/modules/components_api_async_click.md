@@ -8,12 +8,26 @@
 
 - [asyncClick](components_api_async_click.asyncClick.md)
 
-### Variables
+### Functions
 
 - [asyncClick](components_api_async_click.md#asyncclick)
 
-## Variables
+## Functions
 
 ### asyncClick
 
-• `Const` **asyncClick**: (`props`: [`Props`](../interfaces/components_api_async_click.asyncClick.Props.md)) => [`Plugin`](../interfaces/components_api_async_click.asyncClick.Plugin.md) & `Readonly`<{ `props`: { `asyncClick`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`AsyncClick`](../interfaces/components_api_async_click.asyncClick.AsyncClick.md)\>  }  }\>
+▸ **asyncClick**(`props`): [`Plugin`](../interfaces/components_api_async_click.asyncClick.Plugin.md)
+
+Use async click plugin.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`Props`](../interfaces/components_api_async_click.asyncClick.Props.md) | Props. |
+
+#### Returns
+
+[`Plugin`](../interfaces/components_api_async_click.asyncClick.Plugin.md)
+
+Async click plugin.

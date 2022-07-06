@@ -16,7 +16,7 @@
 
 ### slotNames
 
-▸ **slotNames**<`T`\>(): <U\>(...`use`: `U`[]) => [`Plugin`](components_api_slot_names.slotNames.md#plugin)<`U`\>
+▸ **slotNames**<`T`\>(): <U\>(...`use`: readonly `U`[]) => [`Plugin`](components_api_slot_names.slotNames.md#plugin)<`U`\>
 
 Use slot names plugin.
 
@@ -44,7 +44,7 @@ Slot names plugin.
 
 | Name | Type |
 | :------ | :------ |
-| `...use` | `U`[] |
+| `...use` | readonly `U`[] |
 
 ##### Returns
 

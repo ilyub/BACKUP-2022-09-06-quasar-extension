@@ -24,12 +24,9 @@
 - [focusableElement](components_Field_extras.Field.OwnProps.md#focusableelement)
 - [format](components_Field_extras.Field.OwnProps.md#format)
 - [modelValue](components_Field_extras.Field.OwnProps.md#modelvalue)
+- [onUpdate:modelValue](components_Field_extras.Field.OwnProps.md#onupdate:modelvalue)
 - [required](components_Field_extras.Field.OwnProps.md#required)
 - [validationOptions](components_Field_extras.Field.OwnProps.md#validationoptions)
-
-### Methods
-
-- [onUpdate:modelValue](components_Field_extras.Field.OwnProps.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -51,15 +48,37 @@ ___
 
 Formats value.
 
-**`param`** Value.
+**`Param`**
 
-**`returns`** Formatted value.
+Value.
 
 ___
 
 ### modelValue
 
 • `Readonly` **modelValue**: `T`
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `T` | Value. |
+
+##### Returns
+
+`void`
 
 ___
 
@@ -77,30 +96,12 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `format?` | (`value`: `unknown`) => `T` |
 | `label?` | `Key`<`Word`\> |
 | `max?` | `T` |
 | `maxErrorMessage?` | `Key`<`Word`\> |
 | `min?` | `T` |
 | `minErrorMessage?` | `Key`<`Word`\> |
+| `minMaxFormat?` | (`value`: `Exclude`<`T`, `empty`\>) => `string` |
 | `required?` | `boolean` |
 | `requiredErrorMessage?` | `Key`<`Word`\> |
-| `format?` | (`value`: `unknown`) => `T` |
-| `minMaxFormat?` | (`value`: `Exclude`<`T`, `empty`\>) => `string` |
-
-## Methods
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `T` | Value. |
-
-#### Returns
-
-`void`

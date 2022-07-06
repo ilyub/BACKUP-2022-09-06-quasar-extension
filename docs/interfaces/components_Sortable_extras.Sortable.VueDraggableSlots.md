@@ -6,21 +6,25 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [footer](components_Sortable_extras.Sortable.VueDraggableSlots.md#footer)
 - [header](components_Sortable_extras.Sortable.VueDraggableSlots.md#header)
 - [item](components_Sortable_extras.Sortable.VueDraggableSlots.md#item)
 
-## Methods
+## Properties
 
 ### footer
 
-▸ `Readonly` **footer**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **footer**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Footer slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -30,11 +34,15 @@ ___
 
 ### header
 
-▸ `Readonly` **header**(): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **header**: () => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Header slot.
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 
@@ -44,17 +52,21 @@ ___
 
 ### item
 
-▸ `Readonly` **item**(`data`): [`VNodes`](../modules/components_api_misc.md#vnodes)
+• `Readonly` **item**: (`data`: [`VueDraggableItemSlotData`](components_Sortable_extras.Sortable.VueDraggableItemSlotData.md)) => [`VNodes`](../modules/components_api_misc.md#vnodes)
+
+#### Type declaration
+
+▸ (`data`): [`VNodes`](../modules/components_api_misc.md#vnodes)
 
 Item slot.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `data` | [`VueDraggableItemSlotData`](components_Sortable_extras.Sortable.VueDraggableItemSlotData.md) | Data. |
 
-#### Returns
+##### Returns
 
 [`VNodes`](../modules/components_api_misc.md#vnodes)
 

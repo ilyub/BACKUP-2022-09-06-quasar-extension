@@ -6,20 +6,24 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [provide](components_api_misc_internal.InjectableTrigger.md#provide)
 - [watch](components_api_misc_internal.InjectableTrigger.md#watch)
 
-## Methods
+## Properties
 
 ### provide
 
-▸ `Readonly` **provide**(): () => `void`
+• `Readonly` **provide**: () => () => `void`
+
+#### Type declaration
+
+▸ (): () => `void`
 
 Provides trigger.
 
-#### Returns
+##### Returns
 
 `fn`
 
@@ -35,16 +39,20 @@ ___
 
 ### watch
 
-▸ `Readonly` **watch**(`handler`): `void`
+• `Readonly` **watch**: (`handler`: () => `void`) => `void`
+
+#### Type declaration
+
+▸ (`handler`): `void`
 
 Watches trigger.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `handler` | () => `void` | Handler. |
 
-#### Returns
+##### Returns
 
 `void`

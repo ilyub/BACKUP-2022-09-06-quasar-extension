@@ -14,14 +14,33 @@
 
 ### Properties
 
+- [emitValue](components_Field_extras.Field.ControlSlotData.md#emitvalue)
 - [modelValue](components_Field_extras.Field.ControlSlotData.md#modelvalue)
 - [placeholder](components_Field_extras.Field.ControlSlotData.md#placeholder)
 
-### Methods
-
-- [emitValue](components_Field_extras.Field.ControlSlotData.md#emitvalue)
-
 ## Properties
+
+### emitValue
+
+• `Readonly` **emitValue**: (`value`: `unknown`) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `unknown` | Value. |
+
+##### Returns
+
+`void`
+
+___
 
 ### modelValue
 
@@ -32,21 +51,3 @@ ___
 ### placeholder
 
 • `Optional` `Readonly` **placeholder**: `string`
-
-## Methods
-
-### emitValue
-
-▸ `Readonly` **emitValue**(`value`): `void`
-
-Emits value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | `unknown` | Value. |
-
-#### Returns
-
-`void`

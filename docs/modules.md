@@ -92,7 +92,6 @@
 - [components/index.extras](modules/components_index_extras.md)
 - [components/index.generic](modules/components_index_generic.md)
 - [components/index.test-components](modules/components_index_test_components.md)
-- [dev/env](modules/dev_env.md)
 - [dev/svg](modules/dev_svg.md)
 - [dev/vue](modules/dev_vue.md)
 - [facade-implementations](modules/facade_implementations.md)

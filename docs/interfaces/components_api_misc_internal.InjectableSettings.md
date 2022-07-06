@@ -12,21 +12,25 @@
 
 ## Table of contents
 
-### Methods
+### Properties
 
 - [injectSettings](components_api_misc_internal.InjectableSettings.md#injectsettings)
 - [provideSettings](components_api_misc_internal.InjectableSettings.md#providesettings)
 - [testProvideSettings](components_api_misc_internal.InjectableSettings.md#testprovidesettings)
 
-## Methods
+## Properties
 
 ### injectSettings
 
-▸ `Readonly` **injectSettings**(): `T`
+• `Readonly` **injectSettings**: () => `T`
+
+#### Type declaration
+
+▸ (): `T`
 
 Injects settings.
 
-#### Returns
+##### Returns
 
 `T`
 
@@ -36,17 +40,21 @@ ___
 
 ### provideSettings
 
-▸ `Readonly` **provideSettings**(`settings`): `void`
+• `Readonly` **provideSettings**: (`settings`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`settings`): `void`
 
 Provides settings.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `settings` | `T` | Default settings. |
 
-#### Returns
+##### Returns
 
 `void`
 
@@ -54,17 +62,21 @@ ___
 
 ### testProvideSettings
 
-▸ `Readonly` **testProvideSettings**(`settings`): `IndexedObject`<`T`\>
+• `Readonly` **testProvideSettings**: (`settings`: `T`) => `IndexedObject`<`T`\>
+
+#### Type declaration
+
+▸ (`settings`): `IndexedObject`<`T`\>
 
 Returns provide object.
 
-#### Parameters
+##### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `settings` | `T` | Settings. |
 
-#### Returns
+##### Returns
 
 `IndexedObject`<`T`\>
 

@@ -8,12 +8,26 @@
 
 - [confirmedClick](components_api_confirmed_click.confirmedClick.md)
 
-### Variables
+### Functions
 
 - [confirmedClick](components_api_confirmed_click.md#confirmedclick)
 
-## Variables
+## Functions
 
 ### confirmedClick
 
-• `Const` **confirmedClick**: (`props`: [`Props`](../interfaces/components_api_confirmed_click.confirmedClick.Props.md)) => [`Plugin`](../interfaces/components_api_confirmed_click.confirmedClick.Plugin.md) & `Readonly`<{ `lang`: `Lang`<keyof [`Word`](../interfaces/components_api_confirmed_click.confirmedClick.Word.md), `never`\> ; `props`: { `confirmation`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| `Key`<`Word`\>\> ; `confirmedClick`: [`PropOptions`](../interfaces/components_api_types_prop_options.PropOptions.md)<`undefined` \| [`ConfirmedClick`](../interfaces/components_api_confirmed_click.confirmedClick.ConfirmedClick.md)\>  }  }\>
+▸ **confirmedClick**(`props`): [`Plugin`](../interfaces/components_api_confirmed_click.confirmedClick.Plugin.md)
+
+Use confirmed click plugin.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `props` | [`Props`](../interfaces/components_api_confirmed_click.confirmedClick.Props.md) | Props. |
+
+#### Returns
+
+[`Plugin`](../interfaces/components_api_confirmed_click.confirmedClick.Plugin.md)
+
+Confirmed click plugin.

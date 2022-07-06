@@ -28,16 +28,13 @@
 - [itemClass](components_Droppable_extras.Droppable.Props.md#itemclass)
 - [itemTag](components_Droppable_extras.Droppable.Props.md#itemtag)
 - [move](components_Droppable_extras.Droppable.Props.md#move)
+- [onDropped](components_Droppable_extras.Droppable.Props.md#ondropped)
+- [onItemClick](components_Droppable_extras.Droppable.Props.md#onitemclick)
+- [onUpdate:modelValue](components_Droppable_extras.Droppable.Props.md#onupdate:modelvalue)
 - [pull](components_Droppable_extras.Droppable.Props.md#pull)
 - [put](components_Droppable_extras.Droppable.Props.md#put)
 - [sort](components_Droppable_extras.Droppable.Props.md#sort)
 - [tag](components_Droppable_extras.Droppable.Props.md#tag)
-
-### Methods
-
-- [onDropped](components_Droppable_extras.Droppable.Props.md#ondropped)
-- [onItemClick](components_Droppable_extras.Droppable.Props.md#onitemclick)
-- [onUpdate:modelValue](components_Droppable_extras.Droppable.Props.md#onupdate:modelvalue)
 
 ## Properties
 
@@ -111,6 +108,85 @@ ___
 
 ___
 
+### onDropped
+
+• `Optional` `Readonly` **onDropped**: (`item`: `D`, `group`: `string`) => `void`
+
+#### Type declaration
+
+▸ (`item`, `group`): `void`
+
+Dropped event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `D` | Item. |
+| `group` | `string` | Group. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onDropped](components_Droppable_extras.Droppable.ParentProps.md#ondropped)
+
+___
+
+### onItemClick
+
+• `Optional` `Readonly` **onItemClick**: (`item`: `T`) => `void`
+
+#### Type declaration
+
+▸ (`item`): `void`
+
+Item click event.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `item` | `T` | Item. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onItemClick](components_Droppable_extras.Droppable.ParentProps.md#onitemclick)
+
+___
+
+### onUpdate:modelValue
+
+• `Optional` `Readonly` **onUpdate:modelValue**: (`value`: readonly `T`[]) => `void`
+
+#### Type declaration
+
+▸ (`value`): `void`
+
+Emits model value.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | readonly `T`[] | Value. |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onUpdate:modelValue](components_Droppable_extras.Droppable.ParentProps.md#onupdate:modelvalue)
+
+___
+
 ### pull
 
 • `Optional` `Readonly` **pull**: `booleanU`
@@ -148,70 +224,3 @@ ___
 #### Inherited from
 
 [ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[tag](components_Droppable_extras.Droppable.ParentProps.md#tag)
-
-## Methods
-
-### onDropped
-
-▸ `Optional` `Readonly` **onDropped**(`item`, `group`): `void`
-
-Dropped event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `D` | Item. |
-| `group` | `string` | Group. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onDropped](components_Droppable_extras.Droppable.ParentProps.md#ondropped)
-
-___
-
-### onItemClick
-
-▸ `Optional` `Readonly` **onItemClick**(`item`): `void`
-
-Item click event.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `item` | `T` | Item. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onItemClick](components_Droppable_extras.Droppable.ParentProps.md#onitemclick)
-
-___
-
-### onUpdate:modelValue
-
-▸ `Optional` `Readonly` **onUpdate:modelValue**(`value`): `void`
-
-Emits model value.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value` | readonly `T`[] | Value. |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[ParentProps](components_Droppable_extras.Droppable.ParentProps.md).[onUpdate:modelValue](components_Droppable_extras.Droppable.ParentProps.md#onupdate:modelvalue)
