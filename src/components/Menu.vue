@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-menu -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-menu -- Ok */
 
 import { Menu } from "./Menu.extras";
 import { Tooltip } from "./Tooltip.extras";

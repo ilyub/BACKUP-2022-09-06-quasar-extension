@@ -27,7 +27,7 @@ export const settings = {
    */
   provide: () => {
     extras.BaseButton.provideSettings(
-      computed(() => {
+      computed((): extras.BaseButton.Settings => {
         return {
           animateAsyncClick: settings.baseButtonAnimateAsyncClick.value,
           animateSubmitting: settings.baseButtonAnimateSubmitting.value
@@ -36,7 +36,7 @@ export const settings = {
     );
 
     extras.IconPicker.provideSettings(
-      computed(() => {
+      computed((): extras.IconPicker.Settings => {
         return {
           cols: settings.iconPickerCompact.value ? 5 : 7,
           iconTooltips: settings.iconPickerTooltips.value,
@@ -47,7 +47,7 @@ export const settings = {
     );
 
     extras.LanguagePicker.provideSettings(
-      computed(() => {
+      computed((): extras.LanguagePicker.Settings => {
         return {
           changeLanguageAction: (value): void => {
             const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
@@ -98,7 +98,7 @@ export const settings = {
     );
 
     extras.PageLayout.provideSettings(
-      computed(() => {
+      computed((): extras.PageLayout.Settings => {
         return {
           closeButton: settings.pageLayoutCloseButton.value,
           height: "calc(100vh - 48px)"
@@ -107,13 +107,13 @@ export const settings = {
     );
 
     extras.Resizer.provideSettings(
-      computed(() => {
+      computed((): extras.Resizer.Settings => {
         return { disable: settings.resizerDisable.value };
       })
     );
 
     extras.Sortable.provideSettings(
-      computed(() => {
+      computed((): extras.Sortable.Settings => {
         return {
           animationDuration: 500,
           disableDropping: false,
@@ -123,7 +123,7 @@ export const settings = {
     );
 
     extras.Switchable.provideSettings(
-      computed(() => {
+      computed((): extras.Switchable.Settings => {
         return {
           transition: settings.switchableTransition.value,
           transitionDuration: 500
@@ -132,7 +132,7 @@ export const settings = {
     );
 
     extras.Table.provideSettings(
-      computed(() => {
+      computed((): extras.Table.Settings => {
         return {
           binaryStateSort: true,
           flat: true,
@@ -144,7 +144,7 @@ export const settings = {
     );
 
     extras.Tooltip.provideSettings(
-      computed(() => {
+      computed((): extras.Tooltip.Settings => {
         return {
           delay: settings.tooltipDelay.value,
           show: settings.tooltipShow.value

@@ -10,7 +10,7 @@ import type {
 } from "@skylib/functions";
 
 export namespace Sortable {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return {
       animationDuration: 500,
       disableDropping: false,

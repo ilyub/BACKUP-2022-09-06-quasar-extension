@@ -1,51 +1,13 @@
 const { eslint } = require("@skylib/config");
 
-const ignoreTypes = [
-  ...eslint.skylib.readonliness.ignoreTypes,
-  "^ComponentOptionsBase$",
-  "^ComputedRef$",
-  "^InjectionKey$",
-  "^VueWrapper$"
-];
-
 module.exports = {
-  overrides: [
-    {
-      files: "./src/boot/main.ts",
-      rules: {
-        // eslint-disable-next-line @skylib/no-restricted-syntax/eslintrc-no-disable -- Ok
-        "no-console": "off"
-      }
-    },
-    {
-      files: "./src/components/*.vue",
-      rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
-    },
-    {
-      files: "./src/samples/*.vue",
-      rules: { "@skylib/vue-component-name": ["warn", { prefix: "sample-" }] }
-    }
-  ],
   rules: {
-    "@skylib/no-mutable-signature": [
+    "@skylib/custom/no-empty-interface": [
       "warn",
       {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreNumberSignature: true,
-        ignoreTypes
-      }
-    ],
-    "@skylib/prefer-readonly": [
-      "warn",
-      {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreTypes
+        message: "Empty interface is not allowed",
+        selector:
+          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
       }
     ],
     "boundaries/element-types": [
@@ -98,5 +60,22 @@ module.exports = {
       }
     ],
     "vue/no-undef-components": ["warn", { ignorePatterns: [/^[mq]-/u.source] }]
-  }
+  },
+  overrides: [
+    {
+      files: "./src/boot/main.ts",
+      rules: {
+        // eslint-disable-next-line @skylib/custom/eslintrc-no-disable -- Ok
+        "no-console": "off"
+      }
+    },
+    {
+      files: "./src/components/*.vue",
+      rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
+    },
+    {
+      files: "./src/samples/*.vue",
+      rules: { "@skylib/vue-component-name": ["warn", { prefix: "sample-" }] }
+    }
+  ]
 };

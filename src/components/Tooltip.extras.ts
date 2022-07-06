@@ -6,7 +6,7 @@ import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 
 export namespace Tooltip {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return { delay: 0, show: true };
   });
 

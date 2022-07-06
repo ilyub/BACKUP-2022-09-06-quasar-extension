@@ -80,7 +80,7 @@ export default defineComponent({
       return undefined;
     });
 
-    const modelObject = computed<datetime.ReadonlyDateTime | undefined>(() =>
+    const modelObject = computed<datetime.DateTime | undefined>(() =>
       is.not.empty(props.modelValue) && datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
         : undefined
@@ -90,7 +90,7 @@ export default defineComponent({
 
     const pickerValue = ref<string>();
 
-    const pickerObject = computed<datetime.ReadonlyDateTime | undefined>(() =>
+    const pickerObject = computed<datetime.DateTime | undefined>(() =>
       is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value)
         : undefined

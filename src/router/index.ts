@@ -6,6 +6,7 @@ import {
   createWebHashHistory,
   createWebHistory
 } from "vue-router";
+import type { RouterScrollBehavior } from "vue-router";
 
 export default route(() => {
   const createHistory = evaluate(() => {
@@ -26,7 +27,7 @@ export default route(() => {
       process.env.MODE === "ssr" ? undefined : process.env.VUE_ROUTER_BASE
     ),
     routes: a.clone(routes),
-    scrollBehavior: () => {
+    scrollBehavior: (): ReturnType<RouterScrollBehavior> => {
       return { left: 0, top: 0 };
     }
   });

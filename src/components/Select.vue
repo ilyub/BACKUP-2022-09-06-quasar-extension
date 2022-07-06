@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-select -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-select -- Ok */
 
 import { Select } from "./Select.extras";
 import {

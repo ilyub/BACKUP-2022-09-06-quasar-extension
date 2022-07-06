@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 export const routes: routes.RouteRecordRaws = [
   { component: Overview, path: "/" },
-  ...o.values(components).map(component => {
+  ...o.values(components).map((component): RouteRecordRaw => {
     return {
       component,
       name: component.name,

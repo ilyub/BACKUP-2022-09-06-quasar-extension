@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-tooltip -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-tooltip -- Ok */
 
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";

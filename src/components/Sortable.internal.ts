@@ -47,7 +47,7 @@ export function buildElements(
   group: string,
   key: string
 ): Writable<Elements> {
-  return items.map(item => {
+  return items.map((item): Element => {
     const id = o.get(item, key, is.string);
 
     return {

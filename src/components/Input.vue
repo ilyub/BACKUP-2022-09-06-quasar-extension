@@ -21,8 +21,8 @@ const prop = propFactory<Input.OwnProps>();
 
 export default defineComponent({
   name: "m-input",
-  directives: { debugId: directives.debugId("input"), maska },
   components: { "m-field__string": genericField<stringU>() },
+  directives: { debugId: directives.debugId("input"), maska },
   props: {
     ...parentProps<Input.ParentProps>(),
     mask: prop("mask"),

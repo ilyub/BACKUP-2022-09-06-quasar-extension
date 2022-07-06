@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-form -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-form -- Ok */
 
 import { Form } from "./Form.extras";
 import {

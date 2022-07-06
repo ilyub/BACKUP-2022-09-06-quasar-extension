@@ -38,6 +38,7 @@ export const confirmedClick = defineFn(
   },
   {
     lang: typedef<baseLang.Lang<keyof confirmedClick.Word, never>>(baseLang),
+    // eslint-disable-next-line @skylib/custom/no-anonymous-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<confirmedClick.OwnProps>();
 

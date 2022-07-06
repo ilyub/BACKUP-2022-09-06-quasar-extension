@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-card-actions -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-card-actions -- Ok */
 
 import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";

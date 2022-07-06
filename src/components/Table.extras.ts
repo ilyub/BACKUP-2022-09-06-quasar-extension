@@ -18,7 +18,7 @@ declare global {
 }
 
 export namespace Table {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return {
       binaryStateSort: false,
       flat: false,

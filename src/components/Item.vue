@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-item -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-item -- Ok */
 
 import {
   directives,

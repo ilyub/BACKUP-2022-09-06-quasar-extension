@@ -203,20 +203,25 @@ export function parentProps<T extends object>(): ParentProps<T> {
  */
 export function propFactory<T extends object>(): Prop<T> {
   return defineFn(
-    <K extends PropOptionalKeys<T>>(_key: K) => {
+    <K extends PropOptionalKeys<T>>(_key: K): PropOptions<T[K]> => {
       return {};
     },
     {
-      boolean: <K extends PropBooleanKeys<T>>(_key: K, defVal = false) => {
+      boolean: <K extends PropBooleanKeys<T>>(
+        _key: K,
+        defVal = false
+      ): PropOptionsBoolean => {
         return { default: defVal, type: Boolean };
       },
       default: <K extends PropOptionalKeys<T>>(
         _key: K,
         defVal: Exclude<T[K], undefined>
-      ) => {
+      ): PropOptionsDefault<Exclude<T[K], undefined>> => {
         return { default: defVal };
       },
-      required: <K extends PropRequiredKeys<T>>(_key: K) => {
+      required: <K extends PropRequiredKeys<T>>(
+        _key: K
+      ): PropOptionsRequired<T[K]> => {
         return { required: true };
       }
     }

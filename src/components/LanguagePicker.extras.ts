@@ -7,7 +7,7 @@ import type { lang } from "@skylib/facades";
 import type { LocaleName } from "@skylib/functions";
 
 export namespace LanguagePicker {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return { changeLanguageAction: fn.noop, options: [] };
   });
 

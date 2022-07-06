@@ -36,8 +36,8 @@ interface VirtualScrollDetails {
 
 export default defineComponent({
   name: "m-table",
-  directives: { debugId: directives.debugId("table") },
   components: { "sortable-columns": genericSortable<Table.Column>() },
+  directives: { debugId: directives.debugId("table") },
   inheritAttrs: false,
   props: {
     ...parentProps<Table.ParentProps>(),

@@ -12,7 +12,6 @@ export namespace IconButtonsGroup {
     readonly default: () => VNodes;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface -- Ok
   export interface Props {}
 
   export interface Slots extends OwnSlots {}

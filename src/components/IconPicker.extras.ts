@@ -18,7 +18,7 @@ declare global {
 }
 
 export namespace IconPicker {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return {
       cols: 7,
       iconTooltips: false,

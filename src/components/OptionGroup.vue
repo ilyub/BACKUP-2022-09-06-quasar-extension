@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/no-restricted-syntax/vue-prefer-m-option-group -- Ok */
+/* eslint-disable @skylib/custom/quasar/vue-prefer-m-option-group -- Ok */
 
 import { OptionGroup } from "./OptionGroup.extras";
 import {

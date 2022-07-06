@@ -4,7 +4,7 @@ import type { GlobalComponent, VNodes } from "./api";
 import type { numberU } from "@skylib/functions";
 
 export namespace Resizer {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return { disable: false };
   });
 

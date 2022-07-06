@@ -2,10 +2,11 @@ import { equals } from "@jest/expect-utils";
 import { as, is } from "@skylib/functions";
 import * as testUtils from "@skylib/functions/dist/test-utils";
 import type { WrapperLike } from "./core";
+import type { Callable } from "@skylib/functions";
 import type * as vueTestUtils from "@vue/test-utils";
 
 // eslint-disable-next-line no-console -- Ok
-export const warn = console.warn;
+export const warn = console.warn as Callable;
 
 export const matchers: {
   readonly htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual">;

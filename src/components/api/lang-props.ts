@@ -61,6 +61,6 @@ export namespace langProps {
     readonly [K in T]: PropOptions<lang.Key | undefined>;
   };
 
-  // eslint-disable-next-line @skylib/no-restricted-syntax/prefer-interface -- Ok
+  // eslint-disable-next-line @skylib/custom/quasar/prefer-interface -- Ok
   export type Props<T extends string> = OwnProps<T>;
 }

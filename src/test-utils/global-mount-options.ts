@@ -13,7 +13,6 @@ export * as mocks from "./mocks";
  */
 export function globalMountOptions(
   options: globalMountOptions.CustomOptions = {}
-  // eslint-disable-next-line @skylib/no-mutable-signature -- Ok
 ): GlobalMountOptions {
   return {
     components: o.fromEntries.exhaustive(

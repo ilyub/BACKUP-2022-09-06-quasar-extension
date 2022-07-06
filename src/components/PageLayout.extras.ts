@@ -13,7 +13,7 @@ declare global {
 }
 
 export namespace PageLayout {
-  export const defaultSettings = computed<Settings>(() => {
+  export const defaultSettings = computed((): Settings => {
     return { closeButton: true, height: "auto" };
   });
 
