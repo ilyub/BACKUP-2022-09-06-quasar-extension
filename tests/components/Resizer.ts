@@ -73,7 +73,7 @@ test.each([
       isFinal: false,
       isFirst: true,
       offset: { x, y: 0 }
-    };
+    } as const;
 
     document.documentElement.style.cursor = "";
     touchPan.trigger(event);
@@ -86,7 +86,7 @@ test.each([
       isFinal: true,
       isFirst: false,
       offset: { x, y: 0 }
-    };
+    } as const;
 
     document.documentElement.style.cursor = "";
     touchPan.trigger(event);

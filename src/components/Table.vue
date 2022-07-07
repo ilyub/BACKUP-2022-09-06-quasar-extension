@@ -27,6 +27,11 @@ const { icons, lang } = Table;
 
 const prop = propFactory<Table.OwnProps>();
 
+// eslint-disable-next-line unicorn/consistent-destructuring -- Ok
+interface SortableColumn extends Table.Column {
+  readonly order: number;
+}
+
 interface VirtualScrollDetails {
   readonly direction: "decrease" | "increase";
   readonly from: number;
@@ -97,7 +102,7 @@ export default defineComponent({
 
     const settings = Table.injectSettings();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Table.OwnProps>(emit);
     validateExpose<Table.Global>(expose, exposed);
@@ -133,12 +138,12 @@ export default defineComponent({
         }),
       columnsManagementRows: computed<Writable<Table.Columns>>(() =>
         props.columns
-          .map((column, index) => {
-            return {
+          .map(
+            (column, index): SortableColumn => ({
               ...column,
               order: props.columnsOrder.get(column.name) ?? 1000 + index
-            };
-          })
+            })
+          )
           .sort((x, y) => x.order - y.order)
       ),
       columnsManagementShow: ref(false),
@@ -227,12 +232,12 @@ export default defineComponent({
       sortedColumns: computed(() =>
         props.columns
           .filter(column => !props.hiddenColumns.has(column.name))
-          .map((column, index) => {
-            return {
+          .map(
+            (column, index): SortableColumn => ({
               ...column,
               order: props.columnsOrder.get(column.name) ?? 1000 + index
-            };
-          })
+            })
+          )
           .sort((x, y) => x.order - y.order)
       ),
       square: computed(() =>

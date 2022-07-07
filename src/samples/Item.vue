@@ -5,14 +5,12 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-item",
-  setup: () => {
-    return {
-      lang: Item.lang,
-      lk: Item.lang.keys,
-      mdiAccount,
-      mdiPen
-    };
-  }
+  setup: () => ({
+    lang: Item.lang,
+    lk: Item.lang.keys,
+    mdiAccount,
+    mdiPen
+  })
 });
 </script>
 

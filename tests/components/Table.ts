@@ -53,7 +53,7 @@ test("prop: columnWidths", () => {
 
   const { comp } = testUtils.findFactory("table", wrapper);
 
-  const expected = [new Map([["column1", 200]])];
+  const expected = [new Map([["column1", 200]])] as const;
 
   expect(comp("resizer").props("modelValue")).toBe(100);
   comp("resizer").vm.$emit("update:modelValue", 200);
@@ -108,7 +108,11 @@ test("prop: columnsOrder", async () => {
 
   const texts2 = comps("dialog-label").map(elem => elem.text());
 
-  const expected = ["Sample label 2", "Sample label 1", "Sample label 3"];
+  const expected = [
+    "Sample label 2",
+    "Sample label 1",
+    "Sample label 3"
+  ] as const;
 
   expect(texts1).toStrictEqual(expected);
   expect(texts2).toStrictEqual(expected);
@@ -122,14 +126,14 @@ test("prop: columnsOrder (update)", async () => {
 
   const { comp, compByRef } = testUtils.findFactory("table", wrapper);
 
-  const value = [{ name: "column2" }, { name: "column1" }];
+  const value = [{ name: "column2" }, { name: "column1" }] as const;
 
   const columnsOrder = new Map([
     ["column2", 0],
     ["column1", 1]
   ]);
 
-  const expected = [columnsOrder];
+  const expected = [columnsOrder] as const;
 
   compByRef("debugDialog").vm.$emit("update:modelValue", true);
   await nextTick();
@@ -259,13 +263,13 @@ test.each([
     const { elem } = testUtils.findFactory("table", wrapper);
 
     {
-      const expected = [pagination];
+      const expected = [pagination] as const;
 
       expect(wrapper).toHaveEmitted("update:pagination", expected);
     }
 
     {
-      const expected = [paginationNext];
+      const expected = [paginationNext] as const;
 
       await elem("header-cell").trigger("click");
       expect(wrapper).toHaveEmitted("update:pagination", expected);
@@ -299,7 +303,7 @@ test.each([
   });
 
   {
-    const expected = [{ ...pagination, descending: false }];
+    const expected = [{ ...pagination, descending: false }] as const;
 
     expect(wrapper).toHaveEmitted("update:pagination", expected);
   }
@@ -312,7 +316,7 @@ test.each([
       from: 0,
       index: 0,
       to: 14
-    };
+    } as const;
 
     const expected = [
       {
@@ -320,7 +324,7 @@ test.each([
         descending: false,
         limit: 25
       }
-    ];
+    ] as const;
 
     main.vm.$emit("virtual-scroll", rawEvent);
     expect(wrapper).toHaveEmitted("update:pagination", expected);

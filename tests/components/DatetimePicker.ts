@@ -31,7 +31,7 @@ test.each([undefined, "2001-02-03 10:30"])("date", async modelValue => {
   );
 
   {
-    const expected = [modelValue];
+    const expected = [modelValue] as const;
 
     await elem("show-date").trigger("click");
     comp("date-save").vm.$emit("click");
@@ -39,7 +39,7 @@ test.each([undefined, "2001-02-03 10:30"])("date", async modelValue => {
   }
 
   {
-    const expected = ["2001-02-04 23:30"];
+    const expected = ["2001-02-04 23:30"] as const;
 
     comp("date").vm.$emit("update:modelValue", "2001-02-04 23:30");
     comp("date-save").vm.$emit("click");
@@ -47,7 +47,7 @@ test.each([undefined, "2001-02-03 10:30"])("date", async modelValue => {
   }
 
   {
-    const expected = ["2001-02-04 11:30"];
+    const expected = ["2001-02-04 11:30"] as const;
 
     comp("pm").vm.$emit("click");
     comp("date-save").vm.$emit("click");
@@ -155,7 +155,7 @@ test.each([undefined, "2001-02-03 10:30"])("time", async modelValue => {
   );
 
   {
-    const expected = [modelValue];
+    const expected = [modelValue] as const;
 
     await elem("show-time").trigger("click");
     comp("time-save").vm.$emit("click");
@@ -163,7 +163,7 @@ test.each([undefined, "2001-02-03 10:30"])("time", async modelValue => {
   }
 
   {
-    const expected = ["2001-02-04 23:30"];
+    const expected = ["2001-02-04 23:30"] as const;
 
     comp("time").vm.$emit("update:modelValue", "2001-02-04 23:30");
     comp("time-save").vm.$emit("click");
@@ -171,7 +171,7 @@ test.each([undefined, "2001-02-03 10:30"])("time", async modelValue => {
   }
 
   {
-    const expected = ["2001-02-04 11:30"];
+    const expected = ["2001-02-04 11:30"] as const;
 
     comp("pm").vm.$emit("click");
     comp("time-save").vm.$emit("click");

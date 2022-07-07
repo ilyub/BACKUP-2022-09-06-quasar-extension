@@ -10,13 +10,13 @@ import type {
 } from "@skylib/functions";
 
 export namespace Sortable {
-  export const defaultSettings = computed((): Settings => {
-    return {
+  export const defaultSettings = computed(
+    (): Settings => ({
       animationDuration: 500,
       disableDropping: false,
       disableSorting: false
-    };
-  });
+    })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

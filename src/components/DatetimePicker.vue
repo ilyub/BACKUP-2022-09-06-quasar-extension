@@ -19,6 +19,11 @@ import type { stringU } from "@skylib/functions";
 
 const prop = propFactory<DatetimePicker.OwnProps>();
 
+interface TimeLimit {
+  readonly hours: number;
+  readonly minutes: number;
+}
+
 export default defineComponent({
   name: "m-datetime-picker",
   components: { "m-field__string": genericField<stringU>() },
@@ -50,7 +55,7 @@ export default defineComponent({
         : undefined
     );
 
-    const minTime = computed(() => {
+    const minTime = computed((): TimeLimit | undefined => {
       if (
         is.not.empty(props.min) &&
         is.not.empty(minDate.value) &&
@@ -65,7 +70,7 @@ export default defineComponent({
       return undefined;
     });
 
-    const maxTime = computed(() => {
+    const maxTime = computed((): TimeLimit | undefined => {
       if (
         is.not.empty(props.max) &&
         is.not.empty(maxDate.value) &&
@@ -98,7 +103,7 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateExpose<DatetimePicker.Global>(expose, exposed);

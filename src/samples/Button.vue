@@ -4,9 +4,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-button",
-  setup: () => {
-    return { lang: Button.lang, lk: Button.lang.keys };
-  }
+  setup: () => ({ lang: Button.lang, lk: Button.lang.keys })
 });
 </script>
 

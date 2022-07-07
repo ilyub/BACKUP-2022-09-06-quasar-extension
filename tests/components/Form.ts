@@ -29,7 +29,7 @@ test("expose: resetValidation", () => {
 
   const wrapper = vueTestUtils.mount(
     {
-      setup: () => {
+      setup: (): object => {
         const main = ref<extras.Form.Global>();
 
         onMounted(() => {

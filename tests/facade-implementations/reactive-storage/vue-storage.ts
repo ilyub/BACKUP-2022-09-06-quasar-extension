@@ -1,10 +1,23 @@
+/* eslint-disable @skylib/custom/prefer-readonly-property -- Ok */
+
 import { reactiveStorage } from "@skylib/facades";
 import { nextTick } from "vue";
+
+interface TestObject {
+  x: number;
+  y: TestSubObject;
+}
+
+interface TestSubObject {
+  z: number;
+}
 
 test("reducer", async () => {
   const callback = jest.fn();
 
-  const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
+  const obj = reactiveStorage(
+    reactiveStorage<TestObject>({ x: 0, y: { z: 0 } })
+  );
 
   const observer = reactiveStorage.watch(obj, callback, value => value.x);
 
@@ -32,7 +45,9 @@ test("reducer", async () => {
 test("watch, unwatch", async () => {
   const callback = jest.fn();
 
-  const obj = reactiveStorage(reactiveStorage({ x: 0, y: { z: 0 } }));
+  const obj = reactiveStorage(
+    reactiveStorage<TestObject>({ x: 0, y: { z: 0 } })
+  );
 
   const observer = reactiveStorage.watch(obj, callback);
 

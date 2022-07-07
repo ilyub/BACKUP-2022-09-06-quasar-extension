@@ -10,21 +10,19 @@ type Value = "a" | "b" | 1;
 export default defineComponent({
   name: "sample-option-group",
   components: { "m-option-group__value": generic.OptionGroup<Value>() },
-  setup: () => {
-    return {
-      options: typedef<extras.OptionGroup.Options<Value>>([
-        { label: OptionGroup.lang.keys.Option1, value: 1 },
-        { label: OptionGroup.lang.keys.Option2, value: "a" },
-        {
-          disable: true,
-          label: OptionGroup.lang.keys.Option3,
-          value: "b"
-        }
-      ]),
-      value1: ref<Value>("a"),
-      value2: ref<Value>()
-    };
-  }
+  setup: () => ({
+    options: typedef<extras.OptionGroup.Options<Value>>([
+      { label: OptionGroup.lang.keys.Option1, value: 1 },
+      { label: OptionGroup.lang.keys.Option2, value: "a" },
+      {
+        disable: true,
+        label: OptionGroup.lang.keys.Option3,
+        value: "b"
+      }
+    ]),
+    value1: ref<Value>("a"),
+    value2: ref<Value>()
+  })
 });
 </script>
 

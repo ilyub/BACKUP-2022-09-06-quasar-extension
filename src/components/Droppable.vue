@@ -10,7 +10,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Sortable.Global>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<Sortable.Global>(expose, exposed);
 

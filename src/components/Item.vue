@@ -29,7 +29,7 @@ export default defineComponent({
 
     const main = ref<QItem>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<Item.Global>(expose, exposed);
     validateProps<Item.OwnProps>(props);

@@ -4,13 +4,11 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-knob",
-  setup: () => {
-    return {
-      lang: Knob.lang,
-      value1: ref(100),
-      value2: ref(100)
-    };
-  }
+  setup: () => ({
+    lang: Knob.lang,
+    value1: ref(100),
+    value2: ref(100)
+  })
 });
 </script>
 

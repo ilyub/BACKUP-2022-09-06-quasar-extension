@@ -44,7 +44,7 @@ export default defineComponent({
 
     const settings = BaseButton.injectSettings();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<BaseButton.Global>(expose, exposed);
     validateProps<BaseButton.OwnProps>(props);

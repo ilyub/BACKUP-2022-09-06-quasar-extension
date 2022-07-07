@@ -44,7 +44,7 @@ export default defineComponent({
         as.not.empty(main.value).resetValidation();
         resetValidation();
       }
-    };
+    } as const;
 
     validateEmit<Form.OwnProps>(emit);
     validateExpose<Form.Global>(expose, exposed);

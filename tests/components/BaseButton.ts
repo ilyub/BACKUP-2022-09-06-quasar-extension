@@ -47,7 +47,7 @@ test("prop: confirmation", async () => {
       onOk: (callback: Callable): void => {
         callback();
       }
-    };
+    } as const;
 
     return result as DialogChainObject;
   };

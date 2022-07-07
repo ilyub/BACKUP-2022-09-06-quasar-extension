@@ -39,7 +39,7 @@ export default defineComponent({
 
     const main = ref<Field.Global<numberU>>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<NumericInput.OwnProps>(emit);
     validateExpose<NumericInput.Global>(expose, exposed);
@@ -75,14 +75,12 @@ export default defineComponent({
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
       main,
-      mainValidationOptions: computed<plugins.validation.OptionsProp<numberU>>(
-        () => {
-          return {
-            max: props.max,
-            min: props.min,
-            ...props.validationOptions
-          };
-        }
+      mainValidationOptions: computed(
+        (): plugins.validation.OptionsProp<numberU> => ({
+          max: props.max,
+          min: props.min,
+          ...props.validationOptions
+        })
       ),
       slotNames: plugins.slotNames<NumericInput.Slots>()(
         "append",

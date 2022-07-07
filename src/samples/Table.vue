@@ -60,28 +60,30 @@ export default defineComponent({
 
     return {
       columnWidths,
-      columns: computed<Columns>(() => [
-        {
-          align: "left",
-          field: (row): string => `${row.name}!1!1234567890`,
-          label: Table.lang.keys.Column1,
-          maxWidth: 300,
-          minWidth: 30,
-          name: "name1",
-          sort: (_value1, _value2, row1, row2): number => row1.id - row2.id,
-          sortable: true,
-          width: width1.value
-        },
-        {
-          align: "left",
-          field: (row): string => `${row.name}!2!1234567890`,
-          label: Table.lang.keys.Column2,
-          maxWidth: 300,
-          minWidth: 30,
-          name: "name2",
-          width: width2.value
-        }
-      ]),
+      columns: computed(
+        (): Columns => [
+          {
+            align: "left",
+            field: (row): string => `${row.name}!1!1234567890`,
+            label: Table.lang.keys.Column1,
+            maxWidth: 300,
+            minWidth: 30,
+            name: "name1",
+            sort: (_value1, _value2, row1, row2): number => row1.id - row2.id,
+            sortable: true,
+            width: width1.value
+          },
+          {
+            align: "left",
+            field: (row): string => `${row.name}!2!1234567890`,
+            label: Table.lang.keys.Column2,
+            maxWidth: 300,
+            minWidth: 30,
+            name: "name2",
+            width: width2.value
+          }
+        ]
+      ),
       columnsOrder,
       hiddenColumns,
       lang: Table.lang,
@@ -91,7 +93,7 @@ export default defineComponent({
       noData,
       pagination,
       resizableColumns,
-      rows: computed<Items>(() => {
+      rows: computed((): Items => {
         if (noData.value) return [];
 
         const ids = evaluate(() => {
@@ -104,9 +106,7 @@ export default defineComponent({
             : a.fromRange(1, pagination.value.limit);
         });
 
-        return ids.map(id => {
-          return { id, name: `Item ${id}` };
-        });
+        return ids.map((id): Item => ({ id, name: `Item ${id}` }));
       }),
       selectByCheckbox,
       selectByRowClick,

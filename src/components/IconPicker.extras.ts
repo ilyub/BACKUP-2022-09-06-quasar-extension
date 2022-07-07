@@ -18,14 +18,14 @@ declare global {
 }
 
 export namespace IconPicker {
-  export const defaultSettings = computed((): Settings => {
-    return {
+  export const defaultSettings = computed(
+    (): Settings => ({
       cols: 7,
       iconTooltips: false,
       rows: 5,
       spinnerSize: "70px"
-    };
-  });
+    })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

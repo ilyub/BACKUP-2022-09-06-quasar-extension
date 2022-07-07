@@ -31,7 +31,7 @@ export default defineComponent({
 
     const main = ref<QToggle>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Toggle.OwnProps>(emit);
     validateExpose<Toggle.Global>(expose, exposed);

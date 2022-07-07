@@ -26,7 +26,7 @@ export default defineComponent({
   setup: (props, { expose }) => {
     const main = ref<QCard>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     const { title } = plugins.langProps(props, "title");
 
@@ -49,7 +49,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <q-card ref="main" class="m-card" :style="{ minWidth: minWidth }">
+  <q-card ref="main" class="m-card" :style="{ minWidth }">
     <template #default="data">
       <m-card-section
         v-if="hasTitle || slotNames.has('title')"

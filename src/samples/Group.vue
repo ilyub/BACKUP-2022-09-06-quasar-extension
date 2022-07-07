@@ -27,28 +27,30 @@ export default defineComponent({
     const title4 = Group.lang.plain("Section 12 ddd eee");
 
     return {
-      groupItems: computed<extras.Group.Items<Section>>(() => [
-        {
-          id: "section2",
-          show: showSection2.value,
-          title: title2
-        },
-        {
-          id: "section1",
-          show: showSection1.value,
-          title: title1
-        },
-        {
-          id: "section3",
-          show: showSection3.value,
-          title: title3
-        },
-        {
-          id: "section4",
-          show: showSection4.value,
-          title: title4
-        }
-      ]),
+      groupItems: computed(
+        (): extras.Group.Items<Section> => [
+          {
+            id: "section2",
+            show: showSection2.value,
+            title: title2
+          },
+          {
+            id: "section1",
+            show: showSection1.value,
+            title: title1
+          },
+          {
+            id: "section3",
+            show: showSection3.value,
+            title: title3
+          },
+          {
+            id: "section4",
+            show: showSection4.value,
+            title: title4
+          }
+        ]
+      ),
       lang: Group.lang,
       lk: Group.lang.keys,
       searchString: ref<string>(),

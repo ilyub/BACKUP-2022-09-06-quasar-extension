@@ -10,6 +10,12 @@ import { computed, defineComponent } from "vue";
 
 const prop = propFactory<Group.OwnProps>();
 
+interface TranslatedItem extends Omit<Group.Item, "title"> {
+  readonly id: string;
+  readonly show: boolean;
+  readonly title: string;
+}
+
 export default defineComponent({
   name: "m-group",
   directives: { debugId: directives.debugId("group") },
@@ -27,18 +33,24 @@ export default defineComponent({
           searchIndex.value.search(props.searchString).map(item => item.id)
         );
 
-        return searchIndex.value.search(props.searchString).map(item => {
-          return { ...item, show: item.show && ids.has(item.id) };
-        });
+        return searchIndex.value.search(props.searchString).map(
+          (item): TranslatedItem => ({
+            ...item,
+            show: item.show && ids.has(item.id)
+          })
+        );
       }
 
       return sortedItems.value;
     });
 
     const items = computed(() =>
-      props.items.map(item => {
-        return { ...item, title: Group.lang.get(item.title) };
-      })
+      props.items.map(
+        (item): TranslatedItem => ({
+          ...item,
+          title: Group.lang.get(item.title)
+        })
+      )
     );
 
     const { notFoundLabel } = plugins.langProps(props, "notFoundLabel");

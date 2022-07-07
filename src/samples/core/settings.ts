@@ -27,28 +27,28 @@ export const settings = {
    */
   provide: () => {
     extras.BaseButton.provideSettings(
-      computed((): extras.BaseButton.Settings => {
-        return {
+      computed(
+        (): extras.BaseButton.Settings => ({
           animateAsyncClick: settings.baseButtonAnimateAsyncClick.value,
           animateSubmitting: settings.baseButtonAnimateSubmitting.value
-        };
-      })
+        })
+      )
     );
 
     extras.IconPicker.provideSettings(
-      computed((): extras.IconPicker.Settings => {
-        return {
+      computed(
+        (): extras.IconPicker.Settings => ({
           cols: settings.iconPickerCompact.value ? 5 : 7,
           iconTooltips: settings.iconPickerTooltips.value,
           rows: settings.iconPickerCompact.value ? 3 : 5,
           spinnerSize: settings.iconPickerCompact.value ? "30px" : "70px"
-        };
-      })
+        })
+      )
     );
 
     extras.LanguagePicker.provideSettings(
-      computed((): extras.LanguagePicker.Settings => {
-        return {
+      computed(
+        (): extras.LanguagePicker.Settings => ({
           changeLanguageAction: (value): void => {
             const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
               {
@@ -93,63 +93,65 @@ export const settings = {
               lang: "ru-RU"
             }
           ]
-        };
-      })
+        })
+      )
     );
 
     extras.PageLayout.provideSettings(
-      computed((): extras.PageLayout.Settings => {
-        return {
+      computed(
+        (): extras.PageLayout.Settings => ({
           closeButton: settings.pageLayoutCloseButton.value,
           height: "calc(100vh - 48px)"
-        };
-      })
+        })
+      )
     );
 
     extras.Resizer.provideSettings(
-      computed((): extras.Resizer.Settings => {
-        return { disable: settings.resizerDisable.value };
-      })
+      computed(
+        (): extras.Resizer.Settings => ({
+          disable: settings.resizerDisable.value
+        })
+      )
     );
 
     extras.Sortable.provideSettings(
-      computed((): extras.Sortable.Settings => {
-        return {
+      computed(
+        (): extras.Sortable.Settings => ({
           animationDuration: 500,
           disableDropping: false,
           disableSorting: false
-        };
-      })
+        })
+      )
     );
 
     extras.Switchable.provideSettings(
-      computed((): extras.Switchable.Settings => {
-        return {
+      computed(
+        (): extras.Switchable.Settings => ({
           transition: settings.switchableTransition.value,
           transitionDuration: 500
-        };
-      })
+        })
+      )
     );
 
     extras.Table.provideSettings(
-      computed((): extras.Table.Settings => {
-        return {
+      computed(
+        (): extras.Table.Settings => ({
           binaryStateSort: true,
           flat: true,
           growPageBy: 10,
           headerSeparator: true,
           square: true
-        };
-      })
+        })
+      )
     );
 
     extras.Tooltip.provideSettings(
-      computed((): extras.Tooltip.Settings => {
-        return {
+      computed(
+        (): extras.Tooltip.Settings => ({
           delay: settings.tooltipDelay.value,
           show: settings.tooltipShow.value
-        };
-      })
+        })
+      )
     );
   },
   resizerDisable: ref(false),

@@ -12,7 +12,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<QCardActions>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<CardActions.Global>(expose, exposed);
 

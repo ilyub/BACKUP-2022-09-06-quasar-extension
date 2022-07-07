@@ -9,7 +9,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Subsection.Global>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<Subsection.Global>(expose, exposed);
 

@@ -19,6 +19,12 @@ import type { QSelect } from "quasar";
 
 const prop = propFactory<Select.OwnProps>();
 
+interface TranslatedOption extends Omit<Select.Option, "label"> {
+  readonly disable?: boolean;
+  readonly label: string;
+  readonly value: unknown;
+}
+
 export default defineComponent({
   name: "m-select",
   directives: { debugId: directives.debugId("select") },
@@ -59,7 +65,7 @@ export default defineComponent({
       )
     );
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Select.OwnProps>(emit);
     validateExpose<Select.Global>(expose, exposed);
@@ -85,9 +91,12 @@ export default defineComponent({
       label,
       main,
       mainOptions: computed(() =>
-        props.options.map(option => {
-          return { ...option, label: Select.lang.get(option.label) };
-        })
+        props.options.map(
+          (option): TranslatedOption => ({
+            ...option,
+            label: Select.lang.get(option.label)
+          })
+        )
       ),
       rules: validation.rules,
       selectedOption,

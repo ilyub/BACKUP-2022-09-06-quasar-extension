@@ -7,16 +7,24 @@ import * as vueTestUtils from "@vue/test-utils";
 import { nextTick } from "vue";
 import VueDraggable from "vuedraggable";
 import type { extras } from "@";
+import type { MoveData } from "@/components/Sortable.internal";
 
 const props = {
   group: "sample-group",
   itemKey: "id",
-  modelValue: [
+  modelValue: typedef<Items>([
     { id: "id1", name: "Name 1" },
     { id: "id2", name: "Name 2" },
     { id: "id3", name: "Name 3" }
-  ]
+  ])
 } as const;
+
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
+
+type Items = readonly Item[];
 
 test("emit: dropped", () => {
   const wrapper = vueTestUtils.mount(components.Sortable, {
@@ -26,7 +34,7 @@ test("emit: dropped", () => {
 
   const main = wrapper.findComponent(VueDraggable);
 
-  const items = [
+  const items: Items = [
     { id: "id2", name: "Name 2" },
     { id: "id1", name: "Name 1" },
     { id: "id3", name: "Name 3" }
@@ -34,7 +42,7 @@ test("emit: dropped", () => {
 
   const elements = buildElements(items, props.group, props.itemKey);
 
-  const expected = [items];
+  const expected = [items] as const;
 
   main.vm.$emit("update:modelValue", elements);
   expect(wrapper).toHaveEmitted("update:modelValue", expected);
@@ -62,18 +70,18 @@ test("emit: update:modelValue", () => {
 
   const main = wrapper.findComponent(VueDraggable);
 
-  const item = { id: "id4", name: "Name 4" };
+  const item = { id: "id4", name: "Name 4" } as const;
 
   const sourceGroup = "another-group";
 
   const elements = [
     ...buildElements(props.modelValue, props.group, props.itemKey),
     ...buildElements([item], sourceGroup, props.itemKey)
-  ];
+  ] as const;
 
-  const expected = [[...props.modelValue, item]];
+  const expected = [[...props.modelValue, item]] as const;
 
-  const expectedDropped = [item, sourceGroup];
+  const expectedDropped = [item, sourceGroup] as const;
 
   main.vm.$emit("update:modelValue", elements);
   expect(wrapper).toHaveEmitted("update:modelValue", expected);
@@ -133,7 +141,7 @@ test.each([
 
   const move = jest.fn();
 
-  const moveData = evaluate(() => {
+  const moveData = evaluate((): MoveData => {
     const dragged = document.createElement("div");
 
     const related = document.createElement("div");
@@ -147,7 +155,7 @@ test.each([
     return { dragged, related };
   });
 
-  const expected = [dest.id, dest.group, source.id, source.group];
+  const expected = [dest.id, dest.group, source.id, source.group] as const;
 
   baseMove(moveData);
   await wrapper.setProps({ move });

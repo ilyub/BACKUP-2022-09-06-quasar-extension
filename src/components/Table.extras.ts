@@ -18,15 +18,15 @@ declare global {
 }
 
 export namespace Table {
-  export const defaultSettings = computed((): Settings => {
-    return {
+  export const defaultSettings = computed(
+    (): Settings => ({
       binaryStateSort: false,
       flat: false,
       growPageBy: 10,
       headerSeparator: false,
       square: false
-    };
-  });
+    })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

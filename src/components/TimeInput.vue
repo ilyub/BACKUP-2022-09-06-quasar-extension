@@ -33,7 +33,7 @@ export default defineComponent({
 
     const main = ref<NumericInput.Global>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<TimeInput.OwnProps>(emit);
     validateExpose<TimeInput.Global>(expose, exposed);

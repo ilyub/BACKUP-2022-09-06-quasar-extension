@@ -14,26 +14,28 @@ export function slotNames<T>() {
   return function <U extends string & keyof T = never>(
     ...use: readonly U[]
   ): slotNames.Plugin<U> {
-    return computed(() => {
-      const slots = useSlots();
+    return computed(
+      (): slotNames.PluginMethods<U> & slotNames.UsableSlots<U> => {
+        const slots = useSlots();
 
-      const passThroughSlots = _.difference(
-        o.keys(slots),
-        use
-      ) as unknown as nevers;
+        const passThroughSlots = _.difference(
+          o.keys(slots),
+          use
+        ) as unknown as nevers;
 
-      const usableSlots = o.fromEntries(
-        use.map(name => [_.camelCase(name), name])
-      ) as slotNames.UsableSlots<U>;
+        const usableSlots = o.fromEntries(
+          use.map(name => [_.camelCase(name), name])
+        ) as slotNames.UsableSlots<U>;
 
-      return {
-        has: (name: U): boolean => is.not.empty(slots[name]),
-        hasSome: (...names: readonly U[]): boolean =>
-          names.some(name => is.not.empty(slots[name])),
-        passThroughSlots,
-        ...usableSlots
-      };
-    });
+        return {
+          has: (name: U): boolean => is.not.empty(slots[name]),
+          hasSome: (...names: readonly U[]): boolean =>
+            names.some(name => is.not.empty(slots[name])),
+          passThroughSlots,
+          ...usableSlots
+        };
+      }
+    );
   };
 }
 

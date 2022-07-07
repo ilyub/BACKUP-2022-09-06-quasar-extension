@@ -8,7 +8,7 @@ import type { ComputedRef } from "vue";
 export namespace Form {
   export const defaultExposeDown: ExposeDown = {
     submitting: computed(() => false)
-  } as const;
+  };
 
   export const {
     inject: injectForm,

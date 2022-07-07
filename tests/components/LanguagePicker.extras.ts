@@ -13,7 +13,7 @@ test("injectSettings", () => {
     template: "<div></div>"
   });
 
-  const expected = [extras.LanguagePicker.defaultSettings.value];
+  const expected = [extras.LanguagePicker.defaultSettings.value] as const;
 
   expect(wrapper).toBeDefined();
   expect(callback).mockCallsToBe(expected);

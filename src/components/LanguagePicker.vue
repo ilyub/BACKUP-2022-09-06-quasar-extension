@@ -26,7 +26,7 @@ export default defineComponent({
 
     const settings = LanguagePicker.injectSettings();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<LanguagePicker.Global>(expose, exposed);
     validateProps<LanguagePicker.OwnProps>(props);

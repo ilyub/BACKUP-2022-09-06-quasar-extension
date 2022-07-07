@@ -54,7 +54,7 @@ export default defineComponent({
       )
     );
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Field.OwnProps>(emit);
     validateExpose<Field.Global>(expose, exposed);

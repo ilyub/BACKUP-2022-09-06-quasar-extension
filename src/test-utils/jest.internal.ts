@@ -69,7 +69,7 @@ export const matchers: {
 
     return result;
   }
-} as const;
+};
 
 /**
  * Checks if value type is VueWrapper.

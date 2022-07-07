@@ -17,7 +17,7 @@ export default defineComponent({
 
     const main = ref<QExpansionItem>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<ExpansionItem.Global>(expose, exposed);
 

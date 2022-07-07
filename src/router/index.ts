@@ -27,8 +27,9 @@ export default route(() => {
       process.env.MODE === "ssr" ? undefined : process.env.VUE_ROUTER_BASE
     ),
     routes: a.clone(routes),
-    scrollBehavior: (): ReturnType<RouterScrollBehavior> => {
-      return { left: 0, top: 0 };
-    }
+    scrollBehavior: (): ReturnType<RouterScrollBehavior> => ({
+      left: 0,
+      top: 0
+    })
   });
 });

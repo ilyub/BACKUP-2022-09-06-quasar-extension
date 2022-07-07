@@ -34,9 +34,7 @@ export const prop = defineFn(
    *
    * @returns Vue property.
    */
-  <T>(): PropOptions<T> => {
-    return {};
-  },
+  <T>(): PropOptions<T> => ({}),
   {
     /**
      * Creates Vue property.
@@ -44,9 +42,10 @@ export const prop = defineFn(
      * @param defVal - Default value.
      * @returns Vue property.
      */
-    boolean: (defVal = false): PropOptionsBoolean => {
-      return { default: defVal, type: Boolean };
-    },
+    boolean: (defVal = false): PropOptionsBoolean => ({
+      default: defVal,
+      type: Boolean
+    }),
     /**
      * Creates Vue property.
      *
@@ -55,17 +54,13 @@ export const prop = defineFn(
      */
     default: <T>(
       defVal: Exclude<T, undefined>
-    ): PropOptionsDefault<Exclude<T, undefined>> => {
-      return { default: defVal };
-    },
+    ): PropOptionsDefault<Exclude<T, undefined>> => ({ default: defVal }),
     /**
      * Creates Vue property.
      *
      * @returns Vue property.
      */
-    required: <T>(): PropOptionsRequired<T> => {
-      return { required: true };
-    }
+    required: <T>(): PropOptionsRequired<T> => ({ required: true })
   }
 );
 
@@ -112,9 +107,7 @@ export function injectable<T>(defVal: T): Injectable<T> {
     provide: (value): void => {
       provide(id, value);
     },
-    testProvide: (value): IndexedObject<T> => {
-      return { [id as symbol]: value };
-    }
+    testProvide: (value): IndexedObject<T> => ({ [id as symbol]: value })
   };
 }
 
@@ -203,27 +196,19 @@ export function parentProps<T extends object>(): ParentProps<T> {
  */
 export function propFactory<T extends object>(): Prop<T> {
   return defineFn(
-    <K extends PropOptionalKeys<T>>(_key: K): PropOptions<T[K]> => {
-      return {};
-    },
+    <K extends PropOptionalKeys<T>>(_key: K): PropOptions<T[K]> => ({}),
     {
       boolean: <K extends PropBooleanKeys<T>>(
         _key: K,
         defVal = false
-      ): PropOptionsBoolean => {
-        return { default: defVal, type: Boolean };
-      },
+      ): PropOptionsBoolean => ({ default: defVal, type: Boolean }),
       default: <K extends PropOptionalKeys<T>>(
         _key: K,
         defVal: Exclude<T[K], undefined>
-      ): PropOptionsDefault<Exclude<T[K], undefined>> => {
-        return { default: defVal };
-      },
+      ): PropOptionsDefault<Exclude<T[K], undefined>> => ({ default: defVal }),
       required: <K extends PropRequiredKeys<T>>(
         _key: K
-      ): PropOptionsRequired<T[K]> => {
-        return { required: true };
-      }
+      ): PropOptionsRequired<T[K]> => ({ required: true })
     }
   );
 }

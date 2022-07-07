@@ -5,9 +5,9 @@ import type { booleanU, stringU } from "@skylib/functions";
 import type { QBtn, QBtnProps, QBtnSlots } from "quasar";
 
 export namespace BaseButton {
-  export const defaultSettings = computed((): Settings => {
-    return { animateAsyncClick: true, animateSubmitting: true };
-  });
+  export const defaultSettings = computed(
+    (): Settings => ({ animateAsyncClick: true, animateSubmitting: true })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

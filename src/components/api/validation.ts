@@ -195,7 +195,7 @@ export const validation = defineFn(
   },
   {
     lang: typedef<lang.Lang<keyof validation.Word, never>>(lang),
-    // eslint-disable-next-line @skylib/custom/no-anonymous-return -- Ok
+    // eslint-disable-next-line @skylib/custom/no-complex-type-in-call-expression, @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<validation.OwnProps>();
 

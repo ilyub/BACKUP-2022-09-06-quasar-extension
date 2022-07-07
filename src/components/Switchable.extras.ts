@@ -4,9 +4,9 @@ import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU } from "@skylib/functions";
 
 export namespace Switchable {
-  export const defaultSettings = computed((): Settings => {
-    return { transition: "none", transitionDuration: 200 };
-  });
+  export const defaultSettings = computed(
+    (): Settings => ({ transition: "none", transitionDuration: 200 })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

@@ -18,7 +18,7 @@ export default defineComponent({
 
     const menu = Menu.injectMenu();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<MenuItem.Global>(expose, exposed);
 

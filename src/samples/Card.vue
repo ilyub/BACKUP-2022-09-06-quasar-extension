@@ -4,9 +4,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-card",
-  setup: () => {
-    return { lang: Card.lang, lk: Card.lang.keys };
-  }
+  setup: () => ({ lang: Card.lang, lk: Card.lang.keys })
 });
 </script>
 

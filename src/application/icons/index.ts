@@ -31,4 +31,4 @@ export const icons: facade.Facade = {
   pickTime: mdiClockOutline,
   pm: mdiWeatherSunsetDown,
   selectAll: mdiPlaylistPlus
-} as const;
+};

@@ -34,7 +34,7 @@ export default defineComponent({
 
     const main = ref<Field.Global<stringU>>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Input.OwnProps>(emit);
     validateExpose<Input.Global>(expose, exposed);

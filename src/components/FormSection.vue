@@ -10,7 +10,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Switchable.Global>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<FormSection.Global>(expose, exposed);
 

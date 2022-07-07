@@ -22,7 +22,7 @@ export default defineComponent({
 
     const main = ref<QMenu>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<Menu.Global>(expose, exposed);
 

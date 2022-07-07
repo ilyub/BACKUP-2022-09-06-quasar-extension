@@ -24,13 +24,13 @@ export default defineComponent({
     const disableSorting = ref(false);
 
     extras.Sortable.provideSettings(
-      computed(() => {
-        return {
+      computed(
+        (): extras.Sortable.Settings => ({
           animationDuration: 500,
           disableDropping: disableDropping.value,
           disableSorting: disableSorting.value
-        };
-      })
+        })
+      )
     );
 
     return {

@@ -4,9 +4,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-section",
-  setup: () => {
-    return { lang: Section.lang };
-  }
+  setup: () => ({ lang: Section.lang })
 });
 </script>
 

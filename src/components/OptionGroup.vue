@@ -17,6 +17,12 @@ import type { QOptionGroup } from "quasar";
 
 const prop = propFactory<OptionGroup.OwnProps>();
 
+interface TranslatedOption extends Omit<OptionGroup.Option, "label"> {
+  readonly disable?: boolean;
+  readonly label: string;
+  readonly value: unknown;
+}
+
 export default defineComponent({
   name: "m-option-group",
   props: {
@@ -30,7 +36,7 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const main = ref<QOptionGroup>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<OptionGroup.OwnProps>(emit);
     validateExpose<OptionGroup.Global>(expose, exposed);
@@ -40,9 +46,12 @@ export default defineComponent({
       globalDisable: injections.disable.inject(),
       main,
       mainOptions: computed(() =>
-        props.options.map(option => {
-          return { ...option, label: OptionGroup.lang.get(option.label) };
-        })
+        props.options.map(
+          (option): TranslatedOption => ({
+            ...option,
+            label: OptionGroup.lang.get(option.label)
+          })
+        )
       ),
       slotNames: plugins.slotNames<OptionGroup.Slots>()()
     };

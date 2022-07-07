@@ -5,9 +5,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-expansion-item",
-  setup: () => {
-    return { icon: mdiClose, lk: ExpansionItem.lang.keys };
-  }
+  setup: () => ({ icon: mdiClose, lk: ExpansionItem.lang.keys })
 });
 </script>
 

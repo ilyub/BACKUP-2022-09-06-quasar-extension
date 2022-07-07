@@ -13,7 +13,7 @@ functionsTestUtils.installFakeTimer();
 const rules = [
   (value: unknown): lang.Key | true =>
     is.not.empty(value) ? true : lang.keys.Invalid
-];
+] as const;
 
 test.each([
   {
@@ -107,7 +107,7 @@ test.each([
 
       const wrapper = vueTestUtils.mount({
         global: testUtils.globalMountOptions(),
-        setup: () => {
+        setup: (): object => {
           const field = ref<QField>();
 
           const validation = plugins.validation(

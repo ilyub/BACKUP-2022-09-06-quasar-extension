@@ -4,13 +4,13 @@ import type { RouteRecordRaw } from "vue-router";
 
 export const routes: routes.RouteRecordRaws = [
   { component: Overview, path: "/" },
-  ...o.values(components).map((component): RouteRecordRaw => {
-    return {
+  ...o.values(components).map(
+    (component): RouteRecordRaw => ({
       component,
       name: component.name,
       path: `/${component.name}`
-    };
-  }),
+    })
+  ),
   { path: "/:catchAll(.*)", redirect: (): string => "/" }
 ];
 

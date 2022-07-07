@@ -4,9 +4,7 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "sample-form-actions",
-  setup: () => {
-    return { lk: FormActions.lang.keys, name: ref<string>() };
-  }
+  setup: () => ({ lk: FormActions.lang.keys, name: ref<string>() })
 });
 </script>
 

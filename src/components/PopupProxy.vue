@@ -24,7 +24,7 @@ export default defineComponent({
 
     const main = ref<QPopupProxy>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<PopupProxy.Global>(expose, exposed);
 

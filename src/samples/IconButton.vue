@@ -5,9 +5,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-icon-button",
-  setup: () => {
-    return { lang: IconButton.lang, mdiAccount };
-  }
+  setup: () => ({ lang: IconButton.lang, mdiAccount })
 });
 </script>
 

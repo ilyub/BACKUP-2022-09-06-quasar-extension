@@ -7,4 +7,4 @@ export const plugin: VuePlugin = {
     for (const component of o.values(components))
       app.component(component.name, component);
   }
-} as const;
+};

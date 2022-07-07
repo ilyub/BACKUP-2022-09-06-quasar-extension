@@ -15,7 +15,7 @@ export default defineComponent({
 
     const main = ref<QTooltip>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateExpose<Tooltip.Global>(expose, exposed);
 

@@ -6,9 +6,9 @@ import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
 import type { Ref } from "vue";
 
 export namespace Tooltip {
-  export const defaultSettings = computed((): Settings => {
-    return { delay: 0, show: true };
-  });
+  export const defaultSettings = computed(
+    (): Settings => ({ delay: 0, show: true })
+  );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);

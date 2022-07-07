@@ -50,9 +50,7 @@ export default defineComponent({
         ? o
             .keys(mdi.value)
             .filter(id => id.startsWith("mdi"))
-            .map((id): Item => {
-              return { description: _.kebabCase(id), id };
-            })
+            .map((id): Item => ({ description: _.kebabCase(id), id }))
         : []
     );
 
@@ -72,7 +70,7 @@ export default defineComponent({
 
     const total = computed(() => filteredItems.value.length);
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<IconPicker.OwnProps>(emit);
     validateExpose<IconPicker.Global>(expose, exposed);

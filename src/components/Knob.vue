@@ -29,7 +29,7 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const main = ref<QKnob>();
 
-    const exposed = { main };
+    const exposed = { main } as const;
 
     validateEmit<Knob.OwnProps>(emit);
     validateExpose<Knob.Global>(expose, exposed);

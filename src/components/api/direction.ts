@@ -164,7 +164,7 @@ export const direction = defineFn(
     };
   },
   {
-    // eslint-disable-next-line @skylib/custom/no-anonymous-return -- Ok
+    // eslint-disable-next-line @skylib/custom/no-complex-type-in-call-expression, @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<direction.OwnProps>();
 
