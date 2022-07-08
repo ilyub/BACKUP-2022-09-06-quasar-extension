@@ -1,10 +1,4 @@
 import type {
-  PropOptions,
-  PropOptionsBoolean,
-  PropOptionsDefault,
-  PropOptionsRequired
-} from "./types";
-import type {
   Callable,
   IndexedObject,
   IndexedRecord,
@@ -13,12 +7,18 @@ import type {
   UppercaseLetter,
   booleanU
 } from "@skylib/functions";
-import type { PublicProps } from "quasar";
+import type { ComputedRef, Ref } from "vue";
+import type {
+  PropOptions,
+  PropOptionsBoolean,
+  PropOptionsDefault,
+  PropOptionsRequired
+} from "./types";
 import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
 import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
+import type { PublicProps } from "quasar";
 import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ValueOf } from "type-fest";
-import type { ComputedRef, Ref } from "vue";
 
 export type Emits = {
   readonly [K in `on${UppercaseLetter}${string}`]: () => void;

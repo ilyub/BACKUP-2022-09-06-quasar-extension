@@ -1,11 +1,11 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-tooltip -- Ok */
 
+import { computed, defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
+import type { QTooltip } from "quasar";
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";
-import { parentProps, plugins, validateExpose } from "./api";
-import { computed, defineComponent, ref } from "vue";
-import type { QTooltip } from "quasar";
 
 export default defineComponent({
   name: "m-tooltip",

@@ -1,8 +1,8 @@
-import { propFactory } from "./misc";
-import { handlePromise } from "@skylib/facades";
 import { defineFn, evaluate } from "@skylib/functions";
-import { ref } from "vue";
 import type { Ref } from "vue";
+import { handlePromise } from "@skylib/facades";
+import { propFactory } from "./misc";
+import { ref } from "vue";
 
 export const asyncClick = defineFn(
   /**
@@ -33,7 +33,7 @@ export const asyncClick = defineFn(
     );
   },
   {
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-call-expression, @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<asyncClick.OwnProps>();
 

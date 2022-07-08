@@ -1,7 +1,7 @@
 <script lang="ts">
-import { Switchable } from "./Switchable.extras";
-import { injections, propFactory, validateProps } from "./api";
 import { computed, defineComponent } from "vue";
+import { injections, propFactory, validateProps } from "./api";
+import { Switchable } from "./Switchable.extras";
 
 const prop = propFactory<Switchable.OwnProps>();
 

@@ -1,7 +1,7 @@
-import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
-import type { booleanU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
+import { lang as baseLang } from "@skylib/facades";
+import type { booleanU } from "@skylib/functions";
 
 export namespace Field {
   export const lang: baseLang.Lang<never, never> = baseLang;

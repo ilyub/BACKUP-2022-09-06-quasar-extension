@@ -1,7 +1,7 @@
 <script lang="ts">
 import { ExpansionItem } from "./ExpansionItem.extras";
-import { mdiClose } from "@mdi/js";
 import { defineComponent } from "vue";
+import { mdiClose } from "@mdi/js";
 
 export default defineComponent({
   name: "sample-expansion-item",

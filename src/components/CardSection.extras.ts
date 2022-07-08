@@ -1,9 +1,9 @@
-import type { GlobalComponent } from "./api";
 import type {
   QCardSection,
   QCardSectionProps,
   QCardSectionSlots
 } from "quasar";
+import type { GlobalComponent } from "./api";
 
 export namespace CardSection {
   export interface Global extends GlobalComponent<Props, Slots> {

@@ -1,6 +1,6 @@
-import { injectable } from "./misc";
-import { computed } from "vue";
 import type { ComputedRef } from "vue";
+import { computed } from "vue";
+import { injectable } from "./misc";
 
 // eslint-disable-next-line @skylib/only-export-name -- Ok
 export namespace disable {

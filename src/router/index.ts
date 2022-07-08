@@ -1,12 +1,12 @@
-import { routes } from "../routes";
 import { a, evaluate } from "@skylib/functions";
-import { route } from "quasar/wrappers";
 import {
   createRouter,
   createWebHashHistory,
   createWebHistory
 } from "vue-router";
 import type { RouterScrollBehavior } from "vue-router";
+import { route } from "quasar/wrappers";
+import { routes } from "../routes";
 
 export default route(() => {
   const createHistory = evaluate(() => {

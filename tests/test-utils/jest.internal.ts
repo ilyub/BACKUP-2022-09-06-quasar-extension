@@ -1,6 +1,6 @@
 import * as testUtils from "@/test-utils";
-import { matchers } from "@/test-utils/jest.internal";
 import * as vueTestUtils from "@vue/test-utils";
+import { matchers } from "@/test-utils/jest.internal";
 
 test.each([
   { expected: "<div>sample-text</div>", pass: true },

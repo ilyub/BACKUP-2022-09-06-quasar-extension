@@ -1,8 +1,8 @@
-import { injectableSettings } from "./api";
-import { computed } from "vue";
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
 import type { QBtn, QBtnProps, QBtnSlots } from "quasar";
+import type { booleanU, stringU } from "@skylib/functions";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 
 export namespace BaseButton {
   export const defaultSettings = computed(

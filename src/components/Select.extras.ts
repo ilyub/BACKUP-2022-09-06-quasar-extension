@@ -1,7 +1,7 @@
-import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU } from "@skylib/functions";
 import type { QSelect, QSelectProps, QSelectSlots } from "quasar";
+import { lang as baseLang } from "@skylib/facades";
+import type { booleanU } from "@skylib/functions";
 
 declare global {
   namespace facades {

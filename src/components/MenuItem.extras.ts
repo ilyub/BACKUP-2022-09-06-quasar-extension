@@ -1,5 +1,5 @@
-import type { Item } from "./Item.extras";
 import type { GlobalComponent, plugins } from "./api";
+import type { Item } from "./Item.extras";
 
 export namespace MenuItem {
   export interface Global extends GlobalComponent<Props, Slots> {

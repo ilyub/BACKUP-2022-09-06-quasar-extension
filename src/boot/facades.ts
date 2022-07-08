@@ -1,4 +1,3 @@
-import { implementations } from "..";
 import * as app from "../application";
 import {
   compare,
@@ -12,8 +11,9 @@ import {
   reactiveStorage,
   testDelay
 } from "@skylib/facades";
-import { implementations as frameworkImplementations } from "@skylib/framework";
 import { boot } from "quasar/wrappers";
+import { implementations as frameworkImplementations } from "@skylib/framework";
+import { implementations } from "..";
 
 export default boot(() => {
   const { naturalCompareWrapper } = frameworkImplementations.compare;

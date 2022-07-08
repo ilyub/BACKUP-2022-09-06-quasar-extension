@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Menu } from "./Menu.extras";
+import { defineComponent, ref } from "vue";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -8,7 +8,7 @@ import {
   mdiPen,
   mdiPenPlus
 } from "@mdi/js";
-import { defineComponent, ref } from "vue";
+import { Menu } from "./Menu.extras";
 import type { plugins } from "..";
 
 export default defineComponent({

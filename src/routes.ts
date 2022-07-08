@@ -1,6 +1,6 @@
 import { Overview, components } from "./samples";
-import { o } from "@skylib/functions";
 import type { RouteRecordRaw } from "vue-router";
+import { o } from "@skylib/functions";
 
 export const routes: routes.RouteRecordRaws = [
   { component: Overview, path: "/" },

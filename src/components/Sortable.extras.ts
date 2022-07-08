@@ -1,5 +1,3 @@
-import { injectableSettings } from "./api";
-import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
 import type {
   booleanU,
@@ -8,6 +6,8 @@ import type {
   stringU,
   unknowns
 } from "@skylib/functions";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 
 export namespace Sortable {
   export const defaultSettings = computed(

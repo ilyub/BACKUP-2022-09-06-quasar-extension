@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Item } from "./Item.extras";
 import { mdiAccount, mdiPen } from "@mdi/js";
+import { Item } from "./Item.extras";
 import { defineComponent } from "vue";
 
 export default defineComponent({

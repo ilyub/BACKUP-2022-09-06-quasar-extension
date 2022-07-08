@@ -1,8 +1,8 @@
 <script lang="ts">
-import { Resizer } from "./Resizer.extras";
-import { propFactory, skipCheck, validateEmit, validateProps } from "./api";
 import { as, assert, is } from "@skylib/functions";
 import { computed, defineComponent } from "vue";
+import { propFactory, skipCheck, validateEmit, validateProps } from "./api";
+import { Resizer } from "./Resizer.extras";
 import type { numberU } from "@skylib/functions";
 
 const isOffset = is.object.factory<Offset>({ x: is.number, y: is.number }, {});

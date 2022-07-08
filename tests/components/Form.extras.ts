@@ -1,6 +1,6 @@
-import { extras } from "@";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
+import { extras } from "@";
 
 test("injectSettings", () => {
   const callback = jest.fn();

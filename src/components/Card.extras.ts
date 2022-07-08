@@ -1,7 +1,7 @@
-import { icons as baseIcons } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
-import type { booleanU, stringU } from "@skylib/functions";
 import type { QCard, QCardProps } from "quasar";
+import type { booleanU, stringU } from "@skylib/functions";
+import { icons as baseIcons } from "@skylib/facades";
 
 declare global {
   namespace facades {

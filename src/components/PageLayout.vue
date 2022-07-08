@@ -1,5 +1,5 @@
 <script lang="ts">
-import { PageLayout } from "./PageLayout.extras";
+import { computed, defineComponent } from "vue";
 import {
   directives,
   override,
@@ -7,8 +7,8 @@ import {
   propFactory,
   validateProps
 } from "./api";
+import { PageLayout } from "./PageLayout.extras";
 import { is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
 
 const prop = propFactory<PageLayout.OwnProps>();
 

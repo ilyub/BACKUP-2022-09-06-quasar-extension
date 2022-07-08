@@ -1,8 +1,8 @@
-import { injectableSettings } from "./api";
 import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import { computed } from "vue";
-import type { IconButton } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
+import type { IconButton } from "./IconButton.extras";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 import type { stringU } from "@skylib/functions";
 
 declare global {

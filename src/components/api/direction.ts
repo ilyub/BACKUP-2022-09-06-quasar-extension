@@ -1,7 +1,7 @@
-import { propFactory } from "./misc";
 import { defineFn, evaluate } from "@skylib/functions";
-import { computed } from "vue";
 import type { ComputedRef } from "vue";
+import { computed } from "vue";
+import { propFactory } from "./misc";
 
 export const direction = defineFn(
   /**
@@ -164,7 +164,7 @@ export const direction = defineFn(
     };
   },
   {
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-call-expression, @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<direction.OwnProps>();
 

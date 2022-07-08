@@ -1,19 +1,17 @@
-import { extras } from "../..";
-import { lang } from "@skylib/facades";
-import { implementations } from "@skylib/framework";
-// eslint-disable-next-line import/no-duplicates -- Ok
-import enGB from "date-fns/locale/en-GB";
-// eslint-disable-next-line import/no-duplicates -- Ok
-import enUS from "date-fns/locale/en-US";
-// eslint-disable-next-line @skylib/consistent-import, import/no-duplicates -- Ok
-import ruRu from "date-fns/locale/ru";
-import gb from "flag-icon-css/flags/1x1/gb.svg";
-import ru from "flag-icon-css/flags/1x1/ru.svg";
-import us from "flag-icon-css/flags/1x1/us.svg";
 import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
-import { computed, ref } from "vue";
 import type { LocaleName, Writable } from "@skylib/functions";
+import { computed, ref } from "vue";
+import enGB from "date-fns/locale/en-GB";
+import enUS from "date-fns/locale/en-US";
+import { extras } from "../..";
+import gb from "flag-icon-css/flags/1x1/gb.svg";
+import { implementations } from "@skylib/framework";
+import { lang } from "@skylib/facades";
+import ru from "flag-icon-css/flags/1x1/ru.svg";
+// eslint-disable-next-line @skylib/consistent-import -- Ok
+import ruRu from "date-fns/locale/ru";
+import us from "flag-icon-css/flags/1x1/us.svg";
 
 export const settings = {
   baseButtonAnimateAsyncClick: ref(true),

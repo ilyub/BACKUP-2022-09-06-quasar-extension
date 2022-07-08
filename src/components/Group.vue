@@ -1,12 +1,12 @@
 <script lang="ts">
+import { a, is } from "@skylib/functions";
+import { compare, inlineSearch } from "@skylib/facades";
+import { computed, defineComponent } from "vue";
+import { directives, plugins, propFactory, validateProps } from "./api";
 import { Group } from "./Group.extras";
 import PageSection from "./PageSection.vue";
 import Section from "./Section.vue";
 import Subsection from "./Subsection.vue";
-import { directives, plugins, propFactory, validateProps } from "./api";
-import { compare, inlineSearch } from "@skylib/facades";
-import { a, is } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
 
 const prop = propFactory<Group.OwnProps>();
 

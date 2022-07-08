@@ -1,7 +1,7 @@
 <script lang="ts">
-import { Sortable } from "./Sortable.extras";
+import { as, assert, is, o } from "@skylib/functions";
 import { buildElements, isElements, isMoveData } from "./Sortable.internal";
-import { Tooltip } from "./Tooltip.extras";
+import { computed, defineComponent } from "vue";
 import {
   plugins,
   propFactory,
@@ -9,10 +9,10 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import { as, assert, is, o } from "@skylib/functions";
-import { computed, defineComponent } from "vue";
-import VueDraggable from "vuedraggable";
 import type { GlobalComponent } from "./api";
+import { Sortable } from "./Sortable.extras";
+import { Tooltip } from "./Tooltip.extras";
+import VueDraggable from "vuedraggable";
 import type { objects } from "@skylib/functions";
 
 const prop = propFactory<Sortable.OwnProps>();

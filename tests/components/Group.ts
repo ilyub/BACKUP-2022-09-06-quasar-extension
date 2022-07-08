@@ -1,9 +1,9 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
+import { components } from "@";
+import type { extras } from "@";
 import { lang } from "@skylib/facades";
 import { typedef } from "@skylib/functions";
-import * as vueTestUtils from "@vue/test-utils";
-import type { extras } from "@";
 
 test.each([
   {

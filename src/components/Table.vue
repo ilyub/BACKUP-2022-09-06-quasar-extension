@@ -1,6 +1,14 @@
 <script lang="ts">
-import { genericSortable } from "./Sortable.generic";
-import { Table } from "./Table.extras";
+import * as _ from "@skylib/lodash-commonjs-es";
+import type {
+  IndexedRecord,
+  Writable,
+  numberU,
+  objects
+} from "@skylib/functions";
+import type { QDialog, QTable } from "quasar";
+import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import {
   directives,
   override,
@@ -12,16 +20,8 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
-import * as _ from "@skylib/lodash-commonjs-es";
-import { computed, defineComponent, ref } from "vue";
-import type {
-  IndexedRecord,
-  Writable,
-  numberU,
-  objects
-} from "@skylib/functions";
-import type { QDialog, QTable } from "quasar";
+import { Table } from "./Table.extras";
+import { genericSortable } from "./Sortable.generic";
 
 const { icons, lang } = Table;
 

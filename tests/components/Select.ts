@@ -1,9 +1,9 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
-import { lang } from "@skylib/facades";
-import { wait } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { QSelect } from "quasar";
+import { components } from "@";
+import { lang } from "@skylib/facades";
+import { wait } from "@skylib/functions";
 
 const props = {
   options: [

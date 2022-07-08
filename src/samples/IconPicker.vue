@@ -1,8 +1,8 @@
 <script lang="ts">
-import { IconPicker } from "./IconPicker.extras";
-import { settings } from "./core";
-import { mdiImageEdit } from "@mdi/js";
 import { defineComponent, ref } from "vue";
+import { IconPicker } from "./IconPicker.extras";
+import { mdiImageEdit } from "@mdi/js";
+import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-icon-picker",

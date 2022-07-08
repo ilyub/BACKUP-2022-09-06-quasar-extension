@@ -1,8 +1,8 @@
 <script lang="ts">
-import { generic } from "..";
-import { Group } from "./Group.extras";
 import { computed, defineComponent, ref } from "vue";
+import { Group } from "./Group.extras";
 import type { extras } from "..";
+import { generic } from "..";
 
 type Section = "section1" | "section2" | "section3" | "section4";
 

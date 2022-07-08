@@ -1,6 +1,6 @@
-import { as } from "@skylib/functions";
 import $ from "jquery";
 import type { ObjectDirective } from "vue";
+import { as } from "@skylib/functions";
 
 /**
  * Debug ID directive factory.

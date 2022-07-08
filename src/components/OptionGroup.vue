@@ -1,7 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-option-group -- Ok */
 
-import { OptionGroup } from "./OptionGroup.extras";
+import { computed, defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -12,7 +12,7 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { computed, defineComponent, ref } from "vue";
+import { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
 
 const prop = propFactory<OptionGroup.OwnProps>();

@@ -1,6 +1,6 @@
+import type { QTabsProps, QTabsSlots } from "quasar";
 import type { GlobalComponent } from "./api";
 import type { NumStrU } from "@skylib/functions";
-import type { QTabsProps, QTabsSlots } from "quasar";
 
 export namespace Tabs {
   export interface Global<T extends NumStrU = NumStrU>

@@ -1,8 +1,8 @@
-import { components } from "@";
-import { disableCounter } from "@/components/Tooltip.internal";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QMenu } from "quasar";
+import { components } from "@";
+import { disableCounter } from "@/components/Tooltip.internal";
 import { nextTick } from "vue";
 
 test("Menu", async () => {

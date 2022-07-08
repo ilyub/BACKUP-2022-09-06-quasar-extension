@@ -1,5 +1,5 @@
-import type { Sortable } from "./Sortable.extras";
 import type { GlobalComponent, VNodes } from "./api";
+import type { Sortable } from "./Sortable.extras";
 
 export namespace Droppable {
   export interface Global<T extends object = object, D extends object = object>

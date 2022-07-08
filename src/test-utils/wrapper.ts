@@ -1,6 +1,6 @@
-import { o } from "@skylib/functions";
-import type { Wrapper } from "./core";
 import type { ComponentConstructor } from "quasar";
+import type { Wrapper } from "./core";
+import { o } from "@skylib/functions";
 
 /**
  * Finds quasar component.

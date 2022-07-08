@@ -1,11 +1,11 @@
-import { injectableTrigger, propFactory } from "./misc";
-import { compare, handlePromise, lang } from "@skylib/facades";
-import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
-import { computed, ref } from "vue";
-import type { Writable, empty } from "@skylib/functions";
-import type { QField, QInput, ValidationRule } from "quasar";
-import type { Optional } from "ts-toolbelt/out/Object/Optional";
 import type { ComputedRef, Ref } from "vue";
+import type { QField, QInput, ValidationRule } from "quasar";
+import type { Writable, empty } from "@skylib/functions";
+import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
+import { compare, handlePromise, lang } from "@skylib/facades";
+import { computed, ref } from "vue";
+import { injectableTrigger, propFactory } from "./misc";
+import type { Optional } from "ts-toolbelt/out/Object/Optional";
 
 declare global {
   namespace facades {
@@ -195,7 +195,7 @@ export const validation = defineFn(
   },
   {
     lang: typedef<lang.Lang<keyof validation.Word, never>>(lang),
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-call-expression, @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
       const prop = propFactory<validation.OwnProps>();
 

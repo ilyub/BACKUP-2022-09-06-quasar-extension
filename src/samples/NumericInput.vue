@@ -1,11 +1,11 @@
 <script lang="ts">
-import { NumericInput } from "./NumericInput.extras";
-import { dump } from "@skylib/facades";
 import { as, is, typedef } from "@skylib/functions";
-import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
+import { NumericInput } from "./NumericInput.extras";
+import { dump } from "@skylib/facades";
 import type { numberU } from "@skylib/functions";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-numeric-input",

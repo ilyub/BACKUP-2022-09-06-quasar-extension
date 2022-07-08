@@ -1,4 +1,3 @@
-import type { GlobalComponent, plugins } from "./api";
 import type {
   QPopupProxyProps as BaseProps,
   QPopupProxySlots as BaseSlots,
@@ -6,6 +5,7 @@ import type {
   QMenuProps,
   QPopupProxy
 } from "quasar";
+import type { GlobalComponent, plugins } from "./api";
 
 export namespace PopupProxy {
   export interface Global extends GlobalComponent<Props, Slots> {

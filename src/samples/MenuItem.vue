@@ -1,8 +1,8 @@
 <script lang="ts">
-import { MenuItem } from "./MenuItem.extras";
 import { mdiAccount, mdiPen, mdiPenPlus } from "@mdi/js";
-import { useQuasar } from "quasar";
+import { MenuItem } from "./MenuItem.extras";
 import { defineComponent } from "vue";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-menu-item",

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { BaseButton } from "./BaseButton.extras";
 import type { IconButton } from "./IconButton.extras";
 

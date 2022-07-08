@@ -1,11 +1,11 @@
 <script lang="ts">
-import { Input } from "./Input.extras";
-import { dump } from "@skylib/facades";
 import { as, is, typedef } from "@skylib/functions";
-import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
+import { Input } from "./Input.extras";
+import { dump } from "@skylib/facades";
 import type { stringU } from "@skylib/functions";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-input",

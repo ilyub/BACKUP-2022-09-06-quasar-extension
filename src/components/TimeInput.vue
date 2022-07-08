@@ -1,4 +1,6 @@
 <script lang="ts">
+import { as, cast, is, o, typedef } from "@skylib/functions";
+import { defineComponent, ref, watch } from "vue";
 import {
   directives,
   parentProps,
@@ -9,12 +11,10 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, cast, is, o, typedef } from "@skylib/functions";
-import { maska } from "maska";
-import { defineComponent, ref, watch } from "vue";
+import type { numberU, stringU } from "@skylib/functions";
 import type { NumericInput } from "./NumericInput.extras";
 import type { TimeInput } from "./TimeInput.extras";
-import type { numberU, stringU } from "@skylib/functions";
+import { maska } from "maska";
 
 const prop = propFactory<TimeInput.OwnProps>();
 

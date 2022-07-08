@@ -1,9 +1,9 @@
-import { disableCounter } from "./Tooltip.internal";
-import { injectableSettings } from "./api";
-import { computed, onUnmounted, ref, watch } from "vue";
 import type { GlobalComponent, plugins } from "./api";
 import type { QTooltip, QTooltipProps, QTooltipSlots } from "quasar";
+import { computed, onUnmounted, ref, watch } from "vue";
 import type { Ref } from "vue";
+import { disableCounter } from "./Tooltip.internal";
+import { injectableSettings } from "./api";
 
 export namespace Tooltip {
   export const defaultSettings = computed(

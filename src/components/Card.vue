@@ -1,7 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card -- Ok */
 
-import { Card } from "./Card.extras";
+import { computed, defineComponent, ref } from "vue";
 import {
   parentProps,
   plugins,
@@ -9,9 +9,9 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { Card } from "./Card.extras";
 import type { QCard } from "quasar";
+import { is } from "@skylib/functions";
 
 const prop = propFactory<Card.OwnProps>();
 

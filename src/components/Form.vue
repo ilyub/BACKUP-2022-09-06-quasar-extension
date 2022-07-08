@@ -1,7 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-form -- Ok */
 
-import { Form } from "./Form.extras";
+import { computed, defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -12,10 +12,10 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { handlePromise } from "@skylib/facades";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { Form } from "./Form.extras";
 import type { QForm } from "quasar";
+import { as } from "@skylib/functions";
+import { handlePromise } from "@skylib/facades";
 
 const prop = propFactory<Form.OwnProps>();
 

@@ -1,7 +1,8 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-select -- Ok */
 
-import { Select } from "./Select.extras";
+import { as, is, o } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import {
   directives,
   injections,
@@ -13,9 +14,8 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, is, o } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
 import type { QSelect } from "quasar";
+import { Select } from "./Select.extras";
 
 const prop = propFactory<Select.OwnProps>();
 

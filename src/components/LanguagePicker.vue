@@ -1,5 +1,5 @@
 <script lang="ts">
-import { LanguagePicker } from "./LanguagePicker.extras";
+import { computed, defineComponent, ref } from "vue";
 import {
   directives,
   parentProps,
@@ -8,9 +8,9 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
 import type { IconButton } from "./IconButton.extras";
+import { LanguagePicker } from "./LanguagePicker.extras";
+import { as } from "@skylib/functions";
 
 const prop = propFactory<LanguagePicker.OwnProps>();
 

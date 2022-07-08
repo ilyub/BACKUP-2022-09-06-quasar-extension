@@ -1,6 +1,6 @@
+import type { Directive } from "vue";
 import { as } from "@skylib/functions";
 import type { unknowns } from "@skylib/functions";
-import type { Directive } from "vue";
 
 /**
  * Mocks v-touch-pan directive.

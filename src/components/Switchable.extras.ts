@@ -1,7 +1,7 @@
-import { injectableSettings } from "./api";
-import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
 import type { booleanU } from "@skylib/functions";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 
 export namespace Switchable {
   export const defaultSettings = computed(

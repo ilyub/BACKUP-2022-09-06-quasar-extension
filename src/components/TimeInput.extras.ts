@@ -1,5 +1,5 @@
-import type { NumericInput } from "./NumericInput.extras";
 import type { GlobalComponent } from "./api";
+import type { NumericInput } from "./NumericInput.extras";
 import type { numberU } from "@skylib/functions";
 
 export namespace TimeInput {

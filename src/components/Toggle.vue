@@ -1,6 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-toggle -- Ok */
 
+import { defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -11,9 +12,8 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { defineComponent, ref } from "vue";
-import type { Toggle } from "./Toggle.extras";
 import type { QToggle } from "quasar";
+import type { Toggle } from "./Toggle.extras";
 
 const prop = propFactory<Toggle.OwnProps>();
 

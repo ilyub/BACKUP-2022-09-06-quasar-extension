@@ -1,6 +1,6 @@
+import type { NumStrU } from "@skylib/functions";
 import { QTabs } from "quasar";
 import type { Tabs } from "./Tabs.extras";
-import type { NumStrU } from "@skylib/functions";
 
 /**
  * Generic Tabs component.

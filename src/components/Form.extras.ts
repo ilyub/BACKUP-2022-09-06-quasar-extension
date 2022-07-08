@@ -1,9 +1,9 @@
-import { injectable } from "./api";
-import { computed } from "vue";
-import type { GlobalComponent } from "./api";
-import type { handlePromise } from "@skylib/facades";
 import type { QForm, QFormProps, QFormSlots } from "quasar";
 import type { ComputedRef } from "vue";
+import type { GlobalComponent } from "./api";
+import { computed } from "vue";
+import type { handlePromise } from "@skylib/facades";
+import { injectable } from "./api";
 
 export namespace Form {
   export const defaultExposeDown: ExposeDown = {

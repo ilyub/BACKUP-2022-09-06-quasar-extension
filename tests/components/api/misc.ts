@@ -1,8 +1,8 @@
-import { classRef, injectRequire, injectableTrigger, prop } from "@";
 import * as testUtils from "@/test-utils";
-import { wait } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
+import { classRef, injectRequire, injectableTrigger, prop } from "@";
 import { onMounted, provide } from "vue";
+import { wait } from "@skylib/functions";
 
 test("classRef", () => {
   expect(classRef(1).value).toBe(1);

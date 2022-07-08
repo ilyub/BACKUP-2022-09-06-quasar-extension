@@ -1,8 +1,8 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card-section -- Ok */
 
-import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { CardSection } from "./CardSection.extras";
 import type { QCardSection } from "quasar";
 

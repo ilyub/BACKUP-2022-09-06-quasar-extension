@@ -1,6 +1,6 @@
+import type { NumStrU } from "@skylib/functions";
 import { QTabPanels } from "quasar";
 import type { TabPanels } from "./TabPanels.extras";
-import type { NumStrU } from "@skylib/functions";
 
 /**
  * Generic TabPanels component.

@@ -1,5 +1,6 @@
 <script lang="ts">
-import { genericField } from "./Field.generic";
+import { as, cast, o } from "@skylib/functions";
+import { defineComponent, ref } from "vue";
 import {
   directives,
   parentProps,
@@ -10,11 +11,10 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, cast, o } from "@skylib/functions";
-import { maska } from "maska";
-import { defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
+import { genericField } from "./Field.generic";
+import { maska } from "maska";
 import type { stringU } from "@skylib/functions";
 
 const prop = propFactory<Input.OwnProps>();

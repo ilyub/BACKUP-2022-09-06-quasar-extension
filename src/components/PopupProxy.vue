@@ -1,11 +1,11 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-popup-proxy -- Ok */
 
-import { parentProps, plugins, validateExpose } from "./api";
-import { QPopupProxy } from "quasar";
 import { defineComponent, ref } from "vue";
-import type { PopupProxy } from "./PopupProxy.extras";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { GlobalComponent } from "./api";
+import type { PopupProxy } from "./PopupProxy.extras";
+import { QPopupProxy } from "quasar";
 
 export default defineComponent({
   name: "m-popup-proxy",

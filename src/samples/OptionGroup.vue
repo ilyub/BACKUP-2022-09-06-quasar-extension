@@ -1,9 +1,9 @@
 <script lang="ts">
-import { generic } from "..";
-import { OptionGroup } from "./OptionGroup.extras";
-import { typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import { OptionGroup } from "./OptionGroup.extras";
 import type { extras } from "..";
+import { generic } from "..";
+import { typedef } from "@skylib/functions";
 
 type Value = "a" | "b" | 1;
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-import { Form } from "./Form.extras";
-import { wait } from "@skylib/functions";
-import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
+import { Form } from "./Form.extras";
+import { useQuasar } from "quasar";
+import { wait } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-form",

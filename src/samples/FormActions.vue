@@ -1,6 +1,6 @@
 <script lang="ts">
-import { FormActions } from "./FormActions.extras";
 import { defineComponent, ref } from "vue";
+import { FormActions } from "./FormActions.extras";
 
 export default defineComponent({
   name: "sample-form-actions",

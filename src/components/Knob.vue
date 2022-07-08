@@ -1,6 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-knob -- Ok */
 
+import { defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -11,7 +12,6 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { defineComponent, ref } from "vue";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
 

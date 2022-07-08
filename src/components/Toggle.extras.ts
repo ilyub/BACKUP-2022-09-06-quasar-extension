@@ -1,6 +1,6 @@
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU } from "@skylib/functions";
 import type { QToggle, QToggleProps, QToggleSlots } from "quasar";
+import type { booleanU } from "@skylib/functions";
 
 export namespace Toggle {
   export interface Global extends GlobalComponent<Props, Slots> {

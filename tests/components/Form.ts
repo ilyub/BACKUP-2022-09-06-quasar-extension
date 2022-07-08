@@ -1,10 +1,10 @@
-import { components, extras, injections } from "@";
-import * as testUtils from "@/test-utils";
-import { as, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { QForm } from "quasar";
+import { as, wait } from "@skylib/functions";
+import { components, extras, injections } from "@";
 import { onMounted, ref, watch } from "vue";
+import { QForm } from "quasar";
 import type { handlePromise } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 

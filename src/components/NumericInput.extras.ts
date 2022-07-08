@@ -1,7 +1,7 @@
-import { icons as baseIcons } from "@skylib/facades";
-import type { Field } from "./Field.extras";
 import type { GlobalComponent, plugins } from "./api";
 import type { booleanU, numberU } from "@skylib/functions";
+import type { Field } from "./Field.extras";
+import { icons as baseIcons } from "@skylib/facades";
 
 declare global {
   namespace facades {

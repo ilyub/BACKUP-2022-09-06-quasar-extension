@@ -1,6 +1,6 @@
-import { components, testComponents } from "@";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
+import { components, testComponents } from "@";
 import $ from "jquery";
 import { nextTick } from "vue";
 

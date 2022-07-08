@@ -1,9 +1,9 @@
 <script lang="ts">
-import { generic } from "..";
-import { Table } from "./Table.extras";
 import { a, assert, evaluate } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import { Table } from "./Table.extras";
 import type { extras } from "..";
+import { generic } from "..";
 
 interface ColumnWidths extends extras.Table.ColumnWidths {}
 

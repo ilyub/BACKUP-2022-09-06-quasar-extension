@@ -1,8 +1,8 @@
-import { injectable } from "./api";
-import { fn } from "@skylib/functions";
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU } from "@skylib/functions";
 import type { QMenu, QMenuProps, QMenuSlots } from "quasar";
+import type { booleanU } from "@skylib/functions";
+import { fn } from "@skylib/functions";
+import { injectable } from "./api";
 
 export namespace Menu {
   export const defaultExposeDown: ExposeDown = { autoClose: fn.noop };

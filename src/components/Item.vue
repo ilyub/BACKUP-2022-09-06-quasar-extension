@@ -1,6 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-item -- Ok */
 
+import { computed, defineComponent, ref } from "vue";
 import {
   directives,
   parentProps,
@@ -9,10 +10,9 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
 import type { Item } from "./Item.extras";
 import type { QItem } from "quasar";
+import { is } from "@skylib/functions";
 
 const prop = propFactory<Item.OwnProps>();
 

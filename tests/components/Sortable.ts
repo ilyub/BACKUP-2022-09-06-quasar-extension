@@ -1,13 +1,13 @@
-import { components } from "@";
-import { buildElements } from "@/components/Sortable.internal";
-import { disableCounter } from "@/components/Tooltip.internal";
 import * as testUtils from "@/test-utils";
-import { as, evaluate, o, typedef } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
-import { nextTick } from "vue";
-import VueDraggable from "vuedraggable";
-import type { extras } from "@";
+import { as, evaluate, o, typedef } from "@skylib/functions";
 import type { MoveData } from "@/components/Sortable.internal";
+import VueDraggable from "vuedraggable";
+import { buildElements } from "@/components/Sortable.internal";
+import { components } from "@";
+import { disableCounter } from "@/components/Tooltip.internal";
+import type { extras } from "@";
+import { nextTick } from "vue";
 
 const props = {
   group: "sample-group",

@@ -1,8 +1,8 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card-actions -- Ok */
 
-import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { CardActions } from "./CardActions.extras";
 import type { QCardActions } from "quasar";
 

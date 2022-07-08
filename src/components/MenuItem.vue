@@ -1,8 +1,8 @@
 <script lang="ts">
-import { Menu } from "./Menu.extras";
-import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { Item } from "./Item.extras";
+import { Menu } from "./Menu.extras";
 import type { MenuItem } from "./MenuItem.extras";
 
 export default defineComponent({

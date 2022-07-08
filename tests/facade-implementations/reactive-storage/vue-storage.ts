@@ -1,7 +1,7 @@
 /* eslint-disable @skylib/custom/prefer-readonly-property -- Ok */
 
-import { reactiveStorage } from "@skylib/facades";
 import { nextTick } from "vue";
+import { reactiveStorage } from "@skylib/facades";
 
 interface TestObject {
   x: number;

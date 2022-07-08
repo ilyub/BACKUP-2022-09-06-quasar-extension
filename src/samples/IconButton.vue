@@ -1,7 +1,7 @@
 <script lang="ts">
 import { IconButton } from "./IconButton.extras";
-import { mdiAccount } from "@mdi/js";
 import { defineComponent } from "vue";
+import { mdiAccount } from "@mdi/js";
 
 export default defineComponent({
   name: "sample-icon-button",

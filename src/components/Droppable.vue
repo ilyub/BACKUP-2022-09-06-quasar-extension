@@ -1,6 +1,6 @@
 <script lang="ts">
-import { parentProps, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, validateExpose } from "./api";
 import type { Droppable } from "./Droppable.extras";
 import type { Sortable } from "./Sortable.extras";
 

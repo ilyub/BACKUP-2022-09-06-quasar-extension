@@ -1,6 +1,6 @@
-import { injectableSettings } from "./api";
-import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 import type { numberU } from "@skylib/functions";
 
 export namespace Resizer {

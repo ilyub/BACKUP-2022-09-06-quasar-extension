@@ -1,10 +1,10 @@
-import { injectableSettings } from "./api";
-import { fn } from "@skylib/functions";
-import { computed } from "vue";
-import type { IconButton } from "./IconButton.extras";
 import type { GlobalComponent } from "./api";
-import type { lang } from "@skylib/facades";
+import type { IconButton } from "./IconButton.extras";
 import type { LocaleName } from "@skylib/functions";
+import { computed } from "vue";
+import { fn } from "@skylib/functions";
+import { injectableSettings } from "./api";
+import type { lang } from "@skylib/facades";
 
 export namespace LanguagePicker {
   export const defaultSettings = computed(

@@ -1,10 +1,10 @@
 <script lang="ts">
-import { BaseButton } from "./BaseButton.extras";
-import { settings } from "./core";
-import { mdiCheck } from "@mdi/js";
-import { wait } from "@skylib/functions";
-import { useQuasar } from "quasar";
 import { defineComponent, ref } from "vue";
+import { BaseButton } from "./BaseButton.extras";
+import { mdiCheck } from "@mdi/js";
+import { settings } from "./core";
+import { useQuasar } from "quasar";
+import { wait } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-base-button",

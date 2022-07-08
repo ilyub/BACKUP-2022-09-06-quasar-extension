@@ -1,10 +1,10 @@
-import { prop } from "./misc";
-import { lang } from "@skylib/facades";
-import { defineFn, is, o } from "@skylib/functions";
-import { computed } from "vue";
-import type { PropOptions } from "./types";
 import type { Entry, stringU } from "@skylib/functions";
+import { defineFn, is, o } from "@skylib/functions";
 import type { ComputedRef } from "vue";
+import type { PropOptions } from "./types";
+import { computed } from "vue";
+import { lang } from "@skylib/facades";
+import { prop } from "./misc";
 
 export const langProps = defineFn(
   /**

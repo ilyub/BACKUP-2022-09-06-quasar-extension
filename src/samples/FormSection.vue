@@ -1,6 +1,6 @@
 <script lang="ts">
-import { FormSection } from "./FormSection.extras";
 import { defineComponent, ref } from "vue";
+import { FormSection } from "./FormSection.extras";
 
 export default defineComponent({
   name: "sample-form-section",

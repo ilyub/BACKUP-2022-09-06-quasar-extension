@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Tooltip } from "./Tooltip.extras";
-import { settings } from "./core";
 import {
   mdiArrowDown,
   mdiArrowLeft,
@@ -8,7 +6,9 @@ import {
   mdiArrowUp,
   mdiMenu
 } from "@mdi/js";
+import { Tooltip } from "./Tooltip.extras";
 import { defineComponent } from "vue";
+import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-tooltip",

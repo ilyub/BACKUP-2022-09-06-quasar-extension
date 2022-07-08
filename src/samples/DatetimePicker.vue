@@ -1,11 +1,11 @@
 <script lang="ts">
-import { DatetimePicker } from "./DatetimePicker.extras";
-import { datetime, dump } from "@skylib/facades";
 import { as, is, typedef } from "@skylib/functions";
-import { useQuasar } from "quasar";
+import { datetime, dump } from "@skylib/facades";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
+import { DatetimePicker } from "./DatetimePicker.extras";
 import type { stringU } from "@skylib/functions";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-datetime-picker",

@@ -1,9 +1,9 @@
 <script lang="ts">
+import { computed, defineComponent, ref } from "vue";
 import { extras, generic } from "..";
 import { Droppable } from "./Droppable.extras";
 import { dump } from "@skylib/facades";
 import { useQuasar } from "quasar";
-import { computed, defineComponent, ref } from "vue";
 
 interface Item {
   readonly id: string;

@@ -1,7 +1,7 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import $ from "jquery";
+import { components } from "@";
 
 test.each([
   { expected: [] },

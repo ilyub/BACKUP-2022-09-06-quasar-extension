@@ -1,7 +1,7 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QTooltip } from "quasar";
+import { components } from "@";
 import type { plugins } from "@";
 
 test.each<plugins.direction.Direction | undefined>([

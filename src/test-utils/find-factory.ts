@@ -1,7 +1,7 @@
-import { a } from "@skylib/functions";
-import type { DOMWrapper, DOMWrappers, Wrapper, WrapperLikes } from "./core";
 import type * as testUtils from "@vue/test-utils";
+import type { DOMWrapper, DOMWrappers, Wrapper, WrapperLikes } from "./core";
 import type { ComponentPublicInstance } from "vue";
+import { a } from "@skylib/functions";
 
 /**
  * Find factory.

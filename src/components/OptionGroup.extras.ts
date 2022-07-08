@@ -1,11 +1,11 @@
-import { lang as baseLang } from "@skylib/facades";
-import type { GlobalComponent } from "./api";
-import type { booleanU } from "@skylib/functions";
 import type {
   QOptionGroup,
   QOptionGroupProps,
   QOptionGroupSlots
 } from "quasar";
+import type { GlobalComponent } from "./api";
+import { lang as baseLang } from "@skylib/facades";
+import type { booleanU } from "@skylib/functions";
 
 export namespace OptionGroup {
   export const lang: baseLang.Lang<never, never> = baseLang;

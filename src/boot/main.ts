@@ -1,7 +1,7 @@
-import { plugin } from "../plugin";
 import { cast, is } from "@skylib/functions";
 import { Notify } from "quasar";
 import { boot } from "quasar/wrappers";
+import { plugin } from "../plugin";
 
 export default boot(({ app }) => {
   app.config.errorHandler = function (err, _vm, info): void {

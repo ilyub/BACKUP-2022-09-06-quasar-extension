@@ -1,7 +1,7 @@
-import { components, testComponents } from "@";
 import * as testUtils from "@/test-utils";
-import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
+import { components, testComponents } from "@";
+import { lang } from "@skylib/facades";
 
 test.each([
   { expected: ["en-US"], index: 0 },

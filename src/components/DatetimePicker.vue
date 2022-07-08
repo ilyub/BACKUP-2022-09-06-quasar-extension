@@ -1,6 +1,7 @@
 <script lang="ts">
-import { DatetimePicker } from "./DatetimePicker.extras";
-import { genericField } from "./Field.generic";
+import { as, cast, is } from "@skylib/functions";
+import { compare, datetime } from "@skylib/facades";
+import { computed, defineComponent, ref } from "vue";
 import {
   directives,
   parentProps,
@@ -11,10 +12,9 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { compare, datetime } from "@skylib/facades";
-import { as, cast, is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { DatetimePicker } from "./DatetimePicker.extras";
 import type { Field } from "./Field.extras";
+import { genericField } from "./Field.generic";
 import type { stringU } from "@skylib/functions";
 
 const prop = propFactory<DatetimePicker.OwnProps>();

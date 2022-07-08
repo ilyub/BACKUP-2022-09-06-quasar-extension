@@ -1,7 +1,7 @@
 import { as, defineFn } from "@skylib/functions";
 import { computed, reactive, watch } from "vue";
-import type { reactiveStorage } from "@skylib/facades";
 import type { WatchStopHandle } from "vue";
+import type { reactiveStorage } from "@skylib/facades";
 
 declare global {
   namespace facades {

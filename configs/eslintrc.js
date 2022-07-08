@@ -376,6 +376,10 @@ module.exports = {
         ]
       }
     ],
+    "node/no-extraneous-import": [
+      "warn",
+      { allowModules: ["@vue/test-utils"] }
+    ],
     "vue/no-bare-strings-in-template": [
       "warn",
       {

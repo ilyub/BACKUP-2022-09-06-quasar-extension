@@ -1,5 +1,5 @@
-import { extras } from "@";
 import * as testUtils from "@/test-utils";
+import { extras } from "@";
 
 test("globalMountOptions", () => {
   const options = testUtils.globalMountOptions({

@@ -1,9 +1,9 @@
-import { injectableSettings } from "./api";
-import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
-import { computed } from "vue";
 import type { GlobalComponent, VNodes } from "./api";
-import type { booleanU, objects, stringU } from "@skylib/functions";
 import type { QTable, QTableProps, QTableSlots } from "quasar";
+import { icons as baseIcons, lang as baseLang } from "@skylib/facades";
+import type { booleanU, objects, stringU } from "@skylib/functions";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 
 declare global {
   namespace facades {

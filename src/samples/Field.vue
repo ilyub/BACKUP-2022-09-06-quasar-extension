@@ -1,9 +1,9 @@
 <script lang="ts">
-import { generic } from "..";
-import { Field } from "./Field.extras";
 import { as, cast, o } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import { Field } from "./Field.extras";
 import type { extras } from "..";
+import { generic } from "..";
 import type { stringU } from "@skylib/functions";
 
 export default defineComponent({

@@ -1,8 +1,8 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
-import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
 import { QIcon } from "quasar";
+import { components } from "@";
+import { lang } from "@skylib/facades";
 
 test("prop: caption", () => {
   const wrapper = vueTestUtils.mount(components.Item, {

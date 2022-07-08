@@ -1,6 +1,8 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-field -- Ok */
 
+import { as, cast, fn, o } from "@skylib/functions";
+import { computed, defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -11,8 +13,6 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { as, cast, fn, o } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
 import type { Field } from "./Field.extras";
 import type { QField } from "quasar";
 

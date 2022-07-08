@@ -1,10 +1,10 @@
 <script lang="ts">
-import { generic } from "..";
+import { defineComponent, ref } from "vue";
 import { Switchable } from "./Switchable.extras";
+import type { extras } from "..";
+import { generic } from "..";
 import { settings } from "./core";
 import { typedef } from "@skylib/functions";
-import { defineComponent, ref } from "vue";
-import type { extras } from "..";
 
 type Options = extras.OptionGroup.Options<Transition>;
 

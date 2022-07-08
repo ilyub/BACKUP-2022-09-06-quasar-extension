@@ -1,9 +1,9 @@
-import { is, o } from "@skylib/functions";
 import * as _ from "@skylib/lodash-commonjs-es";
 import { computed, useSlots } from "vue";
-import type { nevers } from "@skylib/functions";
+import { is, o } from "@skylib/functions";
 import type { CamelCase } from "type-fest";
 import type { ComputedRef } from "vue";
+import type { nevers } from "@skylib/functions";
 
 /**
  * Use slot names plugin.

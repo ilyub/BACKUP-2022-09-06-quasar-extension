@@ -1,8 +1,8 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
-import { cast } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
 import { QField } from "quasar";
+import { cast } from "@skylib/functions";
+import { components } from "@";
 
 test.each([
   { expected: [undefined], value: "" },

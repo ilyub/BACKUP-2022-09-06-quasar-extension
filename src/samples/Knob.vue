@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Knob } from "./Knob.extras";
 import { defineComponent, ref } from "vue";
+import { Knob } from "./Knob.extras";
 
 export default defineComponent({
   name: "sample-knob",

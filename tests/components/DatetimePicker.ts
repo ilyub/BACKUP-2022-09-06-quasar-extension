@@ -1,8 +1,8 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
-import { is, o } from "@skylib/functions";
 import * as vueTestUtils from "@vue/test-utils";
+import { is, o } from "@skylib/functions";
 import { QField } from "quasar";
+import { components } from "@";
 
 test.each([undefined, "2001-02-03 10:30"])("control", async modelValue => {
   const wrapper = vueTestUtils.mount(components.DatetimePicker, {

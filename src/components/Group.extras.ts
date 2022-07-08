@@ -1,6 +1,6 @@
-import { lang as baseLang } from "@skylib/facades";
 import type { GlobalComponent, VNodes, plugins } from "./api";
 import type { Rec, stringU } from "@skylib/functions";
+import { lang as baseLang } from "@skylib/facades";
 
 export namespace Group {
   export const lang: baseLang.Lang<never, never> = baseLang;

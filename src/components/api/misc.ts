@@ -1,5 +1,4 @@
-import { as, defineFn } from "@skylib/functions";
-import { computed, inject, provide, ref, watch } from "vue";
+import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
 import type {
   GlobalComponentInstance,
   Injectable,
@@ -16,17 +15,18 @@ import type {
   SetupProps
 } from "./misc.internal";
 import type {
+  IndexedObject,
+  UppercaseLetter,
+  unknowns
+} from "@skylib/functions";
+import type {
   PropOptions,
   PropOptionsBoolean,
   PropOptionsDefault,
   PropOptionsRequired
 } from "./types";
-import type {
-  IndexedObject,
-  UppercaseLetter,
-  unknowns
-} from "@skylib/functions";
-import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
+import { as, defineFn } from "@skylib/functions";
+import { computed, inject, provide, ref, watch } from "vue";
 
 export const prop = defineFn(
   /**

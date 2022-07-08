@@ -1,12 +1,12 @@
-import { plugins } from "@";
-import * as testUtils from "@/test-utils";
-import { handlePromise, lang } from "@skylib/facades";
-import { as, cast, fn, is, o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { QField } from "quasar";
+import { as, cast, fn, is, o, wait } from "@skylib/functions";
 import { computed, nextTick, ref } from "vue";
+import { handlePromise, lang } from "@skylib/facades";
+import { QField } from "quasar";
 import type { numberU } from "@skylib/functions";
+import { plugins } from "@";
 
 functionsTestUtils.installFakeTimer();
 

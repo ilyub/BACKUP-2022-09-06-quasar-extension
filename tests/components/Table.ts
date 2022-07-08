@@ -1,10 +1,10 @@
-import { components } from "@";
-import * as testUtils from "@/test-utils";
-import { lang } from "@skylib/facades";
-import { fn, is, o, wait } from "@skylib/functions";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
+import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
+import { fn, is, o, wait } from "@skylib/functions";
 import { QTable } from "quasar";
+import { components } from "@";
+import { lang } from "@skylib/facades";
 import { nextTick } from "vue";
 
 const props = {

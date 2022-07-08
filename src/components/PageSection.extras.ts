@@ -1,5 +1,5 @@
-import type { Switchable } from "./Switchable.extras";
 import type { GlobalComponent } from "./api";
+import type { Switchable } from "./Switchable.extras";
 
 export namespace PageSection {
   export interface Global extends GlobalComponent<Props, Slots> {

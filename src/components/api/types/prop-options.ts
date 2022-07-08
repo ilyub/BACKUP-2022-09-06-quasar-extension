@@ -1,5 +1,5 @@
-import type { is } from "@skylib/functions";
 import type { PropType } from "vue";
+import type { is } from "@skylib/functions";
 
 export interface PropOptions<T> {
   readonly default?: T;

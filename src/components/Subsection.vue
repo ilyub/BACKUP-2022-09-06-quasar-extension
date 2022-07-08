@@ -1,6 +1,6 @@
 <script lang="ts">
-import { parentProps, plugins, validateExpose } from "./api";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, validateExpose } from "./api";
 import type { Subsection } from "./Subsection.extras";
 
 export default defineComponent({

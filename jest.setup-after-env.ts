@@ -1,9 +1,10 @@
-// eslint-disable-next-line import/no-internal-modules -- Ok
+// eslint-disable-next-line @skylib/disallow-import/no-internal-modules -- Ok
 import * as app from "./src/application";
-import * as testUtils from "./src/test-utils";
-import { icons } from "@skylib/facades";
 import * as frameworkTestUtils from "@skylib/framework/dist/test-utils";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
+// eslint-disable-next-line @skylib/disallow-import/no-internal-modules -- Wait for @skylib/config update
+import * as testUtils from "./src/test-utils";
+import { icons } from "@skylib/facades";
 
 icons.setImplementation(app.icons);
 functionsTestUtils.jestSetup();

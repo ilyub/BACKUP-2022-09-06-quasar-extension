@@ -1,12 +1,12 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-menu -- Ok */
 
-import { Menu } from "./Menu.extras";
-import { Tooltip } from "./Tooltip.extras";
-import { parentProps, plugins, propFactory, validateExpose } from "./api";
-import { as } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import { parentProps, plugins, propFactory, validateExpose } from "./api";
+import { Menu } from "./Menu.extras";
 import type { QMenu } from "quasar";
+import { Tooltip } from "./Tooltip.extras";
+import { as } from "@skylib/functions";
 
 const prop = propFactory<Menu.OwnProps>();
 

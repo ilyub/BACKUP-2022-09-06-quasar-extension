@@ -1,9 +1,9 @@
 <script lang="ts">
-import { generic } from "..";
-import { Select } from "./Select.extras";
 import { as, typedef } from "@skylib/functions";
 import { defineComponent, ref } from "vue";
+import { Select } from "./Select.extras";
 import type { extras } from "..";
+import { generic } from "..";
 
 type Color = "blue" | "green" | "invalid" | "red";
 

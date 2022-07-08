@@ -1,8 +1,8 @@
-import { injectableSettings } from "./api";
-import { icons as baseIcons } from "@skylib/facades";
-import { computed } from "vue";
 import type { GlobalComponent, VNodes, plugins } from "./api";
+import { icons as baseIcons } from "@skylib/facades";
 import type { booleanU } from "@skylib/functions";
+import { computed } from "vue";
+import { injectableSettings } from "./api";
 
 declare global {
   namespace facades {

@@ -1,7 +1,7 @@
 <script lang="ts">
+import { computed, defineComponent, ref } from "vue";
 import { extras, generic } from "..";
 import { Sortable } from "./Sortable.extras";
-import { computed, defineComponent, ref } from "vue";
 
 interface Item {
   readonly id: string;

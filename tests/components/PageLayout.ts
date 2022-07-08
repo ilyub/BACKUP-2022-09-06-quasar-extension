@@ -1,8 +1,8 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
+import * as vueTestUtils from "@vue/test-utils";
+import { components } from "@";
 import { lang } from "@skylib/facades";
 import { o } from "@skylib/functions";
-import * as vueTestUtils from "@vue/test-utils";
 
 test.each([
   { closeButton: true, expected: false },

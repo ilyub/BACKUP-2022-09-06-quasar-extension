@@ -1,9 +1,9 @@
-import { components } from "@";
 import * as testUtils from "@/test-utils";
-import { lang } from "@skylib/facades";
 import * as vueTestUtils from "@vue/test-utils";
 import { QOptionGroup } from "quasar";
+import { components } from "@";
 import type { extras } from "@";
+import { lang } from "@skylib/facades";
 
 test.each([undefined, 1, "a"])("OptionGroup", value => {
   const options: extras.OptionGroup.Options = [

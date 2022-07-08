@@ -1,8 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-btn -- Ok */
 
-import { BaseButton } from "./BaseButton.extras";
-import { Form } from "./Form.extras";
+import { computed, defineComponent, ref } from "vue";
 import {
   injections,
   parentProps,
@@ -11,9 +10,10 @@ import {
   validateExpose,
   validateProps
 } from "./api";
-import { is } from "@skylib/functions";
-import { computed, defineComponent, ref } from "vue";
+import { BaseButton } from "./BaseButton.extras";
+import { Form } from "./Form.extras";
 import type { QBtn } from "quasar";
+import { is } from "@skylib/functions";
 
 const prop = propFactory<BaseButton.OwnProps>();
 
