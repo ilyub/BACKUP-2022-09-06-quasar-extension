@@ -77,7 +77,7 @@
     "@mdi/js": "^6.9.96",
     "@quasar/app-webpack": "^3.5.7",
     "@quasar/extras": "^1.14.2",
-    "@skylib/config": "^3.23.0",
+    "@skylib/config": "^3.25.0",
     "@skylib/eslint-plugin": "^0.1.42",
     "autoprefixer": "^10.4.7",
     "core-js": "^3.23.3",
