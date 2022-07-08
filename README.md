@@ -7,7 +7,7 @@
 
 ## <a name="installation"></a>Installation
 
-    npm install \@skylib/quasar-extension
+npm install \@skylib/quasar-extension
 
 ## <a name="modules"></a>Modules
 
