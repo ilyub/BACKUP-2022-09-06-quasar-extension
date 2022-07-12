@@ -2,15 +2,10 @@
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
-import {
-  parentProps,
-  plugins,
-  propFactory,
-  validateExpose,
-  validateProps
-} from "./api";
+import { parentProps, plugins, propFactory, validateProps } from "./api";
 import { Card } from "./Card.extras";
 import type { QCard } from "quasar";
+import type { SetupExposed } from "./api";
 import { is } from "@skylib/functions";
 
 const prop = propFactory<Card.OwnProps>();
@@ -26,12 +21,12 @@ export default defineComponent({
   setup: (props, { expose }) => {
     const main = ref<QCard>();
 
-    const exposed = { main } as const;
-
     const { title } = plugins.langProps(props, "title");
 
-    validateExpose<Card.Global>(expose, exposed);
+    const exposed: SetupExposed<Card.Global> = { main };
+
     validateProps<Card.OwnProps>(props);
+    expose(exposed);
 
     return {
       hasTitle: computed(() => is.not.empty(title.value)),

@@ -1,3 +1,7 @@
+/* eslint-disable github/unescaped-html-literal -- Ok */
+
+/* eslint-disable xss/no-mixed-html -- Ok */
+
 import { implementations } from "@skylib/framework";
 
 export const en = new implementations.lang.dictionary.Definitions({

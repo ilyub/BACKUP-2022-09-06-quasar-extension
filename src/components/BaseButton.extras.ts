@@ -1,6 +1,7 @@
 import type { GlobalComponent, plugins } from "./api";
 import type { QBtn, QBtnProps, QBtnSlots } from "quasar";
 import type { booleanU, stringU } from "@skylib/functions";
+import type { Ref } from "vue";
 import { computed } from "vue";
 import { injectableSettings } from "./api";
 
@@ -15,6 +16,8 @@ export namespace BaseButton {
   export interface Global extends GlobalComponent<Props, Slots> {
     readonly main?: QBtn;
   }
+
+  export type Global2 = { [K in keyof Global]: Global[K] | Ref<Global[K]> };
 
   export interface OwnProps {
     readonly disable?: booleanU;

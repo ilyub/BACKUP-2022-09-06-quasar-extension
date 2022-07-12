@@ -1,4 +1,4 @@
-import type { Entry, stringU } from "@skylib/functions";
+import type { Entry, Writable, stringU } from "@skylib/functions";
 import { defineFn, is, o } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 import type { PropOptions } from "./types";
@@ -15,7 +15,7 @@ export const langProps = defineFn(
    * @returns Lang props plugin.
    */
   <T extends string>(props: langProps.Props<T>, ...names: readonly T[]) => {
-    const result: Array<Entry<PropertyKey, unknown>> = [];
+    const result: Writable<Entries> = [];
 
     for (const name of names)
       result.push(
@@ -31,6 +31,8 @@ export const langProps = defineFn(
       );
 
     return o.fromEntries(result) as langProps.Plugin<T>;
+
+    type Entries = ReadonlyArray<Entry<PropertyKey, unknown>>;
   },
   {
     /**

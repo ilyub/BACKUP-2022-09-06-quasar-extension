@@ -5,6 +5,8 @@ import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { computed, ref } from "vue";
 import { injectableTrigger, propFactory } from "./misc";
+// eslint-disable-next-line no-warning-comments -- Wait for @skylib/functions
+// fixme
 import type { Optional } from "ts-toolbelt/out/Object/Optional";
 
 declare global {

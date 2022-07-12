@@ -1,21 +1,45 @@
+const { eslint } = require("@skylib/config/api");
+
+const consistentImport = eslint.rules["@skylib/consistent-import/project"];
+
 module.exports = {
   rules: {
-    "@skylib/custom/no-empty-interface": [
+    "@skylib/consistent-import/project": [
       "warn",
       {
-        message: "Empty interface is not allowed",
-        selector:
-          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
+        sources: [
+          {
+            _id: "app",
+            localName: "app",
+            source: "@skylib/quasar-extension/src/application",
+            type: "wildcard"
+          },
+          ...consistentImport.sources
+        ]
       }
-    ],
-    "vue/no-undef-components": ["warn", { ignorePatterns: [/^[mq]-/u.source] }]
+    ]
   },
   overrides: [
     {
-      files: "./src/boot/main.ts",
+      files: "*.vue",
       rules: {
-        // eslint-disable-next-line @skylib/custom/eslintrc-no-disable -- Ok
-        "no-console": "off"
+        "vue/no-undef-components": [
+          "warn",
+          { ignorePatterns: [/^[mq]-/u.source] }
+        ]
+      }
+    },
+    {
+      files: "./src/components/*.extras.ts",
+      rules: {
+        "@skylib/custom/no-empty-interface": [
+          "warn",
+          {
+            message: "Empty interface is not allowed",
+            selector:
+              "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
+          }
+        ]
       }
     },
     {

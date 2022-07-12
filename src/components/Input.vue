@@ -8,11 +8,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { Field } from "./Field.extras";
 import type { Input } from "./Input.extras";
+import type { SetupExposed } from "./api";
 import { genericField } from "./Field.generic";
 import { maska } from "maska";
 import type { stringU } from "@skylib/functions";
@@ -34,11 +34,11 @@ export default defineComponent({
 
     const main = ref<Field.Global<stringU>>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Input.Global> = { main };
 
     validateEmit<Input.OwnProps>(emit);
-    validateExpose<Input.Global>(expose, exposed);
     validateProps<Input.OwnProps>(props);
+    expose(exposed);
 
     return {
       format: cast.stringU,

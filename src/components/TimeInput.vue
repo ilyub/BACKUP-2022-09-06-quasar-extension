@@ -8,11 +8,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { numberU, stringU } from "@skylib/functions";
 import type { NumericInput } from "./NumericInput.extras";
+import type { SetupExposed } from "./api";
 import type { TimeInput } from "./TimeInput.extras";
 import { maska } from "maska";
 
@@ -33,11 +33,11 @@ export default defineComponent({
 
     const main = ref<NumericInput.Global>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<TimeInput.Global> = { main };
 
     validateEmit<TimeInput.OwnProps>(emit);
-    validateExpose<TimeInput.Global>(expose, exposed);
     validateProps<TimeInput.OwnProps>(props);
+    expose(exposed);
     watch(() => props.modelValue, valueChanged, { immediate: true });
 
     return {

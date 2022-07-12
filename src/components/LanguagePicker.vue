@@ -5,11 +5,11 @@ import {
   parentProps,
   plugins,
   propFactory,
-  validateExpose,
   validateProps
 } from "./api";
 import type { IconButton } from "./IconButton.extras";
 import { LanguagePicker } from "./LanguagePicker.extras";
+import type { SetupExposed } from "./api";
 import { as } from "@skylib/functions";
 
 const prop = propFactory<LanguagePicker.OwnProps>();
@@ -26,10 +26,10 @@ export default defineComponent({
 
     const settings = LanguagePicker.injectSettings();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<LanguagePicker.Global> = { main };
 
-    validateExpose<LanguagePicker.Global>(expose, exposed);
     validateProps<LanguagePicker.OwnProps>(props);
+    expose(exposed);
 
     return {
       activeOption: computed(() =>

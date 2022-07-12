@@ -2,8 +2,9 @@
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-tooltip -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { QTooltip } from "quasar";
+import type { SetupExposed } from "./api";
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";
 
@@ -15,9 +16,9 @@ export default defineComponent({
 
     const main = ref<QTooltip>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Tooltip.Global> = { main };
 
-    validateExpose<Tooltip.Global>(expose, exposed);
+    expose(exposed);
 
     return {
       anchor: direction.anchor,

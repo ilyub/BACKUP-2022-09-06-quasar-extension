@@ -9,11 +9,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
+import type { SetupExposed } from "./api";
 
 const prop = propFactory<OptionGroup.OwnProps>();
 
@@ -36,10 +36,10 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const main = ref<QOptionGroup>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<OptionGroup.Global> = { main };
 
+    expose(exposed);
     validateEmit<OptionGroup.OwnProps>(emit);
-    validateExpose<OptionGroup.Global>(expose, exposed);
     validateProps<OptionGroup.OwnProps>(props);
 
     return {

@@ -2,9 +2,10 @@
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card-section -- Ok */
 
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { CardSection } from "./CardSection.extras";
 import type { QCardSection } from "quasar";
+import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-card-section",
@@ -12,9 +13,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<QCardSection>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<CardSection.Global> = { main };
 
-    validateExpose<CardSection.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<CardSection.Slots>()() };
   }

@@ -1,3 +1,5 @@
+/* eslint-disable xss/no-mixed-html -- Ok */
+
 import type { Writable, objects } from "@skylib/functions";
 import { is, json, o } from "@skylib/functions";
 

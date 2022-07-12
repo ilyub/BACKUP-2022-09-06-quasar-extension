@@ -7,7 +7,6 @@ import type {
   UppercaseLetter,
   booleanU
 } from "@skylib/functions";
-import type { ComputedRef, Ref } from "vue";
 import type {
   PropOptions,
   PropOptionsBoolean,
@@ -177,10 +176,6 @@ export interface SetupExpose {
    */
   (exposed?: IndexedRecord | undefined): void;
 }
-
-export type SetupExposed<T> = {
-  readonly [K in keyof T]: ComputedRef<T[K]> | Ref<T[K]> | T[K];
-};
 
 export type SetupProps<
   T,

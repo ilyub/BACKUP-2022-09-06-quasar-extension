@@ -17,9 +17,9 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
+import type { SetupExposed } from "./api";
 import { Table } from "./Table.extras";
 import { genericSortable } from "./Sortable.generic";
 
@@ -79,7 +79,7 @@ export default defineComponent({
   },
   setup: (props, { emit, expose }) => {
     const allSelected = computed(() => {
-      if (props.rows.length > 0)
+      if (props.rows.length)
         switch (selected.value.length) {
           case 0:
             return false;
@@ -102,11 +102,11 @@ export default defineComponent({
 
     const settings = Table.injectSettings();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Table.Global> = { main };
 
     validateEmit<Table.OwnProps>(emit);
-    validateExpose<Table.Global>(expose, exposed);
     validateProps<Table.OwnProps>(props);
+    expose(exposed);
 
     return {
       allSelected,

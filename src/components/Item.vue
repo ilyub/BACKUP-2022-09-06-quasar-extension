@@ -7,11 +7,11 @@ import {
   parentProps,
   plugins,
   propFactory,
-  validateExpose,
   validateProps
 } from "./api";
 import type { Item } from "./Item.extras";
 import type { QItem } from "quasar";
+import type { SetupExposed } from "./api";
 import { is } from "@skylib/functions";
 
 const prop = propFactory<Item.OwnProps>();
@@ -29,10 +29,10 @@ export default defineComponent({
 
     const main = ref<QItem>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Item.Global> = { main };
 
-    validateExpose<Item.Global>(expose, exposed);
     validateProps<Item.OwnProps>(props);
+    expose(exposed);
 
     return {
       caption,

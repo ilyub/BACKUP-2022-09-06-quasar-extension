@@ -9,11 +9,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
+import type { SetupExposed } from "./api";
 
 const prop = propFactory<Knob.OwnProps>();
 
@@ -29,10 +29,10 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const main = ref<QKnob>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Knob.Global> = { main };
 
+    expose(exposed);
     validateEmit<Knob.OwnProps>(emit);
-    validateExpose<Knob.Global>(expose, exposed);
     validateProps<Knob.OwnProps>(props);
 
     return {

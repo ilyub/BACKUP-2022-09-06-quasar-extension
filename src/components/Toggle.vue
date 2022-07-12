@@ -9,10 +9,10 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { QToggle } from "quasar";
+import type { SetupExposed } from "./api";
 import type { Toggle } from "./Toggle.extras";
 
 const prop = propFactory<Toggle.OwnProps>();
@@ -31,11 +31,11 @@ export default defineComponent({
 
     const main = ref<QToggle>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Toggle.Global> = { main };
 
     validateEmit<Toggle.OwnProps>(emit);
-    validateExpose<Toggle.Global>(expose, exposed);
     validateProps<Toggle.OwnProps>(props);
+    expose(exposed);
 
     return {
       globalDisable: injections.disable.inject(),

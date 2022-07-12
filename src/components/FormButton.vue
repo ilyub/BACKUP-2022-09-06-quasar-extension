@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { BaseButton } from "./BaseButton.extras";
 import type { FormButton } from "./FormButton.extras";
+import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-form-button",
@@ -10,9 +11,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<BaseButton.Global>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<FormButton.Global> = { main };
 
-    validateExpose<FormButton.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<FormButton.Slots>()() };
   }

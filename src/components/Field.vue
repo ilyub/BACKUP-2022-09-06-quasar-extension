@@ -10,11 +10,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { Field } from "./Field.extras";
 import type { QField } from "quasar";
+import type { SetupExposed } from "./api";
 
 const prop = propFactory<Field.OwnProps>();
 
@@ -54,11 +54,11 @@ export default defineComponent({
       )
     );
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Field.Global> = { main };
 
     validateEmit<Field.OwnProps>(emit);
-    validateExpose<Field.Global>(expose, exposed);
     validateProps<Field.OwnProps>(props);
+    expose(exposed);
 
     return {
       blur: (): void => {

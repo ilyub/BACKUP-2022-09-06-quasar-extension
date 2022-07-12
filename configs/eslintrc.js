@@ -195,14 +195,6 @@ module.exports = {
           "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateEmit]"
       }
     ],
-    "@skylib/custom/quasar/require-validateExpose-type-parameter": [
-      "warn",
-      {
-        message: "Missing type parameter",
-        selector:
-          "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateExpose]"
-      }
-    ],
     "@skylib/custom/quasar/require-validateProps-type-parameter": [
       "warn",
       {

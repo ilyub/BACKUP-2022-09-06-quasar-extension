@@ -11,11 +11,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { QSelect } from "quasar";
 import { Select } from "./Select.extras";
+import type { SetupExposed } from "./api";
 
 const prop = propFactory<Select.OwnProps>();
 
@@ -65,11 +65,11 @@ export default defineComponent({
       )
     );
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Select.Global> = { main };
 
     validateEmit<Select.OwnProps>(emit);
-    validateExpose<Select.Global>(expose, exposed);
     validateProps<Select.OwnProps>(props);
+    expose(exposed);
 
     return {
       blur: (): void => {

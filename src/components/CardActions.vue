@@ -2,9 +2,10 @@
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-card-actions -- Ok */
 
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { CardActions } from "./CardActions.extras";
 import type { QCardActions } from "quasar";
+import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-card-actions",
@@ -12,9 +13,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<QCardActions>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<CardActions.Global> = { main };
 
-    validateExpose<CardActions.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<CardActions.Slots>()() };
   }

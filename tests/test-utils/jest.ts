@@ -1,3 +1,5 @@
+/* eslint-disable @skylib/consistent-import/project -- Ok */
+
 /* eslint-disable no-console -- Ok */
 
 import * as internal from "@/test-utils/jest.internal";

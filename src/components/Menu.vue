@@ -2,9 +2,10 @@
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-menu -- Ok */
 
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, propFactory, validateExpose } from "./api";
+import { parentProps, plugins, propFactory } from "./api";
 import { Menu } from "./Menu.extras";
 import type { QMenu } from "quasar";
+import type { SetupExposed } from "./api";
 import { Tooltip } from "./Tooltip.extras";
 import { as } from "@skylib/functions";
 
@@ -22,9 +23,9 @@ export default defineComponent({
 
     const main = ref<QMenu>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Menu.Global> = { main };
 
-    validateExpose<Menu.Global>(expose, exposed);
+    expose(exposed);
 
     Menu.provideMenu({
       autoClose: () => {

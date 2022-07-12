@@ -9,11 +9,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import { DatetimePicker } from "./DatetimePicker.extras";
 import type { Field } from "./Field.extras";
+import type { SetupExposed } from "./api";
 import { genericField } from "./Field.generic";
 import type { stringU } from "@skylib/functions";
 
@@ -103,11 +103,11 @@ export default defineComponent({
 
     const step = ref<"date" | "time">("date");
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<DatetimePicker.Global> = { main };
 
     validateEmit<DatetimePicker.OwnProps>(emit);
-    validateExpose<DatetimePicker.Global>(expose, exposed);
     validateProps<DatetimePicker.OwnProps>(props);
+    expose(exposed);
 
     return {
       date: computed(() =>

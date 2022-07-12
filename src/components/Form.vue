@@ -9,11 +9,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import { Form } from "./Form.extras";
 import type { QForm } from "quasar";
+import type { SetupExposed } from "./api";
 import { as } from "@skylib/functions";
 import { handlePromise } from "@skylib/facades";
 
@@ -38,17 +38,17 @@ export default defineComponent({
 
     const resetValidation = plugins.validation.reset.provide();
 
-    const exposed = {
+    const exposed: SetupExposed<Form.Global> = {
       main,
       resetValidation: (): void => {
         as.not.empty(main.value).resetValidation();
         resetValidation();
       }
-    } as const;
+    };
 
     validateEmit<Form.OwnProps>(emit);
-    validateExpose<Form.Global>(expose, exposed);
     validateProps<Form.OwnProps>(props);
+    expose(exposed);
     Form.provideForm({ submitting: computed(() => submitting.value > 0) });
     injections.disable.provide(
       computed(() => globalDisable.value || disable.value > 0)

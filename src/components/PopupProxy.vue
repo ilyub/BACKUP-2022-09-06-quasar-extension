@@ -1,9 +1,9 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-popup-proxy -- Ok */
 
+import type { GlobalComponent, SetupExposed } from "./api";
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
-import type { GlobalComponent } from "./api";
+import { parentProps, plugins } from "./api";
 import type { PopupProxy } from "./PopupProxy.extras";
 import { QPopupProxy } from "quasar";
 
@@ -24,9 +24,9 @@ export default defineComponent({
 
     const main = ref<QPopupProxy>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<PopupProxy.Global> = { main };
 
-    validateExpose<PopupProxy.Global>(expose, exposed);
+    expose(exposed);
 
     return {
       anchor: direction.anchor,

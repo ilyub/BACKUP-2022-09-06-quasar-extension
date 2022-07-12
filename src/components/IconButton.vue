@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { BaseButton } from "./BaseButton.extras";
 import type { IconButton } from "./IconButton.extras";
+import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-icon-button",
@@ -10,9 +11,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<BaseButton.Global>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<IconButton.Global> = { main };
 
-    validateExpose<IconButton.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<IconButton.Slots>()() };
   }

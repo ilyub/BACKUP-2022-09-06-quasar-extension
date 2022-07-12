@@ -10,8 +10,6 @@ import type {
   PropOptionalKeys,
   PropRequiredKeys,
   SetupEmit,
-  SetupExpose,
-  SetupExposed,
   SetupProps
 } from "./misc.internal";
 import type {
@@ -70,6 +68,10 @@ export interface GlobalComponent<P, S> {
    */
   new (): GlobalComponentInstance<P, S>;
 }
+
+export type SetupExposed<T> = {
+  readonly [K in keyof T]: ComputedRef<T[K]> | Ref<T[K]> | T[K];
+};
 
 export type VNodes = readonly VNode[];
 
@@ -240,19 +242,6 @@ export function toComputed<T>(value: T): ComputedRef<T> {
  */
 export function validateEmit<T>(_emit: SetupEmit<T>): void {
   // Nothing to do
-}
-
-/**
- * Exposes data.
- *
- * @param expose - Expose function.
- * @param exposed - Exposed data.
- */
-export function validateExpose<T>(
-  expose: SetupExpose,
-  exposed: SetupExposed<T>
-): void {
-  expose(exposed);
 }
 
 /**

@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
 import type { PageSection } from "./PageSection.extras";
+import type { SetupExposed } from "./api";
 import type { Switchable } from "./Switchable.extras";
 
 export default defineComponent({
@@ -10,9 +11,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Switchable.Global>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<PageSection.Global> = { main };
 
-    validateExpose<PageSection.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<PageSection.Slots>()() };
   }

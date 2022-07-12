@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { parentProps, plugins, validateExpose } from "./api";
+import { parentProps, plugins } from "./api";
+import type { SetupExposed } from "./api";
 import type { Subsection } from "./Subsection.extras";
 
 export default defineComponent({
@@ -9,9 +10,9 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Subsection.Global>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<Subsection.Global> = { main };
 
-    validateExpose<Subsection.Global>(expose, exposed);
+    expose(exposed);
 
     return { main, slotNames: plugins.slotNames<Subsection.Slots>()() };
   }

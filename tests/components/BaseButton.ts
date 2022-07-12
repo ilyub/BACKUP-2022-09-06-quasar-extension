@@ -42,15 +42,12 @@ test("prop: confirmation", async () => {
     props: { confirmation: lang.plain("Sample confirmation") }
   });
 
-  wrapper.vm.$q.dialog = (): DialogChainObject => {
-    const result = {
+  wrapper.vm.$q.dialog = () =>
+    ({
       onOk: (callback: Callable): void => {
         callback();
       }
-    } as const;
-
-    return result as DialogChainObject;
-  };
+    } as DialogChainObject);
 
   const main = testUtils.findQuasarComponent(wrapper, QBtn);
 

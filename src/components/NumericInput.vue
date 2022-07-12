@@ -8,11 +8,11 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import type { Field } from "./Field.extras";
 import { NumericInput } from "./NumericInput.extras";
+import type { SetupExposed } from "./api";
 import { genericField } from "./Field.generic";
 import { maska } from "maska";
 import type { numberU } from "@skylib/functions";
@@ -39,11 +39,11 @@ export default defineComponent({
 
     const main = ref<Field.Global<numberU>>();
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<NumericInput.Global> = { main };
 
     validateEmit<NumericInput.OwnProps>(emit);
-    validateExpose<NumericInput.Global>(expose, exposed);
     validateProps<NumericInput.OwnProps>(props);
+    expose(exposed);
 
     return {
       downClick: (step: number): void => {

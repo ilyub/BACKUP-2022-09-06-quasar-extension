@@ -1,3 +1,5 @@
+/* eslint-disable xss/no-mixed-html -- Ok */
+
 import { implementations } from "@skylib/framework";
 
 export const ru = new implementations.lang.dictionary.Definitions({

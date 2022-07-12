@@ -20,7 +20,6 @@ module.exports = [
   "@skylib/custom/quasar/require-prop-type-parameter",
   "@skylib/custom/quasar/require-ref-type-parameter",
   "@skylib/custom/quasar/require-validateEmit-type-parameter",
-  "@skylib/custom/quasar/require-validateExpose-type-parameter",
   "@skylib/custom/quasar/require-validateProps-type-parameter",
   "@skylib/custom/quasar/vue-no-mixed-classes",
   "@skylib/custom/quasar/vue-prefer-label-prop",

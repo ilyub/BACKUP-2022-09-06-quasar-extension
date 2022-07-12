@@ -10,12 +10,12 @@ import {
   propFactory,
   skipCheck,
   validateEmit,
-  validateExpose,
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
 import type { IconButton } from "./IconButton.extras";
 import { IconPicker } from "./IconPicker.extras";
+import type { SetupExposed } from "./api";
 
 const mdi = ref<Mdi>();
 
@@ -70,11 +70,11 @@ export default defineComponent({
 
     const total = computed(() => filteredItems.value.length);
 
-    const exposed = { main } as const;
+    const exposed: SetupExposed<IconPicker.Global> = { main };
 
     validateEmit<IconPicker.OwnProps>(emit);
-    validateExpose<IconPicker.Global>(expose, exposed);
     validateProps<IconPicker.OwnProps>(props);
+    expose(exposed);
     watch([mdi, searchString], resetPage);
 
     return {
