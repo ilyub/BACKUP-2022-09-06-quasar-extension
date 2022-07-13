@@ -1,11 +1,6 @@
 <script lang="ts">
 import * as _ from "@skylib/lodash-commonjs-es";
-import type {
-  IndexedRecord,
-  Writable,
-  numberU,
-  objects
-} from "@skylib/functions";
+import type { IndexedRecord, numberU, objects } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
 import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
@@ -136,15 +131,16 @@ export default defineComponent({
             ? `${props.columnWidths.get(column.name) ?? column.width}px`
             : undefined
         }),
-      columnsManagementRows: computed<Writable<Table.Columns>>(() =>
-        props.columns
-          .map(
-            (column, index): SortableColumn => ({
-              ...column,
-              order: props.columnsOrder.get(column.name) ?? 1000 + index
-            })
-          )
-          .sort((x, y) => x.order - y.order)
+      columnsManagementRows: computed(
+        (): Table.Columns =>
+          props.columns
+            .map(
+              (column, index): SortableColumn => ({
+                ...column,
+                order: props.columnsOrder.get(column.name) ?? 1000 + index
+              })
+            )
+            .sort((x, y) => x.order - y.order)
       ),
       columnsManagementShow: ref(false),
       debugDialog: ref<QDialog>(),

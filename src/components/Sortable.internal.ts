@@ -1,7 +1,7 @@
 /* eslint-disable xss/no-mixed-html -- Ok */
 
-import type { Writable, objects } from "@skylib/functions";
 import { is, json, o } from "@skylib/functions";
+import type { objects } from "@skylib/functions";
 
 export const isHtmlElement = is.factory(is.instanceOf, HTMLElement);
 
@@ -48,7 +48,7 @@ export function buildElements(
   items: objects,
   group: string,
   key: string
-): Writable<Elements> {
+): Elements {
   return items.map((item): Element => {
     const id = o.get(item, key, is.string);
 

@@ -1,4 +1,4 @@
-import type { Entry, Writable, stringU } from "@skylib/functions";
+import type { Entry, stringU } from "@skylib/functions";
 import { defineFn, is, o } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 import type { PropOptions } from "./types";
@@ -14,11 +14,9 @@ export const langProps = defineFn(
    * @param names - Property names.
    * @returns Lang props plugin.
    */
-  <T extends string>(props: langProps.Props<T>, ...names: readonly T[]) => {
-    const result: Writable<Entries> = [];
-
-    for (const name of names)
-      result.push(
+  <T extends string>(props: langProps.Props<T>, ...names: readonly T[]) =>
+    o.fromEntries(
+      names.flatMap<Entry<PropertyKey, unknown>>(name => [
         [
           name,
           computed(() => {
@@ -28,12 +26,8 @@ export const langProps = defineFn(
           })
         ],
         [`${name}Key`, computed(() => props[name])]
-      );
-
-    return o.fromEntries(result) as langProps.Plugin<T>;
-
-    type Entries = ReadonlyArray<Entry<PropertyKey, unknown>>;
-  },
+      ])
+    ) as langProps.Plugin<T>,
   {
     /**
      * Creates Vue properties.
@@ -63,6 +57,6 @@ export namespace langProps {
     readonly [K in T]: PropOptions<lang.Key | undefined>;
   };
 
-  // eslint-disable-next-line @skylib/custom/quasar/prefer-interface -- Ok
+  // eslint-disable-next-line @skylib/custom/quasar/prefer-Props-interface -- Ok
   export type Props<T extends string> = OwnProps<T>;
 }

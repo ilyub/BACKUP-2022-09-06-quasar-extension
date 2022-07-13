@@ -1,7 +1,6 @@
 <script lang="ts">
 import * as _ from "@skylib/lodash-commonjs-es";
-import type { Buttons, Item, Mdi } from "./IconPicker.internal";
-import type { Writable, stringU } from "@skylib/functions";
+import type { Button, Item, Mdi } from "./IconPicker.internal";
 import { as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref, watch } from "vue";
 import {
@@ -16,6 +15,7 @@ import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
 import type { IconButton } from "./IconButton.extras";
 import { IconPicker } from "./IconPicker.extras";
 import type { SetupExposed } from "./api";
+import type { stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
 
@@ -92,12 +92,12 @@ export default defineComponent({
         }
       },
       contents: computed(() => {
-        const buttons: Writable<Buttons> = filteredItems.value
+        const buttons = filteredItems.value
           .slice(
             page.value * pageSize.value,
             page.value * pageSize.value + pageSize.value
           )
-          .map(item => {
+          .map((item): Button => {
             const icon = as.not.empty(mdi.value)[item.id];
 
             return o.removeUndefinedKeys({

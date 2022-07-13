@@ -1,13 +1,11 @@
 import type { ComputedRef, Ref } from "vue";
 import type { QField, QInput, ValidationRule } from "quasar";
-import type { Writable, empty } from "@skylib/functions";
 import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { computed, ref } from "vue";
 import { injectableTrigger, propFactory } from "./misc";
-// eslint-disable-next-line no-warning-comments -- Wait for @skylib/functions
-// fixme
 import type { Optional } from "ts-toolbelt/out/Object/Optional";
+import type { empty } from "@skylib/functions";
 
 declare global {
   namespace facades {
@@ -247,7 +245,7 @@ export namespace validation {
   }
 
   export interface Plugin<T = unknown> {
-    readonly rules: ComputedRef<Writable<ValidationRules>>;
+    readonly rules: ComputedRef<ValidationRules>;
     /**
      * Validates field.
      *
