@@ -13,34 +13,13 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/custom/quasar/check-Props-extends": [
+    "@skylib/custom/functions/no-evaluate-type-param": [
       "warn",
       {
-        message: "Incorrect extends",
-        selector: [
-          "TSInterfaceDeclaration[id.name=Props][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnProps][name!=ParentProps][name!=PluginProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps][name!=PluginProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnProps][name!=PluginProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnProps]",
-          "TSInterfaceDeclaration[id.name=Props][extends.length>3]"
-        ]
-      }
-    ],
-    "@skylib/custom/quasar/check-Slots-extends": [
-      "warn",
-      {
-        message: 'Extend "OwnSlots" or "PluginSlots" interface',
-        selector: [
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=1] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=OwnSlots][name!=ParentSlots][name!=PluginSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots][name!=PluginSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=2] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=OwnSlots][name!=PluginSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:first-child > Identifier.expression[name!=ParentSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(2) > Identifier.expression[name!=PluginSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length=3] > TSInterfaceHeritage.extends:nth-child(3) > Identifier.expression[name!=OwnSlots]",
-          "TSInterfaceDeclaration[id.name=Slots][extends.length>3]"
-        ]
+        filesToSkip: ["*.js"],
+        message: "Move type definition to function",
+        selector:
+          "CallExpression[callee.name=computed] > TSTypeParameterInstantiation"
       }
     ],
     "@skylib/custom/quasar/check-generic-component-name": [
@@ -49,22 +28,6 @@ module.exports = {
         message: "Invalid generic component name",
         selector:
           "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=components] > ObjectExpression > Property[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]"
-      }
-    ],
-    "@skylib/custom/quasar/no-OwnProps-extends": [
-      "warn",
-      {
-        message: 'Do not extend "OwnProps" interface',
-        selector:
-          "TSInterfaceDeclaration[id.name=OwnProps] > TSInterfaceHeritage.extends"
-      }
-    ],
-    "@skylib/custom/quasar/no-OwnSlots-extends": [
-      "warn",
-      {
-        message: 'Do not extend "OwnSlots" interface',
-        selector:
-          "TSInterfaceDeclaration[id.name=OwnSlots] > TSInterfaceHeritage.extends"
       }
     ],
     "@skylib/custom/quasar/no-global-icons": [
@@ -104,36 +67,12 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/custom/quasar/prefer-OwnProps": [
-      "warn",
-      {
-        message: 'Use "OwnProps" interface',
-        selector:
-          "TSInterfaceDeclaration[id.name=/^(?:Props|ParentProps)$/u] > TSInterfaceBody.body > .body"
-      }
-    ],
-    "@skylib/custom/quasar/prefer-OwnSlots": [
-      "warn",
-      {
-        message: 'Use "OwnSlots" interface',
-        selector:
-          "TSInterfaceDeclaration[id.name=/^(?:Slots|ParentSlots)$/u] > TSInterfaceBody.body > .body"
-      }
-    ],
     "@skylib/custom/quasar/prefer-findQuasarComponent": [
       "warn",
       {
         message: 'Use "findQuasarComponent" function',
         selector:
           "CallExpression[arguments.0.name=/^Q/u] > MemberExpression.callee[object.name=wrapper][property.name=findComponent]"
-      }
-    ],
-    "@skylib/custom/quasar/prefer-interface": [
-      "warn",
-      {
-        message: "Use interface",
-        selector:
-          "TSTypeAliasDeclaration > Identifier.id[name=/^(?:Props|Slots)$/u]"
       }
     ],
     "@skylib/custom/quasar/prefer-testComponents": [
@@ -144,28 +83,12 @@ module.exports = {
           "CallExpression[callee.object.name=wrapper][callee.property.name=findComponent] > MemberExpression.arguments:first-child > Identifier.object[name=components]"
       }
     ],
-    "@skylib/custom/quasar/prefer-validateEmit-OwnProps": [
-      "warn",
-      {
-        message: 'Use "OwnProps" interface',
-        selector:
-          "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]"
-      }
-    ],
-    "@skylib/custom/quasar/prefer-validateProps-OwnProps": [
-      "warn",
-      {
-        message: 'Use "OwnProps" interface',
-        selector:
-          "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name=Props]"
-      }
-    ],
     "@skylib/custom/quasar/require-computed-type-parameter": [
       "warn",
       {
         message: "Unnecessary type parameter",
         selector:
-          "CallExpression[callee.name=computed] > TSTypeParameterInstantiation.typeParameters > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)"
+          "CallExpression[callee.name=computed] > ArrowFunctionExpression > TSTypeAnnotation > :matches(TSBooleanKeyword, TSNumberKeyword, TSStringKeyword)"
       }
     ],
     "@skylib/custom/quasar/require-prop-type-parameter": [
@@ -190,17 +113,21 @@ module.exports = {
     "@skylib/custom/quasar/require-validateEmit-type-parameter": [
       "warn",
       {
-        message: "Missing type parameter",
-        selector:
-          "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateEmit]"
+        message: 'Expecting "OwnProps" type parameter',
+        selector: [
+          "CallExpression[callee.name=validateEmit][typeParameters=undefined]",
+          "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]"
+        ]
       }
     ],
     "@skylib/custom/quasar/require-validateProps-type-parameter": [
       "warn",
       {
-        message: "Missing type parameter",
-        selector:
-          "CallExpression[typeParameters=undefined] > Identifier.callee[name=validateProps]"
+        message: 'Expecting "OwnProps" type parameter',
+        selector: [
+          "CallExpression[callee.name=validateProps][typeParameters=undefined]",
+          "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]"
+        ]
       }
     ],
     "@skylib/custom/quasar/vue-no-mixed-classes": [
@@ -344,28 +271,6 @@ module.exports = {
         message: 'Move "v-bind" directive to the end',
         selector:
           "VElement[name=slot] > VStartTag.startTag > VAttribute.attributes:not(:last-child) > VDirectiveKey.key[argument=null] > VIdentifier.name[name=bind]"
-      }
-    ],
-    "@skylib/optional-property-style": [
-      "warn",
-      {
-        classes: "undefined",
-        interfaces: "optional",
-        overrides: [
-          {
-            _id: "props",
-            patterns: ["Props$"],
-            style: "combined",
-            target: "interfaces"
-          },
-          {
-            _id: "props-emit",
-            patterns: ["Props$"],
-            propertyPatterns: ["^on[A-Z]"],
-            style: "optional",
-            target: "interfaces"
-          }
-        ]
       }
     ],
     "node/no-extraneous-import": [
