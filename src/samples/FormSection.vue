@@ -4,7 +4,11 @@ import { FormSection } from "./FormSection.extras";
 
 export default defineComponent({
   name: "sample-form-section",
-  setup: () => ({ lk: FormSection.lang.keys, name: ref<string>() })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lk: FormSection.lang.keys, name: ref<string>() };
+  }
 });
 </script>
 

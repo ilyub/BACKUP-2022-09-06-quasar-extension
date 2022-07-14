@@ -10,7 +10,7 @@ type Color = "blue" | "green" | "invalid" | "red";
 export default defineComponent({
   name: "sample-select",
   components: { "m-select__value": generic.Select<Color>() },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const form = ref<extras.Form.Global>();
 
     const value1 = ref<Color>();
@@ -22,6 +22,8 @@ export default defineComponent({
     const value4 = ref<Color>();
 
     const value5 = ref<Color | undefined>("blue");
+
+    expose({});
 
     return {
       form,

@@ -4,11 +4,15 @@ import { Knob } from "./Knob.extras";
 
 export default defineComponent({
   name: "sample-knob",
-  setup: () => ({
-    lang: Knob.lang,
-    value1: ref(100),
-    value2: ref(100)
-  })
+  setup: (_props, { expose }) => {
+    expose();
+
+    return {
+      lang: Knob.lang,
+      value1: ref(100),
+      value2: ref(100)
+    };
+  }
 });
 </script>
 

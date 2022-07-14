@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-card",
-  setup: () => ({ lang: Card.lang, lk: Card.lang.keys })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lang: Card.lang, lk: Card.lang.keys };
+  }
 });
 </script>
 

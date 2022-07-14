@@ -9,7 +9,7 @@ type Section = "section1" | "section2" | "section3" | "section4";
 export default defineComponent({
   name: "sample-group",
   components: { "m-group__page-sections": generic.Group<Section>() },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const showSection1 = ref(true);
 
     const showSection2 = ref(true);
@@ -25,6 +25,8 @@ export default defineComponent({
     const title3 = Group.lang.plain("Section 11 ccc ddd");
 
     const title4 = Group.lang.plain("Section 12 ddd eee");
+
+    expose({});
 
     return {
       groupItems: computed(

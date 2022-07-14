@@ -8,9 +8,10 @@ const prop = propFactory<Switchable.OwnProps>();
 export default defineComponent({
   name: "m-switchable",
   props: { disable: prop.boolean("disable"), indent: prop.boolean("indent") },
-  setup: props => {
+  setup: (props, { expose }) => {
     const globalDisable = injections.disable.inject();
 
+    expose({});
     validateProps<Switchable.OwnProps>(props);
     injections.disable.provide(
       computed(() => props.disable || globalDisable.value)

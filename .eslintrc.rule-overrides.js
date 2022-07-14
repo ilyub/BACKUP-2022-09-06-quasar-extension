@@ -30,19 +30,6 @@ module.exports = {
       }
     },
     {
-      files: "./src/components/*.extras.ts",
-      rules: {
-        "@skylib/custom/no-empty-interface": [
-          "warn",
-          {
-            message: "Empty interface is not allowed",
-            selector:
-              "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
-          }
-        ]
-      }
-    },
-    {
       files: "./src/components/*.vue",
       rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
     },

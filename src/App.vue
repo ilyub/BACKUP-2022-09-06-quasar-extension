@@ -10,9 +10,10 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "app",
   components: { "router-view": RouterView },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { language, provide } = settings;
 
+    expose({});
     provide();
 
     return {

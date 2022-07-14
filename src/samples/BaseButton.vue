@@ -8,11 +8,13 @@ import { wait } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-base-button",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const $q = useQuasar();
 
     const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
       settings;
+
+    expose({});
 
     return {
       asyncClick: async (): Promise<void> => {

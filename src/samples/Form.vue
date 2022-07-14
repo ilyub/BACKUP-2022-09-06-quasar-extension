@@ -6,8 +6,10 @@ import { wait } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-form",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const $q = useQuasar();
+
+    expose({});
 
     return {
       asyncSubmit: async (): Promise<void> => {

@@ -1,5 +1,13 @@
 module.exports = {
   rules: {
+    "@skylib/custom/no-empty-interface": [
+      "warn",
+      {
+        message: "Empty interface is not allowed",
+        selector:
+          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
+      }
+    ],
     "@skylib/custom/quasar/check-Props-extends": [
       "warn",
       {

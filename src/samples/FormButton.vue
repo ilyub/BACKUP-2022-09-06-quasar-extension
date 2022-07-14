@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-form-button",
-  setup: () => ({ lang: FormButton.lang, lk: FormButton.lang.keys })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lang: FormButton.lang, lk: FormButton.lang.keys };
+  }
 });
 </script>
 

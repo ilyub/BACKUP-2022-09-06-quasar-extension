@@ -15,8 +15,10 @@ export default defineComponent({
   components: {
     "m-option-group__transition": generic.OptionGroup<Transition>()
   },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { switchableTransition } = settings;
+
+    expose({});
 
     return {
       disable: ref(false),

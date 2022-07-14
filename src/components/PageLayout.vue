@@ -20,11 +20,12 @@ export default defineComponent({
     closeButtonOff: prop.boolean("closeButtonOff"),
     closeButtonOn: prop.boolean("closeButtonOn")
   },
-  setup: props => {
+  setup: (props, { expose }) => {
     const settings = PageLayout.injectSettings();
 
     const { title } = plugins.langProps(props, "title");
 
+    expose({});
     validateProps<PageLayout.OwnProps>(props);
 
     return {

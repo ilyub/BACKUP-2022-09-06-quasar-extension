@@ -1,7 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-select -- Ok */
 
-import { as, is, o } from "@skylib/functions";
+import { a, as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import {
   directives,
@@ -98,7 +98,7 @@ export default defineComponent({
           })
         )
       ),
-      rules: validation.rules,
+      rules: computed(() => a.clone(validation.rules.value)),
       selectedOption,
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {

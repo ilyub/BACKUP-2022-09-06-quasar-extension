@@ -16,12 +16,14 @@ export default defineComponent({
     "m-droppable__items": generic.Droppable<Item, Item>(),
     "m-sortable__items": generic.Sortable<Item, Item>()
   },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const $q = useQuasar();
 
     const disableDropping = ref(false);
 
     const disableSorting = ref(false);
+
+    expose({});
 
     extras.Sortable.provideSettings(
       computed(

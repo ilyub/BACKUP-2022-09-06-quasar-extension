@@ -1,11 +1,11 @@
 module.exports = [
   "@skylib/consistent-import/quasar",
-  "@skylib/custom/functions/no-evaluate-type-param",
   "@skylib/custom/quasar/check-Props-extends",
   "@skylib/custom/quasar/check-Slots-extends",
   "@skylib/custom/quasar/check-generic-component-name",
   "@skylib/custom/quasar/no-OwnProps-extends",
   "@skylib/custom/quasar/no-OwnSlots-extends",
+  "@skylib/custom/quasar/no-computed-type-param",
   "@skylib/custom/quasar/no-global-icons",
   "@skylib/custom/quasar/no-global-lang",
   "@skylib/custom/quasar/no-ref-type-parameter",
@@ -40,5 +40,6 @@ module.exports = [
   "@skylib/custom/quasar/vue-prefer-m-select",
   "@skylib/custom/quasar/vue-prefer-m-toggle",
   "@skylib/custom/quasar/vue-prefer-m-tooltip",
+  "@skylib/custom/quasar/vue-prefer-quasar-components",
   "@skylib/custom/quasar/vue-sort-v-bind"
 ];

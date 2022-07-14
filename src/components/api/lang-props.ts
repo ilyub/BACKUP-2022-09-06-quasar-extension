@@ -14,7 +14,10 @@ export const langProps = defineFn(
    * @param names - Property names.
    * @returns Lang props plugin.
    */
-  <T extends string>(props: langProps.Props<T>, ...names: readonly T[]) =>
+  <T extends string>(
+    props: langProps.Props<T>,
+    ...names: readonly T[]
+  ): langProps.Plugin<T> =>
     o.fromEntries(
       names.flatMap<Entry<PropertyKey, unknown>>(name => [
         [
@@ -35,7 +38,9 @@ export const langProps = defineFn(
      * @param names - Property names.
      * @returns Vue properties.
      */
-    props: <T extends string>(...names: readonly T[]) =>
+    props: <T extends string>(
+      ...names: readonly T[]
+    ): langProps.PropOptionsRecord<T> =>
       o.fromEntries(
         names.map(name => [name, prop<lang.Key | undefined>()])
       ) as langProps.PropOptionsRecord<T>

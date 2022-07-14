@@ -9,7 +9,7 @@ import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-input",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const $q = useQuasar();
 
     const form = ref<extras.Form.Global>();
@@ -23,6 +23,8 @@ export default defineComponent({
     const value4 = ref<string>();
 
     const value5 = ref<string>();
+
+    expose({});
 
     return {
       form,

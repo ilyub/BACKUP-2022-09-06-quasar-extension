@@ -26,7 +26,7 @@ export default defineComponent({
     rootElement: prop("rootElement"),
     searchString: prop("searchString")
   },
-  setup: props => {
+  setup: (props, { expose }) => {
     const filteredItems = computed(() => {
       if (is.not.empty(props.searchString)) {
         const ids = new Set(
@@ -65,6 +65,7 @@ export default defineComponent({
       )
     );
 
+    expose({});
     validateProps<Group.OwnProps>(props);
 
     return {

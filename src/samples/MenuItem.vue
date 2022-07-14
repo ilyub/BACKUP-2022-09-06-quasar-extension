@@ -6,8 +6,10 @@ import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "sample-menu-item",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const $q = useQuasar();
+
+    expose({});
 
     return {
       click: (): void => {

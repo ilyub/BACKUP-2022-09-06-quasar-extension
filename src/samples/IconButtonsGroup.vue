@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-icon-buttons-group",
-  setup: () => ({ mdiPen, mdiPenPlus })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { mdiPen, mdiPenPlus };
+  }
 });
 </script>
 

@@ -9,17 +9,21 @@ import type { stringU } from "@skylib/functions";
 export default defineComponent({
   name: "sample-field",
   components: { "m-field__string": generic.Field<stringU>() },
-  setup: () => ({
-    format: cast.stringU,
-    input: (
-      event: Event,
-      emitValue: Parameters<extras.Field.Slots["control"]>[0]["emitValue"]
-    ): void => {
-      emitValue(o.get(as.not.empty(event.target), "value"));
-    },
-    lk: Field.lang.keys,
-    value: ref<string>()
-  })
+  setup: (_props, { expose }) => {
+    expose();
+
+    return {
+      format: cast.stringU,
+      input: (
+        event: Event,
+        emitValue: Parameters<extras.Field.Slots["control"]>[0]["emitValue"]
+      ): void => {
+        emitValue(o.get(as.not.empty(event.target), "value"));
+      },
+      lk: Field.lang.keys,
+      value: ref<string>()
+    };
+  }
 });
 </script>
 

@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-subsection",
-  setup: () => ({ lang: Subsection.lang })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lang: Subsection.lang };
+  }
 });
 </script>
 

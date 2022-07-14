@@ -11,10 +11,12 @@ interface Item {
 export default defineComponent({
   name: "sample-sortable",
   components: { "m-sortable__items": generic.Sortable<Item, Item>() },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const disableDropping = ref(false);
 
     const disableSorting = ref(false);
+
+    expose({});
 
     extras.Sortable.provideSettings(
       computed(

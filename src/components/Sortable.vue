@@ -41,7 +41,7 @@ export default defineComponent({
     "itemClick": (item: object) => skipCheck(item),
     "update:modelValue": (value: objects) => skipCheck(value)
   },
-  setup: (props, { emit }) => {
+  setup: (props, { emit, expose }) => {
     validateEmit<Sortable.OwnProps>(emit);
     validateProps<Sortable.OwnProps>(props);
 
@@ -65,6 +65,8 @@ export default defineComponent({
           props.modelValue.map(item => o.get(item, props.itemKey, is.string))
         )
     );
+
+    expose({});
 
     return {
       baseMove: (data: unknown): boolean => {

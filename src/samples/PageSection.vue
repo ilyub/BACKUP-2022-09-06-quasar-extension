@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-page-section",
-  setup: () => ({ lang: PageSection.lang })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lang: PageSection.lang };
+  }
 });
 </script>
 

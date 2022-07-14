@@ -5,8 +5,10 @@ import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-page-layout",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { pageLayoutCloseButton } = settings;
+
+    expose({});
 
     return {
       closeButton: pageLayoutCloseButton,

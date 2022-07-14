@@ -37,11 +37,12 @@ export default defineComponent({
     modelValue: prop("modelValue")
   },
   emits: { "update:modelValue": (value: number) => skipCheck(value) },
-  setup: (props, { emit }) => {
+  setup: (props, { emit, expose }) => {
     let initialValue: numberU;
 
     const settings = Resizer.injectSettings();
 
+    expose({});
     validateEmit<Resizer.OwnProps>(emit);
     validateProps<Resizer.OwnProps>(props);
 

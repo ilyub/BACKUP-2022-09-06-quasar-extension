@@ -13,12 +13,14 @@ import type { plugins } from "..";
 
 export default defineComponent({
   name: "sample-menu",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const menuDirection = ref<plugins.direction.Direction>();
 
     const menuShow = ref(false);
 
     const menuTarget = ref("#default");
+
+    expose({});
 
     return {
       click: (direction: plugins.direction.Direction | undefined): void => {

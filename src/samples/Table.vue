@@ -25,7 +25,7 @@ interface PaginationProp extends extras.Table.PaginationProp {}
 export default defineComponent({
   name: "sample-table",
   components: { "m-table__items": generic.Table<Item>() },
-  setup: () => {
+  setup: (_props, { expose }) => {
     const columnWidths = ref<ColumnWidths>(new Map());
 
     const columnsOrder = ref<ColumnsOrder>(new Map());
@@ -57,6 +57,8 @@ export default defineComponent({
     const width1 = ref(200);
 
     const width2 = ref(200);
+
+    expose({});
 
     return {
       columnWidths,

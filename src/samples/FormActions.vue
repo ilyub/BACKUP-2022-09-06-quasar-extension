@@ -4,7 +4,11 @@ import { FormActions } from "./FormActions.extras";
 
 export default defineComponent({
   name: "sample-form-actions",
-  setup: () => ({ lk: FormActions.lang.keys, name: ref<string>() })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lk: FormActions.lang.keys, name: ref<string>() };
+  }
 });
 </script>
 

@@ -5,12 +5,16 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-item",
-  setup: () => ({
-    lang: Item.lang,
-    lk: Item.lang.keys,
-    mdiAccount,
-    mdiPen
-  })
+  setup: (_props, { expose }) => {
+    expose();
+
+    return {
+      lang: Item.lang,
+      lk: Item.lang.keys,
+      mdiAccount,
+      mdiPen
+    };
+  }
 });
 </script>
 

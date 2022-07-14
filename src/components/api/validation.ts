@@ -1,11 +1,10 @@
 import type { ComputedRef, Ref } from "vue";
+import type { Optional, empty } from "@skylib/functions";
 import type { QField, QInput, ValidationRule } from "quasar";
 import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { computed, ref } from "vue";
 import { injectableTrigger, propFactory } from "./misc";
-import type { Optional } from "ts-toolbelt/out/Object/Optional";
-import type { empty } from "@skylib/functions";
 
 declare global {
   namespace facades {

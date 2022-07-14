@@ -4,7 +4,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "sample-indent",
-  setup: () => ({ lang: Indent.lang })
+  setup: (_prop, { expose }) => {
+    expose({});
+
+    return { lang: Indent.lang };
+  }
 });
 </script>
 

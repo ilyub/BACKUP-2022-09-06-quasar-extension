@@ -6,8 +6,10 @@ import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-icon-picker",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { iconPickerCompact, iconPickerTooltips } = settings;
+
+    expose({});
 
     return {
       icon: ref<string>(),

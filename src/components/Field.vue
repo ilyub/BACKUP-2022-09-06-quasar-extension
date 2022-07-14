@@ -1,7 +1,7 @@
 <script lang="ts">
 /* eslint-disable @skylib/custom/quasar/vue-prefer-m-field -- Ok */
 
-import { as, cast, fn, o } from "@skylib/functions";
+import { a, as, cast, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import {
   injections,
@@ -71,7 +71,7 @@ export default defineComponent({
       label,
       main,
       placeholder,
-      rules: validation.rules,
+      rules: computed(() => a.clone(validation.rules.value)),
       slotNames: plugins.slotNames<Field.Slots>()("control", "label"),
       update: (value: unknown): void => {
         value = props.format(value);

@@ -1,6 +1,6 @@
 import * as testUtils from "@skylib/functions/dist/test-utils";
 import type * as vueTestUtils from "@vue/test-utils";
-import { as, is } from "@skylib/functions";
+import { a, as, is } from "@skylib/functions";
 import type { Callable } from "@skylib/functions";
 import type { WrapperLike } from "./core";
 import { equals } from "@jest/expect-utils";
@@ -65,7 +65,7 @@ export const matchers: {
       true
     );
 
-    emitted.length = 0;
+    a.truncate(emitted);
 
     return result;
   }

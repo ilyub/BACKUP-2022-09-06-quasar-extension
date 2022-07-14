@@ -12,8 +12,10 @@ import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-tooltip",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { tooltipDelay, tooltipShow } = settings;
+
+    expose({});
 
     return {
       lang: Tooltip.lang,

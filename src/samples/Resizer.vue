@@ -5,8 +5,10 @@ import { settings } from "./core";
 
 export default defineComponent({
   name: "sample-resizer",
-  setup: () => {
+  setup: (_props, { expose }) => {
     const { resizerDisable } = settings;
+
+    expose({});
 
     return {
       lk: Resizer.lang.keys,
