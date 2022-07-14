@@ -176,21 +176,7 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `format?` | (`value`: `unknown`) => `stringU` |
-| `label?` | `Key`<`Word`\> |
-| `max?` | `stringU` |
-| `maxErrorMessage?` | `Key`<`Word`\> |
-| `min?` | `stringU` |
-| `minErrorMessage?` | `Key`<`Word`\> |
-| `minMaxFormat?` | (`value`: `string`) => `string` |
-| `required?` | `boolean` |
-| `requiredErrorMessage?` | `Key`<`Word`\> |
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`stringU`\>\>
 
 #### Inherited from
 

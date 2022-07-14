@@ -7,6 +7,7 @@
 ### References
 
 - [GlobalComponent](components.md#globalcomponent)
+- [SetupExposed](components.md#setupexposed)
 - [VNodes](components.md#vnodes)
 - [classRef](components.md#classref)
 - [components](components.md#components)
@@ -27,7 +28,6 @@
 - [testComponents](components.md#testcomponents)
 - [toComputed](components.md#tocomputed)
 - [validateEmit](components.md#validateemit)
-- [validateExpose](components.md#validateexpose)
 - [validateProps](components.md#validateprops)
 
 ## References
@@ -35,6 +35,12 @@
 ### GlobalComponent
 
 Re-exports [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
+
+___
+
+### SetupExposed
+
+Re-exports [SetupExposed](components_api_misc.md#setupexposed)
 
 ___
 
@@ -155,12 +161,6 @@ ___
 ### validateEmit
 
 Re-exports [validateEmit](components_api_misc.md#validateemit)
-
-___
-
-### validateExpose
-
-Re-exports [validateExpose](components_api_misc.md#validateexpose)
 
 ___
 

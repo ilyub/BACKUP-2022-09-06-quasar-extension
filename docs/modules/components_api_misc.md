@@ -10,6 +10,7 @@
 
 ### Type Aliases
 
+- [SetupExposed](components_api_misc.md#setupexposed)
 - [VNodes](components_api_misc.md#vnodes)
 
 ### Functions
@@ -26,10 +27,21 @@
 - [skipCheck](components_api_misc.md#skipcheck)
 - [toComputed](components_api_misc.md#tocomputed)
 - [validateEmit](components_api_misc.md#validateemit)
-- [validateExpose](components_api_misc.md#validateexpose)
 - [validateProps](components_api_misc.md#validateprops)
 
 ## Type Aliases
+
+### SetupExposed
+
+Ƭ **SetupExposed**<`T`\>: { readonly [K in keyof T]: ComputedRef<T[K]\> \| Ref<T[K]\> \| T[K] }
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+___
 
 ### VNodes
 
@@ -300,31 +312,6 @@ Validates emit function.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `_emit` | [`SetupEmit`](components_api_misc_internal.md#setupemit)<`T`\> | Emit function. |
-
-#### Returns
-
-`void`
-
-___
-
-### validateExpose
-
-▸ **validateExpose**<`T`\>(`expose`, `exposed`): `void`
-
-Exposes data.
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `expose` | [`SetupExpose`](../interfaces/components_api_misc_internal.SetupExpose.md) | Expose function. |
-| `exposed` | [`SetupExposed`](components_api_misc_internal.md#setupexposed)<`T`\> | Exposed data. |
 
 #### Returns
 

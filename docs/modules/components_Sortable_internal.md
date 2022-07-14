@@ -31,7 +31,7 @@
 
 ### buildElements
 
-▸ **buildElements**(`items`, `group`, `key`): `Writable`<[`Elements`](components_Sortable_internal.md#elements)\>
+▸ **buildElements**(`items`, `group`, `key`): [`Elements`](components_Sortable_internal.md#elements)
 
 Builds vuedraggable elements.
 
@@ -45,7 +45,7 @@ Builds vuedraggable elements.
 
 #### Returns
 
-`Writable`<[`Elements`](components_Sortable_internal.md#elements)\>
+[`Elements`](components_Sortable_internal.md#elements)
 
 Elements.
 

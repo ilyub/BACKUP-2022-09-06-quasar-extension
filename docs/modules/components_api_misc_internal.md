@@ -22,7 +22,6 @@
 - [PropRequiredKeys](components_api_misc_internal.md#proprequiredkeys)
 - [SetupEmit](components_api_misc_internal.md#setupemit)
 - [SetupEmitAux](components_api_misc_internal.md#setupemitaux)
-- [SetupExposed](components_api_misc_internal.md#setupexposed)
 - [SetupProps](components_api_misc_internal.md#setupprops)
 
 ## Type Aliases
@@ -103,18 +102,6 @@ ___
 | :------ |
 | `K` |
 | `V` |
-
-___
-
-### SetupExposed
-
-Ƭ **SetupExposed**<`T`\>: { readonly [K in keyof T]: ComputedRef<T[K]\> \| Ref<T[K]\> \| T[K] }
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
 
 ___
 

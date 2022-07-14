@@ -22,7 +22,7 @@
 
 ### rules
 
-• `Readonly` **rules**: `ComputedRef`<`ValidationRule`<`unknown`\>[]\>
+• `Readonly` **rules**: `ComputedRef`<[`ValidationRules`](../modules/components_api_validation.validation.md#validationrules)<`unknown`\>\>
 
 ___
 

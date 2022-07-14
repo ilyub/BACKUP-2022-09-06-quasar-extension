@@ -209,21 +209,7 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `format?` | (`value`: `unknown`) => `numberU` |
-| `label?` | `Key`<`Word`\> |
-| `max?` | `numberU` |
-| `maxErrorMessage?` | `Key`<`Word`\> |
-| `min?` | `numberU` |
-| `minErrorMessage?` | `Key`<`Word`\> |
-| `minMaxFormat?` | (`value`: `number`) => `string` |
-| `required?` | `boolean` |
-| `requiredErrorMessage?` | `Key`<`Word`\> |
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`numberU`\>\>
 
 #### Inherited from
 

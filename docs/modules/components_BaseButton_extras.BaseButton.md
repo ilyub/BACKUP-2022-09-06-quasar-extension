@@ -17,6 +17,10 @@
 - [Settings](../interfaces/components_BaseButton_extras.BaseButton.Settings.md)
 - [Slots](../interfaces/components_BaseButton_extras.BaseButton.Slots.md)
 
+### Type Aliases
+
+- [Global2](components_BaseButton_extras.BaseButton.md#global2)
+
 ### Variables
 
 - [defaultSettings](components_BaseButton_extras.BaseButton.md#defaultsettings)
@@ -26,6 +30,12 @@
 - [injectSettings](components_BaseButton_extras.BaseButton.md#injectsettings)
 - [provideSettings](components_BaseButton_extras.BaseButton.md#providesettings)
 - [testProvideSettings](components_BaseButton_extras.BaseButton.md#testprovidesettings)
+
+## Type Aliases
+
+### Global2
+
+Ƭ **Global2**: { [K in keyof Global]: Global[K] \| Ref<Global[K]\> }
 
 ## Variables
 

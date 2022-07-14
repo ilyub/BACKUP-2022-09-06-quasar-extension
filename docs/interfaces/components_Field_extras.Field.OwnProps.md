@@ -90,18 +90,4 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `format?` | (`value`: `unknown`) => `T` |
-| `label?` | `Key`<`Word`\> |
-| `max?` | `T` |
-| `maxErrorMessage?` | `Key`<`Word`\> |
-| `min?` | `T` |
-| `minErrorMessage?` | `Key`<`Word`\> |
-| `minMaxFormat?` | (`value`: `Exclude`<`T`, `empty`\>) => `string` |
-| `required?` | `boolean` |
-| `requiredErrorMessage?` | `Key`<`Word`\> |
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`T`\>\>
