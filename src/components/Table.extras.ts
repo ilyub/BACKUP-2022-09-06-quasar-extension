@@ -18,6 +18,17 @@ declare global {
 }
 
 export namespace Table {
+  export enum Align {
+    center = "center",
+    left = "left",
+    right = "right"
+  }
+
+  export enum SortOrder {
+    ad = "ad",
+    da = "da"
+  }
+
   export const defaultSettings = computed(
     (): Settings => ({
       binaryStateSort: false,
@@ -34,8 +45,6 @@ export namespace Table {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
-
-  export type Align = "center" | "left" | "right";
 
   export interface BodyCellSlotData<T extends object = object>
     extends MultiSelectData {
@@ -76,7 +85,7 @@ export namespace Table {
       row1: T,
       row2: T
     ) => number;
-    readonly sortOrder?: "ad" | "da";
+    readonly sortOrder?: SortOrder;
     readonly sortable?: boolean;
     readonly width?: number;
   }

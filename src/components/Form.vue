@@ -11,9 +11,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import { Form } from "./Form.extras";
 import type { QForm } from "quasar";
-import type { SetupExposed } from "./api";
 import { as } from "@skylib/functions";
 import { handlePromise } from "@skylib/facades";
 
@@ -38,7 +38,7 @@ export default defineComponent({
 
     const resetValidation = plugins.validation.reset.provide();
 
-    const exposed: SetupExposed<Form.Global> = {
+    const exposed: Exposed<Form.Global> = {
       main,
       resetValidation: (): void => {
         as.not.empty(main.value).resetValidation();

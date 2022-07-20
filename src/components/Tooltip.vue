@@ -3,8 +3,8 @@
 
 import { computed, defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
+import type { Exposed } from "./api";
 import type { QTooltip } from "quasar";
-import type { SetupExposed } from "./api";
 import { Tooltip } from "./Tooltip.extras";
 import { disableCounter } from "./Tooltip.internal";
 
@@ -16,7 +16,7 @@ export default defineComponent({
 
     const main = ref<QTooltip>();
 
-    const exposed: SetupExposed<Tooltip.Global> = { main };
+    const exposed: Exposed<Tooltip.Global> = { main };
 
     expose(exposed);
 

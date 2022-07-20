@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
-import type { SetupExposed } from "./api";
+import type { Exposed } from "./api";
 import type { Subsection } from "./Subsection.extras";
 
 export default defineComponent({
@@ -10,7 +10,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Subsection.Global>();
 
-    const exposed: SetupExposed<Subsection.Global> = { main };
+    const exposed: Exposed<Subsection.Global> = { main };
 
     expose(exposed);
 

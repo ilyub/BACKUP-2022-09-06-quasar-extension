@@ -1,3 +1,4 @@
+// eslint-disable-next-line @skylib/disallow-import/no-internal-modules -- Wait for @skylib/config update
 const { eslint } = require("@skylib/config/api");
 
 const consistentImport = eslint.rules["@skylib/consistent-import/project"];
@@ -31,11 +32,31 @@ module.exports = {
     },
     {
       files: "./src/components/*.vue",
-      rules: { "@skylib/vue-component-name": ["warn", { prefix: "m-" }] }
+      rules: {
+        "@skylib/match-filename": [
+          "warn",
+          {
+            format: "kebabCase",
+            prefix: "m-",
+            selector:
+              "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=name] > Literal.value"
+          }
+        ]
+      }
     },
     {
       files: "./src/samples/*.vue",
-      rules: { "@skylib/vue-component-name": ["warn", { prefix: "sample-" }] }
+      rules: {
+        "@skylib/match-filename": [
+          "warn",
+          {
+            format: "kebabCase",
+            prefix: "sample-",
+            selector:
+              "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=name] > Literal.value"
+          }
+        ]
+      }
     }
   ]
 };

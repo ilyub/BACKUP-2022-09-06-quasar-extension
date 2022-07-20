@@ -1,10 +1,13 @@
+/* eslint jest/max-expects: [warn, { max: 2 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { components, injections } from "@";
-import type { extras } from "@";
+import { components, extras, injections } from "@";
 import { watch } from "vue";
 
-test.each<extras.Switchable.Transition>(["none", "slide"])(
+const Transition = extras.Switchable.Transition;
+
+test.each([Transition.none, Transition.slide])(
   "switchable",
   async transition => {
     const callback = jest.fn();

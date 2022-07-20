@@ -14,6 +14,10 @@ import type { plugins } from "..";
 export default defineComponent({
   name: "sample-menu",
   setup: (_props, { expose }) => {
+    const { lang } = Menu;
+
+    const lk = lang.keys;
+
     const menuDirection = ref<plugins.direction.Direction>();
 
     const menuShow = ref(false);
@@ -28,7 +32,7 @@ export default defineComponent({
         menuShow.value = true;
         menuTarget.value = direction ? `#${direction}` : "#default";
       },
-      lk: Menu.lang.keys,
+      lk,
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,

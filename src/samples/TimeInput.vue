@@ -10,6 +10,10 @@ import { useQuasar } from "quasar";
 export default defineComponent({
   name: "sample-time-input",
   setup: (_props, { expose }) => {
+    const { lang } = TimeInput;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     const form = ref<extras.Form.Global>();
@@ -28,8 +32,8 @@ export default defineComponent({
 
     return {
       form,
-      lang: TimeInput.lang,
-      lk: TimeInput.lang.keys,
+      lang,
+      lk,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -42,10 +46,7 @@ export default defineComponent({
         as.not.empty(form.value).resetValidation();
       },
       rules: typedef<plugins.validation.Rules<numberU>>([
-        value =>
-          is.not.empty(value) && value % 2 === 1
-            ? TimeInput.lang.keys.Invalid
-            : true
+        value => (is.not.empty(value) && value % 2 === 1 ? lk.Invalid : true)
       ]),
       submit: () => {
         $q.notify(

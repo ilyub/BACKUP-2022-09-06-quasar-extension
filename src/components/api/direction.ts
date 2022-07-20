@@ -1,3 +1,5 @@
+/* eslint-disable @skylib/custom/no-literal-union-type -- Ok */
+
 import { defineFn, evaluate } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 import { computed } from "vue";
@@ -175,6 +177,7 @@ export const direction = defineFn(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace direction {
   export type Coupling =
     | "bottom left"

@@ -13,13 +13,17 @@ import { settings } from "./core";
 export default defineComponent({
   name: "sample-tooltip",
   setup: (_props, { expose }) => {
+    const { lang } = Tooltip;
+
+    const lk = lang.keys;
+
     const { tooltipDelay, tooltipShow } = settings;
 
     expose({});
 
     return {
-      lang: Tooltip.lang,
-      lk: Tooltip.lang.keys,
+      lang,
+      lk,
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,

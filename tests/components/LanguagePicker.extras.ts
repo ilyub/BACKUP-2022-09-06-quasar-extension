@@ -5,7 +5,7 @@ import { extras } from "@";
 test("injectSettings", () => {
   const callback = jest.fn();
 
-  const wrapper = vueTestUtils.mount({
+  vueTestUtils.mount({
     global: testUtils.globalMountOptions(),
     setup: (): void => {
       callback(extras.LanguagePicker.injectSettings().value);
@@ -15,6 +15,5 @@ test("injectSettings", () => {
 
   const expected = [extras.LanguagePicker.defaultSettings.value] as const;
 
-  expect(wrapper).toBeDefined();
   expect(callback).mockCallsToBe(expected);
 });

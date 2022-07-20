@@ -21,7 +21,22 @@ export namespace DatetimePicker {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
   export interface Global extends GlobalComponent<Props, Slots> {
+    /**
+     * Date options.
+     *
+     * @param date - Date.
+     * @returns _True_ if option is enabled, _false_ otherwise.
+     */
+    readonly dateOptions: (date: string) => boolean;
     readonly main?: Field.Global<stringU>;
+    /**
+     * Time options.
+     *
+     * @param hours - Hours.
+     * @param minutes - Minutes.
+     * @returns _True_ if option is enabled, _false_ otherwise.
+     */
+    readonly timeOptions: (hours: number, minutes: number | null) => boolean;
   }
 
   export interface Icon {

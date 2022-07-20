@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { as, evaluate, o, typedef } from "@skylib/functions";
@@ -9,6 +11,13 @@ import { disableCounter } from "@/components/Tooltip.internal";
 import type { extras } from "@";
 import { nextTick } from "vue";
 
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
+
+type Items = readonly Item[];
+
 const props = {
   group: "sample-group",
   itemKey: "id",
@@ -18,13 +27,6 @@ const props = {
     { id: "id3", name: "Name 3" }
   ])
 } as const;
-
-interface Item {
-  readonly id: string;
-  readonly name: string;
-}
-
-type Items = readonly Item[];
 
 test("emit: dropped", () => {
   const wrapper = vueTestUtils.mount(components.Sortable, {

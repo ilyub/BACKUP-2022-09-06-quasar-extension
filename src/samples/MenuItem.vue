@@ -7,18 +7,22 @@ import { useQuasar } from "quasar";
 export default defineComponent({
   name: "sample-menu-item",
   setup: (_props, { expose }) => {
+    const { lang } = MenuItem;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     expose({});
 
     return {
       click: (): void => {
-        $q.notify(MenuItem.lang.Click);
+        $q.notify(lang.Click);
       },
       confirmedClick: (): void => {
-        $q.notify(MenuItem.lang.ConfirmedClick);
+        $q.notify(lang.ConfirmedClick);
       },
-      lk: MenuItem.lang.keys,
+      lk,
       mdiAccount,
       mdiPen,
       mdiPenPlus

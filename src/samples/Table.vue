@@ -1,9 +1,16 @@
 <script lang="ts">
-import { a, assert, evaluate } from "@skylib/functions";
+import {
+  ReadonlyMap,
+  ReadonlySet,
+  a,
+  assert,
+  evaluate
+} from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
+import { extras, generic } from "..";
 import { Table } from "./Table.extras";
-import type { extras } from "..";
-import { generic } from "..";
+
+const Align = extras.Table.Align;
 
 interface ColumnWidths extends extras.Table.ColumnWidths {}
 
@@ -26,11 +33,15 @@ export default defineComponent({
   name: "sample-table",
   components: { "m-table__items": generic.Table<Item>() },
   setup: (_props, { expose }) => {
-    const columnWidths = ref<ColumnWidths>(new Map());
+    const { lang } = Table;
 
-    const columnsOrder = ref<ColumnsOrder>(new Map());
+    const lk = lang.keys;
 
-    const hiddenColumns = ref<HiddenColumns>(new Set());
+    const columnWidths = ref<ColumnWidths>(new ReadonlyMap());
+
+    const columnsOrder = ref<ColumnsOrder>(new ReadonlyMap());
+
+    const hiddenColumns = ref<HiddenColumns>(new ReadonlySet());
 
     const manageColumns = ref(false);
 
@@ -65,9 +76,9 @@ export default defineComponent({
       columns: computed(
         (): Columns => [
           {
-            align: "left",
+            align: Align.left,
             field: (row): string => `${row.name}!1!1234567890`,
-            label: Table.lang.keys.Column1,
+            label: lk.Column1,
             maxWidth: 300,
             minWidth: 30,
             name: "name1",
@@ -76,9 +87,9 @@ export default defineComponent({
             width: width1.value
           },
           {
-            align: "left",
+            align: Align.left,
             field: (row): string => `${row.name}!2!1234567890`,
-            label: Table.lang.keys.Column2,
+            label: lk.Column2,
             maxWidth: 300,
             minWidth: 30,
             name: "name2",
@@ -88,14 +99,14 @@ export default defineComponent({
       ),
       columnsOrder,
       hiddenColumns,
-      lang: Table.lang,
-      lk: Table.lang.keys,
+      lang,
+      lk,
       manageColumns,
       multiSelect,
       noData,
       pagination,
       resizableColumns,
-      rows: computed((): Items => {
+      rows: computed(() => {
         if (noData.value) return [];
 
         const ids = evaluate(() => {

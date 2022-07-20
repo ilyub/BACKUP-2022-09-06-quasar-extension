@@ -12,10 +12,15 @@ import {
   validateProps
 } from "./api";
 import { DatetimePicker } from "./DatetimePicker.extras";
+import type { Exposed } from "./api";
 import type { Field } from "./Field.extras";
-import type { SetupExposed } from "./api";
 import { genericField } from "./Field.generic";
 import type { stringU } from "@skylib/functions";
+
+enum Step {
+  date = "date",
+  time = "time"
+}
 
 const prop = propFactory<DatetimePicker.OwnProps>();
 
@@ -36,8 +41,9 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
-    validateEmit<DatetimePicker.OwnProps>(emit);
-    validateProps<DatetimePicker.OwnProps>(props);
+    const { icons, lang } = DatetimePicker;
+
+    const lk = lang.keys;
 
     const main = ref<Field.Global<stringU>>();
 
@@ -85,7 +91,7 @@ export default defineComponent({
       return undefined;
     });
 
-    const modelObject = computed((): datetime.DateTime | undefined =>
+    const modelObject = computed(() =>
       is.not.empty(props.modelValue) && datetime.validate(props.modelValue)
         ? datetime.create(props.modelValue)
         : undefined
@@ -95,15 +101,19 @@ export default defineComponent({
 
     const pickerValue = ref<string>();
 
-    const pickerObject = computed((): datetime.DateTime | undefined =>
+    const pickerObject = computed(() =>
       is.not.empty(pickerValue.value)
         ? datetime.create(pickerValue.value)
         : undefined
     );
 
-    const step = ref<"date" | "time">("date");
+    const step = ref(Step.date);
 
-    const exposed: SetupExposed<DatetimePicker.Global> = { main };
+    const exposed: Exposed<DatetimePicker.Global> = {
+      dateOptions,
+      main,
+      timeOptions
+    };
 
     validateEmit<DatetimePicker.OwnProps>(emit);
     validateProps<DatetimePicker.OwnProps>(props);
@@ -113,49 +123,35 @@ export default defineComponent({
       date: computed(() =>
         pickerObject.value ? pickerObject.value.format("E, d MMM") : "\u2014"
       ),
-      dateOptions: (date: string): boolean => {
-        if (
-          is.not.empty(minDate.value) &&
-          compare.strings(date, minDate.value) < 0
-        )
-          return false;
-
-        if (
-          is.not.empty(maxDate.value) &&
-          compare.strings(date, maxDate.value) > 0
-        )
-          return false;
-
-        return true;
-      },
+      dateOptions,
       dateUpdate: (value: unknown): void => {
         if (is.string(value)) pickerValue.value = value;
 
-        if (is.not.empty(pickerValue.value)) step.value = "time";
+        if (is.not.empty(pickerValue.value)) step.value = Step.time;
       },
       format: cast.stringU,
-      icons: DatetimePicker.icons,
+      icons,
       inputClick: (): void => {
         showDialog.value = true;
-        step.value = is.not.empty(props.modelValue) ? "time" : "date";
+        step.value = is.not.empty(props.modelValue) ? Step.time : Step.date;
         pickerValue.value = modelObject.value?.toString();
       },
       inputValue: computed(() =>
         modelObject.value?.format("E, d MMM yyyy HHH:mm A")
       ),
-      lk: DatetimePicker.lang.keys,
+      lk,
       main,
       nextClick: (): void => {
-        step.value = "time";
+        step.value = Step.time;
       },
       pickDate: (): void => {
         showDialog.value = true;
-        step.value = "date";
+        step.value = Step.date;
         pickerValue.value = modelObject.value?.toString();
       },
       pickTime: (): void => {
         showDialog.value = true;
-        step.value = "time";
+        step.value = Step.time;
         pickerValue.value = modelObject.value?.toString();
       },
       pickerEmpty: computed(() => is.empty(pickerValue.value)),
@@ -169,7 +165,7 @@ export default defineComponent({
         pickerValue.value = date.setHours((date.hours() + 12) % 24).toString();
       },
       prevClick: (): void => {
-        step.value = "date";
+        step.value = Step.date;
       },
       save: (
         emitValue: Parameters<DatetimePicker.Slots["control"]>[0]["emitValue"]
@@ -186,31 +182,7 @@ export default defineComponent({
       time: computed(() =>
         pickerObject.value ? pickerObject.value.format("HHH:mm A") : "\u2014"
       ),
-      timeOptions: (hours: number, minutes: number | null): boolean => {
-        if (is.not.empty(minTime.value)) {
-          if (hours < minTime.value.hours) return false;
-
-          if (
-            is.not.empty(minutes) &&
-            hours === minTime.value.hours &&
-            minutes < minTime.value.minutes
-          )
-            return false;
-        }
-
-        if (is.not.empty(maxTime.value)) {
-          if (hours > maxTime.value.hours) return false;
-
-          if (
-            is.not.empty(minutes) &&
-            hours === maxTime.value.hours &&
-            minutes > maxTime.value.minutes
-          )
-            return false;
-        }
-
-        return true;
-      },
+      timeOptions,
       timeUpdate: (value: string | null): void => {
         pickerValue.value = as.not.empty(value);
       },
@@ -218,6 +190,48 @@ export default defineComponent({
         pickerObject.value ? pickerObject.value.format("yyyy") : "\u2013"
       )
     };
+
+    function dateOptions(date: string): boolean {
+      if (
+        is.not.empty(minDate.value) &&
+        compare.strings(date, minDate.value) < 0
+      )
+        return false;
+
+      if (
+        is.not.empty(maxDate.value) &&
+        compare.strings(date, maxDate.value) > 0
+      )
+        return false;
+
+      return true;
+    }
+
+    function timeOptions(hours: number, minutes: number | null): boolean {
+      if (is.not.empty(minTime.value)) {
+        if (hours < minTime.value.hours) return false;
+
+        if (
+          is.not.empty(minutes) &&
+          hours === minTime.value.hours &&
+          minutes < minTime.value.minutes
+        )
+          return false;
+      }
+
+      if (is.not.empty(maxTime.value)) {
+        if (hours > maxTime.value.hours) return false;
+
+        if (
+          is.not.empty(minutes) &&
+          hours === maxTime.value.hours &&
+          minutes > maxTime.value.minutes
+        )
+          return false;
+      }
+
+      return true;
+    }
   }
 });
 </script>

@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 2 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { QField } from "quasar";
@@ -25,11 +27,7 @@ test.each([undefined, "a"])("main: blur", modelValue => {
 
   const wrapper = vueTestUtils.mount(components.Field, {
     global: testUtils.globalMountOptions(),
-    props: {
-      format: cast.stringU,
-      modelValue,
-      rulesOnChange: [callback]
-    }
+    props: { format: cast.stringU, modelValue, rulesOnChange: [callback] }
   });
 
   const main = testUtils.findQuasarComponent(wrapper, QField);

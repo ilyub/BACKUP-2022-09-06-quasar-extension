@@ -4,8 +4,8 @@
 import { computed, defineComponent, ref } from "vue";
 import { parentProps, plugins, propFactory, validateProps } from "./api";
 import { Card } from "./Card.extras";
+import type { Exposed } from "./api";
 import type { QCard } from "quasar";
-import type { SetupExposed } from "./api";
 import { is } from "@skylib/functions";
 
 const prop = propFactory<Card.OwnProps>();
@@ -19,18 +19,20 @@ export default defineComponent({
     transparentHeader: prop.boolean("transparentHeader")
   },
   setup: (props, { expose }) => {
+    const { icons } = Card;
+
     const main = ref<QCard>();
 
     const { title } = plugins.langProps(props, "title");
 
-    const exposed: SetupExposed<Card.Global> = { main };
+    const exposed: Exposed<Card.Global> = { main };
 
     validateProps<Card.OwnProps>(props);
     expose(exposed);
 
     return {
       hasTitle: computed(() => is.not.empty(title.value)),
-      icons: Card.icons,
+      icons,
       main,
       slotNames: plugins.slotNames<Card.Slots>()(
         "default",

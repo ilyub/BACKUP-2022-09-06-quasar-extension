@@ -6,9 +6,11 @@ import { mdiAccount } from "@mdi/js";
 export default defineComponent({
   name: "sample-icon-button",
   setup: (_prop, { expose }) => {
+    const { lang } = IconButton;
+
     expose({});
 
-    return { lang: IconButton.lang, mdiAccount };
+    return { lang, mdiAccount };
   }
 });
 </script>

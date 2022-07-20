@@ -5,9 +5,13 @@ import { FormActions } from "./FormActions.extras";
 export default defineComponent({
   name: "sample-form-actions",
   setup: (_prop, { expose }) => {
+    const { lang } = FormActions;
+
+    const lk = lang.keys;
+
     expose({});
 
-    return { lk: FormActions.lang.keys, name: ref<string>() };
+    return { lk, name: ref<string>() };
   }
 });
 </script>

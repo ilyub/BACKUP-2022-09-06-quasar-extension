@@ -1,16 +1,20 @@
+/* eslint jest/max-expects: [warn, { max: 3 }] -- Ok */
+
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { fn, is, o, wait } from "@skylib/functions";
+import { ReadonlyMap, ReadonlySet, fn, is, o, wait } from "@skylib/functions";
+import { components, extras } from "@";
 import { QTable } from "quasar";
-import { components } from "@";
 import { lang } from "@skylib/facades";
 import { nextTick } from "vue";
+
+const Align = extras.Table.Align;
 
 const props = {
   columns: [
     {
-      align: "left",
+      align: Align.left,
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 1"),
       name: "column1",
@@ -18,14 +22,14 @@ const props = {
       width: 100
     },
     {
-      align: "left",
+      align: Align.left,
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 2"),
       name: "column2",
       width: 100
     },
     {
-      align: "left",
+      align: Align.left,
       field: (row: object): string => o.get(row, "name", is.string),
       label: lang.plain("Sample label 3"),
       name: "column3"
@@ -46,14 +50,14 @@ test("prop: columnWidths", () => {
     global: testUtils.globalMountOptions(),
     props: {
       ...props,
-      columnWidths: new Map([["column1", 100]]),
+      columnWidths: new ReadonlyMap([["column1", 100]]),
       resizableColumns: true
     }
   });
 
   const { comp } = testUtils.findFactory("table", wrapper);
 
-  const expected = [new Map([["column1", 200]])] as const;
+  const expected = [new ReadonlyMap([["column1", 200]])] as const;
 
   expect(comp("resizer").props("modelValue")).toBe(100);
   comp("resizer").vm.$emit("update:modelValue", 200);
@@ -67,7 +71,7 @@ test("prop: columns", () => {
       ...props,
       columns: [
         {
-          align: "left",
+          align: Align.left,
           field: (row: object): string => o.get(row, "name", is.string),
           label: lang.plain("Sample label"),
           maxWidth: 300,
@@ -92,7 +96,7 @@ test("prop: columnsOrder", async () => {
     global: testUtils.globalMountOptions(),
     props: {
       ...props,
-      columnsOrder: new Map([
+      columnsOrder: new ReadonlyMap([
         ["column1", 1],
         ["column2", 0]
       ])
@@ -128,7 +132,7 @@ test("prop: columnsOrder (update)", async () => {
 
   const value = [{ name: "column2" }, { name: "column1" }] as const;
 
-  const columnsOrder = new Map([
+  const columnsOrder = new ReadonlyMap([
     ["column2", 0],
     ["column1", 1]
   ]);
@@ -156,8 +160,11 @@ test.each([
 });
 
 test.each([
-  { expected: [new Set(["column1"])] },
-  { expected: [new Set([])], hiddenColumns: new Set(["column1"]) }
+  { expected: [new ReadonlySet(["column1"])] },
+  {
+    expected: [new ReadonlySet([])],
+    hiddenColumns: new ReadonlySet(["column1"])
+  }
 ])("prop: hiddenColumns", async ({ expected, hiddenColumns }) => {
   const wrapper = vueTestUtils.mount(components.Table, {
     global: testUtils.globalMountOptions(),
@@ -174,16 +181,8 @@ test.each([
 
 test.each([
   { expected: "none" },
-  {
-    expected: "single",
-    multiSelect: false,
-    selectByCheckbox: true
-  },
-  {
-    expected: "multiple",
-    multiSelect: true,
-    selectByRowClick: true
-  }
+  { expected: "single", multiSelect: false, selectByCheckbox: true },
+  { expected: "multiple", multiSelect: true, selectByRowClick: true }
 ])(
   "prop: multiSelect, selectByRowClick",
   ({ expected, multiSelect, selectByCheckbox, selectByRowClick }) => {
@@ -253,11 +252,7 @@ test.each([
   async ({ binaryStateSortOn, pagination, paginationNext }) => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),
-      props: o.removeUndefinedKeys({
-        ...props,
-        binaryStateSortOn,
-        pagination
-      })
+      props: o.removeUndefinedKeys({ ...props, binaryStateSortOn, pagination })
     });
 
     const { elem } = testUtils.findFactory("table", wrapper);
@@ -318,13 +313,7 @@ test.each([
       to: 14
     } as const;
 
-    const expected = [
-      {
-        ...pagination,
-        descending: false,
-        limit: 25
-      }
-    ] as const;
+    const expected = [{ ...pagination, descending: false, limit: 25 }] as const;
 
     main.vm.$emit("virtual-scroll", rawEvent);
     expect(wrapper).toHaveEmitted("update:pagination", expected);
@@ -373,11 +362,7 @@ test.each([
 });
 
 test.each([
-  {
-    deselectAll: [[]],
-    selectAll: [props.rows],
-    toggleSelection: [props.rows]
-  },
+  { deselectAll: [[]], selectAll: [props.rows], toggleSelection: [props.rows] },
   {
     deselectAll: [[]],
     selectAll: [props.rows],

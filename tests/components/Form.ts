@@ -1,11 +1,13 @@
+/* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
+
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { as, wait } from "@skylib/functions";
 import { components, extras, injections } from "@";
 import { onMounted, ref, watch } from "vue";
+import { PromiseType } from "@skylib/facades";
 import { QForm } from "quasar";
-import type { handlePromise } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 
 functionsTestUtils.installFakeTimer();
@@ -52,7 +54,7 @@ test("expose: resetValidation", () => {
   expect(callback).mockCallsToBe([]);
 });
 
-test.each<handlePromise.Type | undefined>([undefined, "httpRequest"])(
+test.each([undefined, PromiseType.httpRequest])(
   "prop: asyncSubmit",
   async asyncTaskType => {
     expect.hasAssertions();

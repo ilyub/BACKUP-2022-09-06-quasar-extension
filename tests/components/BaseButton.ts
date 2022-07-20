@@ -1,12 +1,14 @@
+/* eslint jest/max-expects: [warn, { max: 2 }] -- Ok */
+
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import type { Callable, unknowns } from "@skylib/functions";
 import type { DialogChainObject } from "quasar";
 import { QBtn } from "quasar";
 import { components } from "@";
 import { computed } from "vue";
 import { lang } from "@skylib/facades";
+import type { unknowns } from "@skylib/functions";
 import { wait } from "@skylib/functions";
 
 functionsTestUtils.installFakeTimer();
@@ -21,13 +23,14 @@ test("prop: asyncClick", async () => {
       global: testUtils.globalMountOptions(),
       props: {
         asyncClick: async (...args: unknowns) => {
-          await wait(1000);
+          await wait(2000);
           callback(...args);
         }
       }
     });
 
     await wrapper.trigger("click");
+    await wait(1000);
     expect(callback).mockCallsToBe();
     await wait(1000);
     expect(callback).mockCallsToBe([]);
@@ -44,7 +47,7 @@ test("prop: confirmation", async () => {
 
   wrapper.vm.$q.dialog = () =>
     ({
-      onOk: (callback: Callable): void => {
+      onOk: (callback): void => {
         callback();
       }
     } as DialogChainObject);
@@ -75,11 +78,7 @@ test.each([
     submitting: true,
     type: "submit"
   },
-  {
-    animateSubmitting: false,
-    expected: false,
-    submitting: false
-  }
+  { animateSubmitting: false, expected: false, submitting: false }
 ])(
   "setting: animateSubmitting",
   ({ animateSubmitting, expected, submitting, type }) => {

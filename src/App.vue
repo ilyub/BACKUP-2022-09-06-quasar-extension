@@ -11,6 +11,8 @@ export default defineComponent({
   name: "app",
   components: { "router-view": RouterView },
   setup: (_props, { expose }) => {
+    const { lang } = App;
+
     const { language, provide } = settings;
 
     expose({});
@@ -18,7 +20,7 @@ export default defineComponent({
 
     return {
       caption: (name: string) =>
-        App.lang.plain(_.startCase(name).replace(/^Sample /u, "")),
+        lang.plain(_.startCase(name).replace(/^Sample /u, "")),
       components,
       language
     };

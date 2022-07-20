@@ -6,9 +6,13 @@ import { mdiClose } from "@mdi/js";
 export default defineComponent({
   name: "sample-expansion-item",
   setup: (_prop, { expose }) => {
+    const { lang } = ExpansionItem;
+
+    const lk = lang.keys;
+
     expose({});
 
-    return { icon: mdiClose, lk: ExpansionItem.lang.keys };
+    return { icon: mdiClose, lk };
   }
 });
 </script>

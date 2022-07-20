@@ -1,8 +1,8 @@
 import type { QForm, QFormProps, QFormSlots } from "quasar";
 import type { ComputedRef } from "vue";
 import type { GlobalComponent } from "./api";
+import type { PromiseType } from "@skylib/facades";
 import { computed } from "vue";
-import type { handlePromise } from "@skylib/facades";
 import { injectable } from "./api";
 
 export namespace Form {
@@ -39,7 +39,7 @@ export namespace Form {
 
   export interface OwnProps {
     readonly asyncSubmit?: AsyncSubmit | undefined;
-    readonly asyncTaskType?: handlePromise.Type | undefined;
+    readonly asyncTaskType?: PromiseType | undefined;
     /**
      * Form submission event.
      *

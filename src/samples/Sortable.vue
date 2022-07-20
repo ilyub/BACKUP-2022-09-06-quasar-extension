@@ -12,6 +12,10 @@ export default defineComponent({
   name: "sample-sortable",
   components: { "m-sortable__items": generic.Sortable<Item, Item>() },
   setup: (_props, { expose }) => {
+    const { lang } = Sortable;
+
+    const lk = lang.keys;
+
     const disableDropping = ref(false);
 
     const disableSorting = ref(false);
@@ -31,8 +35,8 @@ export default defineComponent({
     return {
       disableDropping,
       disableSorting,
-      lang: Sortable.lang,
-      lk: Sortable.lang.keys,
+      lang,
+      lk,
       sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },

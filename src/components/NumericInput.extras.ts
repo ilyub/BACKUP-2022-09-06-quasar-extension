@@ -1,5 +1,5 @@
 import type { GlobalComponent, plugins } from "./api";
-import type { booleanU, numberU } from "@skylib/functions";
+import type { Optional, booleanU, numberU } from "@skylib/functions";
 import type { Field } from "./Field.extras";
 import { icons as baseIcons } from "@skylib/facades";
 
@@ -39,7 +39,7 @@ export namespace NumericInput {
     readonly required?: booleanU;
     readonly smallStep?: numberU;
     readonly validationOptions?:
-      | plugins.validation.OptionsProp<numberU>
+      | Optional<plugins.validation.Options<numberU>>
       | undefined;
   }
 

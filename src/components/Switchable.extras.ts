@@ -4,8 +4,13 @@ import { computed } from "vue";
 import { injectableSettings } from "./api";
 
 export namespace Switchable {
+  export enum Transition {
+    none = "none",
+    slide = "slide"
+  }
+
   export const defaultSettings = computed(
-    (): Settings => ({ transition: "none", transitionDuration: 200 })
+    (): Settings => ({ transition: Transition.none, transitionDuration: 200 })
   );
 
   export const { injectSettings, provideSettings, testProvideSettings } =
@@ -35,6 +40,4 @@ export namespace Switchable {
   }
 
   export interface Slots extends OwnSlots {}
-
-  export type Transition = "none" | "slide";
 }

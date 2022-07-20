@@ -15,21 +15,9 @@ test.each([
       languagePickerSettings: {
         changeLanguageAction,
         options: [
-          {
-            caption: lang.keys.EnglishUSA,
-            flag: "us-flag",
-            lang: "en-US"
-          },
-          {
-            caption: lang.keys.EnglishUK,
-            flag: "gb-flag",
-            lang: "en-GB"
-          },
-          {
-            caption: lang.keys.Russian,
-            flag: "ru-flag",
-            lang: "ru-RU"
-          }
+          { caption: lang.keys.EnglishUSA, flag: "us-flag", lang: "en-US" },
+          { caption: lang.keys.EnglishUK, flag: "gb-flag", lang: "en-GB" },
+          { caption: lang.keys.Russian, flag: "ru-flag", lang: "ru-RU" }
         ]
       }
     }),

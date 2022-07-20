@@ -44,6 +44,7 @@ export const asyncClick = defineFn(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace asyncClick {
   export interface AsyncClick {
     /**

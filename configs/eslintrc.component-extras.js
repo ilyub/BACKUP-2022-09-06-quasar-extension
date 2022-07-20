@@ -1,5 +1,27 @@
 module.exports = {
   rules: {
+    "@skylib/consistent-optional-props": [
+      "warn",
+      {
+        classes: "undefined",
+        interfaces: "optional",
+        overrides: [
+          {
+            _id: "props",
+            pattern: "Props$",
+            style: "combined",
+            target: "interfaces"
+          },
+          {
+            _id: "props-event-handler",
+            pattern: "Props$",
+            propertyPattern: "^on[A-Z]",
+            style: "optional",
+            target: "interfaces"
+          }
+        ]
+      }
+    ],
     "@skylib/custom/no-empty-interface": [
       "warn",
       {
@@ -82,28 +104,6 @@ module.exports = {
       {
         message: "Use interface",
         selector: "TSTypeAliasDeclaration > Identifier.id[name=Slots]"
-      }
-    ],
-    "@skylib/optional-property-style": [
-      "warn",
-      {
-        classes: "undefined",
-        interfaces: "optional",
-        overrides: [
-          {
-            _id: "props",
-            patterns: ["Props$"],
-            style: "combined",
-            target: "interfaces"
-          },
-          {
-            _id: "props-emit",
-            patterns: ["Props$"],
-            propertyPatterns: ["^on[A-Z]"],
-            style: "optional",
-            target: "interfaces"
-          }
-        ]
       }
     ]
   }

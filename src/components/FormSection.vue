@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
+import type { Exposed } from "./api";
 import type { FormSection } from "./FormSection.extras";
-import type { SetupExposed } from "./api";
 import type { Switchable } from "./Switchable.extras";
 
 export default defineComponent({
@@ -11,7 +11,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Switchable.Global>();
 
-    const exposed: SetupExposed<FormSection.Global> = { main };
+    const exposed: Exposed<FormSection.Global> = { main };
 
     expose(exposed);
 

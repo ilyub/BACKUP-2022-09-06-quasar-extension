@@ -8,11 +8,7 @@ import type { numberU } from "@skylib/functions";
 const isOffset = is.object.factory<Offset>({ x: is.number, y: is.number }, {});
 
 const isResizerEvent = is.object.factory<ResizerEvent>(
-  {
-    isFinal: is.boolean,
-    isFirst: is.boolean,
-    offset: isOffset
-  },
+  { isFinal: is.boolean, isFirst: is.boolean, offset: isOffset },
   {}
 );
 
@@ -42,9 +38,9 @@ export default defineComponent({
 
     const settings = Resizer.injectSettings();
 
-    expose({});
     validateEmit<Resizer.OwnProps>(emit);
     validateProps<Resizer.OwnProps>(props);
+    expose({});
 
     return {
       handlePan: (event: unknown): void => {

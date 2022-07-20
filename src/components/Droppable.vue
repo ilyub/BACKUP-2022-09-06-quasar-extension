@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import type { Droppable } from "./Droppable.extras";
-import type { SetupExposed } from "./api";
+import type { Exposed } from "./api";
 import type { Sortable } from "./Sortable.extras";
 import { parentProps } from "./api";
 
@@ -11,7 +11,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<Sortable.Global>();
 
-    const exposed: SetupExposed<Sortable.Global> = { main };
+    const exposed: Exposed<Sortable.Global> = { main };
 
     expose(exposed);
 

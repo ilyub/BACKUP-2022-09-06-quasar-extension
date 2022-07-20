@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Optional, numberU, stringU } from "@skylib/functions";
 import { as, cast, is, o, typedef } from "@skylib/functions";
 import { defineComponent, ref, watch } from "vue";
 import {
@@ -10,9 +11,8 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import type { numberU, stringU } from "@skylib/functions";
+import type { Exposed } from "./api";
 import type { NumericInput } from "./NumericInput.extras";
-import type { SetupExposed } from "./api";
 import type { TimeInput } from "./TimeInput.extras";
 import { maska } from "maska";
 
@@ -33,7 +33,7 @@ export default defineComponent({
 
     const main = ref<NumericInput.Global>();
 
-    const exposed: SetupExposed<TimeInput.Global> = { main };
+    const exposed: Exposed<TimeInput.Global> = { main };
 
     validateEmit<TimeInput.OwnProps>(emit);
     validateProps<TimeInput.OwnProps>(props);
@@ -61,9 +61,9 @@ export default defineComponent({
       main,
       mask: { mask: "#*:F#", tokens: { F: { pattern: /[0-5]/u } } },
       slotNames: plugins.slotNames<TimeInput.Slots>()("control"),
-      validationOptions: typedef<plugins.validation.OptionsProp<numberU>>({
-        minMaxFormat: format
-      })
+      validationOptions: typedef<Optional<plugins.validation.Options<numberU>>>(
+        { minMaxFormat: format }
+      )
     };
 
     function format(value: number): string;

@@ -29,11 +29,7 @@ test("main: blur", async () => {
 
   const wrapper = vueTestUtils.mount(components.Select, {
     global: testUtils.globalMountOptions(),
-    props: {
-      ...props,
-      required: true,
-      rulesOnChange: [callback]
-    }
+    props: { ...props, required: true, rulesOnChange: [callback] }
   });
 
   const main = testUtils.findQuasarComponent(wrapper, QSelect);
@@ -63,11 +59,7 @@ test.each([
 ])("prop: modelValue", ({ expected, modelValue }) => {
   const wrapper = vueTestUtils.mount(components.Select, {
     global: testUtils.globalMountOptions(),
-    props: {
-      ...props,
-      initialLabel: lang.keys.SampleWord,
-      modelValue
-    }
+    props: { ...props, initialLabel: lang.keys.SampleWord, modelValue }
   });
 
   expect(wrapper.find(".q-field__native").text()).toBe(expected);

@@ -11,8 +11,8 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import type { QToggle } from "quasar";
-import type { SetupExposed } from "./api";
 import type { Toggle } from "./Toggle.extras";
 
 const prop = propFactory<Toggle.OwnProps>();
@@ -31,7 +31,7 @@ export default defineComponent({
 
     const main = ref<QToggle>();
 
-    const exposed: SetupExposed<Toggle.Global> = { main };
+    const exposed: Exposed<Toggle.Global> = { main };
 
     validateEmit<Toggle.OwnProps>(emit);
     validateProps<Toggle.OwnProps>(props);

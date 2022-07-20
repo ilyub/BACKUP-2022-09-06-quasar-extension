@@ -10,6 +10,10 @@ import { useQuasar } from "quasar";
 export default defineComponent({
   name: "sample-input",
   setup: (_props, { expose }) => {
+    const { lang } = Input;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     const form = ref<extras.Form.Global>();
@@ -28,8 +32,8 @@ export default defineComponent({
 
     return {
       form,
-      lang: Input.lang,
-      lk: Input.lang.keys,
+      lang,
+      lk,
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
@@ -43,9 +47,7 @@ export default defineComponent({
       },
       rules: typedef<plugins.validation.Rules<stringU>>([
         value =>
-          is.not.empty(value) && value.includes("q")
-            ? Input.lang.keys.Invalid
-            : true
+          is.not.empty(value) && value.includes("q") ? lk.Invalid : true
       ]),
       submit: () => {
         $q.notify(

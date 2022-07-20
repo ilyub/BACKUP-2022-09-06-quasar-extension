@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { components } from "@";
@@ -61,11 +63,7 @@ test.each([
   const wrapper = vueTestUtils.mount(components.Resizer, {
     directives: { touchPan: touchPan.directive },
     global: testUtils.globalMountOptions(),
-    props: {
-      max,
-      min,
-      modelValue: 200
-    }
+    props: { max, min, modelValue: 200 }
   });
 
   {

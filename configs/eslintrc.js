@@ -57,8 +57,8 @@ module.exports = {
             message: "Missing type parameter",
             selector: [
               "CallExpression[arguments.length=0][typeParameters=undefined] > Identifier.callee[name=prop]",
-              "CallExpression[arguments.length=1][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=default]",
-              "CallExpression[arguments.length=0][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=required]"
+              "CallExpression[arguments.length=0][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=required]",
+              "CallExpression[arguments.length=1][typeParameters=undefined] > MemberExpression.callee[object.name=prop][property.name=default]"
             ]
           }
         ],
@@ -108,8 +108,8 @@ module.exports = {
           {
             message: 'Expecting "OwnProps" type parameter',
             selector: [
-              "CallExpression[callee.name=validateEmit][typeParameters=undefined]",
-              "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]"
+              "CallExpression[callee.name=validateEmit] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]",
+              "CallExpression[callee.name=validateEmit][typeParameters=undefined]"
             ]
           }
         ],
@@ -118,8 +118,8 @@ module.exports = {
           {
             message: 'Expecting "OwnProps" type parameter',
             selector: [
-              "CallExpression[callee.name=validateProps][typeParameters=undefined]",
-              "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]"
+              "CallExpression[callee.name=validateProps] > TSTypeParameterInstantiation.typeParameters > TSTypeReference.params > TSQualifiedName.typeName > Identifier.right[name!=OwnProps]",
+              "CallExpression[callee.name=validateProps][typeParameters=undefined]"
             ]
           }
         ],

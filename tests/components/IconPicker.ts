@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 9 }] -- Ok */
+
 /* eslint-disable @skylib/consistent-import -- Ok */
 
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
@@ -21,11 +23,7 @@ functionsTestUtils.installFakeTimer();
 
 test.each([
   { expected: [icons[0]], index: 0 },
-  {
-    expected: [undefined],
-    index: 1,
-    modelValue: icons[1]
-  }
+  { expected: [undefined], index: 1, modelValue: icons[1] }
 ])("pick-icon", async ({ expected, index, modelValue }) => {
   expect.hasAssertions();
 

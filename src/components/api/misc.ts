@@ -1,5 +1,6 @@
 import type { ComputedRef, InjectionKey, Ref, VNode } from "vue";
 import type {
+  Emit,
   GlobalComponentInstance,
   Injectable,
   InjectableSettings,
@@ -9,14 +10,9 @@ import type {
   PropBooleanKeys,
   PropOptionalKeys,
   PropRequiredKeys,
-  SetupEmit,
-  SetupProps
+  Props
 } from "./misc.internal";
-import type {
-  IndexedObject,
-  UppercaseLetter,
-  unknowns
-} from "@skylib/functions";
+import type { IndexedObject, types, unknowns } from "@skylib/functions";
 import type {
   PropOptions,
   PropOptionsBoolean,
@@ -25,6 +21,7 @@ import type {
 } from "./types";
 import { as, defineFn } from "@skylib/functions";
 import { computed, inject, provide, ref, watch } from "vue";
+import type { RouteRecordRaw } from "vue-router";
 
 export const prop = defineFn(
   /**
@@ -62,6 +59,10 @@ export const prop = defineFn(
   }
 );
 
+export type Exposed<T> = {
+  readonly [K in keyof T]: ComputedRef<T[K]> | Ref<T[K]> | T[K];
+};
+
 export interface GlobalComponent<P, S> {
   /**
    * Constructor.
@@ -69,9 +70,7 @@ export interface GlobalComponent<P, S> {
   new (): GlobalComponentInstance<P, S>;
 }
 
-export type SetupExposed<T> = {
-  readonly [K in keyof T]: ComputedRef<T[K]> | Ref<T[K]> | T[K];
-};
+export type RouteRecordRaws = readonly RouteRecordRaw[];
 
 export type VNodes = readonly VNode[];
 
@@ -128,11 +127,7 @@ export function injectableSettings<T>(
     testProvide: testProvideSettings
   } = injectable(defaultSettings);
 
-  return {
-    injectSettings,
-    provideSettings,
-    testProvideSettings
-  };
+  return { injectSettings, provideSettings, testProvideSettings };
 }
 
 /**
@@ -240,7 +235,7 @@ export function toComputed<T>(value: T): ComputedRef<T> {
  *
  * @param _emit - Emit function.
  */
-export function validateEmit<T>(_emit: SetupEmit<T>): void {
+export function validateEmit<T>(_emit: Emit<T>): void {
   // Nothing to do
 }
 
@@ -251,7 +246,7 @@ export function validateEmit<T>(_emit: SetupEmit<T>): void {
  */
 export function validateProps<
   T,
-  K extends keyof T & `on${UppercaseLetter}${string}` = never
->(_props: SetupProps<T, K>): void {
+  K extends keyof T & `on${types.string.UppercaseLetter}${string}` = never
+>(_props: Props<T, K>): void {
   // Nothing to do
 }

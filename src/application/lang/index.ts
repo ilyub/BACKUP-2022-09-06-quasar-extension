@@ -26,8 +26,4 @@ declare global {
 export const definitions: Rec<
   LocaleName,
   implementations.lang.dictionary.Definitions
-> = {
-  "en-GB": en,
-  "en-US": en,
-  "ru-RU": ru
-};
+> = { "en-GB": en, "en-US": en, "ru-RU": ru };

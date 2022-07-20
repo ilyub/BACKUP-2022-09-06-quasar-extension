@@ -5,9 +5,13 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-form-button",
   setup: (_prop, { expose }) => {
+    const { lang } = FormButton;
+
+    const lk = lang.keys;
+
     expose({});
 
-    return { lang: FormButton.lang, lk: FormButton.lang.keys };
+    return { lang, lk };
   }
 });
 </script>

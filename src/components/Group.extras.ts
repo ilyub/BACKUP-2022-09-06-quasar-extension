@@ -29,6 +29,7 @@ export namespace Group {
     extends PluginProps,
       OwnProps<T> {}
 
+  // eslint-disable-next-line @skylib/custom/no-literal-union-type -- Ok
   export type RootElement = "page-section" | "section" | "subsection";
 
   // eslint-disable-next-line @skylib/custom/quasar/prefer-Slots-interface -- Ok

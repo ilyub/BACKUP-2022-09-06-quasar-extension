@@ -1,5 +1,5 @@
 <script lang="ts">
-import { a, is } from "@skylib/functions";
+import { ReadonlySet, a, is } from "@skylib/functions";
 import { compare, inlineSearch } from "@skylib/facades";
 import { computed, defineComponent } from "vue";
 import { directives, plugins, propFactory, validateProps } from "./api";
@@ -27,9 +27,11 @@ export default defineComponent({
     searchString: prop("searchString")
   },
   setup: (props, { expose }) => {
+    const { lang } = Group;
+
     const filteredItems = computed(() => {
       if (is.not.empty(props.searchString)) {
-        const ids = new Set(
+        const ids = new ReadonlySet(
           searchIndex.value.search(props.searchString).map(item => item.id)
         );
 
@@ -46,10 +48,7 @@ export default defineComponent({
 
     const items = computed(() =>
       props.items.map(
-        (item): TranslatedItem => ({
-          ...item,
-          title: Group.lang.get(item.title)
-        })
+        (item): TranslatedItem => ({ ...item, title: lang.get(item.title) })
       )
     );
 
@@ -65,8 +64,8 @@ export default defineComponent({
       )
     );
 
-    expose({});
     validateProps<Group.OwnProps>(props);
+    expose({});
 
     return {
       filteredItems,

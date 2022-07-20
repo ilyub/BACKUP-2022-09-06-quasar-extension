@@ -4,8 +4,8 @@
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
 import type { CardActions } from "./CardActions.extras";
+import type { Exposed } from "./api";
 import type { QCardActions } from "quasar";
-import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-card-actions",
@@ -13,7 +13,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<QCardActions>();
 
-    const exposed: SetupExposed<CardActions.Global> = { main };
+    const exposed: Exposed<CardActions.Global> = { main };
 
     expose(exposed);
 

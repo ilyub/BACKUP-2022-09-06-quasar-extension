@@ -1,5 +1,3 @@
-/* eslint-disable @skylib/primary-export-only -- Ok */
-
 import type { PropType } from "vue";
 import type { is } from "@skylib/functions";
 

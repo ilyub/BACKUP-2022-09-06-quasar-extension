@@ -6,11 +6,13 @@ import { settings } from "./core";
 export default defineComponent({
   name: "sample-language-picker",
   setup: (_props, { expose }) => {
+    const { lang } = LanguagePicker;
+
     const { language } = settings;
 
     expose({});
 
-    return { lang: LanguagePicker.lang, language };
+    return { lang, language };
   }
 });
 </script>

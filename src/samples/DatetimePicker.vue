@@ -1,6 +1,6 @@
 <script lang="ts">
+import { TimeUnit, datetime, dump } from "@skylib/facades";
 import { as, is, typedef } from "@skylib/functions";
-import { datetime, dump } from "@skylib/facades";
 import { defineComponent, ref } from "vue";
 import type { extras, plugins } from "..";
 import { DatetimePicker } from "./DatetimePicker.extras";
@@ -10,6 +10,10 @@ import { useQuasar } from "quasar";
 export default defineComponent({
   name: "sample-datetime-picker",
   setup: (_props, { expose }) => {
+    const { lang } = DatetimePicker;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     const form = ref<extras.Form.Global>();
@@ -26,22 +30,22 @@ export default defineComponent({
 
     return {
       form,
-      lk: DatetimePicker.lang.keys,
+      lk,
       max: datetime
         .create()
         .setHours(12)
         .setMinutes(0)
-        .add(3, "days")
-        .add(2, "hours")
-        .add(30, "minutes")
+        .add(3, TimeUnit.days)
+        .add(2, TimeUnit.hours)
+        .add(30, TimeUnit.minutes)
         .toString(),
       min: datetime
         .create()
         .setHours(12)
         .setMinutes(0)
-        .sub(3, "days")
-        .sub(2, "hours")
-        .sub(30, "minutes")
+        .sub(3, TimeUnit.days)
+        .sub(2, TimeUnit.hours)
+        .sub(30, TimeUnit.minutes)
         .toString(),
       reset: (): void => {
         value1.value = undefined;
@@ -55,9 +59,7 @@ export default defineComponent({
       },
       rules: typedef<plugins.validation.Rules<stringU>>([
         value =>
-          is.not.empty(value) && value.endsWith("0")
-            ? DatetimePicker.lang.keys.Invalid
-            : true
+          is.not.empty(value) && value.endsWith("0") ? lk.Invalid : true
       ]),
       submit: () => {
         $q.notify(

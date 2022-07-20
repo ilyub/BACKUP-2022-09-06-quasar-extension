@@ -27,7 +27,7 @@ export const vueStorage: reactiveStorage.Facade = defineFn(
       const reduced = reducer ? computed(() => reducer(obj)) : obj;
 
       return {
-        _type: "ReactiveStorageObserver",
+        resourceType: "reactive-storage__observer",
         watchStopHandle: watch(reduced, () => {
           handler(obj);
         })

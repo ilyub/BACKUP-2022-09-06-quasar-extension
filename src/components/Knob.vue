@@ -11,9 +11,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import type { Knob } from "./Knob.extras";
 import type { QKnob } from "quasar";
-import type { SetupExposed } from "./api";
 
 const prop = propFactory<Knob.OwnProps>();
 
@@ -29,11 +29,11 @@ export default defineComponent({
   setup: (props, { emit, expose }) => {
     const main = ref<QKnob>();
 
-    const exposed: SetupExposed<Knob.Global> = { main };
+    const exposed: Exposed<Knob.Global> = { main };
 
-    expose(exposed);
     validateEmit<Knob.OwnProps>(emit);
     validateProps<Knob.OwnProps>(props);
+    expose(exposed);
 
     return {
       globalDisable: injections.disable.inject(),

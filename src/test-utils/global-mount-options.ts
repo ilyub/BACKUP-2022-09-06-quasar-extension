@@ -3,8 +3,6 @@ import { evaluate, o } from "@skylib/functions";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
 import type { WritableRecord } from "@skylib/functions";
 
-export * as mocks from "./mocks";
-
 /**
  * Creates global mount options.
  *

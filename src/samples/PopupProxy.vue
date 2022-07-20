@@ -14,6 +14,10 @@ import type { plugins } from "..";
 export default defineComponent({
   name: "sample-popup-proxy",
   setup: (_props, { expose }) => {
+    const { lang } = PopupProxy;
+
+    const lk = lang.keys;
+
     const menuDirection = ref<plugins.direction.Direction>();
 
     const menuShow = ref(false);
@@ -28,7 +32,7 @@ export default defineComponent({
         menuShow.value = true;
         menuTarget.value = direction ? `#${direction}` : "#default";
       },
-      lk: PopupProxy.lang.keys,
+      lk,
       mdiArrowDown,
       mdiArrowLeft,
       mdiArrowRight,

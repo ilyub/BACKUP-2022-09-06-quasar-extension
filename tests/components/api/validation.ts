@@ -16,11 +16,7 @@ const rules = [
 ] as const;
 
 test.each([
-  {
-    event: "change-2",
-    expected: [false],
-    min: 3
-  },
+  { event: "change-2", expected: [false], min: 3 },
   {
     event: "change-2",
     expected: [false],
@@ -29,11 +25,7 @@ test.each([
     minErrorMessage: lang.keys.FieldShouldBeGteMin,
     minMaxFormat: cast.string
   },
-  {
-    event: "change-2",
-    expected: [false],
-    max: 1
-  },
+  { event: "change-2", expected: [false], max: 1 },
   {
     event: "change2",
     expected: [false],
@@ -42,47 +34,19 @@ test.each([
     maxErrorMessage: lang.keys.FieldShouldBeLteMax,
     minMaxFormat: cast.string
   },
-  {
-    event: "change-undefined",
-    expected: [true],
-    min: 3
-  },
-  {
-    event: "change-undefined",
-    expected: [true],
-    max: 3
-  },
-  {
-    event: "change-undefined",
-    expected: [false],
-    rulesOnChange: rules
-  },
-  {
-    event: "input-undefined",
-    expected: [false],
-    rulesOnInput: rules
-  },
+  { event: "change-undefined", expected: [true], min: 3 },
+  { event: "change-undefined", expected: [true], max: 3 },
+  { event: "change-undefined", expected: [false], rulesOnChange: rules },
+  { event: "input-undefined", expected: [false], rulesOnInput: rules },
   {
     event: "submit-2",
     expected: [true],
     required: true,
     requiredErrorMessage: lang.keys.FieldIsRequired
   },
-  {
-    event: "submit-undefined",
-    expected: [false],
-    required: true
-  },
-  {
-    event: "submit-undefined",
-    expected: [false],
-    required: true
-  },
-  {
-    event: "submit-undefined",
-    expected: [false],
-    rulesOnSubmit: rules
-  }
+  { event: "submit-undefined", expected: [false], required: true },
+  { event: "submit-undefined", expected: [false], required: true },
+  { event: "submit-undefined", expected: [false], rulesOnSubmit: rules }
 ])(
   "validation",
   async ({
@@ -111,11 +75,7 @@ test.each([
           const field = ref<QField>();
 
           const validation = plugins.validation(
-            {
-              rulesOnChange,
-              rulesOnInput,
-              rulesOnSubmit
-            },
+            { rulesOnChange, rulesOnInput, rulesOnSubmit },
             computed(() => as.not.empty(field.value)),
             computed(() =>
               o.removeUndefinedKeys({
@@ -153,7 +113,6 @@ test.each([
             @input-undefined="validate(undefined, 'input')"
             @submit-2="validate(2, 'submit')"
             @submit-undefined="validate(undefined, 'submit')"
-
           />
         `
       });

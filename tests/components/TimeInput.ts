@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { components, testComponents } from "@";

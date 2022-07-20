@@ -4,12 +4,21 @@ import { Group } from "./Group.extras";
 import type { extras } from "..";
 import { generic } from "..";
 
-type Section = "section1" | "section2" | "section3" | "section4";
+enum Section {
+  section1 = "section1",
+  section2 = "section2",
+  section3 = "section3",
+  section4 = "section4"
+}
 
 export default defineComponent({
   name: "sample-group",
   components: { "m-group__page-sections": generic.Group<Section>() },
   setup: (_props, { expose }) => {
+    const { lang } = Group;
+
+    const lk = lang.keys;
+
     const showSection1 = ref(true);
 
     const showSection2 = ref(true);
@@ -18,43 +27,27 @@ export default defineComponent({
 
     const showSection4 = ref(true);
 
-    const title1 = Group.lang.plain("Section 1 aaa bbb");
+    const title1 = lang.plain("Section 1 aaa bbb");
 
-    const title2 = Group.lang.plain("Section 2 bbb ccc");
+    const title2 = lang.plain("Section 2 bbb ccc");
 
-    const title3 = Group.lang.plain("Section 11 ccc ddd");
+    const title3 = lang.plain("Section 11 ccc ddd");
 
-    const title4 = Group.lang.plain("Section 12 ddd eee");
+    const title4 = lang.plain("Section 12 ddd eee");
 
     expose({});
 
     return {
       groupItems: computed(
         (): extras.Group.Items<Section> => [
-          {
-            id: "section2",
-            show: showSection2.value,
-            title: title2
-          },
-          {
-            id: "section1",
-            show: showSection1.value,
-            title: title1
-          },
-          {
-            id: "section3",
-            show: showSection3.value,
-            title: title3
-          },
-          {
-            id: "section4",
-            show: showSection4.value,
-            title: title4
-          }
+          { id: Section.section2, show: showSection2.value, title: title2 },
+          { id: Section.section1, show: showSection1.value, title: title1 },
+          { id: Section.section3, show: showSection3.value, title: title3 },
+          { id: Section.section4, show: showSection4.value, title: title4 }
         ]
       ),
-      lang: Group.lang,
-      lk: Group.lang.keys,
+      lang,
+      lk,
       searchString: ref<string>(),
       showSection1,
       showSection2,

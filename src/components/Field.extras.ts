@@ -1,7 +1,7 @@
 import type { GlobalComponent, VNodes, plugins } from "./api";
+import type { Optional, booleanU } from "@skylib/functions";
 import type { QField, QFieldProps, QFieldSlots } from "quasar";
 import { lang as baseLang } from "@skylib/facades";
-import type { booleanU } from "@skylib/functions";
 
 export namespace Field {
   export const lang: baseLang.Lang<never, never> = baseLang;
@@ -50,7 +50,9 @@ export namespace Field {
      */
     readonly "onUpdate:modelValue"?: (value: T) => void;
     readonly required?: booleanU;
-    readonly validationOptions?: plugins.validation.OptionsProp<T> | undefined;
+    readonly validationOptions?:
+      | Optional<plugins.validation.Options<T>>
+      | undefined;
   }
 
   export interface OwnSlots<T = unknown> {

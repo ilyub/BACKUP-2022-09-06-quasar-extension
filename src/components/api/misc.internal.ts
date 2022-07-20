@@ -1,26 +1,30 @@
-import type {
-  Callable,
-  IndexedObject,
-  IndexedRecord,
-  Join2,
-  PickKeys,
-  UppercaseLetter,
-  booleanU
-} from "@skylib/functions";
+import type { And, IndexedObject, booleanU, types } from "@skylib/functions";
 import type {
   PropOptions,
   PropOptionsBoolean,
   PropOptionsDefault,
   PropOptionsRequired
 } from "./types";
-import type { FilterKeys } from "ts-toolbelt/out/Object/FilterKeys";
-import type { OptionalKeys } from "ts-toolbelt/out/Object/OptionalKeys";
 import type { PublicProps } from "quasar";
-import type { RequiredKeys } from "ts-toolbelt/out/Object/RequiredKeys";
 import type { ValueOf } from "type-fest";
 
+export type Emit<T> =
+  // prettier-break
+  ValueOf<{ [K in keyof T]: EmitAux<K, Exclude<T[K], undefined>> }>;
+
+export type EmitAux<K, V> = V extends types.fn.Callable
+  ? K extends `on${types.string.UppercaseLetter}${infer B}`
+    ? K extends `on${infer A}${B}`
+      ? (
+          event: `${Uncapitalize<A>}${B}`,
+          ...args: Parameters<V>
+        ) => ReturnType<V>
+      : never
+    : never
+  : never;
+
 export type Emits = {
-  readonly [K in `on${UppercaseLetter}${string}`]: () => void;
+  readonly [K in `on${types.string.UppercaseLetter}${string}`]: () => void;
 };
 
 export interface GlobalComponentInstance<P, S> {
@@ -87,9 +91,9 @@ export interface InjectableTrigger {
   readonly watch: (handler: () => void) => void;
 }
 
-export type ParentProps<T extends object> = Join2<
-  { readonly [K in OptionalKeys<T>]: PropOptions<T[K]> },
-  { readonly [K in RequiredKeys<T>]: PropOptionsRequired<T[K]> }
+export type ParentProps<T extends object> = And<
+  { readonly [K in types.object.keys.Optional<T>]: PropOptions<T[K]> },
+  { readonly [K in types.object.keys.Required<T>]: PropOptionsRequired<T[K]> }
 >;
 
 export interface Prop<T extends object> {
@@ -133,51 +137,22 @@ export interface Prop<T extends object> {
   ) => PropOptionsRequired<T[K]>;
 }
 
-export type PropBooleanKeys<T extends object> = PickKeys<
-  T,
-  booleanU,
-  "extends->"
+export type PropBooleanKeys<T extends object> =
+  // prettier-break
+  types.object.keys.Pick<T, booleanU, "extends->">;
+
+export type PropOptionalKeys<T extends object> = And<
+  types.object.keys.Filter<T, booleanU, "extends->">,
+  types.object.keys.Optional<T>
 >;
 
-export type PropOptionalKeys<T extends object> = FilterKeys<
+export type PropRequiredKeys<T extends object> = And<
+  types.object.keys.Filter<T, booleanU, "extends->">,
+  types.object.keys.Required<T>
+>;
+
+// eslint-disable-next-line @skylib/custom/quasar/prefer-Props-interface -- Ok
+export type Props<
   T,
-  booleanU,
-  "extends->"
-> &
-  OptionalKeys<T>;
-
-export type PropRequiredKeys<T extends object> = FilterKeys<
-  T,
-  booleanU,
-  "extends->"
-> &
-  RequiredKeys<T>;
-
-export type SetupEmit<T> = ValueOf<{
-  [K in keyof T]: SetupEmitAux<K, Exclude<T[K], undefined>>;
-}>;
-
-export type SetupEmitAux<K, V> = V extends Callable
-  ? K extends `on${UppercaseLetter}${infer B}`
-    ? K extends `on${infer A}${B}`
-      ? (
-          event: `${Uncapitalize<A>}${B}`,
-          ...args: Parameters<V>
-        ) => ReturnType<V>
-      : never
-    : never
-  : never;
-
-export interface SetupExpose {
-  /**
-   * Exposes data.
-   *
-   * @param exposed - Exposed data.
-   */
-  (exposed?: IndexedRecord | undefined): void;
-}
-
-export type SetupProps<
-  T,
-  K extends keyof T & `on${UppercaseLetter}${string}` = never
-> = Omit<T, Exclude<keyof T & `on${UppercaseLetter}${string}`, K>>;
+  K extends keyof T & `on${types.string.UppercaseLetter}${string}` = never
+> = Omit<T, Exclude<keyof T & `on${types.string.UppercaseLetter}${string}`, K>>;

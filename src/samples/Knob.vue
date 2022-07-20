@@ -5,13 +5,11 @@ import { Knob } from "./Knob.extras";
 export default defineComponent({
   name: "sample-knob",
   setup: (_props, { expose }) => {
+    const { lang } = Knob;
+
     expose();
 
-    return {
-      lang: Knob.lang,
-      value1: ref(100),
-      value2: ref(100)
-    };
+    return { lang, value1: ref(100), value2: ref(100) };
   }
 });
 </script>

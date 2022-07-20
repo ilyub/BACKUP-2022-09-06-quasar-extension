@@ -3,9 +3,9 @@
 
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins, propFactory } from "./api";
+import type { Exposed } from "./api";
 import { Menu } from "./Menu.extras";
 import type { QMenu } from "quasar";
-import type { SetupExposed } from "./api";
 import { Tooltip } from "./Tooltip.extras";
 import { as } from "@skylib/functions";
 
@@ -23,7 +23,7 @@ export default defineComponent({
 
     const main = ref<QMenu>();
 
-    const exposed: SetupExposed<Menu.Global> = { main };
+    const exposed: Exposed<Menu.Global> = { main };
 
     expose(exposed);
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Optional, numberU } from "@skylib/functions";
 import { as, cast, is, num, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import {
@@ -10,12 +11,11 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import type { Field } from "./Field.extras";
 import { NumericInput } from "./NumericInput.extras";
-import type { SetupExposed } from "./api";
 import { genericField } from "./Field.generic";
 import { maska } from "maska";
-import type { numberU } from "@skylib/functions";
 
 const prop = propFactory<NumericInput.OwnProps>();
 
@@ -35,11 +35,13 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: numberU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
+    const { icons } = NumericInput;
+
     const input = ref<HTMLInputElement>();
 
     const main = ref<Field.Global<numberU>>();
 
-    const exposed: SetupExposed<NumericInput.Global> = { main };
+    const exposed: Exposed<NumericInput.Global> = { main };
 
     validateEmit<NumericInput.OwnProps>(emit);
     validateProps<NumericInput.OwnProps>(props);
@@ -66,7 +68,7 @@ export default defineComponent({
           : true
       ),
       format: cast.numberU,
-      icons: NumericInput.icons,
+      icons,
       input,
       inputInput: (
         event: Event,
@@ -76,7 +78,7 @@ export default defineComponent({
       },
       main,
       mainValidationOptions: computed(
-        (): plugins.validation.OptionsProp<numberU> => ({
+        (): Optional<plugins.validation.Options<numberU>> => ({
           max: props.max,
           min: props.min,
           ...props.validationOptions

@@ -49,11 +49,7 @@ export const settings = {
         (): extras.LanguagePicker.Settings => ({
           changeLanguageAction: (value): void => {
             const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
-              {
-                firstDayOfWeek: 0,
-                locale: enUS,
-                pm: true
-              };
+              { firstDayOfWeek: 0, locale: enUS, pm: true };
 
             switch (value) {
               case "en-GB":
@@ -75,21 +71,9 @@ export const settings = {
             implementations.lang.dictionary.configure({ localeName: value });
           },
           options: [
-            {
-              caption: lang.keys.EnglishUSA,
-              flag: us,
-              lang: "en-US"
-            },
-            {
-              caption: lang.keys.EnglishUK,
-              flag: gb,
-              lang: "en-GB"
-            },
-            {
-              caption: lang.keys.Russian,
-              flag: ru,
-              lang: "ru-RU"
-            }
+            { caption: lang.keys.EnglishUSA, flag: us, lang: "en-US" },
+            { caption: lang.keys.EnglishUK, flag: gb, lang: "en-GB" },
+            { caption: lang.keys.Russian, flag: ru, lang: "ru-RU" }
           ]
         })
       )
@@ -153,7 +137,7 @@ export const settings = {
     );
   },
   resizerDisable: ref(false),
-  switchableTransition: ref<extras.Switchable.Transition>("none"),
+  switchableTransition: ref(extras.Switchable.Transition.none),
   tooltipDelay: ref(1000),
   tooltipShow: ref(true)
 } as const;

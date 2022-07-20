@@ -5,12 +5,21 @@ import { Select } from "./Select.extras";
 import type { extras } from "..";
 import { generic } from "..";
 
-type Color = "blue" | "green" | "invalid" | "red";
+enum Color {
+  blue = "blue",
+  green = "green",
+  invalid = "invalid",
+  red = "red"
+}
 
 export default defineComponent({
   name: "sample-select",
   components: { "m-select__value": generic.Select<Color>() },
   setup: (_props, { expose }) => {
+    const { lang } = Select;
+
+    const lk = lang.keys;
+
     const form = ref<extras.Form.Global>();
 
     const value1 = ref<Color>();
@@ -21,39 +30,32 @@ export default defineComponent({
 
     const value4 = ref<Color>();
 
-    const value5 = ref<Color | undefined>("blue");
+    const value5 = ref<Color | undefined>(Color.blue);
 
     expose({});
 
     return {
       form,
-      lang: Select.lang,
-      lk: Select.lang.keys,
+      lang,
+      lk,
       options: typedef<extras.Select.Options<Color>>([
-        { label: Select.lang.keys.Blue, value: "blue" },
-        { label: Select.lang.keys.Green, value: "green" },
-        {
-          disable: true,
-          label: Select.lang.keys.Red,
-          value: "red"
-        },
-        { label: Select.lang.keys.Invalid, value: "invalid" }
+        { label: lk.Blue, value: Color.blue },
+        { label: lk.Green, value: Color.green },
+        { disable: true, label: lk.Red, value: Color.red },
+        { label: lk.Invalid, value: Color.invalid }
       ]),
       reset: (): void => {
         value1.value = undefined;
         value2.value = undefined;
         value3.value = undefined;
         value4.value = undefined;
-        value5.value = "blue";
+        value5.value = Color.blue;
         as.not.empty(form.value).resetValidation();
       },
       resetValidation: (): void => {
         as.not.empty(form.value).resetValidation();
       },
-      rules: [
-        (value: Color) =>
-          value === "invalid" ? Select.lang.keys.Invalid : true
-      ],
+      rules: [(value: Color) => (value === "invalid" ? lk.Invalid : true)],
       value1,
       value2,
       value3,

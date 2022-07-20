@@ -1,8 +1,11 @@
+/* eslint jest/max-expects: [warn, { max: 5 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
-import { is, o } from "@skylib/functions";
 import { QField } from "quasar";
 import { components } from "@";
+import type { extras } from "@";
+import { is } from "@skylib/functions";
 
 test.each([undefined, "2001-02-03 10:30"])("control", async modelValue => {
   const wrapper = vueTestUtils.mount(components.DatetimePicker, {
@@ -83,37 +86,69 @@ test("prop: min, max", async () => {
     }
   });
 
-  const dateOptions = o.get(wrapper.vm, "dateOptions", is.callable);
-
-  const timeOptions = o.get(wrapper.vm, "timeOptions", is.callable);
-
-  const { elem } = testUtils.findFactory("datetime-picker", wrapper);
+  const { elem, vm } = testUtils.findFactory<extras.DatetimePicker.Global>(
+    "datetime-picker",
+    wrapper
+  );
 
   {
-    expect(dateOptions("2001/02/02")).toBeFalse();
-    expect(dateOptions("2001/02/03")).toBeTrue();
-    expect(dateOptions("2001/02/04")).toBeFalse();
-    expect(timeOptions(11)).toBeTrue();
-    expect(timeOptions(12)).toBeTrue();
-    expect(timeOptions(13)).toBeTrue();
-    expect(timeOptions(14)).toBeTrue();
-    expect(timeOptions(15)).toBeTrue();
+    const dates = [
+      ["2001/02/02", false],
+      ["2001/02/03", true],
+      ["2001/02/04", false]
+    ] as const;
+
+    const times = [
+      [11, null, true],
+      [12, null, true],
+      [13, null, true],
+      [14, null, true],
+      [15, null, true]
+    ] as const;
+
+    const gotDates = dates.map(date => vm.dateOptions(date[0]));
+
+    const gotTimes = times.map(time => vm.timeOptions(time[0], time[1]));
+
+    const expectedDates = dates.map(date => date[1]);
+
+    const expectedTimes = times.map(time => time[2]);
+
+    expect(gotDates).toStrictEqual(expectedDates);
+    expect(gotTimes).toStrictEqual(expectedTimes);
   }
 
   {
     await elem("control").trigger("click");
-    expect(dateOptions("2001/02/02")).toBeFalse();
-    expect(dateOptions("2001/02/03")).toBeTrue();
-    expect(dateOptions("2001/02/04")).toBeFalse();
-    expect(timeOptions(11)).toBeFalse();
-    expect(timeOptions(12)).toBeTrue();
-    expect(timeOptions(13)).toBeTrue();
-    expect(timeOptions(14)).toBeTrue();
-    expect(timeOptions(15)).toBeFalse();
-    expect(timeOptions(12, 29)).toBeFalse();
-    expect(timeOptions(12, 30)).toBeTrue();
-    expect(timeOptions(14, 30)).toBeTrue();
-    expect(timeOptions(14, 31)).toBeFalse();
+
+    const dates = [
+      ["2001/02/02", false],
+      ["2001/02/03", true],
+      ["2001/02/04", false]
+    ] as const;
+
+    const times = [
+      [11, null, false],
+      [12, null, true],
+      [13, null, true],
+      [14, null, true],
+      [15, null, false],
+      [12, 29, false],
+      [12, 30, true],
+      [14, 30, true],
+      [14, 31, false]
+    ] as const;
+
+    const gotDates = dates.map(date => vm.dateOptions(date[0]));
+
+    const gotTimes = times.map(time => vm.timeOptions(time[0], time[1]));
+
+    const expectedDates = dates.map(date => date[1]);
+
+    const expectedTimes = times.map(time => time[2]);
+
+    expect(gotDates).toStrictEqual(expectedDates);
+    expect(gotTimes).toStrictEqual(expectedTimes);
   }
 });
 

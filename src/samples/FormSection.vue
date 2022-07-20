@@ -5,9 +5,13 @@ import { FormSection } from "./FormSection.extras";
 export default defineComponent({
   name: "sample-form-section",
   setup: (_prop, { expose }) => {
+    const { lang } = FormSection;
+
+    const lk = lang.keys;
+
     expose({});
 
-    return { lk: FormSection.lang.keys, name: ref<string>() };
+    return { lk, name: ref<string>() };
   }
 });
 </script>

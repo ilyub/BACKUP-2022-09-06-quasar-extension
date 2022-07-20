@@ -1,13 +1,15 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { extras, generic } from "..";
 import { Switchable } from "./Switchable.extras";
-import type { extras } from "..";
-import { generic } from "..";
 import { settings } from "./core";
 import { typedef } from "@skylib/functions";
 
+const Transition = extras.Switchable.Transition;
+
 type Options = extras.OptionGroup.Options<Transition>;
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 type Transition = extras.Switchable.Transition;
 
 export default defineComponent({
@@ -16,20 +18,24 @@ export default defineComponent({
     "m-option-group__transition": generic.OptionGroup<Transition>()
   },
   setup: (_props, { expose }) => {
+    const { lang } = Switchable;
+
+    const lk = lang.keys;
+
     const { switchableTransition } = settings;
 
     expose({});
 
     return {
       disable: ref(false),
-      lang: Switchable.lang,
-      lk: Switchable.lang.keys,
+      lang,
+      lk,
       sampleKnob: ref(5),
       sampleToggle: ref(false),
       switchableTransition,
       switchableTransitionOptions: typedef<Options>([
-        { label: Switchable.lang.keys.None, value: "none" },
-        { label: Switchable.lang.keys.Slide, value: "slide" }
+        { label: lk.None, value: Transition.none },
+        { label: lk.Slide, value: Transition.slide }
       ])
     };
   }

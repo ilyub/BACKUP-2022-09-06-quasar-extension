@@ -5,25 +5,29 @@ import type { extras } from "..";
 import { generic } from "..";
 import { typedef } from "@skylib/functions";
 
-type Value = "a" | "b" | 1;
+enum Value {
+  a = "a",
+  b = "b",
+  c = "c"
+}
 
 export default defineComponent({
   name: "sample-option-group",
   components: { "m-option-group__value": generic.OptionGroup<Value>() },
   setup: (_props, { expose }) => {
+    const { lang } = OptionGroup;
+
+    const lk = lang.keys;
+
     expose();
 
     return {
       options: typedef<extras.OptionGroup.Options<Value>>([
-        { label: OptionGroup.lang.keys.Option1, value: 1 },
-        { label: OptionGroup.lang.keys.Option2, value: "a" },
-        {
-          disable: true,
-          label: OptionGroup.lang.keys.Option3,
-          value: "b"
-        }
+        { label: lk.Option1, value: Value.a },
+        { label: lk.Option2, value: Value.b },
+        { disable: true, label: lk.Option3, value: Value.c }
       ]),
-      value1: ref<Value>("a"),
+      value1: ref(Value.b),
       value2: ref<Value>()
     };
   }

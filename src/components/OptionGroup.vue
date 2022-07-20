@@ -11,9 +11,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
-import type { SetupExposed } from "./api";
 
 const prop = propFactory<OptionGroup.OwnProps>();
 
@@ -34,13 +34,15 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
+    const { lang } = OptionGroup;
+
     const main = ref<QOptionGroup>();
 
-    const exposed: SetupExposed<OptionGroup.Global> = { main };
+    const exposed: Exposed<OptionGroup.Global> = { main };
 
-    expose(exposed);
     validateEmit<OptionGroup.OwnProps>(emit);
     validateProps<OptionGroup.OwnProps>(props);
+    expose(exposed);
 
     return {
       globalDisable: injections.disable.inject(),
@@ -49,7 +51,7 @@ export default defineComponent({
         props.options.map(
           (option): TranslatedOption => ({
             ...option,
-            label: OptionGroup.lang.get(option.label)
+            label: lang.get(option.label)
           })
         )
       ),

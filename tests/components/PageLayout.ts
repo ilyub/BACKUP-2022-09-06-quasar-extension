@@ -6,22 +6,14 @@ import { o } from "@skylib/functions";
 
 test.each([
   { closeButton: true, expected: false },
-  {
-    closeButton: true,
-    expected: true,
-    title: lang.plain("Sample title")
-  },
+  { closeButton: true, expected: true, title: lang.plain("Sample title") },
   {
     closeButton: true,
     closeButtonOff: true,
     expected: false,
     title: lang.plain("Sample title")
   },
-  {
-    closeButton: false,
-    expected: false,
-    title: lang.plain("Sample title")
-  },
+  { closeButton: false, expected: false, title: lang.plain("Sample title") },
   {
     closeButton: false,
     closeButtonOn: true,
@@ -35,11 +27,7 @@ test.each([
       global: testUtils.globalMountOptions({
         pageLayoutSettings: { closeButton, height: "auto" }
       }),
-      props: o.removeUndefinedKeys({
-        closeButtonOff,
-        closeButtonOn,
-        title
-      })
+      props: o.removeUndefinedKeys({ closeButtonOff, closeButtonOn, title })
     });
 
     const { comp } = testUtils.findFactory("page-layout", wrapper);

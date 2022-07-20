@@ -17,6 +17,10 @@ export default defineComponent({
     "m-sortable__items": generic.Sortable<Item, Item>()
   },
   setup: (_props, { expose }) => {
+    const { lang } = Droppable;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     const disableDropping = ref(false);
@@ -41,8 +45,8 @@ export default defineComponent({
       dropped: (item: Item, group: string): void => {
         $q.notify(dump({ group, item }));
       },
-      lang: Droppable.lang,
-      lk: Droppable.lang.keys,
+      lang,
+      lk,
       sortable1: ref([
         { id: "a", name: "A" },
         { id: "b", name: "B" },

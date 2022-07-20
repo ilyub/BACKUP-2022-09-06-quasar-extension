@@ -5,9 +5,13 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-button",
   setup: (_prop, { expose }) => {
+    const { lang } = Button;
+
+    const lk = lang.keys;
+
     expose({});
 
-    return { lang: Button.lang, lk: Button.lang.keys };
+    return { lang, lk };
   }
 });
 </script>

@@ -5,7 +5,7 @@ import { extras } from "@";
 test("injectSettings", () => {
   const callback = jest.fn();
 
-  const wrapper = vueTestUtils.mount({
+  vueTestUtils.mount({
     global: testUtils.globalMountOptions(),
     setup: (): void => {
       callback(extras.Form.injectForm().submitting.value);
@@ -13,6 +13,5 @@ test("injectSettings", () => {
     template: "<div></div>"
   });
 
-  expect(wrapper).toBeDefined();
   expect(callback).mockCallsToBe([false]);
 });

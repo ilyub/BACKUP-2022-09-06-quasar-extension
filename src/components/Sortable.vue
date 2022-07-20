@@ -1,5 +1,5 @@
 <script lang="ts">
-import { as, assert, is, o } from "@skylib/functions";
+import { ReadonlySet, as, assert, is, o } from "@skylib/functions";
 import { buildElements, isElements, isMoveData } from "./Sortable.internal";
 import { computed, defineComponent } from "vue";
 import {
@@ -42,9 +42,6 @@ export default defineComponent({
     "update:modelValue": (value: objects) => skipCheck(value)
   },
   setup: (props, { emit, expose }) => {
-    validateEmit<Sortable.OwnProps>(emit);
-    validateProps<Sortable.OwnProps>(props);
-
     const disableTooltips = Tooltip.useDisableTooltips();
 
     const settings = Sortable.injectSettings();
@@ -61,11 +58,13 @@ export default defineComponent({
 
     const ids = computed(
       () =>
-        new Set(
+        new ReadonlySet(
           props.modelValue.map(item => o.get(item, props.itemKey, is.string))
         )
     );
 
+    validateEmit<Sortable.OwnProps>(emit);
+    validateProps<Sortable.OwnProps>(props);
     expose({});
 
     return {
@@ -138,11 +137,7 @@ export default defineComponent({
     class="m-sortable"
     :data-group="group"
     :disabled="disabled"
-    :group="{
-      name: group,
-      pull: canPull ? 'clone' : false,
-      put: canPut
-    }"
+    :group="{ name: group, pull: canPull ? 'clone' : false, put: canPut }"
     item-key="elementId"
     :model-value="elements"
     :move="baseMove"

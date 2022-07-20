@@ -6,15 +6,15 @@ import { settings } from "./core";
 export default defineComponent({
   name: "sample-resizer",
   setup: (_props, { expose }) => {
+    const { lang } = Resizer;
+
+    const lk = lang.keys;
+
     const { resizerDisable } = settings;
 
     expose({});
 
-    return {
-      lk: Resizer.lang.keys,
-      resizerDisable,
-      width: ref(200)
-    };
+    return { lk, resizerDisable, width: ref(200) };
   }
 });
 </script>

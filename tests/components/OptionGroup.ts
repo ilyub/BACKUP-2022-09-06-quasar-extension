@@ -7,11 +7,7 @@ import { lang } from "@skylib/facades";
 
 test.each([undefined, 1, "a"])("OptionGroup", value => {
   const options: extras.OptionGroup.Options = [
-    {
-      disable: true,
-      label: lang.plain("Option 1"),
-      value: undefined
-    },
+    { disable: true, label: lang.plain("Option 1"), value: undefined },
     { label: lang.plain("Option 2"), value: 1 },
     { label: lang.plain("Option 3"), value: "a" }
   ];

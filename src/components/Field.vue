@@ -12,9 +12,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import type { Field } from "./Field.extras";
 import type { QField } from "quasar";
-import type { SetupExposed } from "./api";
 
 const prop = propFactory<Field.OwnProps>();
 
@@ -54,7 +54,7 @@ export default defineComponent({
       )
     );
 
-    const exposed: SetupExposed<Field.Global> = { main };
+    const exposed: Exposed<Field.Global> = { main };
 
     validateEmit<Field.OwnProps>(emit);
     validateProps<Field.OwnProps>(props);
@@ -62,7 +62,10 @@ export default defineComponent({
 
     return {
       blur: (): void => {
-        validation.validate(props.modelValue, "change");
+        validation.validate(
+          props.modelValue,
+          plugins.validation.Context.change
+        );
       },
       focus: (): void => {
         props.focusableElement?.focus();
@@ -76,7 +79,7 @@ export default defineComponent({
       update: (value: unknown): void => {
         value = props.format(value);
         emit("update:modelValue", value);
-        validation.validate(value, "input");
+        validation.validate(value, plugins.validation.Context.input);
       },
       value: computed(() => cast.string(props.modelValue))
     };

@@ -3,7 +3,7 @@ import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
 import type { BaseButton } from "./BaseButton.extras";
 import type { Button } from "./Button.extras";
-import type { SetupExposed } from "./api";
+import type { Exposed } from "./api";
 
 export default defineComponent({
   name: "m-button",
@@ -11,7 +11,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<BaseButton.Global>();
 
-    const exposed: SetupExposed<Button.Global> = { main };
+    const exposed: Exposed<Button.Global> = { main };
 
     expose(exposed);
 

@@ -2,7 +2,18 @@
 import * as _ from "@skylib/lodash-commonjs-es";
 import type { IndexedRecord, numberU, objects } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
-import { a, as, cast, fn, is, map, o, set } from "@skylib/functions";
+import {
+  ReadonlyMap,
+  ReadonlySet,
+  a,
+  as,
+  cast,
+  fn,
+  is,
+  map,
+  o,
+  set
+} from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
 import {
   directives,
@@ -14,15 +25,12 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import type { SetupExposed } from "./api";
+import type { Exposed } from "./api";
 import { Table } from "./Table.extras";
 import { genericSortable } from "./Sortable.generic";
 
-const { icons, lang } = Table;
-
 const prop = propFactory<Table.OwnProps>();
 
-// eslint-disable-next-line unicorn/consistent-destructuring -- Ok
 interface SortableColumn extends Table.Column {
   readonly order: number;
 }
@@ -43,15 +51,15 @@ export default defineComponent({
     ...parentProps<Table.ParentProps>(),
     binaryStateSortOff: prop.boolean("binaryStateSortOff"),
     binaryStateSortOn: prop.boolean("binaryStateSortOn"),
-    columnWidths: prop.default("columnWidths", new Map()),
+    columnWidths: prop.default("columnWidths", new ReadonlyMap()),
     columns: prop.default("columns", []),
-    columnsOrder: prop.default("columnsOrder", new Map()),
+    columnsOrder: prop.default("columnsOrder", new ReadonlyMap()),
     externalSorting: prop.boolean("externalSorting"),
     flatOff: prop.boolean("flatOff"),
     flatOn: prop.boolean("flatOn"),
     headerSeparatorOff: prop.boolean("headerSeparatorOff"),
     headerSeparatorOn: prop.boolean("headerSeparatorOn"),
-    hiddenColumns: prop.default("hiddenColumns", new Set()),
+    hiddenColumns: prop.default("hiddenColumns", new ReadonlySet()),
     manageColumns: prop.boolean("manageColumns"),
     multiSelect: prop.boolean("multiSelect"),
     pagination: prop.default("pagination", {}),
@@ -73,6 +81,8 @@ export default defineComponent({
     "update:selected": (value: objects) => skipCheck(value)
   },
   setup: (props, { emit, expose }) => {
+    const { icons, lang } = Table;
+
     const allSelected = computed(() => {
       if (props.rows.length)
         switch (selected.value.length) {
@@ -97,7 +107,7 @@ export default defineComponent({
 
     const settings = Table.injectSettings();
 
-    const exposed: SetupExposed<Table.Global> = { main };
+    const exposed: Exposed<Table.Global> = { main };
 
     validateEmit<Table.OwnProps>(emit);
     validateProps<Table.OwnProps>(props);
@@ -254,7 +264,7 @@ export default defineComponent({
       updateColumnsOrder: (columns: Table.Columns): void => {
         emit(
           "update:columnsOrder",
-          new Map(columns.map((column, index) => [column.name, index]))
+          new ReadonlyMap(columns.map((column, index) => [column.name, index]))
         );
       },
       updateHiddenColumns: (column: Table.Column, show: boolean): void => {

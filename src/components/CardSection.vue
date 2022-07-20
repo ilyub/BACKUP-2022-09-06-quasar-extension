@@ -4,8 +4,8 @@
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
 import type { CardSection } from "./CardSection.extras";
+import type { Exposed } from "./api";
 import type { QCardSection } from "quasar";
-import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-card-section",
@@ -13,7 +13,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<QCardSection>();
 
-    const exposed: SetupExposed<CardSection.Global> = { main };
+    const exposed: Exposed<CardSection.Global> = { main };
 
     expose(exposed);
 

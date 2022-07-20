@@ -13,9 +13,9 @@ import {
   validateEmit,
   validateProps
 } from "./api";
+import type { Exposed } from "./api";
 import type { QSelect } from "quasar";
 import { Select } from "./Select.extras";
-import type { SetupExposed } from "./api";
 
 const prop = propFactory<Select.OwnProps>();
 
@@ -40,6 +40,10 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: unknown) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
+    const { lang } = Select;
+
+    const lk = lang.keys;
+
     const { initialLabel, label } = plugins.langProps(
       props,
       "initialLabel",
@@ -60,12 +64,12 @@ export default defineComponent({
           format,
           label: props.validationLabel,
           required: props.required,
-          requiredErrorMessage: Select.lang.keys.SelectField
+          requiredErrorMessage: lk.SelectField
         })
       )
     );
 
-    const exposed: SetupExposed<Select.Global> = { main };
+    const exposed: Exposed<Select.Global> = { main };
 
     validateEmit<Select.OwnProps>(emit);
     validateProps<Select.OwnProps>(props);
@@ -73,11 +77,14 @@ export default defineComponent({
 
     return {
       blur: (): void => {
-        validation.validate(selectedOption.value, "change");
+        validation.validate(
+          selectedOption.value,
+          plugins.validation.Context.change
+        );
       },
       displayValue: computed(() =>
         selectedOption.value
-          ? Select.lang.get(selectedOption.value.label)
+          ? lang.get(selectedOption.value.label)
           : initialLabel.value
       ),
       displayValueInitial: computed(() => is.empty(selectedOption.value)),
@@ -94,7 +101,7 @@ export default defineComponent({
         props.options.map(
           (option): TranslatedOption => ({
             ...option,
-            label: Select.lang.get(option.label)
+            label: lang.get(option.label)
           })
         )
       ),
@@ -103,7 +110,7 @@ export default defineComponent({
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
         emit("update:modelValue", format(value));
-        validation.validate(value, "input");
+        validation.validate(value, plugins.validation.Context.input);
       }
     };
 

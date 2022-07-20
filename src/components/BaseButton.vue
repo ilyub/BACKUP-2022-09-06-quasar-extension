@@ -10,9 +10,9 @@ import {
   validateProps
 } from "./api";
 import { BaseButton } from "./BaseButton.extras";
+import type { Exposed } from "./api";
 import { Form } from "./Form.extras";
 import type { QBtn } from "quasar";
-import type { SetupExposed } from "./api";
 import { is } from "@skylib/functions";
 
 const prop = propFactory<BaseButton.OwnProps>();
@@ -44,7 +44,7 @@ export default defineComponent({
 
     const settings = BaseButton.injectSettings();
 
-    const exposed: SetupExposed<BaseButton.Global> = { main };
+    const exposed: Exposed<BaseButton.Global> = { main };
 
     validateProps<BaseButton.OwnProps>(props);
     expose(exposed);

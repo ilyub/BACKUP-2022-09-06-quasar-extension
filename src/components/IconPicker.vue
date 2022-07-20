@@ -12,9 +12,9 @@ import {
   validateProps
 } from "./api";
 import { handlePromise, inlineSearch, testDelay } from "@skylib/facades";
+import type { Exposed } from "./api";
 import type { IconButton } from "./IconButton.extras";
 import { IconPicker } from "./IconPicker.extras";
-import type { SetupExposed } from "./api";
 import type { stringU } from "@skylib/functions";
 
 const mdi = ref<Mdi>();
@@ -31,6 +31,10 @@ export default defineComponent({
   },
   emits: { "update:modelValue": (value: stringU) => skipCheck(value) },
   setup: (props, { emit, expose }) => {
+    const { icons, lang } = IconPicker;
+
+    const lk = lang.keys;
+
     const filteredItems = computed(() =>
       is.not.empty(searchString.value)
         ? searchIndex.value.search(searchString.value)
@@ -70,7 +74,7 @@ export default defineComponent({
 
     const total = computed(() => filteredItems.value.length);
 
-    const exposed: SetupExposed<IconPicker.Global> = { main };
+    const exposed: Exposed<IconPicker.Global> = { main };
 
     validateEmit<IconPicker.OwnProps>(emit);
     validateProps<IconPicker.OwnProps>(props);
@@ -105,7 +109,7 @@ export default defineComponent({
               placeholder: false,
               selected: icon === props.modelValue,
               tooltip: settings.value.iconTooltips
-                ? IconPicker.lang.plain(item.description)
+                ? lang.plain(item.description)
                 : undefined
             });
           });
@@ -117,9 +121,9 @@ export default defineComponent({
       }),
       from,
       icon: computed(() => props.modelValue ?? props.placeholder),
-      icons: IconPicker.icons,
-      lang: IconPicker.lang,
-      lk: IconPicker.lang.keys,
+      icons,
+      lang,
+      lk,
       loading: computed(() => is.empty(mdi.value)),
       main,
       nextClick: (): void => {

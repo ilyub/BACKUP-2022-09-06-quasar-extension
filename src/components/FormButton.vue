@@ -2,8 +2,8 @@
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
 import type { BaseButton } from "./BaseButton.extras";
+import type { Exposed } from "./api";
 import type { FormButton } from "./FormButton.extras";
-import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-form-button",
@@ -11,7 +11,7 @@ export default defineComponent({
   setup: (_props, { expose }) => {
     const main = ref<BaseButton.Global>();
 
-    const exposed: SetupExposed<FormButton.Global> = { main };
+    const exposed: Exposed<FormButton.Global> = { main };
 
     expose(exposed);
 

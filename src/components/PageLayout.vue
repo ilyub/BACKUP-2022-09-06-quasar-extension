@@ -21,12 +21,14 @@ export default defineComponent({
     closeButtonOn: prop.boolean("closeButtonOn")
   },
   setup: (props, { expose }) => {
+    const { icons } = PageLayout;
+
     const settings = PageLayout.injectSettings();
 
     const { title } = plugins.langProps(props, "title");
 
-    expose({});
     validateProps<PageLayout.OwnProps>(props);
+    expose({});
 
     return {
       closeButton: computed(() =>
@@ -37,7 +39,7 @@ export default defineComponent({
         )
       ),
       hasTitle: computed(() => is.not.empty(title.value)),
-      icons: PageLayout.icons,
+      icons,
       settings,
       slotNames: plugins.slotNames<PageLayout.Slots>()(
         "actions",

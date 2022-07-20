@@ -7,6 +7,10 @@ import { settings } from "./core";
 export default defineComponent({
   name: "sample-icon-picker",
   setup: (_props, { expose }) => {
+    const { lang } = IconPicker;
+
+    const lk = lang.keys;
+
     const { iconPickerCompact, iconPickerTooltips } = settings;
 
     expose({});
@@ -15,7 +19,7 @@ export default defineComponent({
       icon: ref<string>(),
       iconPickerCompact,
       iconPickerTooltips,
-      lk: IconPicker.lang.keys,
+      lk,
       mdiImageEdit,
       transcript: "d = 30, f = 17"
     };

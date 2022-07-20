@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { BaseButton } from "./BaseButton.extras";
+import { PromiseType } from "@skylib/facades";
 import { mdiCheck } from "@mdi/js";
 import { settings } from "./core";
 import { useQuasar } from "quasar";
@@ -9,6 +10,10 @@ import { wait } from "@skylib/functions";
 export default defineComponent({
   name: "sample-base-button",
   setup: (_props, { expose }) => {
+    const { lang } = BaseButton;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
@@ -17,22 +22,23 @@ export default defineComponent({
     expose({});
 
     return {
+      PromiseType,
       asyncClick: async (): Promise<void> => {
         await wait(2000);
-        $q.notify(BaseButton.lang.AsyncClick);
+        $q.notify(lang.AsyncClick);
       },
       asyncSubmit: async (): Promise<void> => {
         await wait(2000);
-        $q.notify(BaseButton.lang.Submitted);
+        $q.notify(lang.Submitted);
       },
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
       confirmedClick: (): void => {
-        $q.notify(BaseButton.lang.ConfirmedClick);
+        $q.notify(lang.ConfirmedClick);
       },
       icon: mdiCheck,
-      lang: BaseButton.lang,
-      lk: BaseButton.lang.keys,
+      lang,
+      lk,
       name: ref<string>()
     };
   }
@@ -96,7 +102,7 @@ export default defineComponent({
   <m-page-section>
     <m-form
       :async-submit="asyncSubmit"
-      async-task-type="httpRequest"
+      :async-task-type="PromiseType.httpRequest"
       :class="$style.form"
     >
       <m-form-section>

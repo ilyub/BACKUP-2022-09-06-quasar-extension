@@ -4,8 +4,8 @@
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";
 import type { ExpansionItem } from "./ExpansionItem.extras";
+import type { Exposed } from "./api";
 import type { QExpansionItem } from "quasar";
-import type { SetupExposed } from "./api";
 
 export default defineComponent({
   name: "m-expansion-item",
@@ -18,7 +18,7 @@ export default defineComponent({
 
     const main = ref<QExpansionItem>();
 
-    const exposed: SetupExposed<ExpansionItem.Global> = { main };
+    const exposed: Exposed<ExpansionItem.Global> = { main };
 
     expose(exposed);
 

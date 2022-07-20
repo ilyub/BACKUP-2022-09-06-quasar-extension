@@ -1,18 +1,17 @@
 import type { ComputedRef, Ref } from "vue";
-import type { Optional, empty } from "@skylib/functions";
-import type { QField, QInput, ValidationRule } from "quasar";
-import { a, cast, defineFn, evaluate, is, typedef } from "@skylib/functions";
+import type {
+  Options,
+  OwnProps,
+  Plugin,
+  Props,
+  Rule
+} from "./validation.internal";
+import type { QField, QInput } from "quasar";
+import { a, cast, defineFn, evaluate, is } from "@skylib/functions";
 import { compare, handlePromise, lang } from "@skylib/facades";
 import { computed, ref } from "vue";
 import { injectableTrigger, propFactory } from "./misc";
-
-declare global {
-  namespace facades {
-    namespace lang {
-      interface Word extends validation.Word {}
-    }
-  }
-}
+import { Context } from "./validation.internal";
 
 export const validation = defineFn(
   /**
@@ -24,28 +23,27 @@ export const validation = defineFn(
    * @returns Validation plugin.
    */
   <T = unknown>(
-    props: validation.Props<T>,
+    props: Props<T>,
     target: ComputedRef<QField | QInput>,
-    options: ComputedRef<validation.Options<T>>
-  ): validation.Plugin<T> => {
-    const contexts = new Map<symbol, validation.Context>();
+    options: ComputedRef<Options<T>>
+  ): Plugin<T> => {
+    const contexts = new Map<symbol, Context>();
 
     const label = computed(() =>
-      is.not.empty(options.value.label) &&
-      validation.lang.has(options.value.label)
+      is.not.empty(options.value.label) && lang.has(options.value.label)
         ? options.value.label
         : "field"
     );
 
     const rulesOnInput = computed(() =>
       props.rulesOnInput
-        ? props.rulesOnInput.map(rule => wrapRule(rule, "input"))
+        ? props.rulesOnInput.map(rule => wrapRule(rule, Context.input))
         : []
     );
 
     const rulesOnChange = computed(() =>
       props.rulesOnChange
-        ? props.rulesOnChange.map(rule => wrapRule(rule, "change"))
+        ? props.rulesOnChange.map(rule => wrapRule(rule, Context.change))
         : []
     );
 
@@ -62,13 +60,13 @@ export const validation = defineFn(
 
               return is.not.empty(value) && compare(value, min) < 0
                 ? lang.plain(
-                    validation.lang
+                    lang
                       .with("field", label.value)
                       .with("min", minMaxFormat(min))
                       .get(message)
                   )
                 : true;
-            }, "change")
+            }, Context.change)
           ]
         : [];
     });
@@ -86,20 +84,20 @@ export const validation = defineFn(
 
               return is.not.empty(value) && compare(value, max) > 0
                 ? lang.plain(
-                    validation.lang
+                    lang
                       .with("field", label.value)
                       .with("max", minMaxFormat(max))
                       .get(message)
                   )
                 : true;
-            }, "change")
+            }, Context.change)
           ]
         : [];
     });
 
     const rulesOnSubmit = computed(() =>
       props.rulesOnSubmit
-        ? props.rulesOnSubmit.map(rule => wrapRule(rule, "submit"))
+        ? props.rulesOnSubmit.map(rule => wrapRule(rule, Context.submit))
         : []
     );
 
@@ -111,11 +109,9 @@ export const validation = defineFn(
                 options.value.requiredErrorMessage ?? "FieldIsRequired";
 
               return value === undefined
-                ? lang.plain(
-                    validation.lang.with("field", label.value).get(message)
-                  )
+                ? lang.plain(lang.with("field", label.value).get(message))
                 : true;
-            }, "submit")
+            }, Context.submit)
           ]
         : []
     );
@@ -149,14 +145,11 @@ export const validation = defineFn(
       readonly state: Ref<lang.Key | true>;
     }
 
-    function validate(value: T, context: validation.Context): void {
+    function validate(value: T, context: Context): void {
       handlePromise.silent(validateAsync(value, context));
     }
 
-    async function validateAsync(
-      value: T,
-      context: validation.Context
-    ): Promise<boolean> {
+    async function validateAsync(value: T, context: Context): Promise<boolean> {
       const key = Symbol("validation-context");
 
       contexts.set(key, context);
@@ -168,10 +161,7 @@ export const validation = defineFn(
       }
     }
 
-    function wrapRule(
-      rule: validation.Rule<T>,
-      context: validation.Context
-    ): RuleWrapper {
+    function wrapRule(rule: Rule<T>, context: Context): RuleWrapper {
       const state = ref<lang.Key | true>(true);
 
       return defineFn(
@@ -193,10 +183,11 @@ export const validation = defineFn(
     }
   },
   {
-    lang: typedef<lang.Lang<keyof validation.Word, never>>(lang),
+    Context,
+    lang,
     // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
     props: evaluate(() => {
-      const prop = propFactory<validation.OwnProps>();
+      const prop = propFactory<OwnProps>();
 
       return {
         rulesOnChange: prop("rulesOnChange"),
@@ -208,81 +199,15 @@ export const validation = defineFn(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace validation {
-  export type Context = "change" | "input" | "submit";
+  export type Context = import("./validation.internal").Context;
 
-  export interface Options<T = unknown> {
-    /**
-     * Formats value for validation.
-     *
-     * @param value - Value.
-     * @returns Formatted value.
-     */
-    readonly format: (value: unknown) => T;
-    readonly label?: lang.Key;
-    readonly max?: T;
-    readonly maxErrorMessage?: lang.Key;
-    readonly min?: T;
-    readonly minErrorMessage?: lang.Key;
-    /**
-     * Formats min/max value.
-     *
-     * @param value - Value.
-     * @returns Formatted value.l.
-     */
-    readonly minMaxFormat?: (value: Exclude<T, empty>) => string;
-    readonly required?: boolean;
-    readonly requiredErrorMessage?: lang.Key;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+  export type Options<T = unknown> = import("./validation.internal").Options<T>;
 
-  export type OptionsProp<T = unknown> = Optional<Options<T>>;
+  // eslint-disable-next-line @skylib/custom/quasar/prefer-Props-interface, @typescript-eslint/no-shadow -- Ok
+  export type Props<T = unknown> = import("./validation.internal").Props<T>;
 
-  export interface OwnProps<T = unknown> {
-    readonly rulesOnChange?: Rules<T> | undefined;
-    readonly rulesOnInput?: Rules<T> | undefined;
-    readonly rulesOnSubmit?: Rules<T> | undefined;
-  }
-
-  export interface Plugin<T = unknown> {
-    readonly rules: ComputedRef<ValidationRules>;
-    /**
-     * Validates field.
-     *
-     * @param value - Value.
-     * @param context - Context.
-     */
-    readonly validate: (value: T, context: Context) => void;
-    /**
-     * Validates field.
-     *
-     * @param value - Value.
-     * @param context - Context.
-     * @returns Promise.
-     */
-    readonly validateAsync: (value: T, context: Context) => Promise<boolean>;
-  }
-
-  export interface Props<T = unknown> extends OwnProps<T> {}
-
-  export interface Rule<T = unknown> {
-    /**
-     * Validates value.
-     *
-     * @param value - Value.
-     * @returns Validation result.
-     */
-    (value: T): lang.Key | Promise<lang.Key | true> | true;
-  }
-
-  export type Rules<T = unknown> = ReadonlyArray<Rule<T>>;
-
-  export type ValidationRules<T = unknown> = ReadonlyArray<ValidationRule<T>>;
-
-  export interface Word {
-    readonly Equal: true;
-    readonly Field: true;
-    readonly FieldIsRequired: true;
-    readonly FieldShouldBeGteMin: true;
-    readonly FieldShouldBeLteMax: true;
-  }
+  export type Rules<T = unknown> = import("./validation.internal").Rules<T>;
 }

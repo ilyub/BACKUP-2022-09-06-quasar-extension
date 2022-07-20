@@ -6,11 +6,15 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-item",
   setup: (_props, { expose }) => {
+    const { lang } = Item;
+
+    const lk = lang.keys;
+
     expose();
 
     return {
-      lang: Item.lang,
-      lk: Item.lang.keys,
+      lang,
+      lk,
       mdiAccount,
       mdiPen
     };

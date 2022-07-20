@@ -10,6 +10,10 @@ export default defineComponent({
   name: "sample-field",
   components: { "m-field__string": generic.Field<stringU>() },
   setup: (_props, { expose }) => {
+    const { lang } = Field;
+
+    const lk = lang.keys;
+
     expose();
 
     return {
@@ -20,7 +24,7 @@ export default defineComponent({
       ): void => {
         emitValue(o.get(as.not.empty(event.target), "value"));
       },
-      lk: Field.lang.keys,
+      lk,
       value: ref<string>()
     };
   }

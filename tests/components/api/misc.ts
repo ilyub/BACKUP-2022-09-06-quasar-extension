@@ -1,3 +1,5 @@
+/* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
+
 import * as testUtils from "@/test-utils";
 import * as vueTestUtils from "@vue/test-utils";
 import { classRef, injectRequire, injectableTrigger, prop } from "@";
@@ -50,7 +52,7 @@ test("trigger", async () => {
 
   const trigger = injectableTrigger();
 
-  const wrapper = vueTestUtils.mount({
+  vueTestUtils.mount({
     components: {
       subcomponent: {
         setup: () => {
@@ -67,6 +69,6 @@ test("trigger", async () => {
   });
 
   await wait(1000);
-  expect(wrapper).toBeDefined();
+
   expect(callback).mockCallsToBe([]);
 });

@@ -10,11 +10,7 @@ test.each([
 ])("emit: update:modelValue (down)", async ({ expected, modelValue }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
-    props: {
-      max: 2,
-      min: 1,
-      modelValue
-    }
+    props: { max: 2, min: 1, modelValue }
   });
 
   const { comp } = testUtils.findFactory("numeric-input", wrapper);
@@ -46,11 +42,7 @@ test.each([
 ])("emit: update:modelValue, up", async ({ expected, modelValue }) => {
   const wrapper = vueTestUtils.mount(components.NumericInput, {
     global: testUtils.globalMountOptions(),
-    props: {
-      max: 2,
-      min: 1,
-      modelValue
-    }
+    props: { max: 2, min: 1, modelValue }
   });
 
   const { comp } = testUtils.findFactory("numeric-input", wrapper);

@@ -6,6 +6,10 @@ import { settings } from "./core";
 export default defineComponent({
   name: "sample-page-layout",
   setup: (_props, { expose }) => {
+    const { lang } = PageLayout;
+
+    const lk = lang.keys;
+
     const { pageLayoutCloseButton } = settings;
 
     expose({});
@@ -14,8 +18,8 @@ export default defineComponent({
       closeButton: pageLayoutCloseButton,
       closeButtonOff: ref(false),
       closeButtonOn: ref(false),
-      lang: PageLayout.lang,
-      lk: PageLayout.lang.keys,
+      lang,
+      lk,
       scrollbar: ref(true),
       title: ref(true)
     };

@@ -1,26 +1,32 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { Form } from "./Form.extras";
+import { PromiseType } from "@skylib/facades";
 import { useQuasar } from "quasar";
 import { wait } from "@skylib/functions";
 
 export default defineComponent({
   name: "sample-form",
   setup: (_props, { expose }) => {
+    const { lang } = Form;
+
+    const lk = lang.keys;
+
     const $q = useQuasar();
 
     expose({});
 
     return {
+      PromiseType,
       asyncSubmit: async (): Promise<void> => {
         await wait(2000);
-        $q.notify(Form.lang.Submitted);
+        $q.notify(lang.Submitted);
       },
-      lk: Form.lang.keys,
+      lk,
       name1: ref<string>(),
       name2: ref<string>(),
       submit: (): void => {
-        $q.notify(Form.lang.Submitted);
+        $q.notify(lang.Submitted);
       }
     };
   }
@@ -42,7 +48,7 @@ export default defineComponent({
   <m-page-section>
     <m-form
       :async-submit="asyncSubmit"
-      async-task-type="httpRequest"
+      :async-task-type="PromiseType.httpRequest"
       :class="$style.form"
     >
       <m-form-section>

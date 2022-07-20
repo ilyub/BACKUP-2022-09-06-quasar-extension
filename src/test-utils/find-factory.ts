@@ -10,10 +10,10 @@ import { a } from "@skylib/functions";
  * @param wrapper - Wrapper.
  * @returns Find functions.
  */
-export function findFactory(
+export function findFactory<T = never>(
   prefix: string,
   wrapper: Wrapper
-): findFactory.Result {
+): findFactory.Result<T> {
   return {
     comp: (ref, index = 0) =>
       index
@@ -30,7 +30,8 @@ export function findFactory(
       index
         ? a.get(wrapper.findAll(selector(ref)), index)
         : wrapper.find(selector(ref)),
-    elems: ref => wrapper.findAll(selector(ref))
+    elems: ref => wrapper.findAll(selector(ref)),
+    vm: wrapper.vm as unknown as T
   };
 
   function selector(ref: string): string {
@@ -39,7 +40,7 @@ export function findFactory(
 }
 
 export namespace findFactory {
-  export interface Result {
+  export interface Result<T = never> {
     /**
      * Finds component.
      *
@@ -85,5 +86,6 @@ export namespace findFactory {
      * @returns Wrappers.
      */
     readonly elems: (ref: string) => DOMWrappers;
+    readonly vm: T;
   }
 }

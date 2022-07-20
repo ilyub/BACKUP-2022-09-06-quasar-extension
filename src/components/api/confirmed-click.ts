@@ -50,6 +50,7 @@ export const confirmedClick = defineFn(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace confirmedClick {
   export interface ConfirmedClick {
     /**
