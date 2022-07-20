@@ -4,10 +4,6 @@
 
 ## Table of contents
 
-### References
-
-- [mocks](test_utils_global_mount_options.md#mocks)
-
 ### Namespaces
 
 - [globalMountOptions](test_utils_global_mount_options.globalMountOptions.md)
@@ -15,12 +11,6 @@
 ### Functions
 
 - [globalMountOptions](test_utils_global_mount_options.md#globalmountoptions)
-
-## References
-
-### mocks
-
-Renames and re-exports [test-utils/mocks](test_utils_mocks.md)
 
 ## Functions
 

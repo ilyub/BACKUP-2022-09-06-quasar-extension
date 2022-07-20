@@ -6,33 +6,36 @@
 
 ## Table of contents
 
-### Interfaces
-
-- [Options](../interfaces/components_api_validation.validation.Options.md)
-- [OwnProps](../interfaces/components_api_validation.validation.OwnProps.md)
-- [Plugin](../interfaces/components_api_validation.validation.Plugin.md)
-- [Props](../interfaces/components_api_validation.validation.Props.md)
-- [Rule](../interfaces/components_api_validation.validation.Rule.md)
-- [Word](../interfaces/components_api_validation.validation.Word.md)
-
 ### Type Aliases
 
 - [Context](components_api_validation.validation.md#context)
-- [OptionsProp](components_api_validation.validation.md#optionsprop)
+- [Options](components_api_validation.validation.md#options)
+- [Props](components_api_validation.validation.md#props)
 - [Rules](components_api_validation.validation.md#rules)
-- [ValidationRules](components_api_validation.validation.md#validationrules)
 
 ## Type Aliases
 
 ### Context
 
-Ƭ **Context**: ``"change"`` \| ``"input"`` \| ``"submit"``
+Ƭ **Context**: [`components/api/validation.internal`](components_api_validation_internal.md)
 
 ___
 
-### OptionsProp
+### Options
 
-Ƭ **OptionsProp**<`T`\>: `Optional`<[`Options`](../interfaces/components_api_validation.validation.Options.md)<`T`\>\>
+Ƭ **Options**<`T`\>: [`components/api/validation.internal`](components_api_validation_internal.md)
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `unknown` |
+
+___
+
+### Props
+
+Ƭ **Props**<`T`\>: [`components/api/validation.internal`](components_api_validation_internal.md)
 
 #### Type parameters
 
@@ -44,19 +47,7 @@ ___
 
 ### Rules
 
-Ƭ **Rules**<`T`\>: `ReadonlyArray`<[`Rule`](../interfaces/components_api_validation.validation.Rule.md)<`T`\>\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `unknown` |
-
-___
-
-### ValidationRules
-
-Ƭ **ValidationRules**<`T`\>: `ReadonlyArray`<`ValidationRule`<`T`\>\>
+Ƭ **Rules**<`T`\>: [`components/api/validation.internal`](components_api_validation_internal.md)
 
 #### Type parameters
 

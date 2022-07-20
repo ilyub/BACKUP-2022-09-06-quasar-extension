@@ -15,7 +15,7 @@
 
 ### transition
 
-• `Readonly` **transition**: [`Transition`](../modules/components_Switchable_extras.Switchable.md#transition)
+• `Readonly` **transition**: [`Transition`](../enums/components_Switchable_extras.Switchable.Transition.md)
 
 ___
 

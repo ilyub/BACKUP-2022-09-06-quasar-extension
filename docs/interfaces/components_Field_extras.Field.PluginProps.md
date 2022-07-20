@@ -14,7 +14,7 @@
 
 - [`Props`](../modules/components_api_lang_props.langProps.md#props)<``"label"`` \| ``"placeholder"``\>
 
-- [`Props`](components_api_validation.validation.Props.md)<`T`\>
+- [`Props`](../modules/components_api_validation.validation.md#props)<`T`\>
 
   ↳ **`PluginProps`**
 
@@ -54,28 +54,28 @@ ___
 
 ### rulesOnChange
 
-• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
-[Props](components_api_validation.validation.Props.md).[rulesOnChange](components_api_validation.validation.Props.md#rulesonchange)
+plugins.validation.Props.rulesOnChange
 
 ___
 
 ### rulesOnInput
 
-• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
-[Props](components_api_validation.validation.Props.md).[rulesOnInput](components_api_validation.validation.Props.md#rulesoninput)
+plugins.validation.Props.rulesOnInput
 
 ___
 
 ### rulesOnSubmit
 
-• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
-[Props](components_api_validation.validation.Props.md).[rulesOnSubmit](components_api_validation.validation.Props.md#rulesonsubmit)
+plugins.validation.Props.rulesOnSubmit

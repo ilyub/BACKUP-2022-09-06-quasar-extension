@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/validation](../modules/components_api_validation.md) / [validation](../modules/components_api_validation.validation.md) / Options
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/validation.internal](../modules/components_api_validation_internal.md) / Options
 
 # Interface: Options<T\>
 
-[components/api/validation](../modules/components_api_validation.md).[validation](../modules/components_api_validation.validation.md).Options
+[components/api/validation.internal](../modules/components_api_validation_internal.md).Options
 
 ## Type parameters
 
@@ -14,15 +14,15 @@
 
 ### Properties
 
-- [format](components_api_validation.validation.Options.md#format)
-- [label](components_api_validation.validation.Options.md#label)
-- [max](components_api_validation.validation.Options.md#max)
-- [maxErrorMessage](components_api_validation.validation.Options.md#maxerrormessage)
-- [min](components_api_validation.validation.Options.md#min)
-- [minErrorMessage](components_api_validation.validation.Options.md#minerrormessage)
-- [minMaxFormat](components_api_validation.validation.Options.md#minmaxformat)
-- [required](components_api_validation.validation.Options.md#required)
-- [requiredErrorMessage](components_api_validation.validation.Options.md#requirederrormessage)
+- [format](components_api_validation_internal.Options.md#format)
+- [label](components_api_validation_internal.Options.md#label)
+- [max](components_api_validation_internal.Options.md#max)
+- [maxErrorMessage](components_api_validation_internal.Options.md#maxerrormessage)
+- [min](components_api_validation_internal.Options.md#min)
+- [minErrorMessage](components_api_validation_internal.Options.md#minerrormessage)
+- [minMaxFormat](components_api_validation_internal.Options.md#minmaxformat)
+- [required](components_api_validation_internal.Options.md#required)
+- [requiredErrorMessage](components_api_validation_internal.Options.md#requirederrormessage)
 
 ## Properties
 

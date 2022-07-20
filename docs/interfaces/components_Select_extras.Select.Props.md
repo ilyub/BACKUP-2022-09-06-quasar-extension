@@ -126,7 +126,7 @@ ___
 
 ### rulesOnChange
 
-• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
@@ -136,7 +136,7 @@ ___
 
 ### rulesOnInput
 
-• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
@@ -146,7 +146,7 @@ ___
 
 ### rulesOnSubmit
 
-• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 

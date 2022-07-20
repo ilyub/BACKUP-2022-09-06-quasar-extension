@@ -88,6 +88,7 @@
 - [components/api/types](modules/components_api_types.md)
 - [components/api/types/prop-options](modules/components_api_types_prop_options.md)
 - [components/api/validation](modules/components_api_validation.md)
+- [components/api/validation.internal](modules/components_api_validation_internal.md)
 - [components/index.components](modules/components_index_components.md)
 - [components/index.extras](modules/components_index_extras.md)
 - [components/index.generic](modules/components_index_generic.md)

@@ -6,6 +6,10 @@
 
 ## Table of contents
 
+### Enumerations
+
+- [Transition](../enums/components_Switchable_extras.Switchable.Transition.md)
+
 ### Interfaces
 
 - [Global](../interfaces/components_Switchable_extras.Switchable.Global.md)
@@ -14,10 +18,6 @@
 - [Props](../interfaces/components_Switchable_extras.Switchable.Props.md)
 - [Settings](../interfaces/components_Switchable_extras.Switchable.Settings.md)
 - [Slots](../interfaces/components_Switchable_extras.Switchable.Slots.md)
-
-### Type Aliases
-
-- [Transition](components_Switchable_extras.Switchable.md#transition)
 
 ### Variables
 
@@ -28,12 +28,6 @@
 - [injectSettings](components_Switchable_extras.Switchable.md#injectsettings)
 - [provideSettings](components_Switchable_extras.Switchable.md#providesettings)
 - [testProvideSettings](components_Switchable_extras.Switchable.md#testprovidesettings)
-
-## Type Aliases
-
-### Transition
-
-Ƭ **Transition**: ``"none"`` \| ``"slide"``
 
 ## Variables
 

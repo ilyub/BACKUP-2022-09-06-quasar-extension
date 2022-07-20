@@ -29,7 +29,7 @@
 
 ### align
 
-• `Readonly` **align**: [`Align`](../modules/components_Table_extras.Table.md#align)
+• `Readonly` **align**: [`Align`](../enums/components_Table_extras.Table.Align.md)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 ### sortOrder
 
-• `Optional` `Readonly` **sortOrder**: ``"ad"`` \| ``"da"``
+• `Optional` `Readonly` **sortOrder**: [`SortOrder`](../enums/components_Table_extras.Table.SortOrder.md)
 
 ___
 

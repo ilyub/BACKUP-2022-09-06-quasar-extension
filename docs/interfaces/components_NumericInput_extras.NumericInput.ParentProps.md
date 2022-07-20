@@ -85,7 +85,7 @@ ___
 
 ### rulesOnChange
 
-• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`numberU`\>
+• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`numberU`\>
 
 #### Inherited from
 
@@ -95,7 +95,7 @@ ___
 
 ### rulesOnInput
 
-• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`numberU`\>
+• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`numberU`\>
 
 #### Inherited from
 
@@ -105,7 +105,7 @@ ___
 
 ### rulesOnSubmit
 
-• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`numberU`\>
+• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`numberU`\>
 
 #### Inherited from
 

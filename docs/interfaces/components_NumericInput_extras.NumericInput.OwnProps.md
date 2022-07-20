@@ -85,4 +85,4 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`numberU`\>\>
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation_internal.Options.md)<`numberU`\>\>

@@ -26,6 +26,6 @@
 | `pageLayoutCloseButton` | `Ref`<`boolean`\> |
 | `provide` | () => `void` |
 | `resizerDisable` | `Ref`<`boolean`\> |
-| `switchableTransition` | `Ref`<[`Transition`](components_Switchable_extras.Switchable.md#transition)\> |
+| `switchableTransition` | `Ref`<[`Transition`](../enums/components_Switchable_extras.Switchable.Transition.md)\> |
 | `tooltipDelay` | `Ref`<`number`\> |
 | `tooltipShow` | `Ref`<`boolean`\> |

@@ -6,6 +6,11 @@
 
 ## Table of contents
 
+### Enumerations
+
+- [Align](../enums/components_Table_extras.Table.Align.md)
+- [SortOrder](../enums/components_Table_extras.Table.SortOrder.md)
+
 ### Interfaces
 
 - [BodyCellSlotData](../interfaces/components_Table_extras.Table.BodyCellSlotData.md)
@@ -28,7 +33,6 @@
 
 ### Type Aliases
 
-- [Align](components_Table_extras.Table.md#align)
 - [ColumnWidths](components_Table_extras.Table.md#columnwidths)
 - [Columns](components_Table_extras.Table.md#columns)
 - [ColumnsOrder](components_Table_extras.Table.md#columnsorder)
@@ -47,12 +51,6 @@
 - [testProvideSettings](components_Table_extras.Table.md#testprovidesettings)
 
 ## Type Aliases
-
-### Align
-
-Ƭ **Align**: ``"center"`` \| ``"left"`` \| ``"right"``
-
-___
 
 ### ColumnWidths
 

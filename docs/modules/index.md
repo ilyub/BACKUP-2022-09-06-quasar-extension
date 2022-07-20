@@ -6,8 +6,9 @@
 
 ### References
 
+- [Exposed](index.md#exposed)
 - [GlobalComponent](index.md#globalcomponent)
-- [SetupExposed](index.md#setupexposed)
+- [RouteRecordRaws](index.md#routerecordraws)
 - [VNodes](index.md#vnodes)
 - [classRef](index.md#classref)
 - [components](index.md#components)
@@ -34,15 +35,21 @@
 
 ## References
 
+### Exposed
+
+Re-exports [Exposed](components_api_misc.md#exposed)
+
+___
+
 ### GlobalComponent
 
 Re-exports [GlobalComponent](../interfaces/components_api_misc.GlobalComponent.md)
 
 ___
 
-### SetupExposed
+### RouteRecordRaws
 
-Re-exports [SetupExposed](components_api_misc.md#setupexposed)
+Re-exports [RouteRecordRaws](components_api_misc.md#routerecordraws)
 
 ___
 

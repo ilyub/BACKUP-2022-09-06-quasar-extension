@@ -143,7 +143,7 @@ ___
 
 ### rulesOnChange
 
-• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnChange**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
@@ -153,7 +153,7 @@ ___
 
 ### rulesOnInput
 
-• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnInput**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
@@ -163,7 +163,7 @@ ___
 
 ### rulesOnSubmit
 
-• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation.validation.md#rules)<`T`\>
+• `Optional` `Readonly` **rulesOnSubmit**: [`Rules`](../modules/components_api_validation_internal.md#rules)<`T`\>
 
 #### Inherited from
 
@@ -173,7 +173,7 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`T`\>\>
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation_internal.Options.md)<`T`\>\>
 
 #### Inherited from
 

@@ -16,7 +16,7 @@
 
 ### validation
 
-▸ **validation**<`T`\>(`props`, `target`, `options`): [`Plugin`](../interfaces/components_api_validation.validation.Plugin.md)<`T`\>
+▸ **validation**<`T`\>(`props`, `target`, `options`): [`Plugin`](../interfaces/components_api_validation_internal.Plugin.md)<`T`\>
 
 Use validation plugin.
 
@@ -30,12 +30,12 @@ Use validation plugin.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `props` | [`Props`](../interfaces/components_api_validation.validation.Props.md)<`T`\> | Props. |
+| `props` | [`Props`](../interfaces/components_api_validation_internal.Props.md)<`T`\> | Props. |
 | `target` | `ComputedRef`<`QField` \| `QInput`\> | Target. |
-| `options` | `ComputedRef`<[`Options`](../interfaces/components_api_validation.validation.Options.md)<`T`\>\> | Options. |
+| `options` | `ComputedRef`<[`Options`](../interfaces/components_api_validation_internal.Options.md)<`T`\>\> | Options. |
 
 #### Returns
 
-[`Plugin`](../interfaces/components_api_validation.validation.Plugin.md)<`T`\>
+[`Plugin`](../interfaces/components_api_validation_internal.Plugin.md)<`T`\>
 
 Validation plugin.

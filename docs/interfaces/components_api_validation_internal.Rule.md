@@ -1,8 +1,8 @@
-[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/validation](../modules/components_api_validation.md) / [validation](../modules/components_api_validation.validation.md) / Rule
+[Quasar extension](../index.md) / [Exports](../modules.md) / [components/api/validation.internal](../modules/components_api_validation_internal.md) / Rule
 
 # Interface: Rule<T\>
 
-[components/api/validation](../modules/components_api_validation.md).[validation](../modules/components_api_validation.validation.md).Rule
+[components/api/validation.internal](../modules/components_api_validation_internal.md).Rule
 
 ## Type parameters
 

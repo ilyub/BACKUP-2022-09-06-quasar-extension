@@ -10,7 +10,8 @@
 
 ### Type Aliases
 
-- [SetupExposed](components_api_misc.md#setupexposed)
+- [Exposed](components_api_misc.md#exposed)
+- [RouteRecordRaws](components_api_misc.md#routerecordraws)
 - [VNodes](components_api_misc.md#vnodes)
 
 ### Functions
@@ -31,15 +32,21 @@
 
 ## Type Aliases
 
-### SetupExposed
+### Exposed
 
-Ƭ **SetupExposed**<`T`\>: { readonly [K in keyof T]: ComputedRef<T[K]\> \| Ref<T[K]\> \| T[K] }
+Ƭ **Exposed**<`T`\>: { readonly [K in keyof T]: ComputedRef<T[K]\> \| Ref<T[K]\> \| T[K] }
 
 #### Type parameters
 
 | Name |
 | :------ |
 | `T` |
+
+___
+
+### RouteRecordRaws
+
+Ƭ **RouteRecordRaws**: readonly `RouteRecordRaw`[]
 
 ___
 
@@ -311,7 +318,7 @@ Validates emit function.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `_emit` | [`SetupEmit`](components_api_misc_internal.md#setupemit)<`T`\> | Emit function. |
+| `_emit` | [`Emit`](components_api_misc_internal.md#emit)<`T`\> | Emit function. |
 
 #### Returns
 
@@ -336,7 +343,7 @@ Validates props.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `_props` | [`SetupProps`](components_api_misc_internal.md#setupprops)<`T`, `K`\> | Props. |
+| `_props` | [`Props`](components_api_misc_internal.md#props)<`T`, `K`\> | Props. |
 
 #### Returns
 

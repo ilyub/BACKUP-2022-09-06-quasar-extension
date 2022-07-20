@@ -16,9 +16,15 @@
 
 ### findFactory
 
-▸ **findFactory**(`prefix`, `wrapper`): [`Result`](../interfaces/test_utils_find_factory.findFactory.Result.md)
+▸ **findFactory**<`T`\>(`prefix`, `wrapper`): [`Result`](../interfaces/test_utils_find_factory.findFactory.Result.md)<`T`\>
 
 Find factory.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `never` |
 
 #### Parameters
 
@@ -29,6 +35,6 @@ Find factory.
 
 #### Returns
 
-[`Result`](../interfaces/test_utils_find_factory.findFactory.Result.md)
+[`Result`](../interfaces/test_utils_find_factory.findFactory.Result.md)<`T`\>
 
 Find functions.

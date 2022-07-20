@@ -34,7 +34,7 @@ ___
 
 ### asyncTaskType
 
-• `Optional` `Readonly` **asyncTaskType**: `Type`
+• `Optional` `Readonly` **asyncTaskType**: `PromiseType`
 
 #### Inherited from
 

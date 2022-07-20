@@ -11,30 +11,54 @@
 - [InjectableSettings](../interfaces/components_api_misc_internal.InjectableSettings.md)
 - [InjectableTrigger](../interfaces/components_api_misc_internal.InjectableTrigger.md)
 - [Prop](../interfaces/components_api_misc_internal.Prop.md)
-- [SetupExpose](../interfaces/components_api_misc_internal.SetupExpose.md)
 
 ### Type Aliases
 
+- [Emit](components_api_misc_internal.md#emit)
+- [EmitAux](components_api_misc_internal.md#emitaux)
 - [Emits](components_api_misc_internal.md#emits)
 - [ParentProps](components_api_misc_internal.md#parentprops)
 - [PropBooleanKeys](components_api_misc_internal.md#propbooleankeys)
 - [PropOptionalKeys](components_api_misc_internal.md#propoptionalkeys)
 - [PropRequiredKeys](components_api_misc_internal.md#proprequiredkeys)
-- [SetupEmit](components_api_misc_internal.md#setupemit)
-- [SetupEmitAux](components_api_misc_internal.md#setupemitaux)
-- [SetupProps](components_api_misc_internal.md#setupprops)
+- [Props](components_api_misc_internal.md#props)
 
 ## Type Aliases
 
+### Emit
+
+Ƭ **Emit**<`T`\>: `ValueOf`<{ [K in keyof T]: EmitAux<K, Exclude<T[K], undefined\>\> }\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+___
+
+### EmitAux
+
+Ƭ **EmitAux**<`K`, `V`\>: `V` extends `types.fn.Callable` ? `K` extends \`on${types.string.UppercaseLetter}${infer B}\` ? `K` extends \`on${infer A}${B}\` ? (`event`: \`${Uncapitalize<A\>}${B}\`, ...`args`: `Parameters`<`V`\>) => `ReturnType`<`V`\> : `never` : `never` : `never`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `K` |
+| `V` |
+
+___
+
 ### Emits
 
-Ƭ **Emits**: { readonly [K in \`on${UppercaseLetter}${string}\`]: Function }
+Ƭ **Emits**: { readonly [K in \`on${types.string.UppercaseLetter}${string}\`]: Function }
 
 ___
 
 ### ParentProps
 
-Ƭ **ParentProps**<`T`\>: `Join2`<{ readonly [K in OptionalKeys<T\>]: PropOptions<T[K]\> }, { readonly [K in RequiredKeys<T\>]: PropOptionsRequired<T[K]\> }\>
+Ƭ **ParentProps**<`T`\>: `And`<{ readonly [K in types.object.keys.Optional<T\>]: PropOptions<T[K]\> }, { readonly [K in types.object.keys.Required<T\>]: PropOptionsRequired<T[K]\> }\>
 
 #### Type parameters
 
@@ -46,7 +70,7 @@ ___
 
 ### PropBooleanKeys
 
-Ƭ **PropBooleanKeys**<`T`\>: `PickKeys`<`T`, `booleanU`, ``"extends->"``\>
+Ƭ **PropBooleanKeys**<`T`\>: `types.object.keys.Pick`<`T`, `booleanU`, ``"extends->"``\>
 
 #### Type parameters
 
@@ -58,7 +82,7 @@ ___
 
 ### PropOptionalKeys
 
-Ƭ **PropOptionalKeys**<`T`\>: `FilterKeys`<`T`, `booleanU`, ``"extends->"``\> & `OptionalKeys`<`T`\>
+Ƭ **PropOptionalKeys**<`T`\>: `And`<`types.object.keys.Filter`<`T`, `booleanU`, ``"extends->"``\>, `types.object.keys.Optional`<`T`\>\>
 
 #### Type parameters
 
@@ -70,7 +94,7 @@ ___
 
 ### PropRequiredKeys
 
-Ƭ **PropRequiredKeys**<`T`\>: `FilterKeys`<`T`, `booleanU`, ``"extends->"``\> & `RequiredKeys`<`T`\>
+Ƭ **PropRequiredKeys**<`T`\>: `And`<`types.object.keys.Filter`<`T`, `booleanU`, ``"extends->"``\>, `types.object.keys.Required`<`T`\>\>
 
 #### Type parameters
 
@@ -80,38 +104,13 @@ ___
 
 ___
 
-### SetupEmit
+### Props
 
-Ƭ **SetupEmit**<`T`\>: `ValueOf`<{ [K in keyof T]: SetupEmitAux<K, Exclude<T[K], undefined\>\> }\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-___
-
-### SetupEmitAux
-
-Ƭ **SetupEmitAux**<`K`, `V`\>: `V` extends `Callable` ? `K` extends \`on${UppercaseLetter}${infer B}\` ? `K` extends \`on${infer A}${B}\` ? (`event`: \`${Uncapitalize<A\>}${B}\`, ...`args`: `Parameters`<`V`\>) => `ReturnType`<`V`\> : `never` : `never` : `never`
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `K` |
-| `V` |
-
-___
-
-### SetupProps
-
-Ƭ **SetupProps**<`T`, `K`\>: `Omit`<`T`, `Exclude`<keyof `T` & \`on${UppercaseLetter}${string}\`, `K`\>\>
+Ƭ **Props**<`T`, `K`\>: `Omit`<`T`, `Exclude`<keyof `T` & \`on${types.string.UppercaseLetter}${string}\`, `K`\>\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
-| `K` | extends keyof `T` & \`on${UppercaseLetter}${string}\` = `never` |
+| `K` | extends keyof `T` & \`on${types.string.UppercaseLetter}${string}\` = `never` |

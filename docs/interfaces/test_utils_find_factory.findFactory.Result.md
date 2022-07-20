@@ -1,8 +1,14 @@
 [Quasar extension](../index.md) / [Exports](../modules.md) / [test-utils/find-factory](../modules/test_utils_find_factory.md) / [findFactory](../modules/test_utils_find_factory.findFactory.md) / Result
 
-# Interface: Result
+# Interface: Result<T\>
 
 [test-utils/find-factory](../modules/test_utils_find_factory.md).[findFactory](../modules/test_utils_find_factory.findFactory.md).Result
+
+## Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `never` |
 
 ## Table of contents
 
@@ -14,6 +20,7 @@
 - [comps](test_utils_find_factory.findFactory.Result.md#comps)
 - [elem](test_utils_find_factory.findFactory.Result.md#elem)
 - [elems](test_utils_find_factory.findFactory.Result.md#elems)
+- [vm](test_utils_find_factory.findFactory.Result.md#vm)
 
 ## Properties
 
@@ -161,3 +168,9 @@ Finds elements.
 [`DOMWrappers`](../modules/test_utils_core.md#domwrappers)
 
 Wrappers.
+
+___
+
+### vm
+
+• `Readonly` **vm**: `T`

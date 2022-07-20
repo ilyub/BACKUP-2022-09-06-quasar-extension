@@ -90,4 +90,4 @@ ___
 
 ### validationOptions
 
-• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation.validation.Options.md)<`T`\>\>
+• `Optional` `Readonly` **validationOptions**: `Optional`<[`Options`](components_api_validation_internal.Options.md)<`T`\>\>
