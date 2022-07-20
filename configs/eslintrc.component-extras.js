@@ -27,7 +27,7 @@ module.exports = {
       {
         message: "Empty interface is not allowed",
         selector:
-          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props]"
+          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id[name!=Props][name!=Slots]"
       }
     ],
     "@skylib/custom/quasar/check-Props-extends": [
