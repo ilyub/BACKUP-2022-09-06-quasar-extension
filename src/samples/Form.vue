@@ -14,7 +14,7 @@ export default defineComponent({
 
     const $q = useQuasar();
 
-    expose({});
+    expose();
 
     return {
       PromiseType,

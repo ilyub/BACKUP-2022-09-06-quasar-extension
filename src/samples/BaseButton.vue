@@ -19,7 +19,7 @@ export default defineComponent({
     const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
       settings;
 
-    expose({});
+    expose();
 
     return {
       PromiseType,

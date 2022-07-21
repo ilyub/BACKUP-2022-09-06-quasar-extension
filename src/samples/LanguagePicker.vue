@@ -10,7 +10,7 @@ export default defineComponent({
 
     const { language } = settings;
 
-    expose({});
+    expose();
 
     return { lang, language };
   }

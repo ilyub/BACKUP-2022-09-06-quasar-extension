@@ -4,7 +4,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "sample-toggle",
   setup: (_prop, { expose }) => {
-    expose({});
+    expose();
 
     return { value: ref(false) };
   }

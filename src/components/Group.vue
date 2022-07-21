@@ -65,7 +65,7 @@ export default defineComponent({
     );
 
     validateProps<Group.OwnProps>(props);
-    expose({});
+    expose();
 
     return {
       filteredItems,

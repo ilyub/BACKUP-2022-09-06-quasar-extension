@@ -10,7 +10,7 @@ export default defineComponent({
 
     const lk = lang.keys;
 
-    expose({});
+    expose();
 
     return { icon: mdiClose, lk };
   }

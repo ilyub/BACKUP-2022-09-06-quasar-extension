@@ -7,7 +7,7 @@ export default defineComponent({
   setup: (_prop, { expose }) => {
     const { lang } = Section;
 
-    expose({});
+    expose();
 
     return { lang };
   }

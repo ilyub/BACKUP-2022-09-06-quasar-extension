@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "m-indent",
   setup: (_props, { expose }) => {
-    expose({});
+    expose();
   }
 });
 </script>

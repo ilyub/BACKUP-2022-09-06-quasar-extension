@@ -7,7 +7,7 @@ export default defineComponent({
   setup: (_prop, { expose }) => {
     const { lang } = Subsection;
 
-    expose({});
+    expose();
 
     return { lang };
   }

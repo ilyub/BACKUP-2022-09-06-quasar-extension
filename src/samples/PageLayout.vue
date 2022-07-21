@@ -12,7 +12,7 @@ export default defineComponent({
 
     const { pageLayoutCloseButton } = settings;
 
-    expose({});
+    expose();
 
     return {
       closeButton: pageLayoutCloseButton,

@@ -35,7 +35,7 @@ export default defineComponent({
 
     const title4 = lang.plain("Section 12 ddd eee");
 
-    expose({});
+    expose();
 
     return {
       groupItems: computed(

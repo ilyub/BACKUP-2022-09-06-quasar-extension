@@ -13,7 +13,7 @@ export default defineComponent({
 
     const $q = useQuasar();
 
-    expose({});
+    expose();
 
     return {
       click: (): void => {

@@ -24,7 +24,7 @@ export default defineComponent({
 
     const { switchableTransition } = settings;
 
-    expose({});
+    expose();
 
     return {
       disable: ref(false),

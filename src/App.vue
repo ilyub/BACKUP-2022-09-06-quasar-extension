@@ -15,7 +15,7 @@ export default defineComponent({
 
     const { language, provide } = settings;
 
-    expose({});
+    expose();
     provide();
 
     return {

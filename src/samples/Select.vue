@@ -32,7 +32,7 @@ export default defineComponent({
 
     const value5 = ref<Color | undefined>(Color.blue);
 
-    expose({});
+    expose();
 
     return {
       form,

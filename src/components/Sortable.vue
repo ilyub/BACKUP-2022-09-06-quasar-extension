@@ -65,7 +65,7 @@ export default defineComponent({
 
     validateEmit<Sortable.OwnProps>(emit);
     validateProps<Sortable.OwnProps>(props);
-    expose({});
+    expose();
 
     return {
       baseMove: (data: unknown): boolean => {

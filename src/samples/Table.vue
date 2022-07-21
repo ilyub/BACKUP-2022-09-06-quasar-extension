@@ -69,7 +69,7 @@ export default defineComponent({
 
     const width2 = ref(200);
 
-    expose({});
+    expose();
 
     return {
       columnWidths,

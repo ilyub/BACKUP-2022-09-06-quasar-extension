@@ -8,7 +8,7 @@ export default defineComponent({
   setup: (_prop, { expose }) => {
     const { lang } = IconButton;
 
-    expose({});
+    expose();
 
     return { lang, mdiAccount };
   }

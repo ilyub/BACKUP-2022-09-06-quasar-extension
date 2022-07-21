@@ -28,7 +28,7 @@ export default defineComponent({
 
     const value5 = ref<number>();
 
-    expose({});
+    expose();
 
     return {
       form,

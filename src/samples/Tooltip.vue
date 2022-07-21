@@ -19,7 +19,7 @@ export default defineComponent({
 
     const { tooltipDelay, tooltipShow } = settings;
 
-    expose({});
+    expose();
 
     return {
       lang,

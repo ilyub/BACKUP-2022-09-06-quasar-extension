@@ -28,7 +28,7 @@ export default defineComponent({
     const { title } = plugins.langProps(props, "title");
 
     validateProps<PageLayout.OwnProps>(props);
-    expose({});
+    expose();
 
     return {
       closeButton: computed(() =>

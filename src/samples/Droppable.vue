@@ -27,7 +27,7 @@ export default defineComponent({
 
     const disableSorting = ref(false);
 
-    expose({});
+    expose();
 
     extras.Sortable.provideSettings(
       computed(

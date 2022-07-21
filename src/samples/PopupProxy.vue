@@ -24,7 +24,7 @@ export default defineComponent({
 
     const menuTarget = ref("#default");
 
-    expose({});
+    expose();
 
     return {
       click: (direction: plugins.direction.Direction | undefined): void => {

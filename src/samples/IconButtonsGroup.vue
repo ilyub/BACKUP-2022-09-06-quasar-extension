@@ -5,7 +5,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "sample-icon-buttons-group",
   setup: (_prop, { expose }) => {
-    expose({});
+    expose();
 
     return { mdiPen, mdiPenPlus };
   }

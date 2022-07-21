@@ -87,6 +87,14 @@ module.exports = {
               "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=components] > ObjectExpression > Property[value.callee.object.name=generic] > Literal.key[value=/^(?:(?!__).)+$/u]"
           }
         ],
+        "@skylib/custom/quasar/consistent-expose-arg": [
+          "warn",
+          {
+            message: "Unnecessary argument",
+            selector:
+              "CallExpression[callee.name=expose] > ObjectExpression[properties.length=0]"
+          }
+        ],
         "@skylib/custom/quasar/no-global-icons": [
           "warn",
           {

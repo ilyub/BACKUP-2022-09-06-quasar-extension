@@ -7,7 +7,7 @@ export default defineComponent({
   setup: (_prop, { expose }) => {
     const { lang } = PageSection;
 
-    expose({});
+    expose();
 
     return { lang };
   }

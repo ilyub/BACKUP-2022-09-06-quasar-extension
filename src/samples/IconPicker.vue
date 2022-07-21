@@ -13,7 +13,7 @@ export default defineComponent({
 
     const { iconPickerCompact, iconPickerTooltips } = settings;
 
-    expose({});
+    expose();
 
     return {
       icon: ref<string>(),

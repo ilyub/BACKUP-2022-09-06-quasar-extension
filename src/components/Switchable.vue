@@ -12,7 +12,7 @@ export default defineComponent({
     const globalDisable = injections.disable.inject();
 
     validateProps<Switchable.OwnProps>(props);
-    expose({});
+    expose();
     injections.disable.provide(
       computed(() => props.disable || globalDisable.value)
     );

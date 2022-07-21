@@ -40,7 +40,7 @@ export default defineComponent({
 
     validateEmit<Resizer.OwnProps>(emit);
     validateProps<Resizer.OwnProps>(props);
-    expose({});
+    expose();
 
     return {
       handlePan: (event: unknown): void => {

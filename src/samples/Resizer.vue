@@ -12,7 +12,7 @@ export default defineComponent({
 
     const { resizerDisable } = settings;
 
-    expose({});
+    expose();
 
     return { lk, resizerDisable, width: ref(200) };
   }

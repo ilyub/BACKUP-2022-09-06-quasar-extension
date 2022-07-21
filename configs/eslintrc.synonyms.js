@@ -3,6 +3,7 @@ module.exports = [
   "@skylib/custom/quasar/check-Props-extends",
   "@skylib/custom/quasar/check-Slots-extends",
   "@skylib/custom/quasar/check-generic-component-name",
+  "@skylib/custom/quasar/consistent-expose-arg",
   "@skylib/custom/quasar/no-OwnProps-extends",
   "@skylib/custom/quasar/no-OwnSlots-extends",
   "@skylib/custom/quasar/no-computed-type-param",
