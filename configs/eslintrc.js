@@ -3,19 +3,6 @@ module.exports = {
     {
       files: "!*.js",
       rules: {
-        "@skylib/consistent-import/quasar": [
-          "warn",
-          {
-            sources: [
-              {
-                _id: "test-utils",
-                altLocalNames: ["quasarTestUtils"],
-                source: "@skylib/quasar-extension/src/test-utils",
-                type: "wildcard"
-              }
-            ]
-          }
-        ],
         "@skylib/custom/quasar/no-computed-type-param": [
           "warn",
           {

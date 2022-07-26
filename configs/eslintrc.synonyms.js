@@ -1,5 +1,4 @@
 module.exports = [
-  "@skylib/consistent-import/quasar",
   "@skylib/custom/quasar/check-Props-extends",
   "@skylib/custom/quasar/check-Slots-extends",
   "@skylib/custom/quasar/check-generic-component-name",
