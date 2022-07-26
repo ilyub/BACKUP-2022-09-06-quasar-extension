@@ -33,7 +33,7 @@ module.exports = {
     {
       files: "./src/components/*.vue",
       rules: {
-        "@skylib/match-filename": [
+        "@skylib/match-filename/vue-component-name": [
           "warn",
           {
             format: "kebabCase",
@@ -47,7 +47,7 @@ module.exports = {
     {
       files: "./src/samples/*.vue",
       rules: {
-        "@skylib/match-filename": [
+        "@skylib/match-filename/vue-component-name": [
           "warn",
           {
             format: "kebabCase",

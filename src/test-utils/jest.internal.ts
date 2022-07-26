@@ -6,7 +6,7 @@ import { equals } from "@jest/expect-utils";
 import type { types } from "@skylib/functions";
 
 // eslint-disable-next-line no-console -- Ok
-export const warn = console.warn as types.fn.Callable;
+export const warn: types.fn.Callable = console.warn;
 
 export const matchers: {
   readonly htmlToEqual: testUtils.ExpectFromMatcher<"htmlToEqual">;
