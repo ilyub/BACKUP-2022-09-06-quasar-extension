@@ -12,14 +12,6 @@ module.exports = {
       ]
     },
     {
-      files: [
-        "./src/components/*.extras.ts",
-        "./src/components/api/*",
-        "./src/samples/*.extras.ts"
-      ],
-      extends: "./configs/eslintrc.component-extras"
-    },
-    {
       files: "./src/samples/**",
       extends: require.resolve(
         "@skylib/config/src/eslintrc.allow-global-access"

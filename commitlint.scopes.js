@@ -1,4 +1,4 @@
 module.exports = {
-  dirs: ["./configs", "./public", "./src", "./tests"],
-  scopes: ["configs", "public", "quasar"]
+  dirs: ["./public", "./src", "./tests"],
+  scopes: ["public", "quasar"]
 };
