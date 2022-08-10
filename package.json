@@ -74,16 +74,16 @@
   },
   "devDependencies": {
     "@mdi/js": "^7.0.96",
-    "@quasar/app-webpack": "^3.5.7",
-    "@quasar/extras": "^1.14.3",
-    "@skylib/config": "^3.30.0",
-    "@skylib/eslint-plugin": "^0.1.45",
-    "autoprefixer": "^10.4.7",
-    "core-js": "^3.23.5",
-    "date-fns": "^2.28.0",
+    "@quasar/app-webpack": "^3.5.9",
+    "@quasar/extras": "^1.15.1",
+    "@skylib/config": "^3.34.0",
+    "@skylib/eslint-plugin": "^0.1.48",
+    "autoprefixer": "^10.4.8",
+    "core-js": "^3.24.1",
+    "date-fns": "^2.29.1",
     "flag-icon-css": "^4.1.7",
     "typeface-roboto-multilang": "^1.0.0",
-    "vue-tsc": "^0.38.9"
+    "vue-tsc": "^0.40.0"
   },
   "peerDependencies": {
     "@jest/expect-utils": "*",
