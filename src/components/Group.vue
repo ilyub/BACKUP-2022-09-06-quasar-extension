@@ -10,12 +10,6 @@ import Subsection from "./Subsection.vue";
 
 const prop = propFactory<Group.OwnProps>();
 
-interface TranslatedItem extends Omit<Group.Item, "title"> {
-  readonly id: string;
-  readonly show: boolean;
-  readonly title: string;
-}
-
 export default defineComponent({
   name: "m-group",
   directives: { debugId: directives.debugId("group") },
@@ -70,7 +64,7 @@ export default defineComponent({
     return {
       filteredItems,
       notFoundLabel,
-      rootComponent: computed(() => {
+      rootComponent: computed((): unknown => {
         switch (props.rootElement) {
           case "page-section":
             return PageSection;
@@ -93,26 +87,32 @@ export default defineComponent({
     };
   }
 });
+
+interface TranslatedItem extends Omit<Group.Item, "title"> {
+  readonly id: string;
+  readonly show: boolean;
+  readonly title: string;
+}
 </script>
 
 <template>
   <keep-alive v-for="item in filteredItems" :key="item.id">
     <component
-      v-bind="$attrs"
       :is="rootComponent"
       v-if="item.show"
       class="m-group"
+      v-bind="$attrs"
     >
       <slot :name="item.id"></slot>
     </component>
   </keep-alive>
   <keep-alive>
     <component
-      v-bind="$attrs"
       :is="rootComponent"
       v-if="showNotFoundLabel"
       v-debug-id="'not-found'"
       class="m-group m-group__not-found"
+      v-bind="$attrs"
     >
       {{ notFoundLabel }}
     </component>

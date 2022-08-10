@@ -7,11 +7,6 @@ import { typedef } from "@skylib/functions";
 
 const Transition = extras.Switchable.Transition;
 
-type Options = extras.OptionGroup.Options<Transition>;
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
-type Transition = extras.Switchable.Transition;
-
 export default defineComponent({
   name: "sample-switchable",
   components: {
@@ -40,6 +35,11 @@ export default defineComponent({
     };
   }
 });
+
+type Options = extras.OptionGroup.Options<Transition>;
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
+type Transition = extras.Switchable.Transition;
 </script>
 
 <template>

@@ -1,5 +1,3 @@
-/* eslint-disable @skylib/custom/no-literal-union-type -- Ok */
-
 import { defineFn, evaluate } from "@skylib/functions";
 import type { ComputedRef } from "vue";
 import { computed } from "vue";
@@ -166,13 +164,11 @@ export const direction = defineFn(
     };
   },
   {
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-complex-return-type -- Ok
     props: evaluate(() => {
       const prop = propFactory<direction.OwnProps>();
 
-      return {
-        direction: prop("direction")
-      } as const;
+      return { direction: prop("direction") } as const;
     })
   }
 );
@@ -180,6 +176,7 @@ export const direction = defineFn(
 // eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace direction {
   export type Coupling =
+    // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
     | "bottom left"
     | "bottom middle"
     | "bottom right"
@@ -190,6 +187,7 @@ export namespace direction {
     | "top right";
 
   export type Direction =
+    // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
     | "down-left"
     | "down-right"
     | "down"
@@ -203,13 +201,15 @@ export namespace direction {
     | "up-right"
     | "up";
 
+  export type Offset = readonly [number, number];
+
   export interface OwnProps {
     readonly direction?: Direction | undefined;
   }
 
   export interface Plugin {
     readonly anchor: ComputedRef<Coupling>;
-    readonly offset: ComputedRef<readonly [number, number]>;
+    readonly offset: ComputedRef<Offset>;
     readonly self: ComputedRef<Coupling>;
     readonly transitionHide: ComputedRef<Transition>;
     readonly transitionShow: ComputedRef<Transition>;
@@ -217,5 +217,6 @@ export namespace direction {
 
   export interface Props extends OwnProps {}
 
+  // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
   export type Transition = "jump-down" | "jump-left" | "jump-right" | "jump-up";
 }

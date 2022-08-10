@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-menu -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-menu -- Ok */
 
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins, propFactory } from "./api";
@@ -26,7 +26,6 @@ export default defineComponent({
     const exposed: Exposed<Menu.Global> = { main };
 
     expose(exposed);
-
     Menu.provideMenu({
       autoClose: () => {
         if (props.autoClose) as.not.empty(main.value).hide();

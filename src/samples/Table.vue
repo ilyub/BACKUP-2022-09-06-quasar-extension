@@ -12,23 +12,6 @@ import { Table } from "./Table.extras";
 
 const Align = extras.Table.Align;
 
-interface ColumnWidths extends extras.Table.ColumnWidths {}
-
-type Columns = extras.Table.Columns<Item>;
-
-interface ColumnsOrder extends extras.Table.ColumnsOrder {}
-
-interface HiddenColumns extends extras.Table.HiddenColumns {}
-
-interface Item {
-  readonly id: number;
-  readonly name: string;
-}
-
-type Items = readonly Item[];
-
-interface PaginationProp extends extras.Table.PaginationProp {}
-
 export default defineComponent({
   name: "sample-table",
   components: { "m-table__items": generic.Table<Item>() },
@@ -136,6 +119,23 @@ export default defineComponent({
     };
   }
 });
+
+interface ColumnWidths extends extras.Table.ColumnWidths {}
+
+type Columns = extras.Table.Columns<Item>;
+
+interface ColumnsOrder extends extras.Table.ColumnsOrder {}
+
+interface HiddenColumns extends extras.Table.HiddenColumns {}
+
+interface Item {
+  readonly id: number;
+  readonly name: string;
+}
+
+type Items = readonly Item[];
+
+interface PaginationProp extends extras.Table.PaginationProp {}
 </script>
 
 <template>

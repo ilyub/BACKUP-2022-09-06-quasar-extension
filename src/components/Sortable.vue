@@ -21,8 +21,8 @@ export default defineComponent({
   name: "m-sortable",
   components: {
     "vue-draggable": VueDraggable as unknown as GlobalComponent<
-      Sortable.VueDraggableProps,
-      Sortable.VueDraggableSlots
+      Sortable.VueDraggable.Props,
+      Sortable.VueDraggable.Slots
     >
   },
   props: {

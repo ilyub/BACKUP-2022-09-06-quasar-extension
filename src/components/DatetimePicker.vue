@@ -24,11 +24,6 @@ enum Step {
 
 const prop = propFactory<DatetimePicker.OwnProps>();
 
-interface TimeLimit {
-  readonly hours: number;
-  readonly minutes: number;
-}
-
 export default defineComponent({
   name: "m-datetime-picker",
   components: { "m-field__string": genericField<stringU>() },
@@ -234,6 +229,11 @@ export default defineComponent({
     }
   }
 });
+
+interface TimeLimit {
+  readonly hours: number;
+  readonly minutes: number;
+}
 </script>
 
 <template>

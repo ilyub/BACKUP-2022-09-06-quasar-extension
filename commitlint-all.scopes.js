@@ -14,6 +14,7 @@ module.exports = {
     "XInput",
     "XNumericInput",
     "XTooltip",
+    "configs",
     "confirmedClickModule",
     "package-scripts",
     "testUtils",

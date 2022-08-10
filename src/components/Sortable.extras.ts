@@ -4,6 +4,7 @@ import type {
   numberU,
   objectU,
   stringU,
+  types,
   unknowns
 } from "@skylib/functions";
 import { computed } from "vue";
@@ -20,6 +21,50 @@ export namespace Sortable {
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);
+
+  export namespace VueDraggable {
+    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    export interface ItemSlotData {
+      readonly element: VueDraggableElement;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    export interface Props {
+      readonly animation?: numberU;
+      readonly dataGroup?: stringU;
+      readonly disabled?: booleanU;
+      readonly ghostClass?: stringU;
+      readonly group?: objectU;
+      readonly itemKey?: stringU;
+      readonly modelValue?: unknowns | undefined;
+      readonly move?: types.fn.Callable | undefined;
+      readonly sort?: booleanU;
+      readonly tag?: stringU;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    export interface Slots {
+      /**
+       * Footer slot.
+       *
+       * @returns Nodes.
+       */
+      readonly footer: () => VNodes;
+      /**
+       *Header slot.
+       *
+       * @returns Nodes.
+       */
+      readonly header: () => VNodes;
+      /**
+       * Item slot.
+       *
+       * @param data - Data.
+       * @returns Nodes.
+       */
+      readonly item: (data: ItemSlotData) => VNodes;
+    }
+  }
 
   export interface Global<T extends object = object, D extends object = object>
     extends GlobalComponent<Props<T, D>, Slots<T>> {}
@@ -103,9 +148,10 @@ export namespace Sortable {
   }
 
   export interface ParentProps
-    extends Omit<VueDraggableProps, keyof OwnProps> {}
+    extends Omit<VueDraggable.Props, keyof OwnProps> {}
 
-  export interface ParentSlots extends VueDraggableProps {}
+  export interface ParentSlots
+    extends Omit<VueDraggable.Slots, keyof OwnSlots> {}
 
   export interface Props<T extends object = object, D extends object = object>
     extends ParentProps,
@@ -125,44 +171,5 @@ export namespace Sortable {
     readonly group: string;
     readonly id: string;
     readonly item: object;
-  }
-
-  export interface VueDraggableItemSlotData {
-    readonly element: VueDraggableElement;
-  }
-
-  export interface VueDraggableProps {
-    readonly animation?: numberU;
-    readonly dataGroup?: stringU;
-    readonly disabled?: booleanU;
-    readonly ghostClass?: stringU;
-    readonly group?: objectU;
-    readonly itemKey?: stringU;
-    readonly modelValue?: unknowns | undefined;
-    readonly move?: Function | undefined;
-    readonly sort?: booleanU;
-    readonly tag?: stringU;
-  }
-
-  export interface VueDraggableSlots {
-    /**
-     * Footer slot.
-     *
-     * @returns Nodes.
-     */
-    readonly footer: () => VNodes;
-    /**
-     *Header slot.
-     *
-     * @returns Nodes.
-     */
-    readonly header: () => VNodes;
-    /**
-     * Item slot.
-     *
-     * @param data - Data.
-     * @returns Nodes.
-     */
-    readonly item: (data: VueDraggableItemSlotData) => VNodes;
   }
 }

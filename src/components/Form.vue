@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-form -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-form -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
 import {

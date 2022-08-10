@@ -12,6 +12,5 @@ test("injectSettings", () => {
     },
     template: "<div></div>"
   });
-
   expect(callback).mockCallsToBe([false]);
 });

@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-field -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-field -- Ok */
 
 import { a, as, cast, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
@@ -15,6 +15,7 @@ import {
 import type { Exposed } from "./api";
 import type { Field } from "./Field.extras";
 import type { QField } from "quasar";
+import type { Writable } from "@skylib/functions";
 
 const prop = propFactory<Field.OwnProps>();
 
@@ -44,13 +45,14 @@ export default defineComponent({
     const validation = plugins.validation(
       props,
       computed(() => as.not.empty(main.value)),
-      computed(() =>
-        o.removeUndefinedKeys({
-          format: props.format,
-          label: labelKey.value,
-          required: props.required,
-          ...props.validationOptions
-        })
+      computed(
+        (): plugins.validation.Options =>
+          o.removeUndefinedKeys({
+            format: props.format,
+            label: labelKey.value,
+            required: props.required,
+            ...props.validationOptions
+          })
       )
     );
 
@@ -74,7 +76,10 @@ export default defineComponent({
       label,
       main,
       placeholder,
-      rules: computed(() => a.clone(validation.rules.value)),
+      rules: computed(
+        (): Writable<plugins.validation.ValidationRules> =>
+          a.clone(validation.rules.value)
+      ),
       slotNames: plugins.slotNames<Field.Slots>()("control", "label"),
       update: (value: unknown): void => {
         value = props.format(value);

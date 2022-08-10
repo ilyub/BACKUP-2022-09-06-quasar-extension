@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-select -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-select -- Ok */
 
 import { a, as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
@@ -16,14 +16,9 @@ import {
 import type { Exposed } from "./api";
 import type { QSelect } from "quasar";
 import { Select } from "./Select.extras";
+import type { Writable } from "@skylib/functions";
 
 const prop = propFactory<Select.OwnProps>();
-
-interface TranslatedOption extends Omit<Select.Option, "label"> {
-  readonly disable?: boolean;
-  readonly label: string;
-  readonly value: unknown;
-}
 
 export default defineComponent({
   name: "m-select",
@@ -59,13 +54,14 @@ export default defineComponent({
     const validation = plugins.validation(
       props,
       computed(() => as.not.empty(main.value)),
-      computed(() =>
-        o.removeUndefinedKeys({
-          format,
-          label: props.validationLabel,
-          required: props.required,
-          requiredErrorMessage: lk.SelectField
-        })
+      computed(
+        (): plugins.validation.Options =>
+          o.removeUndefinedKeys({
+            format,
+            label: props.validationLabel,
+            required: props.required,
+            requiredErrorMessage: lk.SelectField
+          })
       )
     );
 
@@ -105,7 +101,10 @@ export default defineComponent({
           })
         )
       ),
-      rules: computed(() => a.clone(validation.rules.value)),
+      rules: computed(
+        (): Writable<plugins.validation.ValidationRules> =>
+          a.clone(validation.rules.value)
+      ),
       selectedOption,
       slotNames: plugins.slotNames<Select.Slots>()("label", "selected"),
       update: (value: unknown): void => {
@@ -119,6 +118,12 @@ export default defineComponent({
     }
   }
 });
+
+interface TranslatedOption extends Omit<Select.Option, "label"> {
+  readonly disable?: boolean;
+  readonly label: string;
+  readonly value: unknown;
+}
 </script>
 
 <template>

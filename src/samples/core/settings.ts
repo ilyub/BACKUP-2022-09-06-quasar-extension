@@ -2,8 +2,8 @@ import "typeface-roboto-multilang/cyrillic.css";
 import "typeface-roboto-multilang/latin-ext.css";
 import type { LocaleName, Writable } from "@skylib/functions";
 import { computed, ref } from "vue";
-import enGB from "date-fns/locale/en-GB";
-import enUS from "date-fns/locale/en-US";
+import enGb from "date-fns/locale/en-GB";
+import enUs from "date-fns/locale/en-US";
 import { extras } from "../..";
 import gb from "flag-icon-css/flags/1x1/gb.svg";
 import { implementations } from "@skylib/framework";
@@ -32,7 +32,6 @@ export const settings = {
         })
       )
     );
-
     extras.IconPicker.provideSettings(
       computed(
         (): extras.IconPicker.Settings => ({
@@ -43,17 +42,16 @@ export const settings = {
         })
       )
     );
-
     extras.LanguagePicker.provideSettings(
       computed(
         (): extras.LanguagePicker.Settings => ({
           changeLanguageAction: (value): void => {
             const config: Writable<implementations.datetime.dateFnsWrapper.Configuration> =
-              { firstDayOfWeek: 0, locale: enUS, pm: true };
+              { firstDayOfWeek: 0, locale: enUs, pm: true };
 
             switch (value) {
               case "en-GB":
-                config.locale = enGB;
+                config.locale = enGb;
 
                 break;
 
@@ -78,7 +76,6 @@ export const settings = {
         })
       )
     );
-
     extras.PageLayout.provideSettings(
       computed(
         (): extras.PageLayout.Settings => ({
@@ -87,7 +84,6 @@ export const settings = {
         })
       )
     );
-
     extras.Resizer.provideSettings(
       computed(
         (): extras.Resizer.Settings => ({
@@ -95,7 +91,6 @@ export const settings = {
         })
       )
     );
-
     extras.Sortable.provideSettings(
       computed(
         (): extras.Sortable.Settings => ({
@@ -105,7 +100,6 @@ export const settings = {
         })
       )
     );
-
     extras.Switchable.provideSettings(
       computed(
         (): extras.Switchable.Settings => ({
@@ -114,7 +108,6 @@ export const settings = {
         })
       )
     );
-
     extras.Table.provideSettings(
       computed(
         (): extras.Table.Settings => ({
@@ -126,7 +119,6 @@ export const settings = {
         })
       )
     );
-
     extras.Tooltip.provideSettings(
       computed(
         (): extras.Tooltip.Settings => ({

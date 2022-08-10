@@ -341,7 +341,6 @@ test.each([
   { expected: [[props.rows[1]]], multiSelect: false }
 ])("prop: selected", async ({ expected, multiSelect }) => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.Table, {
       global: testUtils.globalMountOptions(),

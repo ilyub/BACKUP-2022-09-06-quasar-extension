@@ -1,4 +1,6 @@
-/* eslint-disable @skylib/consistent-import/project -- Ok */
+/* eslint-disable @skylib/consistent-import -- Ok */
+/* eslint-disable @skylib/no-at-sign-internal-import -- Ok */
+/* eslint-disable @skylib/no-internal-modules -- Ok */
 
 import * as types from "@/components/api/types";
 

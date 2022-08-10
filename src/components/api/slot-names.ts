@@ -5,12 +5,49 @@ import type { CamelCase } from "type-fest";
 import type { ComputedRef } from "vue";
 import type { nevers } from "@skylib/functions";
 
+export namespace slotNames {
+  export interface Factory<T> {
+    /**
+     * Creates slot names plugin.
+     *
+     * @param use -.
+     */
+    <U extends string & keyof T = never>(...use: readonly U[]): Plugin<U>;
+  }
+
+  export type Plugin<T extends PropertyKey> = ComputedRef<
+    PluginMethods<T> & UsableSlots<T>
+  >;
+
+  export interface PluginMethods<T extends PropertyKey> {
+    /**
+     * Checks if slot exists.
+     *
+     * @param name - Slot name.
+     * @returns _True_ if slot exists, _false_ otherwise.
+     */
+    readonly has: (name: T) => boolean;
+    /**
+     * Checks if some slot exists.
+     *
+     * @param names - Slot names.
+     * @returns _True_ if slot exists, _false_ otherwise.
+     */
+    readonly hasSome: (...names: readonly T[]) => boolean;
+    readonly passThroughSlots: nevers;
+  }
+
+  export type UsableSlots<T extends PropertyKey> = {
+    readonly [K in T as CamelCase<K>]: K;
+  };
+}
+
 /**
  * Use slot names plugin.
  *
  * @returns Slot names plugin.
  */
-export function slotNames<T>() {
+export function slotNames<T>(): slotNames.Factory<T> {
   return function <U extends string & keyof T = never>(
     ...use: readonly U[]
   ): slotNames.Plugin<U> {
@@ -36,33 +73,5 @@ export function slotNames<T>() {
         };
       }
     );
-  };
-}
-
-export namespace slotNames {
-  export type Plugin<T extends PropertyKey> = ComputedRef<
-    PluginMethods<T> & UsableSlots<T>
-  >;
-
-  export interface PluginMethods<T extends PropertyKey> {
-    /**
-     * Checks if slot exists.
-     *
-     * @param name - Slot name.
-     * @returns _True_ if slot exists, _false_ otherwise.
-     */
-    readonly has: (name: T) => boolean;
-    /**
-     * Checks if some slot exists.
-     *
-     * @param names - Slot names.
-     * @returns _True_ if slot exists, _false_ otherwise.
-     */
-    readonly hasSome: (...names: readonly T[]) => boolean;
-    readonly passThroughSlots: nevers;
-  }
-
-  export type UsableSlots<T extends PropertyKey> = {
-    readonly [K in T as CamelCase<K>]: K;
   };
 }

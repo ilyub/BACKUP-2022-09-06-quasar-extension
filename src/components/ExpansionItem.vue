@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-expansion-item -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-expansion-item -- Ok */
 
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";

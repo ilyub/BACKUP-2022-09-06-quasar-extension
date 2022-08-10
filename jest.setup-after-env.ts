@@ -1,4 +1,4 @@
-// eslint-disable-next-line @skylib/disallow-import/no-internal-modules -- Ok
+// eslint-disable-next-line @skylib/no-internal-modules -- Ok
 import * as app from "./src/application";
 import * as frameworkTestUtils from "@skylib/framework/dist/test-utils";
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";

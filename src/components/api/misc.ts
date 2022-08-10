@@ -139,7 +139,7 @@ export function injectableTrigger(): InjectableTrigger {
   const id: InjectionKey<ComputedRef<number>> = Symbol("trigger-id");
 
   return {
-    provide: () => {
+    provide: (): ReturnType<InjectableTrigger["provide"]> => {
       const counter = ref(0);
 
       provide(

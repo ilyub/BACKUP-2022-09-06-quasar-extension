@@ -65,7 +65,6 @@ test.each([
     rulesOnSubmit
   }) => {
     expect.hasAssertions();
-
     await functionsTestUtils.run(async () => {
       const callback = jest.fn();
 
@@ -77,18 +76,19 @@ test.each([
           const validation = plugins.validation(
             { rulesOnChange, rulesOnInput, rulesOnSubmit },
             computed(() => as.not.empty(field.value)),
-            computed(() =>
-              o.removeUndefinedKeys({
-                format: fn.identity,
-                label,
-                max,
-                maxErrorMessage,
-                min,
-                minErrorMessage,
-                minMaxFormat,
-                required,
-                requiredErrorMessage
-              })
+            computed(
+              (): plugins.validation.Options =>
+                o.removeUndefinedKeys({
+                  format: fn.identity,
+                  label,
+                  max,
+                  maxErrorMessage,
+                  min,
+                  minErrorMessage,
+                  minMaxFormat,
+                  required,
+                  requiredErrorMessage
+                })
             )
           );
 

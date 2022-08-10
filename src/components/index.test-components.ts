@@ -1,6 +1,4 @@
-// eslint-disable-next-line @skylib/consistent-import/project -- Ok
 import * as components from "./index.components";
-// eslint-disable-next-line @skylib/consistent-import/project -- Ok
 import type * as extras from "./index.extras";
 import type { ComponentPublicInstance } from "vue";
 

@@ -1,7 +1,23 @@
+import type { Entry, WritableRecord } from "@skylib/functions";
 import { components, extras, toComputed } from "..";
 import { evaluate, o } from "@skylib/functions";
 import type { GlobalMountOptions } from "@vue/test-utils/dist/types";
-import type { WritableRecord } from "@skylib/functions";
+
+export namespace globalMountOptions {
+  export interface CustomOptions {
+    readonly baseButtonSettings?: extras.BaseButton.Settings;
+    readonly formExposeDown?: extras.Form.ExposeDown;
+    readonly iconPickerSettings?: extras.IconPicker.Settings;
+    readonly languagePickerSettings?: extras.LanguagePicker.Settings;
+    readonly menuExposeDown?: extras.Menu.ExposeDown;
+    readonly pageLayoutSettings?: extras.PageLayout.Settings;
+    readonly resizerSettings?: extras.Resizer.Settings;
+    readonly sortableSettings?: extras.Sortable.Settings;
+    readonly switchableSettings?: extras.Switchable.Settings;
+    readonly tableSettings?: extras.Table.Settings;
+    readonly tooltipSettings?: extras.Tooltip.Settings;
+  }
+}
 
 /**
  * Creates global mount options.
@@ -14,9 +30,11 @@ export function globalMountOptions(
 ): GlobalMountOptions {
   return {
     components: o.fromEntries.exhaustive(
-      o.values(components).map(component => [component.name, component])
+      o
+        .values(components)
+        .map((component): Entry<string, object> => [component.name, component])
     ),
-    provide: evaluate(() => {
+    provide: evaluate((): WritableRecord<symbol, unknown> => {
       const {
         BaseButton,
         Form,
@@ -107,20 +125,4 @@ export function globalMountOptions(
       return provide;
     })
   };
-}
-
-export namespace globalMountOptions {
-  export interface CustomOptions {
-    readonly baseButtonSettings?: extras.BaseButton.Settings;
-    readonly formExposeDown?: extras.Form.ExposeDown;
-    readonly iconPickerSettings?: extras.IconPicker.Settings;
-    readonly languagePickerSettings?: extras.LanguagePicker.Settings;
-    readonly menuExposeDown?: extras.Menu.ExposeDown;
-    readonly pageLayoutSettings?: extras.PageLayout.Settings;
-    readonly resizerSettings?: extras.Resizer.Settings;
-    readonly sortableSettings?: extras.Sortable.Settings;
-    readonly switchableSettings?: extras.Switchable.Settings;
-    readonly tableSettings?: extras.Table.Settings;
-    readonly tooltipSettings?: extras.Tooltip.Settings;
-  }
 }

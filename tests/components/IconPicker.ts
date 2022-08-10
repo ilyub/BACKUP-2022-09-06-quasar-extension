@@ -1,5 +1,4 @@
 /* eslint jest/max-expects: [warn, { max: 9 }] -- Ok */
-
 /* eslint-disable @skylib/consistent-import -- Ok */
 
 import * as functionsTestUtils from "@skylib/functions/dist/test-utils";
@@ -26,7 +25,6 @@ test.each([
   { expected: [undefined], index: 1, modelValue: icons[1] }
 ])("pick-icon", async ({ expected, index, modelValue }) => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.IconPicker, {
       global: testUtils.globalMountOptions(),
@@ -55,7 +53,6 @@ test.each([
 
 test("prev, next", async () => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.IconPicker, {
       global: testUtils.globalMountOptions(),
@@ -93,7 +90,6 @@ test("prev, next", async () => {
 
 test("search", async () => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.IconPicker, {
       global: testUtils.globalMountOptions(),
@@ -128,7 +124,6 @@ test("search", async () => {
 
 test.each([true, false])("setting: tooltip", async iconTooltips => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const wrapper = vueTestUtils.mount(components.IconPicker, {
       global: testUtils.globalMountOptions({

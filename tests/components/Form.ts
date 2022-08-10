@@ -58,7 +58,6 @@ test.each([undefined, PromiseType.httpRequest])(
   "prop: asyncSubmit",
   async asyncTaskType => {
     expect.hasAssertions();
-
     await functionsTestUtils.run(async () => {
       const callback = jest.fn();
 
@@ -85,7 +84,6 @@ test.each([undefined, PromiseType.httpRequest])(
 
 test("prop: asyncSubmit", async () => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const disable = jest.fn();
 
@@ -104,7 +102,6 @@ test("prop: asyncSubmit", async () => {
             watch(injections.disable.inject(), value => {
               disable(value);
             });
-
             watch(extras.Form.injectForm().submitting, value => {
               submitting(value);
             });

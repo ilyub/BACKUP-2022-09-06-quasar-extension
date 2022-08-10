@@ -27,6 +27,7 @@ export const validation = defineFn(
     target: ComputedRef<QField | QInput>,
     options: ComputedRef<Options<T>>
   ): Plugin<T> => {
+    // eslint-disable-next-line @skylib/functions/prefer-ReadonlyMap -- Ok
     const contexts = new Map<symbol, Context>();
 
     const label = computed(() =>
@@ -185,7 +186,7 @@ export const validation = defineFn(
   {
     Context,
     lang,
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-complex-return-type -- Ok
     props: evaluate(() => {
       const prop = propFactory<OwnProps>();
 
@@ -206,8 +207,11 @@ export namespace validation {
   // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
   export type Options<T = unknown> = import("./validation.internal").Options<T>;
 
-  // eslint-disable-next-line @skylib/custom/quasar/prefer-Props-interface, @typescript-eslint/no-shadow -- Ok
+  // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
   export type Props<T = unknown> = import("./validation.internal").Props<T>;
 
   export type Rules<T = unknown> = import("./validation.internal").Rules<T>;
+
+  export type ValidationRules<T = unknown> =
+    import("./validation.internal").ValidationRules<T>;
 }

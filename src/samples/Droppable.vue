@@ -5,11 +5,6 @@ import { Droppable } from "./Droppable.extras";
 import { dump } from "@skylib/facades";
 import { useQuasar } from "quasar";
 
-interface Item {
-  readonly id: string;
-  readonly name: string;
-}
-
 export default defineComponent({
   name: "sample-droppable",
   components: {
@@ -28,7 +23,6 @@ export default defineComponent({
     const disableSorting = ref(false);
 
     expose();
-
     extras.Sortable.provideSettings(
       computed(
         (): extras.Sortable.Settings => ({
@@ -57,6 +51,11 @@ export default defineComponent({
     };
   }
 });
+
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
 </script>
 
 <template>

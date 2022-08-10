@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-option-group -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-option-group -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
 import {
@@ -16,12 +16,6 @@ import { OptionGroup } from "./OptionGroup.extras";
 import type { QOptionGroup } from "quasar";
 
 const prop = propFactory<OptionGroup.OwnProps>();
-
-interface TranslatedOption extends Omit<OptionGroup.Option, "label"> {
-  readonly disable?: boolean;
-  readonly label: string;
-  readonly value: unknown;
-}
 
 export default defineComponent({
   name: "m-option-group",
@@ -59,6 +53,12 @@ export default defineComponent({
     };
   }
 });
+
+interface TranslatedOption extends Omit<OptionGroup.Option, "label"> {
+  readonly disable?: boolean;
+  readonly label: string;
+  readonly value: unknown;
+}
 </script>
 
 <template>

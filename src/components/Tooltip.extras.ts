@@ -44,7 +44,6 @@ export namespace Tooltip {
     onUnmounted(() => {
       if (active.value) disableCounter.value--;
     });
-
     watch(active, newActive => {
       if (newActive) disableCounter.value++;
       else disableCounter.value--;

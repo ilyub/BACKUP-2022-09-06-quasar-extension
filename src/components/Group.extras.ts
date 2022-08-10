@@ -29,9 +29,8 @@ export namespace Group {
     extends PluginProps,
       OwnProps<T> {}
 
-  // eslint-disable-next-line @skylib/custom/no-literal-union-type -- Ok
+  // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
   export type RootElement = "page-section" | "section" | "subsection";
 
-  // eslint-disable-next-line @skylib/custom/quasar/prefer-Slots-interface -- Ok
   export type Slots<T extends string = string> = Rec<T, () => VNodes>;
 }

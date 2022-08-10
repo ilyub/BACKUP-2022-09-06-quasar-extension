@@ -2,6 +2,18 @@ import type { Directive } from "vue";
 import { as } from "@skylib/functions";
 import type { unknowns } from "@skylib/functions";
 
+export namespace touchPan {
+  export interface Mock {
+    readonly directive: Directive;
+    /**
+     * Triggers v-touch-pan directive.
+     *
+     * @param args - Arguments.
+     */
+    readonly trigger: (...args: unknowns) => void;
+  }
+}
+
 /**
  * Mocks v-touch-pan directive.
  *
@@ -20,17 +32,5 @@ export function touchPan(): touchPan.Mock {
 
   function trigger(...args: unknowns): void {
     as.callable(value)(...args);
-  }
-}
-
-export namespace touchPan {
-  export interface Mock {
-    readonly directive: Directive;
-    /**
-     * Triggers v-touch-pan directive.
-     *
-     * @param args - Arguments.
-     */
-    readonly trigger: (...args: unknowns) => void;
   }
 }

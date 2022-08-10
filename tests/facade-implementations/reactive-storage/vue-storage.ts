@@ -1,6 +1,5 @@
 /* eslint jest/max-expects: [warn, { max: 4 }] -- Ok */
-
-/* eslint-disable @skylib/custom/prefer-readonly-property -- Ok */
+/* eslint-disable @skylib/typescript/prefer-readonly-property -- Ok */
 
 import { nextTick } from "vue";
 import { reactiveStorage } from "@skylib/facades";

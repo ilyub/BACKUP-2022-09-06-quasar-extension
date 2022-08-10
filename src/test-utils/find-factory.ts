@@ -3,42 +3,6 @@ import type { DOMWrapper, DOMWrappers, Wrapper, WrapperLikes } from "./core";
 import type { ComponentPublicInstance } from "vue";
 import { a } from "@skylib/functions";
 
-/**
- * Find factory.
- *
- * @param prefix - Prefix.
- * @param wrapper - Wrapper.
- * @returns Find functions.
- */
-export function findFactory<T = never>(
-  prefix: string,
-  wrapper: Wrapper
-): findFactory.Result<T> {
-  return {
-    comp: (ref, index = 0) =>
-      index
-        ? a.get(
-            wrapper.findAllComponents<ComponentPublicInstance>(selector(ref)),
-            index
-          )
-        : wrapper.findComponent<ComponentPublicInstance>(selector(ref)),
-    compByRef: ref => wrapper.findComponent({ ref }),
-    compElem: (ref, ref2) =>
-      wrapper.findComponent(selector(ref)).find(selector(ref2)),
-    comps: ref => wrapper.findAllComponents(selector(ref)),
-    elem: (ref, index = 0) =>
-      index
-        ? a.get(wrapper.findAll(selector(ref)), index)
-        : wrapper.find(selector(ref)),
-    elems: ref => wrapper.findAll(selector(ref)),
-    vm: wrapper.vm as unknown as T
-  };
-
-  function selector(ref: string): string {
-    return `[data-debug=${prefix}__${ref}]`;
-  }
-}
-
 export namespace findFactory {
   export interface Result<T = never> {
     /**
@@ -87,5 +51,41 @@ export namespace findFactory {
      */
     readonly elems: (ref: string) => DOMWrappers;
     readonly vm: T;
+  }
+}
+
+/**
+ * Find factory.
+ *
+ * @param prefix - Prefix.
+ * @param wrapper - Wrapper.
+ * @returns Find functions.
+ */
+export function findFactory<T = never>(
+  prefix: string,
+  wrapper: Wrapper
+): findFactory.Result<T> {
+  return {
+    comp: (ref, index = 0) =>
+      index
+        ? a.get(
+            wrapper.findAllComponents<ComponentPublicInstance>(selector(ref)),
+            index
+          )
+        : wrapper.findComponent<ComponentPublicInstance>(selector(ref)),
+    compByRef: ref => wrapper.findComponent({ ref }),
+    compElem: (ref, ref2) =>
+      wrapper.findComponent(selector(ref)).find(selector(ref2)),
+    comps: ref => wrapper.findAllComponents(selector(ref)),
+    elem: (ref, index = 0) =>
+      index
+        ? a.get(wrapper.findAll(selector(ref)), index)
+        : wrapper.find(selector(ref)),
+    elems: ref => wrapper.findAll(selector(ref)),
+    vm: wrapper.vm as unknown as T
+  };
+
+  function selector(ref: string): string {
+    return `[data-debug=${prefix}__${ref}]`;
   }
 }

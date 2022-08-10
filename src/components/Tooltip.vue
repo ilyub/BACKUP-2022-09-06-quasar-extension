@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/custom/quasar/vue-prefer-m-tooltip -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-tooltip -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";

@@ -1,4 +1,4 @@
-/* eslint-disable @skylib/custom/functions/prefer-mockCallsToBe -- Ok */
+/* eslint-disable @skylib/functions/jest/prefer-mockCallsToBe -- Ok */
 
 import { components, plugin } from "@";
 import type { App } from "vue";

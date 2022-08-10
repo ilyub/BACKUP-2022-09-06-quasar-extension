@@ -67,8 +67,6 @@ test("trigger", async () => {
     },
     template: "<subcomponent />"
   });
-
   await wait(1000);
-
   expect(callback).mockCallsToBe([]);
 });

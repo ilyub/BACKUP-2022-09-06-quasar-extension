@@ -72,7 +72,9 @@ export interface PluginWord {
   readonly Equal: true;
   readonly Field: true;
   readonly FieldIsRequired: true;
+  // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
   readonly FieldShouldBeGteMin: true;
+  // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
   readonly FieldShouldBeLteMax: true;
 }
 

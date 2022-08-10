@@ -15,7 +15,6 @@ functionsTestUtils.installFakeTimer();
 
 test("prop: asyncClick", async () => {
   expect.hasAssertions();
-
   await functionsTestUtils.run(async () => {
     const callback = jest.fn();
 

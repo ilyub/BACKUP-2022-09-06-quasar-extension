@@ -33,13 +33,11 @@ export const asyncClick = defineFn(
     );
   },
   {
-    // eslint-disable-next-line @skylib/custom/no-complex-type-in-function-return -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-complex-return-type -- Ok
     props: evaluate(() => {
       const prop = propFactory<asyncClick.OwnProps>();
 
-      return {
-        asyncClick: prop("asyncClick")
-      } as const;
+      return { asyncClick: prop("asyncClick") } as const;
     })
   }
 );

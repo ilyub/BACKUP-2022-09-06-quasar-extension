@@ -151,7 +151,6 @@ export type PropRequiredKeys<T extends object> = And<
   types.object.keys.Required<T>
 >;
 
-// eslint-disable-next-line @skylib/custom/quasar/prefer-Props-interface -- Ok
 export type Props<
   T,
   K extends keyof T & `on${types.string.UppercaseLetter}${string}` = never

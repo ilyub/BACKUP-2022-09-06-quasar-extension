@@ -1,4 +1,6 @@
 <script lang="ts">
+/* eslint-disable @skylib/quasar-extension/vue/template/sort-v-bind -- Wait for @skylib/eslint-plugin update */
+
 import * as _ from "@skylib/lodash-commonjs-es";
 import type { IndexedRecord, numberU, objects } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
@@ -30,17 +32,6 @@ import { Table } from "./Table.extras";
 import { genericSortable } from "./Sortable.generic";
 
 const prop = propFactory<Table.OwnProps>();
-
-interface SortableColumn extends Table.Column {
-  readonly order: number;
-}
-
-interface VirtualScrollDetails {
-  readonly direction: "decrease" | "increase";
-  readonly from: number;
-  readonly index: number;
-  readonly to: number;
-}
 
 export default defineComponent({
   name: "m-table",
@@ -143,14 +134,15 @@ export default defineComponent({
         }),
       columnsManagementRows: computed(
         (): Table.Columns =>
-          props.columns
-            .map(
+          a.sort(
+            props.columns.map(
               (column, index): SortableColumn => ({
                 ...column,
                 order: props.columnsOrder.get(column.name) ?? 1000 + index
               })
-            )
-            .sort((x, y) => x.order - y.order)
+            ),
+            (x, y) => x.order - y.order
+          )
       ),
       columnsManagementShow: ref(false),
       debugDialog: ref<QDialog>(),
@@ -236,15 +228,19 @@ export default defineComponent({
         props.externalSorting ? fn.identity : undefined
       ),
       sortedColumns: computed(() =>
-        props.columns
-          .filter(column => !props.hiddenColumns.has(column.name))
-          .map(
-            (column, index): SortableColumn => ({
-              ...column,
-              order: props.columnsOrder.get(column.name) ?? 1000 + index
-            })
+        a.clone(
+          a.sort(
+            props.columns
+              .filter(column => !props.hiddenColumns.has(column.name))
+              .map(
+                (column, index): SortableColumn => ({
+                  ...column,
+                  order: props.columnsOrder.get(column.name) ?? 1000 + index
+                })
+              ),
+            (x, y) => x.order - y.order
           )
-          .sort((x, y) => x.order - y.order)
+        )
       ),
       square: computed(() =>
         override(settings.value.square, props.squareOn, props.squareOff)
@@ -312,11 +308,21 @@ export default defineComponent({
     };
   }
 });
+
+interface SortableColumn extends Table.Column {
+  readonly order: number;
+}
+
+interface VirtualScrollDetails {
+  readonly direction: "decrease" | "increase";
+  readonly from: number;
+  readonly index: number;
+  readonly to: number;
+}
 </script>
 
 <template>
   <q-table
-    v-bind="$attrs"
     ref="main"
     :binary-state-sort="binaryStateSort"
     class="m-table"
@@ -334,6 +340,7 @@ export default defineComponent({
     virtual-scroll
     :virtual-scroll-item-size="48"
     :virtual-scroll-sticky-size-start="48"
+    v-bind="$attrs"
     @update:pagination="updatePagination"
     @update:selected="$emit('update:selected', $event)"
     @virtual-scroll="virtualScroll"
