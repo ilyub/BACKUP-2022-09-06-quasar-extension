@@ -18,7 +18,7 @@ module.exports = {
     [/^typeface-roboto-multilang\/(\w+)\.css$/u.source]:
       "<rootDir>/__mocks__/typeface-roboto-multilang/$1.js"
   },
-  preset: "@skylib/config/src",
+  preset: "@skylib/config/jest",
   snapshotSerializers: ["<rootDir>/node_modules/jest-serializer-vue"],
-  testEnvironment: "@skylib/config/src/jest-env-jsdom"
+  testEnvironment: "@skylib/config/jest/environments/jsdom"
 };

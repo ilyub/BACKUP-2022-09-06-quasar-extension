@@ -1,1 +1,1 @@
-module.exports = { extends: ["@skylib/config/src/stylelintrc-html"] };
+module.exports = { extends: ["@skylib/config/stylelint/html"] };
