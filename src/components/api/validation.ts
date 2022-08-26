@@ -1,11 +1,5 @@
 import type { ComputedRef, Ref } from "vue";
-import type {
-  Options,
-  OwnProps,
-  Plugin,
-  Props,
-  Rule
-} from "./validation.internal";
+import type { OwnProps, Plugin, Rule } from "./validation.internal";
 import type { QField, QInput } from "quasar";
 import { a, cast, defineFn, evaluate, is } from "@skylib/functions";
 import { compare, handlePromise, lang } from "@skylib/facades";
@@ -23,9 +17,9 @@ export const validation = defineFn(
    * @returns Validation plugin.
    */
   <T = unknown>(
-    props: Props<T>,
+    props: validation.Props<T>,
     target: ComputedRef<QField | QInput>,
-    options: ComputedRef<Options<T>>
+    options: ComputedRef<validation.Options<T>>
   ): Plugin<T> => {
     // eslint-disable-next-line @skylib/functions/prefer-ReadonlyMap -- Ok
     const contexts = new Map<symbol, Context>();
@@ -204,10 +198,8 @@ export const validation = defineFn(
 export namespace validation {
   export type Context = import("./validation.internal").Context;
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
   export type Options<T = unknown> = import("./validation.internal").Options<T>;
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
   export type Props<T = unknown> = import("./validation.internal").Props<T>;
 
   export type Rules<T = unknown> = import("./validation.internal").Rules<T>;

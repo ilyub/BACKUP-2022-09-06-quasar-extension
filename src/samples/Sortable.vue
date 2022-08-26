@@ -3,6 +3,11 @@ import { computed, defineComponent, ref } from "vue";
 import { extras, generic } from "..";
 import { Sortable } from "./Sortable.extras";
 
+interface Item {
+  readonly id: string;
+  readonly name: string;
+}
+
 export default defineComponent({
   name: "sample-sortable",
   components: { "m-sortable__items": generic.Sortable<Item, Item>() },
@@ -41,11 +46,6 @@ export default defineComponent({
     };
   }
 });
-
-interface Item {
-  readonly id: string;
-  readonly name: string;
-}
 </script>
 
 <template>

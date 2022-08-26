@@ -3,16 +3,6 @@ import { computed, reactive, watch } from "vue";
 import type { WatchStopHandle } from "vue";
 import type { reactiveStorage } from "@skylib/facades";
 
-declare global {
-  namespace facades {
-    namespace reactiveStorage {
-      interface Observer {
-        readonly watchStopHandle?: WatchStopHandle;
-      }
-    }
-  }
-}
-
 export const vueStorage: reactiveStorage.Facade = defineFn(
   <T extends object>(obj: T): T => reactive(obj) as T,
   {
@@ -35,3 +25,13 @@ export const vueStorage: reactiveStorage.Facade = defineFn(
     }
   }
 );
+
+declare global {
+  namespace facades {
+    namespace reactiveStorage {
+      interface Observer {
+        readonly watchStopHandle?: WatchStopHandle;
+      }
+    }
+  }
+}

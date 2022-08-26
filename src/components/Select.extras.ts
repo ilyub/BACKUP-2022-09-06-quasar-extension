@@ -3,14 +3,6 @@ import type { QSelect, QSelectProps, QSelectSlots } from "quasar";
 import { lang as baseLang } from "@skylib/facades";
 import type { booleanU } from "@skylib/functions";
 
-declare global {
-  namespace facades {
-    namespace lang {
-      interface Word extends Select.Word {}
-    }
-  }
-}
-
 export namespace Select {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
@@ -66,5 +58,13 @@ export namespace Select {
 
   export interface Word {
     readonly SelectField: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends Select.Word {}
+    }
   }
 }

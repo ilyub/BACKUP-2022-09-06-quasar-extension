@@ -3,6 +3,11 @@ import { en } from "./en";
 import type { implementations } from "@skylib/framework";
 import { ru } from "./ru";
 
+export const definitions: Rec<
+  LocaleName,
+  implementations.lang.dictionary.Definitions
+> = { "en-GB": en, "en-US": en, "ru-RU": ru };
+
 declare global {
   namespace configurable {
     interface LocaleName {
@@ -22,8 +27,3 @@ declare global {
     }
   }
 }
-
-export const definitions: Rec<
-  LocaleName,
-  implementations.lang.dictionary.Definitions
-> = { "en-GB": en, "en-US": en, "ru-RU": ru };

@@ -1,5 +1,3 @@
-/* eslint-disable xss/no-mixed-html -- Ok */
-
 import { implementations } from "@skylib/framework";
 
 export const ru = new implementations.lang.dictionary.Definitions({
@@ -60,7 +58,9 @@ export const ru = new implementations.lang.dictionary.Definitions({
     ExpansionItem: "Разворачивающийся список",
     Field: "Поле",
     FieldIsRequired: "Введите <field:кого-что>",
+    // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
     FieldShouldBeGteMin: "Введите <field:кого-что> больше либо {equal} @min",
+    // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
     FieldShouldBeLteMax: "Введите <field:кого-что> больше либо {equal} @max",
     Footer: "Верхняя сеция",
     Green: "Зеленый",

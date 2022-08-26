@@ -4,14 +4,6 @@ import type { booleanU } from "@skylib/functions";
 import { computed } from "vue";
 import { injectableSettings } from "./api";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends PageLayout.Icon {}
-    }
-  }
-}
-
 export namespace PageLayout {
   export const defaultSettings = computed(
     (): Settings => ({ closeButton: true, height: "auto" })
@@ -88,4 +80,12 @@ export namespace PageLayout {
   }
 
   export interface Slots extends OwnSlots {}
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends PageLayout.Icon {}
+    }
+  }
 }

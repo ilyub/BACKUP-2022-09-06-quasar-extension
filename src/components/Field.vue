@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-field -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-field -- Ok */
 
 import { a, as, cast, fn, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";

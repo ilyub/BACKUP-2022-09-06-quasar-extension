@@ -5,6 +5,39 @@ import { is } from "@skylib/functions";
 import { reactiveStorage } from "@skylib/facades";
 import type { unknowns } from "@skylib/functions";
 
+/**
+ * Jest reset.
+ */
+export function jestReset(): void {
+  reactiveStorage.setImplementation(implementations.reactiveStorage.vueStorage);
+}
+
+/**
+ * Jest setup.
+ */
+export function jestSetup(): void {
+  window.scrollTo = jest.fn();
+  installQuasarPlugin();
+  expect.extend(matchers);
+  jest.spyOn(console, "warn").mockImplementation(warnMock);
+  jestReset();
+
+  function warnMock(...args: unknowns): void {
+    if (
+      is.string(args[0]) &&
+      /^\[Vue warn\]: Component emitted event "[^"]+" but it is neither/u.test(
+        args[0]
+      )
+    ) {
+      // Ignore
+    } else {
+      warn(...args);
+
+      throw new Error("Console warn");
+    }
+  }
+}
+
 declare global {
   namespace jest {
     interface Matchers<R> {
@@ -49,39 +82,6 @@ declare global {
        * @returns Result object.
        */
       readonly toHaveEmitted: (name: string, ...expected: unknowns) => R;
-    }
-  }
-}
-
-/**
- * Jest reset.
- */
-export function jestReset(): void {
-  reactiveStorage.setImplementation(implementations.reactiveStorage.vueStorage);
-}
-
-/**
- * Jest setup.
- */
-export function jestSetup(): void {
-  window.scrollTo = jest.fn();
-  installQuasarPlugin();
-  expect.extend(matchers);
-  jest.spyOn(console, "warn").mockImplementation(warnMock);
-  jestReset();
-
-  function warnMock(...args: unknowns): void {
-    if (
-      is.string(args[0]) &&
-      /^\[Vue warn\]: Component emitted event "[^"]+" but it is neither/u.test(
-        args[0]
-      )
-    ) {
-      // Ignore
-    } else {
-      warn(...args);
-
-      throw new Error("Console warn");
     }
   }
 }

@@ -3,18 +3,6 @@ import type { Field } from "./Field.extras";
 import type { GlobalComponent } from "./api";
 import type { stringU } from "@skylib/functions";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends DatetimePicker.Icon {}
-    }
-
-    namespace lang {
-      interface Word extends DatetimePicker.Word {}
-    }
-  }
-}
-
 export namespace DatetimePicker {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
@@ -70,5 +58,17 @@ export namespace DatetimePicker {
 
   export interface Word {
     readonly Save: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends DatetimePicker.Icon {}
+    }
+
+    namespace lang {
+      interface Word extends DatetimePicker.Word {}
+    }
   }
 }

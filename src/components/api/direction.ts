@@ -175,8 +175,8 @@ export const direction = defineFn(
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare -- Ok
 export namespace direction {
+  // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
   export type Coupling =
-    // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
     | "bottom left"
     | "bottom middle"
     | "bottom right"
@@ -186,8 +186,8 @@ export namespace direction {
     | "top middle"
     | "top right";
 
+  // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
   export type Direction =
-    // eslint-disable-next-line @skylib/typescript/prefer-enum -- Ok
     | "down-left"
     | "down-right"
     | "down"

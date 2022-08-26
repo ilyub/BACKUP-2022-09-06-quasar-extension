@@ -5,18 +5,6 @@ import type { booleanU, objects, stringU } from "@skylib/functions";
 import { computed } from "vue";
 import { injectableSettings } from "./api";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends Table.Icon {}
-    }
-
-    namespace lang {
-      interface Word extends Table.Word {}
-    }
-  }
-}
-
 export namespace Table {
   export enum Align {
     center = "center",
@@ -306,5 +294,17 @@ export namespace Table {
     readonly DeselectAll: true;
     readonly ManageColumns: true;
     readonly SelectAll: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends Table.Icon {}
+    }
+
+    namespace lang {
+      interface Word extends Table.Word {}
+    }
   }
 }

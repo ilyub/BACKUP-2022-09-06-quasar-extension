@@ -1,12 +1,11 @@
+// eslint-disable-next-line @skylib/config/eslintrc/no-temp -- Postponed
 module.exports = {
-  // eslint-disable-next-line @skylib/config/eslintrc-no-rules -- Ok
   rules: {
     "@skylib/consistent-optional-props": [
       "warn",
       {
         classes: "undefined",
         interfaces: "optional",
-        // eslint-disable-next-line @skylib/config/eslintrc-no-overrides -- Ok
         overrides: [
           {
             _id: "combined",
@@ -23,10 +22,26 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/no-empty-interfaces": [
+    "@skylib/quasar-extension/vue/script/require-prop-type-param": "off",
+    "@skylib/sort-statements": [
       "warn",
-      { ignoreSelector: "Identifier[name=/^Props|Slots$/u]" }
+      {
+        programOrder: [
+          "ImportDeclaration",
+          "ExportAllDeclaration",
+          "ExportDeclaration",
+          "ExportUnknown",
+          "ExportTypeDeclaration",
+          "ExportFunctionDeclaration",
+          "Unknown",
+          "TypeDeclaration",
+          "FunctionDeclaration",
+          "ExportDefaultDeclaration",
+          "JestTest"
+        ]
+      }
     ],
+    "@skylib/vue/sort-v-bind": "off",
     "node/no-extraneous-import": [
       "warn",
       { allowModules: ["@vue/test-utils"] }

@@ -16,8 +16,11 @@ export default defineComponent({
 
     const $q = useQuasar();
 
-    const { baseButtonAnimateAsyncClick, baseButtonAnimateSubmitting } =
-      settings;
+    const {
+      // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
+      baseButtonAnimateAsyncClick,
+      baseButtonAnimateSubmitting
+    } = settings;
 
     expose();
 
@@ -31,6 +34,7 @@ export default defineComponent({
         await wait(2000);
         $q.notify(lang.Submitted);
       },
+      // eslint-disable-next-line @skylib/max-identifier-blocks -- Wait for @skylib/eslint-plugin
       baseButtonAnimateAsyncClick,
       baseButtonAnimateSubmitting,
       confirmedClick: (): void => {

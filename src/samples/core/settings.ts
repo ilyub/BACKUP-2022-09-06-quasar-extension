@@ -14,6 +14,7 @@ import ruRu from "date-fns/locale/ru";
 import us from "flag-icon-css/flags/1x1/us.svg";
 
 export const settings = {
+  // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
   baseButtonAnimateAsyncClick: ref(true),
   baseButtonAnimateSubmitting: ref(true),
   iconPickerCompact: ref(false),

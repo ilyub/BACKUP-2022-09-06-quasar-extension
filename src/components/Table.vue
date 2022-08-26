@@ -1,6 +1,4 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/sort-v-bind -- Wait for @skylib/eslint-plugin update */
-
 import * as _ from "@skylib/lodash-commonjs-es";
 import type { IndexedRecord, numberU, objects } from "@skylib/functions";
 import type { QDialog, QTable } from "quasar";
@@ -32,6 +30,17 @@ import { Table } from "./Table.extras";
 import { genericSortable } from "./Sortable.generic";
 
 const prop = propFactory<Table.OwnProps>();
+
+interface SortableColumn extends Table.Column {
+  readonly order: number;
+}
+
+interface VirtualScrollDetails {
+  readonly direction: "decrease" | "increase";
+  readonly from: number;
+  readonly index: number;
+  readonly to: number;
+}
 
 export default defineComponent({
   name: "m-table",
@@ -308,17 +317,6 @@ export default defineComponent({
     };
   }
 });
-
-interface SortableColumn extends Table.Column {
-  readonly order: number;
-}
-
-interface VirtualScrollDetails {
-  readonly direction: "decrease" | "increase";
-  readonly from: number;
-  readonly index: number;
-  readonly to: number;
-}
 </script>
 
 <template>

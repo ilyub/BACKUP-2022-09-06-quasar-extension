@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-menu -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-menu -- Ok */
 
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins, propFactory } from "./api";

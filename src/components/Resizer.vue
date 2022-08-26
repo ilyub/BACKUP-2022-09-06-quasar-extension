@@ -14,6 +14,17 @@ const isResizerEvent = is.object.factory<ResizerEvent>(
 
 const prop = propFactory<Resizer.OwnProps>();
 
+interface Offset {
+  readonly x: number;
+  readonly y: number;
+}
+
+interface ResizerEvent {
+  readonly isFinal: boolean;
+  readonly isFirst: boolean;
+  readonly offset: Offset;
+}
+
 export default defineComponent({
   name: "m-resizer",
   props: {
@@ -63,17 +74,6 @@ export default defineComponent({
     }
   }
 });
-
-interface Offset {
-  readonly x: number;
-  readonly y: number;
-}
-
-interface ResizerEvent {
-  readonly isFinal: boolean;
-  readonly isFirst: boolean;
-  readonly offset: Offset;
-}
 </script>
 
 <template>

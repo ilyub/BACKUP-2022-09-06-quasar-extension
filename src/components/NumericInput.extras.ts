@@ -3,14 +3,6 @@ import type { Optional, booleanU, numberU } from "@skylib/functions";
 import type { Field } from "./Field.extras";
 import { icons as baseIcons } from "@skylib/facades";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends NumericInput.Icon {}
-    }
-  }
-}
-
 export namespace NumericInput {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
@@ -51,4 +43,12 @@ export namespace NumericInput {
   export interface Props extends ParentProps, OwnProps {}
 
   export interface Slots extends ParentSlots {}
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends NumericInput.Icon {}
+    }
+  }
 }

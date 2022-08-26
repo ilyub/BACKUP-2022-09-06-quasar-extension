@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-popup-proxy -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-popup-proxy -- Ok */
 
 import type { Exposed, GlobalComponent } from "./api";
 import { defineComponent, ref } from "vue";

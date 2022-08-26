@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-select -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-select -- Ok */
 
 import { a, as, is, o } from "@skylib/functions";
 import { computed, defineComponent, ref } from "vue";
@@ -19,6 +19,12 @@ import { Select } from "./Select.extras";
 import type { Writable } from "@skylib/functions";
 
 const prop = propFactory<Select.OwnProps>();
+
+interface TranslatedOption extends Omit<Select.Option, "label"> {
+  readonly disable?: boolean;
+  readonly label: string;
+  readonly value: unknown;
+}
 
 export default defineComponent({
   name: "m-select",
@@ -118,12 +124,6 @@ export default defineComponent({
     }
   }
 });
-
-interface TranslatedOption extends Omit<Select.Option, "label"> {
-  readonly disable?: boolean;
-  readonly label: string;
-  readonly value: unknown;
-}
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-toggle -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-toggle -- Ok */
 
 import { defineComponent, ref } from "vue";
 import {

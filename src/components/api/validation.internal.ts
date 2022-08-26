@@ -3,14 +3,6 @@ import type { ValidationRule } from "quasar";
 import { lang as baseLang } from "@skylib/facades";
 import type { empty } from "@skylib/functions";
 
-declare global {
-  namespace facades {
-    namespace lang {
-      interface Word extends PluginWord {}
-    }
-  }
-}
-
 export enum Context {
   change = "change",
   input = "input",
@@ -93,3 +85,11 @@ export interface Rule<T = unknown> {
 export type Rules<T = unknown> = ReadonlyArray<Rule<T>>;
 
 export type ValidationRules<T = unknown> = ReadonlyArray<ValidationRule<T>>;
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends PluginWord {}
+    }
+  }
+}

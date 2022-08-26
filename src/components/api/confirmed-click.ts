@@ -3,14 +3,6 @@ import { lang as baseLang } from "@skylib/facades";
 import { propFactory } from "./misc";
 import { useQuasar } from "quasar";
 
-declare global {
-  namespace facades {
-    namespace lang {
-      interface Word extends confirmedClick.Word {}
-    }
-  }
-}
-
 export const confirmedClick = defineFn(
   /**
    * Use confirmed click plugin.
@@ -80,5 +72,13 @@ export namespace confirmedClick {
     readonly Cancel: true;
     readonly Confirm: true;
     readonly Ok: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends confirmedClick.Word {}
+    }
   }
 }

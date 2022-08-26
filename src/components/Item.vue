@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-item -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-item -- Ok */
 
 import { computed, defineComponent, ref } from "vue";
 import {

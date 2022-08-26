@@ -1,6 +1,3 @@
-/* eslint-disable github/unescaped-html-literal -- Ok */
-/* eslint-disable xss/no-mixed-html -- Ok */
-
 import { implementations } from "@skylib/framework";
 
 export const en = new implementations.lang.dictionary.Definitions({
@@ -47,7 +44,9 @@ export const en = new implementations.lang.dictionary.Definitions({
     ExpansionItem: "Expansion item",
     Field: "Field",
     FieldIsRequired: "<Field> is required",
+    // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
     FieldShouldBeGteMin: "<Field> should be greater or equal to @min",
+    // eslint-disable-next-line @skylib/max-identifier-blocks -- Ok
     FieldShouldBeLteMax: "<Field> may not exceed @max",
     Footer: "Footer",
     Green: "Green",

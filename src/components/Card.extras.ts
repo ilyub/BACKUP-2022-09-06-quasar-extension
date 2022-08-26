@@ -3,14 +3,6 @@ import type { QCard, QCardProps } from "quasar";
 import type { booleanU, stringU } from "@skylib/functions";
 import { icons as baseIcons } from "@skylib/facades";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends Card.Icon {}
-    }
-  }
-}
-
 export namespace Card {
   export const icons: baseIcons.Icons<keyof Icon> = baseIcons;
 
@@ -55,4 +47,12 @@ export namespace Card {
   export interface Props extends ParentProps, PluginProps, OwnProps {}
 
   export interface Slots extends OwnSlots {}
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends Card.Icon {}
+    }
+  }
 }

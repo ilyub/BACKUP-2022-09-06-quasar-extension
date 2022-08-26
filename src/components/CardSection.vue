@@ -1,5 +1,5 @@
 <script lang="ts">
-/* eslint-disable @skylib/quasar-extension/vue/template/prefer-m-card-section -- Ok */
+/* eslint-disable @skylib/quasar-extension/vue/template/no-q-card-section -- Ok */
 
 import { defineComponent, ref } from "vue";
 import { parentProps, plugins } from "./api";

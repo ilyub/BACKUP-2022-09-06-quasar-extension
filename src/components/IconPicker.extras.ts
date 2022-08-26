@@ -5,18 +5,6 @@ import { computed } from "vue";
 import { injectableSettings } from "./api";
 import type { stringU } from "@skylib/functions";
 
-declare global {
-  namespace facades {
-    namespace icons {
-      interface Icon extends IconPicker.Icon {}
-    }
-
-    namespace lang {
-      interface Word extends IconPicker.Word {}
-    }
-  }
-}
-
 export namespace IconPicker {
   export const defaultSettings = computed(
     (): Settings => ({
@@ -73,5 +61,17 @@ export namespace IconPicker {
   export interface Word {
     readonly IconPicker: true;
     readonly Of: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace icons {
+      interface Icon extends IconPicker.Icon {}
+    }
+
+    namespace lang {
+      interface Word extends IconPicker.Word {}
+    }
   }
 }

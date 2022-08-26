@@ -1,13 +1,5 @@
 import { lang as baseLang } from "@skylib/facades";
 
-declare global {
-  namespace facades {
-    namespace lang {
-      interface Word extends Table.Word {}
-    }
-  }
-}
-
 export namespace Table {
   export const lang: baseLang.Lang<keyof Word, never> = baseLang;
 
@@ -25,5 +17,13 @@ export namespace Table {
     readonly ShortData: true;
     readonly Sticky: true;
     readonly Title: true;
+  }
+}
+
+declare global {
+  namespace facades {
+    namespace lang {
+      interface Word extends Table.Word {}
+    }
   }
 }

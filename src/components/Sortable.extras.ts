@@ -23,12 +23,12 @@ export namespace Sortable {
     injectableSettings(defaultSettings);
 
   export namespace VueDraggable {
-    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
     export interface ItemSlotData {
       readonly element: VueDraggableElement;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
     export interface Props {
       readonly animation?: numberU;
       readonly dataGroup?: stringU;
@@ -42,7 +42,7 @@ export namespace Sortable {
       readonly tag?: stringU;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow -- Ok
+    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
     export interface Slots {
       /**
        * Footer slot.

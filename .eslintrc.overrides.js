@@ -1,15 +1,11 @@
 module.exports = {
   extends: [
-    "plugin:@skylib/functions",
-    "plugin:@skylib/facades",
-    "plugin:@skylib/framework",
-    "plugin:@skylib/quasar-extension",
     "./node_modules/@skylib/config/eslint/options/allow-process-env",
     "./node_modules/@skylib/config/eslint/options/allow-type-assertions"
   ],
   overrides: [
     {
-      files: "./jest.config.js",
+      files: ["./jest.config.js", "./src/application/lang/{en,ru}.ts"],
       extends:
         "./node_modules/@skylib/config/eslint/options/skip-html-literal-check"
     },

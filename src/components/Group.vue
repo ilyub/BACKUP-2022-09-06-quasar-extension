@@ -10,6 +10,12 @@ import Subsection from "./Subsection.vue";
 
 const prop = propFactory<Group.OwnProps>();
 
+interface TranslatedItem extends Omit<Group.Item, "title"> {
+  readonly id: string;
+  readonly show: boolean;
+  readonly title: string;
+}
+
 export default defineComponent({
   name: "m-group",
   directives: { debugId: directives.debugId("group") },
@@ -87,12 +93,6 @@ export default defineComponent({
     };
   }
 });
-
-interface TranslatedItem extends Omit<Group.Item, "title"> {
-  readonly id: string;
-  readonly show: boolean;
-  readonly title: string;
-}
 </script>
 
 <template>

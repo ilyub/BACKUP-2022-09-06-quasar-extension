@@ -12,6 +12,7 @@ export namespace Indent {
     readonly default: () => VNodes;
   }
 
+  // eslint-disable-next-line @skylib/typescript/no-empty-interfaces -- Wait for @skylib/eslint-plugin update
   export interface Props {}
 
   export interface Slots extends OwnSlots {}
