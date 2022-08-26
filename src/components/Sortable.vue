@@ -9,22 +9,16 @@ import {
   validateEmit,
   validateProps
 } from "./api";
-import type { GlobalComponent } from "./api";
 import { Sortable } from "./Sortable.extras";
 import { Tooltip } from "./Tooltip.extras";
-import VueDraggable from "vuedraggable";
+import { VueDraggable } from "./Sortable.vue-draggable";
 import type { objects } from "@skylib/functions";
 
 const prop = propFactory<Sortable.OwnProps>();
 
 export default defineComponent({
   name: "m-sortable",
-  components: {
-    "vue-draggable": VueDraggable as unknown as GlobalComponent<
-      Sortable.VueDraggable.Props,
-      Sortable.VueDraggable.Slots
-    >
-  },
+  components: { "vue-draggable": VueDraggable },
   props: {
     group: prop.required("group"),
     itemClass: prop("itemClass"),

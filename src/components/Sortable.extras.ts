@@ -1,12 +1,6 @@
 import type { GlobalComponent, VNodes } from "./api";
-import type {
-  booleanU,
-  numberU,
-  objectU,
-  stringU,
-  types,
-  unknowns
-} from "@skylib/functions";
+import type { booleanU, stringU } from "@skylib/functions";
+import type { VueDraggable } from "./Sortable.vue-draggable";
 import { computed } from "vue";
 import { injectableSettings } from "./api";
 
@@ -21,50 +15,6 @@ export namespace Sortable {
 
   export const { injectSettings, provideSettings, testProvideSettings } =
     injectableSettings(defaultSettings);
-
-  export namespace VueDraggable {
-    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
-    export interface ItemSlotData {
-      readonly element: VueDraggableElement;
-    }
-
-    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
-    export interface Props {
-      readonly animation?: numberU;
-      readonly dataGroup?: stringU;
-      readonly disabled?: booleanU;
-      readonly ghostClass?: stringU;
-      readonly group?: objectU;
-      readonly itemKey?: stringU;
-      readonly modelValue?: unknowns | undefined;
-      readonly move?: types.fn.Callable | undefined;
-      readonly sort?: booleanU;
-      readonly tag?: stringU;
-    }
-
-    // eslint-disable-next-line @skylib/typescript/no-shadow -- Ok
-    export interface Slots {
-      /**
-       * Footer slot.
-       *
-       * @returns Nodes.
-       */
-      readonly footer: () => VNodes;
-      /**
-       *Header slot.
-       *
-       * @returns Nodes.
-       */
-      readonly header: () => VNodes;
-      /**
-       * Item slot.
-       *
-       * @param data - Data.
-       * @returns Nodes.
-       */
-      readonly item: (data: ItemSlotData) => VNodes;
-    }
-  }
 
   export interface Global<T extends object = object, D extends object = object>
     extends GlobalComponent<Props<T, D>, Slots<T>> {}
@@ -166,10 +116,4 @@ export namespace Sortable {
   export interface Slots<T extends object = object>
     extends ParentSlots,
       OwnSlots<T> {}
-
-  export interface VueDraggableElement {
-    readonly group: string;
-    readonly id: string;
-    readonly item: object;
-  }
 }

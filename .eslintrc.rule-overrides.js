@@ -140,6 +140,7 @@ module.exports = {
                 "./Subsection",
                 "./Subsection.extras"
               ],
+              ["./Sortable.vue-draggable"],
               [
                 "./BaseButton",
                 "./BaseButton.extras",
