@@ -8,7 +8,6 @@ module.exports = {
       "warn",
       {
         sources: [
-          ...consistentImport.sources,
           {
             _id: "app",
             localName: "app",
@@ -89,21 +88,22 @@ module.exports = {
             _id: "test-utils/mocks",
             source: "@skylib/quasar-extension/src/test-utils/mocks",
             wildcard: true
-          }
+          },
+          ...consistentImport.sources
         ]
       }
     ],
     "@skylib/no-sibling-import": [
       "warn",
       {
-        folders: [
+        rules: [
           {
             filesToLint: ["./*"],
-            levels: [["./jest.config"], ["./jest.config.fast"]]
+            hierarchy: [["./jest.config"], ["./jest.config.fast"]]
           },
           {
             filesToLint: ["./src/components/*"],
-            levels: [
+            hierarchy: [
               ["./Tooltip.internal"],
               [
                 "./Field",
@@ -192,7 +192,7 @@ module.exports = {
           },
           {
             filesToLint: ["./src/components/api/*"],
-            levels: [
+            hierarchy: [
               ["./misc"],
               [
                 "./async-click",

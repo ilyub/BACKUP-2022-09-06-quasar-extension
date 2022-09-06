@@ -8,13 +8,14 @@ module.exports = {
         interfaces: "optional",
         overrides: [
           {
-            _id: "combined",
+            _id: "PropsSlots",
             pattern: "^(?:Props|Slots|OwnProps|OwnSlots)$",
             style: "combined",
             target: "interfaces"
           },
           {
-            _id: "optional",
+            _id: "PropsSlots.events",
+            pattern: "^(?:Props|Slots|OwnProps|OwnSlots)$",
             propertyPattern: "^on[A-Z]",
             style: "optional",
             target: "interfaces"
