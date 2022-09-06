@@ -1,3 +1,5 @@
+/* eslint-disable @skylib/export-matching-filename-only -- Ok */
+
 // eslint-disable-next-line import/no-unassigned-import -- Ok
 import "./index.global";
 
