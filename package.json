@@ -75,15 +75,15 @@
   "devDependencies": {
     "@mdi/js": "^7.0.96",
     "@quasar/app-webpack": "^3.5.9",
-    "@quasar/extras": "^1.15.1",
-    "@skylib/config": "^3.38.0",
-    "@skylib/eslint-plugin": "^0.1.50",
+    "@quasar/extras": "^1.15.2",
+    "@skylib/config": "^3.40.2",
+    "@skylib/eslint-plugin": "^0.1.53",
     "autoprefixer": "^10.4.8",
     "core-js": "^3.25.0",
     "date-fns": "^2.29.2",
     "flag-icon-css": "^4.1.7",
     "typeface-roboto-multilang": "^1.0.0",
-    "vue-tsc": "^0.40.1"
+    "vue-tsc": "^0.40.9"
   },
   "peerDependencies": {
     "@jest/expect-utils": "*",
